@@ -1,6 +1,6 @@
 ﻿using AzureFromTheTrenches.Commanding.Abstractions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation
+namespace FunctionMonkey.Abstractions.Validation
 {
     public interface IValidator
     {

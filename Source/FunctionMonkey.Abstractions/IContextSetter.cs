@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions
+namespace FunctionMonkey.Abstractions
 {
     public interface IContextSetter
     {

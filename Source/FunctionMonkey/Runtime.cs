@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
+using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure;
+using FunctionMonkey.Abstractions;
+using FunctionMonkey.Builders;
+using FunctionMonkey.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions
+namespace FunctionMonkey
 {
     public static class Runtime
     {

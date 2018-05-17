@@ -1,7 +1,7 @@
-﻿using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Builders
+namespace FunctionMonkey.Builders
 {
     internal class OpenApiBuilder : IOpenApiBuilder
     {

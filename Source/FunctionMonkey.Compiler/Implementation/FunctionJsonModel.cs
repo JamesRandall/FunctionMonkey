@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+﻿namespace FunctionMonkey.Compiler.Implementation
 {
     internal class FunctionJsonModel
     {

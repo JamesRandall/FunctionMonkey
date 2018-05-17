@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+namespace FunctionMonkey.Model
 {
     public class OpenApiConfiguration
     {

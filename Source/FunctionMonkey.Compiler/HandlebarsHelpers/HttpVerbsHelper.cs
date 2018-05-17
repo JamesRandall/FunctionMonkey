@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
 using System.Text;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.HandlebarsHelpers
+namespace FunctionMonkey.Compiler.HandlebarsHelpers
 {
     internal static class HttpVerbsHelper
     {

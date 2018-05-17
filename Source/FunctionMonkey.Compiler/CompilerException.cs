@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler
+namespace FunctionMonkey.Compiler
 {
     public class CompilerException : Exception
     {

@@ -6,9 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.HandlebarsHelpers;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Compiler.HandlebarsHelpers;
+using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +19,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     internal class AssemblyCompiler : IAssemblyCompiler
     {
@@ -84,7 +83,7 @@ namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
             HashSet<string> locations = new HashSet<string>
             {
                 typeof(Runtime).GetTypeInfo().Assembly.Location,
-                typeof(Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,
+                typeof(AzureFromTheTrenches.Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,
                 typeof(Abstractions.ICommandDeserializer).GetTypeInfo().Assembly.Location,
                 typeof(System.Net.Http.HttpMethod).GetTypeInfo().Assembly.Location,
                 typeof(System.Net.HttpStatusCode).GetTypeInfo().Assembly.Location,

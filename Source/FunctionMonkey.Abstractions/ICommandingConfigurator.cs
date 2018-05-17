@@ -1,6 +1,6 @@
 ﻿using AzureFromTheTrenches.Commanding.Abstractions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions
+namespace FunctionMonkey.Abstractions
 {
     public interface ICommandingConfigurator
     {

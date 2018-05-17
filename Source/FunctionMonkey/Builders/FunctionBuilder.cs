@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Builders
+namespace FunctionMonkey.Builders
 {
     internal class FunctionBuilder : IFunctionBuilder
     {

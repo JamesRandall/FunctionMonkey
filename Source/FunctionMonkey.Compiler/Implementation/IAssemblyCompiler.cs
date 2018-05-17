@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     internal interface IAssemblyCompiler
     {

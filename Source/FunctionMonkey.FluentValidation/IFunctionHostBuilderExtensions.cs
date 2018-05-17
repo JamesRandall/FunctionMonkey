@@ -1,7 +1,7 @@
-﻿using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.FluentValidation.Implementation;
+﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.FluentValidation.Implementation;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.FluentValidation
+namespace FunctionMonkey.FluentValidation
 {
     // ReSharper disable once InconsistentNaming - interface extensions
     public static class IFunctionHostBuilderExtensions

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
+using FunctionMonkey.Abstractions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure
+namespace FunctionMonkey.Infrastructure
 {
     internal class CommandClaimsBinder : ICommandClaimsBinder
     {

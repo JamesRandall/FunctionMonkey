@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Builders
+namespace FunctionMonkey.Builders
 {
     public class FunctionHostBuilder : IFunctionHostBuilder
     {

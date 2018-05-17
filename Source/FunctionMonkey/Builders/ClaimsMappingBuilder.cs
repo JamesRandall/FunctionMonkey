@@ -4,12 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Security.Claims;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Infrastructure;
+using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Builders
+namespace FunctionMonkey.Builders
 {
     internal class ClaimsMappingBuilder : IClaimsMappingBuilder
     {

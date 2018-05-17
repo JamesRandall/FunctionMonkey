@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     internal class JsonCompiler
     {

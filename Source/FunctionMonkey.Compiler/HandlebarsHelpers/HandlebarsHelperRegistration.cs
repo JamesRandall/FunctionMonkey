@@ -1,4 +1,4 @@
-﻿namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.HandlebarsHelpers
+﻿namespace FunctionMonkey.Compiler.HandlebarsHelpers
 {
     internal static class HandlebarsHelperRegistration
     {

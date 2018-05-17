@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OpenApi.Models;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Extensions
+namespace FunctionMonkey.Compiler.Extensions
 {
     /// <summary>
     /// Extension methods for <see cref="Type"/>.

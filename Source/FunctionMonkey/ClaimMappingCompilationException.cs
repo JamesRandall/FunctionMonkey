@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions
+namespace FunctionMonkey
 {
     public class ClaimMappingCompilationException : Exception
     {

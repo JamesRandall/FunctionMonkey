@@ -1,8 +1,8 @@
-﻿using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.HandlebarsHelpers
+namespace FunctionMonkey.Compiler.HandlebarsHelpers
 {
     internal static class AzureAuthenticationTypeHelper
     {

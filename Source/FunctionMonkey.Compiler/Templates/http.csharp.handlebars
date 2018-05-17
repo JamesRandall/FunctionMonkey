@@ -35,8 +35,8 @@ namespace {{Namespace}}
             {
                 return new UnauthorizedResult();
             }
-            var tokenValidator = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ITokenValidator)
-                AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ITokenValidator));
+            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ITokenValidator));
             System.Security.Claims.ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
             if (principal == null)
             {
@@ -48,8 +48,8 @@ namespace {{Namespace}}
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(requestBody))
             {
-                var deserializer = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ICommandDeserializer)
-                    AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ICommandDeserializer));
+                var deserializer = (FunctionMonkey.Abstractions.ICommandDeserializer)
+                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandDeserializer));
                 command = deserializer.Deserialize<{{CommandTypeName}}>(requestBody);
             }
             else
@@ -71,14 +71,14 @@ namespace {{Namespace}}
             {{/each}}
 
             {{#if ValidatesToken}}
-            var claimsBinder = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ICommandClaimsBinder)
-                AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ICommandClaimsBinder));
+            var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
             claimsBinder.Bind(principal, command);
             {{/if}}
 
             {{#if IsUsingValidator}}
-            var validator = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation.IValidator)
-                AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation.IValidator));
+            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
@@ -86,7 +86,7 @@ namespace {{Namespace}}
             }
             {{/if}}
             
-            var result = await AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.CommandDispatcher.DispatchAsync(command);
+            var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             {{#if CommandResultType}}
             return new OkObjectResult(result.Result);
             {{else}}

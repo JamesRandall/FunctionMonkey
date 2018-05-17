@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+namespace FunctionMonkey.Model
 {
     public class CommandClaimMappingDefinition
     {

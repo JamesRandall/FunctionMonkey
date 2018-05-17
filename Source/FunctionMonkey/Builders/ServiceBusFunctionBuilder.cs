@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Builders
+namespace FunctionMonkey.Builders
 {
     class ServiceBusFunctionBuilder : IServiceBusFunctionBuilder
     {

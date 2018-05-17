@@ -1,4 +1,4 @@
-﻿namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders
+﻿namespace FunctionMonkey.Abstractions.Builders
 {
     /// <summary>
     /// Used to optionally annotate a function with metadata for Open API

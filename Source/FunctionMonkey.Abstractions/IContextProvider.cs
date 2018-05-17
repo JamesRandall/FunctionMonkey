@@ -1,6 +1,6 @@
-﻿using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Contexts;
+﻿using FunctionMonkey.Abstractions.Contexts;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions
+namespace FunctionMonkey.Abstractions
 {
     public interface IContextProvider
     {

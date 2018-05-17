@@ -1,4 +1,4 @@
-﻿namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders
+﻿namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IStorageQueueFunctionBuilder
     {

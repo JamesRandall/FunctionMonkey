@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Contexts
+namespace FunctionMonkey.Abstractions.Contexts
 {
     public class ServiceBusContext
     {

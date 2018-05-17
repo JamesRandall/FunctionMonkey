@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using AzureFromTheTrenches.Commanding.Abstractions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions
+namespace FunctionMonkey.Abstractions
 {
     public interface ICommandClaimsBinder
     {

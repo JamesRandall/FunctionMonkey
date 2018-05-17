@@ -8,7 +8,7 @@ using System;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Extensions
+namespace FunctionMonkey.Compiler.Extensions
 {
     /// <summary>
     /// Extension methods for <see cref="string"/>.

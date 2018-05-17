@@ -1,8 +1,7 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using AzureFromTheTrenches.Commanding.Abstractions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders
+namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IHttpFunctionBuilder
     {

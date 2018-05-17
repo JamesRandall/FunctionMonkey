@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions
+namespace FunctionMonkey.Abstractions
 {
     public interface ITokenValidator
     {

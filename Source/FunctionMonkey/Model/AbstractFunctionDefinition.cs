@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Extensions;
+using FunctionMonkey.Extensions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+namespace FunctionMonkey.Model
 {
     public abstract class AbstractFunctionDefinition
     {

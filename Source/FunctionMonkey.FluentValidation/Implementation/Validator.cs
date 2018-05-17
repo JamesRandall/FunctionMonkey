@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation;
 using FluentValidation;
+using FunctionMonkey.Abstractions.Validation;
 using Microsoft.Extensions.DependencyInjection;
-using IValidator = AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation.IValidator;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.FluentValidation.Implementation
+namespace FunctionMonkey.FluentValidation.Implementation
 {
-    internal class Validator : IValidator
+    internal class Validator : Abstractions.Validation.IValidator
     {
         private readonly IServiceProvider _serviceProvider;
 

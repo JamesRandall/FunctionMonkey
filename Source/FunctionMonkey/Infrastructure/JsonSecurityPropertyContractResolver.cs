@@ -4,7 +4,7 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure
+namespace FunctionMonkey.Infrastructure
 {
     internal class JsonSecurityPropertyContractResolver : DefaultContractResolver
     {

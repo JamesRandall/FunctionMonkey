@@ -1,6 +1,6 @@
-﻿using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
+﻿using FunctionMonkey.Abstractions.Builders;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions
+namespace FunctionMonkey.Abstractions
 {
     public interface IFunctionAppConfiguration
     {

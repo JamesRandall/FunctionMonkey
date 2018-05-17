@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+namespace FunctionMonkey.Model
 {
     internal class ClaimMapping
     {

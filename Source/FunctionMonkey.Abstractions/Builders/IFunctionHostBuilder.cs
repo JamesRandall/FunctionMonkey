@@ -1,9 +1,9 @@
 ﻿using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation;
+using FunctionMonkey.Abstractions.Validation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders
+namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IFunctionHostBuilder
     {

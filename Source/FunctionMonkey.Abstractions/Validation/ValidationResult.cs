@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation
+namespace FunctionMonkey.Abstractions.Validation
 {
     public class ValidationResult
     {

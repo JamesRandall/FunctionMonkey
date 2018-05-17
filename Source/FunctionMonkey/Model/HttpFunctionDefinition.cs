@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+namespace FunctionMonkey.Model
 {
     public class HttpFunctionDefinition : AbstractFunctionDefinition
     {

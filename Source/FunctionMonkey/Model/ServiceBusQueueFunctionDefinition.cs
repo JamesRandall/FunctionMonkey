@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+namespace FunctionMonkey.Model
 {
     public class ServiceBusQueueFunctionDefinition : AbstractFunctionDefinition
     {

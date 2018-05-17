@@ -1,8 +1,8 @@
 ﻿using System;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
+using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Builders;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Builders
+namespace FunctionMonkey.Builders
 {
     internal class AuthorizationBuilder : IAuthorizationBuilder
     {

@@ -1,8 +1,8 @@
 ﻿using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
+using FunctionMonkey.Abstractions;
 using Newtonsoft.Json;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure
+namespace FunctionMonkey.Infrastructure
 {
     internal class CommandDeserializer : ICommandDeserializer
     {

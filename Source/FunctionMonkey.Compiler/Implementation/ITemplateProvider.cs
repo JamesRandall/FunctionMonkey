@@ -1,6 +1,6 @@
-﻿using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+﻿using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     internal interface ITemplateProvider
     {

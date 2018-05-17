@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
+using FunctionMonkey.Abstractions;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions
+namespace FunctionMonkey
 {
     public static class ConfigurationLocator
     {

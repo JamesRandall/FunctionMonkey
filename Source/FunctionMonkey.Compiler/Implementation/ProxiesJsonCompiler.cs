@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.HandlebarsHelpers;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Compiler.HandlebarsHelpers;
+using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     internal class ProxiesJsonCompiler
     {

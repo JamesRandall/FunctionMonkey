@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Contexts;
+using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Contexts;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure
+namespace FunctionMonkey.Infrastructure
 {
     class ContextManager : IContextSetter, IContextProvider
     {

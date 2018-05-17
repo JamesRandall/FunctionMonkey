@@ -2,9 +2,9 @@
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation;
+using FunctionMonkey.Compiler.Implementation;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler
+namespace FunctionMonkey.Compiler
 {
     class Program
     {

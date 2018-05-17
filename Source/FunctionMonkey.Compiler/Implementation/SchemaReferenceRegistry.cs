@@ -6,12 +6,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Extensions;
+using FunctionMonkey.Compiler.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     public class SchemaReferenceRegistry
     {

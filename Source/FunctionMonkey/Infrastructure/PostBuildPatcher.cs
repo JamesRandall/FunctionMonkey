@@ -2,12 +2,12 @@
 using System.Net.Http;
 using System.Reflection;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Extensions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
+using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Builders;
+using FunctionMonkey.Extensions;
+using FunctionMonkey.Model;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure
+namespace FunctionMonkey.Infrastructure
 {
     public class PostBuildPatcher
     {

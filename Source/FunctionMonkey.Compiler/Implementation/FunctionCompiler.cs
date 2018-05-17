@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
+using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Builders;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Infrastructure;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Model;
-using Microsoft.CodeAnalysis;
+using FunctionMonkey.Abstractions;
+using FunctionMonkey.Builders;
+using FunctionMonkey.Infrastructure;
+using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     internal class FunctionCompiler
     {

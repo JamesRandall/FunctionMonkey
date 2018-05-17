@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Implementation
 {
     public static class Utils
     {

@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions;
-using AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders;
+using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Builders;
 using SimpleRestApi.Queries;
 
 namespace SimpleRestApi

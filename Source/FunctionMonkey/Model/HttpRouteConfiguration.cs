@@ -1,4 +1,4 @@
-﻿namespace AzureFromTheTrenches.Commanding.AzureFunctions.Model
+﻿namespace FunctionMonkey.Model
 {
     public class HttpRouteConfiguration
     {

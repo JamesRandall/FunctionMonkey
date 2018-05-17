@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Builders
+﻿namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IOpenApiBuilder
     {

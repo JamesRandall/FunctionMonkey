@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace AzureFromTheTrenches.Commanding.AzureFunctions.Extensions
+namespace FunctionMonkey.Extensions
 {
     internal static class TypeExtensions
     {
