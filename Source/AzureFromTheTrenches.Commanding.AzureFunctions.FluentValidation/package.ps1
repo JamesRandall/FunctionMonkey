@@ -1,0 +1,1 @@
+dotnet pack .\AzureFromTheTrenches.Commanding.AzureFunctions.FluentValidation.csproj --output ../ --configuration Release

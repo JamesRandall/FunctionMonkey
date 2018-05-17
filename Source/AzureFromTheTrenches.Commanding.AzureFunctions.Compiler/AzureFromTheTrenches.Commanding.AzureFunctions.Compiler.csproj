@@ -1,0 +1,106 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>    
+    <Version>0.3.2-beta000</Version>
+    <AssemblyName>CompileCommandingFunctions</AssemblyName>
+    <PackageId>CompileCommandingFunctions</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="node_modules\swagger-ui-dist\absolute-path.js" />
+    <None Remove="node_modules\swagger-ui-dist\favicon-16x16.png" />
+    <None Remove="node_modules\swagger-ui-dist\favicon-32x32.png" />
+    <None Remove="node_modules\swagger-ui-dist\index.html" />
+    <None Remove="node_modules\swagger-ui-dist\index.js" />
+    <None Remove="node_modules\swagger-ui-dist\oauth2-redirect.html" />
+    <None Remove="node_modules\swagger-ui-dist\package.json" />
+    <None Remove="node_modules\swagger-ui-dist\README.md" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-bundle.js" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-bundle.js.map" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js.map" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui.css" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui.css.map" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui.js" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+    <None Remove="Templates\http.csharp.handlebars" />
+    <None Remove="Templates\proxies.json.handlebars" />
+    <None Remove="Templates\servicebusqueue.csharp.handlebars" />
+    <None Remove="Templates\servicebusqueue.json.handlebars" />
+    <None Remove="Templates\servicebussubscription.csharp.handlebars" />
+    <None Remove="Templates\servicebussubscription.json.handlebars" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\absolute-path.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\favicon-16x16.png" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\favicon-32x32.png" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\index.html" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\index.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\oauth2-redirect.html" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\package.json" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\README.md" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-bundle.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-bundle.js.map" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js.map" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css.map" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+    <EmbeddedResource Include="Templates\servicebussubscription.json.handlebars" />
+    <EmbeddedResource Include="Templates\servicebussubscription.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\servicebusqueue.json.handlebars" />
+    <EmbeddedResource Include="Templates\servicebusqueue.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\proxies.json.handlebars" />
+    <EmbeddedResource Include="Templates\http.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\http.json.handlebars" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AzureFromTheTrenches.Commanding" Version="8.1.0-beta000" />
+    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.0-beta000" />
+    <PackageReference Include="Handlebars.Net" Version="1.9.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.0-beta5" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" Version="3.0.0-beta5" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.7.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzureFromTheTrenches.Commanding.AzureFunctions\AzureFromTheTrenches.Commanding.AzureFunctions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CompileCommandingFunctions.targets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="_._">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!-- Pack settings -->
+  <PropertyGroup>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NuspecFile>CompileCommandingFunctions.nuspec</NuspecFile>
+    <IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
+    <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
+    <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
+  </PropertyGroup>
+
+  <!-- Executes /t:Publish for all target frameworks before packing-->
+  <Target Name="PublishAll" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_TargetFramework Include="$(TargetFramework)" />
+    </ItemGroup>
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Publish" Properties="TargetFramework=%(_TargetFramework.Identity)" />
+  </Target>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="yarn" />
+  </Target>
+
+</Project>

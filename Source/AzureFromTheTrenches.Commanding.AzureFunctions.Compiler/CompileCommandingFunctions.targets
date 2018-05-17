@@ -1,0 +1,11 @@
+<Project ToolsVersion="14.0"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FunctionCompilerExe Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp2.0/CompileCommandingFunctions.dll"</FunctionCompilerExe>
+    <!-- <FunctionCompilerExe Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard'">dotnet "$(NuGetPackageRoot)CompileCommandingFunctions/0.1.0-beta5/tools/netcoreapp2.0/CompileCommandingFunctions.dll"</FunctionCompilerExe> -->
+  </PropertyGroup>
+
+  <Target Name="_CompileCommandingFunctions" AfterTargets="Build">
+    <Exec Command="$(FunctionCompilerExe) $(TargetDir)bin\$(TargetName).dll $(TargetDir)" />
+  </Target>
+</Project>

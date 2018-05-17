@@ -1,0 +1,55 @@
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+
+namespace {{Namespace}}
+{
+    public static class {{Name}}
+    {
+        [FunctionName("{{Name}}")]
+        public static async Task Run(
+            [ServiceBusTrigger("{{TopicName}}", "{{SubscriptionName}}", Connection="{{ConnectionStringName}}")]
+            string queueItem,
+            int deliveryCount,
+            DateTime enqueuedTimeUtc,
+            string messageId,
+            ILogger log)
+        {
+            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
+            
+            {{CommandTypeName}} command;
+            if (!System.String.IsNullOrWhiteSpace(queueItem))
+            {
+                var deserializer = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ICommandDeserializer)
+                    AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.ICommandDeserializer));
+                command = deserializer.Deserialize<{{CommandTypeName}}>(queueItem, false); // we don't enforce security properties from message buses
+            }
+            else
+            {
+                command = new {{CommandTypeName}}();
+            }
+
+            var contextSetter = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.IContextSetter)
+                AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.IContextSetter));
+            contextSetter.SetServiceBusContext(deliveryCount, enqueuedTimeUtc, messageId);
+
+            {{#if IsUsingValidator}}
+            var validator = (AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation.IValidator)
+                AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.ServiceProvider.GetService(typeof(AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation.IValidator));
+            var validationResult = validator.Validate(command);
+            if (!validationResult.IsValid)
+            {
+                throw new AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
+            }
+            {{/if}}
+            
+            var result = await AzureFromTheTrenches.Commanding.AzureFunctions.Runtime.CommandDispatcher.DispatchAsync(command);
+            // The result will be useful when we want to include outputs too
+        }
+    }
+}

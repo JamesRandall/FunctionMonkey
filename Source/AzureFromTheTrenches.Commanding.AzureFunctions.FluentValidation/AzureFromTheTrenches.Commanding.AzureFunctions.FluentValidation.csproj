@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.3.3-beta000</Version>
+    <Authors>James Randall</Authors>
+    <Company>James Randall</Company>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://commanding.azurefromthetrenches.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JamesRandall/AzureFromTheTrenches.Commanding.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="7.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions\AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
