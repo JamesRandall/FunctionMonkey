@@ -1,0 +1,1 @@
+dotnet pack .\FunctionMonkey.FluentValidation.csproj --output ../../ --configuration Release

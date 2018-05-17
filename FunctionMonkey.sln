@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Abstractions", "Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj", "{964DB972-B1A6-4434-AB1C-ED716B8987B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey", "Source\FunctionMonkey\FunctionMonkey.csproj", "{00C320CE-2748-45CC-BF49-448A8A5B7985}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.FluentValidation", "Source\FunctionMonkey.FluentValidation\FunctionMonkey.FluentValidation.csproj", "{F7D7FC60-F231-4091-8790-90C4CF5DBE58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Compiler", "Source\FunctionMonkey.Compiler\FunctionMonkey.Compiler.csproj", "{ABD675D4-16F1-4F52-ADDD-08423B0661EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{29B0FAE2-30D2-4721-BA70-8406CFBC4DDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestApi", "Samples\SimpleRestApi\SimpleRestApi.csproj", "{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{964DB972-B1A6-4434-AB1C-ED716B8987B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964DB972-B1A6-4434-AB1C-ED716B8987B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964DB972-B1A6-4434-AB1C-ED716B8987B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964DB972-B1A6-4434-AB1C-ED716B8987B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C320CE-2748-45CC-BF49-448A8A5B7985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C320CE-2748-45CC-BF49-448A8A5B7985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C320CE-2748-45CC-BF49-448A8A5B7985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C320CE-2748-45CC-BF49-448A8A5B7985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D7FC60-F231-4091-8790-90C4CF5DBE58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D7FC60-F231-4091-8790-90C4CF5DBE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D7FC60-F231-4091-8790-90C4CF5DBE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D7FC60-F231-4091-8790-90C4CF5DBE58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD675D4-16F1-4F52-ADDD-08423B0661EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD675D4-16F1-4F52-ADDD-08423B0661EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD675D4-16F1-4F52-ADDD-08423B0661EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD675D4-16F1-4F52-ADDD-08423B0661EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0} = {29B0FAE2-30D2-4721-BA70-8406CFBC4DDD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9ABA812-671D-4486-B9D8-4F16D4BE11BD}
+	EndGlobalSection
+EndGlobal

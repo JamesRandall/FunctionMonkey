@@ -1,1 +1,0 @@
-dotnet pack .\AzureFromTheTrenches.Commanding.AzureFunctions.Abstractions.csproj --output ../ --configuration Release
