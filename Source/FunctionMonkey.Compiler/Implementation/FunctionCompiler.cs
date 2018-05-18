@@ -68,7 +68,9 @@ namespace FunctionMonkey.Compiler.Implementation
             _proxiesJsonCompiler.Compile(builder.FunctionDefinitions, _outputBinaryFolder);
             bool openApiEndpointRequired = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
 
-            _assemblyCompiler.Compile(builder.FunctionDefinitions, 
+            _assemblyCompiler.Compile(builder.FunctionDefinitions,
+                configuration.GetType(),
+                newAssemblyNamespace,
                 externalAssemblies, 
                 _outputBinaryFolder, 
                 $"{newAssemblyNamespace}.dll", 
@@ -117,6 +119,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 assemblies.Add(command.Assembly);
             }
+
+            assemblies.Add(_configurationSourceAssembly);
 
             // at the moment we can't get the actual dispatcher types without actually calling the function and looking at ther result - needs thought
             return assemblies;

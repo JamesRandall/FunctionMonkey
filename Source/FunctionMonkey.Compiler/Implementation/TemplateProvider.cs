@@ -41,5 +41,12 @@ namespace FunctionMonkey.Compiler.Implementation
             }
             throw new ConfigurationException($"No templates are configured for function definitions of type {functionDefinition.GetType().Name}");
         }
+
+        public string GetCSharpLinkBackTemplate()
+        {
+            using (Stream stream = GetType().Assembly.GetManifestResourceStream("FunctionMonkey.Compiler.Templates.forcereference.csharp.handlebars"))
+            using (StreamReader reader = new StreamReader(stream))
+                return reader.ReadToEnd();
+        }
     }
 }

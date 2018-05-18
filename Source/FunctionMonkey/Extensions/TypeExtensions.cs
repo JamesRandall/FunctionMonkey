@@ -3,7 +3,7 @@ using System.Text;
 
 namespace FunctionMonkey.Extensions
 {
-    internal static class TypeExtensions
+    public static class TypeExtensions
     {
         public static string GetFunctionName(this Type commandType)
         {

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
+using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,8 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         public void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+            Type functionAppConfigurationType,
+            string newAssemblyNamespace,
             IReadOnlyCollection<Assembly> externalAssemblies,
             string outputBinaryFolder,
             string assemblyName,
@@ -38,12 +41,17 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputAuthoredSourceFolder)
         {
             HandlebarsHelperRegistration.RegisterHelpers();
-            IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions, outputAuthoredSourceFolder);
+            IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
+                functionAppConfigurationType,
+                newAssemblyNamespace,
+                outputAuthoredSourceFolder);
 
             CompileAssembly(syntaxTrees, externalAssemblies, outputBinaryFolder, assemblyName);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+            Type functionAppConfigurationType,
+            string newAssemblyNamespace,
             string outputAuthoredSourceFolder)
         {
             List<SyntaxTree> syntaxTrees = new List<SyntaxTree>();
@@ -58,20 +66,41 @@ namespace FunctionMonkey.Compiler.Implementation
                 Func<object, string> template = Handlebars.Compile(templateSource);
 
                 string outputCode = template(functionDefinition);
-                if (directoryInfo != null)
-                {
-                    using (StreamWriter writer =
-                        File.CreateText(Path.Combine(directoryInfo.FullName, $"{functionDefinition.Name}.cs")))
-                    {
-                        writer.Write(outputCode);
-                    }
-                }
+                OutputDiagnosticCode(directoryInfo, functionDefinition.Name, outputCode);
                 
                 SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode);
                 syntaxTrees.Add(syntaxTree);
             }
 
+            // Now we need to create a class that references the assembly with the configuration builder
+            // otherwise the reference will be optimised away by Roslyn and it will then never get loaded
+            // by the function host - and so at runtime the builder with the runtime info in won't be located
+            string linkBackTemplateSource = _templateProvider.GetCSharpLinkBackTemplate();
+            Func<object, string> linkBackTemplate = Handlebars.Compile(linkBackTemplateSource);
+            LinkBackModel linkBackModel = new LinkBackModel
+            {
+                ConfigurationTypeName = functionAppConfigurationType.EvaluateType(),
+                Namespace = newAssemblyNamespace
+            };
+            string outputLinkBackCode = linkBackTemplate(linkBackModel);
+            OutputDiagnosticCode(directoryInfo, "ReferenceLinkBack", outputLinkBackCode);
+            SyntaxTree linkBackSyntaxTree = CSharpSyntaxTree.ParseText(outputLinkBackCode);
+            syntaxTrees.Add(linkBackSyntaxTree);
+
             return syntaxTrees;
+        }
+
+        private static void OutputDiagnosticCode(DirectoryInfo directoryInfo, string name,
+            string outputCode)
+        {
+            if (directoryInfo != null)
+            {
+                using (StreamWriter writer =
+                    File.CreateText(Path.Combine(directoryInfo.FullName, $"{name}.cs")))
+                {
+                    writer.Write(outputCode);
+                }
+            }
         }
 
         private void CompileAssembly(IReadOnlyCollection<SyntaxTree> syntaxTrees,

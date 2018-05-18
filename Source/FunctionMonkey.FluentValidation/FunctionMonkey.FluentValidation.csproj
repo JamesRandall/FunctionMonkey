@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.4.0-beta000</Version>
+    <Version>0.4.2-beta000</Version>
     <Authors>James Randall</Authors>
     <Company>James Randall</Company>
     <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://commanding.azurefromthetrenches.com/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JamesRandall/AzureFromTheTrenches.Commanding.git</RepositoryUrl>
+    <AssemblyVersion>0.4.2.0</AssemblyVersion>
+    <FileVersion>0.4.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

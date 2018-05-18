@@ -13,7 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Compiler", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{29B0FAE2-30D2-4721-BA70-8406CFBC4DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestApi", "Samples\SimpleRestApi\SimpleRestApi.csproj", "{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRestApi", "Samples\SimpleRestApi\SimpleRestApi.csproj", "{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultiAssemblySample", "MultiAssemblySample", "{6E82675F-F8B9-440F-9457-A6D8AC8511E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiAssemblySample.Commands", "Samples\MultiAssemblySample\MultiAssemblySample.Commands\MultiAssemblySample.Commands.csproj", "{FFD8D286-B439-40B1-B280-FF56DD60AC86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiAssemblySample.Application", "Samples\MultiAssemblySample\MultiAssemblySample.Application\MultiAssemblySample.Application.csproj", "{E78A5984-C96C-4FE5-B127-649F84645E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiAssemblySample.Functions", "Samples\MultiAssemblySample\MultiAssemblySample.Functions\MultiAssemblySample.Functions.csproj", "{D8D79CC9-1783-4B18-95B5-460E870FAD0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,12 +48,27 @@ Global
 		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD8D286-B439-40B1-B280-FF56DD60AC86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD8D286-B439-40B1-B280-FF56DD60AC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD8D286-B439-40B1-B280-FF56DD60AC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD8D286-B439-40B1-B280-FF56DD60AC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E78A5984-C96C-4FE5-B127-649F84645E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E78A5984-C96C-4FE5-B127-649F84645E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E78A5984-C96C-4FE5-B127-649F84645E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E78A5984-C96C-4FE5-B127-649F84645E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D79CC9-1783-4B18-95B5-460E870FAD0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D79CC9-1783-4B18-95B5-460E870FAD0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D79CC9-1783-4B18-95B5-460E870FAD0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{75ADB5CC-7068-4C4A-BAF7-BA3CB36E49D0} = {29B0FAE2-30D2-4721-BA70-8406CFBC4DDD}
+		{6E82675F-F8B9-440F-9457-A6D8AC8511E6} = {29B0FAE2-30D2-4721-BA70-8406CFBC4DDD}
+		{FFD8D286-B439-40B1-B280-FF56DD60AC86} = {6E82675F-F8B9-440F-9457-A6D8AC8511E6}
+		{E78A5984-C96C-4FE5-B127-649F84645E9C} = {6E82675F-F8B9-440F-9457-A6D8AC8511E6}
+		{D8D79CC9-1783-4B18-95B5-460E870FAD0E} = {6E82675F-F8B9-440F-9457-A6D8AC8511E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9ABA812-671D-4486-B9D8-4F16D4BE11BD}

@@ -179,7 +179,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     }
                 };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Something went wrong while fetching schema, so remove the key if exists from the references.
                 if (_references.ContainsKey(key))

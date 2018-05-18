@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>    
-    <Version>0.4.0-beta000</Version>
+    <Version>0.4.2-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
   </PropertyGroup>
@@ -25,6 +25,7 @@
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.css.map" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.js" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+    <None Remove="Templates\forcereference.csharp.handlebars" />
     <None Remove="Templates\http.csharp.handlebars" />
     <None Remove="Templates\proxies.json.handlebars" />
     <None Remove="Templates\servicebusqueue.csharp.handlebars" />
@@ -50,6 +51,7 @@
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css.map" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+    <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.json.handlebars" />
