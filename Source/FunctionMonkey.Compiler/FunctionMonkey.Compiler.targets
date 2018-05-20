@@ -2,10 +2,21 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <FunctionCompilerExe Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp2.0/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
-    <!-- <FunctionCompilerExe Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard'">dotnet "$(NuGetPackageRoot)CompileCommandingFunctions/0.1.0-beta5/tools/netcoreapp2.0/CompileCommandingFunctions.dll"</FunctionCompilerExe> -->
   </PropertyGroup>
 
-  <Target Name="_FunctionMonkeyCompiler" AfterTargets="Build">
-    <Exec Command="$(FunctionCompilerExe) $(TargetDir)bin\$(TargetName).dll $(TargetDir)" />
+  <!-- we ensure the functions post build has run first -->
+  <!--<Target Name="_FunctionMonkeyCompiler" AfterTargets="Build">-->
+  <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
+    <Exec Command="$(FunctionCompilerExe) $(TargetDir)bin\$(TargetName).dll" />
+  </Target>
+
+  <!--
+    during publish we let the Functions MSBuild steps generate the functions and move the files
+    into the right places before then generating the FunctionMonkey files
+  -->  
+  <!--<Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="AfterPublish">-->
+  <Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="_GenerateFunctionsAndCopyContentFiles">
+    <Message Text="Running Function Monkey in Publish location $(PublishDir)" />
+    <Exec Command="$(FunctionCompilerExe) $(PublishDir)bin\$(TargetName).dll" />
   </Target>
 </Project>

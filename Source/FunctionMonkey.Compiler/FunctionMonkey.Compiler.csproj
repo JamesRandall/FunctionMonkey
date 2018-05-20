@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>    
-    <Version>0.4.2-beta000</Version>
+    <Version>0.4.4-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
   </PropertyGroup>
@@ -92,6 +92,7 @@
     <IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
     <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
     <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
+    <AssemblyVersion>0.4.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <!-- Executes /t:Publish for all target frameworks before packing-->

@@ -18,7 +18,6 @@ namespace FunctionMonkey.Compiler.Implementation
 
         private readonly Assembly _configurationSourceAssembly;
         private readonly string _outputBinaryFolder;
-        private readonly string _outputFunctionFolder;
         private readonly ICommandRegistry _commandRegistry;
         private readonly IAssemblyCompiler _assemblyCompiler;
         private readonly ITriggerReferenceProvider _triggerReferenceProvider;
@@ -29,13 +28,11 @@ namespace FunctionMonkey.Compiler.Implementation
         public FunctionCompiler(
             Assembly configurationSourceAssembly,
             string outputBinaryFolder,
-            string outputFunctionFolder,
             IAssemblyCompiler assemblyCompiler = null,
             ITriggerReferenceProvider triggerReferenceProvider = null)
         {
             _configurationSourceAssembly = configurationSourceAssembly;
             _outputBinaryFolder = outputBinaryFolder;
-            _outputFunctionFolder = outputFunctionFolder;
             _serviceCollection = new ServiceCollection();
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
                 (fromType, toInstance) => _serviceCollection.AddSingleton(fromType, toInstance),

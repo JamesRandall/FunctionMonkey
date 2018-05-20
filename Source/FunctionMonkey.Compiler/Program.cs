@@ -10,13 +10,12 @@ namespace FunctionMonkey.Compiler
     {
         static void Main(string[] args)
         {
-            if (args.Length < 2)
+            if (args.Length == 0)
             {
-                throw new ArgumentException("Must specify at least <ASSMEBLY_FILE> and <OUTPUT_DIR>");
+                throw new ArgumentException("Must specify the assembly file to build the functions from");
             }
 
             string inputAssemblyFile = args[0];
-            string outputFunctionDirectory = args[1];
 
             
             Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(inputAssemblyFile);
@@ -35,7 +34,7 @@ namespace FunctionMonkey.Compiler
                 return null;
             };
 
-            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, outputFunctionDirectory);
+            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory);
             compiler.Compile().Wait();
         }
     }
