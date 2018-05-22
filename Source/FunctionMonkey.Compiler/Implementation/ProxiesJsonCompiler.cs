@@ -41,7 +41,7 @@ namespace FunctionMonkey.Compiler.Implementation
             using (StreamWriter writer = new StreamWriter(stream))
             {
                 writer.Write(json);
-            }            
+            }
         }
     }
 }

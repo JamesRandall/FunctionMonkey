@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>    
-    <Version>0.4.4-beta000</Version>
+    <Version>0.4.5-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
   </PropertyGroup>
@@ -25,6 +25,8 @@
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.css.map" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.js" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+    <None Remove="references\netstandard2.0\netstandard.dll" />
+    <None Remove="references\netstandard2.0\System.Runtime.dll" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
     <None Remove="Templates\http.csharp.handlebars" />
     <None Remove="Templates\proxies.json.handlebars" />
@@ -51,6 +53,8 @@
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css.map" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+    <EmbeddedResource Include="references\netstandard2.0\netstandard.dll" />
+    <EmbeddedResource Include="references\netstandard2.0\System.Runtime.dll" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.csharp.handlebars" />
@@ -70,6 +74,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.7.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.0.0" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,7 +97,7 @@
     <IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
     <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
     <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
-    <AssemblyVersion>0.4.4.0</AssemblyVersion>
+    <AssemblyVersion>0.4.5.0</AssemblyVersion>
   </PropertyGroup>
 
   <!-- Executes /t:Publish for all target frameworks before packing-->

@@ -16,7 +16,11 @@ namespace FunctionMonkey.Compiler
             }
 
             string inputAssemblyFile = args[0];
-
+            bool outputProxiesJson = true;
+            if (args.Length > 1)
+            {
+                outputProxiesJson = bool.Parse(args[1]);
+            }
             
             Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(inputAssemblyFile);
             string outputBinaryDirectory = Path.GetDirectoryName(assembly.Location);
@@ -34,7 +38,7 @@ namespace FunctionMonkey.Compiler
                 return null;
             };
 
-            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory);
+            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, outputProxiesJson);
             compiler.Compile().Wait();
         }
     }

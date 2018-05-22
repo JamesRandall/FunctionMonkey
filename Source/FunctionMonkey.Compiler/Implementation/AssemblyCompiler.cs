@@ -117,8 +117,6 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(System.Net.Http.HttpMethod).GetTypeInfo().Assembly.Location,
                 typeof(System.Net.HttpStatusCode).GetTypeInfo().Assembly.Location,
                 typeof(HttpRequest).Assembly.Location,
-                typeof(object).GetTypeInfo().Assembly.Location,
-                typeof(Hashtable).GetTypeInfo().Assembly.Location,
                 typeof(JsonConvert).GetTypeInfo().Assembly.Location,
                 typeof(OkObjectResult).GetTypeInfo().Assembly.Location,
                 typeof(IActionResult).GetTypeInfo().Assembly.Location,
@@ -128,17 +126,24 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(ClaimsPrincipal).GetTypeInfo().Assembly.Location,
                 typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
-                Assembly.GetExecutingAssembly().Location,
-                typeof(Attribute).Assembly.Location,
-                Path.Combine(Path.GetDirectoryName(typeof(object).Assembly.Location), "System.Runtime.dll"),
-                Path.Combine(Path.GetDirectoryName(typeof(object).Assembly.Location), "netstandard.dll"),
             };
             foreach (Assembly externalAssembly in externalAssemblies)
             {
                 locations.Add(externalAssembly.Location);
             }
+            
+            List<PortableExecutableReference> references = locations.Select(x => MetadataReference.CreateFromFile(x)).ToList();
+            using (Stream netStandard = GetType().Assembly
+                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
+            {
+                references.Add(MetadataReference.CreateFromStream(netStandard));
+            }
+            using (Stream netStandard = GetType().Assembly
+                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
+            {
+                references.Add(MetadataReference.CreateFromStream(netStandard));
+            }
 
-            PortableExecutableReference[] references = locations.Select(x => MetadataReference.CreateFromFile(x)).ToArray();
             var compilation = CSharpCompilation.Create(outputAssemblyName,
                 syntaxTrees,
                 references,
