@@ -1,0 +1,3 @@
+# Best Practices
+
+* Solution structure

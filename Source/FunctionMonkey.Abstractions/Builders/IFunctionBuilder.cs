@@ -10,6 +10,8 @@ namespace FunctionMonkey.Abstractions.Builders
 
         IFunctionBuilder ServiceBus(string connectionName, Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder);
 
+        IFunctionBuilder Storage(string connectionName, Action<IStorageFunctionBuilder> storageFunctionBuilder);
+
         /*IFunctionBuilder StorageQueueFunction<TCommand>() where TCommand : ICommand;
         IFunctionBuilder StorageQueueFunction<TCommand>(string functionName) where TCommand : ICommand;
         IFunctionBuilder StorageQueueFunction<TCommand>(Action<IStorageQueueFunctionBuilder> storageQueueFunctionBuilder) where TCommand : ICommand;

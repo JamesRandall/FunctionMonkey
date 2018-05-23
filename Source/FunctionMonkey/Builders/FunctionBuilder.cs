@@ -41,26 +41,14 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        /*public IFunctionBuilder StorageQueueFunction<TCommand>() where TCommand : ICommand
+        public IFunctionBuilder Storage(string connectionName, Action<IStorageFunctionBuilder> storageFunctionBuilder)
         {
-            throw new NotImplementedException();
+            StorageFunctionBuilder builder = new StorageFunctionBuilder(connectionName, _definitions);
+            storageFunctionBuilder(builder);
+            return this;
         }
 
-        public IFunctionBuilder StorageQueueFunction<TCommand>(string functionName) where TCommand : ICommand
-        {
-            throw new NotImplementedException();
-        }
 
-        public IFunctionBuilder StorageQueueFunction<TCommand>(Action<IStorageQueueFunctionBuilder> storageQueueFunctionBuilder) where TCommand : ICommand
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFunctionBuilder StorageQueueFunction<TCommand>(string functionName, Action<IStorageQueueFunctionBuilder> storageQueueFunctionBuilder) where TCommand : ICommand
-        {
-            throw new NotImplementedException();
-        }*/
-        
         public IReadOnlyCollection<HttpFunctionDefinition> GetHttpFunctionDefinitions()
         {
             return _definitions.OfType<HttpFunctionDefinition>().ToArray();

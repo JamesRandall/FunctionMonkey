@@ -25,7 +25,7 @@ namespace FunctionMonkey.Compiler.Implementation
     internal class AssemblyCompiler : IAssemblyCompiler
     {
         private readonly ITemplateProvider _templateProvider;
-
+        
         public AssemblyCompiler(ITemplateProvider templateProvider = null)
         {
             _templateProvider = templateProvider ?? new TemplateProvider();

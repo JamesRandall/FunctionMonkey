@@ -11,7 +11,8 @@ namespace FunctionMonkey.Compiler.Implementation
         {
             {typeof(HttpFunctionDefinition), "http"},
             {typeof(ServiceBusQueueFunctionDefinition),"servicebusqueue" },
-            {typeof(ServiceBusSubscriptionFunctionDefinition),"servicebussubscription" }
+            {typeof(ServiceBusSubscriptionFunctionDefinition),"servicebussubscription" },
+            {typeof(StorageQueueFunctionDefinition),"storagequeue" }
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)

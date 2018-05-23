@@ -34,6 +34,8 @@
     <None Remove="Templates\servicebusqueue.json.handlebars" />
     <None Remove="Templates\servicebussubscription.csharp.handlebars" />
     <None Remove="Templates\servicebussubscription.json.handlebars" />
+    <None Remove="Templates\storagequeue.csharp.handlebars" />
+    <None Remove="Templates\storagequeue.json.handlebars" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +58,8 @@
     <EmbeddedResource Include="references\netstandard2.0\netstandard.dll" />
     <EmbeddedResource Include="references\netstandard2.0\System.Runtime.dll" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\storagequeue.json.handlebars" />
+    <EmbeddedResource Include="Templates\storagequeue.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.json.handlebars" />
@@ -69,6 +73,8 @@
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="8.1.0-beta000" />
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.0-beta000" />
     <PackageReference Include="Handlebars.Net" Version="1.9.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.0-beta7" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.0-beta5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.0-beta5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" Version="3.0.0-beta5" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.7.0" />
