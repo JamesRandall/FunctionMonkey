@@ -27,6 +27,8 @@
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.js.map" />
     <None Remove="references\netstandard2.0\netstandard.dll" />
     <None Remove="references\netstandard2.0\System.Runtime.dll" />
+    <None Remove="Templates\eventhubqueue.csharp.handlebars" />
+    <None Remove="Templates\eventhubqueue.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
     <None Remove="Templates\http.csharp.handlebars" />
     <None Remove="Templates\proxies.json.handlebars" />
@@ -62,6 +64,8 @@
     <EmbeddedResource Include="references\netstandard2.0\netstandard.dll" />
     <EmbeddedResource Include="references\netstandard2.0\System.Runtime.dll" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\storageblobstream.json.handlebars" />
     <EmbeddedResource Include="Templates\storageblobstream.csharp.handlebars" />
     <EmbeddedResource Include="Templates\storageblob.csharp.handlebars" />

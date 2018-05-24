@@ -20,5 +20,9 @@ namespace FunctionMonkey.Abstractions
         void SetBlobContext(string blobTrigger,
             Uri uri,
             IDictionary<string, string> metadata);
+
+        void SetEventHubContext(DateTime enqueuedTimeUtc,
+            Int64 sequenceNumber,
+            string offset);
     }
 }

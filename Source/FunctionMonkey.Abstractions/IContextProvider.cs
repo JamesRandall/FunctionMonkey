@@ -9,5 +9,7 @@ namespace FunctionMonkey.Abstractions
         StorageQueueContext StorageQueueContext { get; }
 
         BlobContext BlobContext { get; }
+
+        EventHubContext EventHubContext { get; }
     }
 }

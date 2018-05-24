@@ -14,6 +14,8 @@ namespace FunctionMonkey.Infrastructure
 
         private static readonly AsyncLocal<BlobContext> BlobContextLocal = new AsyncLocal<BlobContext>();
 
+        private static readonly AsyncLocal<EventHubContext> EventHubContextLocal = new AsyncLocal<EventHubContext>();
+
         void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId)
         {
             ServiceBusContextLocal.Value = new ServiceBusContext
@@ -49,8 +51,19 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
+        public void SetEventHubContext(DateTime enqueuedTimeUtc, long sequenceNumber, string offset)
+        {
+            EventHubContextLocal.Value = new EventHubContext
+            {
+                EnqueuedTimeUtc = enqueuedTimeUtc,
+                Offset = offset,
+                SequenceNumber = sequenceNumber
+            };
+        }
+
         public ServiceBusContext ServiceBusContext => ServiceBusContextLocal.Value;
         public StorageQueueContext StorageQueueContext => StorageQueueContextLocal.Value;
         public BlobContext BlobContext => BlobContextLocal.Value;
+        public EventHubContext EventHubContext => EventHubContextLocal.Value;
     }
 }
