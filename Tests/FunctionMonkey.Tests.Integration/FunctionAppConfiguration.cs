@@ -19,8 +19,8 @@ namespace FunctionMonkey.Tests.Integration
                     //    .HttpFunction<SimpleHttpRouteCommand>())
                     .Storage("storageaccount", storage => storage
                         //.QueueFunction<StorageQueueCommand>("storagequeuecommandqueue")
-                        .BlobFunction<BlobCommand>("blobcommandcontainer/{name}") // TODO: We need to have the compiler insert parameters on the function for everything surrounded in {} - e.g. {name} needs a string parameter of name
-                        //.BlobFunction<StreamBlobCommand>("streamblobcommandcontainer")
+                        //.BlobFunction<BlobCommand>("blobcommandcontainer/{name}") // TODO: We need to have the compiler insert parameters on the function for everything surrounded in {} - e.g. {name} needs a string parameter of name
+                        .BlobFunction<StreamBlobCommand>("streamblobcommandcontainer/{name}")
                     )
                 );
         }
