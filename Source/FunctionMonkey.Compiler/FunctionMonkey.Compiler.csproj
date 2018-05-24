@@ -92,6 +92,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
     <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
@@ -112,6 +113,7 @@ namespace FunctionMonkey.Compiler.Implementation
             HashSet<string> locations = new HashSet<string>
             {
                 typeof(Runtime).GetTypeInfo().Assembly.Location,
+                typeof(IStreamCommand).Assembly.Location,
                 typeof(AzureFromTheTrenches.Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,
                 typeof(Abstractions.ICommandDeserializer).GetTypeInfo().Assembly.Location,
                 typeof(System.Net.Http.HttpMethod).GetTypeInfo().Assembly.Location,

@@ -1,5 +1,6 @@
 using System.IO;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,9 @@ namespace {{Namespace}}
         public static async Task Run(
             [BlobTrigger("{{BlobPath}}", Connection = "{{ConnectionStringName}}")]Stream stream,
             string name,
+            string blobTrigger,
+            Uri uri,
+            IDictionary<string, string> metadata,
             ILogger log)
         {
             log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");
@@ -33,6 +37,10 @@ namespace {{Namespace}}
             {
                 command = new {{CommandTypeName}}();
             }
+
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetBlobContext(blobTrigger, uri, metadata);
 
             {{#if IsUsingValidator}}
             var validator = (FunctionMonkey.Abstractions.Validation.IValidator)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Contexts;
@@ -10,6 +11,8 @@ namespace FunctionMonkey.Infrastructure
         private static readonly AsyncLocal<ServiceBusContext> ServiceBusContextLocal = new AsyncLocal<ServiceBusContext>();
 
         private static readonly AsyncLocal<StorageQueueContext> StorageQueueContextLocal = new AsyncLocal<StorageQueueContext>();
+
+        private static readonly AsyncLocal<BlobContext> BlobContextLocal = new AsyncLocal<BlobContext>();
 
         void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId)
         {
@@ -36,7 +39,18 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
+        public void SetBlobContext(string blobTrigger, Uri uri, IDictionary<string, string> metadata)
+        {
+            BlobContextLocal.Value = new BlobContext
+            {
+                BlobTrigger = blobTrigger,
+                Uri = uri,
+                Metadata = metadata
+            };
+        }
+
         public ServiceBusContext ServiceBusContext => ServiceBusContextLocal.Value;
         public StorageQueueContext StorageQueueContext => StorageQueueContextLocal.Value;
+        public BlobContext BlobContext => BlobContextLocal.Value;
     }
 }

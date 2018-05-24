@@ -7,5 +7,7 @@ namespace FunctionMonkey.Abstractions
         ServiceBusContext ServiceBusContext { get; }
 
         StorageQueueContext StorageQueueContext { get; }
+
+        BlobContext BlobContext { get; }
     }
 }

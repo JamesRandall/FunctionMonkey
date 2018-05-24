@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FunctionMonkey.Abstractions
 {
@@ -15,5 +16,9 @@ namespace FunctionMonkey.Abstractions
             string id,
             string popReceipt,
             int dequeueCount);
+
+        void SetBlobContext(string blobTrigger,
+            Uri uri,
+            IDictionary<string, string> metadata);
     }
 }
