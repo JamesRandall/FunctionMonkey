@@ -22,6 +22,8 @@ namespace FunctionMonkey.Compiler
                 outputProxiesJson = bool.Parse(args[1]);
             }
             
+            
+            // TODO: convert the input to an absolute path if necessary
             Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(inputAssemblyFile);
             string outputBinaryDirectory = Path.GetDirectoryName(assembly.Location);
             

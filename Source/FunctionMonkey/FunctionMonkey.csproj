@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+    <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

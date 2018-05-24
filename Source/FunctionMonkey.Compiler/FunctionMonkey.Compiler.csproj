@@ -34,6 +34,10 @@
     <None Remove="Templates\servicebusqueue.json.handlebars" />
     <None Remove="Templates\servicebussubscription.csharp.handlebars" />
     <None Remove="Templates\servicebussubscription.json.handlebars" />
+    <None Remove="Templates\storageblob.csharp.handlebars" />
+    <None Remove="Templates\storageblob.json.handlebars" />
+    <None Remove="Templates\storageblobstream.csharp.handlebars" />
+    <None Remove="Templates\storageblobstream.json.handlebars" />
     <None Remove="Templates\storagequeue.csharp.handlebars" />
     <None Remove="Templates\storagequeue.json.handlebars" />
   </ItemGroup>
@@ -58,6 +62,10 @@
     <EmbeddedResource Include="references\netstandard2.0\netstandard.dll" />
     <EmbeddedResource Include="references\netstandard2.0\System.Runtime.dll" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\storageblobstream.json.handlebars" />
+    <EmbeddedResource Include="Templates\storageblobstream.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\storageblob.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\storageblob.json.handlebars" />
     <EmbeddedResource Include="Templates\storagequeue.json.handlebars" />
     <EmbeddedResource Include="Templates\storagequeue.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebussubscription.json.handlebars" />

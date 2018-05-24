@@ -17,7 +17,10 @@ namespace FunctionMonkey.Compiler.Implementation
         {
             {typeof(HttpFunctionDefinition), typeof(HttpTriggerAttribute).Assembly},
             {typeof(ServiceBusQueueFunctionDefinition), typeof(ServiceBusTriggerAttribute).Assembly },
-            {typeof(ServiceBusSubscriptionFunctionDefinition), typeof(ServiceBusTriggerAttribute).Assembly }
+            {typeof(ServiceBusSubscriptionFunctionDefinition), typeof(ServiceBusTriggerAttribute).Assembly },
+            {typeof(StorageQueueFunctionDefinition), typeof(QueueTriggerAttribute).Assembly },
+            {typeof(BlobStreamFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
+            {typeof(BlobFunctionDefinition), typeof(BlobTriggerAttribute).Assembly }
         };
 
         public Assembly GetTriggerReference(AbstractFunctionDefinition functionDefinition)
