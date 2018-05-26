@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
@@ -19,6 +20,7 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputBinaryFolder,
             string assemblyName)
         {
+            HandlebarsHelperRegistration.RegisterHelpers();
 
             foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
             {

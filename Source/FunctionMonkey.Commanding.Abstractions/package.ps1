@@ -1,0 +1,1 @@
+dotnet pack .\FunctionMonkey.Commanding.Abstractions.csproj --output ../../ --configuration Release

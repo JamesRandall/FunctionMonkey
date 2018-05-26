@@ -66,7 +66,8 @@ namespace FunctionMonkey.Builders
 
         public IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action)
         {
-            throw new NotImplementedException();
+            ServiceProviderCreatedAction = action;
+            return this;
         }
 
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions => ((FunctionBuilder)FunctionBuilder).Definitions;

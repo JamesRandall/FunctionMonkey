@@ -1,4 +1,5 @@
-﻿using FunctionMonkey.Abstractions;
+﻿using System.Net.Http;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using MultiAssemblySample.Application;
 using MultiAssemblySample.Commands;
@@ -13,7 +14,7 @@ namespace MultiAssemblySample.Functions
                 .Setup((serviceCollection, commandRegistry) => { commandRegistry.AddApplication(); })
                 .Functions(functions => functions
                     .HttpRoute("/api/v1", route => route
-                        .HttpFunction<SimpleCommand>()
+                        .HttpFunction<SimpleCommand>(HttpMethod.Put)
                     )
                 );
         }
