@@ -48,5 +48,11 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="folder">The folder to output to</param>
         IFunctionHostBuilder OutputAuthoredSource(string folder);
+
+        /// <summary>
+        /// When a service provider is created the action supplied here will be invoked
+        /// </summary>
+        /// <param name="action">An action to invoke when a service provider is created</param>
+        IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action);
     }
 }

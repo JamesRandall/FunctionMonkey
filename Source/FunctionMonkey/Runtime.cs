@@ -58,6 +58,8 @@ namespace FunctionMonkey
             ServiceCollection.AddSingleton(commandClaimsBinder);
             
             ServiceProvider = ServiceCollection.BuildServiceProvider();
+
+            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
         }
 
         public static ICommandDispatcher CommandDispatcher => ServiceProvider.GetService<ICommandDispatcher>();

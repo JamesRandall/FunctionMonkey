@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="8.1.0-beta000" />
-    <PackageReference Include="FunctionMonkey.Compiler" Version="0.4.5-beta002" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.13" />
   </ItemGroup>
   <ItemGroup>

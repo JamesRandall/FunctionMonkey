@@ -17,6 +17,7 @@ namespace FunctionMonkey.Builders
         public Type ValidatorType { get; set; }
         public OpenApiConfiguration OpenApiConfiguration { get; set; } = new OpenApiConfiguration();
         public string OutputAuthoredSourceFolder { get; set; }
+        public Action<IServiceProvider> ServiceProviderCreatedAction { get; set; }
 
         public FunctionHostBuilder(
             IServiceCollection serviceCollection,
@@ -61,6 +62,11 @@ namespace FunctionMonkey.Builders
         {
             OutputAuthoredSourceFolder = folder;
             return this;
+        }
+
+        public IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action)
+        {
+            throw new NotImplementedException();
         }
 
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions => ((FunctionBuilder)FunctionBuilder).Definitions;
