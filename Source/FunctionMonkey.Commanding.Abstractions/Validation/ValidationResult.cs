@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FunctionMonkey.Abstractions.Validation
+namespace FunctionMonkey.Commanding.Abstractions.Validation
 {
     public class ValidationResult
     {

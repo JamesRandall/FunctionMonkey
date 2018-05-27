@@ -49,7 +49,7 @@ namespace FunctionMonkey.Compiler.Implementation
             _openApiCompiler = new OpenApiCompiler();
         }
 
-        public async Task Compile()
+        public void Compile()
         {
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration(_configurationSourceAssembly);
             if (configuration == null)

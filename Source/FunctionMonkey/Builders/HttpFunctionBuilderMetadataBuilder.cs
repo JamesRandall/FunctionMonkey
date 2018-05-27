@@ -22,6 +22,17 @@ namespace FunctionMonkey.Builders
             return _httpFunctionBuilder.HttpFunction<TCommand>();
         }
 
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType) where TCommand : ICommand
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand>(authorizationType);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType,
+            params HttpMethod[] method) where TCommand : ICommand
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand>(authorizationType, method);
+        }
+
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(params HttpMethod[] method) where TCommand : ICommand
         {
             return _httpFunctionBuilder.HttpFunction<TCommand>(method);
@@ -30,6 +41,12 @@ namespace FunctionMonkey.Builders
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, params HttpMethod[] method) where TCommand : ICommand
         {
             return _httpFunctionBuilder.HttpFunction<TCommand>(route, method);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType,
+            params HttpMethod[] method) where TCommand : ICommand
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand>(route, authorizationType, method);
         }
 
         public IHttpFunctionBuilderMetadataBuilder Description(string description)

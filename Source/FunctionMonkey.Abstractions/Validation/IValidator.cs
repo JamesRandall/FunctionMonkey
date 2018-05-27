@@ -1,4 +1,5 @@
 ﻿using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 
 namespace FunctionMonkey.Abstractions.Validation
 {

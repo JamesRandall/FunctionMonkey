@@ -41,7 +41,7 @@ namespace FunctionMonkey.Compiler
             };
 
             FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, outputProxiesJson);
-            compiler.Compile().Wait();
+            compiler.Compile();
         }
     }
 }

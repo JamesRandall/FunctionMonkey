@@ -3,6 +3,7 @@ using System.Linq;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FluentValidation;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.FluentValidation.Implementation

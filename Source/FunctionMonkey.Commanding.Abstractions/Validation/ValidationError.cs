@@ -1,4 +1,4 @@
-﻿namespace FunctionMonkey.Abstractions.Validation
+﻿namespace FunctionMonkey.Commanding.Abstractions.Validation
 {
     public class ValidationError
     {
