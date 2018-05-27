@@ -70,6 +70,8 @@ namespace FunctionMonkey.Builders
                 ParameterExpression claimsPrincipalParameter = Expression.Parameter(typeof(ClaimsPrincipal));
                 ParameterExpression commandParameter = Expression.Parameter(typeof(object));
 
+                // TODO: These needs to deal with nullable value types like Guid?
+
                 // For each claim mapping this essentially builds out an expression like the C# below for string properties
                 //
                 //    Claim claim = claimsPrincipal.FindFirst("UserId");

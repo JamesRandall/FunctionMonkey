@@ -8,7 +8,6 @@ namespace FunctionMonkey.Builders
 {
     class HttpFunctionBuilder : IHttpFunctionBuilder
     {
-        private const AuthorizationTypeEnum DefaultAuthorizationType = AuthorizationTypeEnum.Anonymous;
         private static readonly HttpMethod DefaultMethod = HttpMethod.Get;
 
         private readonly HttpRouteConfiguration _routeConfiguration;
@@ -22,43 +21,50 @@ namespace FunctionMonkey.Builders
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>() where TCommand : ICommand
         {
-            return HttpFunction<TCommand>(null, DefaultAuthorizationType, DefaultMethod);
+            return BuildHttpFunction<TCommand>(null, null, DefaultMethod);
         }
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType) where TCommand : ICommand
         {
-            return HttpFunction<TCommand>(null, authorizationType, DefaultMethod);
+            return BuildHttpFunction<TCommand>(null, authorizationType, DefaultMethod);
         }
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType,
             params HttpMethod[] method) where TCommand : ICommand
         {
-            return HttpFunction<TCommand>(null, DefaultAuthorizationType, method);
+            return BuildHttpFunction<TCommand>(null, authorizationType, method);
         }
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(params HttpMethod[] method) where TCommand : ICommand
         {
-            return HttpFunction<TCommand>(null, DefaultAuthorizationType, method);
+            return BuildHttpFunction<TCommand>(null, null, method);
         }
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route) where TCommand : ICommand
         {
-            return HttpFunction<TCommand>(route, DefaultAuthorizationType, DefaultMethod);
+            return BuildHttpFunction<TCommand>(route, null, DefaultMethod);
         }
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, params HttpMethod[] method) where TCommand : ICommand
         {
-            return HttpFunction<TCommand>(route, DefaultAuthorizationType, method);
+            return BuildHttpFunction<TCommand>(route, null, method);
         }
 
-        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route,
+            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand
+        {
+            return BuildHttpFunction<TCommand>(route, authorizationType, method);
+        }
+
+        private IHttpFunctionBuilderMetadataBuilder BuildHttpFunction<TCommand>(string route, AuthorizationTypeEnum? authorizationType, params HttpMethod[] method) where TCommand : ICommand
         {
             HttpFunctionDefinition definition = new HttpFunctionDefinition(typeof(TCommand))
             {
                 SubRoute = route,
                 RouteConfiguration = _routeConfiguration,
                 Route = string.Concat(_routeConfiguration.Route, route),
-                Verbs = new HashSet<HttpMethod>(method)
+                Verbs = new HashSet<HttpMethod>(method),
+                Authorization = authorizationType
             };
             _definitions.Add(definition);
             return new HttpFunctionBuilderMetadataBuilder(this, definition);

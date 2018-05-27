@@ -14,7 +14,7 @@ namespace MultiAssemblySample.Functions
                 .Setup((serviceCollection, commandRegistry) => { commandRegistry.AddApplication(); })
                 .Functions(functions => functions
                     .HttpRoute("/api/v1", route => route
-                        .HttpFunction<SimpleCommand>(HttpMethod.Put)
+                        .HttpFunction<SimpleCommand>(AuthorizationTypeEnum.TokenValidation, HttpMethod.Put)
                     )
                 );
         }

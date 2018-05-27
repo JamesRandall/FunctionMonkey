@@ -125,7 +125,6 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(FunctionNameAttribute).GetTypeInfo().Assembly.Location,
                 typeof(ILogger).GetTypeInfo().Assembly.Location,
                 typeof(IServiceProvider).GetTypeInfo().Assembly.Location,
-                typeof(ClaimsPrincipal).GetTypeInfo().Assembly.Location,
                 typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
             };
