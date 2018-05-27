@@ -8,4 +8,13 @@ namespace FunctionMonkey.Commanding.Abstractions.Validation
 
         public bool IsValid => Errors == null || Errors.Count == 0;
     }
+
+    public class ValidationResult<TResult>
+    {
+        public IReadOnlyCollection<ValidationError> Errors { get; set; } = new ValidationError[0];
+
+        public bool IsValid => Errors == null || Errors.Count == 0;
+
+        public TResult Result { get; set; }
+    }
 }
