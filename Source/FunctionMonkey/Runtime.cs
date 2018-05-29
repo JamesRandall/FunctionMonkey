@@ -42,7 +42,7 @@ namespace FunctionMonkey
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
 
             // Invoke the builder process
-            FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry);
+            FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
             configuration.Build(builder);
             new PostBuildPatcher().Patch(builder, "");
 

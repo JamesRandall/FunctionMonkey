@@ -109,31 +109,13 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputBinaryFolder,
             string outputAssemblyName)
         {
-            // These are assemblies that Roslyn requires from usage within the template
-            HashSet<string> locations = new HashSet<string>
-            {
-                typeof(Runtime).GetTypeInfo().Assembly.Location,
-                typeof(IStreamCommand).Assembly.Location,
-                typeof(AzureFromTheTrenches.Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,
-                typeof(Abstractions.ICommandDeserializer).GetTypeInfo().Assembly.Location,
-                typeof(System.Net.Http.HttpMethod).GetTypeInfo().Assembly.Location,
-                typeof(System.Net.HttpStatusCode).GetTypeInfo().Assembly.Location,
-                typeof(HttpRequest).Assembly.Location,
-                typeof(JsonConvert).GetTypeInfo().Assembly.Location,
-                typeof(OkObjectResult).GetTypeInfo().Assembly.Location,
-                typeof(IActionResult).GetTypeInfo().Assembly.Location,
-                typeof(FunctionNameAttribute).GetTypeInfo().Assembly.Location,
-                typeof(ILogger).GetTypeInfo().Assembly.Location,
-                typeof(IServiceProvider).GetTypeInfo().Assembly.Location,
-                typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
-                typeof(StringValues).GetTypeInfo().Assembly.Location,
-            };
-            foreach (Assembly externalAssembly in externalAssemblies)
-            {
-                locations.Add(externalAssembly.Location);
-            }
-            
-            List<PortableExecutableReference> references = locations.Select(x => MetadataReference.CreateFromFile(x)).ToList();
+            HashSet<string> locations = BuildCandidateReferenceList(externalAssemblies);
+
+            // For each assembly we've found we need to check and see if it is already included in the output binary folder
+            // If it is then its referenced already by the function host and so we add a reference to that version.
+            List<string> resolvedLocations = ResolveLocationsWithExistingReferences(outputBinaryFolder, locations);
+
+            List<PortableExecutableReference> references = resolvedLocations.Select(x => MetadataReference.CreateFromFile(x)).ToList();
             using (Stream netStandard = GetType().Assembly
                 .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
             {
@@ -168,6 +150,62 @@ namespace FunctionMonkey.Compiler.Implementation
                     throw new ConfigurationException(messageBuilder.ToString());
                 }
             }
+        }
+
+        private static HashSet<string> BuildCandidateReferenceList(IReadOnlyCollection<Assembly> externalAssemblies)
+        {
+            // These are assemblies that Roslyn requires from usage within the template
+            HashSet<string> locations = new HashSet<string>
+            {
+                typeof(Runtime).GetTypeInfo().Assembly.Location,
+                typeof(IStreamCommand).Assembly.Location,
+                typeof(AzureFromTheTrenches.Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,
+                typeof(Abstractions.ICommandDeserializer).GetTypeInfo().Assembly.Location,
+                typeof(System.Net.Http.HttpMethod).GetTypeInfo().Assembly.Location,
+                typeof(System.Net.HttpStatusCode).GetTypeInfo().Assembly.Location,
+                typeof(HttpRequest).Assembly.Location,
+                typeof(JsonConvert).GetTypeInfo().Assembly.Location,
+                typeof(OkObjectResult).GetTypeInfo().Assembly.Location,
+                typeof(IActionResult).GetTypeInfo().Assembly.Location,
+                typeof(FunctionNameAttribute).GetTypeInfo().Assembly.Location,
+                typeof(ILogger).GetTypeInfo().Assembly.Location,
+                typeof(IServiceProvider).GetTypeInfo().Assembly.Location,
+                typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
+                typeof(StringValues).GetTypeInfo().Assembly.Location,
+            };
+            foreach (Assembly externalAssembly in externalAssemblies)
+            {
+                locations.Add(externalAssembly.Location);
+            }
+
+            return locations;
+        }
+
+        private static List<string> ResolveLocationsWithExistingReferences(string outputBinaryFolder, HashSet<string> locations)
+        {
+            List<string> resolvedLocations = new List<string>(locations.Count);
+            foreach (string location in locations)
+            {
+                // if the reference is already in the location
+                if (Path.GetDirectoryName(location) == outputBinaryFolder)
+                {
+                    resolvedLocations.Add(location);
+                    continue;
+                }
+
+                // if the assembly we've picked up from the compiler bundle is in the output folder then we use the one in
+                // the output folder
+                string pathInOutputFolder = Path.Combine(outputBinaryFolder, Path.GetFileName(location));
+                if (File.Exists(pathInOutputFolder))
+                {
+                    resolvedLocations.Add(location);
+                    continue;
+                }
+
+                resolvedLocations.Add(location);
+            }
+
+            return resolvedLocations;
         }
     }
 }

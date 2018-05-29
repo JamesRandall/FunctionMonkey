@@ -17,6 +17,7 @@ namespace FunctionMonkey.Builders
         public IAuthorizationBuilder TokenValidator<TTokenValidator>(string header=null) where TTokenValidator : ITokenValidator
         {
             TokenValidatorType = typeof(TTokenValidator);
+            AuthorizationHeader = header;
             return this;
         }
 

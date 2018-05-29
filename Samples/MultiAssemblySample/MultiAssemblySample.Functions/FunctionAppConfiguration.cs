@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using Microsoft.Extensions.DependencyInjection;
 using MultiAssemblySample.Application;
 using MultiAssemblySample.Commands;
 
@@ -11,7 +12,11 @@ namespace MultiAssemblySample.Functions
         public void Build(IFunctionHostBuilder builder)
         {
             builder
-                .Setup((serviceCollection, commandRegistry) => { commandRegistry.AddApplication(); })
+                .Setup((serviceCollection, commandRegistry) =>
+                {
+                    serviceCollection.AddLogging();
+                    commandRegistry.AddApplication();
+                })
                 .ProxiesEnabled(true)
                 .OutputAuthoredSource("d:\\wip\\outputsource")
                 .Functions(functions => functions

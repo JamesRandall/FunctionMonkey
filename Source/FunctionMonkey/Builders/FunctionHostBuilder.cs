@@ -10,6 +10,7 @@ namespace FunctionMonkey.Builders
 {
     public class FunctionHostBuilder : IFunctionHostBuilder
     {
+        private readonly bool _isRuntime;
         public IServiceCollection ServiceCollection { get; }
         public ICommandRegistry CommandRegistry { get; }
         public IFunctionBuilder FunctionBuilder { get; } = new FunctionBuilder();
@@ -20,17 +21,20 @@ namespace FunctionMonkey.Builders
         public Action<IServiceProvider> ServiceProviderCreatedAction { get; set; }
         public bool AreProxiesEnabled { get; set; } = true;
 
-        public FunctionHostBuilder(
-            IServiceCollection serviceCollection,
-            ICommandRegistry commandRegistry)
+        public FunctionHostBuilder(IServiceCollection serviceCollection,
+            ICommandRegistry commandRegistry, bool isRuntime)
         {
+            _isRuntime = isRuntime;
             ServiceCollection = serviceCollection;
             CommandRegistry = commandRegistry;
         }
 
         public IFunctionHostBuilder Setup(Action<IServiceCollection, ICommandRegistry> services)
         {
-            services(ServiceCollection, CommandRegistry);
+            if (_isRuntime)
+            {
+                services(ServiceCollection, CommandRegistry);
+            }            
             return this;
         }
 

@@ -8,4 +8,8 @@
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.0-beta000" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MultiAssemblySample.Commands.Abstract\MultiAssemblySample.Commands.Abstract.csproj" />
+  </ItemGroup>
+
 </Project>

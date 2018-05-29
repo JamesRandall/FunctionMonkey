@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding;
@@ -58,7 +59,7 @@ namespace FunctionMonkey.Compiler.Implementation
             }
 
             string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name}.Functions";
-            FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry);
+            FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
             configuration.Build(builder);
             new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
             
@@ -88,7 +89,7 @@ namespace FunctionMonkey.Compiler.Implementation
             foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
             {
                 assemblies.Add(_triggerReferenceProvider.GetTriggerReference(functionDefinition));
-                assemblies.Add(functionDefinition.CommandType.Assembly);
+                assemblies.Add(functionDefinition.CommandType.Assembly);                
 
                 if (functionDefinition.CommandResultType != null)
                 {
@@ -96,6 +97,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
             }
 
+            // TODO: Do we need this any more? We no longer run the startup code in the compilation process?
             foreach (ServiceDescriptor descriptor in _serviceCollection)
             {
                 assemblies.Add(descriptor.ServiceType.Assembly);
@@ -123,6 +125,25 @@ namespace FunctionMonkey.Compiler.Implementation
             }
 
             assemblies.Add(_configurationSourceAssembly);
+
+            // we have to add directly referenced assemblies in case the commands and result types make use of external types
+            // TODO: their is an argument to restricting this 
+            foreach (Assembly assembly in assemblies.ToArray())
+            {
+                AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();
+                foreach (var referencedAssemblyName in referencedAssemblies)
+                {
+                    if (referencedAssemblyName.Name == "netstandard" || referencedAssemblyName.Name == "System.Runtime")
+                    {
+                        continue;
+                    }
+                    var referencedAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(x => x.FullName == referencedAssemblyName.FullName);
+                    if (referencedAssembly != null)
+                    {
+                        assemblies.Add(referencedAssembly);
+                    }
+                }
+            }
 
             // at the moment we can't get the actual dispatcher types without actually calling the function and looking at ther result - needs thought
             return assemblies;

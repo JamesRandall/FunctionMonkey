@@ -9,6 +9,11 @@ namespace FunctionMonkey.Model
     {
         protected AbstractFunctionDefinition(string namePrefix, Type commandType)
         {
+            if (!commandType.IsPublic)
+            {
+                throw new ConfigurationException($"Command of type {commandType} is not public. All command types must be public.");
+            }
+
             Name = string.Concat(namePrefix,commandType.GetFunctionName());
             CommandType = commandType;
         }
