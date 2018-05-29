@@ -18,6 +18,7 @@ namespace FunctionMonkey.Builders
         public OpenApiConfiguration OpenApiConfiguration { get; set; } = new OpenApiConfiguration();
         public string OutputAuthoredSourceFolder { get; set; }
         public Action<IServiceProvider> ServiceProviderCreatedAction { get; set; }
+        public bool AreProxiesEnabled { get; set; } = true;
 
         public FunctionHostBuilder(
             IServiceCollection serviceCollection,
@@ -61,6 +62,12 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder OutputAuthoredSource(string folder)
         {
             OutputAuthoredSourceFolder = folder;
+            return this;
+        }
+
+        public IFunctionHostBuilder ProxiesEnabled(bool enabled)
+        {
+            AreProxiesEnabled = enabled;
             return this;
         }
 

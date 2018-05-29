@@ -26,9 +26,12 @@ namespace FunctionMonkey.Abstractions.Builders
         /// resolved into a ClaimsPrincipal. A validator must be configured for authorization to be applied
         /// to HTTP functions
         /// </summary>
+        /// <param name="header">Optional. Allows the token to be picked up from an alternate header rather than
+        /// the Authorization header - useful if, for example, you need to support a legacy API Key approach
+        /// </param>
         /// <typeparam name="TTokenValidator">The token validators concrete class</typeparam>
         /// <returns>The builder for use in a Fluent API</returns>
-        IAuthorizationBuilder TokenValidator<TTokenValidator>() where TTokenValidator : ITokenValidator;
+        IAuthorizationBuilder TokenValidator<TTokenValidator>(string header=null) where TTokenValidator : ITokenValidator;
 
         /// <summary>
         /// Allows the default authorization mode for HTTP functions to be set. Defaults to anonymous if this method is not used.

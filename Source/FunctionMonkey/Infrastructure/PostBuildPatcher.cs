@@ -35,6 +35,8 @@ namespace FunctionMonkey.Infrastructure
                         httpFunctionDefinition.Verbs.Add(HttpMethod.Get);
                     }
 
+                    httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
+
                     httpFunctionDefinition.AcceptsQueryParameters = httpFunctionDefinition
                         .CommandType
                         .GetProperties()

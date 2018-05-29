@@ -10,9 +10,11 @@ namespace FunctionMonkey.Builders
 
         public Type TokenValidatorType { get; set; }
 
+        public string AuthorizationHeader { get; set; }
+
         public AuthorizationTypeEnum AuthorizationDefaultValue { get; set; } = AuthorizationTypeEnum.Anonymous;
 
-        public IAuthorizationBuilder TokenValidator<TTokenValidator>() where TTokenValidator : ITokenValidator
+        public IAuthorizationBuilder TokenValidator<TTokenValidator>(string header=null) where TTokenValidator : ITokenValidator
         {
             TokenValidatorType = typeof(TTokenValidator);
             return this;

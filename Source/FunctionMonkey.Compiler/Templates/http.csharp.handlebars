@@ -26,11 +26,11 @@ namespace {{Namespace}}
             // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
             // there are any issues
             {{#if ValidatesToken}}
-            if (req.Headers["Authorization"].Count == 0)
+            if (req.Headers["{{TokenHeader}}"].Count == 0)
             {
                 return new UnauthorizedResult();
             }
-            string authorizationHeader = req.Headers["Authorization"][0];
+            string authorizationHeader = req.Headers["{{TokenHeader}}"][0];
             if (string.IsNullOrWhiteSpace(authorizationHeader))
             {
                 return new UnauthorizedResult();

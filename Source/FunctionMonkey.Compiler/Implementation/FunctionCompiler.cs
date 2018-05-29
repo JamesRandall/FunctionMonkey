@@ -64,7 +64,7 @@ namespace FunctionMonkey.Compiler.Implementation
             
             IReadOnlyCollection<Assembly> externalAssemblies = GetExternalAssemblies(builder.FunctionDefinitions);
             _jsonCompiler.Compile(builder.FunctionDefinitions, _outputBinaryFolder, newAssemblyNamespace);
-            if (_outputProxiesJson)
+            if (_outputProxiesJson && builder.AreProxiesEnabled)
             {
                 _proxiesJsonCompiler.Compile(builder.FunctionDefinitions, _outputBinaryFolder);
             }

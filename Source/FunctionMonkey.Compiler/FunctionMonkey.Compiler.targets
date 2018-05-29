@@ -7,7 +7,7 @@
   <!-- we ensure the functions post build has run first -->
   <!--<Target Name="_FunctionMonkeyCompiler" AfterTargets="Build">-->
   <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
-    <Exec Command="$(FunctionCompilerExe) $(TargetDir)bin\$(TargetName).dll false" />
+    <Exec Command="$(FunctionCompilerExe) $(TargetDir)bin\$(TargetName).dll" />
   </Target>
 
   <!--
