@@ -32,5 +32,7 @@ namespace FunctionMonkey.Model
         public string SubRoute { get; set; }
 
         public string TokenHeader { get; set; }
+
+        public bool IsValidationResult { get; set; }
     }
 }

@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
 
@@ -14,6 +16,8 @@ namespace FunctionMonkey.Infrastructure
         public void Patch(FunctionHostBuilder builder, string newAssemblyNamespace)
         {
             AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder) builder.AuthorizationBuilder;
+            Type validationResultType = typeof(ValidationResult);
+            
             foreach (AbstractFunctionDefinition definition in builder.FunctionDefinitions)
             {
                 definition.Namespace = newAssemblyNamespace;
@@ -37,6 +41,8 @@ namespace FunctionMonkey.Infrastructure
 
                     httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
 
+                    httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null && validationResultType.IsAssignableFrom(httpFunctionDefinition.CommandResultType);
+
                     httpFunctionDefinition.AcceptsQueryParameters = httpFunctionDefinition
                         .CommandType
                         .GetProperties(BindingFlags.Instance | BindingFlags.Public)
@@ -49,6 +55,7 @@ namespace FunctionMonkey.Infrastructure
                             TypeName = x.PropertyType.EvaluateType()
                         })
                         .ToArray();
+
                 }
             }
         }

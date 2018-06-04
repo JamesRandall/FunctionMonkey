@@ -93,7 +93,11 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 if (functionDefinition.CommandResultType != null)
                 {
-                    assemblies.Add(functionDefinition.CommandResultType.Assembly);
+                    // skip system types
+                    if (functionDefinition.CommandResultType.Assembly != typeof(string).Assembly)
+                    {
+                        assemblies.Add(functionDefinition.CommandResultType.Assembly);
+                    }                    
                 }
             }
 

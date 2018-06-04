@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\MultiAssemblySample.Commands.Abstract\MultiAssemblySample.Commands.Abstract.csproj" />
+    <ProjectReference Include="..\..\..\Source\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

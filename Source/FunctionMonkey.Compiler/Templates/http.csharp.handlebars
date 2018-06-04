@@ -88,6 +88,13 @@ namespace {{Namespace}}
             
             var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             {{#if CommandResultType}}
+            {{#if IsValidationResult}}
+            FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
+            if (!validationResult.IsValid)
+            {
+                return new BadRequestObjectResult(validationResult);
+            }
+            {{/if}}
             return new OkObjectResult(result.Result);
             {{else}}
             return new OkResult();
