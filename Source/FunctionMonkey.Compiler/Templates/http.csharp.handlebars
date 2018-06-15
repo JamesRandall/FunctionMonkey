@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace {{Namespace}}
 {
@@ -82,7 +83,7 @@ namespace {{Namespace}}
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                return new BadRequestObjectResult(validationResult);
+                return CreateResponse(400, validationResult);
             }
             {{/if}}
             
@@ -92,13 +93,23 @@ namespace {{Namespace}}
             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
             if (!validationResult.IsValid)
             {
-                return new BadRequestObjectResult(validationResult);
+                return CreateResponse(400, validationResult);
             }
             {{/if}}
-            return new OkObjectResult(result.Result);
+            return CreateResponse(200, result.Result);
             {{else}}
             return new OkResult();
             {{/if}}
         }
-    }
+
+        public static IActionResult CreateResponse(int code, object content)
+        {
+            ContentResult result = new ContentResult();
+            result.Content = JsonConvert.SerializeObject(content, Formatting.Indented,
+                new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()});
+            result.ContentType = "application/json";
+            result.StatusCode = code;
+            return result;
+        }
+    }    
 }

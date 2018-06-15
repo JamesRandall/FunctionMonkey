@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace StandardFunctions
 {
-    public static class EventHubTriggeredFunction
+    /*public static class EventHubTriggeredFunction
     {
         [FunctionName("EventHubTriggeredFunction")]
         public static void Run(
@@ -17,5 +17,5 @@ namespace StandardFunctions
         {
             //log.Info($"C# Event Hub trigger function processed a message: {myEventHubMessage}");
         }
-    }
+    }*/
 }
