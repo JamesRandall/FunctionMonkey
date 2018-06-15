@@ -13,7 +13,7 @@ namespace FunctionMonkey.Compiler.Extensions
     /// <summary>
     /// Extension methods for <see cref="string"/>.
     /// </summary>
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         private static readonly Regex AllNonCompliantCharactersRegex = new Regex(@"[^a-zA-Z0-9\.\-_]");
         private static readonly Regex GenericMarkersRegex = new Regex(@"`[0-9]+");

@@ -15,7 +15,7 @@ namespace FunctionMonkey.Compiler.Extensions
     /// <summary>
     /// Extension methods for <see cref="Type"/>.
     /// </summary>
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         private static readonly Dictionary<Type, Func<OpenApiSchema>> _simpleTypeToOpenApiSchema =
             new Dictionary<Type, Func<OpenApiSchema>>

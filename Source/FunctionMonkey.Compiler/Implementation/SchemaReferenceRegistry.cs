@@ -12,7 +12,7 @@ using Microsoft.OpenApi.Models;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
-    public class SchemaReferenceRegistry
+    internal class SchemaReferenceRegistry
     {
         /// <summary>
         /// The dictionary containing all references of the given type.

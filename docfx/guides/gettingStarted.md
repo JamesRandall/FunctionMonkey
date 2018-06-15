@@ -2,8 +2,8 @@
 
 Firstly begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey
-    Install-Package FunctionMonkey.Compiler
+    Install-Package FunctionMonkey -pre
+    Install-Package FunctionMonkey.Compiler -pre
 
 The first package contains the core framework while the second will add a custom build step to your solution that generates the necessary assets required by the Azure Functions v2 host.
 
@@ -144,6 +144,7 @@ And all that's left to do is register our dependency with our IoC container in t
             builder
                 .Setup((serviceCollection, commandRegistry) =>
                 {
+                    // Add the line below
                     serviceCollection.AddTransient<IStringHasher, StringHasher>();
                     commandRegistry.Register<HelloWorldCommandHandler>();
                 })
@@ -163,7 +164,65 @@ You should now see a message like this:
 
     "Hello James, from now on I'm going to call you k0WjWm/fF03/chkoKjrkh5eQ27eFxw9v/5HjL6/Wbqs="
 
-And for simple usage that's it!
+Finally lets add one more twist and introduce some validation - we'll the application so that a name of between 1 and 50 characters in length is required. First we'll need to add a new NuGet package:
+
+    Install-Package FunctionMonkey.FluentValidation -pre
+
+Now add a Validators folder to the root of the project and in there create a class called _HelloWorldCommandValidator_:
+
+    internal class HelloWorldCommandValidator : AbstractValidator<HelloWorldCommand>
+    {
+        public HelloWorldCommandValidator()
+        {
+            RuleFor(x => x.Name).NotEmpty().MinimumLength(1).MaximumLength(50);
+        }
+    }
+
+Although you can use any validation system with Function Monkey (see the section on validation) the default package makes use of the excellent [FluentValidation](https://github.com/JeremySkinner/FluentValidation) framework and the above is a pretty standard validator for that system. Next we need to register it with out IoC container and add the Fluent Validation system so we'll update our _FunctionAppConfiguration_ class to look like the below:
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Setup((serviceCollection, commandRegistry) =>
+                {
+                    // Add the line below
+                    serviceCollection.AddTransient<IValidator<HelloWorldCommand>, HelloWorldCommandValidator>();
+                    serviceCollection.AddTransient<IStringHasher, StringHasher>();
+                    commandRegistry.Register<HelloWorldCommandHandler>();
+                })
+                // And add the line below
+                .AddFluentValidation()
+                .Functions(functions => functions
+                    .HttpRoute("/api/v1/HelloWorld", route => route
+                        .HttpFunction<HelloWorldCommand>()
+                    )
+                );
+        }
+    }
+
+If you run the project and open the below URL in a browser or Postman:
+
+    http://localhost:7071/api/v1/HelloWorld
+
+Then you should see a validation block returned that looks like this:
+
+    {
+        "errors": [
+            {
+            "severity": 0,
+            "errorCode": "NotEmptyValidator",
+            "property": "Name",
+            "message": "'Name' should not be empty."
+            }
+        ],
+        "isValid": false
+    }
+
+Its worth noting that validation is applied to all trigger types so you can use it with (none stream based) blobs, queues, etc.
+
+The source code for the above can be found over in [GitHub](https://github.com/JamesRandall/FunctionMonkey/tree/master/Samples/DocumentationSamples/GettingStartedSample).
 
 Obviously for something so simple this is a little bit contrived - but if you imagine growing this out over time and
 adding more functions hopefully its clear how this approach helps keep code cleaner - and not only that your implementation is completely decoupled from Azure Functions itself so if you wanted to run them within another context all you need do is wire up the command handling (take a look at the underlying mediator framework documentation for how to go about that).

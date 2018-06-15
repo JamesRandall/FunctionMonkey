@@ -4,52 +4,13 @@
       href: introduction.md
     - name: Getting Started
       href: gettingStarted.md
-    - name: Packages
-      href: packages.md
+#    - name: Packages
+#      href: packages.md
     - name: Philosophy
       href: philosophy.md
-- name: Core
-  items:    
-    - name: Commands
-      href: core/commands.md
-    - name: Command Handlers
-      href: core/commandHandlers.md
-    - name: Error Handling
-      href: core/errorHandling.md
-    - name: Auditing and Event Sourcing
-      href: core/auditing.md
-    - name: Configuration Options
-      href: core/configurationOptions.md
-- name: HTTP Dispatch
-  items:
-    - name: Quickstart
-      href: http/quickstart.md
-- name: REST API
-  items:
-    - name: Quickstart
-      href: restApi/quickstart.md
-    - name: Configuring Controllers
-      href: restApi/configuringControllers.md
-    - name: Configuring Actions
-      href: restApi/configuringActions.md  
-    - name: Filter Attributes
-      href: restApi/filterAttributes.md
-    - name: Security
-      href: restApi/security.md
-    - name: Claims Mapping
-      href: restApi/claimsMapping.md
-    - name: Best Practices
-      href: restApi/bestPractices.md
-- name: Azure Storage
-  items:
-    - name: Queue Dispatch Quickstart
-      href: azureStorage/queueQuickstart.md
-    - name: Azure Table Storage Auditing
-      href: azureStorage/tableAuditing.md
-    - name: Azure Storage Queue Auditing
-      href: azureStorage/queueAuditing.md
-- name: Azure Service Bus
-  items:
-    - name: Queue and Topic Dispatch Quickstart
-      href: azureServiceBus/queueQuickstart.md
+#- name: REST APIs
+#  items:
+#    - name: Quickstart
+#      href: http/quickstart.md
+
       
