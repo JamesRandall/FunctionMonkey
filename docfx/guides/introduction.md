@@ -1,20 +1,18 @@
 # Introduction
 
-AzureFromTheTrenches.Commanding is a configuration based asynchronous command mediator framework with a number of key design goals:
+Function Monkey is an alternative API for creating Auzre Functions which by having a strong opinion over a core pattern, mediation, is able to achieve a number of key design goals:
 
-* To provide a highly performant mediator for simple usage
-* To support evolution across a projects lifecycle allowing for easy decomposition from a modular-monolith to a fully distributed micro-service architecture
-* To provide a none-leaking abstraction over command dispatch and execution semantics
-* To reduce boilerplate code - simplistically less code means less errors and less to maintain
+* To allow functions to be created and configured with a clean fluent style API
+* To reduce the typical boilerplate associated with functions
+* To separate the implementation of a function from its trigger and wrap around infrastructural code
+* To provide a minimal runtime framework for typical C# / .NET patterns such as IoC and input validation
+* To enable REST APIs to be elegantly built along with support for bearer token authorization, claims, and Swagger
+* To improve the testability of functions
+* To co-exist in a project with standard attribute based Azure Functions
 
-To support these goals the framework supports .NET Standard 2.0 (and higher) and so can be used in a wide variety of scenarios and a number of fully optional extension packages are available to enable:
+Function Monkey is built on [Azure Functions v2](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview) and the [AzureFromTheTrenches.Commanding](https://commanding.azurefromthetrenches.com) mediation framework and provided as a .NET Standard 2.0 package.
 
-* Building a [REST API](restApi/quickstart.md) directly from commands using a configuration based approach
-* Dispatching commands to queues (Service Bus Queues and Topics, and Azure Storage)
-* Dispatching commands to event hubs
-* Using queues as a source for executing commands 
-* Caching commands based on signatures in local memory caches or Redis caches
+_Please note that Function Monkey, like Azure Functions v2, is still in preview and so is subject to breaking change. That said the public API for Function Monkey has settled down nicely at this point and is being used in a number of projects._
 
-You don't need to take advantage of that functionality but you can, if you want, adopt it over time without changing your core code.
+_If you do encounter any issues or have any feedback please do let me know in the [GitHub issue tracker](https://github.com/JamesRandall/FunctionMonkey/issues) or on [Twitter](https://twitter.com/azuretrenches) - I might not get around to it immediately but I really appreciate it!_
 
-For an introduction on moving from a layered "onion" architecture to a mediated command approach that makes use of  this framework [please see this series of posts here](https://www.azurefromthetrenches.com/c-cloud-application-architecture-commanding-with-a-mediator-the-full-series/).
