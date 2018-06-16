@@ -3,6 +3,9 @@ using System.Linq.Expressions;
 
 namespace FunctionMonkey.Abstractions.Builders
 {
+    /// <summary>
+    /// Provides an interface that allows claims to be mapped to commands
+    /// </summary>
     public interface IClaimsMappingBuilder
     {
         /// <summary>

@@ -2,6 +2,10 @@
 
 namespace FunctionMonkey.Abstractions.Builders
 {
+    /// <summary>
+    /// Abstraction over Azure Functions authorization types with the addition of the token validation model provided
+    /// by this framework
+    /// </summary>
     public enum AuthorizationTypeEnum
     {
         /// <summary>
@@ -18,7 +22,9 @@ namespace FunctionMonkey.Abstractions.Builders
         TokenValidation = 2,
     };
 
-
+    /// <summary>
+    /// Provides an interface that allows authorization to be configured
+    /// </summary>
     public interface IAuthorizationBuilder
     {
         /// <summary>

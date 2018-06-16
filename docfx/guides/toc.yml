@@ -8,6 +8,32 @@
 #      href: packages.md
     - name: Philosophy
       href: philosophy.md
+- name: Triggers
+  items:
+    - name: HTTP Triggers
+      items:
+        - name: Overview
+          href: http/overview.md
+        - name: Authentication
+          href: http/authentication.md
+        - name: Authorization
+          href: http/authorization.md
+        - name: Claims Mapping
+          href: http/claimsmapping.md
+        - name: Swagger
+          href: http/swagger.md
+    - name: Service Bus Triggers
+      items:
+        - name: Overview
+          href: servicebus/overview.md
+- name: Cross Cutting Concerns
+  items:
+    - name: Trigger Contexts
+      href: crosscutting/triggercontexts.md
+    - name: Validation
+      href: crosscutting/validation.md
+    - name: Suggested Solution Structure
+      href: crosscutting/solutionstructure.md
 #- name: REST APIs
 #  items:
 #    - name: Quickstart
