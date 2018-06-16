@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.Net Core REST API Quickstart </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.Net Core REST API Quickstart ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="aspnet-core-rest-api-quickstart">ASP.Net Core REST API Quickstart</h1>
+
+<p>The framework provides an extension package (AzureFromTheTrenches.Commanding.AspNetCore) that allows commands to be exposed as REST endpoints using a configuration based approach removing all the boilerplate associated with implementing controllers and helping to enforce a consistent implementation and API expression.</p>
+<p>An example solution can be found at the link below: </p>
+<p><a href="https://github.com/JamesRandall/AzureFromTheTrenches.Commanding-Quickstarts/tree/master/Source/RestApi">https://github.com/JamesRandall/AzureFromTheTrenches.Commanding-Quickstarts/tree/master/Source/RestApi</a></p>
+<h2 id="installation">Installation</h2>
+<p>Add the NuGet package to your ASP.Net Core project:</p>
+<pre><code>Install-Package AzureFromTheTrenches.Commanding.AspNetCore
+</code></pre><p>If you&#39;re using Swashbuckle and your commands contain sensitive properties (see Protecting Sensitive Properties below) it is recommended that you also add the Swashbuckle package - your properties will be secure and tamper proof without this package but adding this package and configuring it will stop those properties from being exposed in the Swagger document:</p>
+<pre><code>Install-Package AzureFromTheTrenches.Commanding.AspNetCore.Swashbuckle
+</code></pre><h2 id="configuration">Configuration</h2>
+<p>Controllers and actions are mapped to commands by an extension method on the IMvcBuilder returned from the .AddMvc() method that in the typical ASP.Net Core startup project can be found in ConfigureServices.</p>
+<p>Let&#39;s assume we have a command like the below:</p>
+<pre><code>public class AddToBasketCommand : ICommand
+{
+    public Guid ProductId { get; set; }
+}
+</code></pre><p>And we want to expose this command as a POST request on the route /api/Basket then a simple configuration block for this might look like:</p>
+<pre><code>public void ConfigureServices(IServiceCollection services)
+{
+    // ... normal setup of commanding and other infrastructure
+
+    services
+        .AddMvc()
+        .AddAspNetCoreCommanding(cfg =&gt; cfg
+            .Controller(&quot;Basket&quot;, controller =&gt; controller
+                .Action&lt;AddToBasketCommand&gt;(HttpMethod.Post)
+            )
+        );
+}
+</code></pre><p>Although other configuration options exist that&#39;s all that is needed to map a command to an endpoint using the default conventions. The configuration API is fluent so we can add a GetBaskketQuery command as follows:</p>
+<pre><code>public class GetBasketQuery : ICommand&lt;Basket&gt;
+{
+
+}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    // ... normal setup of commanding and other infrastructure
+
+    services
+        .AddMvc()
+        .AddAspNetCoreCommanding(cfg =&gt; cfg
+            .Controller(&quot;Basket&quot;, controller =&gt; controller
+                .Action&lt;GetBasketQuery&gt;(HttpMethod.Get)
+                .Action&lt;AddToBasketCommand&gt;(HttpMethod.Post)
+            )
+        );
+}
+</code></pre><p>And we can add another controller to get the users profile in a similar way:</p>
+<pre><code>public class GetUserProfileQuery : ICommand&lt;UserProfile&gt;
+{
+
+}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    // ... normal setup of commanding and other infrastructure
+
+    services
+        .AddMvc()
+        .AddAspNetCoreCommanding(cfg =&gt; cfg
+            .Controller(&quot;Basket&quot;, controller =&gt; controller
+                .Action&lt;GetBasketQuery&gt;(HttpMethod.Get)
+                .Action&lt;AddToBasketCommand&gt;(HttpMethod.Post)
+            )
+            .Controller(&quot;UserProfile&quot;, controller =&gt; controller
+                .Action&lt;GetUserProfileQuery&gt;(HttpMethod.Get)
+            )
+        );
+}
+</code></pre><h2 id="cleanup">Cleanup</h2>
+<p>With the above in place you can delete the Controllers folder - all you need is Startup.cs and Program.cs.</p>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/restApi/quickstart.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

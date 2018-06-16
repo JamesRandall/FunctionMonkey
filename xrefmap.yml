@@ -1,0 +1,1441 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: FunctionMonkey
+  name: FunctionMonkey
+  href: api/FunctionMonkey.html
+  commentId: N:FunctionMonkey
+  fullName: FunctionMonkey
+  nameWithType: FunctionMonkey
+- uid: FunctionMonkey.Abstractions
+  name: FunctionMonkey.Abstractions
+  href: api/FunctionMonkey.Abstractions.html
+  commentId: N:FunctionMonkey.Abstractions
+  fullName: FunctionMonkey.Abstractions
+  nameWithType: FunctionMonkey.Abstractions
+- uid: FunctionMonkey.Abstractions.Builders
+  name: FunctionMonkey.Abstractions.Builders
+  href: api/FunctionMonkey.Abstractions.Builders.html
+  commentId: N:FunctionMonkey.Abstractions.Builders
+  fullName: FunctionMonkey.Abstractions.Builders
+  nameWithType: FunctionMonkey.Abstractions.Builders
+- uid: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum
+  name: AuthorizationTypeEnum
+  href: api/FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum
+  fullName: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum
+  nameWithType: AuthorizationTypeEnum
+- uid: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.Anonymous
+  name: Anonymous
+  href: api/FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.html#FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_Anonymous
+  commentId: F:FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.Anonymous
+  fullName: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.Anonymous
+  nameWithType: AuthorizationTypeEnum.Anonymous
+- uid: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.Function
+  name: Function
+  href: api/FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.html#FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_Function
+  commentId: F:FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.Function
+  fullName: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.Function
+  nameWithType: AuthorizationTypeEnum.Function
+- uid: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.TokenValidation
+  name: TokenValidation
+  href: api/FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.html#FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_TokenValidation
+  commentId: F:FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.TokenValidation
+  fullName: FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.TokenValidation
+  nameWithType: AuthorizationTypeEnum.TokenValidation
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder
+  name: IAuthorizationBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder
+  nameWithType: IAuthorizationBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  name: AuthorizationDefault(AuthorizationTypeEnum)
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_AuthorizationDefault_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  nameWithType: IAuthorizationBuilder.AuthorizationDefault(AuthorizationTypeEnum)
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault*
+  name: AuthorizationDefault
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_AuthorizationDefault_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault
+  nameWithType: IAuthorizationBuilder.AuthorizationDefault
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims(Action{FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder})
+  name: Claims(Action<IClaimsMappingBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_Claims_Action_FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims(Action{FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder})
+  name.vb: Claims(Action(Of IClaimsMappingBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims(Action<FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims(Action(Of FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder))
+  nameWithType: IAuthorizationBuilder.Claims(Action<IClaimsMappingBuilder>)
+  nameWithType.vb: IAuthorizationBuilder.Claims(Action(Of IClaimsMappingBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims*
+  name: Claims
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_Claims_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims
+  nameWithType: IAuthorizationBuilder.Claims
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator*
+  name: TokenValidator
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_TokenValidator_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator
+  nameWithType: IAuthorizationBuilder.TokenValidator
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator``1(System.String)
+  name: TokenValidator<TTokenValidator>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_TokenValidator__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator``1(System.String)
+  name.vb: TokenValidator(Of TTokenValidator)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator<TTokenValidator>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator(Of TTokenValidator)(System.String)
+  nameWithType: IAuthorizationBuilder.TokenValidator<TTokenValidator>(String)
+  nameWithType.vb: IAuthorizationBuilder.TokenValidator(Of TTokenValidator)(String)
+- uid: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder
+  name: IClaimsMappingBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder
+  nameWithType: IClaimsMappingBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty*
+  name: MapClaimToCommandProperty
+  href: api/FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.html#FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder_MapClaimToCommandProperty_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty
+  nameWithType: IClaimsMappingBuilder.MapClaimToCommandProperty
+- uid: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty``1(System.String,Expression{Func{``0,System.Object}})
+  name: MapClaimToCommandProperty<TCommand>(String, Expression<Func<TCommand, Object>>)
+  href: api/FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.html#FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder_MapClaimToCommandProperty__1_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty``1(System.String,Expression{Func{``0,System.Object}})
+  name.vb: MapClaimToCommandProperty(Of TCommand)(String, Expression(Of Func(Of TCommand, Object)))
+  fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty<TCommand>(System.String, Expression<Func<TCommand, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToCommandProperty(Of TCommand)(System.String, Expression(Of Func(Of TCommand, System.Object)))
+  nameWithType: IClaimsMappingBuilder.MapClaimToCommandProperty<TCommand>(String, Expression<Func<TCommand, Object>>)
+  nameWithType.vb: IClaimsMappingBuilder.MapClaimToCommandProperty(Of TCommand)(String, Expression(Of Func(Of TCommand, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName(System.String,System.String)
+  name: MapClaimToPropertyName(String, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.html#FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder_MapClaimToPropertyName_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName(System.String, System.String)
+  nameWithType: IClaimsMappingBuilder.MapClaimToPropertyName(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName*
+  name: MapClaimToPropertyName
+  href: api/FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.html#FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder_MapClaimToPropertyName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName
+  nameWithType: IClaimsMappingBuilder.MapClaimToPropertyName
+- uid: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder
+  name: IEventHubFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder
+  nameWithType: IEventHubFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction*
+  name: EventHubFunction
+  href: api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IEventHubFunctionBuilder_EventHubFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction
+  nameWithType: IEventHubFunctionBuilder.EventHubFunction
+- uid: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction``1(System.String)
+  name: EventHubFunction<TCommand>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IEventHubFunctionBuilder_EventHubFunction__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction``1(System.String)
+  name.vb: EventHubFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.EventHubFunction(Of TCommand)(System.String)
+  nameWithType: IEventHubFunctionBuilder.EventHubFunction<TCommand>(String)
+  nameWithType.vb: IEventHubFunctionBuilder.EventHubFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder
+  name: IFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder
+  nameWithType: IFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute(String, Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(String, Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: IFunctionBuilder.HttpRoute(String, Action<IHttpFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.HttpRoute(String, Action(Of IHttpFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute(String, String, Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(String, String, Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: IFunctionBuilder.HttpRoute(String, String, Action<IHttpFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.HttpRoute(String, String, Action(Of IHttpFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute(String, String, String, Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(String, String, String, Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: IFunctionBuilder.HttpRoute(String, String, String, Action<IHttpFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.HttpRoute(String, String, String, Action(Of IHttpFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute*
+  name: HttpRoute
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute
+  nameWithType: IFunctionBuilder.HttpRoute
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String,Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})
+  name: ServiceBus(String, Action<IServiceBusFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_System_String_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String,Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})
+  name.vb: ServiceBus(String, Action(Of IServiceBusFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String, Action<FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder))
+  nameWithType: IFunctionBuilder.ServiceBus(String, Action<IServiceBusFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.ServiceBus(String, Action(Of IServiceBusFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus*
+  name: ServiceBus
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus
+  nameWithType: IFunctionBuilder.ServiceBus
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(System.String,Action{FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder})
+  name: Storage(String, Action<IStorageFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_System_String_Action_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(System.String,Action{FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder})
+  name.vb: Storage(String, Action(Of IStorageFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(System.String, Action<FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder))
+  nameWithType: IFunctionBuilder.Storage(String, Action<IStorageFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.Storage(String, Action(Of IStorageFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage*
+  name: Storage
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage
+  nameWithType: IFunctionBuilder.Storage
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder
+  name: IFunctionHostBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder
+  nameWithType: IFunctionHostBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action{IServiceProvider})
+  name: ActionOnServiceProviderCreated(Action<IServiceProvider>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ActionOnServiceProviderCreated_Action_IServiceProvider__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action{IServiceProvider})
+  name.vb: ActionOnServiceProviderCreated(Action(Of IServiceProvider))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action<IServiceProvider>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action(Of IServiceProvider))
+  nameWithType: IFunctionHostBuilder.ActionOnServiceProviderCreated(Action<IServiceProvider>)
+  nameWithType.vb: IFunctionHostBuilder.ActionOnServiceProviderCreated(Action(Of IServiceProvider))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated*
+  name: ActionOnServiceProviderCreated
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ActionOnServiceProviderCreated_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated
+  nameWithType: IFunctionHostBuilder.ActionOnServiceProviderCreated
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator*
+  name: AddValidator
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_AddValidator_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator
+  nameWithType: IFunctionHostBuilder.AddValidator
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator``1
+  name: AddValidator<TValidator>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_AddValidator__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator``1
+  name.vb: AddValidator(Of TValidator)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator<TValidator>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator(Of TValidator)()
+  nameWithType: IFunctionHostBuilder.AddValidator<TValidator>()
+  nameWithType.vb: IFunctionHostBuilder.AddValidator(Of TValidator)()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization(Action{FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder})
+  name: Authorization(Action<IAuthorizationBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Authorization_Action_FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization(Action{FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder})
+  name.vb: Authorization(Action(Of IAuthorizationBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization(Action<FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization(Action(Of FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder))
+  nameWithType: IFunctionHostBuilder.Authorization(Action<IAuthorizationBuilder>)
+  nameWithType.vb: IFunctionHostBuilder.Authorization(Action(Of IAuthorizationBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization*
+  name: Authorization
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Authorization_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization
+  nameWithType: IFunctionHostBuilder.Authorization
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions(Action{FunctionMonkey.Abstractions.Builders.IFunctionBuilder})
+  name: Functions(Action<IFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Functions_Action_FunctionMonkey_Abstractions_Builders_IFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions(Action{FunctionMonkey.Abstractions.Builders.IFunctionBuilder})
+  name.vb: Functions(Action(Of IFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions(Action<FunctionMonkey.Abstractions.Builders.IFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions(Action(Of FunctionMonkey.Abstractions.Builders.IFunctionBuilder))
+  nameWithType: IFunctionHostBuilder.Functions(Action<IFunctionBuilder>)
+  nameWithType.vb: IFunctionHostBuilder.Functions(Action(Of IFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions*
+  name: Functions
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Functions_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions
+  nameWithType: IFunctionHostBuilder.Functions
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint(Action{FunctionMonkey.Abstractions.Builders.IOpenApiBuilder})
+  name: OpenApiEndpoint(Action<IOpenApiBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OpenApiEndpoint_Action_FunctionMonkey_Abstractions_Builders_IOpenApiBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint(Action{FunctionMonkey.Abstractions.Builders.IOpenApiBuilder})
+  name.vb: OpenApiEndpoint(Action(Of IOpenApiBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint(Action<FunctionMonkey.Abstractions.Builders.IOpenApiBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint(Action(Of FunctionMonkey.Abstractions.Builders.IOpenApiBuilder))
+  nameWithType: IFunctionHostBuilder.OpenApiEndpoint(Action<IOpenApiBuilder>)
+  nameWithType.vb: IFunctionHostBuilder.OpenApiEndpoint(Action(Of IOpenApiBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint*
+  name: OpenApiEndpoint
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OpenApiEndpoint_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint
+  nameWithType: IFunctionHostBuilder.OpenApiEndpoint
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource(System.String)
+  name: OutputAuthoredSource(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OutputAuthoredSource_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource(System.String)
+  nameWithType: IFunctionHostBuilder.OutputAuthoredSource(String)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource*
+  name: OutputAuthoredSource
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OutputAuthoredSource_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource
+  nameWithType: IFunctionHostBuilder.OutputAuthoredSource
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled(System.Boolean)
+  name: ProxiesEnabled(Boolean)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ProxiesEnabled_System_Boolean_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled(System.Boolean)
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled(System.Boolean)
+  nameWithType: IFunctionHostBuilder.ProxiesEnabled(Boolean)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled*
+  name: ProxiesEnabled
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ProxiesEnabled_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled
+  nameWithType: IFunctionHostBuilder.ProxiesEnabled
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action{IServiceCollection,ICommandRegistry})
+  name: Setup(Action<IServiceCollection, ICommandRegistry>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Setup_Action_IServiceCollection_ICommandRegistry__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action{IServiceCollection,ICommandRegistry})
+  name.vb: Setup(Action(Of IServiceCollection, ICommandRegistry))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action<IServiceCollection, ICommandRegistry>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action(Of IServiceCollection, ICommandRegistry))
+  nameWithType: IFunctionHostBuilder.Setup(Action<IServiceCollection, ICommandRegistry>)
+  nameWithType.vb: IFunctionHostBuilder.Setup(Action(Of IServiceCollection, ICommandRegistry))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup*
+  name: Setup
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Setup_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup
+  nameWithType: IFunctionHostBuilder.Setup
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder
+  name: IHttpFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder
+  nameWithType: IHttpFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*
+  name: HttpFunction
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction
+  nameWithType: IHttpFunctionBuilder.HttpFunction
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1
+  name: HttpFunction<TCommand>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1
+  name.vb: HttpFunction(Of TCommand)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)()
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>()
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  name: HttpFunction<TCommand>(AuthorizationTypeEnum)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  name.vb: HttpFunction(Of TCommand)(AuthorizationTypeEnum)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand>(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(AuthorizationTypeEnum)
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(AuthorizationTypeEnum)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name: HttpFunction<TCommand>(AuthorizationTypeEnum, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name.vb: HttpFunction(Of TCommand)(AuthorizationTypeEnum, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand>(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(AuthorizationTypeEnum, HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(AuthorizationTypeEnum, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(HttpMethod[])
+  name: HttpFunction<TCommand>(HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(HttpMethod[])
+  name.vb: HttpFunction(Of TCommand)(HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand>(HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name: HttpFunction<TCommand>(String, AuthorizationTypeEnum, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name.vb: HttpFunction(Of TCommand)(String, AuthorizationTypeEnum, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand>(System.String, FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(System.String, FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(String, AuthorizationTypeEnum, HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(String, AuthorizationTypeEnum, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(System.String,HttpMethod[])
+  name: HttpFunction<TCommand>(String, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1_System_String_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``1(System.String,HttpMethod[])
+  name.vb: HttpFunction(Of TCommand)(String, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand>(System.String, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(System.String, HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(String, HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(String, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
+  name: IHttpFunctionBuilderMetadataBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
+  nameWithType: IHttpFunctionBuilderMetadataBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description(System.String)
+  name: Description(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Description_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description(System.String)
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.Description(String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description*
+  name: Description
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Description_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.Description
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response(System.Int32,System.String)
+  name: Response(Int32, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Response_System_Int32_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response(System.Int32,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response(System.Int32, System.String)
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.Response(Int32, String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response*
+  name: Response
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Response_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.Response
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
+  name: IOpenApiBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
+  nameWithType: IOpenApiBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers(System.String[])
+  name: Servers(String[])
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Servers_System_String___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers(System.String[])
+  name.vb: Servers(String())
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers(System.String[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers(System.String())
+  nameWithType: IOpenApiBuilder.Servers(String[])
+  nameWithType.vb: IOpenApiBuilder.Servers(String())
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers*
+  name: Servers
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Servers_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers
+  nameWithType: IOpenApiBuilder.Servers
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Title(System.String)
+  name: Title(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Title_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Title(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Title(System.String)
+  nameWithType: IOpenApiBuilder.Title(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Title*
+  name: Title
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Title_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Title
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Title
+  nameWithType: IOpenApiBuilder.Title
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.UserInterface(System.String)
+  name: UserInterface(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_UserInterface_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.UserInterface(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.UserInterface(System.String)
+  nameWithType: IOpenApiBuilder.UserInterface(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.UserInterface*
+  name: UserInterface
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_UserInterface_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.UserInterface
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.UserInterface
+  nameWithType: IOpenApiBuilder.UserInterface
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version(System.String)
+  name: Version(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Version_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version(System.String)
+  nameWithType: IOpenApiBuilder.Version(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version*
+  name: Version
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Version_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version
+  nameWithType: IOpenApiBuilder.Version
+- uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder
+  name: IServiceBusFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder
+  nameWithType: IServiceBusFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction*
+  name: QueueFunction
+  href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_QueueFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction
+  nameWithType: IServiceBusFunctionBuilder.QueueFunction
+- uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction``1(System.String)
+  name: QueueFunction<TCommand>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_QueueFunction__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction``1(System.String)
+  name.vb: QueueFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.QueueFunction(Of TCommand)(System.String)
+  nameWithType: IServiceBusFunctionBuilder.QueueFunction<TCommand>(String)
+  nameWithType.vb: IServiceBusFunctionBuilder.QueueFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction*
+  name: SubscriptionFunction
+  href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_SubscriptionFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction
+  nameWithType: IServiceBusFunctionBuilder.SubscriptionFunction
+- uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction``1(System.String,System.String)
+  name: SubscriptionFunction<TCommand>(String, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_SubscriptionFunction__1_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction``1(System.String,System.String)
+  name.vb: SubscriptionFunction(Of TCommand)(String, String)
+  fullName: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction<TCommand>(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction(Of TCommand)(System.String, System.String)
+  nameWithType: IServiceBusFunctionBuilder.SubscriptionFunction<TCommand>(String, String)
+  nameWithType.vb: IServiceBusFunctionBuilder.SubscriptionFunction(Of TCommand)(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder
+  name: IStorageFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder
+  nameWithType: IStorageFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction*
+  name: BlobFunction
+  href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_BlobFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction
+  nameWithType: IStorageFunctionBuilder.BlobFunction
+- uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction``1(System.String)
+  name: BlobFunction<TCommand>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_BlobFunction__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction``1(System.String)
+  name.vb: BlobFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.BlobFunction(Of TCommand)(System.String)
+  nameWithType: IStorageFunctionBuilder.BlobFunction<TCommand>(String)
+  nameWithType.vb: IStorageFunctionBuilder.BlobFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction*
+  name: QueueFunction
+  href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_QueueFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction
+  nameWithType: IStorageFunctionBuilder.QueueFunction
+- uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction``1(System.String)
+  name: QueueFunction<TCommand>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_QueueFunction__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction``1(System.String)
+  name.vb: QueueFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction(Of TCommand)(System.String)
+  nameWithType: IStorageFunctionBuilder.QueueFunction<TCommand>(String)
+  nameWithType.vb: IStorageFunctionBuilder.QueueFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Contexts
+  name: FunctionMonkey.Abstractions.Contexts
+  href: api/FunctionMonkey.Abstractions.Contexts.html
+  commentId: N:FunctionMonkey.Abstractions.Contexts
+  fullName: FunctionMonkey.Abstractions.Contexts
+  nameWithType: FunctionMonkey.Abstractions.Contexts
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext
+  name: BlobContext
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html
+  commentId: T:FunctionMonkey.Abstractions.Contexts.BlobContext
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext
+  nameWithType: BlobContext
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext.BlobTrigger
+  name: BlobTrigger
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html#FunctionMonkey_Abstractions_Contexts_BlobContext_BlobTrigger
+  commentId: P:FunctionMonkey.Abstractions.Contexts.BlobContext.BlobTrigger
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext.BlobTrigger
+  nameWithType: BlobContext.BlobTrigger
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext.BlobTrigger*
+  name: BlobTrigger
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html#FunctionMonkey_Abstractions_Contexts_BlobContext_BlobTrigger_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.BlobContext.BlobTrigger
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext.BlobTrigger
+  nameWithType: BlobContext.BlobTrigger
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext.Metadata
+  name: Metadata
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html#FunctionMonkey_Abstractions_Contexts_BlobContext_Metadata
+  commentId: P:FunctionMonkey.Abstractions.Contexts.BlobContext.Metadata
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext.Metadata
+  nameWithType: BlobContext.Metadata
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext.Metadata*
+  name: Metadata
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html#FunctionMonkey_Abstractions_Contexts_BlobContext_Metadata_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.BlobContext.Metadata
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext.Metadata
+  nameWithType: BlobContext.Metadata
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext.Uri
+  name: Uri
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html#FunctionMonkey_Abstractions_Contexts_BlobContext_Uri
+  commentId: P:FunctionMonkey.Abstractions.Contexts.BlobContext.Uri
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext.Uri
+  nameWithType: BlobContext.Uri
+- uid: FunctionMonkey.Abstractions.Contexts.BlobContext.Uri*
+  name: Uri
+  href: api/FunctionMonkey.Abstractions.Contexts.BlobContext.html#FunctionMonkey_Abstractions_Contexts_BlobContext_Uri_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.BlobContext.Uri
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.BlobContext.Uri
+  nameWithType: BlobContext.Uri
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext
+  name: EventHubContext
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html
+  commentId: T:FunctionMonkey.Abstractions.Contexts.EventHubContext
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext
+  nameWithType: EventHubContext
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.EnqueuedTimeUtc
+  name: EnqueuedTimeUtc
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_EnqueuedTimeUtc
+  commentId: P:FunctionMonkey.Abstractions.Contexts.EventHubContext.EnqueuedTimeUtc
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.EnqueuedTimeUtc
+  nameWithType: EventHubContext.EnqueuedTimeUtc
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.EnqueuedTimeUtc*
+  name: EnqueuedTimeUtc
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_EnqueuedTimeUtc_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.EventHubContext.EnqueuedTimeUtc
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.EnqueuedTimeUtc
+  nameWithType: EventHubContext.EnqueuedTimeUtc
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.Offset
+  name: Offset
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_Offset
+  commentId: P:FunctionMonkey.Abstractions.Contexts.EventHubContext.Offset
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.Offset
+  nameWithType: EventHubContext.Offset
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.Offset*
+  name: Offset
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_Offset_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.EventHubContext.Offset
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.Offset
+  nameWithType: EventHubContext.Offset
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
+  name: SequenceNumber
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SequenceNumber
+  commentId: P:FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
+  nameWithType: EventHubContext.SequenceNumber
+- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber*
+  name: SequenceNumber
+  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SequenceNumber_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
+  nameWithType: EventHubContext.SequenceNumber
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext
+  name: ServiceBusContext
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html
+  commentId: T:FunctionMonkey.Abstractions.Contexts.ServiceBusContext
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext
+  nameWithType: ServiceBusContext
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.DeliveryCount
+  name: DeliveryCount
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_DeliveryCount
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.DeliveryCount
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.DeliveryCount
+  nameWithType: ServiceBusContext.DeliveryCount
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.DeliveryCount*
+  name: DeliveryCount
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_DeliveryCount_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.DeliveryCount
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.DeliveryCount
+  nameWithType: ServiceBusContext.DeliveryCount
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc
+  name: EnqueuedTimeUTc
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_EnqueuedTimeUTc
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc
+  nameWithType: ServiceBusContext.EnqueuedTimeUTc
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc*
+  name: EnqueuedTimeUTc
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_EnqueuedTimeUTc_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc
+  nameWithType: ServiceBusContext.EnqueuedTimeUTc
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId
+  name: MessageId
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_MessageId
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId
+  nameWithType: ServiceBusContext.MessageId
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId*
+  name: MessageId
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_MessageId_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId
+  nameWithType: ServiceBusContext.MessageId
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext
+  name: StorageQueueContext
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html
+  commentId: T:FunctionMonkey.Abstractions.Contexts.StorageQueueContext
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext
+  nameWithType: StorageQueueContext
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.DequeueCount
+  name: DequeueCount
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_DequeueCount
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.DequeueCount
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.DequeueCount
+  nameWithType: StorageQueueContext.DequeueCount
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.DequeueCount*
+  name: DequeueCount
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_DequeueCount_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.DequeueCount
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.DequeueCount
+  nameWithType: StorageQueueContext.DequeueCount
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.ExpirationTime
+  name: ExpirationTime
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_ExpirationTime
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.ExpirationTime
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.ExpirationTime
+  nameWithType: StorageQueueContext.ExpirationTime
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.ExpirationTime*
+  name: ExpirationTime
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_ExpirationTime_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.ExpirationTime
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.ExpirationTime
+  nameWithType: StorageQueueContext.ExpirationTime
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.Id
+  name: Id
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_Id
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.Id
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.Id
+  nameWithType: StorageQueueContext.Id
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.Id*
+  name: Id
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_Id_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.Id
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.Id
+  nameWithType: StorageQueueContext.Id
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.InsertionTime
+  name: InsertionTime
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_InsertionTime
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.InsertionTime
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.InsertionTime
+  nameWithType: StorageQueueContext.InsertionTime
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.InsertionTime*
+  name: InsertionTime
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_InsertionTime_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.InsertionTime
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.InsertionTime
+  nameWithType: StorageQueueContext.InsertionTime
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.NextVisibleTime
+  name: NextVisibleTime
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_NextVisibleTime
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.NextVisibleTime
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.NextVisibleTime
+  nameWithType: StorageQueueContext.NextVisibleTime
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.NextVisibleTime*
+  name: NextVisibleTime
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_NextVisibleTime_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.NextVisibleTime
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.NextVisibleTime
+  nameWithType: StorageQueueContext.NextVisibleTime
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.PopReceipt
+  name: PopReceipt
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_PopReceipt
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.PopReceipt
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.PopReceipt
+  nameWithType: StorageQueueContext.PopReceipt
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.PopReceipt*
+  name: PopReceipt
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_PopReceipt_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.PopReceipt
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.PopReceipt
+  nameWithType: StorageQueueContext.PopReceipt
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
+  name: QueueTrigger
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_QueueTrigger
+  commentId: P:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
+  nameWithType: StorageQueueContext.QueueTrigger
+- uid: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger*
+  name: QueueTrigger
+  href: api/FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html#FunctionMonkey_Abstractions_Contexts_StorageQueueContext_QueueTrigger_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
+  nameWithType: StorageQueueContext.QueueTrigger
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder
+  name: ICommandClaimsBinder
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html
+  commentId: T:FunctionMonkey.Abstractions.ICommandClaimsBinder
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder
+  nameWithType: ICommandClaimsBinder
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,ICommand)
+  name: Bind(ClaimsPrincipal, ICommand)
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_ClaimsPrincipal_ICommand_
+  commentId: M:FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,ICommand)
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal, ICommand)
+  nameWithType: ICommandClaimsBinder.Bind(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind*
+  name: Bind
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_
+  commentId: Overload:FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind
+  nameWithType: ICommandClaimsBinder.Bind
+- uid: FunctionMonkey.Abstractions.ICommandDeserializer
+  name: ICommandDeserializer
+  href: api/FunctionMonkey.Abstractions.ICommandDeserializer.html
+  commentId: T:FunctionMonkey.Abstractions.ICommandDeserializer
+  fullName: FunctionMonkey.Abstractions.ICommandDeserializer
+  nameWithType: ICommandDeserializer
+- uid: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize*
+  name: Deserialize
+  href: api/FunctionMonkey.Abstractions.ICommandDeserializer.html#FunctionMonkey_Abstractions_ICommandDeserializer_Deserialize_
+  commentId: Overload:FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize
+  nameWithType: ICommandDeserializer.Deserialize
+- uid: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize``1(System.String,System.Boolean)
+  name: Deserialize<TCommand>(String, Boolean)
+  href: api/FunctionMonkey.Abstractions.ICommandDeserializer.html#FunctionMonkey_Abstractions_ICommandDeserializer_Deserialize__1_System_String_System_Boolean_
+  commentId: M:FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize``1(System.String,System.Boolean)
+  name.vb: Deserialize(Of TCommand)(String, Boolean)
+  fullName: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize<TCommand>(System.String, System.Boolean)
+  fullName.vb: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize(Of TCommand)(System.String, System.Boolean)
+  nameWithType: ICommandDeserializer.Deserialize<TCommand>(String, Boolean)
+  nameWithType.vb: ICommandDeserializer.Deserialize(Of TCommand)(String, Boolean)
+- uid: FunctionMonkey.Abstractions.ICommandingConfigurator
+  name: ICommandingConfigurator
+  href: api/FunctionMonkey.Abstractions.ICommandingConfigurator.html
+  commentId: T:FunctionMonkey.Abstractions.ICommandingConfigurator
+  fullName: FunctionMonkey.Abstractions.ICommandingConfigurator
+  nameWithType: ICommandingConfigurator
+- uid: FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding(ICommandingDependencyResolverAdapter)
+  name: AddCommanding(ICommandingDependencyResolverAdapter)
+  href: api/FunctionMonkey.Abstractions.ICommandingConfigurator.html#FunctionMonkey_Abstractions_ICommandingConfigurator_AddCommanding_ICommandingDependencyResolverAdapter_
+  commentId: M:FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding(ICommandingDependencyResolverAdapter)
+  fullName: FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding(ICommandingDependencyResolverAdapter)
+  nameWithType: ICommandingConfigurator.AddCommanding(ICommandingDependencyResolverAdapter)
+- uid: FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding*
+  name: AddCommanding
+  href: api/FunctionMonkey.Abstractions.ICommandingConfigurator.html#FunctionMonkey_Abstractions_ICommandingConfigurator_AddCommanding_
+  commentId: Overload:FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding
+  nameWithType: ICommandingConfigurator.AddCommanding
+- uid: FunctionMonkey.Abstractions.IContextProvider
+  name: IContextProvider
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html
+  commentId: T:FunctionMonkey.Abstractions.IContextProvider
+  fullName: FunctionMonkey.Abstractions.IContextProvider
+  nameWithType: IContextProvider
+- uid: FunctionMonkey.Abstractions.IContextProvider.BlobContext
+  name: BlobContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_BlobContext
+  commentId: P:FunctionMonkey.Abstractions.IContextProvider.BlobContext
+  fullName: FunctionMonkey.Abstractions.IContextProvider.BlobContext
+  nameWithType: IContextProvider.BlobContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.BlobContext*
+  name: BlobContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_BlobContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextProvider.BlobContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextProvider.BlobContext
+  nameWithType: IContextProvider.BlobContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.EventHubContext
+  name: EventHubContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_EventHubContext
+  commentId: P:FunctionMonkey.Abstractions.IContextProvider.EventHubContext
+  fullName: FunctionMonkey.Abstractions.IContextProvider.EventHubContext
+  nameWithType: IContextProvider.EventHubContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.EventHubContext*
+  name: EventHubContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_EventHubContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextProvider.EventHubContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextProvider.EventHubContext
+  nameWithType: IContextProvider.EventHubContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
+  name: ServiceBusContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_ServiceBusContext
+  commentId: P:FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
+  fullName: FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
+  nameWithType: IContextProvider.ServiceBusContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext*
+  name: ServiceBusContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_ServiceBusContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
+  nameWithType: IContextProvider.ServiceBusContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.StorageQueueContext
+  name: StorageQueueContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_StorageQueueContext
+  commentId: P:FunctionMonkey.Abstractions.IContextProvider.StorageQueueContext
+  fullName: FunctionMonkey.Abstractions.IContextProvider.StorageQueueContext
+  nameWithType: IContextProvider.StorageQueueContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.StorageQueueContext*
+  name: StorageQueueContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_StorageQueueContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextProvider.StorageQueueContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextProvider.StorageQueueContext
+  nameWithType: IContextProvider.StorageQueueContext
+- uid: FunctionMonkey.Abstractions.IContextSetter
+  name: IContextSetter
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html
+  commentId: T:FunctionMonkey.Abstractions.IContextSetter
+  fullName: FunctionMonkey.Abstractions.IContextSetter
+  nameWithType: IContextSetter
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetBlobContext(System.String,Uri,IDictionary{System.String,System.String})
+  name: SetBlobContext(String, Uri, IDictionary<String, String>)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetBlobContext_System_String_Uri_IDictionary_System_String_System_String__
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetBlobContext(System.String,Uri,IDictionary{System.String,System.String})
+  name.vb: SetBlobContext(String, Uri, IDictionary(Of String, String))
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetBlobContext(System.String, Uri, IDictionary<System.String, System.String>)
+  fullName.vb: FunctionMonkey.Abstractions.IContextSetter.SetBlobContext(System.String, Uri, IDictionary(Of System.String, System.String))
+  nameWithType: IContextSetter.SetBlobContext(String, Uri, IDictionary<String, String>)
+  nameWithType.vb: IContextSetter.SetBlobContext(String, Uri, IDictionary(Of String, String))
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetBlobContext*
+  name: SetBlobContext
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetBlobContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextSetter.SetBlobContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetBlobContext
+  nameWithType: IContextSetter.SetBlobContext
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime,Int64,System.String)
+  name: SetEventHubContext(DateTime, Int64, String)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetEventHubContext_DateTime_Int64_System_String_
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime,Int64,System.String)
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime, Int64, System.String)
+  nameWithType: IContextSetter.SetEventHubContext(DateTime, Int64, String)
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext*
+  name: SetEventHubContext
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetEventHubContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext
+  nameWithType: IContextSetter.SetEventHubContext
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String)
+  name: SetServiceBusContext(Int32, DateTime, String)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_System_Int32_DateTime_System_String_
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String)
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32, DateTime, System.String)
+  nameWithType: IContextSetter.SetServiceBusContext(Int32, DateTime, String)
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext*
+  name: SetServiceBusContext
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext
+  nameWithType: IContextSetter.SetServiceBusContext
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetStorageQueueContext(DateTimeOffset,DateTimeOffset,DateTimeOffset,System.String,System.String,System.String,System.Int32)
+  name: SetStorageQueueContext(DateTimeOffset, DateTimeOffset, DateTimeOffset, String, String, String, Int32)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetStorageQueueContext_DateTimeOffset_DateTimeOffset_DateTimeOffset_System_String_System_String_System_String_System_Int32_
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetStorageQueueContext(DateTimeOffset,DateTimeOffset,DateTimeOffset,System.String,System.String,System.String,System.Int32)
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetStorageQueueContext(DateTimeOffset, DateTimeOffset, DateTimeOffset, System.String, System.String, System.String, System.Int32)
+  nameWithType: IContextSetter.SetStorageQueueContext(DateTimeOffset, DateTimeOffset, DateTimeOffset, String, String, String, Int32)
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetStorageQueueContext*
+  name: SetStorageQueueContext
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetStorageQueueContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextSetter.SetStorageQueueContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetStorageQueueContext
+  nameWithType: IContextSetter.SetStorageQueueContext
+- uid: FunctionMonkey.Abstractions.IFunctionAppConfiguration
+  name: IFunctionAppConfiguration
+  href: api/FunctionMonkey.Abstractions.IFunctionAppConfiguration.html
+  commentId: T:FunctionMonkey.Abstractions.IFunctionAppConfiguration
+  fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration
+  nameWithType: IFunctionAppConfiguration
+- uid: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  name: Build(IFunctionHostBuilder)
+  href: api/FunctionMonkey.Abstractions.IFunctionAppConfiguration.html#FunctionMonkey_Abstractions_IFunctionAppConfiguration_Build_FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_
+  commentId: M:FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  nameWithType: IFunctionAppConfiguration.Build(IFunctionHostBuilder)
+- uid: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build*
+  name: Build
+  href: api/FunctionMonkey.Abstractions.IFunctionAppConfiguration.html#FunctionMonkey_Abstractions_IFunctionAppConfiguration_Build_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build
+  nameWithType: IFunctionAppConfiguration.Build
+- uid: FunctionMonkey.Abstractions.ITokenValidator
+  name: ITokenValidator
+  href: api/FunctionMonkey.Abstractions.ITokenValidator.html
+  commentId: T:FunctionMonkey.Abstractions.ITokenValidator
+  fullName: FunctionMonkey.Abstractions.ITokenValidator
+  nameWithType: ITokenValidator
+- uid: FunctionMonkey.Abstractions.ITokenValidator.ValidateAsync(System.String)
+  name: ValidateAsync(String)
+  href: api/FunctionMonkey.Abstractions.ITokenValidator.html#FunctionMonkey_Abstractions_ITokenValidator_ValidateAsync_System_String_
+  commentId: M:FunctionMonkey.Abstractions.ITokenValidator.ValidateAsync(System.String)
+  fullName: FunctionMonkey.Abstractions.ITokenValidator.ValidateAsync(System.String)
+  nameWithType: ITokenValidator.ValidateAsync(String)
+- uid: FunctionMonkey.Abstractions.ITokenValidator.ValidateAsync*
+  name: ValidateAsync
+  href: api/FunctionMonkey.Abstractions.ITokenValidator.html#FunctionMonkey_Abstractions_ITokenValidator_ValidateAsync_
+  commentId: Overload:FunctionMonkey.Abstractions.ITokenValidator.ValidateAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ITokenValidator.ValidateAsync
+  nameWithType: ITokenValidator.ValidateAsync
+- uid: FunctionMonkey.Abstractions.Validation
+  name: FunctionMonkey.Abstractions.Validation
+  href: api/FunctionMonkey.Abstractions.Validation.html
+  commentId: N:FunctionMonkey.Abstractions.Validation
+  fullName: FunctionMonkey.Abstractions.Validation
+  nameWithType: FunctionMonkey.Abstractions.Validation
+- uid: FunctionMonkey.Abstractions.Validation.IValidator
+  name: IValidator
+  href: api/FunctionMonkey.Abstractions.Validation.IValidator.html
+  commentId: T:FunctionMonkey.Abstractions.Validation.IValidator
+  fullName: FunctionMonkey.Abstractions.Validation.IValidator
+  nameWithType: IValidator
+- uid: FunctionMonkey.Abstractions.Validation.IValidator.Validate*
+  name: Validate
+  href: api/FunctionMonkey.Abstractions.Validation.IValidator.html#FunctionMonkey_Abstractions_Validation_IValidator_Validate_
+  commentId: Overload:FunctionMonkey.Abstractions.Validation.IValidator.Validate
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Validation.IValidator.Validate
+  nameWithType: IValidator.Validate
+- uid: FunctionMonkey.Abstractions.Validation.IValidator.Validate``1(``0)
+  name: Validate<TCommand>(TCommand)
+  href: api/FunctionMonkey.Abstractions.Validation.IValidator.html#FunctionMonkey_Abstractions_Validation_IValidator_Validate__1___0_
+  commentId: M:FunctionMonkey.Abstractions.Validation.IValidator.Validate``1(``0)
+  name.vb: Validate(Of TCommand)(TCommand)
+  fullName: FunctionMonkey.Abstractions.Validation.IValidator.Validate<TCommand>(TCommand)
+  fullName.vb: FunctionMonkey.Abstractions.Validation.IValidator.Validate(Of TCommand)(TCommand)
+  nameWithType: IValidator.Validate<TCommand>(TCommand)
+  nameWithType.vb: IValidator.Validate(Of TCommand)(TCommand)
+- uid: FunctionMonkey.ClaimMappingCompilationException
+  name: ClaimMappingCompilationException
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html
+  commentId: T:FunctionMonkey.ClaimMappingCompilationException
+  fullName: FunctionMonkey.ClaimMappingCompilationException
+  nameWithType: ClaimMappingCompilationException
+- uid: FunctionMonkey.ClaimMappingCompilationException.ClaimType
+  name: ClaimType
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_ClaimType
+  commentId: P:FunctionMonkey.ClaimMappingCompilationException.ClaimType
+  fullName: FunctionMonkey.ClaimMappingCompilationException.ClaimType
+  nameWithType: ClaimMappingCompilationException.ClaimType
+- uid: FunctionMonkey.ClaimMappingCompilationException.ClaimType*
+  name: ClaimType
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_ClaimType_
+  commentId: Overload:FunctionMonkey.ClaimMappingCompilationException.ClaimType
+  isSpec: "True"
+  fullName: FunctionMonkey.ClaimMappingCompilationException.ClaimType
+  nameWithType: ClaimMappingCompilationException.ClaimType
+- uid: FunctionMonkey.ClaimMappingCompilationException.CommandType
+  name: CommandType
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_CommandType
+  commentId: P:FunctionMonkey.ClaimMappingCompilationException.CommandType
+  fullName: FunctionMonkey.ClaimMappingCompilationException.CommandType
+  nameWithType: ClaimMappingCompilationException.CommandType
+- uid: FunctionMonkey.ClaimMappingCompilationException.CommandType*
+  name: CommandType
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_CommandType_
+  commentId: Overload:FunctionMonkey.ClaimMappingCompilationException.CommandType
+  isSpec: "True"
+  fullName: FunctionMonkey.ClaimMappingCompilationException.CommandType
+  nameWithType: ClaimMappingCompilationException.CommandType
+- uid: FunctionMonkey.ClaimMappingCompilationException.Name
+  name: Name
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_Name
+  commentId: P:FunctionMonkey.ClaimMappingCompilationException.Name
+  fullName: FunctionMonkey.ClaimMappingCompilationException.Name
+  nameWithType: ClaimMappingCompilationException.Name
+- uid: FunctionMonkey.ClaimMappingCompilationException.Name*
+  name: Name
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_Name_
+  commentId: Overload:FunctionMonkey.ClaimMappingCompilationException.Name
+  isSpec: "True"
+  fullName: FunctionMonkey.ClaimMappingCompilationException.Name
+  nameWithType: ClaimMappingCompilationException.Name
+- uid: FunctionMonkey.ClaimMappingCompilationException.PropertyType
+  name: PropertyType
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_PropertyType
+  commentId: P:FunctionMonkey.ClaimMappingCompilationException.PropertyType
+  fullName: FunctionMonkey.ClaimMappingCompilationException.PropertyType
+  nameWithType: ClaimMappingCompilationException.PropertyType
+- uid: FunctionMonkey.ClaimMappingCompilationException.PropertyType*
+  name: PropertyType
+  href: api/FunctionMonkey.ClaimMappingCompilationException.html#FunctionMonkey_ClaimMappingCompilationException_PropertyType_
+  commentId: Overload:FunctionMonkey.ClaimMappingCompilationException.PropertyType
+  isSpec: "True"
+  fullName: FunctionMonkey.ClaimMappingCompilationException.PropertyType
+  nameWithType: ClaimMappingCompilationException.PropertyType
+- uid: FunctionMonkey.Commanding.Abstractions
+  name: FunctionMonkey.Commanding.Abstractions
+  href: api/FunctionMonkey.Commanding.Abstractions.html
+  commentId: N:FunctionMonkey.Commanding.Abstractions
+  fullName: FunctionMonkey.Commanding.Abstractions
+  nameWithType: FunctionMonkey.Commanding.Abstractions
+- uid: FunctionMonkey.Commanding.Abstractions.IStreamCommand
+  name: IStreamCommand
+  href: api/FunctionMonkey.Commanding.Abstractions.IStreamCommand.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.IStreamCommand
+  fullName: FunctionMonkey.Commanding.Abstractions.IStreamCommand
+  nameWithType: IStreamCommand
+- uid: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Name
+  name: Name
+  href: api/FunctionMonkey.Commanding.Abstractions.IStreamCommand.html#FunctionMonkey_Commanding_Abstractions_IStreamCommand_Name
+  commentId: P:FunctionMonkey.Commanding.Abstractions.IStreamCommand.Name
+  fullName: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Name
+  nameWithType: IStreamCommand.Name
+- uid: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Name*
+  name: Name
+  href: api/FunctionMonkey.Commanding.Abstractions.IStreamCommand.html#FunctionMonkey_Commanding_Abstractions_IStreamCommand_Name_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.IStreamCommand.Name
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Name
+  nameWithType: IStreamCommand.Name
+- uid: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Stream
+  name: Stream
+  href: api/FunctionMonkey.Commanding.Abstractions.IStreamCommand.html#FunctionMonkey_Commanding_Abstractions_IStreamCommand_Stream
+  commentId: P:FunctionMonkey.Commanding.Abstractions.IStreamCommand.Stream
+  fullName: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Stream
+  nameWithType: IStreamCommand.Stream
+- uid: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Stream*
+  name: Stream
+  href: api/FunctionMonkey.Commanding.Abstractions.IStreamCommand.html#FunctionMonkey_Commanding_Abstractions_IStreamCommand_Stream_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.IStreamCommand.Stream
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.IStreamCommand.Stream
+  nameWithType: IStreamCommand.Stream
+- uid: FunctionMonkey.Commanding.Abstractions.Validation
+  name: FunctionMonkey.Commanding.Abstractions.Validation
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.html
+  commentId: N:FunctionMonkey.Commanding.Abstractions.Validation
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation
+  nameWithType: FunctionMonkey.Commanding.Abstractions.Validation
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum
+  name: SeverityEnum
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum
+  nameWithType: SeverityEnum
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Error
+  name: Error
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.html#FunctionMonkey_Commanding_Abstractions_Validation_SeverityEnum_Error
+  commentId: F:FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Error
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Error
+  nameWithType: SeverityEnum.Error
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Info
+  name: Info
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.html#FunctionMonkey_Commanding_Abstractions_Validation_SeverityEnum_Info
+  commentId: F:FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Info
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Info
+  nameWithType: SeverityEnum.Info
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Warning
+  name: Warning
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.html#FunctionMonkey_Commanding_Abstractions_Validation_SeverityEnum_Warning
+  commentId: F:FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Warning
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.SeverityEnum.Warning
+  nameWithType: SeverityEnum.Warning
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError
+  name: ValidationError
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError
+  nameWithType: ValidationError
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.ErrorCode
+  name: ErrorCode
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_ErrorCode
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.ErrorCode
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.ErrorCode
+  nameWithType: ValidationError.ErrorCode
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.ErrorCode*
+  name: ErrorCode
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_ErrorCode_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.ErrorCode
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.ErrorCode
+  nameWithType: ValidationError.ErrorCode
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Message
+  name: Message
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_Message
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Message
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Message
+  nameWithType: ValidationError.Message
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Message*
+  name: Message
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_Message_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Message
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Message
+  nameWithType: ValidationError.Message
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Property
+  name: Property
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_Property
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Property
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Property
+  nameWithType: ValidationError.Property
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Property*
+  name: Property
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_Property_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Property
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Property
+  nameWithType: ValidationError.Property
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Severity
+  name: Severity
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_Severity
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Severity
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Severity
+  nameWithType: ValidationError.Severity
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Severity*
+  name: Severity
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationError_Severity_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Severity
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationError.Severity
+  nameWithType: ValidationError.Severity
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException
+  name: ValidationException
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException
+  nameWithType: ValidationException
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.#ctor(System.String,FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult,System.String)
+  name: ValidationException(String, ValidationResult, String)
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException__ctor_System_String_FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_System_String_
+  commentId: M:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.#ctor(System.String,FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult,System.String)
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationException(System.String, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult, System.String)
+  nameWithType: ValidationException.ValidationException(String, ValidationResult, String)
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.#ctor*
+  name: ValidationException
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException__ctor_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationException
+  nameWithType: ValidationException.ValidationException
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.AssociatedId
+  name: AssociatedId
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException_AssociatedId
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.AssociatedId
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.AssociatedId
+  nameWithType: ValidationException.AssociatedId
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.AssociatedId*
+  name: AssociatedId
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException_AssociatedId_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.AssociatedId
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.AssociatedId
+  nameWithType: ValidationException.AssociatedId
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.FunctionName
+  name: FunctionName
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException_FunctionName
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.FunctionName
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.FunctionName
+  nameWithType: ValidationException.FunctionName
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.FunctionName*
+  name: FunctionName
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException_FunctionName_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.FunctionName
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.FunctionName
+  nameWithType: ValidationException.FunctionName
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult
+  name: ValidationResult
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException_ValidationResult
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult
+  nameWithType: ValidationException.ValidationResult
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult*
+  name: ValidationResult
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationException_ValidationResult_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult
+  nameWithType: ValidationException.ValidationResult
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult
+  name: ValidationResult
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult
+  nameWithType: ValidationResult
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.Errors
+  name: Errors
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_Errors
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.Errors
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.Errors
+  nameWithType: ValidationResult.Errors
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.Errors*
+  name: Errors
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_Errors_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.Errors
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.Errors
+  nameWithType: ValidationResult.Errors
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.IsValid
+  name: IsValid
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_IsValid
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.IsValid
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.IsValid
+  nameWithType: ValidationResult.IsValid
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.IsValid*
+  name: IsValid
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_IsValid_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.IsValid
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.IsValid
+  nameWithType: ValidationResult.IsValid
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult`1
+  name: ValidationResult<TResult>
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult-1.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult`1
+  name.vb: ValidationResult(Of TResult)
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult<TResult>
+  fullName.vb: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(Of TResult)
+  nameWithType: ValidationResult<TResult>
+  nameWithType.vb: ValidationResult(Of TResult)
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult`1.Result
+  name: Result
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult-1.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_1_Result
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult`1.Result
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult<TResult>.Result
+  fullName.vb: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(Of TResult).Result
+  nameWithType: ValidationResult<TResult>.Result
+  nameWithType.vb: ValidationResult(Of TResult).Result
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult`1.Result*
+  name: Result
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult-1.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_1_Result_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult`1.Result
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult<TResult>.Result
+  fullName.vb: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(Of TResult).Result
+  nameWithType: ValidationResult<TResult>.Result
+  nameWithType.vb: ValidationResult(Of TResult).Result
+- uid: FunctionMonkey.ConfigurationException
+  name: ConfigurationException
+  href: api/FunctionMonkey.ConfigurationException.html
+  commentId: T:FunctionMonkey.ConfigurationException
+  fullName: FunctionMonkey.ConfigurationException
+  nameWithType: ConfigurationException
+- uid: FunctionMonkey.ConfigurationException.#ctor(System.String)
+  name: ConfigurationException(String)
+  href: api/FunctionMonkey.ConfigurationException.html#FunctionMonkey_ConfigurationException__ctor_System_String_
+  commentId: M:FunctionMonkey.ConfigurationException.#ctor(System.String)
+  fullName: FunctionMonkey.ConfigurationException.ConfigurationException(System.String)
+  nameWithType: ConfigurationException.ConfigurationException(String)
+- uid: FunctionMonkey.ConfigurationException.#ctor*
+  name: ConfigurationException
+  href: api/FunctionMonkey.ConfigurationException.html#FunctionMonkey_ConfigurationException__ctor_
+  commentId: Overload:FunctionMonkey.ConfigurationException.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.ConfigurationException.ConfigurationException
+  nameWithType: ConfigurationException.ConfigurationException
+- uid: FunctionMonkey.FluentValidation
+  name: FunctionMonkey.FluentValidation
+  href: api/FunctionMonkey.FluentValidation.html
+  commentId: N:FunctionMonkey.FluentValidation
+  fullName: FunctionMonkey.FluentValidation
+  nameWithType: FunctionMonkey.FluentValidation
+- uid: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions
+  name: IFunctionHostBuilderExtensions
+  href: api/FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.html
+  commentId: T:FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions
+  fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions
+  nameWithType: IFunctionHostBuilderExtensions
+- uid: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  name: AddFluentValidation(IFunctionHostBuilder)
+  href: api/FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.html#FunctionMonkey_FluentValidation_IFunctionHostBuilderExtensions_AddFluentValidation_FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_
+  commentId: M:FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  nameWithType: IFunctionHostBuilderExtensions.AddFluentValidation(IFunctionHostBuilder)
+- uid: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation*
+  name: AddFluentValidation
+  href: api/FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.html#FunctionMonkey_FluentValidation_IFunctionHostBuilderExtensions_AddFluentValidation_
+  commentId: Overload:FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation
+  nameWithType: IFunctionHostBuilderExtensions.AddFluentValidation
+- uid: FunctionMonkey.Runtime
+  name: Runtime
+  href: api/FunctionMonkey.Runtime.html
+  commentId: T:FunctionMonkey.Runtime
+  fullName: FunctionMonkey.Runtime
+  nameWithType: Runtime
+- uid: FunctionMonkey.Runtime.CommandDispatcher
+  name: CommandDispatcher
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_CommandDispatcher
+  commentId: P:FunctionMonkey.Runtime.CommandDispatcher
+  fullName: FunctionMonkey.Runtime.CommandDispatcher
+  nameWithType: Runtime.CommandDispatcher
+- uid: FunctionMonkey.Runtime.CommandDispatcher*
+  name: CommandDispatcher
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_CommandDispatcher_
+  commentId: Overload:FunctionMonkey.Runtime.CommandDispatcher
+  isSpec: "True"
+  fullName: FunctionMonkey.Runtime.CommandDispatcher
+  nameWithType: Runtime.CommandDispatcher
+- uid: FunctionMonkey.Runtime.ServiceProvider
+  name: ServiceProvider
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_ServiceProvider
+  commentId: F:FunctionMonkey.Runtime.ServiceProvider
+  fullName: FunctionMonkey.Runtime.ServiceProvider
+  nameWithType: Runtime.ServiceProvider

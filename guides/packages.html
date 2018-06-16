@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Packages </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Packages ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="packages">Packages</h1>
+
+<p>The framework is made up of a number of NuGet packages focused on four areas:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASP.Net Core</td>
+<td>Extensions for building REST APIs from commands using a configuration based approach</td>
+</tr>
+<tr>
+<td>Core</td>
+<td>The core packages - these are always required when working with the commanding framework though the non-abstract package will only need to be referenced by the host process</td>
+</tr>
+<tr>
+<td>Dispatch, Processing and Auditing</td>
+<td>These packages deal with auditing, the dispatch to queues, and execution based on pulling from queues</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Handle the caching of responses to commands in either in-memory caches or a Redis cache based on command signatures</td>
+</tr>
+</tbody>
+</table>
+<p>The dependencies and organisation of these packages is shown in the diagram below:</p>
+<p><img src="/images/packageArchitecture.png"></p>
+<p>And the packages contain the following capabilities:</p>
+<table class="table table-bordered table-striped table-condensed">
+    <thead>
+        <tr>
+            <th width="33%">Package</th>
+            <th width="67%">Capabilities</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Commanding runtime - this normally only needs adding in the host (e.g. in a Web API)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Abstractions</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Contains abstractions for the core commanding framework</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.AspNetCore</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Configuration based REST commanding</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.AspNetCore.Swashbuckle</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Configuration based REST commanding Swagger support</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.AzureEventHub</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Dispatch to Event Hub</li>
+                    <li>Audit to Event Hub</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.AzureServiceBus</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Dispatch to Queue and Topic</li>
+                    <li>Execution from Queue and Subscription</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.AzureStorage</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Dispatch to Queue</li>
+                    <li>Execution from Queue</li>
+                    <li>Audit to Queue</li>
+                    <li>Audit to Table Storage</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Cache</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Base package for cache support</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Cache.MemoryCache</td>
+            <td>
+                <em>NOTE: This package will be renamed in the future to better reflect its purpose</em>
+                <ul style="padding-left:14px;">
+                    <li>Caching via the Microsoft.Extensions.Cache framework</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Cache.Redis</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Caching with Redis</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Cache.Redis</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Caching with Redisk</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Http</td>
+            <td>
+                <ul style="padding-left:14px;">
+                    <li>Dispatch via HTTP (e.g. to a REST service)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AzureFromTheTrenches.Commanding.Queue</td>
+            <td>
+                <em>Does not normally require adding directly</em>
+                <ul style="padding-left:14px;">
+                    <li>Base package for queue dispatch</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/packages.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

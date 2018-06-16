@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Claims Mapping </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Claims Mapping ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="claims-mapping">Claims Mapping</h1>
+
+<p>Properties on commands can be set by mapping the values from claims. If we consider our previous example:</p>
+<pre><code>public class AddToBasketCommand : ICommand
+{
+    [SecurityProperty]
+    public Guid UserId { get; set; }
+
+    public Guid ProductId { get; set; }
+}
+</code></pre><p>It is quite likely that the value for the UserId property will actually be found in a claim. If you stick to a convention based approach (e.g. all user IDs on all commands are called UserId) then a single claim mapping can deal with all commands that contain a UserID property. Assuming our claim containing the user ID is called UniqueUserId (I&#39;ve just differentiated the name to make the example clear) then this can be setup as shown in the example below:</p>
+<pre><code>public void ConfigureServices(IServiceCollection services)
+{
+    // ... normal setup of commanding and other infrastructure
+
+    services
+        .AddMvc()
+        .AddAspNetCoreCommanding(cfg =&gt; cfg
+            .Controller(&quot;Basket&quot;, controller =&gt; controller
+                .Action&lt;AddToBasketCommand&gt;(HttpMethod.Post))
+            .Claims(mapping =&gt; mapping.MapClaimToPropertyName(&quot;UniqueUserId&quot;, &quot;UserId))
+        );
+}
+</code></pre><p>If you have some commands that don&#39;t follow the pattern then the generic claim mapping can be overridden by setting up a mapping for a specific command type. For example lets assume our GetBasketQuery has a property called BasketUserId:</p>
+<pre><code>public class GetBasketQuery : ICommand&lt;Basket&gt;
+{
+    [SecurityProperty]
+    public Guid BasketUserId { get; set; }
+}
+</code></pre><p>Then we can set up a specific mapping for the GetBasketQuery command as follows:</p>
+<pre><code>public void ConfigureServices(IServiceCollection services)
+{
+    // ... normal setup of commanding and other infrastructure
+
+    services
+        .AddMvc()
+        .AddAspNetCoreCommanding(cfg =&gt; cfg
+            .Controller(&quot;Basket&quot;, controller =&gt; controller
+                .Action&lt;AddToBasketCommand&gt;(HttpMethod.Post))
+            .Claims(mapping =&gt; mapping
+                .MapClaimToPropertyName(&quot;UniqueUserId&quot;, &quot;UserId)
+                .MapClaimToCommandProperty&lt;GetBasketQuery&gt;(&quot;UserId&quot;, cmd =&gt; cmd.BasketUserId))
+        );
+}
+</code></pre><p>Claims are mapped during model binding and so are present when validation takes place.</p>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/restApi/claimsMapping.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

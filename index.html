@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Function Monkey </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Function Monkey ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" width="56" height="52" src="images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <style type="text/css">
+footer{
+  position: relative;
+}
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="text">
+      <strong>Function Monkey</strong>
+    </div><br>    <div class="minitext">
+    Write testable more elegant Azure Functions with less boilerplate, more consistency, and support for REST APIs.
+    </div>
+    <div class="buttons-unit">
+      <a href="guides/gettingStarted.html" class="button"><i class="fas fa-paper-plane"></i><span style="margin-left: 4px;">Getting Started</span></a>
+      <a href="https://github.com/JamesRandall/FunctionMonkey" class="button"><i class="fab fa-github"></i><span style="margin-left: 4px;">View on GitHub</span></a>
+    </div>
+  </div>
+</div>
+<div class="key-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 text-center">
+        <section>
+          <h2>Elegant Fluent API</h2>
+          <p class="lead">
+          Use a clean fluent API to create functions with all the boilerplate taken care of and runtime support for authorization and dependency injection.
+          </p>
+        <pre class="text-left">
+<code class="hljs kotlin">public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                serviceCollection
+                    .AddLogging()
+                    .AddNotificationServices(commandRegistry)
+                    .AddExpensesService(commandRegistry)
+                    .AddInvoiceServices(commandRegistry);
+            })
+            .Authorization(authorization =&gt; authorization.TokenValidator<ibearertokenvalidator>())
+            .AddFluentValidation()
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/Invoice&quot;, route =&gt; route
+                    .HttpFunction<listinvoicesquery>(AuthorizationTypeEnum.TokenValidation, HttpMethod.Get)
+                )
+                .ServiceBus(&quot;serviceBusConnection&quot;, serviceBus =&gt; serviceBus
+                    .SubscriptionFunction<sendemailcommand>(&quot;emaildispatchtopic&quot;, &quot;emaildispatchsubscription&quot;))
+                .Storage(&quot;storageConnectionString&quot;, storage =&gt; storage
+                    .BlobFunction<attachuploadedexpensereciept>(&quot;expenses/{name}&quot;))
+            );
+    }
+}</attachuploadedexpensereciept></sendemailcommand></listinvoicesquery></ibearertokenvalidator></code></pre>
+                </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="counter-key-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 text-center">
+        <div class="icon-container"><i class="fas fa-code"></i></div>
+        <section>
+          <h2>Less Boilerplate, Less To Go Wrong</h2>
+          <p class="lead">Eliminate the tedious repetitive boilerplate leading to less code, fewer defects, improved consistency, better separation of concerns and more flexibility.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="key-section">
+  <div class="container content">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 text-center">
+        <div class="icon-container"><i class="fas fa-wrench"></i></div>
+        <section>
+          <h2>Extensible</h2>
+          <p class="lead">Take advantage of the mediator pattern and underlying <a href="https://commanding.azurefromthetrenches.com">mediation framework</a> to keep your codebase clean, super-DRY, and loosely coupled.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

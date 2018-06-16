@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace FunctionMonkey.Abstractions
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace FunctionMonkey.Abstractions
+   ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions">
+  
+  <h1 id="FunctionMonkey_Abstractions" data-uid="FunctionMonkey.Abstractions" class="text-break">Namespace FunctionMonkey.Abstractions
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.ICommandClaimsBinder.html">ICommandClaimsBinder</a></h4>
+      <section><p>Implementations of this interface lift claims from the a authenticated user and map them
+onto the properties of a command</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.ICommandDeserializer.html">ICommandDeserializer</a></h4>
+      <section><p>Implementations of this interface are able to deserialize commands from JSON strings while
+ensuring that any properties marked with the SecurityPropertyAttribute are not included in
+the deserialization process.</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.ICommandingConfigurator.html">ICommandingConfigurator</a></h4>
+      <section><p>Can be implemented by the class that implements IFunctionAppConfiguration to customize how the AzureFromTheTrenches.Commanding system
+is initialised.</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.IContextProvider.html">IContextProvider</a></h4>
+      <section><p>This can be injected into command handlers to obtain additional context information from the trigger - for example how many times a message
+has been dequeued.</p>
+<p>Care should be taken not to overuse this as it effectively binds the handler to an explicit host / message type implementation and ideally these
+concerns are kept separate.</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.IContextSetter.html">IContextSetter</a></h4>
+      <section><p>Used by the compiled functions to set the context information available through IContextProvider</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.IFunctionAppConfiguration.html">IFunctionAppConfiguration</a></h4>
+      <section><p>Must be implemented by a class in the Function app to configure the Azure Functions and the runtime</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.ITokenValidator.html">ITokenValidator</a></h4>
+      <section><p>This can be implemented to provide Authorization header validation / verification and set claims for HTTP triggers.
+See this gist for an example: <a href="https://gist.github.com/JamesRandall/e83f72f98bde2f6ff973e6ecb81199c8">https://gist.github.com/JamesRandall/e83f72f98bde2f6ff973e6ecb81199c8</a> </p>
+</section>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

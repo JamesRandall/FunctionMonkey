@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting Started </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting Started ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="getting-started">Getting Started</h1>
+
+<p>Firstly begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
+<pre><code>Install-Package FunctionMonkey -pre
+Install-Package FunctionMonkey.Compiler -pre
+</code></pre><p>The first package contains the core framework while the second will add a custom build step to your solution that generates the necessary assets required by the Azure Functions v2 host.</p>
+<p>As an example we&#39;ll create a simple HTTP triggered function that when given a name returns a simple hello world message as a response.</p>
+<p>Function Monkey is based on the mediator pattern and you can find more information about this in a series on <a href="https://www.azurefromthetrenches.com/c-cloud-application-architecture-commanding-with-a-mediator-the-full-series/">my blog here</a> or in the <a href="https://commanding.azurefromthetrenches.com">documentation for the mediator framework</a> used by Function Monkey. In short this works by defining commands as simple C# objects and then implementing command handlers that respond to those commands and optionally return a response.</p>
+<p>Lets begin by creating a folder in our project called Commands and in there we&#39;ll add a class called HelloWorldCommand: </p>
+<pre><code>public class HelloWorldCommand : ICommand&lt;string&gt;
+{
+    public string Name { get; set; }
+}
+</code></pre><p>The interface ICommand<tresponse> has no implementation required but tags this class as a command that responds with a string. Commands can return complex types, value types, or be response-less. Its important that your command class is a public class - it will be accessed directly from another assembly.<p>
+<p>Next lets add a folder in our project called Handlers and in there we&#39;ll add a class called HelloWorldCommandHandler:</p>
+<pre><code>internal class HelloWorldCommandHandler : ICommandHandler&lt;HelloWorldCommand, string&gt;
+{
+    public Task&lt;string&gt; ExecuteAsync(HelloWorldCommand command, string previousResult)
+    {
+        if (string.IsNullOrWhiteSpace(command.Name))
+        {
+            return Task.FromResult(&quot;Hello stranger&quot;);
+        }
+        return Task.FromResult($&quot;Hello {command.Name}&quot;);
+    }
+}
+</code></pre><p>This handler is defined, by the interface implementation, as processing commands of type HelloWorldCommand that return strings. Unlike the command this can happily be an internal class - it will be instantiated through dependency injection.</p>
+<p>Having defined our command and a handler all that remains is to map them onto a function trigger. We do that by creating a public class that implements the <em>IFunctionAppConfiguration</em> interface. Add a class in our project root called FunctionAppConfiguration like that below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
+            })
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                    .HttpFunction&lt;HelloWorldCommand&gt;()
+                )
+            );
+    }
+}
+</code></pre><p>Our class needs to implement the Build method and within it we do some basic setup and then define our triggers. In the setup phase we register our command handler with the mediation system (this can also be done through a discovery approach if you have many handlers but for the purposes of an example this is more explicit). In this block we could also register any other dependencies we require to be available.</p>
+<p>Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /api/v1/HelloWorld and register a single function against that route that responds to our <em>HelloWorldCommand</em>. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).</p>
+<p>We have one final step to take before we can run this - in order to present nicely routed REST APIs Function Monkey generates Azure Function Proxies and these need to know where the underlying function(s) live - including the domain. If you&#39;ve followed along with a default Azure Functions setup on a development box then these will be available at <a href="http://localhost:7071">http://localhost:7071</a>. In order to make this play nicely in different environments an environment variable called ProxyPrefix needs to be set in local.settings.json (and if you deploy this to Azure in the Functions App&#39;s app settings) as shown below (based on the default local.settings.json file):</p>
+<pre><code>{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;ProxyPrefix&quot;: &quot;http://localhost:7071&quot;
+  }
+}
+</code></pre><p>Ok. We can now run the project! If you do so you should see the Azure Function host startup and present two Http Functions, you should see something like this at the bottom of the console window:</p>
+<pre><code>Http Functions:
+
+    HelloWorldProxy: http://localhost:7071/api/HelloWorldProxy
+
+    HelloWorld: http://localhost:7071/api/HelloWorld
+</code></pre><p>One of those is our underlying function and the other the proxy. If you open up your browser and enter the URL:</p>
+<pre><code>http://localhost:7071/api/v1/HelloWorld
+</code></pre><p>Then the browser should show the content:</p>
+<pre><code>&quot;Hello stranger&quot;
+</code></pre><p>And if you enter the URL:</p>
+<pre><code>http://localhost:7071/api/v1/HelloWorld?name=James
+</code></pre><p>You should see the message:</p>
+<pre><code>&quot;Hello James&quot;
+</code></pre><p>Let&#39;s build this out a little and implement a simple dependency that creates a hash of a name. First create a folder called Services and in it add an interface called IStringHasher:</p>
+<pre><code>internal interface IStringHasher
+{
+    string Hash(string value);
+}
+</code></pre><p>And then add an implementation class:</p>
+<pre><code>internal class StringHasher : IStringHasher
+{
+    public string Hash(string value)
+    {
+        SHA256 sha256 = new SHA256Managed();
+        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(value));
+        string result = Convert.ToBase64String(bytes);
+        return result;
+    }
+}
+</code></pre><p>Now lets update our command handler to take this as a constructor dependency and use it in the output:</p>
+<pre><code>internal class HelloWorldCommandHandler : ICommandHandler&lt;HelloWorldCommand, string&gt;
+{
+    private readonly IStringHasher _stringHasher;
+
+    public HelloWorldCommandHandler(IStringHasher stringHasher)
+    {
+        _stringHasher = stringHasher;
+    }
+
+    public Task&lt;string&gt; ExecuteAsync(HelloWorldCommand command, string previousResult)
+    {
+        if (string.IsNullOrWhiteSpace(command.Name))
+        {
+            return Task.FromResult(&quot;Hello stranger&quot;);
+        }
+        return Task.FromResult($&quot;Hello {command.Name}, from now on I&#39;m going to call you {_stringHasher.Hash(command.Name)}&quot;);
+    }
+}
+</code></pre><p>And all that&#39;s left to do is register our dependency with our IoC container in the <em>FunctionAppConfiguration</em> class which now looks like this:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                // Add the line below
+                serviceCollection.AddTransient&lt;IStringHasher, StringHasher&gt;();
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
+            })
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                    .HttpFunction&lt;HelloWorldCommand&gt;()
+                )
+            );
+    }
+}
+</code></pre><p>If you run that and open the URL:</p>
+<pre><code>http://localhost:7071/api/v1/HelloWorld?name=James
+</code></pre><p>You should now see a message like this:</p>
+<pre><code>&quot;Hello James, from now on I&#39;m going to call you k0WjWm/fF03/chkoKjrkh5eQ27eFxw9v/5HjL6/Wbqs=&quot;
+</code></pre><p>Finally lets add one more twist and introduce some validation - we&#39;ll the application so that a name of between 1 and 50 characters in length is required. First we&#39;ll need to add a new NuGet package:</p>
+<pre><code>Install-Package FunctionMonkey.FluentValidation -pre
+</code></pre><p>Now add a Validators folder to the root of the project and in there create a class called <em>HelloWorldCommandValidator</em>:</p>
+<pre><code>internal class HelloWorldCommandValidator : AbstractValidator&lt;HelloWorldCommand&gt;
+{
+    public HelloWorldCommandValidator()
+    {
+        RuleFor(x =&gt; x.Name).NotEmpty().MinimumLength(1).MaximumLength(50);
+    }
+}
+</code></pre><p>Although you can use any validation system with Function Monkey (see the section on validation) the default package makes use of the excellent <a href="https://github.com/JeremySkinner/FluentValidation">FluentValidation</a> framework and the above is a pretty standard validator for that system. Next we need to register it with out IoC container and add the Fluent Validation system so we&#39;ll update our <em>FunctionAppConfiguration</em> class to look like the below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                // Add the line below
+                serviceCollection.AddTransient&lt;IValidator&lt;HelloWorldCommand&gt;, HelloWorldCommandValidator&gt;();
+                serviceCollection.AddTransient&lt;IStringHasher, StringHasher&gt;();
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
+            })
+            // And add the line below
+            .AddFluentValidation()
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                    .HttpFunction&lt;HelloWorldCommand&gt;()
+                )
+            );
+    }
+}
+</code></pre><p>If you run the project and open the below URL in a browser or Postman:</p>
+<pre><code>http://localhost:7071/api/v1/HelloWorld
+</code></pre><p>Then you should see a validation block returned that looks like this:</p>
+<pre><code>{
+    &quot;errors&quot;: [
+        {
+        &quot;severity&quot;: 0,
+        &quot;errorCode&quot;: &quot;NotEmptyValidator&quot;,
+        &quot;property&quot;: &quot;Name&quot;,
+        &quot;message&quot;: &quot;&#39;Name&#39; should not be empty.&quot;
+        }
+    ],
+    &quot;isValid&quot;: false
+}
+</code></pre><p>Its worth noting that validation is applied to all trigger types so you can use it with (none stream based) blobs, queues, etc.</p>
+<p>The source code for the above can be found over in <a href="https://github.com/JamesRandall/FunctionMonkey/tree/master/Samples/DocumentationSamples/GettingStartedSample">GitHub</a>.</p>
+<p>Obviously for something so simple this is a little bit contrived - but if you imagine growing this out over time and
+adding more functions hopefully its clear how this approach helps keep code cleaner - and not only that your implementation is completely decoupled from Azure Functions itself so if you wanted to run them within another context all you need do is wire up the command handling (take a look at the underlying mediator framework documentation for how to go about that).</p>
+<p>If this has whetted your appetite then I suggest looking at the more detailed documentation for the currently supported trigger types (growing all the time!) on the left which will also cover the more advanced options available.</p>
+</tresponse><div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/gettingStarted.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>
