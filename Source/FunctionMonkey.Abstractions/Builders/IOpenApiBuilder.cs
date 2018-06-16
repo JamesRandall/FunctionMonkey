@@ -1,5 +1,8 @@
 ﻿namespace FunctionMonkey.Abstractions.Builders
 {
+    /// <summary>
+    /// An interface that allows an Open API document to be built.
+    /// </summary>
     public interface IOpenApiBuilder
     {
         /// <summary>

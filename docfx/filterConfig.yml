@@ -1,0 +1,20 @@
+apiRules:
+- exclude:
+    uidRegex: ^FunctionMonkey\.Builders\.FunctionHostBuilder
+    type: Class
+- exclude:
+    uidRegex: ^FunctionMonkey\.ConfigurationLocator
+    type: Class
+- exclude:
+    uidRegex: ^FunctionMonkey\.ReferenceLinkBackAttribute
+    type: Class
+- exclude:
+    uidRegex: ^FunctionMonkey\.Compiler\.
+- exclude:
+    uidRegex: ^FunctionMonkey\.Extensions\.TypeExtensions
+    type: Class
+- exclude:
+    uidRegex: ^FunctionMonkey\.Infrastructure\.PostBuildPatcher
+    type: Class
+- exclude:
+    uidRegex: ^FunctionMonkey\.Model\.

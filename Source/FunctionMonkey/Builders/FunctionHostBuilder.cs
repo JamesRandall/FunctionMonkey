@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Builders
 {
+    /// <exclude />
     public class FunctionHostBuilder : IFunctionHostBuilder
     {
         private readonly bool _isRuntime;

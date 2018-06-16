@@ -2,6 +2,9 @@
 
 namespace FunctionMonkey.Abstractions.Builders
 {
+    /// <summary>
+    /// An interface that allows for the configuration of Azure Storage triggered functions
+    /// </summary>
     public interface IStorageFunctionBuilder
     {
         /// <summary>

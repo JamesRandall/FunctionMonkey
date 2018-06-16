@@ -12,7 +12,7 @@ namespace FunctionMonkey.Builders
 
         public string AuthorizationHeader { get; set; }
 
-        public AuthorizationTypeEnum AuthorizationDefaultValue { get; set; } = AuthorizationTypeEnum.Anonymous;
+        public AuthorizationTypeEnum AuthorizationDefaultValue { get; set; } = AuthorizationTypeEnum.Function;
 
         public IAuthorizationBuilder TokenValidator<TTokenValidator>(string header=null) where TTokenValidator : ITokenValidator
         {

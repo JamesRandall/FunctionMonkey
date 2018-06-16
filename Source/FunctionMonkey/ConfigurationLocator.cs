@@ -5,6 +5,9 @@ using FunctionMonkey.Abstractions;
 
 namespace FunctionMonkey
 {
+    /// <summary>
+    /// Class that finds the configuration class
+    /// </summary>
     public static class ConfigurationLocator
     {
         public static IFunctionAppConfiguration FindConfiguration()

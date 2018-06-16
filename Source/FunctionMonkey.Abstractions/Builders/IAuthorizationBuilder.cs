@@ -40,7 +40,7 @@ namespace FunctionMonkey.Abstractions.Builders
         IAuthorizationBuilder TokenValidator<TTokenValidator>(string header=null) where TTokenValidator : ITokenValidator;
 
         /// <summary>
-        /// Allows the default authorization mode for HTTP functions to be set. Defaults to anonymous if this method is not used.
+        /// Allows the default authorization mode for HTTP functions to be set. Defaults to Function Code if this method is not used.
         /// </summary>
         /// <param name="authorizationDefault"></param>
         /// <returns>The builder for use in a Fluent API</returns>

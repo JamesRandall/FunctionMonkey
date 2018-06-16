@@ -15,7 +15,8 @@
         }
       ],
       "dest": "api",
-      "disableGitFeatures": false
+      "disableGitFeatures": false,
+      "filter": "filterConfig.yml"
     }
   ],
   "build": {
