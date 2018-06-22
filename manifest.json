@@ -525,7 +525,22 @@
       "output": {
         ".html": {
           "relative_path": "guides/gettingStarted.html",
-          "hash": "gCWDBw0EZf+u76Nrs9J8nQ=="
+          "hash": "F8bq7l6zRhyvEKIMsCkofw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "guides/http/overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/http/overview.html",
+          "hash": "8gWk1NeVyQaY+DGil6tz1w=="
         }
       },
       "is_incremental": false,
@@ -533,11 +548,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "guides/http/quickstart.md",
+      "source_relative_path": "guides/http/routing.md",
       "output": {
         ".html": {
-          "relative_path": "guides/http/quickstart.html",
-          "hash": "J2faDXee9CNgGH+6IJeUHg=="
+          "relative_path": "guides/http/routing.html",
+          "hash": "N3nec8yBoZjchXz+ssRGpA=="
         }
       },
       "is_incremental": false,
@@ -664,6 +679,42 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "guides/serviceBus/messageProperties.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/serviceBus/messageProperties.html",
+          "hash": "JbRnsKEFxcZrREKhvuKzjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/serviceBus/queues.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/serviceBus/queues.html",
+          "hash": "xWWb+Sd2ra+r8O27EzkQ0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/serviceBus/topics.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/serviceBus/topics.html",
+          "hash": "ACr3L4L6i6lUJgwWZUwbGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "log_codes": [
         "InvalidFileLink"
       ],
@@ -672,7 +723,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/toc.html",
-          "hash": "LAAS2by2T9dLkslpHpgKzQ=="
+          "hash": "zOJ6Q7DM9M+be4M0f/ZnlQ=="
         }
       },
       "is_incremental": false,
@@ -758,22 +809,22 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ConceptualDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
           "incrementalPhase": "build"
         }
       }
