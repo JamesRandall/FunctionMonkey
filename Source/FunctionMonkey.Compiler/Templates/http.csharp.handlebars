@@ -59,7 +59,23 @@ namespace {{Namespace}}
             }
 
             Microsoft.Extensions.Primitives.StringValues queryParameterValues;
-            {{#each AcceptsQueryParameters}}
+            string method = req.Method.ToUpper();
+            if (method == "GET" || method=="DELETE")
+            {
+                {{#each PossibleQueryParameters}}
+                if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+                {
+                    {{#if IsString}}
+                    command.{{Name}} = queryParameterValues[0];
+                    {{else}}
+                    {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
+                    command.{{Name}} = candidate;
+                    {{/if}}
+                }
+                {{/each}}
+            }
+
+            {{#each RouteParameters}}
             if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
             {
                 {{#if IsString}}

@@ -43,16 +43,33 @@ namespace FunctionMonkey.Infrastructure
 
                     httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null && validationResultType.IsAssignableFrom(httpFunctionDefinition.CommandResultType);
 
-                    httpFunctionDefinition.AcceptsQueryParameters = httpFunctionDefinition
+                    httpFunctionDefinition.PossibleQueryParameters = httpFunctionDefinition
                         .CommandType
                         .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                         .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
                                     && x.SetMethod != null
                                     && (x.PropertyType == typeof(string) || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")))
-                        .Select(x => new HttpQueryParameter
+                        .Select(x => new HttpParameter
                         {
                             Name = x.Name,
-                            TypeName = x.PropertyType.EvaluateType()
+                            TypeName = x.PropertyType.EvaluateType(),
+                            Type = x.PropertyType
+                        })
+                        .ToArray();
+
+                    string lowerCaseRoute = httpFunctionDefinition.Route.ToLower();
+                    httpFunctionDefinition.RouteParameters = httpFunctionDefinition
+                        .CommandType
+                        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                        .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
+                                    && x.SetMethod != null
+                                    && (x.PropertyType == typeof(string) || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse"))
+                                    && lowerCaseRoute.Contains("{" + x.Name.ToLower() + "}"))
+                        .Select(x => new HttpParameter
+                        {
+                            Name = x.Name,
+                            TypeName = x.PropertyType.EvaluateType(),
+                            Type = x.PropertyType
                         })
                         .ToArray();
 

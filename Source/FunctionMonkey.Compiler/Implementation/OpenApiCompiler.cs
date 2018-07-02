@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Compiler.Extensions;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Extensions;
@@ -54,11 +57,13 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
             };
 
+            SchemaReferenceRegistry registry = new SchemaReferenceRegistry();
+
             CreateTags(functionDefinitions, openApiDocument);
 
-            CreateSchemas(functionDefinitions, openApiDocument);
+            CreateSchemas(functionDefinitions, openApiDocument, registry);
 
-            CreateOperationsFromRoutes(functionDefinitions, openApiDocument);
+            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry);
 
             if (openApiDocument.Paths.Count == 0)
             {
@@ -122,10 +127,8 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
 
-        private void CreateSchemas(HttpFunctionDefinition[] functionDefinitions, OpenApiDocument openApiDocument)
+        private void CreateSchemas(HttpFunctionDefinition[] functionDefinitions, OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
         {
-            SchemaReferenceRegistry registry = new SchemaReferenceRegistry();
-
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
                 if (functionDefinition.Verbs.Contains(HttpMethod.Post) ||
@@ -146,7 +149,7 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         private static void CreateOperationsFromRoutes(HttpFunctionDefinition[] functionDefinitions,
-            OpenApiDocument openApiDocument)
+            OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
         {
             var operationsByRoute = functionDefinitions.GroupBy(x => x.Route);
             foreach (IGrouping<string, HttpFunctionDefinition> route in operationsByRoute)
@@ -158,6 +161,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 foreach (HttpFunctionDefinition functionByRoute in route)
                 {
+                    Type commandType = functionByRoute.CommandType;
                     foreach (HttpMethod method in functionByRoute.Verbs)
                     {
                         OpenApiOperation operation = new OpenApiOperation
@@ -176,26 +180,61 @@ namespace FunctionMonkey.Compiler.Implementation
 
                         if (!operation.Responses.ContainsKey("200"))
                         {
-                            operation.Responses.Add("200", new OpenApiResponse
+                            OpenApiResponse response = new OpenApiResponse
                             {
                                 Description = "Successful API operation"
-                            });
-                        }                        
-
-                        if (functionByRoute.Route.Contains("{forumId}"))
-                        {
-                            operation.Parameters.Add(new OpenApiParameter
+                            };
+                            if (functionByRoute.CommandResultType != null)
                             {
-                                Name = "forumId",
-                                In = ParameterLocation.Path,
-                                Required = true,
-                                Schema = new OpenApiSchema
+                                OpenApiSchema schema = registry.FindOrAddReference(functionByRoute.CommandResultType);
+                                response.Content = new Dictionary<string, OpenApiMediaType>
                                 {
-                                    Type = "integer"
-                                },
-                                Description = ""
-                            });
+                                    { "application/json", new OpenApiMediaType { Schema = schema}}
+                                };
+                            }
+                            operation.Responses.Add("200", response);
                         }
+
+                        string lowerCaseRoute = functionByRoute.Route;
+                        foreach (HttpParameter property in functionByRoute.PossibleQueryParameters)
+                        {
+                            if (lowerCaseRoute.Contains("{" + property.Name.ToLower() +"}"))
+                            {
+                                operation.Parameters.Add(new OpenApiParameter
+                                {
+                                    Name = property.Name.ToCamelCase(),
+                                    In = ParameterLocation.Path,
+                                    Required = true,
+                                    Schema = property.Type.MapToOpenApiSchema(),
+                                    Description = ""
+                                });
+                                // TODO: We need to consider what to do with the payload model here - if its a route parameter
+                                // we need to ignore it in the payload model
+                            }
+                            else if (method == HttpMethod.Get || method == HttpMethod.Delete)
+                            {
+                                operation.Parameters.Add(new OpenApiParameter
+                                {
+                                    Name = property.Name.ToCamelCase(),
+                                    In = ParameterLocation.Query,
+                                    Required = true,
+                                    Schema = property.Type.MapToOpenApiSchema(),
+                                    Description = ""
+                                });
+                            }
+                        }
+
+                        if (method == HttpMethod.Post || method == HttpMethod.Put)
+                        {
+                            OpenApiRequestBody requestBody = new OpenApiRequestBody();
+                            OpenApiSchema schema =  registry.FindReference(commandType);
+                            requestBody.Content = new Dictionary<string, OpenApiMediaType>
+                            {
+                                { "application/json", new OpenApiMediaType { Schema = schema}}
+                            };
+                            operation.RequestBody = requestBody;
+                        }
+                        
 
                         pathItem.Operations.Add(MethodToOperationMap[method], operation);
                     }

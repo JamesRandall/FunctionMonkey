@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using SwaggerBuildOut.Commands;
@@ -17,6 +14,7 @@ namespace SwaggerBuildOut
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     commandRegistry.Register<HelloWorldCommandHandler>();
+                    commandRegistry.Register<AddCommandHandler>();
                 })
                 .OpenApiEndpoint(openApi => openApi
                     .Title("A Simple API")
@@ -24,8 +22,11 @@ namespace SwaggerBuildOut
                     .UserInterface()
                 )
                 .Functions(functions => functions
-                    .HttpRoute("/HelloWorld", route =>
-                        route.HttpFunction<HelloWorldCommand>(HttpMethod.Get)
+                    .HttpRoute("/HelloWorld", route => route
+                        .HttpFunction<HelloWorldCommand>("/{name}", HttpMethod.Get)                        
+                    )
+                    .HttpRoute("/Add", route => route
+                        .HttpFunction<AddCommand>(HttpMethod.Post)
                     )
                 );
         }

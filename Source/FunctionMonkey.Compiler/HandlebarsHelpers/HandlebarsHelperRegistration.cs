@@ -6,6 +6,7 @@
         {
             AzureAuthenticationTypeHelper.Register();
             HttpVerbsHelper.Register();
+            RouteParametersHelper.Register();
         }
     }
 }

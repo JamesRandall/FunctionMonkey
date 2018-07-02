@@ -20,9 +20,14 @@ namespace SwaggerBuildOut
             {".js","application/javascript" }
         };
 
-        [FunctionName("SwaggerUi")]
+        [FunctionName("Test")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequest req, ILogger logger)
         {
+            if (req.Method == "GET")
+            {
+
+            }
+
             string name = req.Query["name"];
             
             using (Stream stream = typeof(SwaggerUi).Assembly.GetManifestResourceStream($"SwaggerBuildOut.Swagger.{name}"))

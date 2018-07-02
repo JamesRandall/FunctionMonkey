@@ -12,7 +12,7 @@
             {{#if IsOpenApiYaml}}
             "backendUri": "%ProxyPrefix%/api/OpenApiProvider?name=openapi.yaml"
             {{else}}
-            "backendUri": "%ProxyPrefix%/api/{{Name}}{{#if IsOpenApiUi}}?name={name}{{/if}}"
+            "backendUri": "%ProxyPrefix%/api/{{Name}}{{#if IsOpenApiUi}}?name={name}{{else}}{{{routeParameters}}}{{/if}}"
             {{/if}}
         }{{#if IsOpenAPiUi}},
         "OpenApiProviderProxyRedirect": {

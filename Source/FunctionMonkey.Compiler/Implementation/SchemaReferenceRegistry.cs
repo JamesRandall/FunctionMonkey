@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Compiler.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -18,6 +19,34 @@ namespace FunctionMonkey.Compiler.Implementation
         /// The dictionary containing all references of the given type.
         /// </summary>
         private readonly Dictionary<string, OpenApiSchema> _references = new Dictionary<string, OpenApiSchema>();
+
+        public OpenApiSchema FindReference(Type input)
+        {
+            // Return empty schema when the type does not have a name. 
+            // This can occur, for example, when a generic type without the generic argument specified
+            // is passed in.
+            if (input == null || input.FullName == null)
+            {
+                return new OpenApiSchema();
+            }
+
+            var key = GetKey(input);
+
+            // If the schema already exists in the References, simply return.
+            if (_references.ContainsKey(key))
+            {
+                return new OpenApiSchema
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Id = key,
+                        Type = ReferenceType.Schema
+                    }
+                };
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Finds the existing reference object based on the key from the input or creates a new one.
@@ -116,7 +145,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 {
                     var ignoreProperty = false;
 
-                    var propertyName = propertyInfo.Name;
+                    var propertyName = propertyInfo.Name.ToCamelCase();
                     var innerSchema = FindOrAddReference(propertyInfo.PropertyType);
 
                     // Check if the property is read-only.
@@ -156,10 +185,10 @@ namespace FunctionMonkey.Compiler.Implementation
                             }
                         }
 
-                        if (attribute.GetType().FullName == "Newtonsoft.Json.JsonIgnoreAttribute")
+                        if (attribute.GetType().FullName == "Newtonsoft.Json.JsonIgnoreAttribute" || attribute.GetType() == typeof(SecurityPropertyAttribute))
                         {
                             ignoreProperty = true;
-                        }
+                        }                        
                     }
 
                     if (!ignoreProperty)
