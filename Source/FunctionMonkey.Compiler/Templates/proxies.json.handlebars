@@ -13,8 +13,21 @@
             "backendUri": "%ProxyPrefix%/api/OpenApiProvider?name=openapi.yaml"
             {{else}}
             "backendUri": "%ProxyPrefix%/api/{{Name}}{{#if IsOpenApiUi}}?name={name}{{/if}}"
-            {{/if}}            
+            {{/if}}
+        }{{#if IsOpenAPiUi}},
+        "OpenApiProviderProxyRedirect": {
+            "matchCondition": {
+                "route": "/openapi",
+                "methods": [
+                    "GET"
+                ]
+            },
+            "responseOverrides": {
+                "response.statusCode": "302",
+                "response.headers.Location": "/openapi/index.html"
+            }
         }
+        {{/if}}
         {{/each}}
     }
 }
