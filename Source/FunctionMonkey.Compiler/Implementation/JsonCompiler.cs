@@ -35,7 +35,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 WriteFunctionTemplate(outputBinaryFolder, functionDefinition.Name, json);
             }
 
-            if (openApiOutputModel.IsConfiguredForUserInterface)
+            if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface)
             {
                 string templateSource = _templateProvider.GetTemplate("swaggerui", "json");
                 Func<object, string> template = Handlebars.Compile(templateSource);

@@ -70,7 +70,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 AddSyntaxTreeFromHandlebarsTemplate(templateSource, functionDefinition.Name, functionDefinition, directoryInfo, syntaxTrees);
             }
 
-            if (openApiOutputModel.IsConfiguredForUserInterface)
+            if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface)
             {
                 string templateSource = _templateProvider.GetTemplate("swaggerui","csharp");
                 AddSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new

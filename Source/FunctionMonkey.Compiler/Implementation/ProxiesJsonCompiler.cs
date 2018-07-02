@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
@@ -43,6 +44,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     IsOpenApiYaml = true
                 });
 
+                Debug.Assert(openApiOutputModel != null);
                 if (openApiOutputModel.IsConfiguredForUserInterface)
                 {
                     proxyDefinitions.Add(new
