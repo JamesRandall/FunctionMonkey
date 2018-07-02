@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Frequently Asked Questions </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Frequently Asked Questions ">
+    <meta name="generator" content="docfx 2.36.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" width="56" height="52" src="images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
+
+<h2 id="does-this-work-on-azure-functions-v1">Does this work on Azure Functions v1?</h2>
+<p>No and it likely never will. Its technically possible but v2 is the future and contains many, many, improvements.</p>
+<h2 id="when-will-it-come-out-of-preview">When will it come out of preview?</h2>
+<p>Aim is to move it out of preview when Azure Functions v2 go to GA. Certainly won&#39;t be before as until then v2 is subject to breaking change (though I think they&#39;ve done a good job to date in terms of managing breaking change).</p>
+<h2 id="i-get-the-error-error-processing-configuration-of-function-proxies">I get the error &quot;Error processing configuration of Function Proxies&quot;</h2>
+<p>To provide a clean and shaped REST API Function Monkey creates an <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-proxies">Azure Function Proxy</a> for each HTTP function. To support running locally and in the cloud the proxies are created using a variable to specify the domain name of the underlying function. This variable is called <em>ProxyPrefix</em> and requires setting in local.settings.json (for local development) <em>and</em> as an Application Setting on the function app in Azure. Locally, unless you configure the function host differently, this should be set to <em><a href="http://localhost:7071">http://localhost:7071</a></em>. For example based on the standard local.settings.json file you should have settings that look like this:</p>
+<pre><code>{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;FUNCTIONS_WORKER_RUNTIME&quot;: &quot;dotnet&quot;,
+    &quot;ProxyPrefix&quot;:  &quot;http://localhost:7071&quot; 
+  }
+}
+</code></pre><h2 id="are-pull-requests-welcome">Are Pull Requests welcome?</h2>
+<p>Hell yes. But if you&#39;re planning a major piece of work probably makes sense to have a conversation first. I&#39;d hate to have folk waste there time.</p>
+<h2 id="how-do-i-get-help">How do I get help?</h2>
+<p>If you do encounter any issues or have any feedback please do let me know in the <a href="https://github.com/JamesRandall/FunctionMonkey/issues">GitHub issue tracker</a> or on <a href="https://twitter.com/azuretrenches">Twitter</a> - I might not get around to it immediately but I really appreciate it!</p>
+<p><em>Please note that Function Monkey, like Azure Functions v2, is still in preview and so is subject to breaking change. That said the public API for Function Monkey has settled down nicely at this point and is being used in a number of projects.</em></p>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/faq.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>
