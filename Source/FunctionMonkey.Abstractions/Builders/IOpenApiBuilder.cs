@@ -27,6 +27,6 @@
         /// If invoked will host a user interface for the Open API spec
         /// </summary>
         /// <param name="route">The route to host on - defaults to /swagger</param>
-        IOpenApiBuilder UserInterface(string route = "/swagger");
+        IOpenApiBuilder UserInterface(string route = "/openapi");
     }
 }

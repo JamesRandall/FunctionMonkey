@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -38,19 +39,21 @@ namespace FunctionMonkey.Compiler.Implementation
             IReadOnlyCollection<Assembly> externalAssemblies,
             string outputBinaryFolder,
             string assemblyName,
-            bool openApiEndpointRequired,
+            OpenApiOutputModel openApiOutputModel,
             string outputAuthoredSourceFolder)
         {
             HandlebarsHelperRegistration.RegisterHelpers();
             IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
+                openApiOutputModel,
                 functionAppConfigurationType,
                 newAssemblyNamespace,
                 outputAuthoredSourceFolder);
 
-            CompileAssembly(syntaxTrees, externalAssemblies, outputBinaryFolder, assemblyName);
+            CompileAssembly(syntaxTrees, externalAssemblies, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+            OpenApiOutputModel openApiOutputModel,
             Type functionAppConfigurationType,
             string newAssemblyNamespace,
             string outputAuthoredSourceFolder)
@@ -64,13 +67,16 @@ namespace FunctionMonkey.Compiler.Implementation
             foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
             {
                 string templateSource = _templateProvider.GetCSharpTemplate(functionDefinition);
-                Func<object, string> template = Handlebars.Compile(templateSource);
+                AddSyntaxTreeFromHandlebarsTemplate(templateSource, functionDefinition.Name, functionDefinition, directoryInfo, syntaxTrees);
+            }
 
-                string outputCode = template(functionDefinition);
-                OutputDiagnosticCode(directoryInfo, functionDefinition.Name, outputCode);
-                
-                SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode);
-                syntaxTrees.Add(syntaxTree);
+            if (openApiOutputModel.IsConfiguredForUserInterface)
+            {
+                string templateSource = _templateProvider.GetTemplate("swaggerui","csharp");
+                AddSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
+                {
+                    Namespace = newAssemblyNamespace
+                }, directoryInfo, syntaxTrees);
             }
 
             // Now we need to create a class that references the assembly with the configuration builder
@@ -91,6 +97,18 @@ namespace FunctionMonkey.Compiler.Implementation
             return syntaxTrees;
         }
 
+        private static void AddSyntaxTreeFromHandlebarsTemplate(string templateSource, string name,
+            object functionDefinition, DirectoryInfo directoryInfo, List<SyntaxTree> syntaxTrees)
+        {
+            Func<object, string> template = Handlebars.Compile(templateSource);
+
+            string outputCode = template(functionDefinition);
+            OutputDiagnosticCode(directoryInfo, name, outputCode);
+
+            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode);
+            syntaxTrees.Add(syntaxTree);
+        }
+
         private static void OutputDiagnosticCode(DirectoryInfo directoryInfo, string name,
             string outputCode)
         {
@@ -106,8 +124,10 @@ namespace FunctionMonkey.Compiler.Implementation
 
         private void CompileAssembly(IReadOnlyCollection<SyntaxTree> syntaxTrees,
             IReadOnlyCollection<Assembly> externalAssemblies,
+            OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder,
-            string outputAssemblyName)
+            string outputAssemblyName,
+            string assemblyNamespace)
         {
             HashSet<string> locations = BuildCandidateReferenceList(externalAssemblies);
 
@@ -132,9 +152,27 @@ namespace FunctionMonkey.Compiler.Implementation
                 references,
                 new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
+            List<ResourceDescription> resources = null;
+            if (openApiOutputModel != null)
+            {
+                resources = new List<ResourceDescription>();
+                Debug.Assert(openApiOutputModel.OpenApiSpecification != null);
+                resources.Add(new ResourceDescription($"{assemblyNamespace}.OpenApi.{openApiOutputModel.OpenApiSpecification.Filename}",
+                    () => new MemoryStream(Encoding.UTF8.GetBytes(openApiOutputModel.OpenApiSpecification.Content)), true));
+                if (openApiOutputModel.SwaggerUserInterface != null)
+                {
+                    foreach (OpenApiFileReference fileReference in openApiOutputModel.SwaggerUserInterface)
+                    {
+                        OpenApiFileReference closureCapturedFileReference = fileReference;
+                        resources.Add(new ResourceDescription($"{assemblyNamespace}.OpenApi.{closureCapturedFileReference.Filename}",
+                            () => new MemoryStream(Encoding.UTF8.GetBytes(closureCapturedFileReference.Content)), true));
+                    }
+                }
+            }
+            
             using (Stream stream = new FileStream(Path.Combine(outputBinaryFolder, outputAssemblyName), FileMode.Create))
             {
-                EmitResult result = compilation.Emit(stream);
+                EmitResult result = compilation.Emit(stream, manifestResources: resources);
                 if (!result.Success)
                 {
                     IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic =>

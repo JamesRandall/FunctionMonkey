@@ -23,9 +23,10 @@ namespace FunctionMonkey.Builders
 
         public IFunctionBuilder HttpRoute(string routePrefix, string openApiName, string openApiDescription, Action<IHttpFunctionBuilder> httpFunctionBuilder)
         {
+            string rootedRoutePrefix = routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);
             HttpRouteConfiguration routeConfiguration = new HttpRouteConfiguration()
             {
-                Route = routePrefix,
+                Route = rootedRoutePrefix,
                 OpenApiDescription = openApiDescription,
                 OpenApiName = openApiName
             };

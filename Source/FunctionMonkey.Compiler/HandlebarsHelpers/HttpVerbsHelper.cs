@@ -37,7 +37,7 @@ namespace FunctionMonkey.Compiler.HandlebarsHelpers
             }
             else
             {
-                throw new CompilerException("azureAuthenticationType helper can only be used with a HttpFunctionDefinition");
+                writer.Write("\"GET\"");
             }
         }
 

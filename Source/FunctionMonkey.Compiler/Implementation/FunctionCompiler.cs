@@ -64,20 +64,21 @@ namespace FunctionMonkey.Compiler.Implementation
             new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
             
             IReadOnlyCollection<Assembly> externalAssemblies = GetExternalAssemblies(builder.FunctionDefinitions);
-            _jsonCompiler.Compile(builder.FunctionDefinitions, _outputBinaryFolder, newAssemblyNamespace);
+            OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
+
+            _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
             if (_outputProxiesJson && builder.AreProxiesEnabled)
             {
-                _proxiesJsonCompiler.Compile(builder.FunctionDefinitions, _outputBinaryFolder);
+                _proxiesJsonCompiler.Compile(builder.FunctionDefinitions, builder.OpenApiConfiguration, openApi, _outputBinaryFolder);
             }
-            bool openApiEndpointRequired = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
-
+            
             _assemblyCompiler.Compile(builder.FunctionDefinitions,
                 configuration.GetType(),
                 newAssemblyNamespace,
                 externalAssemblies, 
                 _outputBinaryFolder, 
-                $"{newAssemblyNamespace}.dll", 
-                openApiEndpointRequired, 
+                $"{newAssemblyNamespace}.dll",
+                openApi, 
                 builder.OutputAuthoredSourceFolder);
         }
 

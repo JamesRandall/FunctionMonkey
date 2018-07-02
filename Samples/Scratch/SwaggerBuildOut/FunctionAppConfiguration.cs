@@ -1,29 +1,31 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
-using SimpleRestApi.Queries;
+using SwaggerBuildOut.Commands;
+using SwaggerBuildOut.Handlers;
 
-namespace SimpleRestApi
+namespace SwaggerBuildOut
 {
-    class FunctionAppConfiguration : IFunctionAppConfiguration
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
     {
         public void Build(IFunctionHostBuilder builder)
         {
             builder
                 .Setup((serviceCollection, commandRegistry) =>
                 {
-                    commandRegistry.Discover<FunctionAppConfiguration>();
+                    commandRegistry.Register<HelloWorldCommandHandler>();
                 })
-                .OutputAuthoredSource("d:\\wip\\outputSource")
                 .OpenApiEndpoint(openApi => openApi
-                    .Title("Just A Test API")
-                    .Servers("http://localhost:7001")
+                    .Title("A Simple API")
                     .Version("0.0.0")
                     .UserInterface()
                 )
                 .Functions(functions => functions
-                    .HttpRoute("/api/v1/post", route => route
-                        .HttpFunction<GetBlogPostQuery>(HttpMethod.Get)
+                    .HttpRoute("/HelloWorld", route =>
+                        route.HttpFunction<HelloWorldCommand>(HttpMethod.Get)
                     )
                 );
         }

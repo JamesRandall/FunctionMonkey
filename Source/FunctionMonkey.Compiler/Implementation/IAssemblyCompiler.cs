@@ -12,6 +12,8 @@ namespace FunctionMonkey.Compiler.Implementation
             string newAssemblyNamespace,
             IReadOnlyCollection<Assembly> externalAssemblies,
             string outputBinaryFolder,
-            string assemblyName, bool openApiEndpointRequired, string outputAuthoredSourceFolder = null);
+            string assemblyName,
+            OpenApiOutputModel openApiOutputModel,
+            string outputAuthoredSourceFolder = null);
     }
 }

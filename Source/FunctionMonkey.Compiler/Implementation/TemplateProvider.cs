@@ -22,6 +22,21 @@ namespace FunctionMonkey.Compiler.Implementation
             return GetTemplate(functionDefinition, "csharp");
         }
 
+        public string GetTemplate(string name, string type)
+        {
+            using (Stream stream = GetType().Assembly
+                .GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.{name}.{type}.handlebars"))
+            {
+                if (stream != null)
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                        return reader.ReadToEnd();
+                }
+            }
+
+            throw new ConfigurationException($"No templates are configured for function definitions of type {name}");
+        }
+
         public string GetJsonTemplate(AbstractFunctionDefinition functionDefinition)
         {
             return GetTemplate(functionDefinition, "json");

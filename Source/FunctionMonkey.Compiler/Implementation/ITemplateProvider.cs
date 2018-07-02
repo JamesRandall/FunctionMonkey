@@ -8,5 +8,6 @@ namespace FunctionMonkey.Compiler.Implementation
         string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition);
         string GetJsonTemplate(AbstractFunctionDefinition functionDefinition);
         string GetProxiesJsonTemplate();
+        string GetTemplate(string name, string type);
     }
 }

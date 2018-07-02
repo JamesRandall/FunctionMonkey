@@ -8,6 +8,8 @@
 #      href: packages.md
     - name: Philosophy
       href: philosophy.md
+    - name: FAQ
+      href: ../faq.md
 - name: Triggers
   items:
     - name: HTTP Triggers

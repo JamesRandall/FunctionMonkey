@@ -22,17 +22,21 @@ namespace FunctionMonkey.Compiler.Implementation
                 {HttpMethod.Put, OperationType.Put}
             };
 
-        public bool Compile(OpenApiConfiguration configuration, IReadOnlyCollection<AbstractFunctionDefinition> abstractFunctionDefinitions, string outputBinaryFolder)
+        public OpenApiOutputModel Compile(OpenApiConfiguration configuration, IReadOnlyCollection<AbstractFunctionDefinition> abstractFunctionDefinitions, string outputBinaryFolder)
         {
+            if (!configuration.IsValid)
+            {
+                throw new ConfigurationException("Open API implementation is partially complete, a title and a version must be specified");
+            }
             if (!configuration.IsOpenApiOutputEnabled)
             {
-                return false;
+                return null;
             }
 
             HttpFunctionDefinition[] functionDefinitions = abstractFunctionDefinitions.OfType<HttpFunctionDefinition>().ToArray();
             if (functionDefinitions.Length == 0)
             {
-                return false;
+                return null;
             }
 
             OpenApiDocument openApiDocument = new OpenApiDocument
@@ -58,28 +62,28 @@ namespace FunctionMonkey.Compiler.Implementation
 
             if (openApiDocument.Paths.Count == 0)
             {
-                return false;
+                return null;
             }
 
             string yaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
-            DirectoryInfo folder = Directory.CreateDirectory(Path.Combine(outputBinaryFolder, ".."));
-            string filename = Path.Combine(folder.FullName, "openapi.yaml");
-            using (Stream stream = new FileStream(filename, FileMode.Create))
-            using (StreamWriter writer = new StreamWriter(stream))
+            OpenApiOutputModel result = new OpenApiOutputModel
             {
-                writer.Write(yaml);
-            }
-
+                OpenApiSpecification = new OpenApiFileReference
+                {
+                    Content = yaml,
+                    Filename = "openapi.yaml"
+                }
+            };
+            
             if (!string.IsNullOrWhiteSpace(configuration.UserInterfaceRoute))
             {
-                DirectoryInfo swaggerFolder = folder.CreateSubdirectory("swagger");
-                CopySwaggerUserInterfaceFilesToWebFolder(swaggerFolder);
+                result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder();
             }
 
-            return true;
+            return result;
         }
 
-        private void CopySwaggerUserInterfaceFilesToWebFolder(DirectoryInfo folder)
+        private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder()
         {
             const string prefix = "FunctionMonkey.Compiler.node_modules.swagger_ui_dist.";
             Assembly sourceAssembly = GetType().Assembly;
@@ -87,6 +91,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 .GetManifestResourceNames()
                 .Where(x => x.StartsWith(prefix))
                 .ToArray();
+            OpenApiFileReference[] result = new OpenApiFileReference[files.Length];
+            int index = 0;
             foreach (string swaggerFile in files)
             {
                 byte[] input;
@@ -97,20 +103,22 @@ namespace FunctionMonkey.Compiler.Implementation
                     inputStream.Read(input, 0, input.Length);
                 }
 
+                string content = Encoding.UTF8.GetString(input);
+
                 if (swaggerFile.EndsWith(".index.html"))
                 {
-                    string html = Encoding.UTF8.GetString(input);
-                    html = html.Replace("http://petstore.swagger.io/v2/swagger.json", "/openapi.yaml");
-                    input = Encoding.UTF8.GetBytes(html);
+                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", "/openapi.yaml");
                 }
 
-                string filename = Path.GetFileName(swaggerFile.Substring(prefix.Length));
-                string outputFilename = Path.Combine(folder.FullName, filename);
-                using (Stream outputStream = new FileStream(outputFilename, FileMode.Create))
+                result[index] = new OpenApiFileReference
                 {
-                    outputStream.Write(input, 0, input.Length);
-                }
+                    Content = content,
+                    Filename = swaggerFile.Substring(prefix.Length)
+                };
+                index++;
             }
+
+            return result;
         }
 
 

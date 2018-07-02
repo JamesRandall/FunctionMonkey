@@ -18,6 +18,8 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         public void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+            OpenApiConfiguration openApiConfiguration,
+            OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder)
         {
             HandlebarsHelperRegistration.RegisterHelpers();
@@ -29,12 +31,34 @@ namespace FunctionMonkey.Compiler.Implementation
             if (!httpFunctionDefinitions.Any())
             {
                 return;
-            }            
+            }
+
+            List<object> proxyDefinitions = new List<object>(httpFunctionDefinitions);
+            if (openApiConfiguration.IsOpenApiOutputEnabled)
+            {
+                proxyDefinitions.Add(new
+                {
+                    Name = "OpenApiYaml",
+                    Route = "/openapi.yaml",
+                    IsOpenApiYaml = true
+                });
+
+                if (openApiOutputModel.IsConfiguredForUserInterface)
+                {
+                    proxyDefinitions.Add(new
+                    {
+                        Name = "OpenApiProvider",
+                        Route = openApiConfiguration.UserInterfaceRoute + "/{name}",
+                        IsOpenApiUi = true
+                    });
+                }
+            }
+            
 
             string templateSource = _templateProvider.GetProxiesJsonTemplate();
             Func<object, string> template = Handlebars.Compile(templateSource);
 
-            string json = template(httpFunctionDefinitions);
+            string json = template(proxyDefinitions);
             DirectoryInfo folder = Directory.CreateDirectory(Path.Combine(outputBinaryFolder, ".."));
             string filename = Path.Combine(folder.FullName, "proxies.json");
             using (Stream stream = new FileStream(filename, FileMode.Create))
