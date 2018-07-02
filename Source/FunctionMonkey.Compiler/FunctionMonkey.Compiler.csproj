@@ -88,15 +88,15 @@
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="8.1.1" />
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.1" />
-    <PackageReference Include="Handlebars.Net" Version="1.9.0" />
+    <PackageReference Include="Handlebars.Net" Version="1.9.5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.0-beta7" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.0-beta5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.0-beta5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" Version="3.0.0-beta5" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.7.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.OpenApi" Version="1.0.0" />
-    <PackageReference Include="NETStandard.Library" Version="2.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.8.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.1.0-preview.3" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
