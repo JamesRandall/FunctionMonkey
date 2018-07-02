@@ -1,5 +1,6 @@
 ﻿using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using RestApiSample.Commands.Responses;
 
 namespace RestApiSample.Commands
 {

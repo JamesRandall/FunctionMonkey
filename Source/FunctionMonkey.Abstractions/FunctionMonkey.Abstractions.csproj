@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.0-beta000" />
+    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
 

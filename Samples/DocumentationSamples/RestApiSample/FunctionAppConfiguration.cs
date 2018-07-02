@@ -10,7 +10,7 @@ namespace RestApiSample
     {
         public void Build(IFunctionHostBuilder builder)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
