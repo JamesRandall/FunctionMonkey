@@ -26,7 +26,7 @@ namespace SwaggerBuildOut
                         .HttpFunction<HelloWorldCommand>("/{name}", HttpMethod.Get)                        
                     )
                     .HttpRoute("/Add", route => route
-                        .HttpFunction<AddCommand>(HttpMethod.Post)
+                        .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                     )
                 );
         }

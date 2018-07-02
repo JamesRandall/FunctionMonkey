@@ -24,7 +24,7 @@ To provide a clean and shaped REST API Function Monkey creates an [Azure Functio
 
 ## Are Pull Requests welcome?
 
-Hell yes. But if you're planning a major piece of work probably makes sense to have a conversation first. I'd hate to have folk waste there time.
+Heck yes. But if you're planning a major piece of work probably makes sense to have a conversation first. I'd hate to have folk waste there time.
 
 ## How do I get help?
 
