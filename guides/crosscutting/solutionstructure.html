@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Routing </title>
+    <title>Suggested Solution Structure </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Routing ">
+    <meta name="title" content="Suggested Solution Structure ">
     <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -67,39 +67,9 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="routing">Routing</h1>
+<h1 id="suggested-solution-structure">Suggested Solution Structure</h1>
 
-<p>In Function Monkey every HTTP function has a parent route and an optional sub-route. For example to define a parent route of Invoice and add a GET verb based function to that route you would define your configuration block as:</p>
-<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
-{
-    public void Build(IFunctionHostBuilder builder)
-    {
-        builder
-            .Setup((serviceCollection, commandRegistry) =&gt;
-            {
-                commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
-            })
-            .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
-                    .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
-                )
-            );
-    }
-}
-</code></pre><p>For GET and DELETE based verbs the properties of the commands will, by default, be populated from query parameters. So if we assume our command looks like this:</p>
-<pre><code>public class InvoiceQuery : ICommand&lt;Invoice&gt;
-{
-    public int Id { get; set; }
-}
-</code></pre><p>Then we can call it using a URL such as:</p>
-<pre><code>http://localhost:7071/invoice?id=1234
-</code></pre><p>If you want to use path based routing then simply set the sub-route using typical curly brace syntax as shown below:</p>
-<pre><code>.HttpRoute(&quot;/Invoice&quot;, route =&gt; route
-    .HttpFunction&lt;InvoiceQuery&gt;(&quot;/{id}&quot;, HttpMethod.Get)
-</code></pre><p>Which will allow you to call the function using a URL such as:</p>
-<pre><code>http://localhost:7071/invoice/1234
-</code></pre><p>Note that route parameters cannot be optional.</p>
-<p>In the current version of FunctionMonkey POST and PUT based functions cannot take query parameters but they can take route parameters. The route parameter will take precedence over any value supplied in the request body.</p>
+<p>Coming soon</p>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -109,7 +79,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/http/routing.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/crosscutting/solutionstructure.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

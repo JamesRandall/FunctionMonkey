@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Routing </title>
+    <title>Authorization </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Routing ">
+    <meta name="title" content="Authorization ">
     <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -67,9 +67,10 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="routing">Routing</h1>
+<h1 id="authorization">Authorization</h1>
 
-<p>In Function Monkey every HTTP function has a parent route and an optional sub-route. For example to define a parent route of Invoice and add a GET verb based function to that route you would define your configuration block as:</p>
+<p>Function Monkey supports the standard authorization types of Azure Functions and adds support for token validation through the Authorization header - typically for use with OpenID Connect and an access token. If you&#39;re using token validation then you need to register a class that is able to verify the token and populate a ClaimsPrincipal.</p>
+<p>The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
     public void Build(IFunctionHostBuilder builder)
@@ -79,28 +80,86 @@
             {
                 commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
             })
+            .Authorization(authorization =&gt; authorization
+                .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                .TokenValidator&lt;BearerTokenValidator&gt;()
+            )
             .Functions(functions =&gt; functions
                 .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
-                    .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
+                    .HttpFunction&lt;InvoiceQuery&gt;()
                 )
+                .HttpRoute(&quot;/Version&quot;, route =&gt; route
+                    .HttpFunction&lt;VersionQuery&gt;(AuthorizationTypeEnum.Anonymous))
             );
     }
 }
-</code></pre><p>For GET and DELETE based verbs the properties of the commands will, by default, be populated from query parameters. So if we assume our command looks like this:</p>
-<pre><code>public class InvoiceQuery : ICommand&lt;Invoice&gt;
+</code></pre><p>Validators should implement the <em>ITokenValidator</em> interface as shown in the example below (also available as a <a href="https://gist.github.com/JamesRandall/e83f72f98bde2f6ff973e6ecb81199c8">gist</a>):</p>
+<pre><code>public class BearerTokenValidator : ITokenValidator
 {
-    public int Id { get; set; }
+    private static readonly IConfigurationManager&lt;OpenIdConnectConfiguration&gt; ConfigurationManager;
+
+    static BearerTokenValidator()
+    {
+        string domain = Environment.GetEnvironmentVariable(&quot;domain&quot;);
+
+        string wellKnownEndpoint = $&quot;https://{domain}/.well-known/openid-configuration&quot;;
+        var documentRetriever = new HttpDocumentRetriever { RequireHttps = wellKnownEndpoint.StartsWith(&quot;https://&quot;) };
+        ConfigurationManager = new ConfigurationManager&lt;OpenIdConnectConfiguration&gt;(
+            wellKnownEndpoint,
+            new OpenIdConnectConfigurationRetriever(),
+            documentRetriever
+        );
+    }
+
+    public async Task&lt;ClaimsPrincipal&gt; ValidateAsync(string authorizationHeader)
+    {
+        if (!authorizationHeader.StartsWith(&quot;Bearer &quot;))
+            return null;
+        string bearerToken = authorizationHeader.Substring(&quot;Bearer &quot;.Length);
+
+        var config = await ConfigurationManager.GetConfigurationAsync(CancellationToken.None);
+        var audience = Environment.GetEnvironmentVariable(&quot;audience&quot;);
+
+        var validationParameter = new TokenValidationParameters()
+        {
+            RequireSignedTokens = true,
+            ValidAudience = audience,
+            ValidateAudience = true,
+            ValidIssuer = config.Issuer,
+            ValidateIssuer = true,
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            IssuerSigningKeys = config.SigningKeys
+        };
+
+        ClaimsPrincipal result = null;
+        var tries = 0;
+
+        while (result == null &amp;&amp; tries &lt;= 1)
+        {
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                result = handler.ValidateToken(bearerToken, validationParameter, out SecurityToken _);
+            }
+            catch (SecurityTokenSignatureKeyNotFoundException)
+            {
+                // This exception is thrown if the signature key of the JWT could not be found.
+                // This could be the case when the issuer changed its signing keys, so we trigger a 
+                // refresh and retry validation.
+                ConfigurationManager.RequestRefresh();
+                tries++;
+            }
+            catch (SecurityTokenException)
+            {
+                return null;
+            }
+        }
+
+        return result;
+    }
 }
-</code></pre><p>Then we can call it using a URL such as:</p>
-<pre><code>http://localhost:7071/invoice?id=1234
-</code></pre><p>If you want to use path based routing then simply set the sub-route using typical curly brace syntax as shown below:</p>
-<pre><code>.HttpRoute(&quot;/Invoice&quot;, route =&gt; route
-    .HttpFunction&lt;InvoiceQuery&gt;(&quot;/{id}&quot;, HttpMethod.Get)
-</code></pre><p>Which will allow you to call the function using a URL such as:</p>
-<pre><code>http://localhost:7071/invoice/1234
-</code></pre><p>Note that route parameters cannot be optional.</p>
-<p>In the current version of FunctionMonkey POST and PUT based functions cannot take query parameters but they can take route parameters. The route parameter will take precedence over any value supplied in the request body.</p>
-<div id="disqus_thread"></div>
+</code></pre><div id="disqus_thread"></div>
             </article>
           </div>
           
@@ -109,7 +168,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/http/routing.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/http/authorization.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
