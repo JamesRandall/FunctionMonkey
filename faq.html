@@ -67,17 +67,8 @@
 <h2 id="when-will-it-come-out-of-preview">When will it come out of preview?</h2>
 <p>Aim is to move it out of preview when Azure Functions v2 go to GA. Certainly won&#39;t be before as until then v2 is subject to breaking change (though I think they&#39;ve done a good job to date in terms of managing breaking change).</p>
 <h2 id="i-get-the-error-error-processing-configuration-of-function-proxies">I get the error &quot;Error processing configuration of Function Proxies&quot;</h2>
-<p>To provide a clean and shaped REST API Function Monkey creates an <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-proxies">Azure Function Proxy</a> for each HTTP function. To support running locally and in the cloud the proxies are created using a variable to specify the domain name of the underlying function. This variable is called <em>ProxyPrefix</em> and requires setting in local.settings.json (for local development) <em>and</em> as an Application Setting on the function app in Azure. Locally, unless you configure the function host differently, this should be set to <em><a href="http://localhost:7071">http://localhost:7071</a></em>. For example based on the standard local.settings.json file you should have settings that look like this:</p>
-<pre><code>{
-  &quot;IsEncrypted&quot;: false,
-  &quot;Values&quot;: {
-    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;FUNCTIONS_WORKER_RUNTIME&quot;: &quot;dotnet&quot;,
-    &quot;ProxyPrefix&quot;:  &quot;http://localhost:7071&quot; 
-  }
-}
-</code></pre><h2 id="are-pull-requests-welcome">Are Pull Requests welcome?</h2>
+<p>There used to be a requirement for a variable called ProxyPrefix which if missed would generate this error. Its no longer required so if you update to the latest version of the package that should resolve things.</p>
+<h2 id="are-pull-requests-welcome">Are Pull Requests welcome?</h2>
 <p>Heck yes. But if you&#39;re planning a major piece of work probably makes sense to have a conversation first. I&#39;d hate to have folk waste there time.</p>
 <h2 id="how-do-i-get-help">How do I get help?</h2>
 <p>If you do encounter any issues or have any feedback please do let me know in the <a href="https://github.com/JamesRandall/FunctionMonkey/issues">GitHub issue tracker</a> or on <a href="https://twitter.com/azuretrenches">Twitter</a> - I might not get around to it immediately but I really appreciate it!</p>

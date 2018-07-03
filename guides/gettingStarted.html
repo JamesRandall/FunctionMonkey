@@ -113,16 +113,7 @@ Install-Package FunctionMonkey.Compiler -pre
 }
 </code></pre><p>Our class needs to implement the Build method and within it we do some basic setup and then define our triggers. In the setup phase we register our command handler with the mediation system (this can also be done through a discovery approach if you have many handlers but for the purposes of an example this is more explicit). In this block we could also register any other dependencies we require to be available.</p>
 <p>Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /api/v1/HelloWorld and register a single function against that route that responds to our <em>HelloWorldCommand</em>. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).</p>
-<p>We have one final step to take before we can run this - in order to present nicely routed REST APIs Function Monkey generates Azure Function Proxies and these need to know where the underlying function(s) live - including the domain. If you&#39;ve followed along with a default Azure Functions setup on a development box then these will be available at <a href="http://localhost:7071">http://localhost:7071</a>. In order to make this play nicely in different environments an environment variable called ProxyPrefix needs to be set in local.settings.json (and if you deploy this to Azure in the Functions App&#39;s app settings) as shown below (based on the default local.settings.json file):</p>
-<pre><code>{
-  &quot;IsEncrypted&quot;: false,
-  &quot;Values&quot;: {
-    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;ProxyPrefix&quot;: &quot;http://localhost:7071&quot;
-  }
-}
-</code></pre><p>Ok. We can now run the project! If you do so you should see the Azure Function host startup and present two Http Functions, you should see something like this at the bottom of the console window:</p>
+<p>Ok. We can now run the project! If you do so you should see the Azure Function host startup and present two Http Functions, you should see something like this at the bottom of the console window:</p>
 <pre><code>Http Functions:
 
     HelloWorldProxy: http://localhost:7071/api/HelloWorldProxy
