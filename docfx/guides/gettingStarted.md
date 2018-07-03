@@ -59,17 +59,6 @@ Our class needs to implement the Build method and within it we do some basic set
 
 Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /api/v1/HelloWorld and register a single function against that route that responds to our _HelloWorldCommand_. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).
 
-We have one final step to take before we can run this - in order to present nicely routed REST APIs Function Monkey generates Azure Function Proxies and these need to know where the underlying function(s) live - including the domain. If you've followed along with a default Azure Functions setup on a development box then these will be available at http://localhost:7071. In order to make this play nicely in different environments an environment variable called ProxyPrefix needs to be set in local.settings.json (and if you deploy this to Azure in the Functions App's app settings) as shown below (based on the default local.settings.json file):
-
-    {
-      "IsEncrypted": false,
-      "Values": {
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
-        "ProxyPrefix": "http://localhost:7071"
-      }
-    }
-
 Ok. We can now run the project! If you do so you should see the Azure Function host startup and present two Http Functions, you should see something like this at the bottom of the console window:
 
     Http Functions:
