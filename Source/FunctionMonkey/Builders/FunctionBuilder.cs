@@ -10,30 +10,18 @@ namespace FunctionMonkey.Builders
     {
         private readonly List<AbstractFunctionDefinition> _definitions = new List<AbstractFunctionDefinition>();
 
-        public IFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpRouteBuilder)
-        {
-            return HttpRoute(routePrefix, null, null, httpRouteBuilder);
-        }
-
-        public IFunctionBuilder HttpRoute(string routePrefix, string openApiName,
-            Action<IHttpFunctionBuilder> httpRouteBuilder)
-        {
-            return HttpRoute(routePrefix, openApiName, null, httpRouteBuilder);
-        }
-
-        public IFunctionBuilder HttpRoute(string routePrefix, string openApiName, string openApiDescription, Action<IHttpFunctionBuilder> httpFunctionBuilder)
+        public IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder)
         {
             string rootedRoutePrefix = routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);
             HttpRouteConfiguration routeConfiguration = new HttpRouteConfiguration()
             {
                 Route = rootedRoutePrefix,
-                OpenApiDescription = openApiDescription,
-                OpenApiName = openApiName
             };
             HttpFunctionBuilder builder = new HttpFunctionBuilder(routeConfiguration, _definitions);
             httpFunctionBuilder(builder);
-            return this;
-        }
+
+            return new HttpRouteFunctionBuilder(this, routeConfiguration);
+        }        
 
         public IFunctionBuilder ServiceBus(string connectionName, Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder)
         {

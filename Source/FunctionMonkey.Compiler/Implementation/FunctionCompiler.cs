@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
@@ -62,6 +63,8 @@ namespace FunctionMonkey.Compiler.Implementation
             FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
             configuration.Build(builder);
             new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
+
+            VerifyCommandAndResponseTypes(builder);
             
             IReadOnlyCollection<Assembly> externalAssemblies = GetExternalAssemblies(builder.FunctionDefinitions);
             OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
@@ -80,6 +83,34 @@ namespace FunctionMonkey.Compiler.Implementation
                 $"{newAssemblyNamespace}.dll",
                 openApi, 
                 builder.OutputAuthoredSourceFolder);
+        }
+
+        private void VerifyCommandAndResponseTypes(FunctionHostBuilder builder)
+        {
+            List<string> invalidTypes = new List<string>();
+            foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
+            {
+                if (!functionDefinition.CommandType.IsPublic)
+                {
+                    invalidTypes.Add(functionDefinition.CommandType.Name);
+                }
+
+                if (functionDefinition.CommandResultType != null && !functionDefinition.CommandResultType.IsPublic)
+                {
+                    invalidTypes.Add(functionDefinition.CommandResultType.FullName);
+                }
+            }
+
+            if (invalidTypes.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Commands and responses must be public. The following types are not:");
+                foreach (string invalidType in invalidTypes)
+                {
+                    sb.AppendLine(invalidType);
+                }
+                throw new ConfigurationException(sb.ToString());
+            }
         }
 
         private IReadOnlyCollection<Assembly> GetExternalAssemblies(

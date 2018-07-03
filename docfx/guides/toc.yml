@@ -32,6 +32,15 @@
           href: serviceBus/topics.md
         - name: Message Properties
           href: serviceBus/messageProperties.md
+    - name: Azure Storage Triggers
+      items:
+        - name: Queues
+          href: storage/queues.md
+        - name: Blobs
+          href: storage/blobs.md
+    - name: Event Hub Triggers
+      href: eventhubs/eventhubs.md
+
 - name: Cross Cutting Concerns
   items:
     - name: Trigger Contexts

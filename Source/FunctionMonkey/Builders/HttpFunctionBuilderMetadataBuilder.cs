@@ -49,13 +49,13 @@ namespace FunctionMonkey.Builders
             return _httpFunctionBuilder.HttpFunction<TCommand>(route, authorizationType, method);
         }
 
-        public IHttpFunctionBuilderMetadataBuilder Description(string description)
+        public IHttpFunctionBuilderMetadataBuilder OpenApiDescription(string description)
         {
             _definition.OpenApiDescription = description;
             return this;
         }
 
-        public IHttpFunctionBuilderMetadataBuilder Response(int httpStatusCode, string description)
+        public IHttpFunctionBuilderMetadataBuilder OpenApiResponse(int httpStatusCode, string description)
         {
             _definition.OpenApiResponseDescriptions.Add(httpStatusCode, description);
             return this;

@@ -1,6 +1,6 @@
 # Philosophy - Why Develop this Framework?
 
-For some of my underlying thinking (if you are interested!) its worth [reading the comments I made about the mediator framework Function Monkey makes use of](https://commanding.azurefromthetrenches.com).
+For some of my underlying thinking (if you are interested!) its worth [reading the comments I made about the mediator framework Function Monkey makes use of](https://commanding.azurefromthetrenches.com/guides/philosophy.html).
 
 Really what I wrote their also applies to Function Monkey and I wanted to apply the same philosophy to Azure Functions. 
 

@@ -30,3 +30,26 @@ To enable basic output simply add the _.OpenApiEndpoint_ block as shown in the e
 
 That will create a specification at https://YOURDOMAIN/openapi.yaml and a user interface explorer at https://YOURDOMAIN/openapi
 
+## Additional Documentation
+
+Function Monkey supports additional OpenAPI documentation to be provided at both the route and function level.
+
+At the route level FunctionMonkey will default to giving the route the same OpenAPI name (in an OpenAPI tag) as the last major route component. So in a route of:
+
+    .HttpRoute("/api/v1/HelloWorld/{text}" ... )
+
+Function Monkey will give the route a name of HelloWorld. A description can be supplied and the name overriden as shown below:
+
+    .HttpRoute("/api/v1/HelloWorld/{text}" ... )
+        .OpenApiDescription("Methods on this route represent the MyHelloWorld resource")
+        .OpenApiName("MyHelloWorld")
+
+At the Function level descriptions and response documentation can also be set:
+
+    .HttpRoute("/api/v1/HelloWorld", functions => functions
+        .HttpFunction<HelloWorldCommand>()
+            .OpenApiDescription("Says hello world")
+            .OpenApiResponse(400, "An error in the inputs")
+    )
+
+In general its best to leave FunctionMonkey to generate the response documentation for the 200 code while annotating any other responses as appropriate.
