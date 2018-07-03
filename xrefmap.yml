@@ -166,24 +166,6 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
   nameWithType: IFunctionBuilder.HttpRoute(String, Action<IHttpFunctionBuilder>)
   nameWithType.vb: IFunctionBuilder.HttpRoute(String, Action(Of IHttpFunctionBuilder))
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
-  name: HttpRoute(String, String, Action<IHttpFunctionBuilder>)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
-  name.vb: HttpRoute(String, String, Action(Of IHttpFunctionBuilder))
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
-  nameWithType: IFunctionBuilder.HttpRoute(String, String, Action<IHttpFunctionBuilder>)
-  nameWithType.vb: IFunctionBuilder.HttpRoute(String, String, Action(Of IHttpFunctionBuilder))
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
-  name: HttpRoute(String, String, String, Action<IHttpFunctionBuilder>)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
-  name.vb: HttpRoute(String, String, String, Action(Of IHttpFunctionBuilder))
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String, System.String, System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
-  nameWithType: IFunctionBuilder.HttpRoute(String, String, String, Action<IHttpFunctionBuilder>)
-  nameWithType.vb: IFunctionBuilder.HttpRoute(String, String, String, Action(Of IHttpFunctionBuilder))
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute*
   name: HttpRoute
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_
@@ -424,32 +406,64 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
   fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
   nameWithType: IHttpFunctionBuilderMetadataBuilder
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description(System.String)
-  name: Description(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Description_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description(System.String)
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.Description(String)
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description*
-  name: Description
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Description_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(System.String)
+  name: OpenApiDescription(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiDescription_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(System.String)
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription*
+  name: OpenApiDescription
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiDescription_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Description
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.Description
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response(System.Int32,System.String)
-  name: Response(Int32, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Response_System_Int32_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response(System.Int32,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response(System.Int32, System.String)
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.Response(Int32, String)
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response*
-  name: Response
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_Response_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiDescription
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(System.Int32,System.String)
+  name: OpenApiResponse(Int32, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiResponse_System_Int32_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(System.Int32,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(System.Int32, System.String)
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(Int32, String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse*
+  name: OpenApiResponse
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiResponse_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.Response
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.Response
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse
+  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiResponse
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder
+  name: IHttpRouteFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder
+  nameWithType: IHttpRouteFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiDescription(System.String)
+  name: OpenApiDescription(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteFunctionBuilder_OpenApiDescription_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiDescription(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiDescription(System.String)
+  nameWithType: IHttpRouteFunctionBuilder.OpenApiDescription(String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiDescription*
+  name: OpenApiDescription
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteFunctionBuilder_OpenApiDescription_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiDescription
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiDescription
+  nameWithType: IHttpRouteFunctionBuilder.OpenApiDescription
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName(System.String)
+  name: OpenApiName(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteFunctionBuilder_OpenApiName_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName(System.String)
+  nameWithType: IHttpRouteFunctionBuilder.OpenApiName(String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName*
+  name: OpenApiName
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteFunctionBuilder_OpenApiName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName
+  nameWithType: IHttpRouteFunctionBuilder.OpenApiName
 - uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
   name: IOpenApiBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html

@@ -94,6 +94,21 @@
     }
 }
 </code></pre><p>That will create a specification at <a href="https://YOURDOMAIN/openapi.yaml">https://YOURDOMAIN/openapi.yaml</a> and a user interface explorer at <a href="https://YOURDOMAIN/openapi">https://YOURDOMAIN/openapi</a></p>
+<h2 id="additional-documentation">Additional Documentation</h2>
+<p>Function Monkey supports additional OpenAPI documentation to be provided at both the route and function level.</p>
+<p>At the route level FunctionMonkey will default to giving the route the same OpenAPI name (in an OpenAPI tag) as the last major route component. So in a route of:</p>
+<pre><code>.HttpRoute(&quot;/api/v1/HelloWorld/{text}&quot; ... )
+</code></pre><p>Function Monkey will give the route a name of HelloWorld. A description can be supplied and the name overriden as shown below:</p>
+<pre><code>.HttpRoute(&quot;/api/v1/HelloWorld/{text}&quot; ... )
+    .OpenApiDescription(&quot;Methods on this route represent the MyHelloWorld resource&quot;)
+    .OpenApiName(&quot;MyHelloWorld&quot;)
+</code></pre><p>At the Function level descriptions and response documentation can also be set:</p>
+<pre><code>.HttpRoute(&quot;/api/v1/HelloWorld&quot;, functions =&gt; functions
+    .HttpFunction&lt;HelloWorldCommand&gt;()
+        .OpenApiDescription(&quot;Says hello world&quot;)
+        .OpenApiResponse(400, &quot;An error in the inputs&quot;)
+)
+</code></pre><p>In general its best to leave FunctionMonkey to generate the response documentation for the 200 code while annotating any other responses as appropriate.</p>
 <div id="disqus_thread"></div>
             </article>
           </div>
