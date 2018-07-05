@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Infrastructure;
+using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey
@@ -36,6 +38,38 @@ namespace FunctionMonkey
             );
 
             // Find the configuration implementation
+            (IFunctionAppConfiguration configuration, ICommandRegistry commandRegistry) = LocateConfiguration(adapter);
+
+            // Register internal implementations
+            RegisterInternalImplementations();
+
+            // Invoke the builder process
+            FunctionHostBuilder builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
+            FunctionBuilder functionBuilder = (FunctionBuilder) builder.FunctionBuilder;
+
+            SetupAuthorization(builder, functionBuilder);
+
+            RegisterTimerCommandFactories(ServiceCollection, builder.FunctionDefinitions);
+            
+            ServiceProvider = ServiceCollection.BuildServiceProvider();
+            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+        }
+
+        private static void SetupAuthorization(FunctionHostBuilder builder, FunctionBuilder functionBuilder)
+        {
+            AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder) builder.AuthorizationBuilder;
+            if (authorizationBuilder.TokenValidatorType != null)
+            {
+                ServiceCollection.AddTransient(typeof(ITokenValidator), authorizationBuilder.TokenValidatorType);
+            }
+
+            ICommandClaimsBinder commandClaimsBinder = authorizationBuilder.ClaimsMappingBuilder.Build(
+                functionBuilder.GetHttpFunctionDefinitions().Select(x => x.CommandType).ToArray());
+            ServiceCollection.AddSingleton(commandClaimsBinder);
+        }
+
+        private static (IFunctionAppConfiguration,ICommandRegistry) LocateConfiguration(CommandingDependencyResolverAdapter adapter)
+        {
             ICommandRegistry commandRegistry;
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration();
             if (configuration is ICommandingConfigurator commandingConfigurator)
@@ -47,31 +81,39 @@ namespace FunctionMonkey
                 commandRegistry = adapter.AddCommanding();
             }
 
-            // Register internal implementations
+            return (configuration,commandRegistry);
+        }
+
+        private static FunctionHostBuilder CreateBuilderFromConfiguration(ICommandRegistry commandRegistry,
+            IFunctionAppConfiguration configuration)
+        {
+            FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
+            configuration.Build(builder);
+            new PostBuildPatcher().Patch(builder, "");
+            return builder;
+        }
+
+        private static void RegisterInternalImplementations()
+        {
             ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
             ServiceCollection.AddTransient<ICommandDeserializer, CommandDeserializer>();
             ServiceCollection.AddTransient<IContextSetter, ContextManager>();
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
+        }
 
-            // Invoke the builder process
-            FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
-            configuration.Build(builder);
-            new PostBuildPatcher().Patch(builder, "");
-
-            FunctionBuilder functionBuilder = (FunctionBuilder) builder.FunctionBuilder;
-            AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder) builder.AuthorizationBuilder;
-            if (authorizationBuilder.TokenValidatorType != null)
+        private static void RegisterTimerCommandFactories(IServiceCollection serviceCollection, IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            IReadOnlyCollection<TimerFunctionDefinition> timerFunctionDefinitions = functionDefinitions
+                .Where(x => x is TimerFunctionDefinition)
+                .Cast<TimerFunctionDefinition>()
+                .Where(x => x.TimerCommandFactoryType != null)
+                .ToArray();
+            foreach (TimerFunctionDefinition timerFunctionDefinition in timerFunctionDefinitions)
             {
-                ServiceCollection.AddTransient(typeof(ITokenValidator), authorizationBuilder.TokenValidatorType);
+                Type interfaceType =
+                    typeof(ITimerCommandFactory<>).MakeGenericType(timerFunctionDefinition.CommandType);
+                serviceCollection.AddTransient(interfaceType, timerFunctionDefinition.TimerCommandFactoryType);
             }
-
-            ICommandClaimsBinder commandClaimsBinder = authorizationBuilder.ClaimsMappingBuilder.Build(
-                functionBuilder.GetHttpFunctionDefinitions().Select(x => x.CommandType).ToArray());
-            ServiceCollection.AddSingleton(commandClaimsBinder);
-            
-            ServiceProvider = ServiceCollection.BuildServiceProvider();
-
-            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
         }
 
         /// <summary>

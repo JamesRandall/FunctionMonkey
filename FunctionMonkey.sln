@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DocumentationSamples", "Doc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scratch", "Scratch", "{4C5AD0FE-C42D-46CD-ADF3-D51356E04F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwaggerBuildOut", "Samples\Scratch\SwaggerBuildOut\SwaggerBuildOut.csproj", "{488F92CA-6DEC-4E33-A517-167CF6BD02E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerBuildOut", "Samples\Scratch\SwaggerBuildOut\SwaggerBuildOut.csproj", "{488F92CA-6DEC-4E33-A517-167CF6BD02E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

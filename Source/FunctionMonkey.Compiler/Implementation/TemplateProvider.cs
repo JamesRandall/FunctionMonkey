@@ -14,7 +14,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(ServiceBusSubscriptionFunctionDefinition),"servicebussubscription" },
             {typeof(StorageQueueFunctionDefinition),"storagequeue" },
             {typeof(BlobFunctionDefinition),"storageblob" },
-            {typeof(BlobStreamFunctionDefinition),"storageblobstream" }
+            {typeof(BlobStreamFunctionDefinition),"storageblobstream" },
+            {typeof(TimerFunctionDefinition),"timer" }
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)

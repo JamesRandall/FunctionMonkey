@@ -20,7 +20,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(ServiceBusSubscriptionFunctionDefinition), typeof(ServiceBusTriggerAttribute).Assembly },
             {typeof(StorageQueueFunctionDefinition), typeof(QueueTriggerAttribute).Assembly },
             {typeof(BlobStreamFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
-            {typeof(BlobFunctionDefinition), typeof(BlobTriggerAttribute).Assembly }
+            {typeof(BlobFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
+            {typeof(TimerFunctionDefinition), typeof(TimerTriggerAttribute).Assembly }
         };
 
         public Assembly GetTriggerReference(AbstractFunctionDefinition functionDefinition)

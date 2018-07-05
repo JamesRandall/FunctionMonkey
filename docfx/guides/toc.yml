@@ -32,6 +32,8 @@
           href: serviceBus/topics.md
         - name: Message Properties
           href: serviceBus/messageProperties.md
+    - name: Timer Triggers
+      href: timers/timers.md      
     - name: Azure Storage Triggers
       items:
         - name: Queues

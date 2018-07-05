@@ -5,7 +5,7 @@ namespace FunctionMonkey.Abstractions.Builders
     /// <summary>
     /// An interface that allows functions to be configured during the building process
     /// </summary>
-    public interface IFunctionBuilder
+    public interface IFunctionBuilder : ITimerFunctionBuilder
     {
         /// <summary>
         /// Create a route for one or more HTTP triggered functions
@@ -29,6 +29,8 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="connectionName">The name of the connection in the environment settings</param>
         /// <param name="storageFunctionBuilder">A builder that allows one or more functions to be created that are associated with this connection</param>
         /// <returns>The function builder for a fluent API</returns>
-        IFunctionBuilder Storage(string connectionName, Action<IStorageFunctionBuilder> storageFunctionBuilder);        
+        IFunctionBuilder Storage(string connectionName, Action<IStorageFunctionBuilder> storageFunctionBuilder);
+
+        
     }
 }

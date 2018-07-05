@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Model;
 
@@ -8,7 +11,7 @@ namespace FunctionMonkey.Builders
 {
     internal class FunctionBuilder : IFunctionBuilder
     {
-        private readonly List<AbstractFunctionDefinition> _definitions = new List<AbstractFunctionDefinition>();
+        private readonly List<AbstractFunctionDefinition> _definitions = new List<AbstractFunctionDefinition>();        
 
         public IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder)
         {
@@ -43,6 +46,17 @@ namespace FunctionMonkey.Builders
             return _definitions.OfType<HttpFunctionDefinition>().ToArray();
         }
 
-        public IReadOnlyCollection<AbstractFunctionDefinition> Definitions => _definitions;        
+        public IReadOnlyCollection<AbstractFunctionDefinition> Definitions => _definitions;
+
+
+        public IFunctionBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        {
+            return new TimerFunctionBuilder(this, _definitions).Timer<TCommand>(cronExpression);
+        }
+
+        public IFunctionBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
+        {
+            return new TimerFunctionBuilder(this, _definitions).Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
+        }        
     }
 }

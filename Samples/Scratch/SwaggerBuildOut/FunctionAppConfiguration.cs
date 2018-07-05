@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using SwaggerBuildOut.Commands;
@@ -22,17 +23,18 @@ namespace SwaggerBuildOut
                     .UserInterface()
                 )
                 .Functions(functions => functions
-                    .HttpRoute("/HelloWorld", route => route
+                    /*.HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", HttpMethod.Get)    
                         .OpenApiDescription("Says hello world")
                     )
-                    .OpenApiDescription("A route description")
+                    .OpenApiDescription("A route description")*/
                     .HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")
                         .OpenApiResponse(400, "Some sort of error")
                     )
                     .OpenApiName("HelloWorld")
+                    .Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
                 );
         }
     }

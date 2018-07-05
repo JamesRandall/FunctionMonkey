@@ -33,7 +33,7 @@ Next create a folder in the solution called Handlers and create a class called S
         }
     }
 
-And now we'll create our function app configuration in the root of the project thatregisters the command handler and registers the command with a service bus queue:
+And now we'll create our function app configuration in the root of the project that registers the command handler and registers the command with a service bus queue:
 
     public class FunctionAppConfiguration : IFunctionAppConfiguration
     {

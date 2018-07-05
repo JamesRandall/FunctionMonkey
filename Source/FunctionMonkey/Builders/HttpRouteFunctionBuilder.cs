@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq.Expressions;
+using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Model;
 
@@ -41,6 +44,16 @@ namespace FunctionMonkey.Builders
         {
             _httpRouteConfiguration.OpenApiName = name;
             return this;
+        }
+
+        public IFunctionBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        {
+            return _decoratedBuilder.Timer<TCommand>(cronExpression);
+        }
+
+        public IFunctionBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
+        {
+            return _decoratedBuilder.Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
         }
     }
 }
