@@ -69,7 +69,114 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="blobs">Blobs</h1>
 
-<p>Docs coming soon</p>
+<p>Function Monkey supports two approaches for responding to blob storage events:</p>
+<ol>
+<li>Deserializing directly into a command from JSON - useful for small blobs who&#39;s format is known in advance</li>
+<li>Assigning a stream to a command that can be picked up in the handler - useful for blobs who&#39;s format is not known or that are very large and require careful processing</li>
+</ol>
+<h2 id="deserializing-directly-into-a-command">Deserializing Directly Into a Command</h2>
+<p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
+<pre><code>Install-Package FunctionMonkey -pre
+Install-Package FunctionMonkey.Compiler -pre
+</code></pre><p>Now create a folder in the solution called commands and create a class called HelloWorldCommand:</p>
+<pre><code>public class HelloWorldCommand : ICommand
+{
+    public string UserName { get; set; }
+}
+</code></pre><p>Next create a folder in the solution called Handlers and create a class called HelloWorldCommandHandler:</p>
+<pre><code>internal class HelloWorldCommandHandler : ICommandHandler&lt;HelloWorldCommand&gt;
+{
+    public Task ExecuteAsync(HelloWorldCommand command)
+    {
+        Debug.WriteLine($&quot;Hello {command.UserName}&quot;);
+        return Task.CompletedTask;
+    }
+}
+</code></pre><p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a storage account and blob container:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string ContainerName = &quot;myblobcontainer&quot;;
+    private const string StorageConnectionName = &quot;storageConnection&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .Storage(StorageConnectionName, storage =&gt; storage
+                    .BlobFunction&lt;HelloWorldCommand&gt;($&quot;{ContainerName}/{name}&quot;)
+                )
+            );
+    }
+}
+</code></pre><p>Finally we need to create an entry in local.settings.json for the Azure Storage connection string:</p>
+<pre><code>{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;storageConnection&quot;: &quot;&lt;connection string&gt;&quot; 
+  }
+}
+</code></pre><p>And that&#39;s it! If you run this sample you should find that adding a blob to the container triggers the function. Note that Azure Functions blob triggers do not work with the storage emulator, you need to use a real storage account.</p>
+<h2 id="using-streams">Using Streams</h2>
+<p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
+<pre><code>Install-Package FunctionMonkey -pre
+Install-Package FunctionMonkey.Compiler -pre
+</code></pre><p>Now create a folder in the solution called commands and create a class called HelloWorldCommand - in addition to implementing the <em>ICommand</em> interface we also must implement the <em>IStreamCommand</em>:</p>
+<pre><code>public class HelloWorldCommand : ICommand, IStreamCommand
+{
+    public Stream Stream { get; set; }
+
+    public string Name { get; set; }
+}
+</code></pre><p>Next create a folder in the solution called Handlers and create a class called HelloWorldCommandHandler:</p>
+<pre><code>internal class HelloWorldCommandHandler : ICommandHandler&lt;HelloWorldCommand, Message&gt;
+{
+    public Task&lt;Message&gt; ExecuteAsync(HelloWorldCommand command, Message previousResult)
+    {
+        using (StreamReader reader = new StreamReader(command.Stream))
+        {
+            string json = reader.ReadToEnd();
+            return Task.FromResult(new Message
+            {
+                Text = $&quot;JSON payload\n{json}&quot;
+            });
+        }                
+    }
+}
+</code></pre><p>Our handler will be provided an open stream to the blob in the <em>Stream</em> property and the name of the blob in the <em>Name</em> property of the command.</p>
+<p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a storage account and blob container:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string ContainerName = &quot;myblobcontainer&quot;;
+    private const string StorageConnectionName = &quot;storageConnection&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .Storage(StorageConnectionName, storage =&gt; storage
+                    .BlobFunction&lt;HelloWorldCommand&gt;($&quot;{ContainerName}/{name}&quot;)
+                )
+            );
+    }
+}
+</code></pre><p>Finally we need to create an entry in local.settings.json for the Azure Storage connection string:</p>
+<pre><code>{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;storageConnection&quot;: &quot;&lt;connection string&gt;&quot; 
+  }
+}
+</code></pre><p>And that&#39;s it! If you run this sample you should find that adding a blob to the container triggers the function and you&#39;re given an open stream. Note that Azure Functions blob triggers do not work with the storage emulator, you need to use a real storage account.</p>
 <div id="disqus_thread"></div>
             </article>
           </div>
