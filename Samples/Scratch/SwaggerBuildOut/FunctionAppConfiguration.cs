@@ -28,13 +28,15 @@ namespace SwaggerBuildOut
                         .OpenApiDescription("Says hello world")
                     )
                     .OpenApiDescription("A route description")*/
-                    .HttpRoute("/Add", route => route
+                    /*.HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")
                         .OpenApiResponse(400, "Some sort of error")
                     )
-                    .OpenApiName("HelloWorld")
-                    .Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
+                    .OpenApiName("HelloWorld")*/
+                    //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
+                    .Storage("StorageConnectionString", storage => storage
+                        .BlobFunction<HelloWorldCommand>("triggertest/{name}"))
                 );
         }
     }

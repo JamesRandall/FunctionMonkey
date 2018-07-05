@@ -7,7 +7,7 @@ namespace SwaggerBuildOut
     public static class ExampleTimer
     {
         [FunctionName("ExampleTimer")]
-        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWriter log)
+        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWriter log, [BlobTrigger()])
         {
             log.Info($"C# Timer trigger function executed at: {DateTime.Now}");
         }

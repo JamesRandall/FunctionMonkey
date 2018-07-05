@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using SwaggerBuildOut.Commands;
 using SwaggerBuildOut.Commands.Responses;
@@ -9,10 +10,14 @@ namespace SwaggerBuildOut.Handlers
     {
         public Task<Message> ExecuteAsync(HelloWorldCommand command, Message previousResult)
         {
-            return Task.FromResult(new Message
+            using (StreamReader reader = new StreamReader(command.Stream))
             {
-                Text = $"Hello {command.Name}"
-            });
+                string json = reader.ReadToEnd();
+                return Task.FromResult(new Message
+                {
+                    Text = $"JSON payload\n{json}"
+                });
+            }                
         }
     }
 }

@@ -18,14 +18,8 @@ namespace {{Namespace}}
             IDictionary<string, string> metadata,
             ILogger log)
         {
-            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");
+            log.LogInformation("Blob stream function {{Name}} processed a request.");
 
-            string json;
-            using(StreamReader reader = new StreamReader(stream))
-            {
-                json = reader.ReadToEnd();
-            }            
-            
             {{CommandTypeName}} command = new {{CommandTypeName}} {
                 Stream = stream,
                 Name = name

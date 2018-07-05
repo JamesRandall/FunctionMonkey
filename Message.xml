@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Message xmlns="http://schemas.microsoft.com/servicebusexplorer">
+  <Date>05 July 2018 18:11:24</Date>
+  <Content><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<message>Hi mate, how are you?</message>]]></Content>
+</Message>
