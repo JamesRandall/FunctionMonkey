@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Service Bus Queues </title>
+    <title>Timers </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Service Bus Queues ">
+    <meta name="title" content="Timers ">
     <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -67,33 +67,26 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="service-bus-queues">Service Bus Queues</h1>
+<h1 id="timers">Timers</h1>
 
-<h2 id="getting-started">Getting Started</h2>
 <p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
 <pre><code>Install-Package FunctionMonkey -pre
 Install-Package FunctionMonkey.Compiler -pre
-</code></pre><p>You will also need to add the Service Bus trigger bindings:</p>
-<pre><code>Install-Package Microsoft.Azure.WebJobs.ServiceBus -pre
 </code></pre><p>Now create a folder in the solution called commands and create a class called SendEmailCommand:</p>
-<pre><code>public class SendEmailCommand : ICommand
+<pre><code>public class CleanupCommand : ICommand
 {
-    public string To { get; set; }
 
-    public string Title { get; set; }
-
-    public string Body { get; set; }
 }
 </code></pre><p>Next create a folder in the solution called Handlers and create a class called SendEmailCommandHandler:</p>
-<pre><code>internal class SendEmailCommandHandler : ICommandHandler&lt;SendEmailCommand&gt;
+<pre><code>internal class CleanupCommandHandler : ICommandHandler&lt;CleanupCommand&gt;
 {
-    public Task ExecuteAsync(SendEmailCommand command)
+    public Task ExecuteAsync(CleanupCommand command)
     {
-        // We won&#39;t really send an email from this sample
+        // We won&#39;t really do anything here in this example
         return Task.CompletedTask;
     }
 }
-</code></pre><p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a service bus queue:</p>
+</code></pre><p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a 5 minute timer:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
     private const string QueueName = &quot;sendEmailQueue&quot;;
@@ -103,29 +96,49 @@ Install-Package FunctionMonkey.Compiler -pre
     {
         builder
             .Setup((serviceCollection, commandRegistry) =&gt;
-                commandRegistry.Register&lt;SendEmailCommandHandler&gt;()
+                commandRegistry.Register&lt;CleanupCommandHandler&gt;()
             )
             .Functions(functions =&gt; functions
-                .ServiceBus(ServiceBusConnectionName, serviceBus =&gt; serviceBus
-                    .QueueFunction&lt;SendEmailCommand&gt;(QueueName)
+                .Timer&lt;CleanUpCommand&gt;(&quot;0 */5 * * * *)
                 )
             );
     }
 }
-</code></pre><p>Finally we need to create an entry in local.settings.json for the Service Bus connection string:</p>
-<pre><code>{
-  &quot;IsEncrypted&quot;: false,
-  &quot;Values&quot;: {
-    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;serviceBusConnection&quot;: &quot;&lt;connection string&gt;&quot; 
-  }
+</code></pre><p>And thats it! If you run this project you should find that the <em>CleanUpCommandHandler</em> runs every 5 minutes.</p>
+<h2 id="creating-commands-with-payloads">Creating Commands With Payloads</h2>
+<p>In the above example the CleanupCommand was created using its default constructor - if you want to create commands with populated properties then you can use a timer command factory.</p>
+<p>First lets expand our command class to include a property:</p>
+<pre><code>public class CleanupCommand : ICommand
+{
+    public bool IsItUrgent { get; set; }
 }
-</code></pre><p>And that&#39;s it! If you run this project having created a queue called sendEmailQueue and use a real connection string you&#39;ll find that the <em>SendEmailCommandHandler</em> is invoked for each item you place on the queue.</p>
-<h2 id="validation">Validation</h2>
-<p>If you want to validate the queue messages as you recieve them then validation is supported and is <a href="/crosscutting/validation.html">documented here</a>.</p>
-<h2 id="sample-code">Sample Code</h2>
-<p>The source code for the above can be found over in <a href="https://github.com/JamesRandall/FunctionMonkey/tree/master/Samples/DocumentationSamples/ServiceBusSample">GitHub</a>.</p>
+</code></pre><p>And now we need to create a factory class, to do this we must implement the <em>ITimerCommandFactory<tcommand></tcommand></em> interface:</p>
+<pre><code>internal class CleanupCommandTimerCommandFactory : ITimerCommandFactory&lt;CleanupCommand&gt;
+{
+    public CleanupCommand Create(string cronExpression)
+    {
+        return new CleanupCommand { IsItUrgent = true };
+    }
+}
+</code></pre><p>And finally update our function app configuration to instruct the function to use the factory:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string QueueName = &quot;sendEmailQueue&quot;;
+    private const string ServiceBusConnectionName = &quot;serviceBusConnection&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+                commandRegistry.Register&lt;CleanupCommandHandler&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .Timer&lt;CleanUpCommand, CleanupCommandTimerCommandFactory&gt;(&quot;0 */5 * * * *)
+                )
+            );
+    }
+}
+</code></pre><p>And if you run this you should find your command handler is called with the IsItUrgent flag set to true. Timer command factories are created by the IoC container and so can have additional interfaces injected into them to source any relavant information.</p>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -135,7 +148,7 @@ Install-Package FunctionMonkey.Compiler -pre
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/serviceBus/queues.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/timers/timers.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

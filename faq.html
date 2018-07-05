@@ -66,6 +66,8 @@
 <p>No and it likely never will. Its technically possible but v2 is the future and contains many, many, improvements.</p>
 <h2 id="when-will-it-come-out-of-preview">When will it come out of preview?</h2>
 <p>Aim is to move it out of preview when Azure Functions v2 go to GA. Certainly won&#39;t be before as until then v2 is subject to breaking change (though I think they&#39;ve done a good job to date in terms of managing breaking change).</p>
+<h2 id="when-i-open-the-open-api--swagger-user-interface-for-the-first-time-when-hosted-in-azure-sometimes-i-get-a-blank-screen-it-appears-when-i-refresh-my-browser">When I open the Open API / Swagger user interface for the first time when hosted in Azure sometimes I get a blank screen, it appears when I refresh my browser.</h2>
+<p>I&#39;m still investigating this but there looks to be a bug in the cold start behaviour in Azure. The logs show the proxies are not always routed on to Functions and instead the funciton host looks for physical files. I have a GitHub issue raised which hopefully will help me gain more insight.</p>
 <h2 id="i-get-the-error-error-processing-configuration-of-function-proxies">I get the error &quot;Error processing configuration of Function Proxies&quot;</h2>
 <p>There used to be a requirement for a variable called ProxyPrefix which if missed would generate this error. Its no longer required so if you update to the latest version of the package that should resolve things.</p>
 <h2 id="are-pull-requests-welcome">Are Pull Requests welcome?</h2>

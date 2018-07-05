@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace FunctionMonkey.Abstractions.Builders
+    <title>Interface ITimerCommandFactory&lt;TCommand&gt;
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace FunctionMonkey.Abstractions.Builders
+    <meta name="title" content="Interface ITimerCommandFactory&lt;TCommand&gt;
    ">
     <meta name="generator" content="docfx 2.36.2.0">
     
@@ -68,55 +68,84 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.Builders">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.ITimerCommandFactory`1">
   
-  <h1 id="FunctionMonkey_Abstractions_Builders" data-uid="FunctionMonkey.Abstractions.Builders" class="text-break">Namespace FunctionMonkey.Abstractions.Builders
+  
+  <h1 id="FunctionMonkey_Abstractions_ITimerCommandFactory_1" data-uid="FunctionMonkey.Abstractions.ITimerCommandFactory`1" class="text-break">Interface ITimerCommandFactory&lt;TCommand&gt;
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="interfaces">Interfaces
+  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.html">FunctionMonkey.Abstractions</a></h6>
+  <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
+  <h5 id="FunctionMonkey_Abstractions_ITimerCommandFactory_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ITimerCommandFactory&lt;out TCommand&gt;
+    where TCommand : ICommand</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCommand</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html">IAuthorizationBuilder</a></h4>
-      <section><p>Provides an interface that allows authorization to be configured</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.html">IClaimsMappingBuilder</a></h4>
-      <section><p>Provides an interface that allows claims to be mapped to commands</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html">IEventHubFunctionBuilder</a></h4>
-      <section><p>Provides an interface that allows commands to be mapped to event hubs</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></h4>
-      <section><p>An interface that allows functions to be configured during the building process</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html">IFunctionHostBuilder</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html">IHttpFunctionBuilder</a></h4>
-      <section><p>Interface that allows for the configuration of HTTP triggered functions</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></h4>
-      <section><p>Used to optionally annotate a function with metadata for Open API</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html">IHttpRouteFunctionBuilder</a></h4>
-      <section><p>Used to optionally annotate a function with metadata for Open API</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html">IOpenApiBuilder</a></h4>
-      <section><p>An interface that allows an Open API document to be built.</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html">IServiceBusFunctionBuilder</a></h4>
-      <section><p>An interface that allows for the configuration of service bus triggered functions</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html">IStorageFunctionBuilder</a></h4>
-      <section><p>An interface that allows for the configuration of Azure Storage triggered functions</p>
-</section>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html">ITimerFunctionBuilder</a></h4>
-      <section></section>
-    <h3 id="enums">Enums
-  </h3>
-      <h4><a class="xref" href="FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum.html">AuthorizationTypeEnum</a></h4>
-      <section><p>Abstraction over Azure Functions authorization types with the addition of the token validation model provided
-by this framework</p>
-</section>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_ITimerCommandFactory_1_Create_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.ITimerCommandFactory%601.Create(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ITimerCommandFactory.cs/#L7">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_ITimerCommandFactory_1_Create_" data-uid="FunctionMonkey.Abstractions.ITimerCommandFactory`1.Create*"></a>
+  <h4 id="FunctionMonkey_Abstractions_ITimerCommandFactory_1_Create_System_String_" data-uid="FunctionMonkey.Abstractions.ITimerCommandFactory`1.Create(System.String)">Create(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TCommand Create(string cronExpression)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">cronExpression</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TCommand</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -125,6 +154,12 @@ by this framework</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_ITimerCommandFactory_1.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.ITimerCommandFactory%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ITimerCommandFactory.cs/#L5" class="contribution-link">View Source</a>
+                  </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
                   </li>

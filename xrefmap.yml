@@ -601,6 +601,37 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction(Of TCommand)(System.String)
   nameWithType: IStorageFunctionBuilder.QueueFunction<TCommand>(String)
   nameWithType.vb: IStorageFunctionBuilder.QueueFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder
+  name: ITimerFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder
+  nameWithType: ITimerFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer*
+  name: Timer
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ITimerFunctionBuilder_Timer_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer
+  nameWithType: ITimerFunctionBuilder.Timer
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer``1(System.String)
+  name: Timer<TCommand>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ITimerFunctionBuilder_Timer__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer``1(System.String)
+  name.vb: Timer(Of TCommand)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer(Of TCommand)(System.String)
+  nameWithType: ITimerFunctionBuilder.Timer<TCommand>(String)
+  nameWithType.vb: ITimerFunctionBuilder.Timer(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer``2(System.String)
+  name: Timer<TCommand, TTimerCommandFactoryType>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ITimerFunctionBuilder_Timer__2_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer``2(System.String)
+  name.vb: Timer(Of TCommand, TTimerCommandFactoryType)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer<TCommand, TTimerCommandFactoryType>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(System.String)
+  nameWithType: ITimerFunctionBuilder.Timer<TCommand, TTimerCommandFactoryType>(String)
+  nameWithType.vb: ITimerFunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(String)
 - uid: FunctionMonkey.Abstractions.Contexts
   name: FunctionMonkey.Abstractions.Contexts
   href: api/FunctionMonkey.Abstractions.Contexts.html
@@ -1037,6 +1068,32 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build
   nameWithType: IFunctionAppConfiguration.Build
+- uid: FunctionMonkey.Abstractions.ITimerCommandFactory`1
+  name: ITimerCommandFactory<TCommand>
+  href: api/FunctionMonkey.Abstractions.ITimerCommandFactory-1.html
+  commentId: T:FunctionMonkey.Abstractions.ITimerCommandFactory`1
+  name.vb: ITimerCommandFactory(Of TCommand)
+  fullName: FunctionMonkey.Abstractions.ITimerCommandFactory<TCommand>
+  fullName.vb: FunctionMonkey.Abstractions.ITimerCommandFactory(Of TCommand)
+  nameWithType: ITimerCommandFactory<TCommand>
+  nameWithType.vb: ITimerCommandFactory(Of TCommand)
+- uid: FunctionMonkey.Abstractions.ITimerCommandFactory`1.Create(System.String)
+  name: Create(String)
+  href: api/FunctionMonkey.Abstractions.ITimerCommandFactory-1.html#FunctionMonkey_Abstractions_ITimerCommandFactory_1_Create_System_String_
+  commentId: M:FunctionMonkey.Abstractions.ITimerCommandFactory`1.Create(System.String)
+  fullName: FunctionMonkey.Abstractions.ITimerCommandFactory<TCommand>.Create(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.ITimerCommandFactory(Of TCommand).Create(System.String)
+  nameWithType: ITimerCommandFactory<TCommand>.Create(String)
+  nameWithType.vb: ITimerCommandFactory(Of TCommand).Create(String)
+- uid: FunctionMonkey.Abstractions.ITimerCommandFactory`1.Create*
+  name: Create
+  href: api/FunctionMonkey.Abstractions.ITimerCommandFactory-1.html#FunctionMonkey_Abstractions_ITimerCommandFactory_1_Create_
+  commentId: Overload:FunctionMonkey.Abstractions.ITimerCommandFactory`1.Create
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ITimerCommandFactory<TCommand>.Create
+  fullName.vb: FunctionMonkey.Abstractions.ITimerCommandFactory(Of TCommand).Create
+  nameWithType: ITimerCommandFactory<TCommand>.Create
+  nameWithType.vb: ITimerCommandFactory(Of TCommand).Create
 - uid: FunctionMonkey.Abstractions.ITokenValidator
   name: ITokenValidator
   href: api/FunctionMonkey.Abstractions.ITokenValidator.html
