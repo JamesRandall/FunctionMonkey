@@ -7,7 +7,7 @@
   <!-- we ensure the functions post build has run first -->
   <!--<Target Name="_FunctionMonkeyCompiler" AfterTargets="Build">-->
   <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
-    <Exec Command="$(FunctionCompilerExe) $(TargetDir)bin\$(TargetName).dll" />
+    <Exec Command="$(FunctionCompilerExe) &quot;$(TargetDir)bin\$(TargetName).dll&quot;" />
   </Target>
 
   <!--
@@ -17,6 +17,6 @@
   <!--<Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="AfterPublish">-->
   <Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="_GenerateFunctionsAndCopyContentFiles">
     <Message Text="Running Function Monkey in Publish location $(PublishDir)" />
-    <Exec Command="$(FunctionCompilerExe) $(PublishDir)bin\$(TargetName).dll" />
+    <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)bin\$(TargetName).dll&quot;" />
   </Target>
 </Project>
