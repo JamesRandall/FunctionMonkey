@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Contexts;
+using ExecutionContext = FunctionMonkey.Abstractions.Contexts.ExecutionContext;
 
 namespace FunctionMonkey.Infrastructure
 {
@@ -16,6 +17,8 @@ namespace FunctionMonkey.Infrastructure
 
         private static readonly AsyncLocal<EventHubContext> EventHubContextLocal = new AsyncLocal<EventHubContext>();
 
+        private static readonly AsyncLocal<ExecutionContext> ExecutionContextLocal = new AsyncLocal<ExecutionContext>();
+
         void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId)
         {
             ServiceBusContextLocal.Value = new ServiceBusContext
@@ -26,7 +29,7 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
-        public void SetStorageQueueContext(DateTimeOffset expirationTime, DateTimeOffset insertionTime, DateTimeOffset nextVisibleTime,
+        void IContextSetter.SetStorageQueueContext(DateTimeOffset expirationTime, DateTimeOffset insertionTime, DateTimeOffset nextVisibleTime,
             string queueTrigger, string id, string popReceipt, int dequeueCount)
         {
             StorageQueueContextLocal.Value = new StorageQueueContext
@@ -41,7 +44,7 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
-        public void SetBlobContext(string blobTrigger, Uri uri, IDictionary<string, string> metadata)
+        void IContextSetter.SetBlobContext(string blobTrigger, Uri uri, IDictionary<string, string> metadata)
         {
             BlobContextLocal.Value = new BlobContext
             {
@@ -51,7 +54,7 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
-        public void SetEventHubContext(DateTime enqueuedTimeUtc, long sequenceNumber, string offset)
+        void IContextSetter.SetEventHubContext(DateTime enqueuedTimeUtc, long sequenceNumber, string offset)
         {
             EventHubContextLocal.Value = new EventHubContext
             {
@@ -61,9 +64,21 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
+        void IContextSetter.SetExecutionContext(string functionAppDirectory, string functionDirectory, string functionName, Guid invocationId)
+        {
+            ExecutionContextLocal.Value = new ExecutionContext
+            {
+                FunctionDirectory = functionDirectory,
+                FunctionAppDirectory = functionAppDirectory,
+                FunctionName = functionName,
+                InvocationId = invocationId
+            };
+        }
+
         public ServiceBusContext ServiceBusContext => ServiceBusContextLocal.Value;
         public StorageQueueContext StorageQueueContext => StorageQueueContextLocal.Value;
         public BlobContext BlobContext => BlobContextLocal.Value;
         public EventHubContext EventHubContext => EventHubContextLocal.Value;
+        public ExecutionContext ExecutionContext => ExecutionContextLocal.Value;
     }
 }

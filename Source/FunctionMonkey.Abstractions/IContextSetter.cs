@@ -39,5 +39,17 @@ namespace FunctionMonkey.Abstractions
         void SetEventHubContext(DateTime enqueuedTimeUtc,
             Int64 sequenceNumber,
             string offset);
+
+        /// <summary>
+        /// Sets the execution 
+        /// </summary>
+        /// <param name="functionAppDirectory"></param>
+        /// <param name="functionDirectory"></param>
+        /// <param name="functionName"></param>
+        /// <param name="invocationId"></param>
+        void SetExecutionContext(string functionAppDirectory,
+            string functionDirectory,
+            string functionName,
+            Guid invocationId);
     }
 }

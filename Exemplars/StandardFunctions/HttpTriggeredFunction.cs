@@ -19,7 +19,9 @@ namespace StandardFunctions
         }
 
         [FunctionName("HttpTriggeredFunction")]
-        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req, TraceWriter log)
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
+            TraceWriter log,
+            ExecutionContext executionContext)
         {
             log.Info("C# HTTP trigger function processed a request.");
 
