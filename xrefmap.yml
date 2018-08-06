@@ -728,6 +728,64 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
   nameWithType: EventHubContext.SequenceNumber
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext
+  name: ExecutionContext
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html
+  commentId: T:FunctionMonkey.Abstractions.Contexts.ExecutionContext
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext
+  nameWithType: ExecutionContext
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionAppDirectory
+  name: FunctionAppDirectory
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_FunctionAppDirectory
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionAppDirectory
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionAppDirectory
+  nameWithType: ExecutionContext.FunctionAppDirectory
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionAppDirectory*
+  name: FunctionAppDirectory
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_FunctionAppDirectory_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionAppDirectory
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionAppDirectory
+  nameWithType: ExecutionContext.FunctionAppDirectory
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionDirectory
+  name: FunctionDirectory
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_FunctionDirectory
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionDirectory
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionDirectory
+  nameWithType: ExecutionContext.FunctionDirectory
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionDirectory*
+  name: FunctionDirectory
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_FunctionDirectory_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionDirectory
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionDirectory
+  nameWithType: ExecutionContext.FunctionDirectory
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionName
+  name: FunctionName
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_FunctionName
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionName
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionName
+  nameWithType: ExecutionContext.FunctionName
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionName*
+  name: FunctionName
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_FunctionName_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.FunctionName
+  nameWithType: ExecutionContext.FunctionName
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId
+  name: InvocationId
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_InvocationId
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId
+  nameWithType: ExecutionContext.InvocationId
+- uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId*
+  name: InvocationId
+  href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html#FunctionMonkey_Abstractions_Contexts_ExecutionContext_InvocationId_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId
+  nameWithType: ExecutionContext.InvocationId
 - uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext
   name: ServiceBusContext
   href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html
@@ -962,6 +1020,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextProvider.EventHubContext
   nameWithType: IContextProvider.EventHubContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.ExecutionContext
+  name: ExecutionContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_ExecutionContext
+  commentId: P:FunctionMonkey.Abstractions.IContextProvider.ExecutionContext
+  fullName: FunctionMonkey.Abstractions.IContextProvider.ExecutionContext
+  nameWithType: IContextProvider.ExecutionContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.ExecutionContext*
+  name: ExecutionContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_ExecutionContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextProvider.ExecutionContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextProvider.ExecutionContext
+  nameWithType: IContextProvider.ExecutionContext
 - uid: FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
   name: ServiceBusContext
   href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_ServiceBusContext
@@ -1023,6 +1094,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext
   nameWithType: IContextSetter.SetEventHubContext
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext(System.String,System.String,System.String,Guid)
+  name: SetExecutionContext(String, String, String, Guid)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetExecutionContext_System_String_System_String_System_String_Guid_
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext(System.String,System.String,System.String,Guid)
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext(System.String, System.String, System.String, Guid)
+  nameWithType: IContextSetter.SetExecutionContext(String, String, String, Guid)
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext*
+  name: SetExecutionContext
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetExecutionContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext
+  nameWithType: IContextSetter.SetExecutionContext
 - uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String)
   name: SetServiceBusContext(Int32, DateTime, String)
   href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_System_Int32_DateTime_System_String_
