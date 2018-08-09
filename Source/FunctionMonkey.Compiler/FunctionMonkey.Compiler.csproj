@@ -19,8 +19,12 @@
     <None Remove="node_modules\swagger-ui-dist\README.md" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui-bundle.dodge.js" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui-bundle.dodge.js.map" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-bundle.js" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-bundle.js.map" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.dodge.js" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.dodge.js.map" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js" />
+    <None Remove="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js.map" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.css" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.css.map" />
     <None Remove="node_modules\swagger-ui-dist\swagger-ui.js" />
@@ -58,6 +62,10 @@
     <EmbeddedResource Include="node_modules\swagger-ui-dist\oauth2-redirect.html" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\package.json" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\README.md" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-bundle.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-bundle.js.map" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js" />
+    <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js.map" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css.map" />
     <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js" />

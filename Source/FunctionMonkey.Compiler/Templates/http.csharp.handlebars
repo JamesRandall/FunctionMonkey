@@ -20,7 +20,8 @@ namespace {{Namespace}}
                 {{{httpVerbs}}},
                 Route = null)]
             HttpRequest req,
-            ILogger log)
+            ILogger log,
+            ExecutionContext executionContext)
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");            
             
@@ -102,6 +103,13 @@ namespace {{Namespace}}
                 return CreateResponse(400, validationResult);
             }
             {{/if}}
+
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
             
             var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             {{#if CommandResultType}}

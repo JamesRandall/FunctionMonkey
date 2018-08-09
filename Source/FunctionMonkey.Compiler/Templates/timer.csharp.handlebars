@@ -10,7 +10,8 @@ namespace {{Namespace}}
         [FunctionName("{{Name}}")]
         public static async Task Run(
             [TimerTrigger("{{CronExpression}}")]TimerInfo myTimer,
-            ILogger log)
+            ILogger log,
+            ExecutionContext executionContext)
         {
             log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
             
@@ -31,6 +32,13 @@ namespace {{Namespace}}
                 throw new FunctionMonkey.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
             }
             {{/if}}
+
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
             
             var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             // The result will be useful when we want to include outputs too

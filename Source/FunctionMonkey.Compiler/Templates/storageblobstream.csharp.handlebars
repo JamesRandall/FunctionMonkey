@@ -16,7 +16,8 @@ namespace {{Namespace}}
             string blobTrigger,
             Uri uri,
             IDictionary<string, string> metadata,
-            ILogger log)
+            ILogger log,
+            ExecutionContext executionContext)
         {
             log.LogInformation("Blob stream function {{Name}} processed a request.");
 
@@ -28,6 +29,10 @@ namespace {{Namespace}}
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
             contextSetter.SetBlobContext(blobTrigger, uri, metadata);
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
             
             var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             // The result will be useful when we want to include outputs too

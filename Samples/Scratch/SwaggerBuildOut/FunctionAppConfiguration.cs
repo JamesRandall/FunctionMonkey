@@ -23,11 +23,11 @@ namespace SwaggerBuildOut
                     .UserInterface()
                 )
                 .Functions(functions => functions
-                    /*.HttpRoute("/HelloWorld", route => route
+                    .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", HttpMethod.Get)    
                         .OpenApiDescription("Says hello world")
                     )
-                    .OpenApiDescription("A route description")*/
+                    .OpenApiDescription("A route description")
                     /*.HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")
@@ -35,8 +35,8 @@ namespace SwaggerBuildOut
                     )
                     .OpenApiName("HelloWorld")*/
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
-                    .Storage("StorageConnectionString", storage => storage
-                        .BlobFunction<HelloWorldCommand>("triggertest/{name}"))
+                    //.Storage("StorageConnectionString", storage => storage
+                        //.BlobFunction<HelloWorldCommand>("triggertest/{name}"))
                 );
         }
     }

@@ -17,7 +17,8 @@ namespace {{Namespace}}
             string id,
             string popReceipt,
             int dequeueCount,
-            ILogger log)
+            ILogger log,
+            ExecutionContext executionContext)
         {
             log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
             
@@ -36,6 +37,10 @@ namespace {{Namespace}}
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
             contextSetter.SetStorageQueueContext(expirationTime, insertionTime, nextVisibleTime, queueTrigger, id, popReceipt, dequeueCount);
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
 
             {{#if IsUsingValidator}}
             var validator = (FunctionMonkey.Abstractions.Validation.IValidator)

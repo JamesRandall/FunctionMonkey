@@ -14,7 +14,8 @@ namespace {{Namespace}}
             int deliveryCount,
             DateTime enqueuedTimeUtc,
             string messageId,
-            ILogger log)
+            ILogger log,
+            ExecutionContext executionContext)
         {
             log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
             
@@ -33,6 +34,10 @@ namespace {{Namespace}}
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
             contextSetter.SetServiceBusContext(deliveryCount, enqueuedTimeUtc, messageId);
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
 
             {{#if IsUsingValidator}}
             var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
