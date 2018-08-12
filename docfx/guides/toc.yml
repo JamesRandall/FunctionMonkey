@@ -45,6 +45,8 @@
 
 - name: Cross Cutting Concerns
   items:
+    - name: IoC Containers
+      href: crosscutting/iocContainers.md
     - name: Trigger Contexts
       href: crosscutting/triggercontexts.md
     - name: Validation
