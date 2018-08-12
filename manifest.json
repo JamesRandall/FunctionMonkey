@@ -281,6 +281,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.IContainerProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.IContainerProvider.html",
+          "hash": "XG3bxTUpHOXFHvAvfdbVjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.IContextProvider.yml",
       "output": {
         ".html": {
@@ -369,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "RKUWblfAptFC6ZB82MB07Q=="
+          "hash": "UzHpAAEOv393oC1cLlBOsw=="
         }
       },
       "is_incremental": false,
@@ -525,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Runtime.html",
-          "hash": "dYGBGPuxqbjYdBdy/M1UaA=="
+          "hash": "sM06+8sGoLZTKXHRNxt1ag=="
         }
       },
       "is_incremental": false,
@@ -573,7 +585,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "t6vlIfI0/1nuBpsRJGY9pA=="
+          "hash": "1Yg5ND+C5U9Jim7cYcq0gg=="
         }
       },
       "is_incremental": false,

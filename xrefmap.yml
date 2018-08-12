@@ -988,6 +988,38 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding
   nameWithType: ICommandingConfigurator.AddCommanding
+- uid: FunctionMonkey.Abstractions.IContainerProvider
+  name: IContainerProvider
+  href: api/FunctionMonkey.Abstractions.IContainerProvider.html
+  commentId: T:FunctionMonkey.Abstractions.IContainerProvider
+  fullName: FunctionMonkey.Abstractions.IContainerProvider
+  nameWithType: IContainerProvider
+- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
+  name: CreateServiceCollection()
+  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceCollection
+  commentId: M:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
+  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection()
+  nameWithType: IContainerProvider.CreateServiceCollection()
+- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection*
+  name: CreateServiceCollection
+  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceCollection_
+  commentId: Overload:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
+  nameWithType: IContainerProvider.CreateServiceCollection
+- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider(IServiceCollection)
+  name: CreateServiceProvider(IServiceCollection)
+  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceProvider_IServiceCollection_
+  commentId: M:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider(IServiceCollection)
+  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider(IServiceCollection)
+  nameWithType: IContainerProvider.CreateServiceProvider(IServiceCollection)
+- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider*
+  name: CreateServiceProvider
+  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceProvider_
+  commentId: Overload:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider
+  nameWithType: IContainerProvider.CreateServiceProvider
 - uid: FunctionMonkey.Abstractions.IContextProvider
   name: IContextProvider
   href: api/FunctionMonkey.Abstractions.IContextProvider.html
