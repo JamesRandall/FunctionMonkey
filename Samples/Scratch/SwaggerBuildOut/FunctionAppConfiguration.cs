@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Net.Http;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using Microsoft.Extensions.DependencyInjection;
 using SwaggerBuildOut.Commands;
 using SwaggerBuildOut.Handlers;
 
 namespace SwaggerBuildOut
 {
-    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    public class FunctionAppConfiguration : IFunctionAppConfiguration, IContainerProvider
     {
         public void Build(IFunctionHostBuilder builder)
         {
@@ -38,6 +41,20 @@ namespace SwaggerBuildOut
                     //.Storage("StorageConnectionString", storage => storage
                         //.BlobFunction<HelloWorldCommand>("triggertest/{name}"))
                 );
+        }
+
+        public IServiceCollection CreateServiceCollection()
+        {
+            return new ServiceCollection();
+        }
+
+        public IServiceProvider CreateServiceProvider(IServiceCollection serviceCollection)
+        {
+            ContainerBuilder containerBuilder = new ContainerBuilder();
+            containerBuilder.Populate(serviceCollection);
+            IContainer autofacContainer = containerBuilder.Build();
+            IServiceProvider serviceProvider = new AutofacServiceProvider(autofacContainer);
+            return serviceProvider;
         }
     }
 }

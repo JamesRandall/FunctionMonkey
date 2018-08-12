@@ -30,15 +30,29 @@ namespace FunctionMonkey
 
         static Runtime()
         {
-            ServiceCollection = new ServiceCollection();
+            // Find the configuration implementation and service collection
+            IFunctionAppConfiguration configuration = LocateConfiguration();
+            IContainerProvider containerProvider =
+                // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
+                (configuration as IContainerProvider) ?? new DefaultContainerProvider();
+
+            ServiceCollection = containerProvider.CreateServiceCollection();
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
                 (fromType, toInstance) => ServiceCollection.AddSingleton(fromType, toInstance),
                 (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
                 (resolveType) => ServiceProvider.GetService(resolveType)
             );
 
-            // Find the configuration implementation
-            (IFunctionAppConfiguration configuration, ICommandRegistry commandRegistry) = LocateConfiguration(adapter);
+            ICommandRegistry commandRegistry;
+            // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
+            if (configuration is ICommandingConfigurator commandingConfigurator)
+            {
+                commandRegistry = commandingConfigurator.AddCommanding(adapter);
+            }
+            else
+            {
+                commandRegistry = adapter.AddCommanding();
+            }
 
             // Register internal implementations
             RegisterInternalImplementations();
@@ -51,7 +65,7 @@ namespace FunctionMonkey
 
             RegisterTimerCommandFactories(ServiceCollection, builder.FunctionDefinitions);
             
-            ServiceProvider = ServiceCollection.BuildServiceProvider();
+            ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
         }
 
@@ -68,20 +82,11 @@ namespace FunctionMonkey
             ServiceCollection.AddSingleton(commandClaimsBinder);
         }
 
-        private static (IFunctionAppConfiguration,ICommandRegistry) LocateConfiguration(CommandingDependencyResolverAdapter adapter)
+        private static IFunctionAppConfiguration LocateConfiguration()
         {
-            ICommandRegistry commandRegistry;
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration();
-            if (configuration is ICommandingConfigurator commandingConfigurator)
-            {
-                commandRegistry = commandingConfigurator.AddCommanding(adapter);
-            }
-            else
-            {
-                commandRegistry = adapter.AddCommanding();
-            }
-
-            return (configuration,commandRegistry);
+            
+            return configuration;
         }
 
         private static FunctionHostBuilder CreateBuilderFromConfiguration(ICommandRegistry commandRegistry,

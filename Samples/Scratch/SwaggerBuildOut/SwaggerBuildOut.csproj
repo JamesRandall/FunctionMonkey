@@ -10,6 +10,8 @@
     <EmbeddedResource Include="Swagger\index.html" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="8.1.1" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
   </ItemGroup>
