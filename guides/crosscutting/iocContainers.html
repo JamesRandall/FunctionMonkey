@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Trigger Contexts </title>
+    <title>IoC Containers </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Trigger Contexts ">
+    <meta name="title" content="IoC Containers ">
     <meta name="generator" content="docfx 2.37.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -67,40 +67,61 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="trigger-contexts">Trigger Contexts</h1>
+<h1 id="ioc-containers">IoC Containers</h1>
 
-<p>In addition to the input payload Azure Functions also have access to other contextual information depending on their trigger type - for example Azure Storage Queue triggers have access to the expiration date of the message, the dequeue count, and more.</p>
-<p>Function Monkey makes these available to command handlers via the injectable <em>IContextProvider</em> interface.</p>
-<p>The ExecutionContext property is available for all trigger types and exposes the WebJobs.ExecutionContext information: for example the (very useful!) invocation ID.</p>
-<p>Depending on the trigger type the following other context properties are also available:</p>
-<table>
-<thead>
-<tr>
-<th>Context</th>
-<th>Availability</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ServiceBusContext</td>
-<td>Available for service bus queue and topic / subscription functions</td>
-</tr>
-<tr>
-<td>StorageQueueContext</td>
-<td>Available for Azure Storage queue functions</td>
-</tr>
-<tr>
-<td>BlobContext</td>
-<td>Available for Azure Storage blob trigger functions</td>
-</tr>
-<tr>
-<td>EventHubContext</td>
-<td>Available for Azure Event Hub trigger functions</td>
-</tr>
-</tbody>
-</table>
-<p>Note that one of the advantages of the mediator pattern that underpins Function Monkey is the clean separation of concerns including application logic from host / protocol but by making use of these contexts that decouplign is weakened. An alternative approach can be to handle these things in a decorated mediator.</p>
-<p>For further details see the <a href="https://functionmonkey.azurefromthetrenches.com/api/FunctionMonkey.Abstractions.Contexts.html">API Guide</a>.</p>
+<p>By default Function Monkey makes use of the Microsoft ASP.Net Core container as represented by the IServiceCollection and IServiceProvider interfaces. It is possible to use a different IoC container as long as it supports these abstractions - essentially if its compatible with ASP.Net Core.</p>
+<p>To use a different container your function app configuration class also needs to implement the <em>IContainerProvider</em> interface. I&#39;ll demonstrate how this works using the <em>FunctionAppConfiguration</em> class presented in the getting started guide:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
+            })
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                    .HttpFunction&lt;HelloWorldCommand&gt;()
+                )
+            );
+    }
+}
+</code></pre><p>Lets assume we want to use Autofac instead of the Microsoft implementation. First we need to add the required Autofac packages to our project:</p>
+<pre><code>Install-Package Autofac
+Install-Package Autofac.Extensions.DependencyInjection
+</code></pre><p>Then we update our FunctionAppConfiguration class to also implement the <em>IContainerProvider</em> interface has shown below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration, IContainerProvider
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
+            })
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                    .HttpFunction&lt;HelloWorldCommand&gt;()
+                )
+            );
+    }
+
+    public IServiceCollection CreateServiceCollection()
+    {
+        return new ServiceCollection();
+    }
+
+    public IServiceProvider CreateServiceProvider(IServiceCollection serviceCollection)
+    {
+        ContainerBuilder containerBuilder = new ContainerBuilder();
+        containerBuilder.Populate(serviceCollection);
+        IContainer autofacContainer = containerBuilder.Build();
+        IServiceProvider serviceProvider = new AutofacServiceProvider(autofacContainer);
+        return serviceProvider;
+    }
+}
+</code></pre><p>Note that if you want to take advantage of container capabilities that are not represented in the Microsoft abstractions then you can register things here in addition to Setup.</p>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -110,7 +131,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/crosscutting/triggercontexts.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/crosscutting/iocContainers.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
