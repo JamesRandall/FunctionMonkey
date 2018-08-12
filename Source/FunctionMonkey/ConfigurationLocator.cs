@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using FunctionMonkey.Abstractions;
 
 namespace FunctionMonkey
@@ -74,14 +75,34 @@ namespace FunctionMonkey
 
         public static IFunctionAppConfiguration FindConfiguration(Assembly assembly)
         {
-            Type interfaceType = typeof(IFunctionAppConfiguration);
-            Type foundType = assembly.GetTypes().FirstOrDefault(x => interfaceType.IsAssignableFrom(x) && x.IsClass);
-            if (foundType != null)
+            try
             {
-                return (IFunctionAppConfiguration)Activator.CreateInstance(foundType);
-            }
+                Type interfaceType = typeof(IFunctionAppConfiguration);
+                Type foundType = assembly.GetTypes().FirstOrDefault(x => interfaceType.IsAssignableFrom(x) && x.IsClass);
+                if (foundType != null)
+                {
+                    return (IFunctionAppConfiguration)Activator.CreateInstance(foundType);
+                }
 
-            return null;
+                return null;
+            }
+            catch (ReflectionTypeLoadException rex)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Unable to load types:");
+                foreach (Type loaderType in rex.Types)
+                {
+                    sb.AppendLine($"    {loaderType.FullName}");
+                }
+
+                sb.AppendLine("With errors:");
+                foreach (var loaderException in rex.LoaderExceptions)
+                {
+                    sb.AppendLine($"    {loaderException.GetType().Name}: {loaderException.Message}");
+                }
+                throw new TypeLoadingException(sb.ToString());
+            }
+            
         }
     }
 }
