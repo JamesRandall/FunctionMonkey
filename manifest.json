@@ -533,11 +533,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.TypeLoadingException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.TypeLoadingException.html",
+          "hash": "9aT9i0mZw2K/BvmzrE0zVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.yml",
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.html",
-          "hash": "f6//+l4Mz8n0SRAguQ8afg=="
+          "hash": "9p6o9LyEWIbNtH2kPr5BVQ=="
         }
       },
       "is_incremental": false,
@@ -561,7 +573,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "qB5UQqG25iDKTzAinlgFkg=="
+          "hash": "t6vlIfI0/1nuBpsRJGY9pA=="
         }
       },
       "is_incremental": false,

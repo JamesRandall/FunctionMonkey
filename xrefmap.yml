@@ -1594,3 +1594,22 @@ references:
   commentId: F:FunctionMonkey.Runtime.ServiceProvider
   fullName: FunctionMonkey.Runtime.ServiceProvider
   nameWithType: Runtime.ServiceProvider
+- uid: FunctionMonkey.TypeLoadingException
+  name: TypeLoadingException
+  href: api/FunctionMonkey.TypeLoadingException.html
+  commentId: T:FunctionMonkey.TypeLoadingException
+  fullName: FunctionMonkey.TypeLoadingException
+  nameWithType: TypeLoadingException
+- uid: FunctionMonkey.TypeLoadingException.#ctor(System.String)
+  name: TypeLoadingException(String)
+  href: api/FunctionMonkey.TypeLoadingException.html#FunctionMonkey_TypeLoadingException__ctor_System_String_
+  commentId: M:FunctionMonkey.TypeLoadingException.#ctor(System.String)
+  fullName: FunctionMonkey.TypeLoadingException.TypeLoadingException(System.String)
+  nameWithType: TypeLoadingException.TypeLoadingException(String)
+- uid: FunctionMonkey.TypeLoadingException.#ctor*
+  name: TypeLoadingException
+  href: api/FunctionMonkey.TypeLoadingException.html#FunctionMonkey_TypeLoadingException__ctor_
+  commentId: Overload:FunctionMonkey.TypeLoadingException.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.TypeLoadingException.TypeLoadingException
+  nameWithType: TypeLoadingException.TypeLoadingException
