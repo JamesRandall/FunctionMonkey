@@ -8,7 +8,7 @@
     <title>Authorization </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Authorization ">
-    <meta name="generator" content="docfx 2.37.2.0">
+    <meta name="generator" content="docfx 2.38.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -70,7 +70,9 @@
 <h1 id="authorization">Authorization</h1>
 
 <p>Function Monkey supports the standard authorization types of Azure Functions and adds support for token validation through the Authorization header - typically for use with OpenID Connect and an access token. If you&#39;re using token validation then you need to register a class that is able to verify the token and populate a ClaimsPrincipal.</p>
-<p>The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:</p>
+<p>This functionality is comprised of two discrete parts - token validation and claims authorization.</p>
+<h2 id="token-validation">Token Validation</h2>
+<p>Token Validation validates a bearer token and returns a populated ClaimsPrincipal object. The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
     public void Build(IFunctionHostBuilder builder)
@@ -157,6 +159,40 @@
         }
 
         return result;
+    }
+}
+</code></pre><h2 id="claims-authorization">Claims Authorization</h2>
+<p>Claims Authorization inspects the ClaimsPrincipal object and determines if the user is authorized to access a given route. Authorizers must implement the <em>IClaimsPrincipalAuthorization</em> interface and can be specified as a default (in the Authorization builder), at the route, or at the function level.</p>
+<p>An example authorizer is shown below:</p>
+<pre><code>public class AllowClaimsAuthorization : IClaimsPrincipalAuthorization
+{
+    public Task&lt;bool&gt; IsAuthorized(ClaimsPrincipal claimsPrincipal, string httpVerb, string url)
+    {
+        return Task.FromResult(true);
+    }
+}
+</code></pre><p>Authorizers should return true if the principal has access to the resource, false it not.</p>
+<p>And it is shown specified at the route level in the below Function App configuration block:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
+            })
+            .Authorization(authorization =&gt; authorization
+                .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                .TokenValidator&lt;BearerTokenValidator&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .HttpRoute&lt;AllowClaimsAuthorization&gt;(&quot;/Invoice&quot;, route =&gt; route
+                    .HttpFunction&lt;InvoiceQuery&gt;()
+                )
+                .HttpRoute(&quot;/Version&quot;, route =&gt; route
+                    .HttpFunction&lt;VersionQuery&gt;(AuthorizationTypeEnum.Anonymous))
+            );
     }
 }
 </code></pre><div id="disqus_thread"></div>

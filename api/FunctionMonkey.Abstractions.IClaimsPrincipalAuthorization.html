@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IFunctionAppConfiguration
+    <title>Interface IClaimsPrincipalAuthorization
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IFunctionAppConfiguration
+    <meta name="title" content="Interface IClaimsPrincipalAuthorization
    ">
     <meta name="generator" content="docfx 2.38.0.0">
     
@@ -68,37 +68,37 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.IFunctionAppConfiguration">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization">
   
   
-  <h1 id="FunctionMonkey_Abstractions_IFunctionAppConfiguration" data-uid="FunctionMonkey.Abstractions.IFunctionAppConfiguration" class="text-break">Interface IFunctionAppConfiguration
+  <h1 id="FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization" data-uid="FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization" class="text-break">Interface IClaimsPrincipalAuthorization
   </h1>
-  <div class="markdown level0 summary"><p>Must be implemented by a class in the Function app to configure the Azure Functions and the runtime</p>
+  <div class="markdown level0 summary"><p>Can be implemented to provide authorization based on a claims principal, a verb and a url</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.html">FunctionMonkey.Abstractions</a></h6>
   <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
-  <h5 id="FunctionMonkey_Abstractions_IFunctionAppConfiguration_syntax">Syntax</h5>
+  <h5 id="FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IFunctionAppConfiguration</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_IFunctionAppConfiguration_Build_FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization_IsAuthorized_ClaimsPrincipal_System_String_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized(ClaimsPrincipal%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/IFunctionAppConfiguration.cs/#L13">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/IClaimsPrincipalAuthorization.cs/#L18">View Source</a>
   </span>
-  <a id="FunctionMonkey_Abstractions_IFunctionAppConfiguration_Build_" data-uid="FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build*"></a>
-  <h4 id="FunctionMonkey_Abstractions_IFunctionAppConfiguration_Build_FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_" data-uid="FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)">Build(IFunctionHostBuilder)</h4>
-  <div class="markdown level1 summary"><p>Will be called by the compiler and runtime to configure the functions. Use the builder to create as appropriate.</p>
+  <a id="FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization_IsAuthorized_" data-uid="FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized*"></a>
+  <h4 id="FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization_IsAuthorized_ClaimsPrincipal_System_String_System_String_" data-uid="FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized(ClaimsPrincipal,System.String,System.String)">IsAuthorized(ClaimsPrincipal, String, String)</h4>
+  <div class="markdown level1 summary"><p>Should return true if the principal is authorized to access the resource, false if not</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Build(IFunctionHostBuilder builder)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; IsAuthorized(ClaimsPrincipal claimsPrincipal, string httpVerb, string requestUrl)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -111,8 +111,36 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html">IFunctionHostBuilder</a></td>
-        <td><span class="parametername">builder</span></td>
+        <td><span class="xref">ClaimsPrincipal</span></td>
+        <td><span class="parametername">claimsPrincipal</span></td>
+        <td><p>The claims principal</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">httpVerb</span></td>
+        <td><p>The verb used to access the request</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">requestUrl</span></td>
+        <td><p>The request URL</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -126,10 +154,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_IFunctionAppConfiguration.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.IFunctionAppConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/IFunctionAppConfiguration.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/IClaimsPrincipalAuthorization.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

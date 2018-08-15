@@ -78,6 +78,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims
   nameWithType: IAuthorizationBuilder.Claims
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault*
+  name: ClaimsPrincipalAuthorizationDefault
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_ClaimsPrincipalAuthorizationDefault_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault
+  nameWithType: IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault``1
+  name: ClaimsPrincipalAuthorizationDefault<TAuthorizationType>()
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_ClaimsPrincipalAuthorizationDefault__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault``1
+  name.vb: ClaimsPrincipalAuthorizationDefault(Of TAuthorizationType)()
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault<TAuthorizationType>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault(Of TAuthorizationType)()
+  nameWithType: IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault<TAuthorizationType>()
+  nameWithType.vb: IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault(Of TAuthorizationType)()
 - uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator*
   name: TokenValidator
   href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_TokenValidator_
@@ -173,6 +189,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute
   nameWithType: IFunctionBuilder.HttpRoute
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute``1(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute<TAuthorizationType>(String, Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute__1_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute``1(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(Of TAuthorizationType)(String, Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute<TAuthorizationType>(System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(Of TAuthorizationType)(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: IFunctionBuilder.HttpRoute<TAuthorizationType>(String, Action<IHttpFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.HttpRoute(Of TAuthorizationType)(String, Action(Of IHttpFunctionBuilder))
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String,Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})
   name: ServiceBus(String, Action<IServiceBusFunctionBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_System_String_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__
@@ -400,6 +425,60 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(System.String, HttpMethod())
   nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(String, HttpMethod[])
   nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(String, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2
+  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2
+  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)()
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>()
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum)
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum, HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(HttpMethod[])
+  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(HttpMethod[])
+  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, AuthorizationTypeEnum, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
+  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, AuthorizationTypeEnum, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(System.String, FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(System.String, FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, AuthorizationTypeEnum, HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, AuthorizationTypeEnum, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,HttpMethod[])
+  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,HttpMethod[])
+  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(System.String, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(System.String, HttpMethod())
+  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, HttpMethod[])
+  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, HttpMethod())
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
   name: IHttpFunctionBuilderMetadataBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html
@@ -928,6 +1007,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
   nameWithType: StorageQueueContext.QueueTrigger
+- uid: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization
+  name: IClaimsPrincipalAuthorization
+  href: api/FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.html
+  commentId: T:FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization
+  fullName: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization
+  nameWithType: IClaimsPrincipalAuthorization
+- uid: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized(ClaimsPrincipal,System.String,System.String)
+  name: IsAuthorized(ClaimsPrincipal, String, String)
+  href: api/FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.html#FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization_IsAuthorized_ClaimsPrincipal_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized(ClaimsPrincipal,System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized(ClaimsPrincipal, System.String, System.String)
+  nameWithType: IClaimsPrincipalAuthorization.IsAuthorized(ClaimsPrincipal, String, String)
+- uid: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized*
+  name: IsAuthorized
+  href: api/FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.html#FunctionMonkey_Abstractions_IClaimsPrincipalAuthorization_IsAuthorized_
+  commentId: Overload:FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.IsAuthorized
+  nameWithType: IClaimsPrincipalAuthorization.IsAuthorized
 - uid: FunctionMonkey.Abstractions.ICommandClaimsBinder
   name: ICommandClaimsBinder
   href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html
