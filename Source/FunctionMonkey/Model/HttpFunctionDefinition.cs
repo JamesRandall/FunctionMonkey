@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Extensions;
 
 namespace FunctionMonkey.Model
 {
@@ -36,5 +37,11 @@ namespace FunctionMonkey.Model
         public string TokenHeader { get; set; }
 
         public bool IsValidationResult { get; set; }
+
+        public bool AuthorizesClaims => !string.IsNullOrWhiteSpace(ClaimsPrincipalAuthorizationTypeName);
+
+        public Type ClaimsPrincipalAuthorizationType { get; set; }
+
+        public string ClaimsPrincipalAuthorizationTypeName => ClaimsPrincipalAuthorizationType?.EvaluateType();
     }
 }

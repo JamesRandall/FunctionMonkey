@@ -40,6 +40,11 @@ namespace FunctionMonkey.Infrastructure
                         httpFunctionDefinition.Verbs.Add(HttpMethod.Get);
                     }
 
+                    if (string.IsNullOrWhiteSpace(httpFunctionDefinition.ClaimsPrincipalAuthorizationTypeName))
+                    {
+                        httpFunctionDefinition.ClaimsPrincipalAuthorizationType = authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
+                    }
+
                     httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
 
                     httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null && validationResultType.IsAssignableFrom(httpFunctionDefinition.CommandResultType);

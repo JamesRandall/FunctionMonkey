@@ -1,6 +1,7 @@
 ﻿using System;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Extensions;
 
 namespace FunctionMonkey.Builders
 {
@@ -11,6 +12,8 @@ namespace FunctionMonkey.Builders
         public Type TokenValidatorType { get; set; }
 
         public string AuthorizationHeader { get; set; }
+
+        public Type DefaultClaimsPrincipalAuthorizationType { get; set; }
 
         public AuthorizationTypeEnum AuthorizationDefaultValue { get; set; } = AuthorizationTypeEnum.Function;
 
@@ -30,6 +33,12 @@ namespace FunctionMonkey.Builders
         public IAuthorizationBuilder Claims(Action<IClaimsMappingBuilder> mapping)
         {
             mapping(ClaimsMappingBuilder);
+            return this;
+        }
+
+        public IAuthorizationBuilder ClaimsPrincipalAuthorizationDefault<TAuthorizationType>() where TAuthorizationType : IClaimsPrincipalAuthorization
+        {
+            DefaultClaimsPrincipalAuthorizationType = typeof(TAuthorizationType);
             return this;
         }
     }

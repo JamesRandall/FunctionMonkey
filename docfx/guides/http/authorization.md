@@ -2,7 +2,11 @@
 
 Function Monkey supports the standard authorization types of Azure Functions and adds support for token validation through the Authorization header - typically for use with OpenID Connect and an access token. If you're using token validation then you need to register a class that is able to verify the token and populate a ClaimsPrincipal.
 
-The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:
+This functionality is comprised of two discrete parts - token validation and claims authorization.
+
+## Token Validation
+
+Token Validation validates a bearer token and returns a populated ClaimsPrincipal object. The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:
 
     public class FunctionAppConfiguration : IFunctionAppConfiguration
     {
@@ -95,3 +99,44 @@ Validators should implement the _ITokenValidator_ interface as shown in the exam
         }
     }
 
+
+## Claims Authorization
+
+Claims Authorization inspects the ClaimsPrincipal object and determines if the user is authorized to access a given route. Authorizers must implement the _IClaimsPrincipalAuthorization_ interface and can be specified as a default (in the Authorization builder), at the route, or at the function level.
+
+An example authorizer is shown below:
+
+    public class AllowClaimsAuthorization : IClaimsPrincipalAuthorization
+    {
+        public Task<bool> IsAuthorized(ClaimsPrincipal claimsPrincipal, string httpVerb, string url)
+        {
+            return Task.FromResult(true);
+        }
+    }
+
+Authorizers should return true if the principal has access to the resource, false it not.
+
+And it is shown specified at the route level in the below Function App configuration block:
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Setup((serviceCollection, commandRegistry) =>
+                {
+                    commandRegistry.Register<InvoiceQueryHandler>();
+                })
+                .Authorization(authorization => authorization
+                    .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                    .TokenValidator<BearerTokenValidator>()
+                )
+                .Functions(functions => functions
+                    .HttpRoute<AllowClaimsAuthorization>("/Invoice", route => route
+                        .HttpFunction<InvoiceQuery>()
+                    )
+                    .HttpRoute("/Version", route => route
+                        .HttpFunction<VersionQuery>(AuthorizationTypeEnum.Anonymous))
+                );
+        }
+    }

@@ -24,7 +24,7 @@ namespace {{Namespace}}
             ExecutionContext executionContext)
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");            
-            
+            System.Security.Claims.ClaimsPrincipal principal = null;
             // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
             // there are any issues
             {{#if ValidatesToken}}
@@ -39,8 +39,19 @@ namespace {{Namespace}}
             }
             var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ITokenValidator));
-            System.Security.Claims.ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
+            principal = await tokenValidator.ValidateAsync(authorizationHeader);
             if (principal == null)
+            {
+                return new UnauthorizedResult();
+            }            
+            {{/if}}
+
+            {{#if AuthorizesClaims}}
+            string requestUrl = GetRequestUrl(req);
+            var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
+            var claimsPrincipalAuthorizationResult = await claimsPrincipalAuthorization.IsAuthorized(principal, req.Method, requestUrl);
+            if (!claimsPrincipalAuthorizationResult)
             {
                 return new UnauthorizedResult();
             }
@@ -134,6 +145,15 @@ namespace {{Namespace}}
             result.ContentType = "application/json";
             result.StatusCode = code;
             return result;
+        }
+
+        private static string GetRequestUrl(HttpRequest request)
+        {
+          string str1 = request.Host.Value;
+          string str2 = request.PathBase.Value;
+          string str3 = request.Path.Value;
+          string str4 = request.QueryString.Value;
+          return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
     }    
 }

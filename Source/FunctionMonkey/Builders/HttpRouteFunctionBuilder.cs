@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
@@ -22,6 +21,11 @@ namespace FunctionMonkey.Builders
         public IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder)
         {
             return _decoratedBuilder.HttpRoute(routePrefix, httpFunctionBuilder);
+        }
+
+        public IHttpRouteFunctionBuilder HttpRoute<TAuthorizationType>(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder) where TAuthorizationType : IClaimsPrincipalAuthorization
+        {
+            return _decoratedBuilder.HttpRoute<TAuthorizationType>(routePrefix, httpFunctionBuilder);
         }
 
         public IFunctionBuilder ServiceBus(string connectionName, Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder)

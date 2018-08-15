@@ -52,5 +52,13 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="claimsMappingBuilder">An action that is given a claims mapping builder</param>
         /// <returns></returns>
         IAuthorizationBuilder Claims(Action<IClaimsMappingBuilder> claimsMappingBuilder);
+
+        /// <summary>
+        /// Set a default claims principal authorization type for all HTTP routes
+        /// </summary>
+        /// <typeparam name="TAuthorizationType">The authorizer - must implement IClaimsPrincipalAuthorization</typeparam>
+        /// <returns></returns>
+        IAuthorizationBuilder ClaimsPrincipalAuthorizationDefault<TAuthorizationType>()
+            where TAuthorizationType : IClaimsPrincipalAuthorization;
     }
 }

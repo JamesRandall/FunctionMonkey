@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Model;
 
@@ -47,6 +48,40 @@ namespace FunctionMonkey.Builders
             params HttpMethod[] method) where TCommand : ICommand
         {
             return _httpFunctionBuilder.HttpFunction<TCommand>(route, authorizationType, method);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>() where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>();
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>(
+            AuthorizationTypeEnum authorizationType) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(authorizationType);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>(
+            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(authorizationType, method);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>(params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(method);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route,
+            params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(route, method);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route,
+            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(route, authorizationType, method);
         }
 
         public IHttpFunctionBuilderMetadataBuilder OpenApiDescription(string description)

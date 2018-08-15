@@ -64,9 +64,31 @@ namespace FunctionMonkey
             SetupAuthorization(builder, functionBuilder);
 
             RegisterTimerCommandFactories(ServiceCollection, builder.FunctionDefinitions);
+
+            RegisterClaimAuthorizers(ServiceCollection, builder.FunctionDefinitions);
             
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
-            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);            
+        }
+
+        private static void RegisterClaimAuthorizers(IServiceCollection serviceCollection, IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
+        {
+            HashSet<Type> types = new HashSet<Type>();
+            foreach (AbstractFunctionDefinition abstractFunctionDefinition in builderFunctionDefinitions)
+            {
+                if (abstractFunctionDefinition is HttpFunctionDefinition httpFunctionDefinition)
+                {
+                    if (httpFunctionDefinition.ClaimsPrincipalAuthorizationType != null)
+                    {
+                        types.Add(httpFunctionDefinition.ClaimsPrincipalAuthorizationType);
+                    }
+                }
+            }
+
+            foreach (Type claimsPrincipalAuthorizationType in types)
+            {
+                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+            }
         }
 
         private static void SetupAuthorization(FunctionHostBuilder builder, FunctionBuilder functionBuilder)

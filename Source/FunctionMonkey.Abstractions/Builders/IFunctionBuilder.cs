@@ -13,7 +13,15 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="routePrefix">The route - e.g. /api/v1/invoice</param>
         /// <param name="httpFunctionBuilder">The builder function for creating functions under this route</param>
         /// <returns>The function builder for a fluent API, additionally contains options for configuring the route with OpenAPI info</returns>
-        IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder);        
+        IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder);
+
+        /// <summary>
+        /// Create a route for one or more HTTP triggered functions
+        /// </summary>
+        /// <param name="routePrefix">The route - e.g. /api/v1/invoice</param>
+        /// <param name="httpFunctionBuilder">The builder function for creating functions under this route</param>
+        /// <returns>The function builder for a fluent API, additionally contains options for configuring the route with OpenAPI info</returns>
+        IHttpRouteFunctionBuilder HttpRoute<TAuthorizationType>(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder) where TAuthorizationType : IClaimsPrincipalAuthorization;
 
         /// <summary>
         /// Allows Service Bus functions to be configured based on a connection name

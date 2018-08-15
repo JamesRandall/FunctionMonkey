@@ -14,6 +14,7 @@ namespace SwaggerBuildOut
     {
         public void Build(IFunctionHostBuilder builder)
         {
+            
             builder
                 .Setup((serviceCollection, commandRegistry) =>
                 {
@@ -25,6 +26,7 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
+                .OutputAuthoredSource(@"d:\wip\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", HttpMethod.Get)    
@@ -40,7 +42,7 @@ namespace SwaggerBuildOut
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
                     //.Storage("StorageConnectionString", storage => storage
                         //.BlobFunction<HelloWorldCommand>("triggertest/{name}"))
-                );
+                );            
         }
 
         public IServiceCollection CreateServiceCollection()

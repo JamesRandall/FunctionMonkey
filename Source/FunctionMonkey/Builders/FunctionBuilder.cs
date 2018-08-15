@@ -18,13 +18,29 @@ namespace FunctionMonkey.Builders
             string rootedRoutePrefix = routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);
             HttpRouteConfiguration routeConfiguration = new HttpRouteConfiguration()
             {
+                ClaimsPrincipalAuthorizationType = null,
                 Route = rootedRoutePrefix,
             };
             HttpFunctionBuilder builder = new HttpFunctionBuilder(routeConfiguration, _definitions);
             httpFunctionBuilder(builder);
 
             return new HttpRouteFunctionBuilder(this, routeConfiguration);
-        }        
+        }
+
+        public IHttpRouteFunctionBuilder HttpRoute<TAuthorizationType>(string routePrefix,
+            Action<IHttpFunctionBuilder> httpFunctionBuilder) where TAuthorizationType : IClaimsPrincipalAuthorization
+        {
+            string rootedRoutePrefix = routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);
+            HttpRouteConfiguration routeConfiguration = new HttpRouteConfiguration()
+            {
+                ClaimsPrincipalAuthorizationType = typeof(TAuthorizationType),
+                Route = rootedRoutePrefix,
+            };
+            HttpFunctionBuilder builder = new HttpFunctionBuilder(routeConfiguration, _definitions);
+            httpFunctionBuilder(builder);
+
+            return new HttpRouteFunctionBuilder(this, routeConfiguration);
+        }
 
         public IFunctionBuilder ServiceBus(string connectionName, Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder)
         {
