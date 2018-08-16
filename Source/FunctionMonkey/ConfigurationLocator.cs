@@ -89,17 +89,29 @@ namespace FunctionMonkey
             catch (ReflectionTypeLoadException rex)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Unable to load types:");
-                foreach (Type loaderType in rex.Types)
+                sb.AppendLine($"ReflectionTypeLoadException: {rex.Message}");
+                if (rex.Types != null)
                 {
-                    sb.AppendLine($"    {loaderType.FullName}");
+                    sb.AppendLine("Unable to load types:");
+                    foreach (Type loaderType in rex.Types)
+                    {
+                        sb.AppendLine(loaderType != null
+                            ? $"    {loaderType.FullName}"
+                            : "    null type in ReflectionTypeLoadException");
+                    }
                 }
 
-                sb.AppendLine("With errors:");
-                foreach (var loaderException in rex.LoaderExceptions)
+                if (rex.LoaderExceptions != null)
                 {
-                    sb.AppendLine($"    {loaderException.GetType().Name}: {loaderException.Message}");
+                    sb.AppendLine("With errors:");
+                    foreach (var loaderException in rex.LoaderExceptions)
+                    {
+                        sb.AppendLine(loaderException != null
+                            ? $"    {loaderException.GetType().Name}: {loaderException.Message}"
+                            : "    null LoadedException in ReflectionTypeLoadException");
+                    }
                 }
+                
                 throw new TypeLoadingException(sb.ToString());
             }
             
