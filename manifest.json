@@ -617,6 +617,30 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/contributing/compiling.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/contributing/compiling.html",
+          "hash": "4EWyTBoyvi2+G31HumBjNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/contributing/debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/contributing/debugging.html",
+          "hash": "mfpz7nCsOWPXWu2oq1szig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/crosscutting/iocContainers.md",
       "output": {
         ".html": {
@@ -864,7 +888,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/toc.html",
-          "hash": "ZMWibvKrB3W/wTh9svFLfA=="
+          "hash": "vmff7cLwtQ2/qVxa2DE+8A=="
         }
       },
       "is_incremental": false,
@@ -950,17 +974,17 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "TocDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ResourceDocumentProcessor": {

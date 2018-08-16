@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Debugging Function Monkey </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Debugging Function Monkey ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="debugging-function-monkey">Debugging Function Monkey</h1>
+
+<p>Due to how the .NET Core compilation process and Azure Functions work (there aren&#39;t the same kind of startup hooks as there are in ASP.Net) Function Monkey can be a little untuitive to debug as it uses Roslyn to compile an assembly and the appropriate metadata after the target project (the one containing the <em>IFunctionAppConfiguration</em> implementation) has been compiled. This works absolutely fine in normal usage scenarios where it is invoked through an MSBuild task but is a little more awkward when you are in a develop / test / debug chain as the .NET Core compiler has a habit of removing the compiled assembly.</p>
+<h2 id="full-end-to-end-debugging">Full End to End Debugging</h2>
+<p>The workflow outlined below will enable you to debug the full end to end process based on using Visual Studio:</p>
+<ol>
+<li><p>Create a new empty Azure Functions project inside the Function Monkey solution and configure Functions as required or use one of the existing projects inside the &quot;Scratch&quot; folder. Rather than use the NuGet packages and reference the following assemblies:</p>
+<pre><code>FunctionMonkey
+FunctionMonkey.Abstractions
+FunctionMonkey.Commanding.Abstractions
+FunctionMonkey.FluentValidation (optional)
+</code></pre><p>Also add these NuGet packages:</p>
+<pre><code>AzureFromTheTrenches.Commanding
+</code></pre></li>
+<li><p>Build the project but then open the Configuration Manager and untick the &quot;Build&quot; checkbox for the project. This will prevent it from being built when it is run and prevent the removal of the assembly I mentioned earlier.</p>
+</li>
+<li><p>Next we need to instruct the compiler to compile functions for our new project. Open the properties for the FunctionMonkey.Compiler project and go to the Debug tab. Ensure Launch is set to Project and then set the Application Arguments to be the path to the path to the DLL with the same name as the project you set up earlier. For example if that is called MyFunctionApp and located at c:\wip\functionMonkey\scratch\MyFunctionApp then you will need to enter:</p>
+<p> c:\wip\functionMonkey\scratch\MyFunctionApp\bin\Debug\netstandard2.0\bin\MyFunctionApp.dll</p>
+</li>
+<li><p>Now run the FunctionMonkey.Compiler project. Any errors will appear in the output and you can insert breakpoints etc. in the compiler code.</p>
+</li>
+<li><p>To test the function app simply run it.</p>
+</li>
+<li><p>Finally: you need to be very careful with your workflow when you edit your sample project otherwise you can get very strange results (FunctionMonkey won&#39;t be compiling what you think it is). Make sure you a) explicitly build the sample project b) run the function monkey compiler again c) run the sample project.</p>
+</li>
+</ol>
+<h2 id="inspecting-the-compiled-source">Inspecting the Compiled Source</h2>
+<p>Obviously you can use a tool like <a href="https://www.jetbrains.com/decompiler/">dotPeek</a> to decompile the output assembly alternatively you can use the <em>OutputAuthoredSource</em> method on the Function Monkey builder. For example:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
+            })
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                    .HttpFunction&lt;InvoiceQuery&gt;()
+                )
+            )
+            .OutputAuthoredSource(@&quot;c:\wip\outputFolder&quot;);
+    }
+}
+</code></pre><p>This will output the source as .cs files to the specified folder.</p>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/contributing/debugging.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>
