@@ -54,4 +54,9 @@
     - name: Suggested Solution Structure
       href: crosscutting/solutionstructure.md
 
-      
+- name: Contributing
+  items:
+    - name: Compiling
+      href: contributing/compiling.md
+    - name: Debugging
+      href: contributing/debugging.md
