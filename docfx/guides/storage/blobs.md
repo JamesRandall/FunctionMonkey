@@ -12,6 +12,10 @@ First begin by creating an empty Azure Functions v2 project and then install the
     Install-Package FunctionMonkey -pre
     Install-Package FunctionMonkey.Compiler -pre
 
+You will also need the extension package for the storage triggers (at the time of writing this is 3.0.0-beta8):
+
+    Install-Package Microsoft.Azure.WebJobs.Extensions.Storage -pre
+
 Now create a folder in the solution called commands and create a class called HelloWorldCommand:
 
     public class HelloWorldCommand : ICommand

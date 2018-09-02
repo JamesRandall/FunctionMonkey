@@ -210,6 +210,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(IServiceProvider).GetTypeInfo().Assembly.Location,
                 typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
+                typeof(ExecutionContext).GetTypeInfo().Assembly.Location
             };
             foreach (Assembly externalAssembly in externalAssemblies)
             {

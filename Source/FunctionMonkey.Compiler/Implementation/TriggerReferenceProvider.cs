@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using FunctionMonkey.Model;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions;
 
 namespace FunctionMonkey.Compiler.Implementation
 {

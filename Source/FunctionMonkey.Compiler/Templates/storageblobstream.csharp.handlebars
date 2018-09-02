@@ -19,7 +19,7 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Blob stream function {{Name}} processed a request.");
+            log.LogInformation("Storage blob stream function {{Name}} processed a request.");
 
             {{CommandTypeName}} command = new {{CommandTypeName}} {
                 Stream = stream,

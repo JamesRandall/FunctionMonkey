@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="FunctionMonkey" Version="0.6.6-beta000" />
     <PackageReference Include="FunctionMonkey.Compiler" Version="0.7.0-beta000" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.19" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

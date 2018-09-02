@@ -13,7 +13,7 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
+            log.LogInformation("Timer trigger function {{Name}} processed a request.");
             
             {{#if TimerCommandFactoryTypeName}}
             var commandFactory = (FunctionMonkey.Abstractions.ITimerCommandFactory<{{CommandTypeName}}>)

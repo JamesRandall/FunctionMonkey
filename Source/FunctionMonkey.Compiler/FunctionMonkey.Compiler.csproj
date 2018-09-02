@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>    
-    <Version>0.12.1-beta000</Version>
+    <Version>0.13.2-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
   </PropertyGroup>
@@ -99,10 +99,12 @@
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="8.1.1" />
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.1" />
     <PackageReference Include="Handlebars.Net" Version="1.9.5" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.0-beta7" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.0-beta8" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.1-beta2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.0-beta5" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.0-beta5" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" Version="3.0.0-beta5" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.0-beta8" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.0-beta8" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" Version="3.0.0-beta8" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.8.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.1.0-preview.3" />
@@ -130,8 +132,8 @@
     <IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
     <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
     <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
-    <AssemblyVersion>0.12.1.0</AssemblyVersion>
-    <FileVersion>0.12.1.0</FileVersion>
+    <AssemblyVersion>0.13.2.0</AssemblyVersion>
+    <FileVersion>0.13.2.0</FileVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 

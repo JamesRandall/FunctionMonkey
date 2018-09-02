@@ -19,7 +19,7 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");
+            log.LogInformation("Storage blob trigger function {{Name}} processed a request.");
 
             string json;
             using(StreamReader reader = new StreamReader(stream))

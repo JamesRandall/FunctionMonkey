@@ -17,7 +17,7 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
+            log.LogInformation("Event hub trigger function {{Name}} processed a request.");            
             
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(eventHubMessage))
