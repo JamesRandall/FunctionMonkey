@@ -19,6 +19,8 @@ namespace FunctionMonkey.Infrastructure
 
         private static readonly AsyncLocal<ExecutionContext> ExecutionContextLocal = new AsyncLocal<ExecutionContext>();
 
+        private static readonly AsyncLocal<HttpContext> HttpContextLocal = new AsyncLocal<HttpContext>();
+
         void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId)
         {
             ServiceBusContextLocal.Value = new ServiceBusContext
@@ -75,10 +77,20 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
+        public void SetHttpContext(string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers)
+        {
+            HttpContextLocal.Value = new HttpContext
+            {
+                RequestUrl = requestUrl,
+                Headers = headers
+            };
+        }
+
         public ServiceBusContext ServiceBusContext => ServiceBusContextLocal.Value;
         public StorageQueueContext StorageQueueContext => StorageQueueContextLocal.Value;
         public BlobContext BlobContext => BlobContextLocal.Value;
         public EventHubContext EventHubContext => EventHubContextLocal.Value;
         public ExecutionContext ExecutionContext => ExecutionContextLocal.Value;
+        public HttpContext HttpContext => HttpContextLocal.Value;
     }
 }

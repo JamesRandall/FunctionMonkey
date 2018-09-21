@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
@@ -27,6 +28,15 @@ namespace SwaggerBuildOut.Handlers
                     {
                         Text = $"JSON payload\n{json}"
                     });
+                }
+            }
+
+            Console.WriteLine("Headers");
+            foreach (var kvp in _contextProvider.HttpContext.Headers)
+            {
+                foreach (string value in kvp.Value)
+                {
+                    Console.WriteLine($"{kvp.Key}: {value}");
                 }
             }
 

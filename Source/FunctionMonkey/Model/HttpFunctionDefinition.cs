@@ -24,7 +24,7 @@ namespace FunctionMonkey.Model
         // used to create a proxy that maps through to the internal function
         public string Route { get; set; }
 
-        public IReadOnlyCollection<HttpParameter> PossibleQueryParameters { get; set; }
+        public IReadOnlyCollection<HttpParameter> PossibleBindingProperties { get; set; }
 
         public IReadOnlyCollection<HttpParameter> RouteParameters { get; set; }
 

@@ -89,7 +89,7 @@ namespace FunctionMonkey.Infrastructure
 
         private static void ExtractPossibleQueryParameters(HttpFunctionDefinition httpFunctionDefinition1)
         {
-            httpFunctionDefinition1.PossibleQueryParameters = httpFunctionDefinition1
+            httpFunctionDefinition1.PossibleBindingProperties = httpFunctionDefinition1
                 .CommandType
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null

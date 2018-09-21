@@ -20,5 +20,7 @@ namespace FunctionMonkey.Abstractions
         EventHubContext EventHubContext { get; }
 
         ExecutionContext ExecutionContext { get; }
+
+        HttpContext HttpContext { get; }
     }
 }

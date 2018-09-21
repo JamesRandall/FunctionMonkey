@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
@@ -46,8 +47,8 @@ namespace {{Namespace}}
             }            
             {{/if}}
 
-            {{#if AuthorizesClaims}}
             string requestUrl = GetRequestUrl(req);
+            {{#if AuthorizesClaims}}
             var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
             var claimsPrincipalAuthorizationResult = await claimsPrincipalAuthorization.IsAuthorized(principal, req.Method, requestUrl);
@@ -74,7 +75,7 @@ namespace {{Namespace}}
             string method = req.Method.ToUpper();
             if (method == "GET" || method=="DELETE")
             {
-                {{#each PossibleQueryParameters}}
+                {{#each PossibleBindingProperties}}
                 if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
                 {
                     {{#if IsString}}
@@ -121,6 +122,13 @@ namespace {{Namespace}}
                 executionContext.FunctionAppDirectory,
                 executionContext.FunctionName,
                 executionContext.InvocationId);
+            var headerDictionary = new Dictionary<string, IReadOnlyCollection<string>>();
+            foreach (var headerKeyValuesPair in req.Headers)
+            {
+                string[] values = headerKeyValuesPair.Value.ToArray();
+                headerDictionary.Add(headerKeyValuesPair.Key, values);
+            }
+            contextSetter.SetHttpContext(requestUrl, headerDictionary);
             
             var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             {{#if CommandResultType}}

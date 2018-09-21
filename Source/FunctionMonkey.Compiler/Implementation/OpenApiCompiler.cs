@@ -196,7 +196,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         }
 
                         string lowerCaseRoute = functionByRoute.Route;
-                        foreach (HttpParameter property in functionByRoute.PossibleQueryParameters)
+                        foreach (HttpParameter property in functionByRoute.PossibleBindingProperties)
                         {
                             if (lowerCaseRoute.Contains("{" + property.Name.ToLower() +"}"))
                             {

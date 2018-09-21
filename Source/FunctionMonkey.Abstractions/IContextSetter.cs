@@ -41,7 +41,7 @@ namespace FunctionMonkey.Abstractions
             string offset);
 
         /// <summary>
-        /// Sets the execution 
+        /// Sets the execution context
         /// </summary>
         /// <param name="functionAppDirectory"></param>
         /// <param name="functionDirectory"></param>
@@ -51,5 +51,12 @@ namespace FunctionMonkey.Abstractions
             string functionDirectory,
             string functionName,
             Guid invocationId);
+
+        /// <summary>
+        /// Sets the HTTP context
+        /// </summary>
+        /// <param name="requestUrl">The request URL</param>
+        /// <param name="headers">The headers associated with the context</param>
+        void SetHttpContext(string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers);
     }
 }

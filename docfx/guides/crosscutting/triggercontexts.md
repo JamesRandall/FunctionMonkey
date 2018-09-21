@@ -14,6 +14,7 @@ Depending on the trigger type the following other context properties are also av
 |StorageQueueContext|Available for Azure Storage queue functions|
 |BlobContext|Available for Azure Storage blob trigger functions|
 |EventHubContext|Available for Azure Event Hub trigger functions|
+|HttpContext|Available for HTTP triggers and provides access to the headers and request URL|
 
 Note that one of the advantages of the mediator pattern that underpins Function Monkey is the clean separation of concerns including application logic from host / protocol but by making use of these contexts that decouplign is weakened. An alternative approach can be to handle these things in a decorated mediator.
 
