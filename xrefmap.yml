@@ -711,6 +711,62 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(System.String)
   nameWithType: ITimerFunctionBuilder.Timer<TCommand, TTimerCommandFactoryType>(String)
   nameWithType.vb: ITimerFunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(String)
+- uid: FunctionMonkey.Abstractions.Builders.Model
+  name: FunctionMonkey.Abstractions.Builders.Model
+  href: api/FunctionMonkey.Abstractions.Builders.Model.html
+  commentId: N:FunctionMonkey.Abstractions.Builders.Model
+  fullName: FunctionMonkey.Abstractions.Builders.Model
+  nameWithType: FunctionMonkey.Abstractions.Builders.Model
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration
+  name: HeaderBindingConfiguration
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration
+  nameWithType: HeaderBindingConfiguration
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
+  name: HeaderBindingPrecedence
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
+  nameWithType: HeaderBindingConfiguration.HeaderBindingPrecedence
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence*
+  name: HeaderBindingPrecedence
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
+  nameWithType: HeaderBindingConfiguration.HeaderBindingPrecedence
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+  name: HeaderNamePropertyNameMappings
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+  nameWithType: HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings*
+  name: HeaderNamePropertyNameMappings
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+  nameWithType: HeaderBindingConfiguration.HeaderNamePropertyNameMappings
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum
+  name: HeaderBindingPrecedenceEnum
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum
+  nameWithType: HeaderBindingPrecedenceEnum
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.AfterQueryString
+  name: AfterQueryString
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingPrecedenceEnum_AfterQueryString
+  commentId: F:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.AfterQueryString
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.AfterQueryString
+  nameWithType: HeaderBindingPrecedenceEnum.AfterQueryString
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.BeforeQueryString
+  name: BeforeQueryString
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingPrecedenceEnum_BeforeQueryString
+  commentId: F:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.BeforeQueryString
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.BeforeQueryString
+  nameWithType: HeaderBindingPrecedenceEnum.BeforeQueryString
 - uid: FunctionMonkey.Abstractions.Contexts
   name: FunctionMonkey.Abstractions.Contexts
   href: api/FunctionMonkey.Abstractions.Contexts.html
@@ -865,6 +921,38 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.ExecutionContext.InvocationId
   nameWithType: ExecutionContext.InvocationId
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext
+  name: HttpContext
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html
+  commentId: T:FunctionMonkey.Abstractions.Contexts.HttpContext
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext
+  nameWithType: HttpContext
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext.Headers
+  name: Headers
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_Headers
+  commentId: P:FunctionMonkey.Abstractions.Contexts.HttpContext.Headers
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext.Headers
+  nameWithType: HttpContext.Headers
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext.Headers*
+  name: Headers
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_Headers_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.HttpContext.Headers
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext.Headers
+  nameWithType: HttpContext.Headers
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext.RequestUrl
+  name: RequestUrl
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_RequestUrl
+  commentId: P:FunctionMonkey.Abstractions.Contexts.HttpContext.RequestUrl
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext.RequestUrl
+  nameWithType: HttpContext.RequestUrl
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext.RequestUrl*
+  name: RequestUrl
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_RequestUrl_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.HttpContext.RequestUrl
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext.RequestUrl
+  nameWithType: HttpContext.RequestUrl
 - uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext
   name: ServiceBusContext
   href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html
@@ -1163,6 +1251,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextProvider.ExecutionContext
   nameWithType: IContextProvider.ExecutionContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.HttpContext
+  name: HttpContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_HttpContext
+  commentId: P:FunctionMonkey.Abstractions.IContextProvider.HttpContext
+  fullName: FunctionMonkey.Abstractions.IContextProvider.HttpContext
+  nameWithType: IContextProvider.HttpContext
+- uid: FunctionMonkey.Abstractions.IContextProvider.HttpContext*
+  name: HttpContext
+  href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_HttpContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextProvider.HttpContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextProvider.HttpContext
+  nameWithType: IContextProvider.HttpContext
 - uid: FunctionMonkey.Abstractions.IContextProvider.ServiceBusContext
   name: ServiceBusContext
   href: api/FunctionMonkey.Abstractions.IContextProvider.html#FunctionMonkey_Abstractions_IContextProvider_ServiceBusContext
@@ -1237,6 +1338,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext
   nameWithType: IContextSetter.SetExecutionContext
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
+  name: SetHttpContext(String, Dictionary<String, IReadOnlyCollection<String>>)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
+  name.vb: SetHttpContext(String, Dictionary(Of String, IReadOnlyCollection(Of String)))
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String, Dictionary<System.String, IReadOnlyCollection<System.String>>)
+  fullName.vb: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String, Dictionary(Of System.String, IReadOnlyCollection(Of System.String)))
+  nameWithType: IContextSetter.SetHttpContext(String, Dictionary<String, IReadOnlyCollection<String>>)
+  nameWithType.vb: IContextSetter.SetHttpContext(String, Dictionary(Of String, IReadOnlyCollection(Of String)))
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext*
+  name: SetHttpContext
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_
+  commentId: Overload:FunctionMonkey.Abstractions.IContextSetter.SetHttpContext
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext
+  nameWithType: IContextSetter.SetHttpContext
 - uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String)
   name: SetServiceBusContext(Int32, DateTime, String)
   href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_System_Int32_DateTime_System_String_

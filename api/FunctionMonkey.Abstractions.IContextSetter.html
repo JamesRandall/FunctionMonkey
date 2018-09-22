@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IContextSetter
    ">
-    <meta name="generator" content="docfx 2.39.0.0">
+    <meta name="generator" content="docfx 2.39.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -179,7 +179,7 @@
   </span>
   <a id="FunctionMonkey_Abstractions_IContextSetter_SetExecutionContext_" data-uid="FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext*"></a>
   <h4 id="FunctionMonkey_Abstractions_IContextSetter_SetExecutionContext_System_String_System_String_System_String_Guid_" data-uid="FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext(System.String,System.String,System.String,Guid)">SetExecutionContext(String, String, String, Guid)</h4>
-  <div class="markdown level1 summary"><p>Sets the execution </p>
+  <div class="markdown level1 summary"><p>Sets the execution context</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -215,6 +215,46 @@
         <td><span class="xref">Guid</span></td>
         <td><span class="parametername">invocationId</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String%2CDictionary%7BSystem.String%2CIReadOnlyCollection%7BSystem.String%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/IContextSetter.cs/#L60">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_" data-uid="FunctionMonkey.Abstractions.IContextSetter.SetHttpContext*"></a>
+  <h4 id="FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___" data-uid="FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})">SetHttpContext(String, Dictionary&lt;String, IReadOnlyCollection&lt;String&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Sets the HTTP context</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetHttpContext(string requestUrl, Dictionary&lt;string, IReadOnlyCollection&lt;string&gt;&gt; headers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">requestUrl</span></td>
+        <td><p>The request URL</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">IReadOnlyCollection</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">headers</span></td>
+        <td><p>The headers associated with the context</p>
+</td>
       </tr>
     </tbody>
   </table>
