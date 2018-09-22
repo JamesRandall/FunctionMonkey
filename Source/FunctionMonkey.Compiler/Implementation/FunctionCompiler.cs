@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
@@ -66,7 +65,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
             VerifyCommandAndResponseTypes(builder);
             
-            IReadOnlyCollection<Assembly> externalAssemblies = GetExternalAssemblies(builder.FunctionDefinitions);
+            IReadOnlyCollection<string> externalAssemblies = GetExternalAssemblyLocations(builder.FunctionDefinitions);
             OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
 
             _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
@@ -113,7 +112,35 @@ namespace FunctionMonkey.Compiler.Implementation
             }
         }
 
-        private IReadOnlyCollection<Assembly> GetExternalAssemblies(
+        private void RecurseAssemblies(Assembly assembly, HashSet<Assembly> assemblies)
+        {
+            AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();
+            foreach (var referencedAssemblyName in referencedAssemblies)
+            {
+                if (referencedAssemblyName.Name == "netstandard" || referencedAssemblyName.Name == "System.Runtime")
+                {
+                    continue;
+                }
+                //var referencedAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(x => x.FullName == referencedAssemblyName.FullName);
+                Assembly referencedAssembly = null;
+                try
+                {
+                    referencedAssembly = Assembly.Load(referencedAssemblyName);
+                }
+                catch
+                {
+                    // we should be ok to ignore assemblies we can't load
+                }
+                
+                if (referencedAssembly != null)
+                {
+                    assemblies.Add(referencedAssembly);
+                    RecurseAssemblies(referencedAssembly, assemblies);
+                }
+            }
+        }
+
+        private IReadOnlyCollection<string> GetExternalAssemblyLocations(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
             HashSet<Assembly> assemblies = new HashSet<Assembly>();
@@ -121,7 +148,7 @@ namespace FunctionMonkey.Compiler.Implementation
             foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
             {
                 assemblies.Add(_triggerReferenceProvider.GetTriggerReference(functionDefinition));
-                assemblies.Add(functionDefinition.CommandType.Assembly);                
+                assemblies.Add(functionDefinition.CommandType.Assembly);
 
                 if (functionDefinition.CommandResultType != null)
                 {
@@ -129,7 +156,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     if (functionDefinition.CommandResultType.Assembly != typeof(string).Assembly)
                     {
                         assemblies.Add(functionDefinition.CommandResultType.Assembly);
-                    }                    
+                    }
                 }
             }
 
@@ -182,7 +209,7 @@ namespace FunctionMonkey.Compiler.Implementation
             }
 
             // at the moment we can't get the actual dispatcher types without actually calling the function and looking at ther result - needs thought
-            return assemblies;
+            return assemblies.Select(x => x.Location).ToArray();
         }
     }
 }

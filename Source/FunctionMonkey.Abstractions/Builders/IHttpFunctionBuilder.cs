@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace FunctionMonkey.Abstractions.Builders
 {
@@ -60,6 +61,18 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <returns>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
         IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand;
 
+        /* wip
+        /// <summary>
+        /// Assocate a function with the given command type and associate it with the specified verbs. Its endpoint will be that specified by the parent HTTP route concatenated with the parent route 
+        /// specified here and it will be secured by the specified authorization type.
+        /// </summary>
+        /// <typeparam name="TCommand">The command type</typeparam>
+        /// <param name="route">The route to concatenate with the parent route</param>
+        /// <param name="authorizationType">The authorization type of the function</param>
+        /// <param name="method">One or more HTTP methods to support.</param>
+        /// <returns>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
+        IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType, HeaderBindingConfiguration headerBindingConfiguration, params HttpMethod[] method) where TCommand : ICommand;
+        */
 
 
 

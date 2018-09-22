@@ -36,7 +36,7 @@ namespace FunctionMonkey.Compiler.Implementation
         public void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             Type functionAppConfigurationType,
             string newAssemblyNamespace,
-            IReadOnlyCollection<Assembly> externalAssemblies,
+            IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,
             string assemblyName,
             OpenApiOutputModel openApiOutputModel,
@@ -49,7 +49,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 newAssemblyNamespace,
                 outputAuthoredSourceFolder);
 
-            CompileAssembly(syntaxTrees, externalAssemblies, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace);
+            CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
@@ -123,31 +123,25 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         private void CompileAssembly(IReadOnlyCollection<SyntaxTree> syntaxTrees,
-            IReadOnlyCollection<Assembly> externalAssemblies,
+            IReadOnlyCollection<string> externalAssemblyLocations,
             OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder,
             string outputAssemblyName,
             string assemblyNamespace)
         {
-            HashSet<string> locations = BuildCandidateReferenceList(externalAssemblies);
-
+            IReadOnlyCollection<string> locations = BuildCandidateReferenceList(externalAssemblyLocations);
+            const string manifestResourcePrefix = "FunctionMonkey.Compiler.references.netstandard2._0.";
             // For each assembly we've found we need to check and see if it is already included in the output binary folder
             // If it is then its referenced already by the function host and so we add a reference to that version.
             List<string> resolvedLocations = ResolveLocationsWithExistingReferences(outputBinaryFolder, locations);
 
-            List<PortableExecutableReference> references = resolvedLocations.Select(x => MetadataReference.CreateFromFile(x)).ToList();
-            using (Stream netStandard = GetType().Assembly
-                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
-            {
-                references.Add(MetadataReference.CreateFromStream(netStandard));
-            }
-            using (Stream netStandard = GetType().Assembly
-                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
-            {
-                references.Add(MetadataReference.CreateFromStream(netStandard));
-            }
+            string[] manifestResoureNames = GetType().Assembly.GetManifestResourceNames()
+                .Where(x => x.StartsWith(manifestResourcePrefix))
+                .Select(x => x.Substring(manifestResourcePrefix.Length))
+                .ToArray();
 
-            var compilation = CSharpCompilation.Create(outputAssemblyName,
+            List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations, manifestResoureNames, manifestResourcePrefix);
+            CSharpCompilation compilation = CSharpCompilation.Create(outputAssemblyName,
                 syntaxTrees,
                 references,
                 new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
@@ -190,8 +184,49 @@ namespace FunctionMonkey.Compiler.Implementation
             }
         }
 
-        private static HashSet<string> BuildCandidateReferenceList(IReadOnlyCollection<Assembly> externalAssemblies)
+        private List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations, string[] manifestResoureNames, string manifestResourcePrefix)
         {
+// Add our references - if the reference is to a library that forms part of NET Standard 2.0 then make sure we add
+            // the reference from the embedded NET Standard reference set - although our target is NET Standard the assemblies
+            // in the output folder of the Function App may be NET Core assemblies.
+            List<PortableExecutableReference> references = resolvedLocations.Select(x =>
+            {
+                string assemblyFilename = Path.GetFileName(x);
+                string manifestResourceName =
+                    manifestResoureNames.SingleOrDefault(m =>
+                        String.Equals(assemblyFilename, m, StringComparison.CurrentCultureIgnoreCase));
+                if (manifestResourceName != null)
+                {
+                    using (Stream lib = GetType().Assembly
+                        .GetManifestResourceStream(String.Concat(manifestResourcePrefix, manifestResourceName)))
+                    {
+                        return MetadataReference.CreateFromStream(lib);
+                    }
+                }
+                else
+                {
+                    return MetadataReference.CreateFromFile(x);
+                }
+            }).ToList();
+            using (Stream netStandard = GetType().Assembly
+                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
+            {
+                references.Add(MetadataReference.CreateFromStream(netStandard));
+            }
+
+            using (Stream netStandard = GetType().Assembly
+                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
+            {
+                references.Add(MetadataReference.CreateFromStream(netStandard));
+            }
+
+            return references;
+        }
+
+        private static IReadOnlyCollection<string> BuildCandidateReferenceList(IReadOnlyCollection<string> externalAssemblyLocations)
+        {
+            
+
             // These are assemblies that Roslyn requires from usage within the template
             HashSet<string> locations = new HashSet<string>
             {
@@ -212,15 +247,17 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
                 typeof(ExecutionContext).GetTypeInfo().Assembly.Location
             };
-            foreach (Assembly externalAssembly in externalAssemblies)
+            foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {
-                locations.Add(externalAssembly.Location);
+                locations.Add(externalAssemblyLocation);
             }
+
+            
 
             return locations;
         }
 
-        private static List<string> ResolveLocationsWithExistingReferences(string outputBinaryFolder, HashSet<string> locations)
+        private static List<string> ResolveLocationsWithExistingReferences(string outputBinaryFolder, IReadOnlyCollection<string> locations)
         {
             List<string> resolvedLocations = new List<string>(locations.Count);
             foreach (string location in locations)

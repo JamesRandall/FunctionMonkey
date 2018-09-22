@@ -10,7 +10,7 @@ namespace FunctionMonkey.Compiler.Implementation
         void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             Type functionAppConfigurationType,
             string newAssemblyNamespace,
-            IReadOnlyCollection<Assembly> externalAssemblies,
+            IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,
             string assemblyName,
             OpenApiOutputModel openApiOutputModel,

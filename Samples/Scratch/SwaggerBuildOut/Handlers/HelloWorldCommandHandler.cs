@@ -2,13 +2,14 @@
 using System.IO;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using ExternalTypes;
 using FunctionMonkey.Abstractions;
 using SwaggerBuildOut.Commands;
 using SwaggerBuildOut.Commands.Responses;
 
 namespace SwaggerBuildOut.Handlers
 {
-    internal class HelloWorldCommandHandler : ICommandHandler<HelloWorldCommand, Message>
+    internal class HelloWorldCommandHandler : ICommandHandler<HelloWorldCommand, Content>
     {
         private readonly IContextProvider _contextProvider;
 
@@ -17,16 +18,19 @@ namespace SwaggerBuildOut.Handlers
             _contextProvider = contextProvider;
         }
 
-        public Task<Message> ExecuteAsync(HelloWorldCommand command, Message previousResult)
+        public Task<Content> ExecuteAsync(HelloWorldCommand command, Content previousResult)
         {
             if (command.Stream != null)
             {
                 using (StreamReader reader = new StreamReader(command.Stream))
                 {
                     string json = reader.ReadToEnd();
-                    return Task.FromResult(new Message
+                    return Task.FromResult(new Content
                     {
-                        Text = $"JSON payload\n{json}"
+                        Message = new Message
+                        {
+                            Text = $"JSON payload\n{json}"
+                        }
                     });
                 }
             }
@@ -40,9 +44,12 @@ namespace SwaggerBuildOut.Handlers
                 }
             }
 
-            return Task.FromResult(new Message
+            return Task.FromResult(new Content()
             {
-                Text = $"Hello {command.Name}, invocation ID: ${_contextProvider.ExecutionContext.InvocationId}"
+                Message = new Message
+                {
+                    Text = $"Hello {command.Name}, invocation ID: ${_contextProvider.ExecutionContext.InvocationId}"
+                }
             });
         }
     }

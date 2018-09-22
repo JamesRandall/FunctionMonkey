@@ -1,11 +1,12 @@
 ﻿using System.IO;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using ExternalTypes;
 using FunctionMonkey.Commanding.Abstractions;
 using SwaggerBuildOut.Commands.Responses;
 
 namespace SwaggerBuildOut.Commands
 {
-    public class HelloWorldCommand : ICommand<Message>, IStreamCommand
+    public class HelloWorldCommand : ICommand<Content>, IStreamCommand
     {
         public Stream Stream { get; set; }
 
