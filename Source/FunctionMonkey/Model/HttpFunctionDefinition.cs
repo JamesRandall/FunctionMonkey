@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Extensions;
 
 namespace FunctionMonkey.Model
@@ -43,5 +44,7 @@ namespace FunctionMonkey.Model
         public Type ClaimsPrincipalAuthorizationType { get; set; }
 
         public string ClaimsPrincipalAuthorizationTypeName => ClaimsPrincipalAuthorizationType?.EvaluateType();
+
+        public HeaderBindingConfiguration HeaderBindingConfiguration { get; set; }
     }
 }

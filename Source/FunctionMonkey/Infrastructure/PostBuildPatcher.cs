@@ -45,6 +45,8 @@ namespace FunctionMonkey.Infrastructure
                         httpFunctionDefinition.ClaimsPrincipalAuthorizationType = authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
                     }
 
+                    httpFunctionDefinition.HeaderBindingConfiguration = httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;
+
                     httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
 
                     httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null && validationResultType.IsAssignableFrom(httpFunctionDefinition.CommandResultType);

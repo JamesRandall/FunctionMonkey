@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace {{Namespace}}
 {
@@ -87,6 +88,28 @@ namespace {{Namespace}}
                 }
                 {{/each}}
             }
+
+            {{#if HeaderBindingConfiguration}}
+                HeaderBindingConfiguration headerConfig = {{HeaderBindingConfiguration}};
+                if (headerConfig.Enabled)
+                {
+                    {{#each PossibleBindingProperties}}
+                        if (headerConfig.TryGetValue("{{Name}}", out var headerName))
+                        {
+                            if (req.Headers.TryGetValue(headerName, out var stringValues))
+                            {
+                                string headerValue = stringValues.FirstOrDefault();
+                                {{#if IsString}}
+                                command.{{Name}} = headerValue;
+                                {{else}}
+                                {{TypeName}}.TryParse(headerValue, out var candidate);
+                                command.{{Name}} = candidate;
+                                {{/if}}
+                            }
+                        }
+                    {{/each}}
+                }
+            {{/if}}
 
             {{#each RouteParameters}}
             if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))

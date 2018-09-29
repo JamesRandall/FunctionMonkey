@@ -2,6 +2,7 @@
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders
@@ -48,6 +49,13 @@ namespace FunctionMonkey.Builders
             params HttpMethod[] method) where TCommand : ICommand
         {
             return _httpFunctionBuilder.HttpFunction<TCommand>(route, authorizationType, method);
+        }
+
+        public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType,
+            HeaderBindingConfiguration headerBindingConfiguration, params HttpMethod[] method) where TCommand : ICommand
+        {
+            return _httpFunctionBuilder.HttpFunction<TCommand>(route, authorizationType, headerBindingConfiguration,
+                method);
         }
 
         public IHttpFunctionBuilderMetadataBuilder HttpFunction<TCommand, TClaimsPrincipalAuthorization>() where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization

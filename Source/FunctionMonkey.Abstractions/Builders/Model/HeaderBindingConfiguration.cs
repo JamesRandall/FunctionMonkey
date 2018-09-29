@@ -4,20 +4,22 @@ using System.Text;
 
 namespace FunctionMonkey.Abstractions.Builders.Model
 {
-    public enum HeaderBindingPrecedenceEnum
-    {
-        BeforeQueryString = 0,
-        AfterQueryString = 1
-    }
-
     public class HeaderBindingConfiguration
     {
         /// <summary>
-        /// Allows header names to be mapped to more cleanly named properties (e.g. x-operation-id to OperationId)
+        /// Allows header names to be mapped to more cleanly named properties (e.g. the property OperationId is sourced from x-operation-id)
+        /// The key is the property name, the value the header.
         /// </summary>
-        public Dictionary<string, string> HeaderNamePropertyNameMappings { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> PropertyFromHeaderMappings { get; set; } = new Dictionary<string, string>();
+        
+        /// <summary>
+        /// Is header binding enabled. Defaults to false.
+        /// </summary>
+        public bool Enabled { get; set; }
 
-        public HeaderBindingPrecedenceEnum HeaderBindingPrecedence { get; set; } =
-            HeaderBindingPrecedenceEnum.AfterQueryString;
+        /// <summary>
+        /// If true then any headers with a matching property name will be mapped. Defaults to false.
+        /// </summary>
+        public bool AutoMapHeadersBasedOnName { get; set; }
     }
 }

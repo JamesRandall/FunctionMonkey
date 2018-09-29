@@ -1,5 +1,6 @@
 ﻿using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Validation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +21,13 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="authorization"></param>
         /// <returns></returns>
         IFunctionHostBuilder Authorization(Action<IAuthorizationBuilder> authorization);
+
+        /// <summary>
+        /// Sets the default HTTP header binding configuration. The default mode is no binding.
+        /// </summary>
+        /// <param name="defaultConfiguration"></param>
+        /// <returns></returns>
+        IFunctionHostBuilder DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration defaultConfiguration);
 
         /// <summary>
         /// Registers a validator with the Functions runtime

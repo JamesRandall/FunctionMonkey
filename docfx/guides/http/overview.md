@@ -7,6 +7,7 @@ The aim of the HTTP trigger support in Function Monkey is to make it straightfor
 * Authorization
 * Open API / Swagger
 * Claims Mapping (binding claims to command properties)
+* Headers
 
 The aim isn't to replicate full blown ASP.Net Core (which is already supported on AWS Lambda and undoubtedly coming to Azure Functions at some point) but instead to focus on the common use cases and by doing so keep things lean and well suited to an environment where you pay per Gb/s.
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Validation;
 using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,7 @@ namespace FunctionMonkey.Builders
         public string OutputAuthoredSourceFolder { get; set; }
         public Action<IServiceProvider> ServiceProviderCreatedAction { get; set; }
         public bool AreProxiesEnabled { get; set; } = true;
+        public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -42,6 +44,12 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder Authorization(Action<IAuthorizationBuilder> authorization)
         {
             authorization(AuthorizationBuilder);
+            return this;
+        }
+
+        public IFunctionHostBuilder DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration defaultConfiguration)
+        {
+            DefaultHeaderBindingConfiguration = defaultConfiguration;
             return this;
         }
 
