@@ -48,7 +48,7 @@ namespace SwaggerBuildOut.Handlers
             {
                 Message = new Message
                 {
-                    Text = $"Hello {command.Name}, invocation ID: ${_contextProvider.ExecutionContext.InvocationId}"
+                    Text = $"Hello {command.Name}, invocation ID: {_contextProvider.ExecutionContext.InvocationId}, x-header-name: {command.HeaderName ?? "empty" }"
                 }
             });
         }

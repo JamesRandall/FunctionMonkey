@@ -31,15 +31,9 @@ namespace SwaggerBuildOut
                 .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
-                        .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, new HeaderBindingConfiguration() {
-                                PropertyFromHeaderMappings = new Dictionary<string, string>
-                                {
-                                    { "HeaderName", "x-header-name" }
-                                },
-                                Enabled = true
-                            },
-                            HttpMethod.Get)    
-                        .OpenApiDescription("Says hello world")
+                        .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
+                            .OpenApiDescription("Says hello world")
+                            .AddHeaderMapping(x => x.HeaderName, "x-header-name")
                     )
                     .OpenApiDescription("A route description")
                     /*.HttpRoute("/Add", route => route
