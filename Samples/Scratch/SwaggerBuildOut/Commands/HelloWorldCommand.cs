@@ -11,5 +11,7 @@ namespace SwaggerBuildOut.Commands
         public Stream Stream { get; set; }
 
         public string Name { get; set; }
+
+        public string HeaderName { get; set; }
     }
 }

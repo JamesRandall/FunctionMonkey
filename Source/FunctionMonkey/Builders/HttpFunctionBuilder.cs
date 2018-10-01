@@ -110,7 +110,8 @@ namespace FunctionMonkey.Builders
                 Route = string.Concat(_routeConfiguration.Route, route),
                 Verbs = new HashSet<HttpMethod>(method),
                 Authorization = authorizationType,
-                ClaimsPrincipalAuthorizationType = _routeConfiguration.ClaimsPrincipalAuthorizationType
+                ClaimsPrincipalAuthorizationType = _routeConfiguration.ClaimsPrincipalAuthorizationType,
+                HeaderBindingConfiguration = headerBindingConfiguration
             };
             _definitions.Add(definition);
             return new HttpFunctionBuilderMetadataBuilder(this, definition);

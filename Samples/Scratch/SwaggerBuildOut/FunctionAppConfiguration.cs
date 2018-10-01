@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using Microsoft.Extensions.DependencyInjection;
 using SwaggerBuildOut.Commands;
 using SwaggerBuildOut.Handlers;
@@ -26,10 +28,17 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"d:\wip\outputSource")
+                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
-                        .HttpFunction<HelloWorldCommand>("/{name}", HttpMethod.Get)    
+                        .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, new HeaderBindingConfiguration() {
+                                PropertyFromHeaderMappings = new Dictionary<string, string>
+                                {
+                                    { "HeaderName", "x-header-name" }
+                                },
+                                Enabled = true
+                            },
+                            HttpMethod.Get)    
                         .OpenApiDescription("Says hello world")
                     )
                     .OpenApiDescription("A route description")

@@ -7,6 +7,7 @@
             AzureAuthenticationTypeHelper.Register();
             HttpVerbsHelper.Register();
             RouteParametersHelper.Register();
+            MappedHeaderNameForPropertyHelper.Register();
         }
     }
 }
