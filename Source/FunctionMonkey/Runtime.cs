@@ -63,15 +63,15 @@ namespace FunctionMonkey
 
             SetupAuthorization(builder, functionBuilder);
 
-            RegisterTimerCommandFactories(ServiceCollection, builder.FunctionDefinitions);
+            RegisterTimerCommandFactories(builder.FunctionDefinitions);
 
-            RegisterClaimAuthorizers(ServiceCollection, builder.FunctionDefinitions);
+            RegisterHttpDependencies(builder.FunctionDefinitions);
             
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);            
         }
 
-        private static void RegisterClaimAuthorizers(IServiceCollection serviceCollection, IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
+        private static void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in builderFunctionDefinitions)
@@ -81,6 +81,11 @@ namespace FunctionMonkey
                     if (httpFunctionDefinition.ClaimsPrincipalAuthorizationType != null)
                     {
                         types.Add(httpFunctionDefinition.ClaimsPrincipalAuthorizationType);
+                    }
+
+                    if (httpFunctionDefinition.HttpResponseHandlerType != null)
+                    {
+                        types.Add(httpFunctionDefinition.HttpResponseHandlerType);
                     }
                 }
             }
@@ -128,7 +133,7 @@ namespace FunctionMonkey
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
         }
 
-        private static void RegisterTimerCommandFactories(IServiceCollection serviceCollection, IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        private static void RegisterTimerCommandFactories(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
             IReadOnlyCollection<TimerFunctionDefinition> timerFunctionDefinitions = functionDefinitions
                 .Where(x => x is TimerFunctionDefinition)
@@ -139,7 +144,7 @@ namespace FunctionMonkey
             {
                 Type interfaceType =
                     typeof(ITimerCommandFactory<>).MakeGenericType(timerFunctionDefinition.CommandType);
-                serviceCollection.AddTransient(interfaceType, timerFunctionDefinition.TimerCommandFactoryType);
+                ServiceCollection.AddTransient(interfaceType, timerFunctionDefinition.TimerCommandFactoryType);
             }
         }
 

@@ -47,6 +47,8 @@ namespace FunctionMonkey.Infrastructure
 
                     httpFunctionDefinition.HeaderBindingConfiguration = httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;
 
+                    httpFunctionDefinition.HttpResponseHandlerType = httpFunctionDefinition.HttpResponseHandlerType ?? builder.DefaultHttpResponseHandlerType;
+
                     httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
 
                     httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null && validationResultType.IsAssignableFrom(httpFunctionDefinition.CommandResultType);

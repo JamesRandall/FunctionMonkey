@@ -2,6 +2,7 @@
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Http.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Abstractions.Builders
@@ -28,6 +29,16 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="defaultConfiguration"></param>
         /// <returns></returns>
         IFunctionHostBuilder DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration defaultConfiguration);
+
+        /// <summary>
+        /// Allows a response handler to be registered for all HTTP requests. See IHttpResponseHandler documentation
+        /// for details of how this functions.
+        ///
+        /// By default no response handler is configured and all responses will be controlled by the framework.
+        /// </summary>
+        /// <typeparam name="TResponseHandler">A type of IHttpResponseHandler</typeparam>
+        /// <returns></returns>
+        IFunctionHostBuilder DefaultHttpResponseHandler<TResponseHandler>() where TResponseHandler : IHttpResponseHandler;
 
         /// <summary>
         /// Registers a validator with the Functions runtime

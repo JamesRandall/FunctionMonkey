@@ -34,6 +34,7 @@ namespace SwaggerBuildOut
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
                             .OpenApiDescription("Says hello world")
                             .AddHeaderMapping(x => x.HeaderName, "x-header-name")
+                            .ResponseHandler<CustomResponseHandler>()
                     )
                     .OpenApiDescription("A route description")
                     /*.HttpRoute("/Add", route => route

@@ -46,5 +46,11 @@ namespace FunctionMonkey.Model
         public string ClaimsPrincipalAuthorizationTypeName => ClaimsPrincipalAuthorizationType?.EvaluateType();
 
         public HeaderBindingConfiguration HeaderBindingConfiguration { get; set; }
+
+        public bool HasHttpResponseHandler => HttpResponseHandlerType != null;
+
+        public Type HttpResponseHandlerType { get; set; }
+
+        public string HttpResponseHandlerTypeName => HttpResponseHandlerType.EvaluateType();
     }
 }

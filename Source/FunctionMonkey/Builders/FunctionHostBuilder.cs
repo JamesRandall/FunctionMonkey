@@ -4,6 +4,7 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Http.Abstractions;
 using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +24,7 @@ namespace FunctionMonkey.Builders
         public Action<IServiceProvider> ServiceProviderCreatedAction { get; set; }
         public bool AreProxiesEnabled { get; set; } = true;
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
+        public Type DefaultHttpResponseHandlerType { get; private set; }
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -50,6 +52,13 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration defaultConfiguration)
         {
             DefaultHeaderBindingConfiguration = defaultConfiguration;
+            return this;
+        }
+
+        public IFunctionHostBuilder DefaultHttpResponseHandler<TResponseHandler>()
+            where TResponseHandler : IHttpResponseHandler
+        {
+            DefaultHttpResponseHandlerType = typeof(TResponseHandler);
             return this;
         }
 

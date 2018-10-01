@@ -7,6 +7,7 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Extensions;
+using FunctionMonkey.Http.Abstractions;
 using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders
@@ -114,6 +115,12 @@ namespace FunctionMonkey.Builders
             MemberInfo member = property.GetMember();
             _definition.HeaderBindingConfiguration.PropertyFromHeaderMappings.Add(member.Name, headerName);
 
+            return this;
+        }
+
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> ResponseHandler<TResponseHandler>() where TResponseHandler : IHttpResponseHandler
+        {
+            _definition.HttpResponseHandlerType = typeof(TResponseHandler);
             return this;
         }
     }
