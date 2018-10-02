@@ -24,11 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
     <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
-    <ProjectReference Include="..\FunctionMonkey.Http.Abstractions\FunctionMonkey.Http.Abstractions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Http\" />
   </ItemGroup>
 
 </Project>

@@ -37,8 +37,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalTypes", "Samples\Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndirectExternalTypes", "Samples\Scratch\IndirectExternalTypes\IndirectExternalTypes.csproj", "{9AA9A741-775E-4E68-B838-3FE2F4BC8EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Http.Abstractions", "Source\FunctionMonkey.Http.Abstractions\FunctionMonkey.Http.Abstractions.csproj", "{B39FB9F5-C51F-4FA7-9BA8-371D9789804C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,10 +90,6 @@ Global
 		{9AA9A741-775E-4E68-B838-3FE2F4BC8EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AA9A741-775E-4E68-B838-3FE2F4BC8EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AA9A741-775E-4E68-B838-3FE2F4BC8EA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B39FB9F5-C51F-4FA7-9BA8-371D9789804C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B39FB9F5-C51F-4FA7-9BA8-371D9789804C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B39FB9F5-C51F-4FA7-9BA8-371D9789804C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B39FB9F5-C51F-4FA7-9BA8-371D9789804C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
