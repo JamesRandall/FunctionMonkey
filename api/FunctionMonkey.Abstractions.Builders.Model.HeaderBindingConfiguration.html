@@ -90,49 +90,20 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_PropertyFromHeaderMappings.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/HeaderBindingConfiguration.cs/#L20">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/HeaderBindingConfiguration.cs/#L11">View Source</a>
   </span>
-  <a id="FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence_" data-uid="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence" data-uid="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence">HeaderBindingPrecedence</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HeaderBindingPrecedenceEnum HeaderBindingPrecedence { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html">HeaderBindingPrecedenceEnum</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/HeaderBindingConfiguration.cs/#L18">View Source</a>
-  </span>
-  <a id="FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings_" data-uid="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings" data-uid="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings">HeaderNamePropertyNameMappings</h4>
-  <div class="markdown level1 summary"><p>Allows header names to be mapped to more cleanly named properties (e.g. x-operation-id to OperationId)</p>
+  <a id="FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_PropertyFromHeaderMappings_" data-uid="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_PropertyFromHeaderMappings" data-uid="FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings">PropertyFromHeaderMappings</h4>
+  <div class="markdown level1 summary"><p>Allows header names to be mapped to more cleanly named properties (e.g. the property OperationId is sourced from x-operation-id)
+The key is the property name, the value the header.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; HeaderNamePropertyNameMappings { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; PropertyFromHeaderMappings { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -161,7 +132,7 @@
                     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/HeaderBindingConfiguration.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/HeaderBindingConfiguration.cs/#L5" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

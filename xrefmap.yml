@@ -284,6 +284,35 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization
   nameWithType: IFunctionHostBuilder.Authorization
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration)
+  name: DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultHttpHeaderBindingConfiguration_FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration)
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration)
+  nameWithType: IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration*
+  name: DefaultHttpHeaderBindingConfiguration
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultHttpHeaderBindingConfiguration_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration
+  nameWithType: IFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler*
+  name: DefaultHttpResponseHandler
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultHttpResponseHandler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler
+  nameWithType: IFunctionHostBuilder.DefaultHttpResponseHandler
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler``1
+  name: DefaultHttpResponseHandler<TResponseHandler>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultHttpResponseHandler__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler``1
+  name.vb: DefaultHttpResponseHandler(Of TResponseHandler)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
+  nameWithType: IFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
+  nameWithType.vb: IFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions(Action{FunctionMonkey.Abstractions.Builders.IFunctionBuilder})
   name: Functions(Action<IFunctionBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Functions_Action_FunctionMonkey_Abstractions_Builders_IFunctionBuilder__
@@ -479,38 +508,85 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(System.String, HttpMethod())
   nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, HttpMethod[])
   nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, HttpMethod())
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
-  name: IHttpFunctionBuilderMetadataBuilder
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html
-  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder
-  nameWithType: IHttpFunctionBuilderMetadataBuilder
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(System.String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1
+  name: IHttpFunctionConfigurationBuilder<TCommand>
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1
+  name.vb: IHttpFunctionConfigurationBuilder(Of TCommand)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand)
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping*
+  name: AddHeaderMapping
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
+  name: AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping__1_Expression_Func__0___0___System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
+  name.vb: AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), System.String)
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription(System.String)
   name: OpenApiDescription(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiDescription_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(System.String)
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiDescription(String)
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription*
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiDescription(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiDescription(System.String)
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiDescription(String)
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiDescription(String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription*
   name: OpenApiDescription
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiDescription_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiDescription
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiDescription
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(System.Int32,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiDescription
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiDescription
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiDescription
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiDescription
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String)
   name: OpenApiResponse(Int32, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiResponse_System_Int32_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(System.Int32,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(System.Int32, System.String)
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiResponse(Int32, String)
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse*
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse(System.Int32, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse(System.Int32, System.String)
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse(Int32, String)
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse(Int32, String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse*
   name: OpenApiResponse
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilderMetadataBuilder_OpenApiResponse_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.OpenApiResponse
-  nameWithType: IHttpFunctionBuilderMetadataBuilder.OpenApiResponse
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler*
+  name: ResponseHandler
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler``1
+  name: ResponseHandler<TResponseHandler>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler``1
+  name.vb: ResponseHandler(Of TResponseHandler)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler<TResponseHandler>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler<TResponseHandler>()
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
 - uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder
   name: IHttpRouteFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html
@@ -723,50 +799,19 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration
   fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration
   nameWithType: HeaderBindingConfiguration
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
-  name: HeaderBindingPrecedence
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence
-  commentId: P:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
-  nameWithType: HeaderBindingConfiguration.HeaderBindingPrecedence
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence*
-  name: HeaderBindingPrecedence
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderBindingPrecedence_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings
+  name: PropertyFromHeaderMappings
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_PropertyFromHeaderMappings
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings
+  nameWithType: HeaderBindingConfiguration.PropertyFromHeaderMappings
+- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings*
+  name: PropertyFromHeaderMappings
+  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_PropertyFromHeaderMappings_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderBindingPrecedence
-  nameWithType: HeaderBindingConfiguration.HeaderBindingPrecedence
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-  name: HeaderNamePropertyNameMappings
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings
-  commentId: P:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-  nameWithType: HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings*
-  name: HeaderNamePropertyNameMappings
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_HeaderNamePropertyNameMappings_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-  nameWithType: HeaderBindingConfiguration.HeaderNamePropertyNameMappings
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum
-  name: HeaderBindingPrecedenceEnum
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html
-  commentId: T:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum
-  nameWithType: HeaderBindingPrecedenceEnum
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.AfterQueryString
-  name: AfterQueryString
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingPrecedenceEnum_AfterQueryString
-  commentId: F:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.AfterQueryString
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.AfterQueryString
-  nameWithType: HeaderBindingPrecedenceEnum.AfterQueryString
-- uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.BeforeQueryString
-  name: BeforeQueryString
-  href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.html#FunctionMonkey_Abstractions_Builders_Model_HeaderBindingPrecedenceEnum_BeforeQueryString
-  commentId: F:FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.BeforeQueryString
-  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingPrecedenceEnum.BeforeQueryString
-  nameWithType: HeaderBindingPrecedenceEnum.BeforeQueryString
+  fullName: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.PropertyFromHeaderMappings
+  nameWithType: HeaderBindingConfiguration.PropertyFromHeaderMappings
 - uid: FunctionMonkey.Abstractions.Contexts
   name: FunctionMonkey.Abstractions.Contexts
   href: api/FunctionMonkey.Abstractions.Contexts.html
@@ -1095,6 +1140,38 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
   nameWithType: StorageQueueContext.QueueTrigger
+- uid: FunctionMonkey.Abstractions.HttpResponse
+  name: HttpResponse
+  href: api/FunctionMonkey.Abstractions.HttpResponse.html
+  commentId: T:FunctionMonkey.Abstractions.HttpResponse
+  fullName: FunctionMonkey.Abstractions.HttpResponse
+  nameWithType: HttpResponse
+- uid: FunctionMonkey.Abstractions.HttpResponse.Body
+  name: Body
+  href: api/FunctionMonkey.Abstractions.HttpResponse.html#FunctionMonkey_Abstractions_HttpResponse_Body
+  commentId: P:FunctionMonkey.Abstractions.HttpResponse.Body
+  fullName: FunctionMonkey.Abstractions.HttpResponse.Body
+  nameWithType: HttpResponse.Body
+- uid: FunctionMonkey.Abstractions.HttpResponse.Body*
+  name: Body
+  href: api/FunctionMonkey.Abstractions.HttpResponse.html#FunctionMonkey_Abstractions_HttpResponse_Body_
+  commentId: Overload:FunctionMonkey.Abstractions.HttpResponse.Body
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.HttpResponse.Body
+  nameWithType: HttpResponse.Body
+- uid: FunctionMonkey.Abstractions.HttpResponse.StatusCode
+  name: StatusCode
+  href: api/FunctionMonkey.Abstractions.HttpResponse.html#FunctionMonkey_Abstractions_HttpResponse_StatusCode
+  commentId: P:FunctionMonkey.Abstractions.HttpResponse.StatusCode
+  fullName: FunctionMonkey.Abstractions.HttpResponse.StatusCode
+  nameWithType: HttpResponse.StatusCode
+- uid: FunctionMonkey.Abstractions.HttpResponse.StatusCode*
+  name: StatusCode
+  href: api/FunctionMonkey.Abstractions.HttpResponse.html#FunctionMonkey_Abstractions_HttpResponse_StatusCode_
+  commentId: Overload:FunctionMonkey.Abstractions.HttpResponse.StatusCode
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.HttpResponse.StatusCode
+  nameWithType: HttpResponse.StatusCode
 - uid: FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization
   name: IClaimsPrincipalAuthorization
   href: api/FunctionMonkey.Abstractions.IClaimsPrincipalAuthorization.html
@@ -1536,6 +1613,12 @@ references:
   commentId: N:FunctionMonkey.Commanding.Abstractions
   fullName: FunctionMonkey.Commanding.Abstractions
   nameWithType: FunctionMonkey.Commanding.Abstractions
+- uid: FunctionMonkey.Commanding.Abstractions.IgnorePropertyAttribute
+  name: IgnorePropertyAttribute
+  href: api/FunctionMonkey.Commanding.Abstractions.IgnorePropertyAttribute.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.IgnorePropertyAttribute
+  fullName: FunctionMonkey.Commanding.Abstractions.IgnorePropertyAttribute
+  nameWithType: IgnorePropertyAttribute
 - uid: FunctionMonkey.Commanding.Abstractions.IStreamCommand
   name: IStreamCommand
   href: api/FunctionMonkey.Commanding.Abstractions.IStreamCommand.html
@@ -1816,6 +1899,52 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation
   nameWithType: IFunctionHostBuilderExtensions.AddFluentValidation
+- uid: FunctionMonkey.Http.Abstractions
+  name: FunctionMonkey.Http.Abstractions
+  href: api/FunctionMonkey.Http.Abstractions.html
+  commentId: N:FunctionMonkey.Http.Abstractions
+  fullName: FunctionMonkey.Http.Abstractions
+  nameWithType: FunctionMonkey.Http.Abstractions
+- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler
+  name: IHttpResponseHandler
+  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html
+  commentId: T:FunctionMonkey.Http.Abstractions.IHttpResponseHandler
+  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler
+  nameWithType: IHttpResponseHandler
+- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse*
+  name: CreateResponse
+  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse_
+  commentId: Overload:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse
+  isSpec: "True"
+  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse
+  nameWithType: IHttpResponseHandler.CreateResponse
+- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0)
+  name: CreateResponse<TCommand>(TCommand)
+  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse__1___0_
+  commentId: M:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0)
+  name.vb: CreateResponse(Of TCommand)(TCommand)
+  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse<TCommand>(TCommand)
+  fullName.vb: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand)
+  nameWithType: IHttpResponseHandler.CreateResponse<TCommand>(TCommand)
+  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand)
+- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0,Exception)
+  name: CreateResponse<TCommand>(TCommand, Exception)
+  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse__1___0_Exception_
+  commentId: M:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0,Exception)
+  name.vb: CreateResponse(Of TCommand)(TCommand, Exception)
+  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse<TCommand>(TCommand, Exception)
+  fullName.vb: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand, Exception)
+  nameWithType: IHttpResponseHandler.CreateResponse<TCommand>(TCommand, Exception)
+  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand, Exception)
+- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``2(``0,``1)
+  name: CreateResponse<TCommand, TResult>(TCommand, TResult)
+  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse__2___0___1_
+  commentId: M:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``2(``0,``1)
+  name.vb: CreateResponse(Of TCommand, TResult)(TCommand, TResult)
+  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse<TCommand, TResult>(TCommand, TResult)
+  fullName.vb: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse(Of TCommand, TResult)(TCommand, TResult)
+  nameWithType: IHttpResponseHandler.CreateResponse<TCommand, TResult>(TCommand, TResult)
+  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand, TResult)(TCommand, TResult)
 - uid: FunctionMonkey.Runtime
   name: Runtime
   href: api/FunctionMonkey.Runtime.html

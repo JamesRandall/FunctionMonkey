@@ -98,7 +98,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand&gt;()
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand&gt;()
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -111,8 +111,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -147,7 +147,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand&gt;(AuthorizationTypeEnum authorizationType)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand&gt;(AuthorizationTypeEnum authorizationType)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -178,8 +178,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -214,7 +214,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand&gt;(AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand&gt;(AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -251,8 +251,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -287,7 +287,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand&gt;(params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand&gt;(params HttpMethod[] method)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -318,8 +318,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -354,7 +354,7 @@ specified here and it will be secured by the specified authorization type.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand&gt;(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand&gt;(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -397,8 +397,8 @@ specified here and it will be secured by the specified authorization type.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -434,7 +434,7 @@ specified here and it will be secured with the default authorization type (see I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand&gt;(string route, params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand&gt;(string route, params HttpMethod[] method)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -471,8 +471,8 @@ specified here and it will be secured with the default authorization type (see I
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -498,7 +498,7 @@ specified here and it will be secured with the default authorization type (see I
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction%60%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L86">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L70">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2">HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;()</h4>
@@ -507,7 +507,7 @@ specified here and it will be secured with the default authorization type (see I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;()
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;()
     where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -520,8 +520,8 @@ specified here and it will be secured with the default authorization type (see I
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -552,7 +552,7 @@ specified here and it will be secured with the default authorization type (see I
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction%60%602(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L97">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L81">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)">HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum)</h4>
@@ -561,7 +561,7 @@ specified here and it will be secured with the default authorization type (see I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum authorizationType)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum authorizationType)
     where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -592,8 +592,8 @@ specified here and it will be secured with the default authorization type (see I
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -624,7 +624,7 @@ specified here and it will be secured with the default authorization type (see I
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction%60%602(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum%2CHttpMethod%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L109">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L93">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])">HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum, HttpMethod[])</h4>
@@ -633,7 +633,7 @@ specified here and it will be secured with the default authorization type (see I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
     where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -670,8 +670,8 @@ specified here and it will be secured with the default authorization type (see I
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -702,7 +702,7 @@ specified here and it will be secured with the default authorization type (see I
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_HttpMethod___.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction%60%602(HttpMethod%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L118">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L102">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_HttpMethod___" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(HttpMethod[])">HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(HttpMethod[])</h4>
@@ -711,7 +711,7 @@ specified here and it will be secured with the default authorization type (see I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(params HttpMethod[] method)
     where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -742,8 +742,8 @@ specified here and it will be secured with the default authorization type (see I
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -772,7 +772,7 @@ specified here and it will be secured with the default authorization type (see I
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction%60%602(System.String%2CFunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum%2CHttpMethod%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L145">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L129">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])">HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(String, AuthorizationTypeEnum, HttpMethod[])</h4>
@@ -782,7 +782,7 @@ specified here and it will be secured by the specified authorization type.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
     where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -825,8 +825,8 @@ specified here and it will be secured by the specified authorization type.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
@@ -857,7 +857,7 @@ specified here and it will be secured by the specified authorization type.</p>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_HttpMethod___.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction%60%602(System.String%2CHttpMethod%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L131">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionBuilder.cs/#L115">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_HttpMethod___" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,HttpMethod[])">HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(String, HttpMethod[])</h4>
@@ -867,7 +867,7 @@ specified here and it will be secured with the default authorization type (see I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionBuilderMetadataBuilder HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(string route, params HttpMethod[] method)
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(string route, params HttpMethod[] method)
     where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -904,8 +904,8 @@ specified here and it will be secured with the default authorization type (see I
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilderMetadataBuilder.html">IHttpFunctionBuilderMetadataBuilder</a></td>
-        <td><p>A IHttpFunctionBuilderMetadataBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
 </td>
       </tr>
     </tbody>
