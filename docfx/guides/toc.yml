@@ -18,6 +18,8 @@
           href: http/overview.md
         - name: Routing
           href: http/routing.md
+        - name: Responses
+          href: http/responses.md
         - name: Authorization
           href: http/authorization.md
         - name: Claims Mapping

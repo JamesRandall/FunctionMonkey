@@ -106,10 +106,7 @@ namespace FunctionMonkey.Builders
         {
             if (_definition.HeaderBindingConfiguration == null)
             {
-                _definition.HeaderBindingConfiguration = new HeaderBindingConfiguration
-                {
-                    Enabled = true
-                };
+                _definition.HeaderBindingConfiguration = new HeaderBindingConfiguration();
             }
 
             MemberInfo member = property.GetMember();

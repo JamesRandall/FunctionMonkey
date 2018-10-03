@@ -28,13 +28,13 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
+                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
                             .OpenApiDescription("Says hello world")
                             .AddHeaderMapping(x => x.HeaderName, "x-header-name")
-                            .ResponseHandler<CustomResponseHandler>()
+                            //.ResponseHandler<CustomResponseHandler>()
                     )
                     .OpenApiDescription("A route description")
                     /*.HttpRoute("/Add", route => route
