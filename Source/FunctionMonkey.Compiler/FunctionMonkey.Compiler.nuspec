@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>FunctionMonkey.Compiler</id>
-    <version>0.15.1-beta000</version>
+    <version>0.15.2-beta000</version>
     <authors>James Randall</authors>
     <description>Generates Azure Functions from command registrations</description>
     <licenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</licenseUrl>

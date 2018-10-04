@@ -25,7 +25,23 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("HTTP trigger function {{Name}} processed a request.");            
+            log.LogInformation("HTTP trigger function {{Name}} processed a request.");    
+
+            string requestUrl = GetRequestUrl(req);
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
+            var headerDictionary = new Dictionary<string, IReadOnlyCollection<string>>();
+            foreach (var headerKeyValuesPair in req.Headers)
+            {
+                string[] values = headerKeyValuesPair.Value.ToArray();
+                headerDictionary.Add(headerKeyValuesPair.Key, values);
+            }
+            contextSetter.SetHttpContext(requestUrl, headerDictionary);
+
             System.Security.Claims.ClaimsPrincipal principal = null;
             // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
             // there are any issues
@@ -48,7 +64,6 @@ namespace {{Namespace}}
             }            
             {{/if}}
 
-            string requestUrl = GetRequestUrl(req);
             {{#if AuthorizesClaims}}
             var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
@@ -139,20 +154,6 @@ namespace {{Namespace}}
                 return CreateResponse(400, validationResult);
             }
             {{/if}}
-
-            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
-            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
-                executionContext.FunctionAppDirectory,
-                executionContext.FunctionName,
-                executionContext.InvocationId);
-            var headerDictionary = new Dictionary<string, IReadOnlyCollection<string>>();
-            foreach (var headerKeyValuesPair in req.Headers)
-            {
-                string[] values = headerKeyValuesPair.Value.ToArray();
-                headerDictionary.Add(headerKeyValuesPair.Key, values);
-            }
-            contextSetter.SetHttpContext(requestUrl, headerDictionary);
             
             try
             {
