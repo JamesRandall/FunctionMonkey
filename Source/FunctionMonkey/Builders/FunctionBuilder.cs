@@ -55,6 +55,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IFunctionBuilder CosmosDb(string connectionName, Action<ICosmosDbFunctionBuilder> cosmosDbFunctionBuilder)
+        {
+            CosmosDbFunctionBuilder builder = new CosmosDbFunctionBuilder(connectionName, _definitions);
+            cosmosDbFunctionBuilder(builder);
+            return this;
+        }
 
         public IReadOnlyCollection<HttpFunctionDefinition> GetHttpFunctionDefinitions()
         {

@@ -7,6 +7,7 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Commanding.Abstractions.Validation;
+using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
 
@@ -25,41 +26,73 @@ namespace FunctionMonkey.Infrastructure
                 definition.IsUsingValidator = builder.ValidatorType != null;
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)
                 {
-                    if (!httpFunctionDefinition.Authorization.HasValue)
-                    {
-                        httpFunctionDefinition.Authorization = authorizationBuilder.AuthorizationDefaultValue;
-                    }
-
-                    if (httpFunctionDefinition.Authorization.Value == AuthorizationTypeEnum.TokenValidation)
-                    {
-                        httpFunctionDefinition.ValidatesToken = true;
-                    }
-
-                    if (httpFunctionDefinition.Verbs.Count == 0)
-                    {
-                        httpFunctionDefinition.Verbs.Add(HttpMethod.Get);
-                    }
-
-                    if (string.IsNullOrWhiteSpace(httpFunctionDefinition.ClaimsPrincipalAuthorizationTypeName))
-                    {
-                        httpFunctionDefinition.ClaimsPrincipalAuthorizationType = authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
-                    }
-
-                    httpFunctionDefinition.HeaderBindingConfiguration = httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;
-
-                    httpFunctionDefinition.HttpResponseHandlerType = httpFunctionDefinition.HttpResponseHandlerType ?? builder.DefaultHttpResponseHandlerType;
-
-                    httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
-
-                    httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null && validationResultType.IsAssignableFrom(httpFunctionDefinition.CommandResultType);
-
-                    ExtractPossibleQueryParameters(httpFunctionDefinition);
-
-                    ExtractRouteParameters(httpFunctionDefinition);
-
-                    EnsureOpenApiDescription(httpFunctionDefinition);
+                    CompleteHttpFunctionDefinition(builder, httpFunctionDefinition, authorizationBuilder, validationResultType);
+                }
+                else if (definition is CosmosDbFunctionDefinition cosmosDbFunctionDefinition)
+                {
+                    CompleteCosmosDbFunctionDefinition(cosmosDbFunctionDefinition);
                 }
             }
+        }
+
+        private void CompleteCosmosDbFunctionDefinition(CosmosDbFunctionDefinition cosmosDbFunctionDefinition)
+        {
+            Type documentCommandType = typeof(ICosmosDbDocumentCommand);
+            Type documentBatchCommandType = typeof(ICosmosDbDocumentBatchCommand);
+
+            ExtractCosmosCommandProperties(cosmosDbFunctionDefinition);
+
+            cosmosDbFunctionDefinition.IsDocumentCommand = documentCommandType.IsAssignableFrom(cosmosDbFunctionDefinition.CommandType);
+            cosmosDbFunctionDefinition.IsDocumentBatchCommand = documentBatchCommandType.IsAssignableFrom(cosmosDbFunctionDefinition.CommandType);
+            if (cosmosDbFunctionDefinition.IsDocumentBatchCommand && cosmosDbFunctionDefinition.IsDocumentBatchCommand)
+            {
+                throw new ConfigurationException(
+                    $"Command {cosmosDbFunctionDefinition.CommandType.Name} implements both ICosmosDbDocumentCommand and ICosmosDbDocumentBatchCommand - it can only implement one of these interfaces");
+            }
+        }
+
+        private static void CompleteHttpFunctionDefinition(FunctionHostBuilder builder,
+            HttpFunctionDefinition httpFunctionDefinition, AuthorizationBuilder authorizationBuilder,
+            Type validationResultType)
+        {
+            if (!httpFunctionDefinition.Authorization.HasValue)
+            {
+                httpFunctionDefinition.Authorization = authorizationBuilder.AuthorizationDefaultValue;
+            }
+
+            if (httpFunctionDefinition.Authorization.Value == AuthorizationTypeEnum.TokenValidation)
+            {
+                httpFunctionDefinition.ValidatesToken = true;
+            }
+
+            if (httpFunctionDefinition.Verbs.Count == 0)
+            {
+                httpFunctionDefinition.Verbs.Add(HttpMethod.Get);
+            }
+
+            if (string.IsNullOrWhiteSpace(httpFunctionDefinition.ClaimsPrincipalAuthorizationTypeName))
+            {
+                httpFunctionDefinition.ClaimsPrincipalAuthorizationType =
+                    authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
+            }
+
+            httpFunctionDefinition.HeaderBindingConfiguration =
+                httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;
+
+            httpFunctionDefinition.HttpResponseHandlerType =
+                httpFunctionDefinition.HttpResponseHandlerType ?? builder.DefaultHttpResponseHandlerType;
+
+            httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
+
+            httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null &&
+                                                         validationResultType.IsAssignableFrom(httpFunctionDefinition
+                                                             .CommandResultType);
+
+            ExtractPossibleQueryParameters(httpFunctionDefinition);
+
+            ExtractRouteParameters(httpFunctionDefinition);
+
+            EnsureOpenApiDescription(httpFunctionDefinition);
         }
 
         private static void EnsureOpenApiDescription(HttpFunctionDefinition httpFunctionDefinition)
@@ -91,9 +124,25 @@ namespace FunctionMonkey.Infrastructure
                    component.EndsWith("}");
         }
 
-        private static void ExtractPossibleQueryParameters(HttpFunctionDefinition httpFunctionDefinition1)
+        private static void ExtractCosmosCommandProperties(CosmosDbFunctionDefinition functionDefinition)
         {
-            httpFunctionDefinition1.PossibleBindingProperties = httpFunctionDefinition1
+            functionDefinition.CommandProperties = functionDefinition
+                .CommandType
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
+                            && x.SetMethod != null)
+                .Select(x => new CosmosDbCommandProperty
+                {
+                    Name = x.Name,
+                    TypeName = x.PropertyType.EvaluateType(),
+                    Type = x.PropertyType
+                })
+                .ToArray();
+        }
+
+        private static void ExtractPossibleQueryParameters(HttpFunctionDefinition httpFunctionDefinition)
+        {
+            httpFunctionDefinition.PossibleBindingProperties = httpFunctionDefinition
                 .CommandType
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null

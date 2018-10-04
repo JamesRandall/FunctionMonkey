@@ -39,6 +39,12 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <returns>The function builder for a fluent API</returns>
         IFunctionBuilder Storage(string connectionName, Action<IStorageFunctionBuilder> storageFunctionBuilder);
 
-        
+        /// <summary>
+        /// Allows Cosmos DB functions to be configured based on a connection name
+        /// </summary>
+        /// <param name="connectionName">The name of the connection in the environment settings</param>
+        /// <param name="cosmosDbFunctionBuilder">A builder that allows one or more functions to be created that are associated with the Cosmos connection</param>
+        /// <returns>The function builder for a fluent API</returns>
+        IFunctionBuilder CosmosDb(string connectionName, Action<ICosmosDbFunctionBuilder> cosmosDbFunctionBuilder);
     }
 }

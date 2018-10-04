@@ -142,6 +142,7 @@
     <None Remove="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
     <None Remove="references\netstandard2.0\System.Xml.XPath.dll" />
     <None Remove="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+    <None Remove="Templates\cosmosdb.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
@@ -298,6 +299,7 @@
     <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\proxies.explicit.json.handlebars" />
+    <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
     <EmbeddedResource Include="Templates\timer.csharp.handlebars" />
     <EmbeddedResource Include="Templates\swaggerui.json.handlebars" />

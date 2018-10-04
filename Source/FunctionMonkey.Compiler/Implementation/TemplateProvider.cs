@@ -15,7 +15,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(StorageQueueFunctionDefinition),"storagequeue" },
             {typeof(BlobFunctionDefinition),"storageblob" },
             {typeof(BlobStreamFunctionDefinition),"storageblobstream" },
-            {typeof(TimerFunctionDefinition),"timer" }
+            {typeof(TimerFunctionDefinition),"timer" },
+            {typeof(CosmosDbFunctionDefinition), "cosmosdb" }
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)
