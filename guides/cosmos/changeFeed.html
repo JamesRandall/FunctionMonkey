@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cosmos Change Feed </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Cosmos Change Feed ">
+    <meta name="generator" content="docfx 2.39.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="cosmos-change-feed">Cosmos Change Feed</h1>
+
+<h2 id="getting-started">Getting Started</h2>
+<p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
+<pre><code>Install-Package FunctionMonkey -pre
+Install-Package FunctionMonkey.Compiler -pre
+</code></pre><p>You will also need to add the Cosmos trigger bindings:</p>
+<pre><code>Install-Package Microsoft.Azure.WebJobs.Extensions.CosmosDB
+</code></pre><p>Now create a folder in the solution called commands and create a class called InvoiceUpdateCommand that matches the document schema in Cosmos:</p>
+<pre><code>public class Address
+{
+    public string Line1 { get; set; }
+
+    public string Line2 { get; set; }
+
+    public string Line3 { get; set; }
+
+    public string Postcode { get; set; }
+
+    public string Counter { get; set;}
+}
+
+public class InvoiceUpdatedCommand : ICommand
+{
+    public string Id { get; set; }
+
+    public Address Address { get; set; }
+
+    public double Value { get; set; }
+}
+</code></pre><p>Next create a folder in the solution called Handlers and create a class called InvoiceUpdatedCommandHandler:</p>
+<pre><code>internal class InvoiceUpdatedCommandHandler : ICommandHandler&lt;InvoiceUpdatedCommand&gt;
+{
+    public Task ExecuteAsync(InvoiceUpdatedCommand command)
+    {
+        // We won&#39;t really do anything in this sample
+        return Task.CompletedTask;
+    }
+}
+</code></pre><p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a Cosmos instance:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string CosmosDatabaseName = &quot;Financials&quot;;
+    private const string CosmosCollectionName = &quot;Invoices&quot;;
+    private const string CosmosConnectionSettingName = &quot;cosmosDbConnection&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+                commandRegistry.Register&lt;InvoiceUpdatedCommandHandler&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .CosmosDb(CosmosConnectionSettingName, cosmos =&gt; cosmos
+                    .ChangeFeedFunction&lt;InvoiceUpdatedCommand&gt;(CosmosCollectionName, CosmosDatabaseName, convertToPascalCase:true)
+                )
+            );
+    }
+}
+</code></pre><p>The above Cosmos function will monitor the change feed for the Invoices collection inside the Financials database and use the default trigger settings and so expect to find a collection called <em>leases</em> also inside the Financials database.</p>
+<p>By setting convertToPascalCase to true Function Monkey will handle the camel / Pascal case issues that exist within the Cosmos change feed processor and downstream in Azure Functions. Note that due to limitations in the Cosmos NuGet package this involves a serialization and deserialization step and so does carry overhead. The alternative approach is to use camel case in your command or to mark each property in the command (and referenced model) with the JsonProperty attribute and specify a camel case property name. Messy, I realise, but the limitation is in how the Cosmos team have exposed serialization (or rather how they haven&#39;t) on the Change Feed Processor - hopefully they will address this.</p>
+<p>Finally we need to create an entry in local.settings.json for the Cosmos connection string:</p>
+<pre><code>{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;cosmosDbConnection&quot;: &quot;&lt;connection string&gt;&quot; 
+  }
+}
+</code></pre><p>And that&#39;s it! If you run this project against an appropriate Cosmos database and make changes to the documents you will find they are sent to the appropriate Cosmos handler.</p>
+<h2 id="using-documents-directly">Using Documents Directly</h2>
+<p>Rather than constructing commands from the Cosmos Documents, Function Monkey also supports dealing with the Document class directly via the <em>ICosmosDbDocumentCommand</em> and the <em>ICosmosDbDocumentBatchCommand</em> interfaces that can be found in the <em>FunctionMonkey.Commanding.Cosmos.Abstractions</em> NuGet package.</p>
+<p>To deal with a single document simply implement the <em>ICosmosDbDocumentCommand</em>:</p>
+<pre><code>public class InvoiceUpdatedCommand : ICosmosDbDocumentCommand
+{
+    public Document Document { get; set; }
+}
+</code></pre><p>Or to deal with them in batch (as fed to the Azure Function):</p>
+<pre><code>public class InvoiceUpdatedCommand : _ICosmosDbDocumentBatchCommand_
+{
+    public Document Documents { get; set; }
+} 
+</code></pre><h2 id="validation">Validation</h2>
+<p>If you want to validate the queue messages as you recieve them then validation is supported and is <a href="/crosscutting/validation.html">documented here</a>.</p>
+<p>Validation only takes place when <em>not</em> using the <em>ICosmosDbDocumentCommand</em> or the <em>ICosmosDbDocumentBatchCommand</em> interface.</p>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/cosmos/changeFeed.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

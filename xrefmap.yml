@@ -145,6 +145,28 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName
   nameWithType: IClaimsMappingBuilder.MapClaimToPropertyName
+- uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder
+  name: ICosmosDbFunctionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder
+  nameWithType: ICosmosDbFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction*
+  name: ChangeFeedFunction
+  href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder_ChangeFeedFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction
+  nameWithType: ICosmosDbFunctionBuilder.ChangeFeedFunction
+- uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction``1(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name: ChangeFeedFunction<TCommand>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder_ChangeFeedFunction__1_System_String_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction``1(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name.vb: ChangeFeedFunction(Of TCommand)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+  fullName: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction<TCommand>(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand)(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32))
+  nameWithType: ICosmosDbFunctionBuilder.ChangeFeedFunction<TCommand>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  nameWithType.vb: ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
 - uid: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder
   name: IEventHubFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html
@@ -173,6 +195,31 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionBuilder
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder
   nameWithType: IFunctionBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name: CosmosDb(String, Action<ICosmosDbFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name.vb: CosmosDb(String, Action(Of ICosmosDbFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String, Action<FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String, Action(Of FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder))
+  nameWithType: IFunctionBuilder.CosmosDb(String, Action<ICosmosDbFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.CosmosDb(String, Action(Of ICosmosDbFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name: CosmosDb(String, String, Action<ICosmosDbFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name.vb: CosmosDb(String, String, Action(Of ICosmosDbFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String, System.String, Action<FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String, System.String, Action(Of FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder))
+  nameWithType: IFunctionBuilder.CosmosDb(String, String, Action<ICosmosDbFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.CosmosDb(String, String, Action(Of ICosmosDbFunctionBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb*
+  name: CosmosDb
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb
+  nameWithType: IFunctionBuilder.CosmosDb
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
   name: HttpRoute(String, Action<IHttpFunctionBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
@@ -1855,6 +1902,50 @@ references:
   fullName.vb: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(Of TResult).Result
   nameWithType: ValidationResult<TResult>.Result
   nameWithType.vb: ValidationResult(Of TResult).Result
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions
+  name: FunctionMonkey.Commanding.Cosmos.Abstractions
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.html
+  commentId: N:FunctionMonkey.Commanding.Cosmos.Abstractions
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions
+  nameWithType: FunctionMonkey.Commanding.Cosmos.Abstractions
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand
+  name: ICosmosDbDocumentBatchCommand
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html
+  commentId: T:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand
+  nameWithType: ICosmosDbDocumentBatchCommand
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.Documents
+  name: Documents
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html#FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbDocumentBatchCommand_Documents
+  commentId: P:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.Documents
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.Documents
+  nameWithType: ICosmosDbDocumentBatchCommand.Documents
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.Documents*
+  name: Documents
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html#FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbDocumentBatchCommand_Documents_
+  commentId: Overload:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.Documents
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.Documents
+  nameWithType: ICosmosDbDocumentBatchCommand.Documents
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand
+  name: ICosmosDbDocumentCommand
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html
+  commentId: T:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand
+  nameWithType: ICosmosDbDocumentCommand
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document
+  name: Document
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html#FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbDocumentCommand_Document
+  commentId: P:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document
+  nameWithType: ICosmosDbDocumentCommand.Document
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document*
+  name: Document
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html#FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbDocumentCommand_Document_
+  commentId: Overload:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document
+  nameWithType: ICosmosDbDocumentCommand.Document
 - uid: FunctionMonkey.ConfigurationException
   name: ConfigurationException
   href: api/FunctionMonkey.ConfigurationException.html

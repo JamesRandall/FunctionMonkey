@@ -41,6 +41,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html",
+          "hash": "dmNUWMAT1pWCVBZIXbAVQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.yml",
       "output": {
         ".html": {
@@ -57,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html",
-          "hash": "QBXJqR1jvuVWKBRt0bT9qw=="
+          "hash": "22bzSWbY1VpqTmyVm9BfXg=="
         }
       },
       "is_incremental": false,
@@ -105,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html",
-          "hash": "peCQa2dkjqrNadIqGi1h+A=="
+          "hash": "ViSI6NSbDTgMP45FyNHURQ=="
         }
       },
       "is_incremental": false,
@@ -189,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.html",
-          "hash": "/AjqEh7NStVQXrrz5tiT4Q=="
+          "hash": "wfa6d7wNAJUBvJcP0NB3lw=="
         }
       },
       "is_incremental": false,
@@ -569,6 +581,42 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html",
+          "hash": "JAXwYHDcpZr8L47zzCauvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html",
+          "hash": "zHjvNsRH842Z0xQtm3bygw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.html",
+          "hash": "UBo4QMATa66X3HHaq6KA/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.ConfigurationException.yml",
       "output": {
         ".html": {
@@ -681,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "Qr1ZCe+QtR7sBxrnxkF7HQ=="
+          "hash": "4Q59X+pNwqISsHBVvDAUOw=="
         }
       },
       "is_incremental": false,
@@ -718,6 +766,18 @@
         ".html": {
           "relative_path": "guides/contributing/debugging.html",
           "hash": "3RpmWlSE+TMpdbDl3SX2Xg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/cosmos/changeFeed.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/cosmos/changeFeed.html",
+          "hash": "96RwQ0BPn60ZbgytJCCg4g=="
         }
       },
       "is_incremental": false,
@@ -996,7 +1056,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/toc.html",
-          "hash": "z43tvTPrA9E4PZd+7vxbxQ=="
+          "hash": "7KNRYZBPJqc/lJTjLqVcHg=="
         }
       },
       "is_incremental": false,
@@ -1082,11 +1142,11 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
