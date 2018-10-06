@@ -43,6 +43,11 @@ namespace FunctionMonkey.Builders
             return _decoratedBuilder.CosmosDb(connectionName, cosmosDbFunctionBuilder);
         }
 
+        public IFunctionBuilder CosmosDb(string connectionName, string leaseConnectionName, Action<ICosmosDbFunctionBuilder> cosmosDbFunctionBuilder)
+        {
+            return _decoratedBuilder.CosmosDb(connectionName, leaseConnectionName, cosmosDbFunctionBuilder);
+        }
+
         public IHttpRouteFunctionBuilder OpenApiDescription(string description)
         {
             _httpRouteConfiguration.OpenApiDescription = description;

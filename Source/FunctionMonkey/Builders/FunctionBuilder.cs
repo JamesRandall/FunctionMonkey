@@ -57,7 +57,14 @@ namespace FunctionMonkey.Builders
 
         public IFunctionBuilder CosmosDb(string connectionName, Action<ICosmosDbFunctionBuilder> cosmosDbFunctionBuilder)
         {
-            CosmosDbFunctionBuilder builder = new CosmosDbFunctionBuilder(connectionName, _definitions);
+            CosmosDbFunctionBuilder builder = new CosmosDbFunctionBuilder(connectionName, connectionName, _definitions);
+            cosmosDbFunctionBuilder(builder);
+            return this;
+        }
+
+        public IFunctionBuilder CosmosDb(string connectionName, string leaseConnectionName, Action<ICosmosDbFunctionBuilder> cosmosDbFunctionBuilder)
+        {
+            CosmosDbFunctionBuilder builder = new CosmosDbFunctionBuilder(connectionName, leaseConnectionName, _definitions);
             cosmosDbFunctionBuilder(builder);
             return this;
         }

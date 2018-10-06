@@ -31,5 +31,18 @@ namespace FunctionMonkey.Model
         public bool CreateLeaseCollectionIfNotExists { get; set; }
 
         public bool StartFromBeginning { get; set; }
+
+        public string LeaseConnectionStringName { get; set; }
+
+        public string LeaseCollectionPrefix { get; set; }
+
+        public int? MaxItemsPerInvocation { get; set; }
+
+        public int? FeedPollDelay { get; set; }
+        public int? LeaseAcquireInterval { get; set; }
+        public int? LeaseExpirationInterval { get; set; }
+        public int? LeaseRenewInterval { get; set; }
+        public int? CheckpointFrequency { get; set; }
+        public int? LeasesCollectionThroughput { get; set; }
     }
 }

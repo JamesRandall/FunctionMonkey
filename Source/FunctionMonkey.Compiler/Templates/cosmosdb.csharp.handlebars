@@ -15,10 +15,20 @@ namespace {{Namespace}}
     {
         [FunctionName("{{Name}}")]
         public static async Task Run(
-            [CosmosDBTrigger(databaseName: "{{DatabaseName}}",
-                             collectionName: "{{CollectionName}}",
-                             ConnectionStringSetting = "{{ConnectionStringName}}",
-                             LeaseCollectionName="{{LeaseCollectionName}}")]
+            [CosmosDBTrigger(databaseName: "{{DatabaseName}}"
+                             ,collectionName: "{{CollectionName}}"
+                             ,ConnectionStringSetting = "{{ConnectionStringName}}"
+                             ,LeaseCollectionName="{{LeaseCollectionName}}"
+                             ,LeaseConnectionStringSetting="{{LeaseConnectionStringName}}"
+                             {{#if LeaseCollectionPrefix}},LeaseCollectionPrefix="{{LeaseCollectionPrefix}}"{{/if}}
+                             {{#if MaxItemsPerInvocation}},MaxItemsPerInvocation={{MaxItemsPerInvocation}}{{/if}}
+                             {{#if FeedPollDelay}},FeedPollDelay={{FeedPollDelay}}{{/if}}
+                             {{#if LeaseAcquireInterval}},LeaseAcquireInterval={{LeaseAcquireInterval}}{{/if}}
+                             {{#if LeaseExpirationInterval}},LeaseExpirationInterval={{LeaseExpirationInterval}}{{/if}}
+                             {{#if LeaseRenewInterval}},LeaseRenewInterval={{LeaseRenewInterval}}{{/if}}
+                             {{#if CheckpointFrequency}},CheckpointFrequency={{CheckpointFrequency}}{{/if}}
+                             {{#if LeasesCollectionThroughput}},LeasesCollectionThroughput={{LeasesCollectionThroughput}}{{/if}}
+            )]
             IReadOnlyList<Document> input,
             ILogger log,
             ExecutionContext executionContext)

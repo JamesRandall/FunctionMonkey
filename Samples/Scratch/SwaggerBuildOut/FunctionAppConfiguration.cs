@@ -31,7 +31,7 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
+                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
@@ -41,9 +41,9 @@ namespace SwaggerBuildOut
                     )
                     .OpenApiDescription("A route description")
                     .CosmosDb("CosmosConnection", cosmos => cosmos
-                        .ChangeFeedFunction<CosmosCommand>("Items", "ToDoList")//, convertToPascalCase:true)
+                        .ChangeFeedFunction<CosmosCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)
                         //.ChangeFeedFunction<CosmosDocumentCommand>("Items", "ToDoList")
-                        //.ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList")
+                        .ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn2")
                     )
                     /*.HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
