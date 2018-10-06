@@ -14,6 +14,7 @@ using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Documents;
 using Microsoft.Azure.WebJobs;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -245,7 +246,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(IServiceProvider).GetTypeInfo().Assembly.Location,
                 typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
-                typeof(ExecutionContext).GetTypeInfo().Assembly.Location
+                typeof(ExecutionContext).GetTypeInfo().Assembly.Location,
+                typeof(Document).GetTypeInfo().Assembly.Location
             };
             foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Model;
@@ -22,14 +23,20 @@ namespace FunctionMonkey.Builders
         public ICosmosDbFunctionBuilder ChangeFeedFunction<TCommand>(
             string collectionName,
             string databaseName,
-            string leaseCollectionName = "leases") where TCommand : ICommandClaimsBinder
+            string leaseCollectionName = "leases",
+            string leaseDatabaseName = null,
+            bool createLeaseCollectionIfNotExists = false,
+            bool documentIsCamelCase = true) where TCommand : ICommand
         {
             _functionDefinitions.Add(new CosmosDbFunctionDefinition(typeof(TCommand))
             {
                 ConnectionStringName = _connectionStringName,
                 CollectionName = collectionName,
                 DatabaseName = databaseName,
-                LeaseCollectionName = leaseCollectionName
+                LeaseCollectionName = leaseCollectionName,
+                LeaseDatabaseName = leaseDatabaseName ?? databaseName,
+                CreateLeaseCollectionIfNotExists = createLeaseCollectionIfNotExists,
+                DocumentIsCamelCase = documentIsCamelCase
             });
             return this;
         }

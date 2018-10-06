@@ -22,13 +22,14 @@ namespace SwaggerBuildOut
                 {
                     commandRegistry.Register<HelloWorldCommandHandler>();
                     commandRegistry.Register<AddCommandHandler>();
+                    commandRegistry.Register<CosmosCommandHandler>();
                 })
                 .OpenApiEndpoint(openApi => openApi
                     .Title("A Simple API")
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
+                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
@@ -37,6 +38,9 @@ namespace SwaggerBuildOut
                             //.ResponseHandler<CustomResponseHandler>()
                     )
                     .OpenApiDescription("A route description")
+                    .CosmosDb("CosmosConnection", cosmos => cosmos
+                        .ChangeFeedFunction<CosmosCommand>("Items", "ToDoList")
+                    )
                     /*.HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")

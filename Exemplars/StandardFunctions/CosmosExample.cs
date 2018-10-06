@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.ChangeFeedProcessor;
+using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
@@ -17,10 +19,9 @@ namespace StandardFunctions
         {
             foreach (Document document in input)
             {
-                //document.
-                //document.GetPropertyValue<string>("a");
+                document.GetPropertyValue<string>("a");
             }
-
+            
             if (input != null && input.Count > 0)
             {
                 log.LogInformation("Documents modified " + input.Count);

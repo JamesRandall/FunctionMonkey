@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.Documents;
@@ -18,38 +19,16 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Storage queue trigger function {{Name}} processed a request.");            
+            log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");            
             
-            {{CommandTypeName}} command;
-            if (!System.String.IsNullOrWhiteSpace(queueItem))
+            {{CommandTypeName}} command = new {{CommandTypeName}}();
+            foreach(Document document in input)
             {
-                var deserializer = (FunctionMonkey.Abstractions.ICommandDeserializer)
-                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandDeserializer));
-                command = deserializer.Deserialize<{{CommandTypeName}}>(queueItem, false); // we don't enforce security properties from message buses
-            }
-            else
-            {
-                command = new {{CommandTypeName}}();
+                {{#each CommandProperties}}
+                command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{Name}}");
+                {{/each}}
             }
 
-            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
-            contextSetter.SetStorageQueueContext(expirationTime, insertionTime, nextVisibleTime, queueTrigger, id, popReceipt, dequeueCount);
-            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
-                executionContext.FunctionAppDirectory,
-                executionContext.FunctionName,
-                executionContext.InvocationId);
-
-            {{#if IsUsingValidator}}
-            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
-            var validationResult = validator.Validate(command);
-            if (!validationResult.IsValid)
-            {
-                throw new FunctionMonkey.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
-            }
-            {{/if}}
-            
             var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
             // The result will be useful when we want to include outputs too
         }

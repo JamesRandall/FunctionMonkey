@@ -22,7 +22,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(StorageQueueFunctionDefinition), typeof(QueueTriggerAttribute).Assembly },
             {typeof(BlobStreamFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
             {typeof(BlobFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
-            {typeof(TimerFunctionDefinition), typeof(TimerTriggerAttribute).Assembly }
+            {typeof(TimerFunctionDefinition), typeof(TimerTriggerAttribute).Assembly },
+            {typeof(CosmosDbFunctionDefinition), typeof(CosmosDBTriggerAttribute).Assembly }
         };
 
         public Assembly GetTriggerReference(AbstractFunctionDefinition functionDefinition)

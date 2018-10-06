@@ -6,6 +6,8 @@ namespace FunctionMonkey.Model
     {
         public string Name { get; set; }
 
+        public string CosmosPropertyName { get; set; }
+
         public string TypeName { get; set; }
 
         public Type Type { get; set; }
