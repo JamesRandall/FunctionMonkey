@@ -1,0 +1,1 @@
+dotnet pack .\FunctionMonkey.Commanding.Cosmos.Abstractions.csproj --output ../../ --configuration Release

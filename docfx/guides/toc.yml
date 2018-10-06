@@ -36,6 +36,8 @@
           href: serviceBus/topics.md
         - name: Message Properties
           href: serviceBus/messageProperties.md
+    - name: Cosmos DB Triggers
+      href: cosmos/changeFeed.md
     - name: Timer Triggers
       href: timers/timers.md      
     - name: Azure Storage Triggers
