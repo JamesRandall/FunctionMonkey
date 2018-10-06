@@ -10,6 +10,7 @@ using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
+using Newtonsoft.Json;
 
 namespace FunctionMonkey.Infrastructure
 {
@@ -44,7 +45,7 @@ namespace FunctionMonkey.Infrastructure
 
             cosmosDbFunctionDefinition.IsDocumentCommand = documentCommandType.IsAssignableFrom(cosmosDbFunctionDefinition.CommandType);
             cosmosDbFunctionDefinition.IsDocumentBatchCommand = documentBatchCommandType.IsAssignableFrom(cosmosDbFunctionDefinition.CommandType);
-            if (cosmosDbFunctionDefinition.IsDocumentBatchCommand && cosmosDbFunctionDefinition.IsDocumentBatchCommand)
+            if (cosmosDbFunctionDefinition.IsDocumentCommand && cosmosDbFunctionDefinition.IsDocumentBatchCommand)
             {
                 throw new ConfigurationException(
                     $"Command {cosmosDbFunctionDefinition.CommandType.Name} implements both ICosmosDbDocumentCommand and ICosmosDbDocumentBatchCommand - it can only implement one of these interfaces");
@@ -131,11 +132,21 @@ namespace FunctionMonkey.Infrastructure
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
                             && x.SetMethod != null)
-                .Select(x => new CosmosDbCommandProperty
+                .Select(x =>
                 {
-                    Name = x.Name,
-                    TypeName = x.PropertyType.EvaluateType(),
-                    Type = x.PropertyType
+                    string cosmosPropertyName = x.Name;
+                    JsonPropertyAttribute jsonPropertyAttribute = x.GetCustomAttribute<JsonPropertyAttribute>();
+                    if (jsonPropertyAttribute != null)
+                    {
+                        cosmosPropertyName = jsonPropertyAttribute.PropertyName;
+                    }
+                    return new CosmosDbCommandProperty
+                    {
+                        Name = x.Name,
+                        CosmosPropertyName = cosmosPropertyName,
+                        TypeName = x.PropertyType.EvaluateType(),
+                        Type = x.PropertyType
+                    };
                 })
                 .ToArray();
         }

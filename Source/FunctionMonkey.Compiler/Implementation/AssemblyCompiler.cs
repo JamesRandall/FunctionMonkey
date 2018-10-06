@@ -187,7 +187,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
         private List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations, string[] manifestResoureNames, string manifestResourcePrefix)
         {
-// Add our references - if the reference is to a library that forms part of NET Standard 2.0 then make sure we add
+            // Add our references - if the reference is to a library that forms part of NET Standard 2.0 then make sure we add
             // the reference from the embedded NET Standard reference set - although our target is NET Standard the assemblies
             // in the output folder of the Function App may be NET Core assemblies.
             List<PortableExecutableReference> references = resolvedLocations.Select(x =>
@@ -219,6 +219,12 @@ namespace FunctionMonkey.Compiler.Implementation
                 .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
             {
                 references.Add(MetadataReference.CreateFromStream(netStandard));
+            }
+
+            using (Stream systemIo = GetType().Assembly
+                .GetManifestResourceStream(String.Concat(manifestResourcePrefix, "System.IO.dll")))
+            {
+                references.Add(MetadataReference.CreateFromStream(systemIo));
             }
 
             return references;
@@ -253,8 +259,6 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 locations.Add(externalAssemblyLocation);
             }
-
-            
 
             return locations;
         }

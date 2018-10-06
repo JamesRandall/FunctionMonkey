@@ -10,7 +10,7 @@
       "leaseCollectionName": "{{LeaseCollectionName}}",
       "leaseDatabaseName": "{{LeaseDatabaseName}}",
       "createLeaseCollectionIfNotExists": {{#if CreateLeaseCollectionIfNotExists}}true{{else}}false{{/if}},
-      "startFromBeginning": false,
+      "startFromBeginning": {{#if StartFromBeginning}}true{{else}}false{{/if}},
       "name": "input"
     }
   ],

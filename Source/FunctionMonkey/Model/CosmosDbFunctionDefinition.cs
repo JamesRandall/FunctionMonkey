@@ -26,8 +26,10 @@ namespace FunctionMonkey.Model
 
         public string LeaseDatabaseName { get; set; }
 
-        public bool DocumentIsCamelCase { get; set; }
+        public bool ConvertToPascalCase { get; set; }
 
         public bool CreateLeaseCollectionIfNotExists { get; set; }
+
+        public bool StartFromBeginning { get; set; }
     }
 }

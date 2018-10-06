@@ -1,9 +1,13 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.Documents;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace {{Namespace}}
 {
@@ -21,16 +25,41 @@ namespace {{Namespace}}
         {
             log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");            
             
-            {{CommandTypeName}} command = new {{CommandTypeName}}();
-            foreach(Document document in input)
-            {
-                {{#each CommandProperties}}
-                command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{Name}}");
-                {{/each}}
-            }
+            {{#if IsDocumentBatchCommand}}
+                {{CommandTypeName}} command = new {{CommandTypeName}}();
+                command.Documents = input;
+                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                // The result will be useful when we want to include outputs too
+            {{else}}
+                foreach(Document document in input)
+                {
+                    {{CommandTypeName}} command = null;
+                    {{#if IsDocumentCommand}}
+                        command = new {{CommandTypeName}}();
+                        command.Document = document;
+                    {{else}}
+                        {{#if ConvertToPascalCase}}
+                            using (MemoryStream memoryStream = new MemoryStream())
+                            {
+                                document.SaveTo(memoryStream, SerializationFormattingPolicy.None, new JsonSerializerSettings
+                                {
+                                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                                });
+                                string json = Encoding.UTF8.GetString(memoryStream.ToArray());
+                                command = JsonConvert.DeserializeObject<{{CommandTypeName}}>(json);
+                            }    
+                        {{else}}
+                            command = new {{CommandTypeName}}();
+                            {{#each CommandProperties}}
+                                command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{CosmosPropertyName}}");
+                            {{/each}}
+                        {{/if}}
+                    {{/if}}
 
-            var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-            // The result will be useful when we want to include outputs too
+                    var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                    // The result will be useful when we want to include outputs too
+                }
+            {{/if}}
         }
     }
 }

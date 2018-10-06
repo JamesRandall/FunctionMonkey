@@ -110,35 +110,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
                 throw new ConfigurationException(sb.ToString());
             }
-        }
-
-        private void RecurseAssemblies(Assembly assembly, HashSet<Assembly> assemblies)
-        {
-            AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();
-            foreach (var referencedAssemblyName in referencedAssemblies)
-            {
-                if (referencedAssemblyName.Name == "netstandard" || referencedAssemblyName.Name == "System.Runtime")
-                {
-                    continue;
-                }
-                //var referencedAssembly = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(x => x.FullName == referencedAssemblyName.FullName);
-                Assembly referencedAssembly = null;
-                try
-                {
-                    referencedAssembly = Assembly.Load(referencedAssemblyName);
-                }
-                catch
-                {
-                    // we should be ok to ignore assemblies we can't load
-                }
-                
-                if (referencedAssembly != null)
-                {
-                    assemblies.Add(referencedAssembly);
-                    RecurseAssemblies(referencedAssembly, assemblies);
-                }
-            }
-        }
+        }        
 
         private IReadOnlyCollection<string> GetExternalAssemblyLocations(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)

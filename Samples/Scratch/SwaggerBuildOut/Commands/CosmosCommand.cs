@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AzureFromTheTrenches.Commanding.Abstractions;
+﻿using AzureFromTheTrenches.Commanding.Abstractions;
+using Newtonsoft.Json;
 
 namespace SwaggerBuildOut.Commands
 {
     public class Name
     {
-        public string first { get; set; }
+        [JsonProperty("first")]
+        public string First { get; set; }
 
-        public string last { get; set; }
+        [JsonProperty("last")]
+        public string Last { get; set; }
     }
 
     public class CosmosCommand : ICommand
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public Name name { get; set; }
+        [JsonProperty("name")]
+        public Name Name { get; set; }
     }
 }

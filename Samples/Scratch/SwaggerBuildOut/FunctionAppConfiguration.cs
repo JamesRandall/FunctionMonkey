@@ -23,6 +23,8 @@ namespace SwaggerBuildOut
                     commandRegistry.Register<HelloWorldCommandHandler>();
                     commandRegistry.Register<AddCommandHandler>();
                     commandRegistry.Register<CosmosCommandHandler>();
+                    commandRegistry.Register<CosmosDocumentCommandHandler>();
+                    commandRegistry.Register<CosmosDocumentBatchCommandHandler>();
                 })
                 .OpenApiEndpoint(openApi => openApi
                     .Title("A Simple API")
@@ -39,7 +41,9 @@ namespace SwaggerBuildOut
                     )
                     .OpenApiDescription("A route description")
                     .CosmosDb("CosmosConnection", cosmos => cosmos
-                        .ChangeFeedFunction<CosmosCommand>("Items", "ToDoList")
+                        .ChangeFeedFunction<CosmosCommand>("Items", "ToDoList")//, convertToPascalCase:true)
+                        //.ChangeFeedFunction<CosmosDocumentCommand>("Items", "ToDoList")
+                        //.ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList")
                     )
                     /*.HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)

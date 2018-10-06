@@ -26,7 +26,8 @@ namespace FunctionMonkey.Builders
             string leaseCollectionName = "leases",
             string leaseDatabaseName = null,
             bool createLeaseCollectionIfNotExists = false,
-            bool documentIsCamelCase = true) where TCommand : ICommand
+            bool startFromBeginning = false,
+            bool convertToPascalCase = true) where TCommand : ICommand
         {
             _functionDefinitions.Add(new CosmosDbFunctionDefinition(typeof(TCommand))
             {
@@ -36,7 +37,8 @@ namespace FunctionMonkey.Builders
                 LeaseCollectionName = leaseCollectionName,
                 LeaseDatabaseName = leaseDatabaseName ?? databaseName,
                 CreateLeaseCollectionIfNotExists = createLeaseCollectionIfNotExists,
-                DocumentIsCamelCase = documentIsCamelCase
+                ConvertToPascalCase = convertToPascalCase,
+                StartFromBeginning = startFromBeginning
             });
             return this;
         }
