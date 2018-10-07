@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html",
-          "hash": "dmNUWMAT1pWCVBZIXbAVQg=="
+          "hash": "jRLA0Jb5ZA3lommldXqIdg=="
         }
       },
       "is_incremental": false,
@@ -605,11 +605,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html",
+          "hash": "5AwtnSeMvuk6+uhG9RegWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.yml",
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Commanding.Cosmos.Abstractions.html",
-          "hash": "UBo4QMATa66X3HHaq6KA/Q=="
+          "hash": "Z/hB9N0u8j7/COXuHu9Tmg=="
         }
       },
       "is_incremental": false,
@@ -681,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Runtime.html",
-          "hash": "iofbwklRZYP7gdS38s2guw=="
+          "hash": "B94MQlk6mubp9wzmCL+81w=="
         }
       },
       "is_incremental": false,
@@ -729,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "4Q59X+pNwqISsHBVvDAUOw=="
+          "hash": "ryrwB4m7By55Q6GsxSkeHg=="
         }
       },
       "is_incremental": false,
@@ -785,11 +797,35 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/cosmos/errorHandling.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/cosmos/errorHandling.html",
+          "hash": "s8dnvfb3+o79XbCWQEKY5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/crosscutting/iocContainers.md",
       "output": {
         ".html": {
           "relative_path": "guides/crosscutting/iocContainers.html",
           "hash": "wTKWFluH7L9zEOioWUcO8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/crosscutting/logging.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/crosscutting/logging.html",
+          "hash": "1xakeVg9WI+nJ4mJAvzFgw=="
         }
       },
       "is_incremental": false,
@@ -1056,7 +1092,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/toc.html",
-          "hash": "7KNRYZBPJqc/lJTjLqVcHg=="
+          "hash": "N0fRS5ysOY58lEENUJXSEg=="
         }
       },
       "is_incremental": false,
@@ -1146,6 +1182,10 @@
           "can_incremental": false,
           "incrementalPhase": "build"
         },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
@@ -1154,10 +1194,6 @@
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
           "incrementalPhase": "build"
         }
       }

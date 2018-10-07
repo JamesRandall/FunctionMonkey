@@ -5,19 +5,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
-   </title>
+    <title>Logging </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
-   ">
+    <meta name="title" content="Logging ">
     <meta name="generator" content="docfx 2.39.2.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
     
     
     
@@ -36,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -68,23 +66,28 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions">
-  
-  <h1 id="FunctionMonkey_Commanding_Cosmos_Abstractions" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions" class="text-break">Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html">ICosmosDbDocumentBatchCommand</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html">ICosmosDbDocumentCommand</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html">ICosmosDbErrorHandler</a></h4>
-      <section><p>Implementations of this handle Cosmos errors at the Function level.</p>
-</section>
-<div id="disqus_thread"></div>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="logging">Logging</h1>
+
+<p>To add logging support simply register the appropriate dependencies in the <em>Setup</em> method of your builder. For example to add the Microsoft logging framework and make <em>ILogger</em> and <em>ILogger<t></t></em> available to your command handlers use a block similar to the below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
+                serviceCollection.AddLogging();
+            })
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                    .HttpFunction&lt;HelloWorldCommand&gt;()
+                )
+            );
+    }
+}
+</code></pre><div id="disqus_thread"></div>
             </article>
           </div>
           
@@ -92,6 +95,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/crosscutting/logging.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
                   </li>
@@ -119,9 +125,9 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
     <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
     
     <!-- Global site tag (gtag.js) - Google Analytics -->

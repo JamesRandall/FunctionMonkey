@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
+    <title>Interface ICosmosDbErrorHandler
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
+    <meta name="title" content="Interface ICosmosDbErrorHandler
    ">
     <meta name="generator" content="docfx 2.39.2.0">
     
@@ -68,22 +68,79 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler">
   
-  <h1 id="FunctionMonkey_Commanding_Cosmos_Abstractions" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions" class="text-break">Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
+  
+  <h1 id="FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler" class="text-break">Interface ICosmosDbErrorHandler
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Implementations of this handle Cosmos errors at the Function level.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="interfaces">Interfaces
+  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.html">FunctionMonkey.Commanding.Cosmos.Abstractions</a></h6>
+  <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
+  <h5 id="FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICosmosDbErrorHandler</code></pre>
+  </div>
+  <h3 id="methods">Methods
   </h3>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html">ICosmosDbDocumentBatchCommand</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html">ICosmosDbDocumentCommand</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html">ICosmosDbErrorHandler</a></h4>
-      <section><p>Implementations of this handle Cosmos errors at the Function level.</p>
-</section>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler_HandleError_Exception_Document_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError(Exception%2CDocument)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICosmosDbErrorHandler.cs/#L19">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler_HandleError_" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError*"></a>
+  <h4 id="FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler_HandleError_Exception_Document_" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError(Exception,Document)">HandleError(Exception, Document)</h4>
+  <div class="markdown level1 summary"><p>Handle a error processing a Cosmos document.
+To abort processing of the current batch return false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; HandleError(Exception ex, Document document)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Exception</span></td>
+        <td><span class="parametername">ex</span></td>
+        <td><p>The exception that caused the error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Document</span></td>
+        <td><span class="parametername">document</span></td>
+        <td><p>The document that caused the error</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>True to continue processing, false to stop processing of the batch</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -92,6 +149,12 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler.md&amp;value=---%0Auid%3A%20FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICosmosDbErrorHandler.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
                   </li>

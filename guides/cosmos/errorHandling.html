@@ -5,19 +5,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
-   </title>
+    <title>Error Handling </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
-   ">
+    <meta name="title" content="Error Handling ">
     <meta name="generator" content="docfx 2.39.2.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
     
     
     
@@ -36,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -68,23 +66,49 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions">
-  
-  <h1 id="FunctionMonkey_Commanding_Cosmos_Abstractions" data-uid="FunctionMonkey.Commanding.Cosmos.Abstractions" class="text-break">Namespace FunctionMonkey.Commanding.Cosmos.Abstractions
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentBatchCommand.html">ICosmosDbDocumentBatchCommand</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.html">ICosmosDbDocumentCommand</a></h4>
-      <section></section>
-      <h4><a class="xref" href="FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html">ICosmosDbErrorHandler</a></h4>
-      <section><p>Implementations of this handle Cosmos errors at the Function level.</p>
-</section>
-<div id="disqus_thread"></div>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="error-handling">Error Handling</h1>
+
+<p>Unless you use the <em>ICosmosDbDocumentBatchCommand</em> interface on your commands then Function Monkey will process batches of documents in the order they are recieved - one invocation of your function may contain multiple documents.</p>
+<p>If an error occurs, either in the Function Monkey wrapper or due to an exception thrown from your command handler, then the default behaviour is to log an error along with the document ID and continue to process documents.</p>
+<p>You can extend and modify this behaviour by implementing and registering an instance of the <em>ICosmosDbErrorHandler</em> interface. This will allow you to take additional steps (for example initiate some form of retry), log information yourself, and stop the processing of the current batch.</p>
+<p>The example implementation below logs a warning and allows processing of the current batch to continue:</p>
+<pre><code>public class ExampleCosmosErrorHandler : ICosmosDbErrorHandler
+{
+    private readonly ILogger&lt;ExampleCosmosErrorHandler&gt; _logger;
+
+    public ExampleCosmosErrorHandler(ILogger&lt;ExampleCosmosErrorHandler&gt; logger)
+    {
+        _logger = logger;
+    }
+
+    public Task&lt;bool&gt; HandleError(Exception ex, Document document)
+    {
+        _logger.LogWarning(ex, &quot;Ooops&quot;);
+        return Task.FromResult(true); // return false to stop the processing of the current batch
+    }
+}
+</code></pre><p>This can be registered on a per function basis as shown in the example configuration block below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string CosmosDatabaseName = &quot;Financials&quot;;
+    private const string CosmosCollectionName = &quot;Invoices&quot;;
+    private const string CosmosConnectionSettingName = &quot;cosmosDbConnection&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+                commandRegistry.Register&lt;InvoiceUpdatedCommandHandler&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .CosmosDb(CosmosConnectionSettingName, cosmos =&gt; cosmos
+                    .ChangeFeedFunction&lt;InvoiceUpdatedCommand, ExampleCosmosErrorHandler&gt;(CosmosCollectionName, CosmosDatabaseName, convertToPascalCase:true)
+                )
+            );
+    }
+}
+</code></pre><div id="disqus_thread"></div>
             </article>
           </div>
           
@@ -92,6 +116,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/cosmos/errorHandling.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
                   </li>
@@ -119,9 +146,9 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
     <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
     
     <!-- Global site tag (gtag.js) - Google Analytics -->

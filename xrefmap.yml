@@ -167,6 +167,15 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand)(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32))
   nameWithType: ICosmosDbFunctionBuilder.ChangeFeedFunction<TCommand>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
   nameWithType.vb: ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+- uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction``2(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name: ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder_ChangeFeedFunction__2_System_String_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction``2(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name.vb: ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+  fullName: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32))
+  nameWithType: ICosmosDbFunctionBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  nameWithType.vb: ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
 - uid: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder
   name: IEventHubFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html
@@ -1946,6 +1955,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbDocumentCommand.Document
   nameWithType: ICosmosDbDocumentCommand.Document
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler
+  name: ICosmosDbErrorHandler
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html
+  commentId: T:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler
+  nameWithType: ICosmosDbErrorHandler
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError(Exception,Document)
+  name: HandleError(Exception, Document)
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html#FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler_HandleError_Exception_Document_
+  commentId: M:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError(Exception,Document)
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError(Exception, Document)
+  nameWithType: ICosmosDbErrorHandler.HandleError(Exception, Document)
+- uid: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError*
+  name: HandleError
+  href: api/FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.html#FunctionMonkey_Commanding_Cosmos_Abstractions_ICosmosDbErrorHandler_HandleError_
+  commentId: Overload:FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Cosmos.Abstractions.ICosmosDbErrorHandler.HandleError
+  nameWithType: ICosmosDbErrorHandler.HandleError
 - uid: FunctionMonkey.ConfigurationException
   name: ConfigurationException
   href: api/FunctionMonkey.ConfigurationException.html
