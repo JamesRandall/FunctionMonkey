@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Formatting;
@@ -22,20 +23,29 @@ namespace StandardFunctions
             ConnectionStringSetting = "cosmosConnectionString",
             LeaseCollectionName = "leases")]IReadOnlyList<Document> input, ILogger log)
         {
+            //Lazy<string> errorHandler = new Lazy<string>(() => string.Empty);
             foreach (Document document in input)
             {
-                document.GetPropertyValue<string>("a");
-                using (MemoryStream memoryStream = new MemoryStream())
+                try
                 {
-                    document.SaveTo(memoryStream, SerializationFormattingPolicy.None, new JsonSerializerSettings
+
+
+                    document.GetPropertyValue<string>("a");
+                    using (MemoryStream memoryStream = new MemoryStream())
                     {
-                        ContractResolver = new CamelCasePropertyNamesContractResolver()
-                    });
-                    string json = Encoding.UTF8.GetString(memoryStream.ToArray());
-                    string myCommand = JsonConvert.DeserializeObject<string>(json);
-                }                    
+                        document.SaveTo(memoryStream, SerializationFormattingPolicy.None, new JsonSerializerSettings
+                        {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                        });
+                        string json = Encoding.UTF8.GetString(memoryStream.ToArray());
+                        string myCommand = JsonConvert.DeserializeObject<string>(json);
+                    }
+                }
+                catch
+                {
+                    break;
+                }
             }
-            
             if (input != null && input.Count > 0)
             {
                 log.LogInformation("Documents modified " + input.Count);

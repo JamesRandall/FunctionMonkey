@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.16.0-beta000</Version>
+    <Version>0.16.1-beta000</Version>
     <Authors>James Randall</Authors>
     <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://commanding.azurefromthetrenches.com/</PackageProjectUrl>
@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
   </ItemGroup>
 

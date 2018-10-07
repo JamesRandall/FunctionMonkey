@@ -4,6 +4,8 @@ using System.Text;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Commanding.Cosmos.Abstractions;
+using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders
@@ -60,6 +62,48 @@ namespace FunctionMonkey.Builders
                 LeaseRenewInterval = leaseRenewInterval,
                 CheckpointFrequency = checkpointFrequency,
                 LeasesCollectionThroughput = leasesCollectionThroughput
+            });
+            return this;
+        }
+
+        public ICosmosDbFunctionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(
+            string collectionName,
+            string databaseName,
+            string leaseCollectionName = "leases",
+            string leaseDatabaseName = null,
+            bool createLeaseCollectionIfNotExists = false,
+            bool startFromBeginning = false,
+            bool convertToPascalCase = false,
+            string leaseCollectionPrefix = null,
+            int? maxItemsPerInvocation = null,
+            int? feedPollDelay = null,
+            int? leaseAcquireInterval = null,
+            int? leaseExpirationInterval = null,
+            int? leaseRenewInterval = null,
+            int? checkpointFrequency = null,
+            int? leasesCollectionThroughput = null) where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
+        {
+            _functionDefinitions.Add(new CosmosDbFunctionDefinition(typeof(TCommand))
+            {
+                ConnectionStringName = _connectionStringName,
+                CollectionName = collectionName,
+                DatabaseName = databaseName,
+                LeaseConnectionStringName = _leaseConnectionStringName,
+                LeaseCollectionName = leaseCollectionName,
+                LeaseDatabaseName = leaseDatabaseName ?? databaseName,
+                CreateLeaseCollectionIfNotExists = createLeaseCollectionIfNotExists,
+                ConvertToPascalCase = convertToPascalCase,
+                StartFromBeginning = startFromBeginning,
+                LeaseCollectionPrefix = leaseCollectionPrefix,
+                MaxItemsPerInvocation = maxItemsPerInvocation,
+                FeedPollDelay = feedPollDelay,
+                LeaseAcquireInterval = leaseAcquireInterval,
+                LeaseExpirationInterval = leaseExpirationInterval,
+                LeaseRenewInterval = leaseRenewInterval,
+                CheckpointFrequency = checkpointFrequency,
+                LeasesCollectionThroughput = leasesCollectionThroughput,
+                ErrorHandlerType = typeof(TCosmosDbErrorHandler),
+                ErrorHandlerTypeName = typeof(TCosmosDbErrorHandler).EvaluateType()
             });
             return this;
         }
