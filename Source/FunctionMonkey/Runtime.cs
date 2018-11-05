@@ -66,9 +66,32 @@ namespace FunctionMonkey
             RegisterTimerCommandFactories(builder.FunctionDefinitions);
 
             RegisterHttpDependencies(builder.FunctionDefinitions);
+
+            RegisterCosmosDependencies(builder.FunctionDefinitions);
             
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);            
+        }
+
+        private static void RegisterCosmosDependencies(
+            IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
+        {
+            HashSet<Type> types = new HashSet<Type>();
+            foreach (AbstractFunctionDefinition abstractFunctionDefinition in builderFunctionDefinitions)
+            {
+                if (abstractFunctionDefinition is CosmosDbFunctionDefinition cosmosFunctionDefinition)
+                {
+                    if (cosmosFunctionDefinition.ErrorHandlerType != null)
+                    {
+                        types.Add(cosmosFunctionDefinition.ErrorHandlerType);
+                    }
+                }
+            }
+
+            foreach (Type claimsPrincipalAuthorizationType in types)
+            {
+                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+            }
         }
 
         private static void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)

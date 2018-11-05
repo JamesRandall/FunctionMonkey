@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using SwaggerBuildOut.Commands;
 
@@ -8,6 +9,7 @@ namespace SwaggerBuildOut.Handlers
     {
         public Task ExecuteAsync(CosmosCommand command)
         {
+            throw new Exception("eeek");
             return Task.CompletedTask;
         }
     }

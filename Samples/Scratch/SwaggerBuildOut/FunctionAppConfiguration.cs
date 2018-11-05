@@ -25,13 +25,15 @@ namespace SwaggerBuildOut
                     commandRegistry.Register<CosmosCommandHandler>();
                     commandRegistry.Register<CosmosDocumentCommandHandler>();
                     commandRegistry.Register<CosmosDocumentBatchCommandHandler>();
+
+                    serviceCollection.AddLogging();
                 })
                 .OpenApiEndpoint(openApi => openApi
                     .Title("A Simple API")
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
+                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
@@ -41,9 +43,9 @@ namespace SwaggerBuildOut
                     )
                     .OpenApiDescription("A route description")
                     .CosmosDb("CosmosConnection", cosmos => cosmos
-                        .ChangeFeedFunction<CosmosCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)
+                        .ChangeFeedFunction<CosmosCommand, ExampleCosmosErrorHandler>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)
                         //.ChangeFeedFunction<CosmosDocumentCommand>("Items", "ToDoList")
-                        .ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn2")
+                        //.ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn2")
                     )
                     /*.HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)

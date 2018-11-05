@@ -44,5 +44,7 @@ namespace FunctionMonkey.Model
         public int? LeaseRenewInterval { get; set; }
         public int? CheckpointFrequency { get; set; }
         public int? LeasesCollectionThroughput { get; set; }
+        public string ErrorHandlerTypeName { get; set; }
+        public Type ErrorHandlerType { get; set; }
     }
 }

@@ -41,33 +41,46 @@ namespace {{Namespace}}
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
                 // The result will be useful when we want to include outputs too
             {{else}}
+                {{#if ErrorHandlerTypeName}}
+                Lazy<{{ErrorHandlerTypeName}}> errorHandler = new Lazy<{{ErrorHandlerTypeName}}>(
+                    () => ({{ErrorHandlerTypeName}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ErrorHandlerTypeName}}))                                                                               
+                );
+                {{/if}}
                 foreach(Document document in input)
                 {
-                    {{CommandTypeName}} command = null;
-                    {{#if IsDocumentCommand}}
-                        command = new {{CommandTypeName}}();
-                        command.Document = document;
-                    {{else}}
-                        {{#if ConvertToPascalCase}}
-                            using (MemoryStream memoryStream = new MemoryStream())
-                            {
-                                document.SaveTo(memoryStream, SerializationFormattingPolicy.None, new JsonSerializerSettings
-                                {
-                                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                                });
-                                string json = Encoding.UTF8.GetString(memoryStream.ToArray());
-                                command = JsonConvert.DeserializeObject<{{CommandTypeName}}>(json);
-                            }    
-                        {{else}}
+                    try
+                    {
+                        {{CommandTypeName}} command = null;
+                        {{#if IsDocumentCommand}}
                             command = new {{CommandTypeName}}();
-                            {{#each CommandProperties}}
-                                command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{CosmosPropertyName}}");
-                            {{/each}}
+                            command.Document = document;
+                        {{else}}
+                            {{#if ConvertToPascalCase}}
+                                string json = document.ToString();
+                                command = JsonConvert.DeserializeObject<{{CommandTypeName}}>(json);  
+                            {{else}}
+                                command = new {{CommandTypeName}}();
+                                {{#each CommandProperties}}
+                                    command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{CosmosPropertyName}}");
+                                {{/each}}
+                            {{/if}}
                         {{/if}}
-                    {{/if}}
 
-                    var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-                    // The result will be useful when we want to include outputs too
+                        var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                        // The result will be useful when we want to include outputs too
+                    }
+                    catch(Exception ex)
+                    {
+                        {{#if ErrorHandlerTypeName}}
+                            bool shouldContinue = await errorHandler.Value.HandleError(ex, document);
+                            if (!shouldContinue)
+                            {
+                                break;
+                            }
+                        {{else}}
+                            log.LogError(ex, "Error occurred processing document with id {Id}", document.Id);
+                        {{/if}}
+                    }
                 }
             {{/if}}
         }
