@@ -4,10 +4,10 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FunctionMonkey" Version="0.6.6-beta000" />
-    <PackageReference Include="FunctionMonkey.Compiler" Version="0.7.0-beta000" />
-    <PackageReference Include="FunctionMonkey.FluentValidation" Version="0.6.4-beta000" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.22" />
+    <PackageReference Include="FunctionMonkey" Version="0.16.1-beta000" />
+    <PackageReference Include="FunctionMonkey.Compiler" Version="0.16.1-beta000" />
+    <PackageReference Include="FunctionMonkey.FluentValidation" Version="0.16.1-beta000" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.23" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

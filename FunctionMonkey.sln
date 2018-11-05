@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalTypes", "Samples\Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndirectExternalTypes", "Samples\Scratch\IndirectExternalTypes\IndirectExternalTypes.csproj", "{9AA9A741-775E-4E68-B838-3FE2F4BC8EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Commanding.Cosmos.Abstractions", "Source\FunctionMonkey.Commanding.Cosmos.Abstractions\FunctionMonkey.Commanding.Cosmos.Abstractions.csproj", "{33204395-FEAB-4E41-B6D7-B358397A82B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Commanding.Cosmos.Abstractions", "Source\FunctionMonkey.Commanding.Cosmos.Abstractions\FunctionMonkey.Commanding.Cosmos.Abstractions.csproj", "{33204395-FEAB-4E41-B6D7-B358397A82B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

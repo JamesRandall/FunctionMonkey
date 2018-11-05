@@ -25,7 +25,7 @@ namespace GettingStartedSample
                 .AddFluentValidation()
                 .Functions(functions => functions
                     .HttpRoute("/api/v1/HelloWorld", route => route
-                        .HttpFunction<HelloWorldCommand>()
+                        .HttpFunction<HelloWorldCommand>(HttpMethod.Get)
                     )
                 );
         }
