@@ -23,12 +23,12 @@ namespace FunctionMonkey.Builders
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>() where TCommand : ICommand
         {
-            return BuildHttpFunction<TCommand>(null, null, null, DefaultMethod);
+            return BuildHttpFunction<TCommand>(null, null, DefaultMethod);
         }
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType) where TCommand : ICommand
         {
-            return BuildHttpFunction<TCommand>(null, authorizationType, null, DefaultMethod);
+            return BuildHttpFunction<TCommand>(null, authorizationType, DefaultMethod);
         }
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType,
@@ -44,7 +44,7 @@ namespace FunctionMonkey.Builders
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route) where TCommand : ICommand
         {
-            return BuildHttpFunction<TCommand>(route, null, null, DefaultMethod);
+            return BuildHttpFunction<TCommand>(route, null, DefaultMethod);
         }
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, params HttpMethod[] method) where TCommand : ICommand

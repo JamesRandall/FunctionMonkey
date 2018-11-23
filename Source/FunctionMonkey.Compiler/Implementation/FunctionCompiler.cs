@@ -20,6 +20,7 @@ namespace FunctionMonkey.Compiler.Implementation
         private readonly Assembly _configurationSourceAssembly;
         private readonly string _outputBinaryFolder;
         private readonly bool _outputProxiesJson;
+        private readonly TargetEnum _target;
         private readonly ICommandRegistry _commandRegistry;
         private readonly IAssemblyCompiler _assemblyCompiler;
         private readonly ITriggerReferenceProvider _triggerReferenceProvider;
@@ -27,15 +28,23 @@ namespace FunctionMonkey.Compiler.Implementation
         private readonly ProxiesJsonCompiler _proxiesJsonCompiler;
         private readonly OpenApiCompiler _openApiCompiler;
 
+        public enum TargetEnum
+        {
+            NETStandard20 = 0,
+            NETCore21 = 1
+        }
+
         public FunctionCompiler(Assembly configurationSourceAssembly,
             string outputBinaryFolder,
             bool outputProxiesJson,
+            TargetEnum target,
             IAssemblyCompiler assemblyCompiler = null,
             ITriggerReferenceProvider triggerReferenceProvider = null)
         {
             _configurationSourceAssembly = configurationSourceAssembly;
             _outputBinaryFolder = outputBinaryFolder;
             _outputProxiesJson = outputProxiesJson;
+            _target = target;
             _serviceCollection = new ServiceCollection();
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
                 (fromType, toInstance) => _serviceCollection.AddSingleton(fromType, toInstance),
@@ -80,8 +89,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 externalAssemblies, 
                 _outputBinaryFolder, 
                 $"{newAssemblyNamespace}.dll",
-                openApi, 
-                builder.OutputAuthoredSourceFolder);
+                openApi,
+                _target, builder.OutputAuthoredSourceFolder);
         }
 
         private void VerifyCommandAndResponseTypes(FunctionHostBuilder builder)

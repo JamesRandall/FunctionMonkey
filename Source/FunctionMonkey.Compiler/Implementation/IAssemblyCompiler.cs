@@ -14,6 +14,7 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputBinaryFolder,
             string assemblyName,
             OpenApiOutputModel openApiOutputModel,
+            FunctionCompiler.TargetEnum target,
             string outputAuthoredSourceFolder = null);
     }
 }
