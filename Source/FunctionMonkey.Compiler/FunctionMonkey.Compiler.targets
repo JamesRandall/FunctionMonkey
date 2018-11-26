@@ -3,12 +3,14 @@
   <PropertyGroup>
     <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Windows_NT'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp2.0/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
     <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Unix'">dotnet "$(MSBuildThisFileDirectory)../../tools/netcoreapp2.0/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp')">&quot;$(TargetDir)bin\$(TargetName).dll&quot; --netcore21</FunctionCompilerParams>
+    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp')">&quot;$(TargetDir)bin\$(TargetName).dll&quot;</FunctionCompilerParams>
   </PropertyGroup>
 
   <!-- we ensure the functions post build has run first -->
   <!--<Target Name="_FunctionMonkeyCompiler" AfterTargets="Build">-->
   <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
-    <Exec Command="$(FunctionCompilerExe) &quot;$(TargetDir)bin\$(TargetName).dll&quot;" />
+    <Exec Command="$(FunctionCompilerExe) $(FunctionCompilerParams)" />
   </Target>
 
   <!--

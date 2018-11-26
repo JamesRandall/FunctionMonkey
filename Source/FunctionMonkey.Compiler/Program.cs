@@ -32,7 +32,8 @@ namespace FunctionMonkey.Compiler
             // TODO: Have a chat with someone who knows a bit more about this.
             AssemblyLoadContext.Default.Resolving += (context, name) =>
             {
-                string path = $"{outputBinaryDirectory}\\{name.Name}.dll";
+                string path = Path.Combine(outputBinaryDirectory, $"{name.Name}.dll");
+                //string path = $"{outputBinaryDirectory}\\{name.Name}.dll";
                 if (File.Exists(path))
                 {
                     Assembly referencedAssembly = context.LoadFromAssemblyPath(path);
