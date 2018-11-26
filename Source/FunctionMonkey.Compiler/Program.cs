@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using FunctionMonkey.Compiler.Implementation;
@@ -16,12 +17,12 @@ namespace FunctionMonkey.Compiler
             }
 
             string inputAssemblyFile = args[0];
-            bool outputProxiesJson = true;
-            if (args.Length > 1)
-            {
-                outputProxiesJson = bool.Parse(args[1]);
-            }
             
+            FunctionCompiler.TargetEnum target = FunctionCompiler.TargetEnum.NETStandard20;
+            if (args.Any(x => x.ToLower() == "--netcore21"))
+            {
+                target = FunctionCompiler.TargetEnum.NETCore21;
+            }
             
             // TODO: convert the input to an absolute path if necessary
             Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(inputAssemblyFile);
@@ -40,7 +41,7 @@ namespace FunctionMonkey.Compiler
                 return null;
             };
 
-            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, outputProxiesJson);
+            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, true, target);
             compiler.Compile();
         }
     }

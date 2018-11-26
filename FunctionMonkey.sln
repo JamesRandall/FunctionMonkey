@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndirectExternalTypes", "Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Commanding.Cosmos.Abstractions", "Source\FunctionMonkey.Commanding.Cosmos.Abstractions\FunctionMonkey.Commanding.Cosmos.Abstractions.csproj", "{33204395-FEAB-4E41-B6D7-B358397A82B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore21Example", "Samples\NetCore21Example\NetCore21Example.csproj", "{26B0ED78-AF78-48CD-B20D-D020A134469A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,9 @@ Global
 		{33204395-FEAB-4E41-B6D7-B358397A82B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33204395-FEAB-4E41-B6D7-B358397A82B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33204395-FEAB-4E41-B6D7-B358397A82B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B0ED78-AF78-48CD-B20D-D020A134469A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B0ED78-AF78-48CD-B20D-D020A134469A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B0ED78-AF78-48CD-B20D-D020A134469A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +116,7 @@ Global
 		{488F92CA-6DEC-4E33-A517-167CF6BD02E1} = {4C5AD0FE-C42D-46CD-ADF3-D51356E04F6B}
 		{AB465B8B-B8DB-47A8-8403-B269FD984B6E} = {4C5AD0FE-C42D-46CD-ADF3-D51356E04F6B}
 		{9AA9A741-775E-4E68-B838-3FE2F4BC8EA6} = {4C5AD0FE-C42D-46CD-ADF3-D51356E04F6B}
+		{26B0ED78-AF78-48CD-B20D-D020A134469A} = {4C5AD0FE-C42D-46CD-ADF3-D51356E04F6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9ABA812-671D-4486-B9D8-4F16D4BE11BD}

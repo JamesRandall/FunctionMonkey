@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Versioning;
 using System.Security.Claims;
 using System.Text;
 using FunctionMonkey.Commanding.Abstractions;
@@ -41,7 +42,8 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputBinaryFolder,
             string assemblyName,
             OpenApiOutputModel openApiOutputModel,
-            string outputAuthoredSourceFolder)
+            FunctionCompiler.TargetEnum target,
+            string outputAuthoredSourceFolder = null)
         {
             HandlebarsHelperRegistration.RegisterHelpers();
             IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
@@ -50,7 +52,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 newAssemblyNamespace,
                 outputAuthoredSourceFolder);
 
-            CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace);
+            CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace, target);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
@@ -128,9 +130,10 @@ namespace FunctionMonkey.Compiler.Implementation
             OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder,
             string outputAssemblyName,
-            string assemblyNamespace)
+            string assemblyNamespace,
+            FunctionCompiler.TargetEnum target)
         {
-            IReadOnlyCollection<string> locations = BuildCandidateReferenceList(externalAssemblyLocations);
+            IReadOnlyCollection<string> locations = BuildCandidateReferenceList(externalAssemblyLocations, target);
             const string manifestResourcePrefix = "FunctionMonkey.Compiler.references.netstandard2._0.";
             // For each assembly we've found we need to check and see if it is already included in the output binary folder
             // If it is then its referenced already by the function host and so we add a reference to that version.
@@ -141,7 +144,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 .Select(x => x.Substring(manifestResourcePrefix.Length))
                 .ToArray();
 
-            List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations, manifestResoureNames, manifestResourcePrefix);
+            List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations, manifestResoureNames, manifestResourcePrefix, target);
             CSharpCompilation compilation = CSharpCompilation.Create(outputAssemblyName,
                 syntaxTrees,
                 references,
@@ -185,55 +188,62 @@ namespace FunctionMonkey.Compiler.Implementation
             }
         }
 
-        private List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations, string[] manifestResoureNames, string manifestResourcePrefix)
+        private List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations,
+            string[] manifestResoureNames,
+            string manifestResourcePrefix,
+            FunctionCompiler.TargetEnum target)
         {
             // Add our references - if the reference is to a library that forms part of NET Standard 2.0 then make sure we add
             // the reference from the embedded NET Standard reference set - although our target is NET Standard the assemblies
             // in the output folder of the Function App may be NET Core assemblies.
             List<PortableExecutableReference> references = resolvedLocations.Select(x =>
             {
-                string assemblyFilename = Path.GetFileName(x);
-                string manifestResourceName =
-                    manifestResoureNames.SingleOrDefault(m =>
-                        String.Equals(assemblyFilename, m, StringComparison.CurrentCultureIgnoreCase));
-                if (manifestResourceName != null)
+                if (target == FunctionCompiler.TargetEnum.NETStandard20)
                 {
-                    using (Stream lib = GetType().Assembly
-                        .GetManifestResourceStream(String.Concat(manifestResourcePrefix, manifestResourceName)))
+                    string assemblyFilename = Path.GetFileName(x);
+                    string manifestResourceName =
+                        manifestResoureNames.SingleOrDefault(m =>
+                            String.Equals(assemblyFilename, m, StringComparison.CurrentCultureIgnoreCase));
+                    if (manifestResourceName != null)
                     {
-                        return MetadataReference.CreateFromStream(lib);
+                        using (Stream lib = GetType().Assembly
+                            .GetManifestResourceStream(String.Concat(manifestResourcePrefix, manifestResourceName)))
+                        {
+                            return MetadataReference.CreateFromStream(lib);
+                        }
                     }
                 }
-                else
-                {
-                    return MetadataReference.CreateFromFile(x);
-                }
+
+                return MetadataReference.CreateFromFile(x);
+
             }).ToList();
-            using (Stream netStandard = GetType().Assembly
-                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
-            {
-                references.Add(MetadataReference.CreateFromStream(netStandard));
-            }
 
-            using (Stream netStandard = GetType().Assembly
-                .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
+            if (target == FunctionCompiler.TargetEnum.NETStandard20)
             {
-                references.Add(MetadataReference.CreateFromStream(netStandard));
-            }
+                using (Stream netStandard = GetType().Assembly
+                    .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
+                {
+                    references.Add(MetadataReference.CreateFromStream(netStandard));
+                }
 
-            using (Stream systemIo = GetType().Assembly
-                .GetManifestResourceStream(String.Concat(manifestResourcePrefix, "System.IO.dll")))
-            {
-                references.Add(MetadataReference.CreateFromStream(systemIo));
-            }
+                using (Stream netStandard = GetType().Assembly
+                    .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
+                {
+                    references.Add(MetadataReference.CreateFromStream(netStandard));
+                }
 
+                using (Stream systemIo = GetType().Assembly
+                    .GetManifestResourceStream(String.Concat(manifestResourcePrefix, "System.IO.dll")))
+                {
+                    references.Add(MetadataReference.CreateFromStream(systemIo));
+                }
+            }            
+            
             return references;
         }
 
-        private static IReadOnlyCollection<string> BuildCandidateReferenceList(IReadOnlyCollection<string> externalAssemblyLocations)
+        private static IReadOnlyCollection<string> BuildCandidateReferenceList(IReadOnlyCollection<string> externalAssemblyLocations, FunctionCompiler.TargetEnum target)
         {
-            
-
             // These are assemblies that Roslyn requires from usage within the template
             HashSet<string> locations = new HashSet<string>
             {
@@ -255,6 +265,20 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(ExecutionContext).GetTypeInfo().Assembly.Location,
                 typeof(Document).GetTypeInfo().Assembly.Location
             };
+
+            if (target == FunctionCompiler.TargetEnum.NETCore21)
+            {
+                // we're a 2.1 assembly so we can use our assemblies
+                Assembly[] currentAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "netstandard").Location);
+                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Runtime").Location); // System.Runtime
+                locations.Add(typeof(TargetFrameworkAttribute).Assembly.Location); // NetCoreLib
+                locations.Add(typeof(System.Linq.Enumerable).Assembly.Location); // System.Linq
+                locations.Add(typeof(System.Security.Claims.ClaimsPrincipal).Assembly.Location);
+                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
+            }
+
             foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {
                 locations.Add(externalAssemblyLocation);
