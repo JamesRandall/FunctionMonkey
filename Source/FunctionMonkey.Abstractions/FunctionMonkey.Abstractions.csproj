@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.16.1-beta000</Version>
+    <Version>0.17.0-beta000</Version>
     <Authors>James Randall</Authors>
     <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://commanding.azurefromthetrenches.com/</PackageProjectUrl>

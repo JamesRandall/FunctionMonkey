@@ -1,8 +1,8 @@
 <Project ToolsVersion="14.0"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Windows_NT'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp2.0/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
-    <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Unix'">dotnet "$(MSBuildThisFileDirectory)../../tools/netcoreapp2.0/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Windows_NT'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp2.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Unix'">dotnet "$(MSBuildThisFileDirectory)../../tools/netcoreapp2.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
     <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp')">&quot;$(TargetDir)bin\$(TargetName).dll&quot; --netcore21</FunctionCompilerParams>
     <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp')">&quot;$(TargetDir)bin\$(TargetName).dll&quot;</FunctionCompilerParams>
   </PropertyGroup>

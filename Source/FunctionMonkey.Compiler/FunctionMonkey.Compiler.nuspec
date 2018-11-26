@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>FunctionMonkey.Compiler</id>
-    <version>0.16.1-beta000</version>
+    <version>0.17.1-beta000</version>
     <authors>James Randall</authors>
     <description>Generates Azure Functions from command registrations</description>
     <licenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</licenseUrl>
@@ -14,6 +14,6 @@
     <file src="FunctionMonkey.Compiler.targets" target="build/netstandard1.0/FunctionMonkey.Compiler.targets" />
     <file src="_._" target="lib/netstandard1.0/" />
     <file src="FunctionMonkey.Compiler.targets" target="tools/" />
-    <file src="$publishdir$\netcoreapp2.0\**\*" target="tools/netcoreapp2.0/" />
+    <file src="$publishdir$\netcoreapp2.1\**\*" target="tools/netcoreapp2.1/" />
   </files>
 </package>
