@@ -92,15 +92,17 @@ namespace {{Namespace}}
             if (method == "GET" || method=="DELETE")
             {
                 {{#each PossibleBindingProperties}}
-                if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
-                {
-                    {{#if IsString}}
-                    command.{{Name}} = queryParameterValues[0];
-                    {{else}}
-                    {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
-                    command.{{Name}} = candidate;
-                    {{/if}}
-                }
+                    {{#unless IsFormCollection}}
+                        if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+                        {
+                            {{#if IsString}}
+                            command.{{Name}} = queryParameterValues[0];
+                            {{else}}
+                            {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
+                            command.{{Name}} = candidate;
+                            {{/if}}
+                        }
+                    {{/unless}}
                 {{/each}}
             }
 
@@ -108,24 +110,31 @@ namespace {{Namespace}}
                 {{#if HeaderBindingConfiguration.Enabled}}
                     string headerName;
                     {{#each PossibleBindingProperties}}
-    // TODO: Complete header work here by expressing in Handlebars
-                        headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
-                        if (!string.IsNullOrWhiteSpace(headerName))
-                        {
+                        {{#unless IsFormCollection}}
+                            headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
+                            if (!string.IsNullOrWhiteSpace(headerName))
+                            {
                             if (req.Headers.TryGetValue(headerName, out var stringValues))
                             {
-                                string headerValue = stringValues.FirstOrDefault();
-                                {{#if IsString}}
+                            string headerValue = stringValues.FirstOrDefault();
+                            {{#if IsString}}
                                 command.{{Name}} = headerValue;
-                                {{else}}
+                            {{else}}
                                 {{TypeName}}.TryParse(headerValue, out var candidate);
                                 command.{{Name}} = candidate;
-                                {{/if}}
+                            {{/if}}
                             }
-                        }
+                            }
+                        {{/unless}}
                     {{/each}}
                 {{/if}}
             {{/if}}
+
+            {{#each PossibleBindingProperties}}
+                {{#if IsFormCollection}}
+                    command.{{Name}} = req.Form;
+                {{/if}}
+            {{/each}}
 
             {{#each RouteParameters}}
             if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))

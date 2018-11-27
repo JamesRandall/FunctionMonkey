@@ -41,6 +41,9 @@ namespace SwaggerBuildOut
                             .AddHeaderMapping(x => x.HeaderName, "x-header-name")
                             //.ResponseHandler<CustomResponseHandler>()
                     )
+                   .HttpRoute("/Form", route => route
+                        .HttpFunction<FormCommand>(HttpMethod.Post)
+                    )
                     .OpenApiDescription("A route description")
                     .CosmosDb("CosmosConnection", cosmos => cosmos
                         .ChangeFeedFunction<CosmosCommand, ExampleCosmosErrorHandler>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)

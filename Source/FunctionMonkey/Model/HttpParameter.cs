@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
 
 namespace FunctionMonkey.Model
 {
@@ -11,5 +12,7 @@ namespace FunctionMonkey.Model
         public bool IsString => TypeName.Equals("System.String");
 
         public Type Type { get; set; }
+
+        public bool IsFormCollection => Type == typeof(IFormCollection);
     }
 }
