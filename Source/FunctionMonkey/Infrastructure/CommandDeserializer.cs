@@ -8,12 +8,9 @@ namespace FunctionMonkey.Infrastructure
     {
         private readonly JsonSerializerSettings _serializerSettings;
 
-        public CommandDeserializer()
+        public CommandDeserializer(IJsonSerializerSettingsProvider settingsProvider)
         {
-            _serializerSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new JsonSecurityPropertyContractResolver()
-            };
+            _serializerSettings = settingsProvider.Get();
         }
 
         public TCommand Deserialize<TCommand>(string json, bool enforceSecurityProperties) where TCommand : ICommand

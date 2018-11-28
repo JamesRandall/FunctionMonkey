@@ -46,6 +46,8 @@ namespace FunctionMonkey.Model
         public string CommandResultTypeName => CommandResultType?.FullName;
 
         public bool IsUsingValidator { get; set; }
+        
+        public Type JsonSerializerSettingsProviderType { get; set; }
 
         #region Used by the JSON compiler
 

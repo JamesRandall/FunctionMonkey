@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Validation;
@@ -25,6 +26,7 @@ namespace FunctionMonkey.Builders
         public bool AreProxiesEnabled { get; set; } = true;
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
+        public Type DefaultJsonSerializerSettingsProviderType { get; private set; }
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -96,6 +98,13 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action)
         {
             ServiceProviderCreatedAction = action;
+            return this;
+        }
+
+        public IFunctionHostBuilder DefaultJsonSerializerSettingsProvider<TJsonSerializerSettingsProvider>()
+            where TJsonSerializerSettingsProvider : IJsonSerializerSettingsProvider
+        {
+            DefaultJsonSerializerSettingsProviderType = typeof(TJsonSerializerSettingsProvider);
             return this;
         }
 

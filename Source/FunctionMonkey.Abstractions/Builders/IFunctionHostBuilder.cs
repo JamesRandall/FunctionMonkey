@@ -78,5 +78,12 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="action">An action to invoke when a service provider is created</param>
         IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action);
+
+        /// <summary>
+        /// Allows alternative default Json serialization settings to be provided. By default camel case is used.
+        /// </summary>
+        /// <typeparam name="TJsonSerializerSettingsProvider">A type that implements IJsonSerializerSettingsProvider</typeparam>
+        IFunctionHostBuilder DefaultJsonSerializerSettingsProvider<TJsonSerializerSettingsProvider>()
+            where TJsonSerializerSettingsProvider : IJsonSerializerSettingsProvider;
     }
 }

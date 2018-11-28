@@ -25,6 +25,8 @@ namespace FunctionMonkey.Infrastructure
             {
                 definition.Namespace = newAssemblyNamespace;
                 definition.IsUsingValidator = builder.ValidatorType != null;
+                definition.JsonSerializerSettingsProviderType =
+                    definition.JsonSerializerSettingsProviderType ?? builder.DefaultJsonSerializerSettingsProviderType;
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)
                 {
                     CompleteHttpFunctionDefinition(builder, httpFunctionDefinition, authorizationBuilder, validationResultType);
