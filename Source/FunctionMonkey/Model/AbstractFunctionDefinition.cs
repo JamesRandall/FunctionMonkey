@@ -47,8 +47,18 @@ namespace FunctionMonkey.Model
 
         public bool IsUsingValidator { get; set; }
         
-        public Type JsonSerializerSettingsProviderType { get; set; }
+        public Type CommandDeserializerType { get; set; }
 
+        public string CommandDeseriaizerTypeName => CommandDeserializerType?.EvaluateType();
+        
+        public Type SerializerNamingStrategyType { get; set; }
+
+        public string SerializerNamingStrategyTypeName => SerializerNamingStrategyType?.EvaluateType();
+        
+        public Type DeserializerNamingStrategyType { get; set; }
+
+        public string DeserializerNamingStrategyTypeName => DeserializerNamingStrategyType?.EvaluateType();
+      
         #region Used by the JSON compiler
 
         public string AssemblyName { get; set; }

@@ -16,25 +16,28 @@ namespace FunctionMonkey.Builders
             _definitions = definitions;
         }
 
-        public IServiceBusFunctionBuilder QueueFunction<TCommand>(string queueName) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder QueueFunction<TCommand>(string queueName) where TCommand : ICommand
         {
-            _definitions.Add(new ServiceBusQueueFunctionDefinition(typeof(TCommand))
+            ServiceBusQueueFunctionDefinition definition = new ServiceBusQueueFunctionDefinition(typeof(TCommand))
             {
                 ConnectionStringName = _connectionName,
                 QueueName = queueName
-            });
-            return this;
+            };
+            _definitions.Add(definition);
+            return new ServiceBusFunctionOptionBuilder(this, definition);
         }
 
-        public IServiceBusFunctionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName) where TCommand : ICommand
         {
-            _definitions.Add(new ServiceBusSubscriptionFunctionDefinition(typeof(TCommand))
-            {
-                ConnectionStringName = _connectionName,
-                TopicName = topicName,
-                SubscriptionName = subscriptionName
-            });
-            return this;
+            ServiceBusSubscriptionFunctionDefinition definition =
+                new ServiceBusSubscriptionFunctionDefinition(typeof(TCommand))
+                {
+                    ConnectionStringName = _connectionName,
+                    TopicName = topicName,
+                    SubscriptionName = subscriptionName
+                };
+            _definitions.Add(definition);
+            return new ServiceBusFunctionOptionBuilder(this, definition);
         }
     }
 }

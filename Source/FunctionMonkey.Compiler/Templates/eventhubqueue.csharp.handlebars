@@ -22,9 +22,9 @@ namespace {{Namespace}}
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(eventHubMessage))
             {
-                var deserializer = (FunctionMonkey.Abstractions.ICommandDeserializer)
-                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandDeserializer));
-                command = deserializer.Deserialize<{{CommandTypeName}}>(eventHubMessage, false); // we don't enforce security properties from message buses
+                var serializer = (FunctionMonkey.Abstractions.ISerializer)
+                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
+                command = serializer.Deserialize<{{CommandTypeName}}>(eventHubMessage, false); // we don't enforce security properties from message buses
             }
             else
             {

@@ -1,14 +1,18 @@
 ﻿using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using SwaggerBuildOut.Commands;
+using SwaggerBuildOut.Commands.Responses;
 
 namespace SwaggerBuildOut.Handlers
 {
-    internal class AddCommandHandler : ICommandHandler<AddCommand, int>
+    internal class AddCommandHandler : ICommandHandler<AddCommand, AddResult>
     {
-        public Task<int> ExecuteAsync(AddCommand command, int previousResult)
+        public Task<AddResult> ExecuteAsync(AddCommand command, AddResult previousResult)
         {
-            return Task.FromResult(command.ValueOne + command.ValueTwo);
+            return Task.FromResult(new AddResult
+            {
+                ValueResultThing = command.ValueOne + command.ValueTwo
+            });
         }
     }
 }

@@ -25,8 +25,10 @@ namespace FunctionMonkey.Infrastructure
             {
                 definition.Namespace = newAssemblyNamespace;
                 definition.IsUsingValidator = builder.ValidatorType != null;
-                definition.JsonSerializerSettingsProviderType =
-                    definition.JsonSerializerSettingsProviderType ?? builder.DefaultJsonSerializerSettingsProviderType;
+
+                definition.CommandDeserializerType = definition.CommandDeserializerType ??
+                                                     builder.SerializationBuilder.DefaultCommandDeserializerType;
+                
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)
                 {
                     CompleteHttpFunctionDefinition(builder, httpFunctionDefinition, authorizationBuilder, validationResultType);
@@ -85,11 +87,18 @@ namespace FunctionMonkey.Infrastructure
             httpFunctionDefinition.HttpResponseHandlerType =
                 httpFunctionDefinition.HttpResponseHandlerType ?? builder.DefaultHttpResponseHandlerType;
 
-            httpFunctionDefinition.TokenHeader = authorizationBuilder.AuthorizationHeader ?? "Authorization";
+            httpFunctionDefinition.TokenHeader = httpFunctionDefinition.TokenHeader ?? authorizationBuilder.AuthorizationHeader ?? "Authorization";
 
             httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null &&
                                                          validationResultType.IsAssignableFrom(httpFunctionDefinition
                                                              .CommandResultType);
+
+            httpFunctionDefinition.TokenValidatorType = httpFunctionDefinition.TokenValidatorType ?? authorizationBuilder.TokenValidatorType;
+
+            if (httpFunctionDefinition.ValidatesToken && httpFunctionDefinition.TokenValidatorType == null)
+            {
+                throw new ConfigurationException($"Command {httpFunctionDefinition.CommandType.Name} expects to be authenticated with token validation but no token validator is registered");
+            }
 
             ExtractPossibleQueryParameters(httpFunctionDefinition);
 

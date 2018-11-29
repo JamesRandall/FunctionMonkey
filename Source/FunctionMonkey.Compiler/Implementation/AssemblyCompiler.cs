@@ -250,7 +250,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(Runtime).GetTypeInfo().Assembly.Location,
                 typeof(IStreamCommand).Assembly.Location,
                 typeof(AzureFromTheTrenches.Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,
-                typeof(Abstractions.ICommandDeserializer).GetTypeInfo().Assembly.Location,
+                typeof(Abstractions.ISerializer).GetTypeInfo().Assembly.Location,
                 typeof(System.Net.Http.HttpMethod).GetTypeInfo().Assembly.Location,
                 typeof(System.Net.HttpStatusCode).GetTypeInfo().Assembly.Location,
                 typeof(HttpRequest).Assembly.Location,

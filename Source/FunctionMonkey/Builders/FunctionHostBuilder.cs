@@ -20,13 +20,13 @@ namespace FunctionMonkey.Builders
         public IFunctionBuilder FunctionBuilder { get; } = new FunctionBuilder();
         public IAuthorizationBuilder AuthorizationBuilder { get; } = new AuthorizationBuilder();
         public Type ValidatorType { get; set; }
-        public OpenApiConfiguration OpenApiConfiguration { get; set; } = new OpenApiConfiguration();
-        public string OutputAuthoredSourceFolder { get; set; }
-        public Action<IServiceProvider> ServiceProviderCreatedAction { get; set; }
+        public OpenApiConfiguration OpenApiConfiguration { get; } = new OpenApiConfiguration();
+        public string OutputAuthoredSourceFolder { get; private set; }
+        public Action<IServiceProvider> ServiceProviderCreatedAction { get; private set; }
         public bool AreProxiesEnabled { get; set; } = true;
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
-        public Type DefaultJsonSerializerSettingsProviderType { get; private set; }
+        public SerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -101,12 +101,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IFunctionHostBuilder DefaultJsonSerializerSettingsProvider<TJsonSerializerSettingsProvider>()
-            where TJsonSerializerSettingsProvider : IJsonSerializerSettingsProvider
+        public IFunctionHostBuilder Serialization(Action<ISerializationBuilder> serialization)
         {
-            DefaultJsonSerializerSettingsProviderType = typeof(TJsonSerializerSettingsProvider);
+            serialization(SerializationBuilder);
             return this;
         }
+
 
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions => ((FunctionBuilder)FunctionBuilder).Definitions;
     }

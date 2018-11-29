@@ -9,6 +9,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Http.Abstractions;
 using FunctionMonkey.Model;
+using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
@@ -56,40 +57,6 @@ namespace FunctionMonkey.Builders
             return _httpFunctionBuilder.HttpFunction<TCommand>(route, authorizationType, method);
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>() where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>();
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(
-            AuthorizationTypeEnum authorizationType) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(authorizationType);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(
-            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(authorizationType, method);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(method);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route,
-            params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(route, method);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route,
-            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return _httpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(route, authorizationType, method);
-        }
-
         public IHttpFunctionConfigurationBuilder<TCommandOuter> OpenApiDescription(string description)
         {
             _definition.OpenApiDescription = description;
@@ -118,6 +85,30 @@ namespace FunctionMonkey.Builders
         public IHttpFunctionConfigurationBuilder<TCommandOuter> ResponseHandler<TResponseHandler>() where TResponseHandler : IHttpResponseHandler
         {
             _definition.HttpResponseHandlerType = typeof(TResponseHandler);
+            return this;
+        }
+
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> TokenValidator<TTokenValidator>(string header = null) where TTokenValidator : ITokenValidator
+        {
+            new HttpFunctionOptions(_definition).TokenValidator<TTokenValidator>(header);
+            return this;
+        }
+
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>() where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
+        {
+            new HttpFunctionOptions(_definition).ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>();
+            return this;
+        }
+
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> Serializer<TSerializer>() where TSerializer : ISerializer
+        {
+            new HttpFunctionOptions(_definition).Serializer<TSerializer>();
+            return this;
+        }
+        
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>() where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy
+        {
+            new HttpFunctionOptions(_definition).JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>();
             return this;
         }
     }

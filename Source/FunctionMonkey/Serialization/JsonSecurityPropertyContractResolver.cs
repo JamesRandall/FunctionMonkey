@@ -5,9 +5,9 @@ using FunctionMonkey.Commanding.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace FunctionMonkey.Infrastructure
+namespace FunctionMonkey.Serialization
 {
-    internal class JsonSecurityPropertyContractResolver : DefaultContractResolver
+    public class JsonSecurityPropertyContractResolver : DefaultContractResolver
     {
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {

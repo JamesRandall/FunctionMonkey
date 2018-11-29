@@ -38,6 +38,10 @@ namespace FunctionMonkey.Model
         public string TokenHeader { get; set; }
 
         public bool IsValidationResult { get; set; }
+        
+        public Type TokenValidatorType { get; set; }
+
+        public string TokenValidatorTypeName => TokenValidatorType?.EvaluateType();
 
         public bool AuthorizesClaims => !string.IsNullOrWhiteSpace(ClaimsPrincipalAuthorizationTypeName);
 

@@ -58,40 +58,6 @@ namespace FunctionMonkey.Builders
             return BuildHttpFunction<TCommand>(route, authorizationType, method);
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>() where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(null, null, DefaultMethod);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(
-            AuthorizationTypeEnum authorizationType) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(null, authorizationType, DefaultMethod);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(
-            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(null, authorizationType, method);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(null, null, method);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route,
-            params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(route, null, DefaultMethod);
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route,
-            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            return BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(route, authorizationType, method);
-        }
-
         private IHttpFunctionConfigurationBuilder<TCommand> BuildHttpFunction<TCommand>(string route,
             AuthorizationTypeEnum? authorizationType,
             params HttpMethod[] method) where TCommand : ICommand
@@ -104,21 +70,6 @@ namespace FunctionMonkey.Builders
                 Verbs = new HashSet<HttpMethod>(method),
                 Authorization = authorizationType,
                 ClaimsPrincipalAuthorizationType = _routeConfiguration.ClaimsPrincipalAuthorizationType
-            };
-            _definitions.Add(definition);
-            return new HttpFunctionConfigurationBuilder<TCommand>(this, definition);
-        }
-
-        private IHttpFunctionConfigurationBuilder<TCommand> BuildHttpFunction<TCommand, TClaimsPrincipalAuthorization>(string route, AuthorizationTypeEnum? authorizationType, params HttpMethod[] method) where TCommand : ICommand
-        {
-            HttpFunctionDefinition definition = new HttpFunctionDefinition(typeof(TCommand))
-            {
-                SubRoute = route,
-                RouteConfiguration = _routeConfiguration,
-                Route = string.Concat(_routeConfiguration.Route, route),
-                Verbs = new HashSet<HttpMethod>(method),
-                Authorization = authorizationType,
-                ClaimsPrincipalAuthorizationType = typeof(TClaimsPrincipalAuthorization)
             };
             _definitions.Add(definition);
             return new HttpFunctionConfigurationBuilder<TCommand>(this, definition);

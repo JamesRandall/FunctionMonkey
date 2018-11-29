@@ -56,7 +56,7 @@ namespace {{Namespace}}
                 return new UnauthorizedResult();
             }
             var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ITokenValidator));
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{TokenValidatorTypeName}}));
             principal = await tokenValidator.ValidateAsync(authorizationHeader);
             if (principal == null)
             {
@@ -76,11 +76,18 @@ namespace {{Namespace}}
             
             string requestBody = new StreamReader(req.Body).ReadToEnd();
             {{CommandTypeName}} command;
+            {{#if SerializerNamingStrategyTypeName}}
+                var serializerNamingStrategy = new {{SerializerNamingStrategyTypeName}}();
+                var deserializerNamingStrategy = new {{DeserializerNamingStrategyTypeName}}();
+                FunctionMonkey.Abstractions.ISerializer serializer = new FunctionMonkey.Serialization.NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
+            {{else}}
+                var serializer = (FunctionMonkey.Abstractions.ISerializer)
+                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
+            {{/if}}
+            
             if (!System.String.IsNullOrWhiteSpace(requestBody))
             {
-                var deserializer = (FunctionMonkey.Abstractions.ICommandDeserializer)
-                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandDeserializer));
-                command = deserializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
             }
             else
             {
@@ -172,21 +179,21 @@ namespace {{Namespace}}
                         var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
                         var responseTask = responseHandler.CreateResponse(command, result.Result);
                         var handledResponse = responseTask != null ? (await responseTask) : null;
-                        return handledResponse ?? CreateResponse(200, result.Result);
+                        return handledResponse ?? CreateResponse(200, result.Result, serializer);
                     {{else}}
                         {{#if IsValidationResult}}
                             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
                             if (!validationResult.IsValid)
                             {
-                                return CreateResponse(400, validationResult);
+                                return CreateResponse(400, validationResult, serializer);
                             }
                         {{/if}}
-                        return CreateResponse(200, result.Result);
+                        return CreateResponse(200, result.Result, serializer);
                     {{/if}}
                 {{else}}
                     {{#if HasHttpResponseHandler}}
                         var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
-                        var responseTask = responseHandler.CreateResponse(command);
+                        var responseTask = responseHandler.CreateResponse(command, serializer);
                         var handledResponse = responseTask != null ? (await responseTask) : null; 
                         return handledResponse ?? new OkResult();
                     {{else}}
@@ -200,19 +207,18 @@ namespace {{Namespace}}
                     var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
                     var responseTask = responseHandler.CreateResponse(command, ex);
                     var handledResponse = responseTask != null ? (await responseTask) : null;
-                    return handledResponse ?? CreateResponse(500, "Unexpected error");
+                    return handledResponse ?? CreateResponse(500, "Unexpected error", serializer);
                 {{else}}
                     log.LogError(ex, $"Error occurred executing command {command.GetType().Name}");
-                    return CreateResponse(500, "Unexpected error");
+                    return CreateResponse(500, "Unexpected error", serializer);
                 {{/if}}
             }
         }
 
-        public static IActionResult CreateResponse(int code, object content)
+        public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)
         {
             ContentResult result = new ContentResult();
-            result.Content = JsonConvert.SerializeObject(content, Formatting.Indented,
-                new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()});
+            result.Content = serializer.Serialize(content, true);
             result.ContentType = "application/json";
             result.StatusCode = code;
             return result;

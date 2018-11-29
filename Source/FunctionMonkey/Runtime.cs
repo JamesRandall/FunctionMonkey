@@ -63,6 +63,8 @@ namespace FunctionMonkey
 
             SetupAuthorization(builder, functionBuilder);
 
+            RegisterCoreDependencies(builder.FunctionDefinitions);
+
             RegisterTimerCommandFactories(builder.FunctionDefinitions);
 
             RegisterHttpDependencies(builder.FunctionDefinitions);
@@ -94,6 +96,20 @@ namespace FunctionMonkey
             }
         }
 
+        private static void RegisterCoreDependencies(
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            HashSet<Type> types = new HashSet<Type>();
+            foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
+            {
+                types.Add(abstractFunctionDefinition.CommandDeserializerType);
+            }
+            foreach (Type claimsPrincipalAuthorizationType in types)
+            {
+                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+            }
+        }
+
         private static void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
@@ -110,6 +126,11 @@ namespace FunctionMonkey
                     {
                         types.Add(httpFunctionDefinition.HttpResponseHandlerType);
                     }
+
+                    if (httpFunctionDefinition.TokenValidatorType != null)
+                    {
+                        types.Add(httpFunctionDefinition.TokenValidatorType);
+                    }
                 }
             }
 
@@ -122,10 +143,9 @@ namespace FunctionMonkey
         private static void SetupAuthorization(FunctionHostBuilder builder, FunctionBuilder functionBuilder)
         {
             AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder) builder.AuthorizationBuilder;
-            if (authorizationBuilder.TokenValidatorType != null)
-            {
-                ServiceCollection.AddTransient(typeof(ITokenValidator), authorizationBuilder.TokenValidatorType);
-            }
+            
+            // don't register the token validator type here - that gets passed down to the HTTP function
+            // definitions to allow for function overrides and so is registered as part of HTTP dependencies
 
             ICommandClaimsBinder commandClaimsBinder = authorizationBuilder.ClaimsMappingBuilder.Build(
                 functionBuilder.GetHttpFunctionDefinitions().Select(x => x.CommandType).ToArray());
@@ -151,7 +171,6 @@ namespace FunctionMonkey
         private static void RegisterInternalImplementations()
         {
             ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
-            ServiceCollection.AddTransient<ICommandDeserializer, CommandDeserializer>();
             ServiceCollection.AddTransient<IContextSetter, ContextManager>();
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
         }

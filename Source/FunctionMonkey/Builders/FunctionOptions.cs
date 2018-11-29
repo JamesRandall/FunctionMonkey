@@ -1,10 +1,11 @@
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Model;
+using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    internal class FunctionOptions : IFunctionOptions
+    internal class FunctionOptions
     {
         private readonly AbstractFunctionDefinition _functionDefinition;
 
@@ -13,10 +14,16 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public IFunctionOptions JsonSerializerSettingsProvider<TJsonSerializerSettingsProvider>() where TJsonSerializerSettingsProvider : IJsonSerializerSettingsProvider
+        public void Serializer<TCommandDeserializer>() where TCommandDeserializer : ISerializer
         {
-            _functionDefinition.JsonSerializerSettingsProviderType = typeof(TJsonSerializerSettingsProvider);
-            return this;
+            _functionDefinition.CommandDeserializerType = typeof(TCommandDeserializer);
+        }
+
+        public void JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+            where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy
+        {
+            _functionDefinition.DeserializerNamingStrategyType = typeof(TDeserializerNamingStrategy);
+            _functionDefinition.SerializerNamingStrategyType = typeof(TSerializerNamingStrategy);
         }
     }
 }

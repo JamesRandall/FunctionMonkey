@@ -102,7 +102,7 @@ Validators should implement the _ITokenValidator_ interface as shown in the exam
 
 ## Claims Authorization
 
-Claims Authorization inspects the ClaimsPrincipal object and determines if the user is authorized to access a given route. Authorizers must implement the _IClaimsPrincipalAuthorization_ interface and can be specified as a default (in the Authorization builder), at the route, or at the function level.
+Claims Authorization inspects the ClaimsPrincipal object and determines if the user is authorized to access a given route. Authorizers must implement the _IClaimsPrincipalAuthorization_ interface and can be specified as a default (in the Authorization builder), at the route, or at the function level via function options.
 
 An example authorizer is shown below:
 

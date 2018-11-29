@@ -6,7 +6,9 @@ using Autofac.Extensions.DependencyInjection;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Serialization;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using SwaggerBuildOut.Commands;
 using SwaggerBuildOut.Handlers;
 
@@ -50,15 +52,23 @@ namespace SwaggerBuildOut
                         //.ChangeFeedFunction<CosmosDocumentCommand>("Items", "ToDoList")
                         //.ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn2")
                     )
-                    /*.HttpRoute("/Add", route => route
+                    .HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")
                         .OpenApiResponse(400, "Some sort of error")
+                        //.Serializer<DefaultCaseJsonSerializer>()
+                        .JsonNamingStrategies<DefaultNamingStrategy, SnakeCaseNamingStrategy>()
                     )
-                    .OpenApiName("HelloWorld")*/
+                    /*.OpenApiName("HelloWorld")*/
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
-                    //.Storage("StorageConnectionString", storage => storage
-                        //.BlobFunction<HelloWorldCommand>("triggertest/{name}"))
+                    .Storage("StorageConnectionString", storage => storage
+                        .BlobFunction<HelloWorldCommand>("triggertest/{name}")
+                        .QueueFunction<HelloWorldCommand>("myqueue")
+                    )
+                .ServiceBus("ServiceBusConnectionString", sb => sb
+                        .QueueFunction<HelloWorldCommand>("myqueue")    
+                    .SubscriptionFunction<HelloWorldCommand>("mytopic", "mysub")
+                    )
                 );            
         }
 

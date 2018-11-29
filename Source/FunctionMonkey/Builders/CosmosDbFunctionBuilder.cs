@@ -25,7 +25,7 @@ namespace FunctionMonkey.Builders
             _leaseConnectionStringName = leaseConnectionName;
         }
 
-        public ICosmosDbFunctionBuilder ChangeFeedFunction<TCommand>(
+        public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand>(
             string collectionName,
             string databaseName,
             string leaseCollectionName = "leases",
@@ -43,11 +43,11 @@ namespace FunctionMonkey.Builders
             int? leasesCollectionThroughput = null
             ) where TCommand : ICommand
         {
-            _functionDefinitions.Add(new CosmosDbFunctionDefinition(typeof(TCommand))
+            CosmosDbFunctionDefinition definition = new CosmosDbFunctionDefinition(typeof(TCommand))
             {
                 ConnectionStringName = _connectionStringName,
                 CollectionName = collectionName,
-                DatabaseName = databaseName,                                
+                DatabaseName = databaseName,
                 LeaseConnectionStringName = _leaseConnectionStringName,
                 LeaseCollectionName = leaseCollectionName,
                 LeaseDatabaseName = leaseDatabaseName ?? databaseName,
@@ -62,11 +62,12 @@ namespace FunctionMonkey.Builders
                 LeaseRenewInterval = leaseRenewInterval,
                 CheckpointFrequency = checkpointFrequency,
                 LeasesCollectionThroughput = leasesCollectionThroughput
-            });
-            return this;
+            };
+            _functionDefinitions.Add(definition);
+            return new CosmosDbFunctionOptionBuilder(this, definition);
         }
 
-        public ICosmosDbFunctionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(
+        public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(
             string collectionName,
             string databaseName,
             string leaseCollectionName = "leases",
@@ -83,7 +84,7 @@ namespace FunctionMonkey.Builders
             int? checkpointFrequency = null,
             int? leasesCollectionThroughput = null) where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
         {
-            _functionDefinitions.Add(new CosmosDbFunctionDefinition(typeof(TCommand))
+            CosmosDbFunctionDefinition definition = new CosmosDbFunctionDefinition(typeof(TCommand))
             {
                 ConnectionStringName = _connectionStringName,
                 CollectionName = collectionName,
@@ -104,8 +105,9 @@ namespace FunctionMonkey.Builders
                 LeasesCollectionThroughput = leasesCollectionThroughput,
                 ErrorHandlerType = typeof(TCosmosDbErrorHandler),
                 ErrorHandlerTypeName = typeof(TCosmosDbErrorHandler).EvaluateType()
-            });
-            return this;
+            };
+            _functionDefinitions.Add(definition);
+            return new CosmosDbFunctionOptionBuilder(this, definition);
         }
     }
 }

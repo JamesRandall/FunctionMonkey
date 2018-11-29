@@ -36,7 +36,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="checkpointFrequency">When set, it defines, in milliseconds, the interval between lease checkpoints. Default is always after a successful Function call.</param>
         /// <param name="leasesCollectionThroughput">Defines the amount of Request Units to assign when the leases collection is created. This setting is only used When createLeaseCollectionIfNotExists is set to true. This parameter is automatically set when the binding is created using the portal.</param>
         /// <returns></returns>
-        ICosmosDbFunctionBuilder ChangeFeedFunction<TCommand>(string collectionName,
+        ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand>(string collectionName,
             string databaseName,
             string leaseCollectionName="leases",
             string leaseDatabaseName=null,
@@ -86,7 +86,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="checkpointFrequency">When set, it defines, in milliseconds, the interval between lease checkpoints. Default is always after a successful Function call.</param>
         /// <param name="leasesCollectionThroughput">Defines the amount of Request Units to assign when the leases collection is created. This setting is only used When createLeaseCollectionIfNotExists is set to true. This parameter is automatically set when the binding is created using the portal.</param>
         /// <returns></returns>
-        ICosmosDbFunctionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName,
+        ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName,
             string databaseName,
             string leaseCollectionName = "leases",
             string leaseDatabaseName = null,
