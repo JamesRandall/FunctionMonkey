@@ -1,6 +1,6 @@
 namespace FunctionMonkey.Abstractions.Builders
 {
-    public interface ICosmosDbFunctionOptionBuilder : ICosmosDbFunctionBuilder, IFunctionOptions<ICosmosDbFunctionOptionBuilder>
+    public interface ICosmosDbFunctionOptionBuilder : ICosmosDbFunctionBuilder, IFunctionOptions<ICosmosDbFunctionOptionBuilder, IFunctionOptionsBuilder>
     {
         
     }

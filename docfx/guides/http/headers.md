@@ -20,7 +20,7 @@ Header values can be automatically bound to command properties by adding a heade
                 .Functions(functions => functions
                     .HttpRoute("/Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
-                            .AddHeaderMapping(x => x.OperationId, "x-operation-id")
+                            .Options(options => options.AddHeaderMapping(x => x.OperationId, "x-operation-id"))
                     )
                 );
         }

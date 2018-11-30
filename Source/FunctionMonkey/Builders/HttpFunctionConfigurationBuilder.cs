@@ -69,46 +69,10 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> AddHeaderMapping<TProperty>(Expression<Func<TCommandOuter, TProperty>> property, string headerName)
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> Options(Action<IHttpFunctionOptionsBuilder<TCommandOuter>> options)
         {
-            if (_definition.HeaderBindingConfiguration == null)
-            {
-                _definition.HeaderBindingConfiguration = new HeaderBindingConfiguration();
-            }
-
-            MemberInfo member = property.GetMember();
-            _definition.HeaderBindingConfiguration.PropertyFromHeaderMappings.Add(member.Name, headerName);
-
-            return this;
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> ResponseHandler<TResponseHandler>() where TResponseHandler : IHttpResponseHandler
-        {
-            _definition.HttpResponseHandlerType = typeof(TResponseHandler);
-            return this;
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> TokenValidator<TTokenValidator>(string header = null) where TTokenValidator : ITokenValidator
-        {
-            new HttpFunctionOptions(_definition).TokenValidator<TTokenValidator>(header);
-            return this;
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>() where TClaimsPrincipalAuthorization : IClaimsPrincipalAuthorization
-        {
-            new HttpFunctionOptions(_definition).ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>();
-            return this;
-        }
-
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> Serializer<TSerializer>() where TSerializer : ISerializer
-        {
-            new HttpFunctionOptions(_definition).Serializer<TSerializer>();
-            return this;
-        }
-        
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>() where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy
-        {
-            new HttpFunctionOptions(_definition).JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>();
+            HttpFunctionOptionsBuilder<TCommandOuter> builder = new HttpFunctionOptionsBuilder<TCommandOuter>(_definition);
+            options(builder);
             return this;
         }
     }

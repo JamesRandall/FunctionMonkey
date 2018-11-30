@@ -99,6 +99,32 @@ Validators should implement the _ITokenValidator_ interface as shown in the exam
         }
     }
 
+Token validators can also be specified on a per function basis as shown in the example below:
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Setup((serviceCollection, commandRegistry) =>
+                {
+                    commandRegistry.Register<InvoiceQueryHandler>();
+                })
+                .Authorization(authorization => authorization
+                    .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                    .TokenValidator<BearerTokenValidator>()
+                )
+                .Functions(functions => functions
+                    .HttpRoute("/Invoice", route => route
+                        .HttpFunction<InvoiceQuery>()
+                            .Options(options => options.TokenValidator<AnotherTokenValidator>())
+                    )
+                    .HttpRoute("/Version", route => route
+                        .HttpFunction<VersionQuery>()
+                    )
+                );
+        }
+    }
 
 ## Claims Authorization
 

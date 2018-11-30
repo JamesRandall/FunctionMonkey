@@ -1,3 +1,4 @@
+using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
@@ -28,15 +29,11 @@ namespace FunctionMonkey.Builders
             return _underlyingBuilder.BlobFunction<TCommand>(blobPath);
         }
 
-        public IStorageFunctionOptionBuilder Serializer<TSerializer>() where TSerializer : ISerializer
+
+        public IStorageFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)
         {
-            new FunctionOptions(_definition).Serializer<TSerializer>();
-            return this;
-        }
-        
-        public IStorageFunctionOptionBuilder JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>() where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy
-        {
-            new FunctionOptions(_definition).JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>();
+            FunctionOptionsBuilder builder = new FunctionOptionsBuilder(_definition);
+            options(builder);
             return this;
         }
     }

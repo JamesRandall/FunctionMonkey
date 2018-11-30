@@ -1,3 +1,4 @@
+using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
@@ -49,15 +50,10 @@ namespace FunctionMonkey.Builders
                 checkpointFrequency, leasesCollectionThroughput);
         }
 
-        public ICosmosDbFunctionOptionBuilder Serializer<TSerializer>() where TSerializer : ISerializer
+        public ICosmosDbFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)
         {
-            new FunctionOptions(_functionDefinition).Serializer<TSerializer>();
-            return this;
-        }
-
-        public ICosmosDbFunctionOptionBuilder JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>() where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy
-        {
-            new FunctionOptions(_functionDefinition).JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>();
+            FunctionOptionsBuilder builder = new FunctionOptionsBuilder(_functionDefinition);
+            options(builder);
             return this;
         }
     }

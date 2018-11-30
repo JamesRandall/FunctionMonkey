@@ -75,11 +75,10 @@ namespace FunctionMonkey.Infrastructure
                 httpFunctionDefinition.Verbs.Add(HttpMethod.Get);
             }
 
-            if (string.IsNullOrWhiteSpace(httpFunctionDefinition.ClaimsPrincipalAuthorizationTypeName))
-            {
-                httpFunctionDefinition.ClaimsPrincipalAuthorizationType =
-                    authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
-            }
+            httpFunctionDefinition.ClaimsPrincipalAuthorizationType =
+                httpFunctionDefinition.ClaimsPrincipalAuthorizationType ??
+                httpFunctionDefinition.RouteConfiguration.ClaimsPrincipalAuthorizationType ??
+                authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
 
             httpFunctionDefinition.HeaderBindingConfiguration =
                 httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;

@@ -1,3 +1,4 @@
+using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
@@ -33,10 +34,12 @@ namespace FunctionMonkey.Builders
             new FunctionOptions(_functionDefinition).Serializer<TSerializer>();
             return this;
         }
-        
-        public IServiceBusFunctionOptionBuilder JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>() where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy
+
+
+        public IServiceBusFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)
         {
-            new FunctionOptions(_functionDefinition).JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>();
+            FunctionOptionsBuilder builder = new FunctionOptionsBuilder(_functionDefinition);
+            options(builder);
             return this;
         }
     }

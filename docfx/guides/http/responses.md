@@ -46,7 +46,7 @@ To register this handler on a per function basis use the _ResponseHandler_ metho
                 .Functions(functions => functions
                     .HttpRoute("/Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
-                            .ResponseHandler<CustomResponseHandler>()
+                            .Options(options => options.ResponseHandler<CustomResponseHandler>())
                     )
                 );
         }

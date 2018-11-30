@@ -40,8 +40,10 @@ namespace SwaggerBuildOut
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
                             .OpenApiDescription("Says hello world")
-                            .AddHeaderMapping(x => x.HeaderName, "x-header-name")
-                            //.ResponseHandler<CustomResponseHandler>()
+                            .Options(options => options
+                                .AddHeaderMapping(x => x.HeaderName, "x-header-name")
+                                .ResponseHandler<CustomResponseHandler>()
+                            )
                     )
                    .HttpRoute("/Form", route => route
                         .HttpFunction<FormCommand>(HttpMethod.Post)
@@ -57,7 +59,9 @@ namespace SwaggerBuildOut
                         .OpenApiDescription("Adds two numbers together")
                         .OpenApiResponse(400, "Some sort of error")
                         //.Serializer<DefaultCaseJsonSerializer>()
-                        .JsonNamingStrategies<DefaultNamingStrategy, SnakeCaseNamingStrategy>()
+                        .Options(options => options    
+                            .JsonNamingStrategies<DefaultNamingStrategy, SnakeCaseNamingStrategy>()
+                        )
                     )
                     /*.OpenApiName("HelloWorld")*/
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")

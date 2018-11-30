@@ -23,11 +23,6 @@ namespace FunctionMonkey.Builders
             return _decoratedBuilder.HttpRoute(routePrefix, httpFunctionBuilder);
         }
 
-        public IHttpRouteFunctionBuilder HttpRoute<TAuthorizationType>(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder) where TAuthorizationType : IClaimsPrincipalAuthorization
-        {
-            return _decoratedBuilder.HttpRoute<TAuthorizationType>(routePrefix, httpFunctionBuilder);
-        }
-
         public IFunctionBuilder ServiceBus(string connectionName, Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder)
         {
             return _decoratedBuilder.ServiceBus(connectionName, serviceBusFunctionBuilder);
@@ -57,6 +52,13 @@ namespace FunctionMonkey.Builders
         public IHttpRouteFunctionBuilder OpenApiName(string name)
         {
             _httpRouteConfiguration.OpenApiName = name;
+            return this;
+        }
+
+        public IHttpRouteFunctionBuilder Options(Action<IHttpRouteOptionsBuilder> options)
+        {
+            IHttpRouteOptionsBuilder builder = new HttpRouteOptionsBuilder(_httpRouteConfiguration);
+            options(builder);
             return this;
         }
 

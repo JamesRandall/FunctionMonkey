@@ -63,6 +63,8 @@
       href: crosscutting/triggercontexts.md
     - name: Validation
       href: crosscutting/validation.md
+    - name: Serialization
+      href: crosscutting/serialization.md
     - name: Suggested Solution Structure
       href: crosscutting/solutionstructure.md
 
