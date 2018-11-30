@@ -45,7 +45,19 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html",
-          "hash": "60IogeS6nZI/4ci2k8PWyw=="
+          "hash": "depU6iKzImSv544DB/r8ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder.html",
+          "hash": "/wnQIW5heMBQ7yh4zB1cGg=="
         }
       },
       "is_incremental": false,
@@ -57,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html",
-          "hash": "33b1+Ns1HFbCE+ml3t3x9Q=="
+          "hash": "QhwbEneOjMEICdEiHmLmMw=="
         }
       },
       "is_incremental": false,
@@ -69,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html",
-          "hash": "oHlhl/NCa0rJC36lQFbI6w=="
+          "hash": "3cJEOc4aZmejXmh5CH4bhw=="
         }
       },
       "is_incremental": false,
@@ -81,7 +93,31 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html",
-          "hash": "SKbVHustWb6iEjc/HtdKDg=="
+          "hash": "LtjMvL3Rn78+b0f5NFNhkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html",
+          "hash": "/Mkgjk1kYJwxJDxg+P6+Ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html",
+          "hash": "jjodmO+ju3itcPoAU3JlPQ=="
         }
       },
       "is_incremental": false,
@@ -93,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html",
-          "hash": "bhJE/0lLizII7rkhOra0Og=="
+          "hash": "6WV55iHvM7aiHe4sjByzyA=="
         }
       },
       "is_incremental": false,
@@ -105,7 +141,19 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html",
-          "hash": "L4DtBr/U2VDRwKVOLvmaqg=="
+          "hash": "LIlwad/BjRvf+Izzsimx0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html",
+          "hash": "5nsex87B4F7uJ0Oia4dpbg=="
         }
       },
       "is_incremental": false,
@@ -117,7 +165,19 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html",
-          "hash": "CUST+T7D0NmLKK6LuBBQ2A=="
+          "hash": "bCdWX0CF24Bga2LNvM6FCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.html",
+          "hash": "8s9fDmC8LwYYRARM26FRXw=="
         }
       },
       "is_incremental": false,
@@ -137,11 +197,35 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.ISerializationBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.ISerializationBuilder.html",
+          "hash": "IS+6NHLp7IuoS+PgOcsAFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.yml",
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html",
-          "hash": "EzLZzeI6nnBNULefEdrZeg=="
+          "hash": "K3X5MIYXjUh0V8Ex8Qdh8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder.html",
+          "hash": "80DI82sofDSAXFIhW3cWGw=="
         }
       },
       "is_incremental": false,
@@ -153,7 +237,19 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html",
-          "hash": "pITJGcLTbFbscX/cX6TdwQ=="
+          "hash": "Idx5pq8kQe9D67ZBMDH0VQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder.html",
+          "hash": "PYDUAeNptxSg+KPA9uXPVw=="
         }
       },
       "is_incremental": false,
@@ -201,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.html",
-          "hash": "YrXCfxca84QJi9zfI3JDEQ=="
+          "hash": "tKyVqDMReGi3QA569sno7Q=="
         }
       },
       "is_incremental": false,
@@ -329,18 +425,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/FunctionMonkey.Abstractions.ICommandDeserializer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/FunctionMonkey.Abstractions.ICommandDeserializer.html",
-          "hash": "ZGD3UshICUcBdGWrjzrAkA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.ICommandingConfigurator.yml",
       "output": {
         ".html": {
@@ -401,6 +485,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.ISerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.ISerializer.html",
+          "hash": "CsZgrPn1y3qf0jq+lwHqqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.ITimerCommandFactory-1.yml",
       "output": {
         ".html": {
@@ -453,7 +549,79 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "nw2zMxhEf+/ugaV3mLyg9w=="
+          "hash": "5vDSDQ3CkeTCiCBbPxyXjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html",
+          "hash": "Z2snDvK9QpavgCH03qIMmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html",
+          "hash": "fV/QSCQz5KTQmgUMJ2h0KA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Builders.SerializationBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Builders.SerializationBuilder.html",
+          "hash": "KMCVlrJA5oqz8AAzbLYs3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html",
+          "hash": "3tyFH1cS5Sm3b5wKIlgibg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html",
+          "hash": "6kiycsax1Dyn9e0RcL1YnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Builders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Builders.html",
+          "hash": "+FpbT+vqds7z8r75petvfA=="
         }
       },
       "is_incremental": false,
@@ -693,7 +861,79 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Runtime.html",
-          "hash": "CSLT7a6/7v0bR2kEIjVCbw=="
+          "hash": "cr/gGPsfIlsOGjYB1GA+xQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.CamelCaseJsonSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.CamelCaseJsonSerializer.html",
+          "hash": "YJKsC15fP7JuCICtdK3u4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.DefaultCaseJsonSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.DefaultCaseJsonSerializer.html",
+          "hash": "2YS/V97mNObAgA6eodFLFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.html",
+          "hash": "4b/5YkNCO3WK5SYyJ+VoJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html",
+          "hash": "eQqII3SWHkQ3FrmqGnQuRQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.SnakeCaseJsonSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.SnakeCaseJsonSerializer.html",
+          "hash": "/Ok8c81qQzXWyziPq5TRYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.html",
+          "hash": "HKvN6/VPRGsKo55QXUPZHw=="
         }
       },
       "is_incremental": false,
@@ -741,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "ryrwB4m7By55Q6GsxSkeHg=="
+          "hash": "/AeLzAX0GirWNDB/HdcCzw=="
         }
       },
       "is_incremental": false,
@@ -833,6 +1073,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/crosscutting/serialization.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/crosscutting/serialization.html",
+          "hash": "PacQMgxu0BwxGnR6+UA4Jg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/crosscutting/solutionstructure.md",
       "output": {
         ".html": {
@@ -897,7 +1149,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/http/authorization.html",
-          "hash": "qBBi8r97QGAu5MxKm/vVqw=="
+          "hash": "D6r+vGAjVM0hkjrTzbAVnw=="
         }
       },
       "is_incremental": false,
@@ -921,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/http/headers.html",
-          "hash": "GiVEh/nHRpnTp2oGTZG0fQ=="
+          "hash": "Q5A4KPFbB4WiZujYZx6+2w=="
         }
       },
       "is_incremental": false,
@@ -948,7 +1200,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/http/responses.html",
-          "hash": "30MMlfqug4Z3MVGIqsla7Q=="
+          "hash": "ddLotWTJx96ibMTzFpRDUQ=="
         }
       },
       "is_incremental": false,
@@ -1092,7 +1344,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/toc.html",
-          "hash": "N0fRS5ysOY58lEENUJXSEg=="
+          "hash": "UeMvm8vLYEJJSxJ7zP0b0g=="
         }
       },
       "is_incremental": false,
@@ -1178,11 +1430,11 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },

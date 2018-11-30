@@ -161,8 +161,33 @@
         return result;
     }
 }
+</code></pre><p>Token validators can also be specified on a per function basis as shown in the example below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
+            })
+            .Authorization(authorization =&gt; authorization
+                .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                .TokenValidator&lt;BearerTokenValidator&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                    .HttpFunction&lt;InvoiceQuery&gt;()
+                        .Options(options =&gt; options.TokenValidator&lt;AnotherTokenValidator&gt;())
+                )
+                .HttpRoute(&quot;/Version&quot;, route =&gt; route
+                    .HttpFunction&lt;VersionQuery&gt;()
+                )
+            );
+    }
+}
 </code></pre><h2 id="claims-authorization">Claims Authorization</h2>
-<p>Claims Authorization inspects the ClaimsPrincipal object and determines if the user is authorized to access a given route. Authorizers must implement the <em>IClaimsPrincipalAuthorization</em> interface and can be specified as a default (in the Authorization builder), at the route, or at the function level.</p>
+<p>Claims Authorization inspects the ClaimsPrincipal object and determines if the user is authorized to access a given route. Authorizers must implement the <em>IClaimsPrincipalAuthorization</em> interface and can be specified as a default (in the Authorization builder), at the route, or at the function level via function options.</p>
 <p>An example authorizer is shown below:</p>
 <pre><code>public class AllowClaimsAuthorization : IClaimsPrincipalAuthorization
 {

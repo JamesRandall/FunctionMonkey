@@ -176,6 +176,12 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32))
   nameWithType: ICosmosDbFunctionBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
   nameWithType.vb: ICosmosDbFunctionBuilder.ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+- uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder
+  name: ICosmosDbFunctionOptionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder
+  nameWithType: ICosmosDbFunctionOptionBuilder
 - uid: FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder
   name: IEventHubFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html
@@ -245,15 +251,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute
   nameWithType: IFunctionBuilder.HttpRoute
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute``1(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
-  name: HttpRoute<TAuthorizationType>(String, Action<IHttpFunctionBuilder>)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute__1_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute``1(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
-  name.vb: HttpRoute(Of TAuthorizationType)(String, Action(Of IHttpFunctionBuilder))
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute<TAuthorizationType>(System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(Of TAuthorizationType)(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
-  nameWithType: IFunctionBuilder.HttpRoute<TAuthorizationType>(String, Action<IHttpFunctionBuilder>)
-  nameWithType.vb: IFunctionBuilder.HttpRoute(Of TAuthorizationType)(String, Action(Of IHttpFunctionBuilder))
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String,Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})
   name: ServiceBus(String, Action<IServiceBusFunctionBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_System_String_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__
@@ -427,6 +424,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled
   nameWithType: IFunctionHostBuilder.ProxiesEnabled
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
+  name: Serialization(Action<ISerializationBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Serialization_Action_FunctionMonkey_Abstractions_Builders_ISerializationBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
+  name.vb: Serialization(Action(Of ISerializationBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization(Action<FunctionMonkey.Abstractions.Builders.ISerializationBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization(Action(Of FunctionMonkey.Abstractions.Builders.ISerializationBuilder))
+  nameWithType: IFunctionHostBuilder.Serialization(Action<ISerializationBuilder>)
+  nameWithType.vb: IFunctionHostBuilder.Serialization(Action(Of ISerializationBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization*
+  name: Serialization
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Serialization_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization
+  nameWithType: IFunctionHostBuilder.Serialization
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action{IServiceCollection,ICommandRegistry})
   name: Setup(Action<IServiceCollection, ICommandRegistry>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Setup_Action_IServiceCollection_ICommandRegistry__
@@ -443,6 +456,71 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup
   nameWithType: IFunctionHostBuilder.Setup
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2
+  name: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2
+  name.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder)
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder)
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options(Action{`1})
+  name: Options(Action<TFunctionOptionsBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_Action__1__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options(Action{`1})
+  name.vb: Options(Action(Of TFunctionOptionsBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options(Action<TFunctionOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options(Action(Of TFunctionOptionsBuilder))
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options(Action<TFunctionOptionsBuilder>)
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options(Action(Of TFunctionOptionsBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options*
+  name: Options
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder
+  name: IFunctionOptionsBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder
+  nameWithType: IFunctionOptionsBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies*
+  name: JsonNamingStrategies
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_JsonNamingStrategies_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies
+  nameWithType: IFunctionOptionsBuilder.JsonNamingStrategies
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies``2
+  name: JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_JsonNamingStrategies__2
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies``2
+  name.vb: JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+  nameWithType: IFunctionOptionsBuilder.JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  nameWithType.vb: IFunctionOptionsBuilder.JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer*
+  name: Serializer
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_Serializer_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer
+  nameWithType: IFunctionOptionsBuilder.Serializer
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer``1
+  name: Serializer<TSerializer>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_Serializer__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer``1
+  name.vb: Serializer(Of TSerializer)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer<TSerializer>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.Serializer(Of TSerializer)()
+  nameWithType: IFunctionOptionsBuilder.Serializer<TSerializer>()
+  nameWithType.vb: IFunctionOptionsBuilder.Serializer(Of TSerializer)()
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder
   name: IHttpFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html
@@ -510,60 +588,6 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand)(System.String, HttpMethod())
   nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand>(String, HttpMethod[])
   nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand)(String, HttpMethod())
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2
-  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>()
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2
-  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)()
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>()
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)()
-  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>()
-  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)()
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
-  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
-  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)
-  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum)
-  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum)
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
-  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum, HttpMethod[])
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
-  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum, HttpMethod())
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod[])
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod())
-  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(AuthorizationTypeEnum, HttpMethod[])
-  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(AuthorizationTypeEnum, HttpMethod())
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(HttpMethod[])
-  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(HttpMethod[])
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_HttpMethod___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(HttpMethod[])
-  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(HttpMethod())
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(HttpMethod[])
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(HttpMethod())
-  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(HttpMethod[])
-  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(HttpMethod())
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
-  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, AuthorizationTypeEnum, HttpMethod[])
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum,HttpMethod[])
-  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, AuthorizationTypeEnum, HttpMethod())
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(System.String, FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod[])
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(System.String, FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum, HttpMethod())
-  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, AuthorizationTypeEnum, HttpMethod[])
-  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, AuthorizationTypeEnum, HttpMethod())
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,HttpMethod[])
-  name: HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, HttpMethod[])
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_HttpMethod___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction``2(System.String,HttpMethod[])
-  name.vb: HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, HttpMethod())
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(System.String, HttpMethod[])
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(System.String, HttpMethod())
-  nameWithType: IHttpFunctionBuilder.HttpFunction<TCommand, TClaimsPrincipalAuthorization>(String, HttpMethod[])
-  nameWithType.vb: IHttpFunctionBuilder.HttpFunction(Of TCommand, TClaimsPrincipalAuthorization)(String, HttpMethod())
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1
   name: IHttpFunctionConfigurationBuilder<TCommand>
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html
@@ -573,24 +597,6 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand)
   nameWithType: IHttpFunctionConfigurationBuilder<TCommand>
   nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand)
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping*
-  name: AddHeaderMapping
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping
-  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping
-  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
-  name: AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping__1_Expression_Func__0___0___System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
-  name.vb: AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), System.String)
-  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
-  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription(System.String)
   name: OpenApiDescription(String)
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_System_String_
@@ -625,24 +631,123 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse
   nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse
   nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler*
-  name: ResponseHandler
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1
+  name: IHttpFunctionOptionsBuilder<TCommand>
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1
+  name.vb: IHttpFunctionOptionsBuilder(Of TCommand)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand)
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.AddHeaderMapping*
+  name: AddHeaderMapping
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_AddHeaderMapping_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.AddHeaderMapping
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler
-  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler
-  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler``1
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
+  name: AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_AddHeaderMapping__1_Expression_Func__0___0___System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
+  name.vb: AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), System.String)
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization*
+  name: ClaimsPrincipalAuthorization
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_ClaimsPrincipalAuthorization_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization``1
+  name: ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_ClaimsPrincipalAuthorization__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization``1
+  name.vb: ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.JsonNamingStrategies*
+  name: JsonNamingStrategies
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_JsonNamingStrategies_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.JsonNamingStrategies
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.JsonNamingStrategies``2
+  name: JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_JsonNamingStrategies__2
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.JsonNamingStrategies``2
+  name.vb: JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ResponseHandler*
+  name: ResponseHandler
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_ResponseHandler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ResponseHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.ResponseHandler
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).ResponseHandler
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.ResponseHandler
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).ResponseHandler
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ResponseHandler``1
   name: ResponseHandler<TResponseHandler>()
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler__1
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler``1
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_ResponseHandler__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.ResponseHandler``1
   name.vb: ResponseHandler(Of TResponseHandler)()
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler<TResponseHandler>()
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
-  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.ResponseHandler<TResponseHandler>()
-  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.ResponseHandler<TResponseHandler>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.ResponseHandler<TResponseHandler>()
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.Serializer*
+  name: Serializer
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_Serializer_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.Serializer
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.Serializer
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).Serializer
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.Serializer
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).Serializer
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.Serializer``1
+  name: Serializer<TSerializer>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_Serializer__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.Serializer``1
+  name.vb: Serializer(Of TSerializer)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.Serializer<TSerializer>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).Serializer(Of TSerializer)()
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.Serializer<TSerializer>()
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).Serializer(Of TSerializer)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.TokenValidator*
+  name: TokenValidator
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_TokenValidator_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.TokenValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.TokenValidator
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).TokenValidator
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.TokenValidator
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).TokenValidator
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.TokenValidator``1(System.String)
+  name: TokenValidator<TTokenValidator>(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_TokenValidator__1_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.TokenValidator``1(System.String)
+  name.vb: TokenValidator(Of TTokenValidator)(String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.TokenValidator<TTokenValidator>(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).TokenValidator(Of TTokenValidator)(System.String)
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.TokenValidator<TTokenValidator>(String)
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).TokenValidator(Of TTokenValidator)(String)
 - uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder
   name: IHttpRouteFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html
@@ -675,6 +780,44 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.OpenApiName
   nameWithType: IHttpRouteFunctionBuilder.OpenApiName
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder})
+  name: Options(Action<IHttpRouteOptionsBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteFunctionBuilder_Options_Action_FunctionMonkey_Abstractions_Builders_IHttpRouteOptionsBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder})
+  name.vb: Options(Action(Of IHttpRouteOptionsBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options(Action<FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options(Action(Of FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder))
+  nameWithType: IHttpRouteFunctionBuilder.Options(Action<IHttpRouteOptionsBuilder>)
+  nameWithType.vb: IHttpRouteFunctionBuilder.Options(Action(Of IHttpRouteOptionsBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options*
+  name: Options
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteFunctionBuilder_Options_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteFunctionBuilder.Options
+  nameWithType: IHttpRouteFunctionBuilder.Options
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder
+  name: IHttpRouteOptionsBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder
+  nameWithType: IHttpRouteOptionsBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization*
+  name: ClaimsPrincipalAuthorization
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteOptionsBuilder_ClaimsPrincipalAuthorization_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization
+  nameWithType: IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization
+- uid: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization``1
+  name: ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpRouteOptionsBuilder_ClaimsPrincipalAuthorization__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization``1
+  name.vb: ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+  nameWithType: IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  nameWithType.vb: IHttpRouteOptionsBuilder.ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
 - uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
   name: IOpenApiBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html
@@ -736,6 +879,28 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version
   nameWithType: IOpenApiBuilder.Version
+- uid: FunctionMonkey.Abstractions.Builders.ISerializationBuilder
+  name: ISerializationBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.ISerializationBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.ISerializationBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.ISerializationBuilder
+  nameWithType: ISerializationBuilder
+- uid: FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer*
+  name: DefaultCommandDeserializer
+  href: api/FunctionMonkey.Abstractions.Builders.ISerializationBuilder.html#FunctionMonkey_Abstractions_Builders_ISerializationBuilder_DefaultCommandDeserializer_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer
+  nameWithType: ISerializationBuilder.DefaultCommandDeserializer
+- uid: FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer``1
+  name: DefaultCommandDeserializer<TCommandDeserializer>()
+  href: api/FunctionMonkey.Abstractions.Builders.ISerializationBuilder.html#FunctionMonkey_Abstractions_Builders_ISerializationBuilder_DefaultCommandDeserializer__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer``1
+  name.vb: DefaultCommandDeserializer(Of TCommandDeserializer)()
+  fullName: FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer<TCommandDeserializer>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ISerializationBuilder.DefaultCommandDeserializer(Of TCommandDeserializer)()
+  nameWithType: ISerializationBuilder.DefaultCommandDeserializer<TCommandDeserializer>()
+  nameWithType.vb: ISerializationBuilder.DefaultCommandDeserializer(Of TCommandDeserializer)()
 - uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder
   name: IServiceBusFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html
@@ -774,6 +939,12 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.SubscriptionFunction(Of TCommand)(System.String, System.String)
   nameWithType: IServiceBusFunctionBuilder.SubscriptionFunction<TCommand>(String, String)
   nameWithType.vb: IServiceBusFunctionBuilder.SubscriptionFunction(Of TCommand)(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder
+  name: IServiceBusFunctionOptionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder
+  nameWithType: IServiceBusFunctionOptionBuilder
 - uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder
   name: IStorageFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html
@@ -812,6 +983,12 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.QueueFunction(Of TCommand)(System.String)
   nameWithType: IStorageFunctionBuilder.QueueFunction<TCommand>(String)
   nameWithType.vb: IStorageFunctionBuilder.QueueFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder
+  name: IStorageFunctionOptionBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder
+  nameWithType: IStorageFunctionOptionBuilder
 - uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder
   name: ITimerFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html
@@ -1266,28 +1443,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind
   nameWithType: ICommandClaimsBinder.Bind
-- uid: FunctionMonkey.Abstractions.ICommandDeserializer
-  name: ICommandDeserializer
-  href: api/FunctionMonkey.Abstractions.ICommandDeserializer.html
-  commentId: T:FunctionMonkey.Abstractions.ICommandDeserializer
-  fullName: FunctionMonkey.Abstractions.ICommandDeserializer
-  nameWithType: ICommandDeserializer
-- uid: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize*
-  name: Deserialize
-  href: api/FunctionMonkey.Abstractions.ICommandDeserializer.html#FunctionMonkey_Abstractions_ICommandDeserializer_Deserialize_
-  commentId: Overload:FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize
-  nameWithType: ICommandDeserializer.Deserialize
-- uid: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize``1(System.String,System.Boolean)
-  name: Deserialize<TCommand>(String, Boolean)
-  href: api/FunctionMonkey.Abstractions.ICommandDeserializer.html#FunctionMonkey_Abstractions_ICommandDeserializer_Deserialize__1_System_String_System_Boolean_
-  commentId: M:FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize``1(System.String,System.Boolean)
-  name.vb: Deserialize(Of TCommand)(String, Boolean)
-  fullName: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize<TCommand>(System.String, System.Boolean)
-  fullName.vb: FunctionMonkey.Abstractions.ICommandDeserializer.Deserialize(Of TCommand)(System.String, System.Boolean)
-  nameWithType: ICommandDeserializer.Deserialize<TCommand>(String, Boolean)
-  nameWithType.vb: ICommandDeserializer.Deserialize(Of TCommand)(String, Boolean)
 - uid: FunctionMonkey.Abstractions.ICommandingConfigurator
   name: ICommandingConfigurator
   href: api/FunctionMonkey.Abstractions.ICommandingConfigurator.html
@@ -1532,6 +1687,44 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build
   nameWithType: IFunctionAppConfiguration.Build
+- uid: FunctionMonkey.Abstractions.ISerializer
+  name: ISerializer
+  href: api/FunctionMonkey.Abstractions.ISerializer.html
+  commentId: T:FunctionMonkey.Abstractions.ISerializer
+  fullName: FunctionMonkey.Abstractions.ISerializer
+  nameWithType: ISerializer
+- uid: FunctionMonkey.Abstractions.ISerializer.Deserialize*
+  name: Deserialize
+  href: api/FunctionMonkey.Abstractions.ISerializer.html#FunctionMonkey_Abstractions_ISerializer_Deserialize_
+  commentId: Overload:FunctionMonkey.Abstractions.ISerializer.Deserialize
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ISerializer.Deserialize
+  nameWithType: ISerializer.Deserialize
+- uid: FunctionMonkey.Abstractions.ISerializer.Deserialize``1(System.String,System.Boolean)
+  name: Deserialize<TCommand>(String, Boolean)
+  href: api/FunctionMonkey.Abstractions.ISerializer.html#FunctionMonkey_Abstractions_ISerializer_Deserialize__1_System_String_System_Boolean_
+  commentId: M:FunctionMonkey.Abstractions.ISerializer.Deserialize``1(System.String,System.Boolean)
+  name.vb: Deserialize(Of TCommand)(String, Boolean)
+  fullName: FunctionMonkey.Abstractions.ISerializer.Deserialize<TCommand>(System.String, System.Boolean)
+  fullName.vb: FunctionMonkey.Abstractions.ISerializer.Deserialize(Of TCommand)(System.String, System.Boolean)
+  nameWithType: ISerializer.Deserialize<TCommand>(String, Boolean)
+  nameWithType.vb: ISerializer.Deserialize(Of TCommand)(String, Boolean)
+- uid: FunctionMonkey.Abstractions.ISerializer.Serialize*
+  name: Serialize
+  href: api/FunctionMonkey.Abstractions.ISerializer.html#FunctionMonkey_Abstractions_ISerializer_Serialize_
+  commentId: Overload:FunctionMonkey.Abstractions.ISerializer.Serialize
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ISerializer.Serialize
+  nameWithType: ISerializer.Serialize
+- uid: FunctionMonkey.Abstractions.ISerializer.Serialize``1(``0,System.Boolean)
+  name: Serialize<TModel>(TModel, Boolean)
+  href: api/FunctionMonkey.Abstractions.ISerializer.html#FunctionMonkey_Abstractions_ISerializer_Serialize__1___0_System_Boolean_
+  commentId: M:FunctionMonkey.Abstractions.ISerializer.Serialize``1(``0,System.Boolean)
+  name.vb: Serialize(Of TModel)(TModel, Boolean)
+  fullName: FunctionMonkey.Abstractions.ISerializer.Serialize<TModel>(TModel, System.Boolean)
+  fullName.vb: FunctionMonkey.Abstractions.ISerializer.Serialize(Of TModel)(TModel, System.Boolean)
+  nameWithType: ISerializer.Serialize<TModel>(TModel, Boolean)
+  nameWithType.vb: ISerializer.Serialize(Of TModel)(TModel, Boolean)
 - uid: FunctionMonkey.Abstractions.ITimerCommandFactory`1
   name: ITimerCommandFactory<TCommand>
   href: api/FunctionMonkey.Abstractions.ITimerCommandFactory-1.html
@@ -1605,6 +1798,391 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Validation.IValidator.Validate(Of TCommand)(TCommand)
   nameWithType: IValidator.Validate<TCommand>(TCommand)
   nameWithType.vb: IValidator.Validate(Of TCommand)(TCommand)
+- uid: FunctionMonkey.Builders
+  name: FunctionMonkey.Builders
+  href: api/FunctionMonkey.Builders.html
+  commentId: N:FunctionMonkey.Builders
+  fullName: FunctionMonkey.Builders
+  nameWithType: FunctionMonkey.Builders
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder
+  name: CosmosDbFunctionOptionBuilder
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html
+  commentId: T:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder
+  nameWithType: CosmosDbFunctionOptionBuilder
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder,FunctionMonkey.Model.CosmosDbFunctionDefinition)
+  name: CosmosDbFunctionOptionBuilder(ICosmosDbFunctionBuilder, CosmosDbFunctionDefinition)
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder_FunctionMonkey_Model_CosmosDbFunctionDefinition_
+  commentId: M:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder,FunctionMonkey.Model.CosmosDbFunctionDefinition)
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.CosmosDbFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder, FunctionMonkey.Model.CosmosDbFunctionDefinition)
+  nameWithType: CosmosDbFunctionOptionBuilder.CosmosDbFunctionOptionBuilder(ICosmosDbFunctionBuilder, CosmosDbFunctionDefinition)
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.#ctor*
+  name: CosmosDbFunctionOptionBuilder
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder__ctor_
+  commentId: Overload:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.CosmosDbFunctionOptionBuilder
+  nameWithType: CosmosDbFunctionOptionBuilder.CosmosDbFunctionOptionBuilder
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction*
+  name: ChangeFeedFunction
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_ChangeFeedFunction_
+  commentId: Overload:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction
+  nameWithType: CosmosDbFunctionOptionBuilder.ChangeFeedFunction
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction``1(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name: ChangeFeedFunction<TCommand>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_ChangeFeedFunction__1_System_String_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__
+  commentId: M:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction``1(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name.vb: ChangeFeedFunction(Of TCommand)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction<TCommand>(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>)
+  fullName.vb: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction(Of TCommand)(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32))
+  nameWithType: CosmosDbFunctionOptionBuilder.ChangeFeedFunction<TCommand>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  nameWithType.vb: CosmosDbFunctionOptionBuilder.ChangeFeedFunction(Of TCommand)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction``2(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name: ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_ChangeFeedFunction__2_System_String_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__System_Nullable_System_Int32__
+  commentId: M:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction``2(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})
+  name.vb: ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>, System.Nullable<System.Int32>)
+  fullName.vb: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(System.String, System.String, System.String, System.String, System.Boolean, System.Boolean, System.Boolean, System.String, System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32), System.Nullable(Of System.Int32))
+  nameWithType: CosmosDbFunctionOptionBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>, Nullable<Int32>)
+  nameWithType.vb: CosmosDbFunctionOptionBuilder.ChangeFeedFunction(Of TCommand, TCosmosDbErrorHandler)(String, String, String, String, Boolean, Boolean, Boolean, String, Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32), Nullable(Of Int32))
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder})
+  name: Options(Action<IFunctionOptionsBuilder>)
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_Options_Action_FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder__
+  commentId: M:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder})
+  name.vb: Options(Action(Of IFunctionOptionsBuilder))
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options(Action<FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options(Action(Of FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder))
+  nameWithType: CosmosDbFunctionOptionBuilder.Options(Action<IFunctionOptionsBuilder>)
+  nameWithType.vb: CosmosDbFunctionOptionBuilder.Options(Action(Of IFunctionOptionsBuilder))
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options*
+  name: Options
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_Options_
+  commentId: Overload:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options
+  nameWithType: CosmosDbFunctionOptionBuilder.Options
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1
+  name: HttpFunctionOptionsBuilder<TCommand>
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html
+  commentId: T:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1
+  name.vb: HttpFunctionOptionsBuilder(Of TCommand)
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand)
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand)
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.#ctor(FunctionMonkey.Model.HttpFunctionDefinition)
+  name: HttpFunctionOptionsBuilder(HttpFunctionDefinition)
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1__ctor_FunctionMonkey_Model_HttpFunctionDefinition_
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.#ctor(FunctionMonkey.Model.HttpFunctionDefinition)
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.HttpFunctionOptionsBuilder(FunctionMonkey.Model.HttpFunctionDefinition)
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).HttpFunctionOptionsBuilder(FunctionMonkey.Model.HttpFunctionDefinition)
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.HttpFunctionOptionsBuilder(HttpFunctionDefinition)
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).HttpFunctionOptionsBuilder(HttpFunctionDefinition)
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.#ctor*
+  name: HttpFunctionOptionsBuilder
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1__ctor_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.HttpFunctionOptionsBuilder
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).HttpFunctionOptionsBuilder
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.HttpFunctionOptionsBuilder
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).HttpFunctionOptionsBuilder
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.AddHeaderMapping*
+  name: AddHeaderMapping
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_AddHeaderMapping_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.AddHeaderMapping
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
+  name: AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_AddHeaderMapping__1_Expression_Func__0___0___System_String_
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)
+  name.vb: AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, System.String)
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), System.String)
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.AddHeaderMapping<TProperty>(Expression<Func<TCommand, TProperty>>, String)
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).AddHeaderMapping(Of TProperty)(Expression(Of Func(Of TCommand, TProperty)), String)
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization*
+  name: ClaimsPrincipalAuthorization
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_ClaimsPrincipalAuthorization_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization``1
+  name: ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_ClaimsPrincipalAuthorization__1
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ClaimsPrincipalAuthorization``1
+  name.vb: ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.ClaimsPrincipalAuthorization<TClaimsPrincipalAuthorization>()
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).ClaimsPrincipalAuthorization(Of TClaimsPrincipalAuthorization)()
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.JsonNamingStrategies*
+  name: JsonNamingStrategies
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_JsonNamingStrategies_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.JsonNamingStrategies
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.JsonNamingStrategies``2
+  name: JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_JsonNamingStrategies__2
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.JsonNamingStrategies``2
+  name.vb: JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).JsonNamingStrategies(Of TDeserializerNamingStrategy, TSerializerNamingStrategy)()
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ResponseHandler*
+  name: ResponseHandler
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_ResponseHandler_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ResponseHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.ResponseHandler
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).ResponseHandler
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.ResponseHandler
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).ResponseHandler
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ResponseHandler``1
+  name: ResponseHandler<TResponseHandler>()
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_ResponseHandler__1
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.ResponseHandler``1
+  name.vb: ResponseHandler(Of TResponseHandler)()
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.ResponseHandler<TResponseHandler>()
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.ResponseHandler<TResponseHandler>()
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).ResponseHandler(Of TResponseHandler)()
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.Serializer*
+  name: Serializer
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_Serializer_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.Serializer
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.Serializer
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).Serializer
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.Serializer
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).Serializer
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.Serializer``1
+  name: Serializer<TSerializer>()
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_Serializer__1
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.Serializer``1
+  name.vb: Serializer(Of TSerializer)()
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.Serializer<TSerializer>()
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).Serializer(Of TSerializer)()
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.Serializer<TSerializer>()
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).Serializer(Of TSerializer)()
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.TokenValidator*
+  name: TokenValidator
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_TokenValidator_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.TokenValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.TokenValidator
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).TokenValidator
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.TokenValidator
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).TokenValidator
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.TokenValidator``1(System.String)
+  name: TokenValidator<TTokenValidator>(String)
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_TokenValidator__1_System_String_
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.TokenValidator``1(System.String)
+  name.vb: TokenValidator(Of TTokenValidator)(String)
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.TokenValidator<TTokenValidator>(System.String)
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).TokenValidator(Of TTokenValidator)(System.String)
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.TokenValidator<TTokenValidator>(String)
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).TokenValidator(Of TTokenValidator)(String)
+- uid: FunctionMonkey.Builders.SerializationBuilder
+  name: SerializationBuilder
+  href: api/FunctionMonkey.Builders.SerializationBuilder.html
+  commentId: T:FunctionMonkey.Builders.SerializationBuilder
+  fullName: FunctionMonkey.Builders.SerializationBuilder
+  nameWithType: SerializationBuilder
+- uid: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer*
+  name: DefaultCommandDeserializer
+  href: api/FunctionMonkey.Builders.SerializationBuilder.html#FunctionMonkey_Builders_SerializationBuilder_DefaultCommandDeserializer_
+  commentId: Overload:FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer
+  nameWithType: SerializationBuilder.DefaultCommandDeserializer
+- uid: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer``1
+  name: DefaultCommandDeserializer<TCommandDeserializer>()
+  href: api/FunctionMonkey.Builders.SerializationBuilder.html#FunctionMonkey_Builders_SerializationBuilder_DefaultCommandDeserializer__1
+  commentId: M:FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer``1
+  name.vb: DefaultCommandDeserializer(Of TCommandDeserializer)()
+  fullName: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer<TCommandDeserializer>()
+  fullName.vb: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializer(Of TCommandDeserializer)()
+  nameWithType: SerializationBuilder.DefaultCommandDeserializer<TCommandDeserializer>()
+  nameWithType.vb: SerializationBuilder.DefaultCommandDeserializer(Of TCommandDeserializer)()
+- uid: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializerType
+  name: DefaultCommandDeserializerType
+  href: api/FunctionMonkey.Builders.SerializationBuilder.html#FunctionMonkey_Builders_SerializationBuilder_DefaultCommandDeserializerType
+  commentId: P:FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializerType
+  fullName: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializerType
+  nameWithType: SerializationBuilder.DefaultCommandDeserializerType
+- uid: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializerType*
+  name: DefaultCommandDeserializerType
+  href: api/FunctionMonkey.Builders.SerializationBuilder.html#FunctionMonkey_Builders_SerializationBuilder_DefaultCommandDeserializerType_
+  commentId: Overload:FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializerType
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.SerializationBuilder.DefaultCommandDeserializerType
+  nameWithType: SerializationBuilder.DefaultCommandDeserializerType
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder
+  name: ServiceBusFunctionOptionBuilder
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html
+  commentId: T:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder
+  nameWithType: ServiceBusFunctionOptionBuilder
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
+  name: ServiceBusFunctionOptionBuilder(IServiceBusFunctionBuilder, AbstractFunctionDefinition)
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_FunctionMonkey_Model_AbstractFunctionDefinition_
+  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder, FunctionMonkey.Model.AbstractFunctionDefinition)
+  nameWithType: ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder(IServiceBusFunctionBuilder, AbstractFunctionDefinition)
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor*
+  name: ServiceBusFunctionOptionBuilder
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder__ctor_
+  commentId: Overload:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder
+  nameWithType: ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder})
+  name: Options(Action<IFunctionOptionsBuilder>)
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_Options_Action_FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder__
+  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder})
+  name.vb: Options(Action(Of IFunctionOptionsBuilder))
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options(Action<FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options(Action(Of FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder))
+  nameWithType: ServiceBusFunctionOptionBuilder.Options(Action<IFunctionOptionsBuilder>)
+  nameWithType.vb: ServiceBusFunctionOptionBuilder.Options(Action(Of IFunctionOptionsBuilder))
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options*
+  name: Options
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_Options_
+  commentId: Overload:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Options
+  nameWithType: ServiceBusFunctionOptionBuilder.Options
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction*
+  name: QueueFunction
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_QueueFunction_
+  commentId: Overload:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction
+  nameWithType: ServiceBusFunctionOptionBuilder.QueueFunction
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction``1(System.String)
+  name: QueueFunction<TCommand>(String)
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_QueueFunction__1_System_String_
+  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction``1(System.String)
+  name.vb: QueueFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.QueueFunction(Of TCommand)(System.String)
+  nameWithType: ServiceBusFunctionOptionBuilder.QueueFunction<TCommand>(String)
+  nameWithType.vb: ServiceBusFunctionOptionBuilder.QueueFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer*
+  name: Serializer
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_Serializer_
+  commentId: Overload:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer
+  nameWithType: ServiceBusFunctionOptionBuilder.Serializer
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer``1
+  name: Serializer<TSerializer>()
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_Serializer__1
+  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer``1
+  name.vb: Serializer(Of TSerializer)()
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer<TSerializer>()
+  fullName.vb: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.Serializer(Of TSerializer)()
+  nameWithType: ServiceBusFunctionOptionBuilder.Serializer<TSerializer>()
+  nameWithType.vb: ServiceBusFunctionOptionBuilder.Serializer(Of TSerializer)()
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction*
+  name: SubscriptionFunction
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_SubscriptionFunction_
+  commentId: Overload:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction
+  nameWithType: ServiceBusFunctionOptionBuilder.SubscriptionFunction
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction``1(System.String,System.String)
+  name: SubscriptionFunction<TCommand>(String, String)
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder_SubscriptionFunction__1_System_String_System_String_
+  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction``1(System.String,System.String)
+  name.vb: SubscriptionFunction(Of TCommand)(String, String)
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction<TCommand>(System.String, System.String)
+  fullName.vb: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.SubscriptionFunction(Of TCommand)(System.String, System.String)
+  nameWithType: ServiceBusFunctionOptionBuilder.SubscriptionFunction<TCommand>(String, String)
+  nameWithType.vb: ServiceBusFunctionOptionBuilder.SubscriptionFunction(Of TCommand)(String, String)
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder
+  name: StorageFunctionOptionBuilder
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html
+  commentId: T:FunctionMonkey.Builders.StorageFunctionOptionBuilder
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder
+  nameWithType: StorageFunctionOptionBuilder
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
+  name: StorageFunctionOptionBuilder(IStorageFunctionBuilder, AbstractFunctionDefinition)
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_FunctionMonkey_Model_AbstractFunctionDefinition_
+  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.StorageFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder, FunctionMonkey.Model.AbstractFunctionDefinition)
+  nameWithType: StorageFunctionOptionBuilder.StorageFunctionOptionBuilder(IStorageFunctionBuilder, AbstractFunctionDefinition)
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor*
+  name: StorageFunctionOptionBuilder
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder__ctor_
+  commentId: Overload:FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.StorageFunctionOptionBuilder
+  nameWithType: StorageFunctionOptionBuilder.StorageFunctionOptionBuilder
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction*
+  name: BlobFunction
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_BlobFunction_
+  commentId: Overload:FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction
+  nameWithType: StorageFunctionOptionBuilder.BlobFunction
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction``1(System.String)
+  name: BlobFunction<TCommand>(String)
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_BlobFunction__1_System_String_
+  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction``1(System.String)
+  name.vb: BlobFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Builders.StorageFunctionOptionBuilder.BlobFunction(Of TCommand)(System.String)
+  nameWithType: StorageFunctionOptionBuilder.BlobFunction<TCommand>(String)
+  nameWithType.vb: StorageFunctionOptionBuilder.BlobFunction(Of TCommand)(String)
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder})
+  name: Options(Action<IFunctionOptionsBuilder>)
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_Options_Action_FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder__
+  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options(Action{FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder})
+  name.vb: Options(Action(Of IFunctionOptionsBuilder))
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options(Action<FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options(Action(Of FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder))
+  nameWithType: StorageFunctionOptionBuilder.Options(Action<IFunctionOptionsBuilder>)
+  nameWithType.vb: StorageFunctionOptionBuilder.Options(Action(Of IFunctionOptionsBuilder))
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options*
+  name: Options
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_Options_
+  commentId: Overload:FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.Options
+  nameWithType: StorageFunctionOptionBuilder.Options
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction*
+  name: QueueFunction
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_QueueFunction_
+  commentId: Overload:FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction
+  nameWithType: StorageFunctionOptionBuilder.QueueFunction
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction``1(System.String)
+  name: QueueFunction<TCommand>(String)
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_QueueFunction__1_System_String_
+  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction``1(System.String)
+  name.vb: QueueFunction(Of TCommand)(String)
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Builders.StorageFunctionOptionBuilder.QueueFunction(Of TCommand)(System.String)
+  nameWithType: StorageFunctionOptionBuilder.QueueFunction<TCommand>(String)
+  nameWithType.vb: StorageFunctionOptionBuilder.QueueFunction(Of TCommand)(String)
 - uid: FunctionMonkey.ClaimMappingCompilationException
   name: ClaimMappingCompilationException
   href: api/FunctionMonkey.ClaimMappingCompilationException.html
@@ -2089,6 +2667,145 @@ references:
   commentId: F:FunctionMonkey.Runtime.ServiceProvider
   fullName: FunctionMonkey.Runtime.ServiceProvider
   nameWithType: Runtime.ServiceProvider
+- uid: FunctionMonkey.Serialization
+  name: FunctionMonkey.Serialization
+  href: api/FunctionMonkey.Serialization.html
+  commentId: N:FunctionMonkey.Serialization
+  fullName: FunctionMonkey.Serialization
+  nameWithType: FunctionMonkey.Serialization
+- uid: FunctionMonkey.Serialization.CamelCaseJsonSerializer
+  name: CamelCaseJsonSerializer
+  href: api/FunctionMonkey.Serialization.CamelCaseJsonSerializer.html
+  commentId: T:FunctionMonkey.Serialization.CamelCaseJsonSerializer
+  fullName: FunctionMonkey.Serialization.CamelCaseJsonSerializer
+  nameWithType: CamelCaseJsonSerializer
+- uid: FunctionMonkey.Serialization.CamelCaseJsonSerializer.#ctor
+  name: CamelCaseJsonSerializer()
+  href: api/FunctionMonkey.Serialization.CamelCaseJsonSerializer.html#FunctionMonkey_Serialization_CamelCaseJsonSerializer__ctor
+  commentId: M:FunctionMonkey.Serialization.CamelCaseJsonSerializer.#ctor
+  fullName: FunctionMonkey.Serialization.CamelCaseJsonSerializer.CamelCaseJsonSerializer()
+  nameWithType: CamelCaseJsonSerializer.CamelCaseJsonSerializer()
+- uid: FunctionMonkey.Serialization.CamelCaseJsonSerializer.#ctor*
+  name: CamelCaseJsonSerializer
+  href: api/FunctionMonkey.Serialization.CamelCaseJsonSerializer.html#FunctionMonkey_Serialization_CamelCaseJsonSerializer__ctor_
+  commentId: Overload:FunctionMonkey.Serialization.CamelCaseJsonSerializer.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.CamelCaseJsonSerializer.CamelCaseJsonSerializer
+  nameWithType: CamelCaseJsonSerializer.CamelCaseJsonSerializer
+- uid: FunctionMonkey.Serialization.DefaultCaseJsonSerializer
+  name: DefaultCaseJsonSerializer
+  href: api/FunctionMonkey.Serialization.DefaultCaseJsonSerializer.html
+  commentId: T:FunctionMonkey.Serialization.DefaultCaseJsonSerializer
+  fullName: FunctionMonkey.Serialization.DefaultCaseJsonSerializer
+  nameWithType: DefaultCaseJsonSerializer
+- uid: FunctionMonkey.Serialization.DefaultCaseJsonSerializer.#ctor
+  name: DefaultCaseJsonSerializer()
+  href: api/FunctionMonkey.Serialization.DefaultCaseJsonSerializer.html#FunctionMonkey_Serialization_DefaultCaseJsonSerializer__ctor
+  commentId: M:FunctionMonkey.Serialization.DefaultCaseJsonSerializer.#ctor
+  fullName: FunctionMonkey.Serialization.DefaultCaseJsonSerializer.DefaultCaseJsonSerializer()
+  nameWithType: DefaultCaseJsonSerializer.DefaultCaseJsonSerializer()
+- uid: FunctionMonkey.Serialization.DefaultCaseJsonSerializer.#ctor*
+  name: DefaultCaseJsonSerializer
+  href: api/FunctionMonkey.Serialization.DefaultCaseJsonSerializer.html#FunctionMonkey_Serialization_DefaultCaseJsonSerializer__ctor_
+  commentId: Overload:FunctionMonkey.Serialization.DefaultCaseJsonSerializer.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.DefaultCaseJsonSerializer.DefaultCaseJsonSerializer
+  nameWithType: DefaultCaseJsonSerializer.DefaultCaseJsonSerializer
+- uid: FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver
+  name: JsonSecurityPropertyContractResolver
+  href: api/FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.html
+  commentId: T:FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver
+  fullName: FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver
+  nameWithType: JsonSecurityPropertyContractResolver
+- uid: FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo,MemberSerialization)
+  name: CreateProperty(MemberInfo, MemberSerialization)
+  href: api/FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.html#FunctionMonkey_Serialization_JsonSecurityPropertyContractResolver_CreateProperty_MemberInfo_MemberSerialization_
+  commentId: M:FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo,MemberSerialization)
+  fullName: FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo, MemberSerialization)
+  nameWithType: JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo, MemberSerialization)
+- uid: FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.CreateProperty*
+  name: CreateProperty
+  href: api/FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.html#FunctionMonkey_Serialization_JsonSecurityPropertyContractResolver_CreateProperty_
+  commentId: Overload:FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.CreateProperty
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.CreateProperty
+  nameWithType: JsonSecurityPropertyContractResolver.CreateProperty
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer
+  name: NamingStrategyJsonSerializer
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html
+  commentId: T:FunctionMonkey.Serialization.NamingStrategyJsonSerializer
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer
+  nameWithType: NamingStrategyJsonSerializer
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy)
+  name: NamingStrategyJsonSerializer(NamingStrategy)
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer__ctor_NamingStrategy_
+  commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy)
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy)
+  nameWithType: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy)
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy,NamingStrategy)
+  name: NamingStrategyJsonSerializer(NamingStrategy, NamingStrategy)
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer__ctor_NamingStrategy_NamingStrategy_
+  commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy,NamingStrategy)
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy, NamingStrategy)
+  nameWithType: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy, NamingStrategy)
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor*
+  name: NamingStrategyJsonSerializer
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer__ctor_
+  commentId: Overload:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer
+  nameWithType: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize*
+  name: Deserialize
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer_Deserialize_
+  commentId: Overload:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize
+  nameWithType: NamingStrategyJsonSerializer.Deserialize
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize``1(System.String,System.Boolean)
+  name: Deserialize<TCommand>(String, Boolean)
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer_Deserialize__1_System_String_System_Boolean_
+  commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize``1(System.String,System.Boolean)
+  name.vb: Deserialize(Of TCommand)(String, Boolean)
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize<TCommand>(System.String, System.Boolean)
+  fullName.vb: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize(Of TCommand)(System.String, System.Boolean)
+  nameWithType: NamingStrategyJsonSerializer.Deserialize<TCommand>(String, Boolean)
+  nameWithType.vb: NamingStrategyJsonSerializer.Deserialize(Of TCommand)(String, Boolean)
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize*
+  name: Serialize
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer_Serialize_
+  commentId: Overload:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize
+  nameWithType: NamingStrategyJsonSerializer.Serialize
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize``1(``0,System.Boolean)
+  name: Serialize<TModel>(TModel, Boolean)
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer_Serialize__1___0_System_Boolean_
+  commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize``1(``0,System.Boolean)
+  name.vb: Serialize(Of TModel)(TModel, Boolean)
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize<TModel>(TModel, System.Boolean)
+  fullName.vb: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize(Of TModel)(TModel, System.Boolean)
+  nameWithType: NamingStrategyJsonSerializer.Serialize<TModel>(TModel, Boolean)
+  nameWithType.vb: NamingStrategyJsonSerializer.Serialize(Of TModel)(TModel, Boolean)
+- uid: FunctionMonkey.Serialization.SnakeCaseJsonSerializer
+  name: SnakeCaseJsonSerializer
+  href: api/FunctionMonkey.Serialization.SnakeCaseJsonSerializer.html
+  commentId: T:FunctionMonkey.Serialization.SnakeCaseJsonSerializer
+  fullName: FunctionMonkey.Serialization.SnakeCaseJsonSerializer
+  nameWithType: SnakeCaseJsonSerializer
+- uid: FunctionMonkey.Serialization.SnakeCaseJsonSerializer.#ctor
+  name: SnakeCaseJsonSerializer()
+  href: api/FunctionMonkey.Serialization.SnakeCaseJsonSerializer.html#FunctionMonkey_Serialization_SnakeCaseJsonSerializer__ctor
+  commentId: M:FunctionMonkey.Serialization.SnakeCaseJsonSerializer.#ctor
+  fullName: FunctionMonkey.Serialization.SnakeCaseJsonSerializer.SnakeCaseJsonSerializer()
+  nameWithType: SnakeCaseJsonSerializer.SnakeCaseJsonSerializer()
+- uid: FunctionMonkey.Serialization.SnakeCaseJsonSerializer.#ctor*
+  name: SnakeCaseJsonSerializer
+  href: api/FunctionMonkey.Serialization.SnakeCaseJsonSerializer.html#FunctionMonkey_Serialization_SnakeCaseJsonSerializer__ctor_
+  commentId: Overload:FunctionMonkey.Serialization.SnakeCaseJsonSerializer.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.SnakeCaseJsonSerializer.SnakeCaseJsonSerializer
+  nameWithType: SnakeCaseJsonSerializer.SnakeCaseJsonSerializer
 - uid: FunctionMonkey.TypeLoadingException
   name: TypeLoadingException
   href: api/FunctionMonkey.TypeLoadingException.html

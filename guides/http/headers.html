@@ -85,7 +85,7 @@
             .Functions(functions =&gt; functions
                 .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
-                        .AddHeaderMapping(x =&gt; x.OperationId, &quot;x-operation-id&quot;)
+                        .Options(options =&gt; options.AddHeaderMapping(x =&gt; x.OperationId, &quot;x-operation-id&quot;))
                 )
             );
     }

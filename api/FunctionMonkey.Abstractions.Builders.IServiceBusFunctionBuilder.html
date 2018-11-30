@@ -98,7 +98,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IServiceBusFunctionBuilder QueueFunction&lt;TCommand&gt;(string queueName)
+    <pre><code class="lang-csharp hljs">IServiceBusFunctionOptionBuilder QueueFunction&lt;TCommand&gt;(string queueName)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -129,7 +129,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html">IServiceBusFunctionBuilder</a></td>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder.html">IServiceBusFunctionOptionBuilder</a></td>
         <td><p>A service bus function builder that allows more functions to be created</p>
 </td>
       </tr>
@@ -165,7 +165,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IServiceBusFunctionBuilder SubscriptionFunction&lt;TCommand&gt;(string topicName, string subscriptionName)
+    <pre><code class="lang-csharp hljs">IServiceBusFunctionOptionBuilder SubscriptionFunction&lt;TCommand&gt;(string topicName, string subscriptionName)
     where TCommand : ICommand</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -202,7 +202,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html">IServiceBusFunctionBuilder</a></td>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder.html">IServiceBusFunctionOptionBuilder</a></td>
         <td><p>A service bus function builder that allows more functions to be created</p>
 </td>
       </tr>

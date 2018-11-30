@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HTTP Responses </title>
+    <title>Serialization </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="HTTP Responses ">
+    <meta name="title" content="Serialization ">
     <meta name="generator" content="docfx 2.40.4.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -67,37 +67,10 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="http-responses">HTTP Responses</h1>
+<h1 id="serialization">Serialization</h1>
 
-<p>By default the framework will return a 200 status code and the command response as the body, unless an exceptioon occurs in which case a 500 error will be returned.</p>
-<p>The response can be shaped and influenced by registering response handlers against functions. Response handlers must implement the <em>IHttpResponseHandler</em> interface as shown in the example below that will return a 204 no content response when a command result is null:</p>
-<pre><code>public class CustomResponseHandler : IHttpResponseHandler
-{
-    // Handle responses for errors
-    public Task&lt;IActionResult&gt; CreateResponse&lt;TCommand&gt;(TCommand command, Exception ex) where TCommand : ICommand
-    {
-        return null;
-    }
-
-    // Handle responses for commands with results
-    public Task&lt;IActionResult&gt; CreateResponse&lt;TCommand, TResult&gt;(TCommand command, TResult result) where TCommand : ICommand&lt;TResult&gt;
-    {
-        if (result == null)
-        {
-            return Task.FromResult((IActionResult)new NoContentResult());
-        }
-
-        return null;
-    }
-
-    // Handle responses for commands with no results
-    public Task&lt;IActionResult&gt; CreateResponse&lt;TCommand&gt;(TCommand command)
-    {
-        return null;
-    }
-}
-</code></pre><p>To have Function Monkey handle the response in the default manner simply return either a null task or a task with a null result. In the example above, for example, error handling will be handled as per usual by Function Monkey.</p>
-<p>To register this handler on a per function basis use the <em>ResponseHandler</em> method as shown in the example below:</p>
+<p>By default Function Monkey is configured to accept JSON using the default (Newtonsoft.JSON) naming strategy for in bound deserialization and the camel case naming strategy for outbound serialization on HTTP requests.</p>
+<p>This can be overridden in a number of ways. Firstly the serializer can be replaced in its entirety by implementing the <em>ISerializer</em> interface and registering it as the default serializer as shown in the example below:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
     public void Build(IFunctionHostBuilder builder)
@@ -107,15 +80,15 @@
             {
                 commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
             })
+            .Serialization(serialization =&gt; serialization.DefaultCommandDeserializer&lt;TMySerializer&gt;())
             .Functions(functions =&gt; functions
                 .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
-                        .Options(options =&gt; options.ResponseHandler&lt;CustomResponseHandler&gt;())
                 )
             );
     }
 }
-</code></pre><p>Alternatively a response handler can be registered as a default handler:</p>
+</code></pre><p>This can also be set on a per function basis as shown below:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
     public void Build(IFunctionHostBuilder builder)
@@ -125,48 +98,33 @@
             {
                 commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
             })
-            .DefaultHttpResponseHandler&lt;CustomResponseHandler&gt;()
+            .Serialization(serialization =&gt; serialization.DefaultCommandDeserializer&lt;TMySerializer&gt;())
             .Functions(functions =&gt; functions
                 .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
+                        .Options(options =&gt; options.Serializer&lt;TMySerializer&gt;())
                 )
             );
     }
 }
-</code></pre><p>In keeping with Function Monkeys goals of cleanly separating protocol from business logic HTTP response handling is ideally kept separate to command handlers using this method. If you do need to implement response handling from within a command handler then the suggestion is to introduce an interface on a response like the below:</p>
-<pre><code>public interface IHttpResult
-{        
-    int StatusCode { get; set; }
-}
-</code></pre><p>And then on a response model implement this as an explicit interface:</p>
-<pre><code>public class MyCommandResponse : IHttpResult
+</code></pre><p>Using this approach other formats and schemes can be used - for example XML.</p>
+<p>Additionally alternative Newtonsoft.Json naming strategies can be configured on a per function basis. The  below demonstrates using snake case serialization for the return from a HTTP function:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
-    public string SomeProperty { get; set; }
-
-    int IHttpResult.StatusCode { get; set;}
-}
-</code></pre><p>The response handler can then look for this interface and behave accordingly:</p>
-<pre><code>public class CustomResponseHandler : IHttpResponseHandler
-{
-    public Task&lt;IActionResult&gt; CreateResponse&lt;TCommand&gt;(TCommand command, Exception ex) where TCommand : ICommand
+    public void Build(IFunctionHostBuilder builder)
     {
-        return null;
-    }
-
-    public Task&lt;IActionResult&gt; CreateResponse&lt;TCommand, TResult&gt;(TCommand command, TResult result) where TCommand : ICommand&lt;TResult&gt;
-    {
-        if (result is IHttpResult httpResult)
-        {
-            return Task.FromResult((IActionResult)new StatusCodeResult(httpResult.StatusCode));
-        }
-
-        return null;
-    }
-
-    // Handle responses for commands with no results
-    public Task&lt;IActionResult&gt; CreateResponse&lt;TCommand&gt;(TCommand command)
-    {
-        return null;
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
+            })
+            .Serialization(serialization =&gt; serialization.DefaultCommandDeserializer&lt;TMySerializer&gt;())
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                    .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
+                        .Options(options =&gt; options.JsonNamingStrategies&lt;DefaultNamingStrategy, SnakeCaseNamingStrategy&gt;())
+                )
+            );
     }
 }
 </code></pre><div id="disqus_thread"></div>
@@ -178,7 +136,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/http/responses.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/crosscutting/serialization.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

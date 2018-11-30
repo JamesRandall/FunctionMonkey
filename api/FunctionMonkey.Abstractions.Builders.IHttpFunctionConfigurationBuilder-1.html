@@ -97,29 +97,14 @@
       <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__1_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___">IHttpFunctionBuilder.HttpFunction&lt;TCommand&gt;(String, AuthorizationTypeEnum, HttpMethod[])</a>
     </div>
     <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2">IHttpFunctionBuilder.HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;()</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_">IHttpFunctionBuilder.HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___">IHttpFunctionBuilder.HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(AuthorizationTypeEnum, HttpMethod[])</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_HttpMethod___">IHttpFunctionBuilder.HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(HttpMethod[])</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_HttpMethod___">IHttpFunctionBuilder.HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(String, HttpMethod[])</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder_HttpFunction__2_System_String_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_HttpMethod___">IHttpFunctionBuilder.HttpFunction&lt;TCommand, TClaimsPrincipalAuthorization&gt;(String, AuthorizationTypeEnum, HttpMethod[])</a>
+      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_Action__1__">IFunctionOptions&lt;IHttpFunctionConfigurationBuilder&lt;TCommand&gt;, IHttpFunctionOptionsBuilder&lt;TCommand&gt;&gt;.Options(Action&lt;IHttpFunctionOptionsBuilder&lt;TCommand&gt;&gt;)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.Builders.html">FunctionMonkey.Abstractions.Builders</a></h6>
   <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
   <h5 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IHttpFunctionConfigurationBuilder&lt;TCommand&gt; : IHttpFunctionBuilder where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IHttpFunctionConfigurationBuilder&lt;TCommand&gt; : IHttpFunctionBuilder, IFunctionOptions&lt;IHttpFunctionConfigurationBuilder&lt;TCommand&gt;, IHttpFunctionOptionsBuilder&lt;TCommand&gt;&gt; where TCommand : ICommand</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,76 +123,6 @@
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping__1_Expression_Func__0___0___System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.AddHeaderMapping%60%601(Expression%7BFunc%7B%600%2C%60%600%7D%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L34">View Source</a>
-  </span>
-  <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_AddHeaderMapping__1_Expression_Func__0___0___System_String_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.AddHeaderMapping``1(Expression{Func{`0,``0}},System.String)">AddHeaderMapping&lt;TProperty&gt;(Expression&lt;Func&lt;TCommand, TProperty&gt;&gt;, String)</h4>
-  <div class="markdown level1 summary"><p>Configure a property on a command to be mapped from a header</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; AddHeaderMapping&lt;TProperty&gt;(Expression&lt;Func&lt;TCommand, TProperty&gt;&gt; property, string headerName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Expression</span>&lt;<span class="xref">Func</span>&lt;TCommand, TProperty&gt;&gt;</td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The property - using the lamnbda format x =&gt; x.MyProperty</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">headerName</span></td>
-        <td><p>The name of the header to map the property from</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TProperty</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.OpenApiDescription(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -310,54 +225,6 @@
       <tr>
         <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
         <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler__1.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.ResponseHandler%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L42">View Source</a>
-  </span>
-  <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_ResponseHandler__1" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.ResponseHandler``1">ResponseHandler&lt;TResponseHandler&gt;()</h4>
-  <div class="markdown level1 summary"><p>Associate a HTTP response handler with this function</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; ResponseHandler&lt;TResponseHandler&gt;()
-    where TResponseHandler : IHttpResponseHandler</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TResponseHandler</span></td>
-        <td><p>The type of the handler</p>
 </td>
       </tr>
     </tbody>
