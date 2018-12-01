@@ -3,8 +3,14 @@
   <PropertyGroup>
     <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Windows_NT'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp2.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
     <FunctionCompilerExe Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp' OR '$(TargetFrameworkIdentifier)' == '.NETStandard') AND '$(OS)' == 'Unix'">dotnet "$(MSBuildThisFileDirectory)../../tools/netcoreapp2.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
-    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp')">&quot;$(TargetDir)bin\$(TargetName).dll&quot; --netcore21</FunctionCompilerParams>
-    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp')">&quot;$(TargetDir)bin\$(TargetName).dll&quot;</FunctionCompilerParams>
+    <!-- compiler params -->
+    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp') AND '$(OS)' == 'Windows_NT'">&quot;$(TargetDir)bin\$(TargetName).dll&quot; --netcore21</FunctionCompilerParams>
+    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp') AND '$(OS)' == 'Unix'">&quot;$(TargetDir)bin/$(TargetName).dll&quot; --netcore21</FunctionCompilerParams>
+    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp') AND '$(OS)' == 'Windows_NT'">&quot;$(TargetDir)bin\$(TargetName).dll&quot;</FunctionCompilerParams>
+    <FunctionCompilerParams Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp') AND '$(OS)' == 'Unix'">&quot;$(TargetDir)bin/$(TargetName).dll&quot;</FunctionCompilerParams>
+    <!-- publish params -->
+    <FunctionPublishParams Condition="'$(OS)' == 'Windows_NT'">&quot;$(PublishDir)bin\$(TargetName).dll&quot;</FunctionPublishParams>
+    <FunctionPublishParams Condition="'$(OS)' == 'Unix'">&quot;$(PublishDir)bin/$(TargetName).dll&quot;</FunctionPublishParams>
   </PropertyGroup>
 
   <!-- we ensure the functions post build has run first -->
@@ -20,6 +26,6 @@
   <!--<Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="AfterPublish">-->
   <Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="_GenerateFunctionsAndCopyContentFiles">
     <Message Text="Running Function Monkey in Publish location $(PublishDir)" />
-    <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)bin\$(TargetName).dll&quot;" />
+    <Exec Command="$(FunctionCompilerExe) $(FunctionPublishParams)" />
   </Target>
 </Project>
