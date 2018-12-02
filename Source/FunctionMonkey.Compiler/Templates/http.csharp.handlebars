@@ -167,7 +167,7 @@ namespace {{Namespace}}
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                return CreateResponse(400, validationResult);
+                return CreateResponse(400, validationResult, serializer);
             }
             {{/if}}
             
