@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
-using System.Security.Claims;
 using System.Text;
 using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.HandlebarsHelpers;

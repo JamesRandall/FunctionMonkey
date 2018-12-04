@@ -48,7 +48,7 @@ namespace {{Namespace}}
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                throw new FunctionMonkey.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
+                throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException("{{Name}}", validationResult, id);
             }
             {{/if}}
             

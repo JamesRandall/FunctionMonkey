@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Source\FunctionMonkey.FluentValidation\FunctionMonkey.FluentValidation.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey\FunctionMonkey.csproj" />
   </ItemGroup>
   <ItemGroup>
