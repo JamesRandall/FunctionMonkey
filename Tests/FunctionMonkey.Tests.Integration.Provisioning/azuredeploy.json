@@ -234,5 +234,10 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "appServiceName": {
+      "type": "string",
+      "value": "[variables('fnAppName')]"
+    }
+  }
 }
