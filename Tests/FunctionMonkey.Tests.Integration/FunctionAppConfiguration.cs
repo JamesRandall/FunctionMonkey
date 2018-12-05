@@ -25,10 +25,10 @@ namespace FunctionMonkey.Tests.Integration
                 .AddFluentValidation()
                 .OutputAuthoredSource(@"c:\wip\outputsource")
                 .Functions(functions => functions
-                    .HttpRoute("someroute", route => route
+                    .HttpRoute("simpleHttp", route => route
                         .HttpFunction<SimpleHttpRouteCommand>())
-                    .Storage("storageaccount", storage => storage
-                        .QueueFunction<StorageQueueCommand>("storagequeuecommandqueue")
+                    .Storage("storageAccount", storage => storage
+                        .QueueFunction<StorageQueueCommand>("myqueue")
                         .BlobFunction<BlobCommand>("blobcommandcontainer/{name}") // TODO: We need to have the compiler insert parameters on the function for everything surrounded in {} - e.g. {name} needs a string parameter of name
                         .BlobFunction<StreamBlobCommand>("streamblobcommandcontainer/{name}")
                     )
@@ -36,8 +36,8 @@ namespace FunctionMonkey.Tests.Integration
                         .ChangeFeedFunction<SimpleCosmosChangeFeedCommand>("cosmosCollection", "cosmosDatabase")
                     )
                     .ServiceBus("serviceBuConnection", serviceBus => serviceBus
-                        .QueueFunction<SimpleServiceBusQueueCommand>("myQueue")
-                        .SubscriptionFunction<SimpleServiceBusTopicCommand>("myTopic", "mySubscription")
+                        .QueueFunction<SimpleServiceBusQueueCommand>("myqueue")
+                        .SubscriptionFunction<SimpleServiceBusTopicCommand>("mytopic", "mysubscription")
                     )
                 );
         }
