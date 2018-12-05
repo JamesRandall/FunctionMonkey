@@ -23,7 +23,7 @@ namespace FunctionMonkey.Tests.Integration
                     commandRegistry.Discover<FunctionAppConfiguration>();
                 })
                 .AddFluentValidation()
-                .OutputAuthoredSource(@"c:\wip\outputsource")
+                //.OutputAuthoredSource(@"c:\wip\outputsource")
                 .Functions(functions => functions
                     .HttpRoute("simpleHttp", route => route
                         .HttpFunction<SimpleHttpRouteCommand>())

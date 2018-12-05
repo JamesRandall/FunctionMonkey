@@ -33,4 +33,12 @@ fi
 
 echo '** Getting app service name and setting for downstream tasks'
 APPSERVICENAME=`az functionapp list --resource-group functionMonkeyIntegration --query "[0].name"`
-echo "##vso[task.setvariable appServiceName=$APPSERVICENAME"
+APPSERVICENAME="${APPSERVICENAME%\"}"
+APPSERVICENAME="${APPSERVICENAME#\"}"
+
+#echo 'Running the compiler'
+#dotnet ../../Source/FunctionMonkey.Compiler/bin/Debug/netcoreapp2.1/FunctionMonkey.Compiler.dll "$PWD/../FunctionMonkey.Tests.Integration/bin/Debug/netstandard2.0/bin/FunctionMonkey.Tests.Integration.dll"
+
+echo '** Deploying package for run from zip'
+az functionapp deployment source config-zip --resource-group functionMonkeyIntegration --name $APPSERVICENAME --src $1
+
