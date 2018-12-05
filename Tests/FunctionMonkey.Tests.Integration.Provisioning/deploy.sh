@@ -11,6 +11,7 @@ CONNECTIONSTRING="${CONNECTIONSTRING#\"}"
 az storage queue create --name myqueue --connection-string $CONNECTIONSTRING
 az storage container create --name blobcommandcontainer --connection-string $CONNECTIONSTRING
 az storage container create --name streamblobcommandcontainer --connection-string $CONNECTIONSTRING
+az storage container create --name testresults --connection-string $CONNECTIONSTRING
 
 COSMOSDBNAME=`az cosmosdb list --resource-group functionMonkeyIntegration --query "[0].name"`
 COSMOSDBNAME="${COSMOSDBNAME%\"}"
@@ -29,3 +30,7 @@ if [[ "$COSMOSCOLLECTIONEXISTS" == "false" ]]; then
     echo "** CREATING COSMOS COLLECTION"
     az cosmosdb collection create --db-name cosmosDatabase --collection-name cosmosCollection --key "$COSMOSDBKEY" --name "$COSMOSDBNAME" --resource-group-name functionMonkeyIntegration --throughput 400 --partition-key-path "/id"
 fi
+
+echo '** Getting app service name and setting for downstream tasks'
+APPSERVICENAME=`az functionapp list --resource-group functionMonkeyIntegration --query "[0].name"`
+echo "##vso[task.setvariable appServiceName=$APPSERVICENAME"
