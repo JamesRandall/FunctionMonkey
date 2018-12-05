@@ -66,7 +66,6 @@ namespace SwaggerBuildOut
                     /*.OpenApiName("HelloWorld")*/
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
                     .Storage("StorageConnectionString", storage => storage
-                        .BlobFunction<HelloWorldCommand>("triggertest/{name}")
                         .QueueFunction<HelloWorldCommand>("myqueue")
                     )
                 .ServiceBus("ServiceBusConnectionString", sb => sb
