@@ -8,7 +8,7 @@
         /// <summary>
         /// Represents OpenAPI V2.0 spec
         /// </summary>
-        OpenApi2_0,
+        OpenApi2_0 = 0,
 
         /// <summary>
         /// Represents all patches of OpenAPI V3.0 spec (e.g. 3.0.0, 3.0.1)
