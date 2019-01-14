@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Compiler.Extensions;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi;
@@ -23,6 +23,20 @@ namespace FunctionMonkey.Compiler.Implementation
                 {HttpMethod.Delete, OperationType.Delete},
                 {HttpMethod.Post, OperationType.Post},
                 {HttpMethod.Put, OperationType.Put}
+            };
+
+        private static readonly Dictionary<ApiSpecVersion, OpenApiSpecVersion> ApiSpecificationMap =
+            new Dictionary<ApiSpecVersion, OpenApiSpecVersion>
+            {
+                {ApiSpecVersion.OpenApi2_0, OpenApiSpecVersion.OpenApi2_0},
+                {ApiSpecVersion.OpenApi3_0, OpenApiSpecVersion.OpenApi3_0}
+            };
+
+        private static readonly Dictionary<ApiOutputFormat, OpenApiFormat> ApiOutputFormatMap =
+            new Dictionary<ApiOutputFormat, OpenApiFormat>
+            {
+                {ApiOutputFormat.Yaml, OpenApiFormat.Yaml},
+                {ApiOutputFormat.Json, OpenApiFormat.Json}
             };
 
         public OpenApiOutputModel Compile(OpenApiConfiguration configuration, IReadOnlyCollection<AbstractFunctionDefinition> abstractFunctionDefinitions, string outputBinaryFolder)
@@ -70,25 +84,31 @@ namespace FunctionMonkey.Compiler.Implementation
                 return null;
             }
 
-            string yaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
-            OpenApiOutputModel result = new OpenApiOutputModel
+            string serializedContentOutput = openApiDocument.Serialize(
+                    ApiSpecificationMap[configuration.ApiSpecVersion],
+                    ApiOutputFormatMap[configuration.ApiOutputFormat]);
+
+            var outputFormat = configuration.ApiOutputFormat == ApiOutputFormat.Json ? "json" : "yaml";
+            var filename = $"openapi.{outputFormat}";
+                       
+            OpenApiOutputModel resultModel = new OpenApiOutputModel
             {
                 OpenApiSpecification = new OpenApiFileReference
                 {
-                    Content = yaml,
-                    Filename = "openapi.yaml"
+                    Content = serializedContentOutput,
+                    Filename = filename
                 }
             };
-            
+
             if (!string.IsNullOrWhiteSpace(configuration.UserInterfaceRoute))
             {
-                result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder();
+                resultModel.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder(filename);
             }
 
-            return result;
+            return resultModel;
         }
 
-        private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder()
+        private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder(string filename)
         {
             const string prefix = "FunctionMonkey.Compiler.node_modules.swagger_ui_dist.";
             Assembly sourceAssembly = GetType().Assembly;
@@ -112,7 +132,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 if (swaggerFile.EndsWith(".index.html"))
                 {
-                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", "/openapi.yaml");
+                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", filename);
                 }
 
                 result[index] = new OpenApiFileReference
@@ -120,6 +140,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     Content = content,
                     Filename = swaggerFile.Substring(prefix.Length)
                 };
+
                 index++;
             }
 

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
-using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using SwaggerBuildOut.Commands;
@@ -32,10 +29,12 @@ namespace SwaggerBuildOut
                 })
                 .OpenApiEndpoint(openApi => openApi
                     .Title("A Simple API")
-                    .Version("0.0.0")
+                    .Version("0.1.0")
+                    .ApiSpecVersion(ApiSpecVersion.OpenApi2_0)
+                    .ApiOutputFormat(ApiOutputFormat.Json)
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
+                //.OutputAuthoredSource(@"c:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
@@ -63,14 +62,15 @@ namespace SwaggerBuildOut
                             .JsonNamingStrategies<DefaultNamingStrategy, SnakeCaseNamingStrategy>()
                         )
                     )
+
                     /*.OpenApiName("HelloWorld")*/
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
                     .Storage("StorageConnectionString", storage => storage
                         .QueueFunction<HelloWorldCommand>("myqueue")
                     )
-                .ServiceBus("ServiceBusConnectionString", sb => sb
+                    .ServiceBus("ServiceBusConnectionString", sb => sb
                         .QueueFunction<HelloWorldCommand>("myqueue")    
-                    .SubscriptionFunction<HelloWorldCommand>("mytopic", "mysub")
+                        .SubscriptionFunction<HelloWorldCommand>("mytopic", "mysub")
                     )
                 );            
         }

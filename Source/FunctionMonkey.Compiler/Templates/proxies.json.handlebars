@@ -12,7 +12,11 @@
             {{#if IsOpenApiYaml}}
             "backendUri": "https://localhost/api/OpenApiProvider?name=openapi.yaml"
             {{else}}
-            "backendUri": "https://localhost/api/{{Name}}{{#if IsOpenApiUi}}?name={name}{{else}}{{{routeParameters}}}{{/if}}"
+                {{#if IsOpenApiJson}}
+                    "backendUri": "https://localhost/api/OpenApiProvider?name=openapi.json"
+                {{else}}
+                    "backendUri": "https://localhost/api/{{Name}}{{#if IsOpenApiUi}}?name={name}{{else}}{{{routeParameters}}}{{/if}}"
+                {{/if}}
             {{/if}}
         }{{#if IsOpenAPiUi}},
         "OpenApiProviderProxyRedirect": {
