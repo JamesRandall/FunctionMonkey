@@ -73,26 +73,39 @@ namespace {{Namespace}}
                 return new UnauthorizedResult();
             }
             {{/if}}
-            
-            string requestBody = new StreamReader(req.Body).ReadToEnd();
-            {{CommandTypeName}} command;
+
             {{#if SerializerNamingStrategyTypeName}}
                 var serializerNamingStrategy = new {{SerializerNamingStrategyTypeName}}();
                 var deserializerNamingStrategy = new {{DeserializerNamingStrategyTypeName}}();
                 FunctionMonkey.Abstractions.ISerializer serializer = new FunctionMonkey.Serialization.NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
             {{else}}
                 var serializer = (FunctionMonkey.Abstractions.ISerializer)
-                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
             {{/if}}
-            
-            if (!System.String.IsNullOrWhiteSpace(requestBody))
+
+            {{CommandTypeName}} command;
+            string contentType = req.ContentType.ToLower();
+            if (contentType=="application/json")
             {
-                command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                string requestBody = new StreamReader(req.Body).ReadToEnd();
+                
+                if (!System.String.IsNullOrWhiteSpace(requestBody))
+                {
+                    command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                }
+                else
+                {
+                    command = new {{CommandTypeName}}();
+                }
             }
             else
             {
                 command = new {{CommandTypeName}}();
             }
+
+            {{#each PossibleFormProperties}}
+                command.{{Name}} = req.Form;
+            {{/each}}
 
             Microsoft.Extensions.Primitives.StringValues queryParameterValues;
             string method = req.Method.ToUpper();
@@ -136,12 +149,6 @@ namespace {{Namespace}}
                     {{/each}}
                 {{/if}}
             {{/if}}
-
-            {{#each PossibleBindingProperties}}
-                {{#if IsFormCollection}}
-                    command.{{Name}} = req.Form;
-                {{/if}}
-            {{/each}}
 
             {{#each RouteParameters}}
             if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))

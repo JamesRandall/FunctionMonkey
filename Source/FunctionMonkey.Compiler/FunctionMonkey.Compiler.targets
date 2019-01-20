@@ -11,6 +11,8 @@
     <!-- publish params -->
     <FunctionPublishParams Condition="'$(OS)' == 'Windows_NT'">bin\$(TargetName).dll</FunctionPublishParams>
     <FunctionPublishParams Condition="'$(OS)' == 'Unix'">bin/$(TargetName).dll</FunctionPublishParams>
+    <FunctionPublishPostfix Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp')">--netcore21</FunctionPublishPostfix>
+    <FunctionPublishPostfix Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp')"></FunctionPublishPostfix>
   </PropertyGroup>
 
   <!-- we ensure the functions post build has run first -->
@@ -26,6 +28,6 @@
   <!--<Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="AfterPublish">-->
   <Target Name="_FunctionMonkeyPublishCompiler" AfterTargets="_GenerateFunctionsAndCopyContentFiles">
     <Message Text="Running Function Monkey in Publish location $(PublishDir)" />
-    <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)$(FunctionPublishParams)&quot;" />
+    <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)$(FunctionPublishParams)&quot; $(FunctionPublishPostfix)" />
   </Target>
 </Project>

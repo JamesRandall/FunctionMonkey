@@ -26,6 +26,8 @@ namespace FunctionMonkey.Model
         public string Route { get; set; }
 
         public IReadOnlyCollection<HttpParameter> PossibleBindingProperties { get; set; }
+        
+        public IReadOnlyCollection<HttpParameter> PossibleFormProperties { get; set; }
 
         public IReadOnlyCollection<HttpParameter> RouteParameters { get; set; }
 

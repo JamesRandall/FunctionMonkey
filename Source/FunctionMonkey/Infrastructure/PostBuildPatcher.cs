@@ -10,6 +10,7 @@ using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace FunctionMonkey.Infrastructure
@@ -101,6 +102,8 @@ namespace FunctionMonkey.Infrastructure
 
             ExtractPossibleQueryParameters(httpFunctionDefinition);
 
+            ExtractPossibleFormParameters(httpFunctionDefinition);
+
             ExtractRouteParameters(httpFunctionDefinition);
 
             EnsureOpenApiDescription(httpFunctionDefinition);
@@ -170,6 +173,23 @@ namespace FunctionMonkey.Infrastructure
                             && x.SetMethod != null
                             && (x.PropertyType == typeof(string) || x.PropertyType
                                     .GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")))
+                .Select(x => new HttpParameter
+                {
+                    Name = x.Name,
+                    TypeName = x.PropertyType.EvaluateType(),
+                    Type = x.PropertyType
+                })
+                .ToArray();
+        }
+        
+        private static void ExtractPossibleFormParameters(HttpFunctionDefinition httpFunctionDefinition)
+        {
+            httpFunctionDefinition.PossibleFormProperties = httpFunctionDefinition
+                .CommandType
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
+                            && x.SetMethod != null
+                            && (x.PropertyType == typeof(IFormCollection)))
                 .Select(x => new HttpParameter
                 {
                     Name = x.Name,

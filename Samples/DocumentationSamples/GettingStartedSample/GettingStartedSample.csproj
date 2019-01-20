@@ -4,9 +4,9 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FunctionMonkey" Version="0.17.0-beta000" />
-    <PackageReference Include="FunctionMonkey.Compiler" Version="0.17.1-beta000" />
-    <PackageReference Include="FunctionMonkey.FluentValidation" Version="0.17.0-beta000" />
+    <PackageReference Include="FunctionMonkey" Version="0.18.1-beta000" />
+    <PackageReference Include="FunctionMonkey.Compiler" Version="0.18.7-beta000" />
+    <PackageReference Include="FunctionMonkey.FluentValidation" Version="0.18.1-beta000" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.23" />
   </ItemGroup>
   <ItemGroup>
