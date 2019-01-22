@@ -274,6 +274,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 locations.Add(typeof(TargetFrameworkAttribute).Assembly.Location); // NetCoreLib
                 locations.Add(typeof(System.Linq.Enumerable).Assembly.Location); // System.Linq
                 locations.Add(typeof(System.Security.Claims.ClaimsPrincipal).Assembly.Location);
+                locations.Add(typeof(System.Uri).Assembly.Location);
                 locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
             }
 
