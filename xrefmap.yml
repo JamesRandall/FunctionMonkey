@@ -1373,6 +1373,59 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
   nameWithType: StorageQueueContext.QueueTrigger
+- uid: FunctionMonkey.Abstractions.Http
+  name: FunctionMonkey.Abstractions.Http
+  href: api/FunctionMonkey.Abstractions.Http.html
+  commentId: N:FunctionMonkey.Abstractions.Http
+  fullName: FunctionMonkey.Abstractions.Http
+  nameWithType: FunctionMonkey.Abstractions.Http
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler
+  name: IHttpResponseHandler
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html
+  commentId: T:FunctionMonkey.Abstractions.Http.IHttpResponseHandler
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler
+  nameWithType: IHttpResponseHandler
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse*
+  name: CreateResponse
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateResponse_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse
+  nameWithType: IHttpResponseHandler.CreateResponse
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse``1(``0)
+  name: CreateResponse<TCommand>(TCommand)
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateResponse__1___0_
+  commentId: M:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse``1(``0)
+  name.vb: CreateResponse(Of TCommand)(TCommand)
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse<TCommand>(TCommand)
+  fullName.vb: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand)
+  nameWithType: IHttpResponseHandler.CreateResponse<TCommand>(TCommand)
+  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand)
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse``2(``0,``1)
+  name: CreateResponse<TCommand, TResult>(TCommand, TResult)
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateResponse__2___0___1_
+  commentId: M:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse``2(``0,``1)
+  name.vb: CreateResponse(Of TCommand, TResult)(TCommand, TResult)
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse<TCommand, TResult>(TCommand, TResult)
+  fullName.vb: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponse(Of TCommand, TResult)(TCommand, TResult)
+  nameWithType: IHttpResponseHandler.CreateResponse<TCommand, TResult>(TCommand, TResult)
+  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand, TResult)(TCommand, TResult)
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException*
+  name: CreateResponseFromException
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateResponseFromException_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException
+  nameWithType: IHttpResponseHandler.CreateResponseFromException
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException``1(``0,Exception)
+  name: CreateResponseFromException<TCommand>(TCommand, Exception)
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateResponseFromException__1___0_Exception_
+  commentId: M:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException``1(``0,Exception)
+  name.vb: CreateResponseFromException(Of TCommand)(TCommand, Exception)
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException<TCommand>(TCommand, Exception)
+  fullName.vb: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException(Of TCommand)(TCommand, Exception)
+  nameWithType: IHttpResponseHandler.CreateResponseFromException<TCommand>(TCommand, Exception)
+  nameWithType.vb: IHttpResponseHandler.CreateResponseFromException(Of TCommand)(TCommand, Exception)
 - uid: FunctionMonkey.Abstractions.HttpResponse
   name: HttpResponse
   href: api/FunctionMonkey.Abstractions.HttpResponse.html
@@ -2596,52 +2649,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation
   nameWithType: IFunctionHostBuilderExtensions.AddFluentValidation
-- uid: FunctionMonkey.Http.Abstractions
-  name: FunctionMonkey.Http.Abstractions
-  href: api/FunctionMonkey.Http.Abstractions.html
-  commentId: N:FunctionMonkey.Http.Abstractions
-  fullName: FunctionMonkey.Http.Abstractions
-  nameWithType: FunctionMonkey.Http.Abstractions
-- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler
-  name: IHttpResponseHandler
-  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html
-  commentId: T:FunctionMonkey.Http.Abstractions.IHttpResponseHandler
-  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler
-  nameWithType: IHttpResponseHandler
-- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse*
-  name: CreateResponse
-  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse_
-  commentId: Overload:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse
-  isSpec: "True"
-  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse
-  nameWithType: IHttpResponseHandler.CreateResponse
-- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0)
-  name: CreateResponse<TCommand>(TCommand)
-  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse__1___0_
-  commentId: M:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0)
-  name.vb: CreateResponse(Of TCommand)(TCommand)
-  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse<TCommand>(TCommand)
-  fullName.vb: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand)
-  nameWithType: IHttpResponseHandler.CreateResponse<TCommand>(TCommand)
-  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand)
-- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0,Exception)
-  name: CreateResponse<TCommand>(TCommand, Exception)
-  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse__1___0_Exception_
-  commentId: M:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``1(``0,Exception)
-  name.vb: CreateResponse(Of TCommand)(TCommand, Exception)
-  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse<TCommand>(TCommand, Exception)
-  fullName.vb: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand, Exception)
-  nameWithType: IHttpResponseHandler.CreateResponse<TCommand>(TCommand, Exception)
-  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand)(TCommand, Exception)
-- uid: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``2(``0,``1)
-  name: CreateResponse<TCommand, TResult>(TCommand, TResult)
-  href: api/FunctionMonkey.Http.Abstractions.IHttpResponseHandler.html#FunctionMonkey_Http_Abstractions_IHttpResponseHandler_CreateResponse__2___0___1_
-  commentId: M:FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse``2(``0,``1)
-  name.vb: CreateResponse(Of TCommand, TResult)(TCommand, TResult)
-  fullName: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse<TCommand, TResult>(TCommand, TResult)
-  fullName.vb: FunctionMonkey.Http.Abstractions.IHttpResponseHandler.CreateResponse(Of TCommand, TResult)(TCommand, TResult)
-  nameWithType: IHttpResponseHandler.CreateResponse<TCommand, TResult>(TCommand, TResult)
-  nameWithType.vb: IHttpResponseHandler.CreateResponse(Of TCommand, TResult)(TCommand, TResult)
 - uid: FunctionMonkey.Runtime
   name: Runtime
   href: api/FunctionMonkey.Runtime.html
