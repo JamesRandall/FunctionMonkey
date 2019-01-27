@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Http.Abstractions;
 
 namespace FunctionMonkey.Abstractions.Builders
 {

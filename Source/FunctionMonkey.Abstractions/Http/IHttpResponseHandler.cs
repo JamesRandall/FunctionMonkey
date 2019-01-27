@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FunctionMonkey.Http.Abstractions
+namespace FunctionMonkey.Abstractions.Http
 {
     public interface IHttpResponseHandler
     {
@@ -15,7 +15,7 @@ namespace FunctionMonkey.Http.Abstractions
         /// <param name="command">The command</param>
         /// <param name="ex">The exception that was thrown</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
-        Task<IActionResult> CreateResponse<TCommand>(TCommand command, Exception ex) where TCommand : ICommand;
+        Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex) where TCommand : ICommand;
 
         /// <summary>
         /// Invoked when a command with an associated result is successfully invoked.

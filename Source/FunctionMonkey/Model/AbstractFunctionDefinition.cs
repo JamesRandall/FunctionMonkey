@@ -45,6 +45,8 @@ namespace FunctionMonkey.Model
 
         public string CommandResultTypeName => CommandResultType?.FullName;
 
+        public bool CommandHasResult => CommandResultType != null;
+
         public bool IsUsingValidator { get; set; }
         
         public Type CommandDeserializerType { get; set; }

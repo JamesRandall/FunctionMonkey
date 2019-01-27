@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Http.Abstractions;
+using FunctionMonkey.Abstractions.Http;
 using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Abstractions.Builders

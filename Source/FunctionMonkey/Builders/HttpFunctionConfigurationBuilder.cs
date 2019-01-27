@@ -7,7 +7,6 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Extensions;
-using FunctionMonkey.Http.Abstractions;
 using FunctionMonkey.Model;
 using Newtonsoft.Json.Serialization;
 
