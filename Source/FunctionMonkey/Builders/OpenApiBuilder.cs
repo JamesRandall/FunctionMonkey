@@ -25,6 +25,18 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder ApiSpecVersion(ApiSpecVersion specVersion)
+        {
+            _openApiConfiguration.ApiSpecVersion = specVersion;
+            return this;
+        }
+
+        public IOpenApiBuilder ApiOutputFormat(ApiOutputFormat outputFormat)
+        {
+            _openApiConfiguration.ApiOutputFormat = outputFormat;
+            return this;
+        }
+
         public IOpenApiBuilder Servers(params string[] urls)
         {
             _openApiConfiguration.Servers = urls;

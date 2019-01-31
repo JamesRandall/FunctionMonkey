@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
+using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
@@ -36,35 +36,22 @@ namespace FunctionMonkey.Compiler.Implementation
             }
 
             List<object> proxyDefinitions = new List<object>(httpFunctionDefinitions);
+            var isYamlOutput = openApiConfiguration.ApiOutputFormat == ApiOutputFormat.Yaml;
+
             if (openApiConfiguration.IsOpenApiOutputEnabled)
             {
                 proxyDefinitions.Add(new
                 {
-                    Name = "OpenApiYaml",
-                    Route = "/openapi.yaml",
-                    IsOpenApiYaml = true,                    
+                    Name = "OpenApiDefinitionRoute",
+                    Route = "/openapi." + (isYamlOutput ? "yaml" : "json"),
+                    IsOpenApiYaml = isYamlOutput,
+                    IsOpenApiJson = !isYamlOutput
                 });
 
                 Debug.Assert(openApiOutputModel != null);
+
                 if (openApiOutputModel.IsConfiguredForUserInterface)
                 {
-                    // The commented out code will do an explicit proxy per Swagger file
-                    // It goes wit the proxies.explicit.json.handlebars template
-                    /*StringBuilder proxyBuilder = new StringBuilder();
-                    int index = 0;
-                    foreach (OpenApiFileReference reference in openApiOutputModel.SwaggerUserInterface)
-                    {
-                        proxyBuilder.AppendLine(
-                            $",\"OpenAPIUI{index}\": {{\"matchCondition\":{{\"route\":\"/openapi/{reference.Filename}\",\"methods\":[\"GET\"]}},\"backendUri\":\"https://localhost/api/OpenApiProvider?name={reference.Filename}\"}}");
-
-                        index++;
-                    }
-
-                    proxyDefinitions.Add(new
-                    {
-                        IsOpenApiUi = true,
-                        OpenApiUiProxies = proxyBuilder.ToString()
-                    });*/
                     proxyDefinitions.Add(new
                     {
                         Name = "OpenApiProvider",

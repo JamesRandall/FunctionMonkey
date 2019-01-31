@@ -107,7 +107,6 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions => ((FunctionBuilder)FunctionBuilder).Definitions;
     }
 }
