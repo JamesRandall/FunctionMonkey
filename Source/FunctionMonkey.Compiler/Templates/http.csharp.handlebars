@@ -84,7 +84,7 @@ namespace {{Namespace}}
             {{/if}}
 
             {{CommandTypeName}} command;
-            string contentType = req.ContentType.ToLower();
+            string contentType = req.ContentType?.ToLower() ?? "application/json";
             if (contentType=="application/json")
             {
                 string requestBody = new StreamReader(req.Body).ReadToEnd();
