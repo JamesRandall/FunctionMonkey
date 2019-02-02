@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Http;
 
 namespace FunctionMonkey.Model
@@ -14,5 +16,13 @@ namespace FunctionMonkey.Model
         public Type Type { get; set; }
 
         public bool IsFormCollection => Type == typeof(IFormCollection);
-    }
+
+	    public bool IsNullable => Type.IsGenericType && Type.GetGenericTypeDefinition() == typeof(Nullable<>);
+
+	    public string NullableType => Type.GetGenericArguments().First().FullName;
+
+	    public bool IsNullableTypeHasTryParseMethod => IsNullable && Type.GetGenericArguments().First()
+		                                                   .GetMethods(BindingFlags.Public | BindingFlags.Static)
+		                                                   .Any(x => x.Name == "TryParse");
+	}
 }
