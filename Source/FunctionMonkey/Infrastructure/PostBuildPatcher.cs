@@ -173,7 +173,7 @@ namespace FunctionMonkey.Infrastructure
                             && x.SetMethod != null
                             && (x.PropertyType == typeof(string) 
                                 || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")
-								|| x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                                || x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>)))
                 .Select(x => new HttpParameter
                 {
                     Name = x.Name,

@@ -116,19 +116,19 @@ namespace {{Namespace}}
                         if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
                         {
                             {{#if IsString}}
-							command.{{Name}} = queryParameterValues[0];
-	                        {{else if IsNullable}}
-								{
-									{{#if IsNullableTypeHasTryParseMethod}}
-									{
-	                                    {{{TypeName}}} nullableValue;
-		                                if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
-			                            {
-				                            command.{{Name}} = nullableValue;
-					                    }
-						            }
-							        {{/if}}
-								}
+                                command.{{Name}} = queryParameterValues[0];
+                            {{else if IsNullable}}
+                            {
+                                {{#if IsNullableTypeHasTryParseMethod}}
+                                {
+                                    {{{TypeName}}} nullableValue;
+                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
+                                    {
+                                        command.{{Name}} = nullableValue;
+                                    }
+                                }
+                                {{/if}}
+                            }
                             {{else}}
                             {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
                             command.{{Name}} = candidate;
