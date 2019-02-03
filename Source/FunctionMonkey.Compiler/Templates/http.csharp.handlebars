@@ -85,6 +85,11 @@ namespace {{Namespace}}
 
             {{CommandTypeName}} command;
             string contentType = req.ContentType?.ToLower() ?? "application/json";
+            {{#if IsStreamCommand}}
+                command = new {{CommandTypeName}}() {
+                    Stream = req.Body
+                };
+            {{else}}
             if (contentType=="application/json")
             {
                 string requestBody = new StreamReader(req.Body).ReadToEnd();
@@ -102,6 +107,7 @@ namespace {{Namespace}}
             {
                 command = new {{CommandTypeName}}();
             }
+            {{/if}}
 
             {{#each PossibleFormProperties}}
                 command.{{Name}} = req.Form;

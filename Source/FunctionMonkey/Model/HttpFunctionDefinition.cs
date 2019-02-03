@@ -58,5 +58,7 @@ namespace FunctionMonkey.Model
         public Type HttpResponseHandlerType { get; set; }
 
         public string HttpResponseHandlerTypeName => HttpResponseHandlerType.EvaluateType();
+
+        public bool IsStreamCommand { get; set; }
     }
 }

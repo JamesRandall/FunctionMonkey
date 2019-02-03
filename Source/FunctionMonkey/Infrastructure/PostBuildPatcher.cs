@@ -6,6 +6,7 @@ using System.Reflection;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Extensions;
@@ -92,6 +93,9 @@ namespace FunctionMonkey.Infrastructure
             httpFunctionDefinition.IsValidationResult = httpFunctionDefinition.CommandResultType != null &&
                                                          validationResultType.IsAssignableFrom(httpFunctionDefinition
                                                              .CommandResultType);
+
+            httpFunctionDefinition.IsStreamCommand =
+                (typeof(IStreamCommand)).IsAssignableFrom(httpFunctionDefinition.CommandType); 
 
             httpFunctionDefinition.TokenValidatorType = httpFunctionDefinition.TokenValidatorType ?? authorizationBuilder.TokenValidatorType;
 
