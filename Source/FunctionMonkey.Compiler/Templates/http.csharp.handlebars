@@ -85,6 +85,11 @@ namespace {{Namespace}}
 
             {{CommandTypeName}} command;
             string contentType = req.ContentType?.ToLower() ?? "application/json";
+            {{#if IsStreamCommand}}
+                command = new {{CommandTypeName}}() {
+                    Stream = req.Body
+                };
+            {{else}}
             if (contentType=="application/json")
             {
                 string requestBody = new StreamReader(req.Body).ReadToEnd();
@@ -102,6 +107,7 @@ namespace {{Namespace}}
             {
                 command = new {{CommandTypeName}}();
             }
+            {{/if}}
 
             {{#each PossibleFormProperties}}
                 command.{{Name}} = req.Form;
@@ -124,6 +130,17 @@ namespace {{Namespace}}
                                 {
                                     command.{{Name}} = result;
                                 }
+                            {{else if IsNullable}}
+                            {
+                                {{#if IsNullableTypeHasTryParseMethod}}
+                                {
+                                    {{{TypeName}}} nullableValue;
+                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
+                                    {
+                                        command.{{Name}} = nullableValue;
+                                    }
+                                }
+                                {{/if}}
                             }
                             {{else}}
                             {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
@@ -246,6 +263,20 @@ namespace {{Namespace}}
           string str3 = request.Path.Value;
           string str4 = request.QueryString.Value;
           return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
+        }
+	
+        public delegate System.Boolean TryDelegate<T>(System.String input, out T result);
+
+        private static System.Boolean TryParseNullable<T>(
+            System.String input,
+            TryDelegate<T> tryFunction,
+            out System.Nullable<T> result) where T : struct
+        {
+            T temp;
+            System.Boolean success = tryFunction(input, out temp);
+            result = temp;
+
+          return success;
         }
     }    
 }

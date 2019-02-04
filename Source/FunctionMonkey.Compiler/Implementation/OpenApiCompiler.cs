@@ -22,7 +22,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 {HttpMethod.Get, OperationType.Get},
                 {HttpMethod.Delete, OperationType.Delete},
                 {HttpMethod.Post, OperationType.Post},
-                {HttpMethod.Put, OperationType.Put}
+                {HttpMethod.Put, OperationType.Put},
+                {HttpMethod.Patch, OperationType.Patch }
             };
 
         public OpenApiOutputModel Compile(OpenApiConfiguration configuration, IReadOnlyCollection<AbstractFunctionDefinition> abstractFunctionDefinitions, string outputBinaryFolder)
@@ -225,7 +226,7 @@ namespace FunctionMonkey.Compiler.Implementation
                             }
                         }
 
-                        if (method == HttpMethod.Post || method == HttpMethod.Put)
+                        if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                         {
                             OpenApiRequestBody requestBody = new OpenApiRequestBody();
                             OpenApiSchema schema =  registry.FindReference(commandType);

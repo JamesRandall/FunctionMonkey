@@ -6,6 +6,7 @@ using System.Reflection;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Extensions;
@@ -93,6 +94,9 @@ namespace FunctionMonkey.Infrastructure
                                                          validationResultType.IsAssignableFrom(httpFunctionDefinition
                                                              .CommandResultType);
 
+            httpFunctionDefinition.IsStreamCommand =
+                (typeof(IStreamCommand)).IsAssignableFrom(httpFunctionDefinition.CommandType); 
+
             httpFunctionDefinition.TokenValidatorType = httpFunctionDefinition.TokenValidatorType ?? authorizationBuilder.TokenValidatorType;
 
             if (httpFunctionDefinition.ValidatesToken && httpFunctionDefinition.TokenValidatorType == null)
@@ -173,7 +177,8 @@ namespace FunctionMonkey.Infrastructure
                             && x.SetMethod != null
                             && (x.PropertyType == typeof(string) 
                                 || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")
-                                || x.PropertyType.IsEnum))
+                                || x.PropertyType.IsEnum)
+                                || x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>)))
                 .Select(x => new HttpParameter
                 {
                     Name = x.Name,
