@@ -171,8 +171,9 @@ namespace FunctionMonkey.Infrastructure
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
                             && x.SetMethod != null
-                            && (x.PropertyType == typeof(string) || x.PropertyType
-                                    .GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")))
+                            && (x.PropertyType == typeof(string) 
+                                || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")
+                                || x.PropertyType.IsEnum))
                 .Select(x => new HttpParameter
                 {
                     Name = x.Name,

@@ -117,6 +117,14 @@ namespace {{Namespace}}
                         {
                             {{#if IsString}}
                             command.{{Name}} = queryParameterValues[0];
+                            {{else if IsEnum}}
+                            {
+                                {{{TypeName}}} result;
+                                if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
+                                {
+                                    command.{{Name}} = result;
+                                }
+                            }
                             {{else}}
                             {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
                             command.{{Name}} = candidate;

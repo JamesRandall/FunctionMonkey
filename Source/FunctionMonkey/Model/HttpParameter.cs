@@ -14,5 +14,7 @@ namespace FunctionMonkey.Model
         public Type Type { get; set; }
 
         public bool IsFormCollection => Type == typeof(IFormCollection);
+
+        public bool IsEnum => Type.IsEnum;
     }
 }
