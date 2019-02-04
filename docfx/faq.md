@@ -2,7 +2,7 @@
 
 ## Does this work on Azure Functions v1?
 
-No and it likely never will. Its technically possible but v2 is the future and contains many, many, improvements.
+No and it likely never will. It's technically possible but v2 is the future and contains many, many improvements.
 
 ## When will it come out of preview?
 
@@ -18,7 +18,7 @@ There used to be a requirement for a variable called ProxyPrefix which if missed
 
 ## Are Pull Requests welcome?
 
-Heck yes. But if you're planning a major piece of work probably makes sense to have a conversation first. I'd hate to have folk waste there time.
+Heck yes. But if you're planning a major piece of work probably makes sense to have a conversation first. I'd hate to have folks waste their time.
 
 ## How do I get help?
 
