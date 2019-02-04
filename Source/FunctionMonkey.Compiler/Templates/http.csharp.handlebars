@@ -122,7 +122,14 @@ namespace {{Namespace}}
                         if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
                         {
                             {{#if IsString}}
-                                command.{{Name}} = queryParameterValues[0];
+                            command.{{Name}} = queryParameterValues[0];
+                            {{else if IsEnum}}
+                            {
+                                {{{TypeName}}} result;
+                                if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
+                                {
+                                    command.{{Name}} = result;
+                                }
                             {{else if IsNullable}}
                             {
                                 {{#if IsNullableTypeHasTryParseMethod}}
