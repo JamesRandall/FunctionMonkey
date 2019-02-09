@@ -1263,6 +1263,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.EnqueuedTimeUTc
   nameWithType: ServiceBusContext.EnqueuedTimeUTc
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.LockToken
+  name: LockToken
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_LockToken
+  commentId: P:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.LockToken
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.LockToken
+  nameWithType: ServiceBusContext.LockToken
+- uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.LockToken*
+  name: LockToken
+  href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_LockToken_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.ServiceBusContext.LockToken
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.LockToken
+  nameWithType: ServiceBusContext.LockToken
 - uid: FunctionMonkey.Abstractions.Contexts.ServiceBusContext.MessageId
   name: MessageId
   href: api/FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html#FunctionMonkey_Abstractions_Contexts_ServiceBusContext_MessageId
@@ -1695,12 +1708,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext
   nameWithType: IContextSetter.SetHttpContext
-- uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String)
-  name: SetServiceBusContext(Int32, DateTime, String)
-  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_System_Int32_DateTime_System_String_
-  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String)
-  fullName: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32, DateTime, System.String)
-  nameWithType: IContextSetter.SetServiceBusContext(Int32, DateTime, String)
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String,System.String)
+  name: SetServiceBusContext(Int32, DateTime, String, String)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_System_Int32_DateTime_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32,DateTime,System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext(System.Int32, DateTime, System.String, System.String)
+  nameWithType: IContextSetter.SetServiceBusContext(Int32, DateTime, String, String)
 - uid: FunctionMonkey.Abstractions.IContextSetter.SetServiceBusContext*
   name: SetServiceBusContext
   href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetServiceBusContext_
