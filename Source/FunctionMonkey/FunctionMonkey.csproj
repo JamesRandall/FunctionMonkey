@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.19.7-beta000</Version>
+    <Version>0.19.9-beta000</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Company />
     <Authors>James Randall</Authors>
@@ -10,8 +10,8 @@
     <PackageProjectUrl>https://commanding.azurefromthetrenches.com/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>0.19.7.0</AssemblyVersion>
-    <FileVersion>0.19.7.0</FileVersion>
+    <AssemblyVersion>0.19.9.0</AssemblyVersion>
+    <FileVersion>0.19.9.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

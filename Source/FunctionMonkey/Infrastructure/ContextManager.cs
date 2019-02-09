@@ -21,13 +21,14 @@ namespace FunctionMonkey.Infrastructure
 
         private static readonly AsyncLocal<HttpContext> HttpContextLocal = new AsyncLocal<HttpContext>();
 
-        void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId)
+        void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId, string lockToken)
         {
             ServiceBusContextLocal.Value = new ServiceBusContext
             {
                 DeliveryCount = deliveryCount,
                 EnqueuedTimeUTc = enqueuedTimeUtc,
-                MessageId = messageId
+                MessageId = messageId,
+                LockToken = lockToken
             };
         }
 

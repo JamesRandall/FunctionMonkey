@@ -21,5 +21,10 @@ namespace FunctionMonkey.Abstractions.Contexts
         /// The ID of the message
         /// </summary>
         public string MessageId { get; set; }
+
+        /// <summary>
+        /// The lock token of the message
+        /// </summary>
+        public string LockToken { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Azure.ServiceBus;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -10,7 +11,7 @@ namespace {{Namespace}}
         [FunctionName("{{Name}}")]
         public static async Task Run(
             [ServiceBusTrigger("{{QueueName}}", Connection="{{ConnectionStringName}}")]
-            string queueItem,
+            Message queueItem,
             int deliveryCount,
             DateTime enqueuedTimeUtc,
             string messageId,
@@ -18,13 +19,14 @@ namespace {{Namespace}}
             ExecutionContext executionContext)
         {
             log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
-            
+
+            string body = System.Text.Encoding.UTF8.GetString(queueItem.Body);
             {{CommandTypeName}} command;
-            if (!System.String.IsNullOrWhiteSpace(queueItem))
+            if (!System.String.IsNullOrWhiteSpace(body))
             {
                 var serializer = (FunctionMonkey.Abstractions.ISerializer)
                     FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
-                command = serializer.Deserialize<{{CommandTypeName}}>(queueItem, false); // we don't enforce security properties from message buses
+                command = serializer.Deserialize<{{CommandTypeName}}>(body, false); // we don't enforce security properties from message buses
             }
             else
             {
@@ -33,7 +35,7 @@ namespace {{Namespace}}
 
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
-            contextSetter.SetServiceBusContext(deliveryCount, enqueuedTimeUtc, messageId);
+            contextSetter.SetServiceBusContext(deliveryCount, enqueuedTimeUtc, messageId, queueItem.SystemProperties.LockToken);
             contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
                 executionContext.FunctionAppDirectory,
                 executionContext.FunctionName,

@@ -13,7 +13,8 @@ namespace FunctionMonkey.Abstractions
         /// </summary>
         void SetServiceBusContext(int deliveryCount,
             DateTime enqueuedTimeUtc,
-            string messageId);
+            string messageId,
+            string lockToken);
 
         /// <summary>
         /// Sets the storage queue context

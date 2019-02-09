@@ -14,6 +14,7 @@ using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -261,7 +262,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(IHeaderDictionary).GetTypeInfo().Assembly.Location,
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
                 typeof(ExecutionContext).GetTypeInfo().Assembly.Location,
-                typeof(Document).GetTypeInfo().Assembly.Location
+                typeof(Document).GetTypeInfo().Assembly.Location,
+                typeof(Message).GetTypeInfo().Assembly.Location,
             };
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)
