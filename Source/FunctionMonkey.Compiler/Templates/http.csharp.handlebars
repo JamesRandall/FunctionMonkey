@@ -90,7 +90,7 @@ namespace {{Namespace}}
                     Stream = req.Body
                 };
             {{else}}
-            if (contentType=="application/json")
+            if (contentType.Split(';').Any(x => x.Trim().Equals("application/json", System.StringComparison.InvariantCultureIgnoreCase)))
             {
                 string requestBody = new StreamReader(req.Body).ReadToEnd();
                 
