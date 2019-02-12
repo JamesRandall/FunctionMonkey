@@ -2681,6 +2681,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Runtime.CommandDispatcher
   nameWithType: Runtime.CommandDispatcher
+- uid: FunctionMonkey.Runtime.FunctionProvidedLogger
+  name: FunctionProvidedLogger
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_FunctionProvidedLogger
+  commentId: F:FunctionMonkey.Runtime.FunctionProvidedLogger
+  fullName: FunctionMonkey.Runtime.FunctionProvidedLogger
+  nameWithType: Runtime.FunctionProvidedLogger
 - uid: FunctionMonkey.Runtime.ServiceProvider
   name: ServiceProvider
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_ServiceProvider

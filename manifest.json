@@ -861,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Runtime.html",
-          "hash": "FLAIFNYRhcI+R+r8lOr0AQ=="
+          "hash": "89wSK3aPs/Iyvo/L6qjXXQ=="
         }
       },
       "is_incremental": false,
@@ -1065,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/crosscutting/logging.html",
-          "hash": "+xgwotsLXRDYmYe91zBQbw=="
+          "hash": "/H/EKYagi2LcEZ0U1kww9g=="
         }
       },
       "is_incremental": false,
@@ -1432,16 +1432,16 @@
         "skipped_file_count": 0
       },
       "processors": {
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 80,
-          "skipped_file_count": 0
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 31,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 80,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

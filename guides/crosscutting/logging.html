@@ -69,25 +69,10 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="logging">Logging</h1>
 
-<p>To add logging support simply register the appropriate dependencies in the <em>Setup</em> method of your builder. For example to add the Microsoft logging framework and make <em>ILogger</em> and <em>ILogger<t></t></em> available to your command handlers use a block similar to the below:</p>
-<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
-{
-    public void Build(IFunctionHostBuilder builder)
-    {
-        builder
-            .Setup((serviceCollection, commandRegistry) =&gt;
-            {
-                commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
-                serviceCollection.AddLogging();
-            })
-            .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
-                    .HttpFunction&lt;HelloWorldCommand&gt;()
-                )
-            );
-    }
-}
-</code></pre><div id="disqus_thread"></div>
+<p>Function Monkey wires up the Azure Functions provided ILogger in the dependency injector.</p>
+<p>To use it simply inject an <em>ILogger</em> into your handlers or services.</p>
+<p>If you add logging into your application via the <em>AddLogging</em> extension method for <em>IServiceCollection</em> that will replace the Azure Functions logger and you will need to ensure it outputs to targets as you require.</p>
+<div id="disqus_thread"></div>
             </article>
           </div>
           
