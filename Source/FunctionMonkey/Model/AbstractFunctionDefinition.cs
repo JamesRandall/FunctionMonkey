@@ -31,7 +31,9 @@ namespace FunctionMonkey.Model
             get
             {
                 Type commandInterface = typeof(ICommand);
-                Type genericCommandInterface = CommandType.GetInterfaces()
+                Type[] interfaces = CommandType.GetInterfaces();
+                Type[] minimalInterfaces = interfaces.Except(interfaces.SelectMany(i => i.GetInterfaces())).ToArray();
+                Type genericCommandInterface = minimalInterfaces
                     .SingleOrDefault(x => x.IsGenericType && commandInterface.IsAssignableFrom(x));
 
                 if (genericCommandInterface != null)
