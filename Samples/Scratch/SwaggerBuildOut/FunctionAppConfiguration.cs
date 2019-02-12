@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using SwaggerBuildOut.Commands;
 using SwaggerBuildOut.Handlers;
+using SwaggerBuildOut.Services;
 
 namespace SwaggerBuildOut
 {
@@ -27,6 +28,8 @@ namespace SwaggerBuildOut
                     commandRegistry.Register<CosmosCommandHandler>();
                     commandRegistry.Register<CosmosDocumentCommandHandler>();
                     commandRegistry.Register<CosmosDocumentBatchCommandHandler>();
+
+                    serviceCollection.AddTransient<IMessageProvider, MessageProvider>();
 
                     serviceCollection.AddLogging();
                 })
@@ -49,11 +52,11 @@ namespace SwaggerBuildOut
                         .HttpFunction<FormCommand>(HttpMethod.Post)
                     )
                     .OpenApiDescription("A route description")
-                    .CosmosDb("CosmosConnection", cosmos => cosmos
+                    /*.CosmosDb("CosmosConnection", cosmos => cosmos
                         .ChangeFeedFunction<CosmosCommand, ExampleCosmosErrorHandler>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)
                         //.ChangeFeedFunction<CosmosDocumentCommand>("Items", "ToDoList")
                         //.ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn2")
-                    )
+                    )*/
                     .HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")
@@ -65,13 +68,13 @@ namespace SwaggerBuildOut
                     )
                     /*.OpenApiName("HelloWorld")*/
                     //.Timer<HelloWorldCommand, HelloWorldTimerCommandFactory>("*/5 * * * * *")
-                    .Storage("StorageConnectionString", storage => storage
+                    /*.Storage("StorageConnectionString", storage => storage
                         .QueueFunction<HelloWorldCommand>("myqueue")
                     )
                 .ServiceBus("ServiceBusConnectionString", sb => sb
                         .QueueFunction<HelloWorldCommand>("myqueue")    
                     .SubscriptionFunction<HelloWorldCommand>("mytopic", "mysub")
-                    )
+                    )*/
                 );            
         }
 

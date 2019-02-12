@@ -20,6 +20,7 @@ namespace {{Namespace}}
             ExecutionContext executionContext)
         {
             log.LogInformation("Storage blob stream function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
             {{CommandTypeName}} command = new {{CommandTypeName}} {
                 Stream = stream,

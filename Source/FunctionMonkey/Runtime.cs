@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
@@ -8,6 +9,7 @@ using FunctionMonkey.Builders;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace FunctionMonkey
 {
@@ -27,6 +29,8 @@ namespace FunctionMonkey
         public static readonly IServiceProvider ServiceProvider;
 
         private static readonly IServiceCollection ServiceCollection;
+
+        public static readonly AsyncLocal<ILogger> FunctionProvidedLogger = new AsyncLocal<ILogger>(null);
 
         static Runtime()
         {
@@ -108,6 +112,9 @@ namespace FunctionMonkey
             {
                 ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
             }
+
+            // Inject an ILogger that picks up the runtime provided logger
+            ServiceCollection.AddTransient<ILogger, FunctionLogger>();
         }
 
         private static void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)

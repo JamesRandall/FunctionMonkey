@@ -17,7 +17,8 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Event hub trigger function {{Name}} processed a request.");            
+            log.LogInformation("Event hub trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
             
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(eventHubMessage))

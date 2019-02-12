@@ -14,6 +14,7 @@ namespace {{Namespace}}
             ExecutionContext executionContext)
         {
             log.LogInformation("Timer trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
             
             {{#if TimerCommandFactoryTypeName}}
             var commandFactory = (FunctionMonkey.Abstractions.ITimerCommandFactory<{{CommandTypeName}}>)

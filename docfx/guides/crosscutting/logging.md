@@ -1,21 +1,8 @@
 # Logging
 
-To add logging support simply register the appropriate dependencies in the _Setup_ method of your builder. For example to add the Microsoft logging framework and make _ILogger_ and _ILogger<T>_ available to your command handlers use a block similar to the below:
+Function Monkey wires up the Azure Functions provided ILogger in the dependency injector.
 
-    public class FunctionAppConfiguration : IFunctionAppConfiguration
-    {
-        public void Build(IFunctionHostBuilder builder)
-        {
-            builder
-                .Setup((serviceCollection, commandRegistry) =>
-                {
-                    commandRegistry.Register<HelloWorldCommandHandler>();
-                    serviceCollection.AddLogging();
-                })
-                .Functions(functions => functions
-                    .HttpRoute("/api/v1/HelloWorld", route => route
-                        .HttpFunction<HelloWorldCommand>()
-                    )
-                );
-        }
-    }
+To use it simply inject an _ILogger_ into your handlers or services.
+
+If you add logging into your application via the _AddLogging_ extension method for _IServiceCollection_ that will replace the Azure Functions logger and you will need to ensure it outputs to targets as you require.
+

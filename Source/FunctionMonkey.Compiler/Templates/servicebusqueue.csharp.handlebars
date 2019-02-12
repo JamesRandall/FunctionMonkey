@@ -18,7 +18,8 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");            
+            log.LogInformation("Service bus queue trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
             string body = System.Text.Encoding.UTF8.GetString(queueItem.Body);
             {{CommandTypeName}} command;

@@ -20,7 +20,8 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Storage queue trigger function {{Name}} processed a request.");            
+            log.LogInformation("Storage queue trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
             
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(queueItem))

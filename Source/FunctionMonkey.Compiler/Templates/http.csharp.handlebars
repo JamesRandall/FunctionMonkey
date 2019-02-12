@@ -25,7 +25,9 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("HTTP trigger function {{Name}} processed a request.");    
+            log.LogInformation("HTTP trigger function {{Name}} processed a request.");
+
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
             string requestUrl = GetRequestUrl(req);
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)

@@ -33,7 +33,8 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext)
         {
-            log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");            
+            log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
             
             {{#if IsDocumentBatchCommand}}
                 {{CommandTypeName}} command = new {{CommandTypeName}}();

@@ -20,6 +20,7 @@ namespace {{Namespace}}
             ExecutionContext executionContext)
         {
             log.LogInformation("Storage blob trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
             string json;
             using(StreamReader reader = new StreamReader(stream))

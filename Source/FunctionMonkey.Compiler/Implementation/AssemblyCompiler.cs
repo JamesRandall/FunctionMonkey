@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
+using System.Threading;
 using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Extensions;
@@ -22,6 +23,7 @@ using Microsoft.CodeAnalysis.Emit;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
+using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -263,7 +265,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
                 typeof(ExecutionContext).GetTypeInfo().Assembly.Location,
                 typeof(Document).GetTypeInfo().Assembly.Location,
-                typeof(Message).GetTypeInfo().Assembly.Location,
+                typeof(Message).GetTypeInfo().Assembly.Location                
             };
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)
@@ -278,6 +280,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 locations.Add(typeof(System.Security.Claims.ClaimsPrincipal).Assembly.Location);
                 locations.Add(typeof(System.Uri).Assembly.Location);
                 locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
+                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading").Location);
             }
 
             foreach (string externalAssemblyLocation in externalAssemblyLocations)
