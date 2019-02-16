@@ -25,14 +25,16 @@ namespace FunctionMonkey.Builders
             bool createLeaseCollectionIfNotExists = false, bool startFromBeginning = false, bool convertToPascalCase = false,
             string leaseCollectionPrefix = null, int? maxItemsPerInvocation = null, int? feedPollDelay = null,
             int? leaseAcquireInterval = null, int? leaseExpirationInterval = null, int? leaseRenewInterval = null,
-            int? checkpointFrequency = null, int? leasesCollectionThroughput = null) where TCommand : ICommand
+            int? checkpointFrequency = null, int? leasesCollectionThroughput = null,
+            bool trackRemainingWork = true,
+            string remainingWorkCronExpression = "*/1 * * * * *") where TCommand : ICommand
         {
             return _underlyingBuilder.ChangeFeedFunction<TCommand>(collectionName, databaseName,
                 leaseCollectionName, leaseDatabaseName,
                 createLeaseCollectionIfNotExists, startFromBeginning, convertToPascalCase,
                 leaseCollectionPrefix, maxItemsPerInvocation, feedPollDelay,
                 leaseAcquireInterval, leaseExpirationInterval, leaseRenewInterval,
-                checkpointFrequency, leasesCollectionThroughput);
+                checkpointFrequency, leasesCollectionThroughput, trackRemainingWork, remainingWorkCronExpression);
         }
 
         public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName, string databaseName,
@@ -40,14 +42,16 @@ namespace FunctionMonkey.Builders
             bool createLeaseCollectionIfNotExists = false, bool startFromBeginning = false, bool convertToPascalCase = false,
             string leaseCollectionPrefix = null, int? maxItemsPerInvocation = null, int? feedPollDelay = null,
             int? leaseAcquireInterval = null, int? leaseExpirationInterval = null, int? leaseRenewInterval = null,
-            int? checkpointFrequency = null, int? leasesCollectionThroughput = null) where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
+            int? checkpointFrequency = null, int? leasesCollectionThroughput = null,
+            bool trackRemainingWork = true,
+            string remainingWorkCronExpression = "*/1 * * * * *") where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
         {
             return _underlyingBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(collectionName, databaseName,
                 leaseCollectionName, leaseDatabaseName,
                 createLeaseCollectionIfNotExists, startFromBeginning, convertToPascalCase,
                 leaseCollectionPrefix, maxItemsPerInvocation, feedPollDelay,
                 leaseAcquireInterval, leaseExpirationInterval, leaseRenewInterval,
-                checkpointFrequency, leasesCollectionThroughput);
+                checkpointFrequency, leasesCollectionThroughput, trackRemainingWork, remainingWorkCronExpression);
         }
 
         public ICosmosDbFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)

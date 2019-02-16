@@ -8,6 +8,7 @@ namespace FunctionMonkey.Model
     {
         public CosmosDbFunctionDefinition(Type commandType) : base("CosmosFn", commandType)
         {
+            TrackRemainingWork = true;
         }
 
         public string DatabaseName { get; set; }
@@ -36,6 +37,8 @@ namespace FunctionMonkey.Model
 
         public string LeaseCollectionPrefix { get; set; }
 
+        public bool TrackRemainingWork { get; set; }
+
         public int? MaxItemsPerInvocation { get; set; }
 
         public int? FeedPollDelay { get; set; }
@@ -46,5 +49,6 @@ namespace FunctionMonkey.Model
         public int? LeasesCollectionThroughput { get; set; }
         public string ErrorHandlerTypeName { get; set; }
         public Type ErrorHandlerType { get; set; }
+        public string RemainingWorkCronExpression { get; set; }
     }
 }

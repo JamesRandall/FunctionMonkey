@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,7 @@ using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.ChangeFeedProcessor;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.CodeAnalysis;
@@ -265,7 +267,10 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(StringValues).GetTypeInfo().Assembly.Location,
                 typeof(ExecutionContext).GetTypeInfo().Assembly.Location,
                 typeof(Document).GetTypeInfo().Assembly.Location,
-                typeof(Message).GetTypeInfo().Assembly.Location                
+                typeof(Message).GetTypeInfo().Assembly.Location,
+                typeof(ChangeFeedProcessorBuilder).Assembly.Location,
+                typeof(TimerInfo).Assembly.Location,
+                typeof(DbConnectionStringBuilder).Assembly.Location
             };
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)

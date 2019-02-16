@@ -33,6 +33,26 @@ namespace FunctionMonkey.Compiler.Implementation
                 
                 string json = template(functionDefinition);
                 WriteFunctionTemplate(outputBinaryFolder, functionDefinition.Name, json);
+
+                if (functionDefinition is CosmosDbFunctionDefinition cosmosDbFunctionDefinition)
+                {
+                    if (cosmosDbFunctionDefinition.TrackRemainingWork)
+                    {
+                        TimerFunctionDefinition cosmosMonitorDefinition = new TimerFunctionDefinition(functionDefinition.CommandType)
+                        {
+                            AssemblyName = cosmosDbFunctionDefinition.AssemblyName,
+                            CommandDeserializerType = null,
+                            CommandType = null,
+                            CronExpression = cosmosDbFunctionDefinition.RemainingWorkCronExpression,
+                            FunctionClassTypeName = $"{functionDefinition.Namespace}.Monitor{functionDefinition.Name}"
+                        };
+                        string timerTemplateSource = _templateProvider.GetJsonTemplate(cosmosMonitorDefinition);
+                        Func<object, string> timerTemplate = Handlebars.Compile(timerTemplateSource);
+
+                        string timerJson = timerTemplate(cosmosMonitorDefinition);
+                        WriteFunctionTemplate(outputBinaryFolder, $"Monitor{functionDefinition.Name}", timerJson);
+                    }
+                }
             }
 
             if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface)

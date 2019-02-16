@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>    
-    <Version>0.20.0-beta000</Version>
+    <Version>0.21.5-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
   </PropertyGroup>
@@ -144,6 +144,7 @@
     <None Remove="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
     <None Remove="Templates\cosmosdb.csharp.handlebars" />
     <None Remove="Templates\cosmosdb.json.handlebars" />
+    <None Remove="Templates\cosmosdbMonitor.json.handlebars" />
     <None Remove="Templates\eventhubqueue.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
@@ -296,6 +297,7 @@
     <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
     <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.dll" />
     <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+    <EmbeddedResource Include="Templates\cosmosdbMonitor.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.json.handlebars" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
@@ -358,8 +360,8 @@
     <IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
     <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
     <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
-    <AssemblyVersion>0.20.0.0</AssemblyVersion>
-    <FileVersion>0.20.0.0</FileVersion>
+    <AssemblyVersion>0.21.5.0</AssemblyVersion>
+    <FileVersion>0.21.5.0</FileVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 

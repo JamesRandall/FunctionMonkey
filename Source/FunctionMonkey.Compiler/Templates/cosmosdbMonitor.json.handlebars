@@ -1,0 +1,16 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions-1.0.19",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "timerTrigger",
+      "schedule": "{{CronExpression}}",
+      "useMonitor": true,
+      "runOnStartup": false,
+      "name": "myTimer"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/{{AssemblyName}}",
+  "entryPoint": "{{FunctionClassTypeName}}.Run"
+}

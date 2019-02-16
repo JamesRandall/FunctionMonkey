@@ -35,6 +35,8 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="leaseRenewInterval">When set, it defines, in milliseconds, the renew interval for all leases for partitions currently held by an instance. Default is 17000 (17 seconds).</param>
         /// <param name="checkpointFrequency">When set, it defines, in milliseconds, the interval between lease checkpoints. Default is always after a successful Function call.</param>
         /// <param name="leasesCollectionThroughput">Defines the amount of Request Units to assign when the leases collection is created. This setting is only used When createLeaseCollectionIfNotExists is set to true. This parameter is automatically set when the binding is created using the portal.</param>
+        /// <param name="trackRemainingWork">If true (default value) this will create a timer function that will output a remaining work estimate to the log - the metric name will be of the form {functionName}RemainingWork </param>
+        /// <param name="remainingWorkCronExpression">The frequency that the monitor timer runs - defaults to once per every 5 seconds</param>
         /// <returns></returns>
         ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand>(string collectionName,
             string databaseName,
@@ -50,7 +52,9 @@ namespace FunctionMonkey.Abstractions.Builders
             int? leaseExpirationInterval=null,
             int? leaseRenewInterval=null,
             int? checkpointFrequency=null,
-            int? leasesCollectionThroughput=null
+            int? leasesCollectionThroughput=null,
+            bool trackRemainingWork=false,
+            string remainingWorkCronExpression = "*/5 * * * * *"
             )
             where TCommand : ICommand;
 
@@ -85,6 +89,8 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="leaseRenewInterval">When set, it defines, in milliseconds, the renew interval for all leases for partitions currently held by an instance. Default is 17000 (17 seconds).</param>
         /// <param name="checkpointFrequency">When set, it defines, in milliseconds, the interval between lease checkpoints. Default is always after a successful Function call.</param>
         /// <param name="leasesCollectionThroughput">Defines the amount of Request Units to assign when the leases collection is created. This setting is only used When createLeaseCollectionIfNotExists is set to true. This parameter is automatically set when the binding is created using the portal.</param>
+        /// <param name="trackRemainingWork">If true (default value) this will create a timer function that will output a remaining work estimate to the log - the metric name will be of the form {functionName}RemainingWork </param>
+        /// <param name="remainingWorkCronExpression">The frequency that the monitor timer runs - defaults to once per every 5 seconds</param>
         /// <returns></returns>
         ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName,
             string databaseName,
@@ -100,7 +106,9 @@ namespace FunctionMonkey.Abstractions.Builders
             int? leaseExpirationInterval = null,
             int? leaseRenewInterval = null,
             int? checkpointFrequency = null,
-            int? leasesCollectionThroughput = null
+            int? leasesCollectionThroughput = null,
+            bool trackRemainingWork = false,
+            string remainingWorkCronExpression = "*/5 * * * * *"
         )
             where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler;
     }

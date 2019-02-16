@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Extensions;
@@ -40,7 +37,9 @@ namespace FunctionMonkey.Builders
             int? leaseExpirationInterval = null,
             int? leaseRenewInterval = null,
             int? checkpointFrequency = null,
-            int? leasesCollectionThroughput = null
+            int? leasesCollectionThroughput = null,
+            bool trackRemainingWork = false,
+            string remainingWorkCronExpression = "*/5 * * * * *"
             ) where TCommand : ICommand
         {
             CosmosDbFunctionDefinition definition = new CosmosDbFunctionDefinition(typeof(TCommand))
@@ -61,7 +60,9 @@ namespace FunctionMonkey.Builders
                 LeaseExpirationInterval = leaseExpirationInterval,
                 LeaseRenewInterval = leaseRenewInterval,
                 CheckpointFrequency = checkpointFrequency,
-                LeasesCollectionThroughput = leasesCollectionThroughput
+                LeasesCollectionThroughput = leasesCollectionThroughput,
+                TrackRemainingWork = trackRemainingWork,
+                RemainingWorkCronExpression = remainingWorkCronExpression
             };
             _functionDefinitions.Add(definition);
             return new CosmosDbFunctionOptionBuilder(this, definition);
@@ -82,7 +83,10 @@ namespace FunctionMonkey.Builders
             int? leaseExpirationInterval = null,
             int? leaseRenewInterval = null,
             int? checkpointFrequency = null,
-            int? leasesCollectionThroughput = null) where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
+            int? leasesCollectionThroughput = null,
+            bool trackRemainingWork = false,
+            string remainingWorkCronExpression = "*/5 * * * * *"
+            ) where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
         {
             CosmosDbFunctionDefinition definition = new CosmosDbFunctionDefinition(typeof(TCommand))
             {
@@ -104,7 +108,9 @@ namespace FunctionMonkey.Builders
                 CheckpointFrequency = checkpointFrequency,
                 LeasesCollectionThroughput = leasesCollectionThroughput,
                 ErrorHandlerType = typeof(TCosmosDbErrorHandler),
-                ErrorHandlerTypeName = typeof(TCosmosDbErrorHandler).EvaluateType()
+                ErrorHandlerTypeName = typeof(TCosmosDbErrorHandler).EvaluateType(),
+                TrackRemainingWork = trackRemainingWork,
+                RemainingWorkCronExpression = remainingWorkCronExpression
             };
             _functionDefinitions.Add(definition);
             return new CosmosDbFunctionOptionBuilder(this, definition);
