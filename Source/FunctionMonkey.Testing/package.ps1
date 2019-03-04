@@ -1,0 +1,1 @@
+dotnet pack .\FunctionMonkey.Testing.csproj --output ../../ --configuration Release

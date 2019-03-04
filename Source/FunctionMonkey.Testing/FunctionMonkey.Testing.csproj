@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.21.6-beta000</Version>
+    <Authors>James Randall</Authors>
+    <Company>James Randall</Company>
+    <Copyright></Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
+    <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com/</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyVersion>0.21.6.0</AssemblyVersion>
+    <FileVersion>0.21.6.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+    <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
+  </ItemGroup>
+
+</Project>
