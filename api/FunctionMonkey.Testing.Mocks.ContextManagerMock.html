@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ContextManagerMock
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ContextManagerMock
+   ">
+    <meta name="generator" content="docfx 2.40.11.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock">
+  
+  
+  <h1 id="FunctionMonkey_Testing_Mocks_ContextManagerMock" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock" class="text-break">Class ContextManagerMock
+  </h1>
+  <div class="markdown level0 summary"><p>This is essentially a clone of the ContextManager class from Function Monkey. The AsyncLocal is still needed to scope
+any set contexts when tests are running in parallel</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ContextManagerMock</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="FunctionMonkey.Abstractions.IContextSetter.html">IContextSetter</a></div>
+    <div><a class="xref" href="FunctionMonkey.Abstractions.IContextProvider.html">IContextProvider</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Testing.Mocks.html">FunctionMonkey.Testing.Mocks</a></h6>
+  <h6><strong>Assembly</strong>: FunctionMonkey.Testing.dll</h6>
+  <h5 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ContextManagerMock : object, IContextSetter, IContextProvider</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_BlobContext.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.BlobContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L96">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_BlobContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.BlobContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_BlobContext" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.BlobContext">BlobContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BlobContext BlobContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.BlobContext.html">BlobContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_EventHubContext.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.EventHubContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L97">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_EventHubContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.EventHubContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_EventHubContext" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.EventHubContext">EventHubContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EventHubContext EventHubContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.EventHubContext.html">EventHubContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_ExecutionContext.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.ExecutionContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L98">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_ExecutionContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.ExecutionContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_ExecutionContext" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.ExecutionContext">ExecutionContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExecutionContext ExecutionContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.ExecutionContext.html">ExecutionContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_HttpContext.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.HttpContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L99">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_HttpContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.HttpContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_HttpContext" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.HttpContext">HttpContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HttpContext HttpContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.HttpContext.html">HttpContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_ServiceBusContext.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.ServiceBusContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L94">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_ServiceBusContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.ServiceBusContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_ServiceBusContext" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.ServiceBusContext">ServiceBusContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServiceBusContext ServiceBusContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html">ServiceBusContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_StorageQueueContext.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.StorageQueueContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L95">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_StorageQueueContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.StorageQueueContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_StorageQueueContext" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.StorageQueueContext">StorageQueueContext</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StorageQueueContext StorageQueueContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html">StorageQueueContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(System.String%2CDictionary%7BSystem.String%2CIReadOnlyCollection%7BSystem.String%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L85">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_Mocks_ContextManagerMock_SetHttpContext_" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext*"></a>
+  <h4 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___" data-uid="FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})">SetHttpContext(String, Dictionary&lt;String, IReadOnlyCollection&lt;String&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetHttpContext(string requestUrl, Dictionary&lt;string, IReadOnlyCollection&lt;string&gt;&gt; headers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">requestUrl</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">IReadOnlyCollection</span>&lt;<span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">headers</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FunctionMonkey.Abstractions.IContextSetter.html">IContextSetter</a>
+  </div>
+  <div>
+      <a class="xref" href="FunctionMonkey.Abstractions.IContextProvider.html">IContextProvider</a>
+  </div>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_Mocks_ContextManagerMock.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.Mocks.ContextManagerMock%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/Mocks/ContextManagerMock.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

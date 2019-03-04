@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AbstractAcceptanceTest&lt;TFunctionHostBuilder&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AbstractAcceptanceTest&lt;TFunctionHostBuilder&gt;
+   ">
+    <meta name="generator" content="docfx 2.40.11.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1">
+  
+  
+  <h1 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1" class="text-break">Class AbstractAcceptanceTest&lt;TFunctionHostBuilder&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A class that can be used as a basis for running acceptance tests with Function Monkey at the command dispatch level
+designed for use with test frameworks that take a constructor approach to </p>
+<p>One of the advantages of the pattern used by Function Monkey is that the host function triggers are separated cleanly
+from business logic and compiled with pre-tested templates allowing for comprehensive acceptance tests to be run
+just below this level which can often provide a high level of value with a lower level of complexity than also testing
+the Function triggers.</p>
+<p>Typically the none-generic version of this class is more useful but this version allows for a custom IFunctionHostBuilder
+to be used if additional functionality is required over and above that baked into the supplied TestFunctionHostBuilder which
+solely handles command registration and dependency injection management.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AbstractAcceptanceTest&lt;TFunctionHostBuilder&gt;</span></div>
+      <div class="level2"><a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest.html">AbstractAcceptanceTest</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Testing.html">FunctionMonkey.Testing</a></h6>
+  <h6><strong>Assembly</strong>: FunctionMonkey.Testing.dll</h6>
+  <h5 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class AbstractAcceptanceTest&lt;TFunctionHostBuilder&gt; : object where TFunctionHostBuilder : class, IFunctionHostBuilder</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TFunctionHostBuilder</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1__ctor.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L26">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1__ctor_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.#ctor*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1__ctor" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.#ctor">AbstractAcceptanceTest()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected AbstractAcceptanceTest()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1_Dispatcher.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.Dispatcher%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L85">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_Dispatcher_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.Dispatcher*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_Dispatcher" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.Dispatcher">Dispatcher</h4>
+  <div class="markdown level1 summary"><p>A convenience property to provide easy access to the registered ICommandDispatcher</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommandDispatcher Dispatcher { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICommandDispatcher</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1_ServiceProvider.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.ServiceProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L80">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_ServiceProvider_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.ServiceProvider*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_ServiceProvider" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.ServiceProvider">ServiceProvider</h4>
+  <div class="markdown level1 summary"><p>The constructed service provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IServiceProvider ServiceProvider { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceProvider</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.AddEnvironmentVariables(Stream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L35">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_Stream_System_Boolean_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables(Stream,System.Boolean)">AddEnvironmentVariables(Stream, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Set up environment variables based on a settings.json file in a stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddEnvironmentVariables(Stream appSettings, bool oneTimeOnly = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">appSettings</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">oneTimeOnly</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.AddEnvironmentVariables(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L44">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_System_String_System_Boolean_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables(System.String,System.Boolean)">AddEnvironmentVariables(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Set up environment variables based on a settings.json filename</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">appSettingsPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">oneTimeOnly</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1_AfterBuild_IServiceCollection_ICommandRegistry_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.AfterBuild(IServiceCollection%2CICommandRegistry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L72">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_AfterBuild_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.AfterBuild*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_AfterBuild_IServiceCollection_ICommandRegistry_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.AfterBuild(IServiceCollection,ICommandRegistry)">AfterBuild(IServiceCollection, ICommandRegistry)</h4>
+  <div class="markdown level1 summary"><p>This method can be used to modify dependency and command setup after the Function App Configuration
+builder has been run and before tests are run.</p>
+<p>This must not access members (and should not need to) as it is invoked from the constructor to
+support test frameworks such as XUnit that construct test cases this way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void AfterBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceCollection</span></td>
+        <td><span class="parametername">serviceCollection</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICommandRegistry</span></td>
+        <td><span class="parametername">commandRegistry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1_BeforeBuild_IServiceCollection_ICommandRegistry_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601.BeforeBuild(IServiceCollection%2CICommandRegistry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L58">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_BeforeBuild_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.BeforeBuild*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_1_BeforeBuild_IServiceCollection_ICommandRegistry_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest`1.BeforeBuild(IServiceCollection,ICommandRegistry)">BeforeBuild(IServiceCollection, ICommandRegistry)</h4>
+  <div class="markdown level1 summary"><p>This method can be used to modify dependency and command setup before the Function App Configuration
+builder has been run and before tests are run.</p>
+<p>This must not access members (and should not need to) as it is invoked from the constructor to
+support test frameworks such as XUnit that construct test cases this way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void BeforeBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceCollection</span></td>
+        <td><span class="parametername">serviceCollection</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICommandRegistry</span></td>
+        <td><span class="parametername">commandRegistry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+<div id="disqus_thread"></div>
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_1.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L22" class="contribution-link">View Source</a>
+                  </li>
+                  <li>
+                    <a href="#disqus_thread" class="contribution-link">0 Comments</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright © 2018 James Randall
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-20735760-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-20735760-7');
+    </script>
+    
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>  </body>
+</html>

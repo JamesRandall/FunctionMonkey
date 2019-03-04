@@ -941,6 +941,102 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html",
+          "hash": "QMwVCqn1bMFKTIvLa78iaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.AbstractAcceptanceTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.AbstractAcceptanceTest.html",
+          "hash": "FbigkJakLecxLMwcNyBSTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.AcceptanceTestScaffold.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.AcceptanceTestScaffold.html",
+          "hash": "mlAqoXf1PrjA4ZiZN7ZMRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html",
+          "hash": "bK/iIu1l/PFLVB0ImtxVow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.Mocks.ContextManagerMock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.Mocks.ContextManagerMock.html",
+          "hash": "hYXcXHPqK/+E8MjENEbHlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.Mocks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.Mocks.html",
+          "hash": "THEMayKedTpc5rJMsdsY7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.TestFunctionHostBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.TestFunctionHostBuilder.html",
+          "hash": "QFsRFFbWs8mHITFUGQ6G5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.html",
+          "hash": "S2SlRx0T0q259e/PkI5clA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.TypeLoadingException.yml",
       "output": {
         ".html": {
@@ -981,7 +1077,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "CueM/Iq69UtXLssd3lhmXQ=="
+          "hash": "/LOn/zg8VtAB4Yy1XLW9kw=="
         }
       },
       "is_incremental": false,
@@ -1433,17 +1529,16 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 31,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 88,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
@@ -1453,10 +1548,11 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 80,
+          "total_file_count": 0,
           "skipped_file_count": 0
         }
       }
