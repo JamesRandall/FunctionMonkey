@@ -18,7 +18,8 @@ namespace FunctionMonkey.Testing
     /// </summary>
     public class AcceptanceTestScaffold
     {
-        private static int _environmentVariablesRegistered = 0;
+        private static bool _environmentVariablesRegistered = false;
+        private static object _loadingAppVariablesLock = new object();
 
         /// <summary>
         /// Setup the scaffold with the default TestFunctionHostBuilder
@@ -102,12 +103,12 @@ namespace FunctionMonkey.Testing
         /// <param name="oneTimeOnly">Defaults to true, if true only set the variables one time</param>
         public void AddEnvironmentVariables(Stream appSettingsStream, bool oneTimeOnly = true)
         {
-            if (Interlocked.Exchange(ref _environmentVariablesRegistered, 1) == 1)
+            if (_environmentVariablesRegistered && oneTimeOnly)
             {
                 return;
-            }
+            }            
 
-            SetEnvironmentVariables(appSettingsStream);
+            SetEnvironmentVariables(appSettingsStream, oneTimeOnly);
         }
 
         /// <summary>
@@ -117,40 +118,51 @@ namespace FunctionMonkey.Testing
         /// <param name="oneTimeOnly">Defaults to true, if true only set the variables one time</param>
         public void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true)
         {
-            if (Interlocked.Exchange(ref _environmentVariablesRegistered, 1) == 1)
+            if (_environmentVariablesRegistered && oneTimeOnly)
             {
                 return;
             }
 
             using (Stream stream = new FileStream(appSettingsPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                SetEnvironmentVariables(stream);
+                SetEnvironmentVariables(stream, oneTimeOnly);
             }
         }
 
-        private static void SetEnvironmentVariables(Stream appSettings)
+        private static void SetEnvironmentVariables(Stream appSettings, bool oneTimeOnly)
         {
-            string json;
-            using (StreamReader reader = new StreamReader(appSettings))
+            lock (_loadingAppVariablesLock)
             {
-                json = reader.ReadToEnd();
-            }
-
-            if (!string.IsNullOrWhiteSpace(json))
-            {
-                JObject settings = JObject.Parse(json);
-                JObject values = (JObject)settings["Values"];
-                if (values != null)
+                if (_environmentVariablesRegistered && oneTimeOnly)
                 {
-                    foreach (JProperty property in values.Properties())
+                    return;
+                }
+
+                string json;
+                using (StreamReader reader = new StreamReader(appSettings))
+                {
+                    json = reader.ReadToEnd();
+                }
+
+                if (!string.IsNullOrWhiteSpace(json))
+                {
+                    JObject settings = JObject.Parse(json);
+                    JObject values = (JObject)settings["Values"];
+                    if (values != null)
                     {
-                        if (property.Value != null)
+                        foreach (JProperty property in values.Properties())
                         {
-                            Environment.SetEnvironmentVariable(property.Name, property.Value.ToString());
+                            if (property.Value != null)
+                            {
+                                Environment.SetEnvironmentVariable(property.Name, property.Value.ToString());
+                            }
                         }
                     }
                 }
+
+                _environmentVariablesRegistered = true;
             }
+            
         }
 
         /// <summary>
