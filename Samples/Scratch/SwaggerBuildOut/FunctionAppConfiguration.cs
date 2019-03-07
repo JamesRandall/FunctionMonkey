@@ -52,11 +52,11 @@ namespace SwaggerBuildOut
                         .HttpFunction<FormCommand>(HttpMethod.Post)
                     )
                     .OpenApiDescription("A route description")
-                    .CosmosDb("CosmosConnection", cosmos => cosmos
-                        .ChangeFeedFunction<CosmosCommand, ExampleCosmosErrorHandler>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)
+                    //.CosmosDb("CosmosConnection", cosmos => cosmos
+                        //.ChangeFeedFunction<CosmosCommand, ExampleCosmosErrorHandler>("Items", "ToDoList", leaseCollectionPrefix:"fn1")//, convertToPascalCase:true)
                         //.ChangeFeedFunction<CosmosDocumentCommand>("Items", "ToDoList")
                         //.ChangeFeedFunction<CosmosDocumentBatchCommand>("Items", "ToDoList", leaseCollectionPrefix:"fn2")
-                    )
+                    //)
                     .HttpRoute("/Add", route => route
                         .HttpFunction<AddCommand>(AuthorizationTypeEnum.Anonymous,HttpMethod.Post)
                         .OpenApiDescription("Adds two numbers together")

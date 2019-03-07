@@ -7,7 +7,7 @@
     <PackageReference Include="FunctionMonkey" Version="0.18.1-beta000" />
     <PackageReference Include="FunctionMonkey.Compiler" Version="0.18.7-beta000" />
     <PackageReference Include="FunctionMonkey.FluentValidation" Version="0.18.1-beta000" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.26" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
