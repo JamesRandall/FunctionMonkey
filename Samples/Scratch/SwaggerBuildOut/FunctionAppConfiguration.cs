@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
-using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using SwaggerBuildOut.Commands;
@@ -30,7 +27,7 @@ namespace SwaggerBuildOut
                     commandRegistry.Register<CosmosDocumentBatchCommandHandler>();
 
                     serviceCollection.AddTransient<IMessageProvider, MessageProvider>();
-
+                    
                     serviceCollection.AddLogging();
                 })
                 .OpenApiEndpoint(openApi => openApi
@@ -38,10 +35,10 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"c:\wip\scratch\outputSource")
+                //.OutputAuthoredSource(@"c:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
-                        .HttpFunction<HelloWorldCommand>("/{name}", AuthorizationTypeEnum.Anonymous, HttpMethod.Get)    
+                        .HttpFunction<HelloWorldCommand>(AuthorizationTypeEnum.Anonymous, HttpMethod.Post)    
                             .OpenApiDescription("Says hello world")
                             .Options(options => options
                                 .AddHeaderMapping(x => x.HeaderName, "x-header-name")
