@@ -2662,6 +2662,63 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation
   nameWithType: IFunctionHostBuilderExtensions.AddFluentValidation
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions
+  name: IServiceCollectionExtensions
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html
+  commentId: T:FunctionMonkey.FluentValidation.IServiceCollectionExtensions
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions
+  nameWithType: IServiceCollectionExtensions
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies(IServiceCollection,IEnumerable{Assembly},ServiceLifetime)
+  name: AddValidatorsFromAssemblies(IServiceCollection, IEnumerable<Assembly>, ServiceLifetime)
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssemblies_IServiceCollection_IEnumerable_Assembly__ServiceLifetime_
+  commentId: M:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies(IServiceCollection,IEnumerable{Assembly},ServiceLifetime)
+  name.vb: AddValidatorsFromAssemblies(IServiceCollection, IEnumerable(Of Assembly), ServiceLifetime)
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies(IServiceCollection, IEnumerable<Assembly>, ServiceLifetime)
+  fullName.vb: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies(IServiceCollection, IEnumerable(Of Assembly), ServiceLifetime)
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblies(IServiceCollection, IEnumerable<Assembly>, ServiceLifetime)
+  nameWithType.vb: IServiceCollectionExtensions.AddValidatorsFromAssemblies(IServiceCollection, IEnumerable(Of Assembly), ServiceLifetime)
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies*
+  name: AddValidatorsFromAssemblies
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssemblies_
+  commentId: Overload:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblies
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblies
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssembly(IServiceCollection,Assembly,ServiceLifetime)
+  name: AddValidatorsFromAssembly(IServiceCollection, Assembly, ServiceLifetime)
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssembly_IServiceCollection_Assembly_ServiceLifetime_
+  commentId: M:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssembly(IServiceCollection,Assembly,ServiceLifetime)
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssembly(IServiceCollection, Assembly, ServiceLifetime)
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssembly(IServiceCollection, Assembly, ServiceLifetime)
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssembly*
+  name: AddValidatorsFromAssembly
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssembly_
+  commentId: Overload:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssembly
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssembly
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssembly
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(IServiceCollection,Type,ServiceLifetime)
+  name: AddValidatorsFromAssemblyContaining(IServiceCollection, Type, ServiceLifetime)
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssemblyContaining_IServiceCollection_Type_ServiceLifetime_
+  commentId: M:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(IServiceCollection,Type,ServiceLifetime)
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(IServiceCollection, Type, ServiceLifetime)
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(IServiceCollection, Type, ServiceLifetime)
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining*
+  name: AddValidatorsFromAssemblyContaining
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssemblyContaining_
+  commentId: Overload:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining
+- uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining``1(IServiceCollection,ServiceLifetime)
+  name: AddValidatorsFromAssemblyContaining<T>(IServiceCollection, ServiceLifetime)
+  href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html#FunctionMonkey_FluentValidation_IServiceCollectionExtensions_AddValidatorsFromAssemblyContaining__1_IServiceCollection_ServiceLifetime_
+  commentId: M:FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining``1(IServiceCollection,ServiceLifetime)
+  name.vb: AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
+  fullName: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining<T>(IServiceCollection, ServiceLifetime)
+  fullName.vb: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
+  nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining<T>(IServiceCollection, ServiceLifetime)
+  nameWithType.vb: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
 - uid: FunctionMonkey.Runtime
   name: Runtime
   href: api/FunctionMonkey.Runtime.html
