@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey.Abstractions.Http
@@ -36,5 +37,29 @@ namespace FunctionMonkey.Abstractions.Http
         /// <param name="command">The command</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
         Task<IActionResult> CreateResponse<TCommand>(TCommand command);
+
+        /// <summary>
+        /// Invoked when a command with a validator but no associated result is successfully invoked.
+        /// Return an IActionResult for custom behaviour otherwise return null for the default framework behaviour.
+        /// </summary>
+        /// <typeparam name="TCommand">The type of the command</typeparam>
+        /// <param name="command">The command</param>
+        /// <param name="validationResult">The validation result</param>
+        /// <returns>An action result or null for the default Function Monkey behaviour</returns>
+        Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand;
+
+        /*
+         // TODO: Confirm - I don't think this is needed, as the result will always be default(TResult) - validation is run before the command is invoked
+        /// <summary>
+        /// Invoked when a command with a validator and an associated result is successfully invoked.
+        /// Return an IActionResult for custom behaviour otherwise return null for the default framework behaviour
+        /// </summary>
+        /// <typeparam name="TCommand">The type of the command</typeparam>
+        /// <typeparam name="TResult">The type of the result</typeparam>
+        /// <param name="command">The command</param>
+        /// <param name="validationResult">The validation result along with the wrapped result</param>
+        /// <returns>An action result or null for the default Function Monkey behaviour</returns>
+        Task<IActionResult> CreateValidationFailureResponse<TCommand, TResult>(TCommand command, ValidationResult<TResult> validationResult) where TCommand : ICommand<TResult>;
+        */
     }
 }

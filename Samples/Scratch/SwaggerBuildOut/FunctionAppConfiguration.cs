@@ -35,7 +35,7 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                //.OutputAuthoredSource(@"c:\wip\scratch\outputSource")
+                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>(AuthorizationTypeEnum.Anonymous, HttpMethod.Post)    
@@ -45,7 +45,7 @@ namespace SwaggerBuildOut
                                 .ResponseHandler<CustomResponseHandler>()
                             )
                     )
-                   .HttpRoute("/Form", route => route
+                   /*.HttpRoute("/Form", route => route
                         .HttpFunction<FormCommand>(HttpMethod.Post)
                     )
                     .OpenApiDescription("A route description")

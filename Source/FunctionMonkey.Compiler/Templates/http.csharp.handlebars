@@ -194,13 +194,23 @@ namespace {{Namespace}}
             claimsBinder.Bind(principal, command);
             {{/if}}
 
+            {{#if HasHttpResponseHandler}}
+            var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
+            {{/if}}
+
             {{#if IsUsingValidator}}
             var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                return CreateResponse(400, validationResult, serializer);
+                {{#if HasHttpResponseHandler}}
+                    var validatorResponseTask = responseHandler.CreateResponse(command, validationResult);
+                    var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
+                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                {{else}}
+                    return CreateResponse(400, validationResult, serializer);
+                {{/if}}
             }
             {{/if}}
             
@@ -209,10 +219,25 @@ namespace {{Namespace}}
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
                 {{#if CommandHasResult}}
                     {{#if HasHttpResponseHandler}}
-                        var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
-                        var responseTask = responseHandler.CreateResponse(command, result.Result);
-                        var handledResponse = responseTask != null ? (await responseTask) : null;
-                        return handledResponse ?? CreateResponse(200, result.Result, serializer);
+                        {{#if IsValidationResult}}
+                            FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
+                            if (!validationResult.IsValid)
+                            {
+                                var validatorResponseTask = responseHandler.CreateResponse(command, validationResult);
+                                var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
+                                return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                            }
+                            else
+                            {
+                                var responseTask = responseHandler.CreateResponse(command, result.Result);
+                                var handledResponse = responseTask != null ? (await responseTask) : null;
+                                return handledResponse ?? CreateResponse(200, result.Result, serializer);
+                            }
+                        {{else}}
+                            var responseTask = responseHandler.CreateResponse(command, result.Result);
+                            var handledResponse = responseTask != null ? (await responseTask) : null;
+                            return handledResponse ?? CreateResponse(200, result.Result, serializer);
+                        {{/if}}                        
                     {{else}}
                         {{#if IsValidationResult}}
                             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
@@ -225,7 +250,6 @@ namespace {{Namespace}}
                     {{/if}}
                 {{else}}
                     {{#if HasHttpResponseHandler}}
-                        var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
                         var responseTask = responseHandler.CreateResponse(command);
                         var handledResponse = responseTask != null ? (await responseTask) : null; 
                         return handledResponse ?? new OkResult();
@@ -237,7 +261,6 @@ namespace {{Namespace}}
             catch(System.Exception ex)
             {
                 {{#if HasHttpResponseHandler}}
-                    var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
                     var responseTask = responseHandler.CreateResponseFromException(command, ex);
                     var handledResponse = responseTask != null ? (await responseTask) : null;
                     return handledResponse ?? CreateResponse(500, "Unexpected error", serializer);
