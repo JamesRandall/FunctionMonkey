@@ -2,8 +2,8 @@
 
 namespace FunctionMonkey.Tests.Integration.Functions.Commands
 {
-    public class SimpleCosmosChangeFeedCommand : ICommand
+    public class CosmosChangeFeedCommand : ICommand
     {
-        public string Value { get; set; }
+        public string MarkerId { get; set; }
     }
 }

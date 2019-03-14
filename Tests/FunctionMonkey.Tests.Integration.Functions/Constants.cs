@@ -21,5 +21,21 @@
                 public const string StreamBlobCommandContainer = "streamblobcommands";
             }
         }
+
+        public static class ServiceBus
+        {
+            public const string Queue = "testqueue";
+
+            public const string TopicName = "testtopic";
+
+            public const string SubscriptionName = "testsub";
+        }
+
+        public static class Cosmos
+        {
+            public const string Database = "testdatabase";
+
+            public const string Collection = "testcollection";
+        }
     }
 }

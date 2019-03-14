@@ -13,6 +13,7 @@ namespace FunctionMonkey.Tests.Integration.Functions.Handlers
     {
         public async Task ExecuteAsync(SetupTestResourcesCommand command)
         {
+            // Storage
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"));
 
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
@@ -28,6 +29,9 @@ namespace FunctionMonkey.Tests.Integration.Functions.Handlers
             await blobCommandsContainer.CreateIfNotExistsAsync();
             CloudBlobContainer streamBlobCommandsContainer = blobClient.GetContainerReference(Constants.Storage.Blob.StreamBlobCommandContainer);
             await streamBlobCommandsContainer.CreateIfNotExistsAsync();
+
+            // Cosmos and Service Bus
+            // Created through provisioning
         }
     }
 }

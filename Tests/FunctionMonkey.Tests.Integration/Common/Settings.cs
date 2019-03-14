@@ -5,5 +5,9 @@
         public string Host { get; set; }
 
         public string StorageConnectionString { get; set; }
+
+        public string ServiceBusConnectionString { get; set; }
+
+        public string CosmosConnectionString { get; set; }
     }
 }

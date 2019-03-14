@@ -35,58 +35,61 @@ namespace FunctionMonkey.Tests.Integration.Functions
                 .AddFluentValidation()
                 .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
                 .Functions(functions => functions
-                        // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
-                        // essentially pre-reqs for tracking things in the test suite
-                        .HttpRoute("setup", route => route
-                            .HttpFunction<SetupTestResourcesCommand>()
-                        )
-                        .HttpRoute("verbs", route => route
-                            .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)
-                            .HttpFunction<HttpPostCommand>(HttpMethod.Post)
-                            .HttpFunction<HttpPutCommand>(HttpMethod.Put)
-                            .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
-                            .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
-                        )
-                        .HttpRoute("noResponseHandler", route => route
-                            // These are the functions for testing the HTTP route cases outlined above
-                            .HttpFunction<HttpCommandWithNoResultAndNoValidation>("/noResult/noValidation")
-                            .HttpFunction<HttpCommandWithNoResultAndValidatorThatFails>("/noResult/validationFails")
-                            .HttpFunction<HttpCommandWithNoResultAndValidatorThatPasses>("/noResult/validationPasses")
-                            .HttpFunction<HttpCommandWithResultAndNoValidation>("/result/noValidation")
-                            .HttpFunction<HttpCommandWithResultAndValidatorThatFails>("/result/validationFails")
-                            .HttpFunction<HttpCommandWithResultAndValidatorThatPasses>("/result/validationPasses")
-                        )
-                        .HttpRoute("responseHandler", route => route
-                            .HttpFunction<HttpResponseHandlerCommandWithNoResultAndNoValidation>(
-                                "/noResult/noValidation")
-                                .Options(options => options.ResponseHandler<CustomResponseHandler>())
-                            .HttpFunction<HttpResponseHandlerCommandWithNoResultAndValidatorThatFails>(
-                                "/noResult/validationFails")
-                                .Options(options => options.ResponseHandler<CustomResponseHandler>())
-                            .HttpFunction<HttpResponseHandlerCommandWithNoResultAndValidatorThatPasses>(
-                                "/noResult/validationPasses")
-                                .Options(options => options.ResponseHandler<CustomResponseHandler>())
-                            .HttpFunction<HttpResponseHandlerCommandWithResultAndNoValidation>("/result/noValidation")
-                                .Options(options => options.ResponseHandler<CustomResponseHandler>())
-                            .HttpFunction<HttpResponseHandlerCommandWithResultAndValidatorThatFails>(
-                                "/result/validationFails")
-                                .Options(options => options.ResponseHandler<CustomResponseHandler>())
-                            .HttpFunction<HttpResponseHandlerCommandWithResultAndValidatorThatPasses>(
-                                "/result/validationPasses")
-                                .Options(options => options.ResponseHandler<CustomResponseHandler>())
-                        )
+                    // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
+                    // essentially pre-reqs for tracking things in the test suite
+                    .HttpRoute("setup", route => route
+                        .HttpFunction<SetupTestResourcesCommand>()
+                    )
+                    .HttpRoute("verbs", route => route
+                        .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)
+                        .HttpFunction<HttpPostCommand>(HttpMethod.Post)
+                        .HttpFunction<HttpPutCommand>(HttpMethod.Put)
+                        .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
+                        .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
+                    )
+                    .HttpRoute("noResponseHandler", route => route
+                        // These are the functions for testing the HTTP route cases outlined above
+                        .HttpFunction<HttpCommandWithNoResultAndNoValidation>("/noResult/noValidation")
+                        .HttpFunction<HttpCommandWithNoResultAndValidatorThatFails>("/noResult/validationFails")
+                        .HttpFunction<HttpCommandWithNoResultAndValidatorThatPasses>("/noResult/validationPasses")
+                        .HttpFunction<HttpCommandWithResultAndNoValidation>("/result/noValidation")
+                        .HttpFunction<HttpCommandWithResultAndValidatorThatFails>("/result/validationFails")
+                        .HttpFunction<HttpCommandWithResultAndValidatorThatPasses>("/result/validationPasses")
+                    )
+                    .HttpRoute("responseHandler", route => route
+                        .HttpFunction<HttpResponseHandlerCommandWithNoResultAndNoValidation>(
+                            "/noResult/noValidation")
+                        .Options(options => options.ResponseHandler<CustomResponseHandler>())
+                        .HttpFunction<HttpResponseHandlerCommandWithNoResultAndValidatorThatFails>(
+                            "/noResult/validationFails")
+                        .Options(options => options.ResponseHandler<CustomResponseHandler>())
+                        .HttpFunction<HttpResponseHandlerCommandWithNoResultAndValidatorThatPasses>(
+                            "/noResult/validationPasses")
+                        .Options(options => options.ResponseHandler<CustomResponseHandler>())
+                        .HttpFunction<HttpResponseHandlerCommandWithResultAndNoValidation>("/result/noValidation")
+                        .Options(options => options.ResponseHandler<CustomResponseHandler>())
+                        .HttpFunction<HttpResponseHandlerCommandWithResultAndValidatorThatFails>(
+                            "/result/validationFails")
+                        .Options(options => options.ResponseHandler<CustomResponseHandler>())
+                        .HttpFunction<HttpResponseHandlerCommandWithResultAndValidatorThatPasses>(
+                            "/result/validationPasses")
+                        .Options(options => options.ResponseHandler<CustomResponseHandler>())
+                    )
                     .Storage("storageConnectionString", storage => storage
                         .QueueFunction<StorageQueueCommand>(Constants.Storage.Queue.TestQueue)
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
-                        .BlobFunction<StreamBlobCommand>($"{Constants.Storage.Blob.StreamBlobCommandContainer}/{{name}}")
+                        .BlobFunction<StreamBlobCommand>(
+                            $"{Constants.Storage.Blob.StreamBlobCommandContainer}/{{name}}")
                     )
-                    /*.CosmosDb("cosmosConnection", cosmos => cosmos
-                        .ChangeFeedFunction<SimpleCosmosChangeFeedCommand>("cosmosCollection", "cosmosDatabase")
+                    .ServiceBus("serviceBusConnectionString", serviceBus => serviceBus
+                        .QueueFunction<ServiceBusQueueCommand>(Constants.ServiceBus.Queue)
+                        .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
+                            Constants.ServiceBus.SubscriptionName)
                     )
-                    .ServiceBus("serviceBuConnection", serviceBus => serviceBus
-                        .QueueFunction<SimpleServiceBusQueueCommand>("myqueue")
-                        .SubscriptionFunction<SimpleServiceBusTopicCommand>("mytopic", "mysubscription")
-                    )*/
+                    .CosmosDb("cosmosConnectionString", cosmos => cosmos
+                        .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+                    )
+
                 );
         }
     }
