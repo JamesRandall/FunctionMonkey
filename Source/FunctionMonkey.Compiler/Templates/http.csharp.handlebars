@@ -205,8 +205,8 @@ namespace {{Namespace}}
             if (!validationResult.IsValid)
             {
                 {{#if HasHttpResponseHandler}}
-                    var validatorResponseTask = responseHandler.CreateResponse(command, validationResult);
-                    var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
+                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                    var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
                     return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
                 {{else}}
                     return CreateResponse(400, validationResult, serializer);
@@ -223,7 +223,7 @@ namespace {{Namespace}}
                             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
                             if (!validationResult.IsValid)
                             {
-                                var validatorResponseTask = responseHandler.CreateResponse(command, validationResult);
+                                var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
                                 var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
                                 return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
                             }

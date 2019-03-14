@@ -333,3 +333,5 @@ ASALocalRun/
 .DS_Store
 
 .vscode
+appsettings.json
+
