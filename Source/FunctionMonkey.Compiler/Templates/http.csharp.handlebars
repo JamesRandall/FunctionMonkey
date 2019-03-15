@@ -20,10 +20,15 @@ namespace {{Namespace}}
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}},
-                Route = null)]
+                Route = "{{Route}}")                
+            ]
             HttpRequest req,
             ILogger log,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext
+            {{#each RouteParameters}}
+            , {{{RouteTypeName}}} {{RouteName}}
+            {{/each}}
+    )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
 
@@ -177,17 +182,28 @@ namespace {{Namespace}}
             {{/if}}
 
             {{#each RouteParameters}}
+                {{#if IsNullableType}}
+                    if ({{RouteName}}.HasValue)
+                    {
+                        command.{{Name}} = {{RouteName}};
+                    }
+                {{else}}
+                    command.{{Name}} = {{RouteName}};
+                {{/if}}
+            {{/each}}
+    /*
+            {{#each RouteParameters}}
             if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
             {
                 {{#if IsString}}
                 command.{{Name}} = queryParameterValues[0];
                 {{else}}
-                {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
+                {{{TypeName}}}.TryParse(queryParameterValues[0], out var candidate);
                 command.{{Name}} = candidate;
                 {{/if}}
             }
             {{/each}}
-
+    */
             {{#if ValidatesToken}}
             var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));

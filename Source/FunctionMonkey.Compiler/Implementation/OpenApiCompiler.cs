@@ -200,31 +200,33 @@ namespace FunctionMonkey.Compiler.Implementation
                         string lowerCaseRoute = functionByRoute.Route;
                         foreach (HttpParameter property in functionByRoute.PossibleBindingProperties)
                         {
-                            if (lowerCaseRoute.Contains("{" + property.Name.ToLower() +"}"))
-                            {
-                                operation.Parameters.Add(new OpenApiParameter
-                                {
-                                    Name = property.Name.ToCamelCase(),
-                                    In = ParameterLocation.Path,
-                                    Required = true,
-                                    Schema = property.Type.MapToOpenApiSchema(),
-                                    Description = ""
-                                });
-                                // TODO: We need to consider what to do with the payload model here - if its a route parameter
-                                // we need to ignore it in the payload model
-                            }
-                            else if (method == HttpMethod.Get || method == HttpMethod.Delete)
+                            if (method == HttpMethod.Get || method == HttpMethod.Delete)
                             {
                                 operation.Parameters.Add(new OpenApiParameter
                                 {
                                     Name = property.Name.ToCamelCase(),
                                     In = ParameterLocation.Query,
-                                    Required = true,
+                                    Required = !property.IsOptional,
                                     Schema = property.Type.MapToOpenApiSchema(),
                                     Description = ""
                                 });
                             }
                         }
+
+                        foreach (HttpParameter property in functionByRoute.RouteParameters)
+                        {
+                            operation.Parameters.Add(new OpenApiParameter
+                            {
+                                Name = property.RouteName.ToCamelCase(),
+                                In = ParameterLocation.Path,
+                                Required = !property.IsOptional,
+                                Schema = property.Type.MapToOpenApiSchema(),
+                                Description = ""
+                            });
+                            // TODO: We need to consider what to do with the payload model here - if its a route parameter
+                            // we need to ignore it in the payload model                            
+                        }
+
 
                         if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                         {

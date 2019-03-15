@@ -26,5 +26,12 @@ namespace FunctionMonkey.Model
 	    public bool IsNullableTypeHasTryParseMethod => IsNullable && Type.GetGenericArguments().First()
 		                                                   .GetMethods(BindingFlags.Public | BindingFlags.Static)
 		                                                   .Any(x => x.Name == "TryParse");
-	}
+
+        public bool IsOptional { get; set; }
+
+        // The below applies to route parameters
+        public string RouteName { get; set; }
+        public string RouteTypeName { get; set; }
+        public bool IsNullableType { get; set; }
+    }
 }

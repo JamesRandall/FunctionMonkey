@@ -47,6 +47,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                         .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
                     )
+                    .HttpRoute("routeParameters", route => route
+                        .HttpFunction<HttpGetRouteParameterCommand>("/{message}/{value:int}/{optionalValue?}/{optionalMessage?}")
+                    )
                     .HttpRoute("noResponseHandler", route => route
                         // These are the functions for testing the HTTP route cases outlined above
                         .HttpFunction<HttpCommandWithNoResultAndNoValidation>("/noResult/noValidation")
@@ -55,6 +58,13 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpCommandWithResultAndNoValidation>("/result/noValidation")
                         .HttpFunction<HttpCommandWithResultAndValidatorThatFails>("/result/validationFails")
                         .HttpFunction<HttpCommandWithResultAndValidatorThatPasses>("/result/validationPasses")
+                    )
+                    .HttpRoute("headers", route => route
+                        .HttpFunction<HttpHeaderBindingCommand>()
+                        .Options(options => options
+                            .AddHeaderMapping(cmd => cmd.Value, "x-value")
+                            .AddHeaderMapping(cmd => cmd.Message, "x-message")
+                        )
                     )
                     .HttpRoute("responseHandler", route => route
                         .HttpFunction<HttpResponseHandlerCommandWithNoResultAndNoValidation>(

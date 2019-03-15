@@ -78,10 +78,10 @@ namespace FunctionMonkey.Compiler.Implementation
             OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
 
             _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
-            if (_outputProxiesJson && builder.AreProxiesEnabled)
+            /*if (_outputProxiesJson && builder.AreProxiesEnabled)
             {
                 _proxiesJsonCompiler.Compile(builder.FunctionDefinitions, builder.OpenApiConfiguration, openApi, _outputBinaryFolder);
-            }
+            }*/
             
             _assemblyCompiler.Compile(builder.FunctionDefinitions,
                 configuration.GetType(),

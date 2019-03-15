@@ -3,7 +3,7 @@ using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Commands
 {
-    public class HttpGetCommand : ICommand<SimpleResponse>
+    public class HttpHeaderBindingCommand : ICommand<SimpleResponse>
     {
         public int Value { get; set; }
 

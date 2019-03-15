@@ -10,6 +10,8 @@
       href: philosophy.md
     - name: FAQ
       href: ../faq.md
+    - name: Upgrading to 1.0
+      href: upgradingTo1.0.md
 - name: Triggers
   items:
     - name: HTTP Triggers

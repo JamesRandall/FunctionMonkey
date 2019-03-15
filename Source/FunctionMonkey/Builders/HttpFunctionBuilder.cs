@@ -66,7 +66,7 @@ namespace FunctionMonkey.Builders
             {
                 SubRoute = route,
                 RouteConfiguration = _routeConfiguration,
-                Route = string.Concat(_routeConfiguration.Route, route),
+                Route = string.Concat(_routeConfiguration.Route, route).TrimStart('/'),
                 Verbs = new HashSet<HttpMethod>(method),
                 Authorization = authorizationType,
                 ClaimsPrincipalAuthorizationType = _routeConfiguration.ClaimsPrincipalAuthorizationType

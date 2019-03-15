@@ -17,7 +17,8 @@ namespace FunctionMonkey.Tests.Integration.Http
 
         private void ValidateEchoedResponse(SimpleResponse response)
         {
-
+            Assert.Equal(Value, response.Value);
+            Assert.Equal(Message, response.Message);
         }
 
         [Fact]
