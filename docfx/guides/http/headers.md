@@ -18,7 +18,7 @@ Header values can be automatically bound to command properties by adding a heade
                     commandRegistry.Register<InvoiceQueryHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
                             .Options(options => options.AddHeaderMapping(x => x.OperationId, "x-operation-id"))
                     )
@@ -45,7 +45,7 @@ Additionally default mappings can be configured for all commands using the _Defa
                     }
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
                     )
                 );

@@ -44,7 +44,7 @@ Obviously you can use a tool like [dotPeek](https://www.jetbrains.com/decompiler
                     commandRegistry.Register<InvoiceQueryHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>()
                     )
                 )

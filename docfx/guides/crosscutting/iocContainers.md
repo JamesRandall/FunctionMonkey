@@ -14,7 +14,7 @@ To use a different container your function app configuration class also needs to
                     commandRegistry.Register<HelloWorldCommandHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/api/v1/HelloWorld", route => route
+                    .HttpRoute("v1/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>()
                     )
                 );
@@ -38,7 +38,7 @@ Then we update our FunctionAppConfiguration class to also implement the _IContai
                     commandRegistry.Register<HelloWorldCommandHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/api/v1/HelloWorld", route => route
+                    .HttpRoute("v1/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>()
                     )
                 );

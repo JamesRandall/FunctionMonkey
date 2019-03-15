@@ -11,7 +11,18 @@ As an example we'll create a simple HTTP triggered function that when given a na
 
 Function Monkey is based on the mediator pattern and you can find more information about this in a series on [my blog here](https://www.azurefromthetrenches.com/c-cloud-application-architecture-commanding-with-a-mediator-the-full-series/) or in the [documentation for the mediator framework](https://commanding.azurefromthetrenches.com) used by Function Monkey. In short this works by defining commands as simple C# objects and then implementing command handlers that respond to those commands and optionally return a response.
 
-Lets begin by creating a folder in our project called Commands and in there we'll add a class called HelloWorldCommand: 
+By default Azure Functions will prefix all HTTP routes with the word _api_. So if you define a route "myRoute/doSomething" it will actually be published on "api/myRoute/doSomething". When I'm defining APIs I generally want my Open API support to appear at "/openapi" and so I don't find this terribly helpful. To stop this from happening edit your host.json file so that it reads:
+
+    {
+        "version": "2.0",
+        "extensions": {
+            "http": {
+                "routePrefix": ""
+            }
+        }
+    }
+
+Now lets begin by creating a folder in our project called Commands and in there we'll add a class called HelloWorldCommand: 
 
     public class HelloWorldCommand : ICommand<string>
     {
@@ -48,7 +59,7 @@ Having defined our command and a handler all that remains is to map them onto a 
                     commandRegistry.Register<HelloWorldCommandHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/api/v1/HelloWorld", route => route
+                    .HttpRoute("v1/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>()
                     )
                 );
@@ -57,19 +68,17 @@ Having defined our command and a handler all that remains is to map them onto a 
 
 Our class needs to implement the Build method and within it we do some basic setup and then define our triggers. In the setup phase we register our command handler with the mediation system (this can also be done through a discovery approach if you have many handlers but for the purposes of an example this is more explicit). In this block we could also register any other dependencies we require to be available.
 
-Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /api/v1/HelloWorld and register a single function against that route that responds to our _HelloWorldCommand_. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).
+Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /v1/HelloWorld and register a single function against that route that responds to our _HelloWorldCommand_. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).
 
 Ok. We can now run the project! If you do so you should see the Azure Function host startup and present two Http Functions, you should see something like this at the bottom of the console window:
 
     Http Functions:
 
-        HelloWorldProxy: http://localhost:7071/api/HelloWorldProxy
-
-        HelloWorld: http://localhost:7071/api/HelloWorld
+        HelloWorld: http://localhost:7071/v1/HelloWorld
 
 One of those is our underlying function and the other the proxy. If you open up your browser and enter the URL:
 
-    http://localhost:7071/api/v1/HelloWorld
+    http://localhost:7071/v1/HelloWorld
 
 Then the browser should show the content:
 
@@ -77,7 +86,7 @@ Then the browser should show the content:
 
 And if you enter the URL:
 
-    http://localhost:7071/api/v1/HelloWorld?name=James
+    http://localhost:7071/v1/HelloWorld?name=James
 
 You should see the message:
 
@@ -138,7 +147,7 @@ And all that's left to do is register our dependency with our IoC container in t
                     commandRegistry.Register<HelloWorldCommandHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/api/v1/HelloWorld", route => route
+                    .HttpRoute("v1/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>()
                     )
                 );
@@ -147,7 +156,7 @@ And all that's left to do is register our dependency with our IoC container in t
 
 If you run that and open the URL:
 
-    http://localhost:7071/api/v1/HelloWorld?name=James
+    http://localhost:7071/v1/HelloWorld?name=James
 
 You should now see a message like this:
 
@@ -184,7 +193,7 @@ Although you can use any validation system with Function Monkey (see the section
                 // And add the line below
                 .AddFluentValidation()
                 .Functions(functions => functions
-                    .HttpRoute("/api/v1/HelloWorld", route => route
+                    .HttpRoute("v1/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>()
                     )
                 );
@@ -193,7 +202,7 @@ Although you can use any validation system with Function Monkey (see the section
 
 If you run the project and open the below URL in a browser or Postman:
 
-    http://localhost:7071/api/v1/HelloWorld
+    http://localhost:7071/v1/HelloWorld
 
 Then you should see a validation block returned that looks like this:
 

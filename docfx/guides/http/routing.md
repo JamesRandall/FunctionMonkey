@@ -12,7 +12,7 @@ In Function Monkey every HTTP function has a parent route and an optional sub-ro
                     commandRegistry.Register<InvoiceQueryHandler>();
                 })
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
                     )
                 );
@@ -32,7 +32,7 @@ Then we can call it using a URL such as:
 
 If you want to use path based routing then simply set the sub-route using typical curly brace syntax as shown below:
 
-    .HttpRoute("/Invoice", route => route
+    .HttpRoute("Invoice", route => route
         .HttpFunction<InvoiceQuery>("/{id}", HttpMethod.Get)
 
 Which will allow you to call the function using a URL such as:

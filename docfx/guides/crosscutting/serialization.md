@@ -15,7 +15,7 @@ This can be overridden in a number of ways. Firstly the serializer can be replac
                 })
                 .Serialization(serialization => serialization.DefaultCommandDeserializer<TMySerializer>())
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
                     )
                 );
@@ -35,7 +35,7 @@ This can also be set on a per function basis as shown below:
                 })
                 .Serialization(serialization => serialization.DefaultCommandDeserializer<TMySerializer>())
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
                             .Options(options => options.Serializer<TMySerializer>())
                     )
@@ -58,7 +58,7 @@ Additionally alternative Newtonsoft.Json naming strategies can be configured on 
                 })
                 .Serialization(serialization => serialization.DefaultCommandDeserializer<TMySerializer>())
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>(HttpMethod.Get)
                             .Options(options => options.JsonNamingStrategies<DefaultNamingStrategy, SnakeCaseNamingStrategy>())
                     )

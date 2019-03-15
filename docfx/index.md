@@ -48,7 +48,7 @@ footer{
             .Authorization(authorization => authorization.TokenValidator<IBearerTokenValidator>())
             .AddFluentValidation()
             .Functions(functions => functions
-                .HttpRoute("/api/v1/Invoice", route => route
+                .HttpRoute("v1/Invoice", route => route
                     .HttpFunction<ListInvoicesQuery>(AuthorizationTypeEnum.TokenValidation, HttpMethod.Get)
                 )
                 .ServiceBus("serviceBusConnection", serviceBus => serviceBus

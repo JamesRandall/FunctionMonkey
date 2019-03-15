@@ -22,10 +22,10 @@ Token Validation validates a bearer token and returns a populated ClaimsPrincipa
                     .TokenValidator<BearerTokenValidator>()
                 )
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>()
                     )
-                    .HttpRoute("/Version", route => route
+                    .HttpRoute("Version", route => route
                         .HttpFunction<VersionQuery>(AuthorizationTypeEnum.Anonymous))
                 );
         }
@@ -115,11 +115,11 @@ Token validators can also be specified on a per function basis as shown in the e
                     .TokenValidator<BearerTokenValidator>()
                 )
                 .Functions(functions => functions
-                    .HttpRoute("/Invoice", route => route
+                    .HttpRoute("Invoice", route => route
                         .HttpFunction<InvoiceQuery>()
                             .Options(options => options.TokenValidator<AnotherTokenValidator>())
                     )
-                    .HttpRoute("/Version", route => route
+                    .HttpRoute("Version", route => route
                         .HttpFunction<VersionQuery>()
                     )
                 );
@@ -161,7 +161,7 @@ And it is shown specified at the route level in the below Function App configura
                     .HttpRoute<AllowClaimsAuthorization>("/Invoice", route => route
                         .HttpFunction<InvoiceQuery>()
                     )
-                    .HttpRoute("/Version", route => route
+                    .HttpRoute("Version", route => route
                         .HttpFunction<VersionQuery>(AuthorizationTypeEnum.Anonymous))
                 );
         }
