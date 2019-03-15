@@ -80,7 +80,7 @@
                 commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
                 )
             );
@@ -94,7 +94,7 @@
 </code></pre><p>Then we can call it using a URL such as:</p>
 <pre><code>http://localhost:7071/invoice?id=1234
 </code></pre><p>If you want to use path based routing then simply set the sub-route using typical curly brace syntax as shown below:</p>
-<pre><code>.HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+<pre><code>.HttpRoute(&quot;Invoice&quot;, route =&gt; route
     .HttpFunction&lt;InvoiceQuery&gt;(&quot;/{id}&quot;, HttpMethod.Get)
 </code></pre><p>Which will allow you to call the function using a URL such as:</p>
 <pre><code>http://localhost:7071/invoice/1234

@@ -411,19 +411,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource
   nameWithType: IFunctionHostBuilder.OutputAuthoredSource
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled(System.Boolean)
-  name: ProxiesEnabled(Boolean)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ProxiesEnabled_System_Boolean_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled(System.Boolean)
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled(System.Boolean)
-  nameWithType: IFunctionHostBuilder.ProxiesEnabled(Boolean)
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled*
-  name: ProxiesEnabled
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ProxiesEnabled_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ProxiesEnabled
-  nameWithType: IFunctionHostBuilder.ProxiesEnabled
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
   name: Serialization(Action<ISerializationBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Serialization_Action_FunctionMonkey_Abstractions_Builders_ISerializationBuilder__
@@ -1439,6 +1426,22 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateResponseFromException(Of TCommand)(TCommand, Exception)
   nameWithType: IHttpResponseHandler.CreateResponseFromException<TCommand>(TCommand, Exception)
   nameWithType.vb: IHttpResponseHandler.CreateResponseFromException(Of TCommand)(TCommand, Exception)
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse*
+  name: CreateValidationFailureResponse
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateValidationFailureResponse_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse
+  nameWithType: IHttpResponseHandler.CreateValidationFailureResponse
+- uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse``1(``0,FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)
+  name: CreateValidationFailureResponse<TCommand>(TCommand, ValidationResult)
+  href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html#FunctionMonkey_Abstractions_Http_IHttpResponseHandler_CreateValidationFailureResponse__1___0_FunctionMonkey_Commanding_Abstractions_Validation_ValidationResult_
+  commentId: M:FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse``1(``0,FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)
+  name.vb: CreateValidationFailureResponse(Of TCommand)(TCommand, ValidationResult)
+  fullName: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse<TCommand>(TCommand, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)
+  fullName.vb: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse(Of TCommand)(TCommand, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)
+  nameWithType: IHttpResponseHandler.CreateValidationFailureResponse<TCommand>(TCommand, ValidationResult)
+  nameWithType.vb: IHttpResponseHandler.CreateValidationFailureResponse(Of TCommand)(TCommand, ValidationResult)
 - uid: FunctionMonkey.Abstractions.HttpResponse
   name: HttpResponse
   href: api/FunctionMonkey.Abstractions.HttpResponse.html
@@ -3375,19 +3378,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource
   nameWithType: TestFunctionHostBuilder.OutputAuthoredSource
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.ProxiesEnabled(System.Boolean)
-  name: ProxiesEnabled(Boolean)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_ProxiesEnabled_System_Boolean_
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.ProxiesEnabled(System.Boolean)
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.ProxiesEnabled(System.Boolean)
-  nameWithType: TestFunctionHostBuilder.ProxiesEnabled(Boolean)
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.ProxiesEnabled*
-  name: ProxiesEnabled
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_ProxiesEnabled_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.ProxiesEnabled
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.ProxiesEnabled
-  nameWithType: TestFunctionHostBuilder.ProxiesEnabled
 - uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
   name: Serialization(Action<ISerializationBuilder>)
   href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Serialization_Action_FunctionMonkey_Abstractions_Builders_ISerializationBuilder__

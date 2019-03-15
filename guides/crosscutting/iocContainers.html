@@ -81,7 +81,7 @@
                 commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                .HttpRoute(&quot;v1/HelloWorld&quot;, route =&gt; route
                     .HttpFunction&lt;HelloWorldCommand&gt;()
                 )
             );
@@ -101,7 +101,7 @@ Install-Package Autofac.Extensions.DependencyInjection
                 commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                .HttpRoute(&quot;v1/HelloWorld&quot;, route =&gt; route
                     .HttpFunction&lt;HelloWorldCommand&gt;()
                 )
             );

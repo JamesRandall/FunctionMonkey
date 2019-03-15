@@ -5,17 +5,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Overview </title>
+    <title>Upgrading to 1.0 </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Overview ">
+    <meta name="title" content="Upgrading to 1.0 ">
     <meta name="generator" content="docfx 2.40.12.0">
     
-    <link rel="shortcut icon" href="../../favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../styles/docfx.css">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -34,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -67,30 +67,25 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="overview">Overview</h1>
+<h1 id="upgrading-to-10">Upgrading to 1.0</h1>
 
-<p>The aim of the HTTP trigger support in Function Monkey is to make it straightforward to support simple REST APIs running on Azure Functions and as such they are a little more involved than the other trigger types as in addition to the other framework features (validation in particular) they include support for:</p>
-<ul>
-<li>Routing</li>
-<li>Authentication</li>
-<li>Authorization</li>
-<li>Open API / Swagger</li>
-<li>Claims Mapping (binding claims to command properties)</li>
-<li>Headers</li>
-</ul>
-<p>The aim isn&#39;t to replicate full blown ASP.Net Core (which is already supported on AWS Lambda and undoubtedly coming to Azure Functions at some point) but instead to focus on the common use cases and by doing so keep things lean and well suited to an environment where you pay per Gb/s.</p>
-<p>As the <a href="guides/gettingStarted.html">Getting Started</a> guide uses HTTP triggers as an example the rest of this guide will focus on the above areas in a little more depth.</p>
-<h2 id="routes-and-the-api-prefix">Routes and the &quot;api&quot; prefix</h2>
-<p>By default Azure Functions will prefix all HTTP routes with the word <em>api</em>. So if you define a route &quot;myRoute/doSomething&quot; it will actually be published on &quot;api/myRoute/doSomething&quot;. You can&#39;t opt out of the prefix on a case by case basis and so I don&#39;t find this helpful, particularly when I&#39;m defining APIs I generally want my Open API support to appear at &quot;/openapi&quot; and so I don&#39;t find this terribly helpful. To stop this from happening edit your host.json file so that it reads:</p>
+<p>If you&#39;re using a beta release there are a couple of changes required to adopt the 1.0 and later releases.</p>
+<h2 id="http-triggers">HTTP Triggers</h2>
+<h3 id="routes">Routes</h3>
+<p>In versions prior to 1.0 Function Monkey relied on proxies to shape HTTP trigger endpoints into friendly routes - the reasons why are lost to the mists of time I&#39;m afraid!</p>
+<p>In version 1.0 the route property is used on the HttpTriggerAttribute and in the function.json as per <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook#customize-the-http-endpoint">this guidance here</a>.</p>
+<p>That does mean that by default &#39;api&#39; will be added anbd used as a prefix for all your routes by the Azure Functions runtime and that will require you to address this in your routes. The easiest way to update this is simply to remove the prefix by editing the host.json file as shown in the example below:</p>
 <pre><code>{
-    &quot;version&quot;: &quot;2.0&quot;,
-    &quot;extensions&quot;: {
-        &quot;http&quot;: {
-            &quot;routePrefix&quot;: &quot;&quot;
-        }
+  &quot;version&quot;: &quot;2.0&quot;,
+  &quot;extensions&quot;: {
+    &quot;http&quot;: {
+      &quot;routePrefix&quot;: &quot;&quot;
     }
+  }
 }
-</code></pre><p>If you don&#39;t do this just remember that all your routes will be prefixed with <em>api</em>.</p>
+</code></pre><h3 id="response-handlers">Response Handlers</h3>
+<p>Previously it was not possible to use a response handler to shape the output of validation failures - this is addressed in version 1.0 by the addition of the <em>CreateValidationFailureResponse</em> method to the <em>IHttpResponseHandler</em> interface.</p>
+<p>If you&#39;ve created custom response handlers you will need to implement this method on your classes, as per the other methods you can return null to have Function Monkey create its default response, or you can return an <em>IActionResult</em> to tailor the response.</p>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -100,7 +95,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/http/overview.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/upgradingTo1.0.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
@@ -129,9 +124,9 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../../styles/docfx.js"></script>
-    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
     <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
     
     <!-- Global site tag (gtag.js) - Google Analytics -->

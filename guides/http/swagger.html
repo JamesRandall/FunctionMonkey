@@ -87,23 +87,33 @@
                 .UserInterface()
             )
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                .HttpRoute(&quot;v1/HelloWorld&quot;, route =&gt; route
                     .HttpFunction&lt;HelloWorldCommand&gt;()
                 )
             );
     }
 }
-</code></pre><p>That will create a specification at <a href="https://YOURDOMAIN/openapi.yaml">https://YOURDOMAIN/openapi.yaml</a> and a user interface explorer at <a href="https://YOURDOMAIN/openapi">https://YOURDOMAIN/openapi</a></p>
-<h2 id="additional-documentation">Additional Documentation</h2>
+</code></pre><p>That will create a specification at <a href="https://YOURDOMAIN/ROUTEPREFIX/openapi.yaml">https://YOURDOMAIN/ROUTEPREFIX/openapi.yaml</a> and a user interface explorer at <a href="https://YOURDOMAIN/ROUTEPREFIX/openapi">https://YOURDOMAIN/ROUTEPREFIX/openapi</a></p>
+<p>The route prefix is applied across all routes by the Azure Functions runtime and defaults to the workd <em>api</em> so your Open API support will actually appear at <a href="https://YOURDOMAIN/api/openapi.yaml">https://YOURDOMAIN/api/openapi.yaml</a> and <a href="https://YOURDOMAIN/api/openapi">https://YOURDOMAIN/api/openapi</a>.</p>
+<p>If you don&#39;t want this behaviour you can remove the route prefix entirely by editing the host.json file to read:</p>
+<pre><code>{
+    &quot;version&quot;: &quot;2.0&quot;,
+    &quot;extensions&quot;: {
+        &quot;http&quot;: {
+            &quot;routePrefix&quot;: &quot;&quot;
+        }
+    }
+}
+</code></pre><h2 id="additional-documentation">Additional Documentation</h2>
 <p>Function Monkey supports additional OpenAPI documentation to be provided at both the route and function level.</p>
 <p>At the route level FunctionMonkey will default to giving the route the same OpenAPI name (in an OpenAPI tag) as the last major route component. So in a route of:</p>
-<pre><code>.HttpRoute(&quot;/api/v1/HelloWorld/{text}&quot; ... )
+<pre><code>.HttpRoute(&quot;v1/HelloWorld/{text}&quot; ... )
 </code></pre><p>Function Monkey will give the route a name of HelloWorld. A description can be supplied and the name overriden as shown below:</p>
-<pre><code>.HttpRoute(&quot;/api/v1/HelloWorld/{text}&quot; ... )
+<pre><code>.HttpRoute(&quot;v1/HelloWorld/{text}&quot; ... )
     .OpenApiDescription(&quot;Methods on this route represent the MyHelloWorld resource&quot;)
     .OpenApiName(&quot;MyHelloWorld&quot;)
 </code></pre><p>At the Function level descriptions and response documentation can also be set:</p>
-<pre><code>.HttpRoute(&quot;/api/v1/HelloWorld&quot;, functions =&gt; functions
+<pre><code>.HttpRoute(&quot;v1/HelloWorld&quot;, functions =&gt; functions
     .HttpFunction&lt;HelloWorldCommand&gt;()
         .OpenApiDescription(&quot;Says hello world&quot;)
         .OpenApiResponse(400, &quot;An error in the inputs&quot;)

@@ -105,7 +105,7 @@ FunctionMonkey.FluentValidation (optional)
                 commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;()
                 )
             )

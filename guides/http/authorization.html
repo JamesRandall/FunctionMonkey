@@ -87,10 +87,10 @@
                 .TokenValidator&lt;BearerTokenValidator&gt;()
             )
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;()
                 )
-                .HttpRoute(&quot;/Version&quot;, route =&gt; route
+                .HttpRoute(&quot;Version&quot;, route =&gt; route
                     .HttpFunction&lt;VersionQuery&gt;(AuthorizationTypeEnum.Anonymous))
             );
     }
@@ -176,11 +176,11 @@
                 .TokenValidator&lt;BearerTokenValidator&gt;()
             )
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;()
                         .Options(options =&gt; options.TokenValidator&lt;AnotherTokenValidator&gt;())
                 )
-                .HttpRoute(&quot;/Version&quot;, route =&gt; route
+                .HttpRoute(&quot;Version&quot;, route =&gt; route
                     .HttpFunction&lt;VersionQuery&gt;()
                 )
             );
@@ -215,7 +215,7 @@
                 .HttpRoute&lt;AllowClaimsAuthorization&gt;(&quot;/Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;()
                 )
-                .HttpRoute(&quot;/Version&quot;, route =&gt; route
+                .HttpRoute(&quot;Version&quot;, route =&gt; route
                     .HttpFunction&lt;VersionQuery&gt;(AuthorizationTypeEnum.Anonymous))
             );
     }

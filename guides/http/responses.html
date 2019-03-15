@@ -108,7 +108,7 @@
                 commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
                         .Options(options =&gt; options.ResponseHandler&lt;CustomResponseHandler&gt;())
                 )
@@ -127,7 +127,7 @@
             })
             .DefaultHttpResponseHandler&lt;CustomResponseHandler&gt;()
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/Invoice&quot;, route =&gt; route
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
                     .HttpFunction&lt;InvoiceQuery&gt;(HttpMethod.Get)
                 )
             );

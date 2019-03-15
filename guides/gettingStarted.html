@@ -75,7 +75,16 @@ Install-Package FunctionMonkey.Compiler -pre
 </code></pre><p>The first package contains the core framework while the second will add a custom build step to your solution that generates the necessary assets required by the Azure Functions v2 host.</p>
 <p>As an example we&#39;ll create a simple HTTP triggered function that when given a name returns a simple hello world message as a response.</p>
 <p>Function Monkey is based on the mediator pattern and you can find more information about this in a series on <a href="https://www.azurefromthetrenches.com/c-cloud-application-architecture-commanding-with-a-mediator-the-full-series/">my blog here</a> or in the <a href="https://commanding.azurefromthetrenches.com">documentation for the mediator framework</a> used by Function Monkey. In short this works by defining commands as simple C# objects and then implementing command handlers that respond to those commands and optionally return a response.</p>
-<p>Lets begin by creating a folder in our project called Commands and in there we&#39;ll add a class called HelloWorldCommand: </p>
+<p>By default Azure Functions will prefix all HTTP routes with the word <em>api</em>. So if you define a route &quot;myRoute/doSomething&quot; it will actually be published on &quot;api/myRoute/doSomething&quot;. When I&#39;m defining APIs I generally want my Open API support to appear at &quot;/openapi&quot; and so I don&#39;t find this terribly helpful. To stop this from happening edit your host.json file so that it reads:</p>
+<pre><code>{
+    &quot;version&quot;: &quot;2.0&quot;,
+    &quot;extensions&quot;: {
+        &quot;http&quot;: {
+            &quot;routePrefix&quot;: &quot;&quot;
+        }
+    }
+}
+</code></pre><p>Now lets begin by creating a folder in our project called Commands and in there we&#39;ll add a class called HelloWorldCommand: </p>
 <pre><code>public class HelloWorldCommand : ICommand&lt;string&gt;
 {
     public string Name { get; set; }
@@ -105,26 +114,24 @@ Install-Package FunctionMonkey.Compiler -pre
                 commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                .HttpRoute(&quot;v1/HelloWorld&quot;, route =&gt; route
                     .HttpFunction&lt;HelloWorldCommand&gt;()
                 )
             );
     }
 }
 </code></pre><p>Our class needs to implement the Build method and within it we do some basic setup and then define our triggers. In the setup phase we register our command handler with the mediation system (this can also be done through a discovery approach if you have many handlers but for the purposes of an example this is more explicit). In this block we could also register any other dependencies we require to be available.</p>
-<p>Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /api/v1/HelloWorld and register a single function against that route that responds to our <em>HelloWorldCommand</em>. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).</p>
+<p>Next we define our Azure Functions using the Functions block - HTTP functions can be grouped by route and in this example we define a single route available at /v1/HelloWorld and register a single function against that route that responds to our <em>HelloWorldCommand</em>. By default this will be available as a HTTP GET operation with no additional routing information (for more options see the section on HTTP triggers).</p>
 <p>Ok. We can now run the project! If you do so you should see the Azure Function host startup and present two Http Functions, you should see something like this at the bottom of the console window:</p>
 <pre><code>Http Functions:
 
-    HelloWorldProxy: http://localhost:7071/api/HelloWorldProxy
-
-    HelloWorld: http://localhost:7071/api/HelloWorld
+    HelloWorld: http://localhost:7071/v1/HelloWorld
 </code></pre><p>One of those is our underlying function and the other the proxy. If you open up your browser and enter the URL:</p>
-<pre><code>http://localhost:7071/api/v1/HelloWorld
+<pre><code>http://localhost:7071/v1/HelloWorld
 </code></pre><p>Then the browser should show the content:</p>
 <pre><code>&quot;Hello stranger&quot;
 </code></pre><p>And if you enter the URL:</p>
-<pre><code>http://localhost:7071/api/v1/HelloWorld?name=James
+<pre><code>http://localhost:7071/v1/HelloWorld?name=James
 </code></pre><p>You should see the message:</p>
 <pre><code>&quot;Hello James&quot;
 </code></pre><p>Let&#39;s build this out a little and implement a simple dependency that creates a hash of a name. First create a folder called Services and in it add an interface called IStringHasher:</p>
@@ -175,14 +182,14 @@ Install-Package FunctionMonkey.Compiler -pre
                 commandRegistry.Register&lt;HelloWorldCommandHandler&gt;();
             })
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                .HttpRoute(&quot;v1/HelloWorld&quot;, route =&gt; route
                     .HttpFunction&lt;HelloWorldCommand&gt;()
                 )
             );
     }
 }
 </code></pre><p>If you run that and open the URL:</p>
-<pre><code>http://localhost:7071/api/v1/HelloWorld?name=James
+<pre><code>http://localhost:7071/v1/HelloWorld?name=James
 </code></pre><p>You should now see a message like this:</p>
 <pre><code>&quot;Hello James, from now on I&#39;m going to call you k0WjWm/fF03/chkoKjrkh5eQ27eFxw9v/5HjL6/Wbqs=&quot;
 </code></pre><p>Finally lets add one more twist and introduce some validation - we&#39;ll the application so that a name of between 1 and 50 characters in length is required. First we&#39;ll need to add a new NuGet package:</p>
@@ -211,14 +218,14 @@ Install-Package FunctionMonkey.Compiler -pre
             // And add the line below
             .AddFluentValidation()
             .Functions(functions =&gt; functions
-                .HttpRoute(&quot;/api/v1/HelloWorld&quot;, route =&gt; route
+                .HttpRoute(&quot;v1/HelloWorld&quot;, route =&gt; route
                     .HttpFunction&lt;HelloWorldCommand&gt;()
                 )
             );
     }
 }
 </code></pre><p>If you run the project and open the below URL in a browser or Postman:</p>
-<pre><code>http://localhost:7071/api/v1/HelloWorld
+<pre><code>http://localhost:7071/v1/HelloWorld
 </code></pre><p>Then you should see a validation block returned that looks like this:</p>
 <pre><code>{
     &quot;errors&quot;: [
