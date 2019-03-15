@@ -76,7 +76,7 @@ Ok. We can now run the project! If you do so you should see the Azure Function h
 
         HelloWorld: http://localhost:7071/v1/HelloWorld
 
-One of those is our underlying function and the other the proxy. If you open up your browser and enter the URL:
+If you open up your browser and enter the URL:
 
     http://localhost:7071/v1/HelloWorld
 

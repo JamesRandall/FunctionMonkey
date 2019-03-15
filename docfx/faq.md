@@ -12,10 +12,6 @@ Aim is to move it out of preview when Azure Functions v2 go to GA. Certainly won
 
 I'm still investigating this but there looks to be a bug in the cold start behaviour in Azure. The logs show the proxies are not always routed on to Functions and instead the funciton host looks for physical files. I have a GitHub issue raised which hopefully will help me gain more insight.
 
-## I get the error "Error processing configuration of Function Proxies"
-
-There used to be a requirement for a variable called ProxyPrefix which if missed would generate this error. Its no longer required so if you update to the latest version of the package that should resolve things.
-
 ## Are Pull Requests welcome?
 
 Heck yes. But if you're planning a major piece of work probably makes sense to have a conversation first. I'd hate to have folks waste their time.
