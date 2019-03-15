@@ -21,9 +21,8 @@ namespace {{Namespace}}
         };
 
         [FunctionName("OpenApiProvider")]
-        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequest req, ILogger logger)
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "openapi/{name?}")]HttpRequest req, ILogger logger, string name)
         {
-            string name = req.Query["name"];
             if (string.IsNullOrWhiteSpace(name))
             {
                 name = "index.html";

@@ -189,7 +189,8 @@ namespace FunctionMonkey.Infrastructure
                 {
                     Name = x.Name,
                     TypeName = x.PropertyType.EvaluateType(),
-                    Type = x.PropertyType
+                    Type = x.PropertyType,
+                    IsOptional = !x.PropertyType.IsValueType
                 })
                 .ToArray();
         }

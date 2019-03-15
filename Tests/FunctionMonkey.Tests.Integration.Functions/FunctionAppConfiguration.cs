@@ -34,6 +34,11 @@ namespace FunctionMonkey.Tests.Integration.Functions
                 })
                 .AddFluentValidation()
                 .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
+                .OpenApiEndpoint(openApi => openApi
+                    .UserInterface()
+                    .Title("Integration Test Functions")
+                    .Version("1.0.0")
+                )
                 .Functions(functions => functions
                     // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
                     // essentially pre-reqs for tracking things in the test suite
