@@ -22,7 +22,6 @@ namespace FunctionMonkey.Model
 
         public HttpRouteConfiguration RouteConfiguration { get; set; }
 
-        // used to create a proxy that maps through to the internal function
         public string Route { get; set; }
 
         public IReadOnlyCollection<HttpParameter> PossibleBindingProperties { get; set; }

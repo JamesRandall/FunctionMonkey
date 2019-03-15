@@ -42,7 +42,7 @@ namespace FunctionMonkey.Compiler
                 return null;
             };
 
-            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, true, target);
+            FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, target);
             compiler.Compile();
         }
     }

@@ -44,13 +44,6 @@ namespace FunctionMonkey.Compiler.Implementation
             return GetTemplate(functionDefinition, "json");
         }
 
-        public string GetProxiesJsonTemplate()
-        {
-            using (Stream stream = GetType().Assembly.GetManifestResourceStream("FunctionMonkey.Compiler.Templates.proxies.json.handlebars"))
-            using (StreamReader reader = new StreamReader(stream))
-                return reader.ReadToEnd();
-        }
-
         private string GetTemplate(AbstractFunctionDefinition functionDefinition, string type)
         {
             if (TypeToTemplatePrefixMap.TryGetValue(functionDefinition.GetType(), out string prefix))

@@ -69,11 +69,6 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder OutputAuthoredSource(string folder);
 
         /// <summary>
-        /// Allows HTTP proxy generation to be enabled (true) or disabled (false)
-        /// </summary>
-        IFunctionHostBuilder ProxiesEnabled(bool enabled);
-
-        /// <summary>
         /// When a service provider is created the action supplied here will be invoked
         /// </summary>
         /// <param name="action">An action to invoke when a service provider is created</param>

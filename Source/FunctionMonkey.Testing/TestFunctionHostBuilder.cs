@@ -60,11 +60,6 @@ namespace FunctionMonkey.Testing
             return this;
         }
 
-        public IFunctionHostBuilder ProxiesEnabled(bool enabled)
-        {
-            return this;
-        }
-
         public IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action)
         {
             return this;

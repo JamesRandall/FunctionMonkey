@@ -23,7 +23,6 @@ namespace FunctionMonkey.Builders
         public OpenApiConfiguration OpenApiConfiguration { get; } = new OpenApiConfiguration();
         public string OutputAuthoredSourceFolder { get; private set; }
         public Action<IServiceProvider> ServiceProviderCreatedAction { get; private set; }
-        public bool AreProxiesEnabled { get; set; } = true;
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public SerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
@@ -86,12 +85,6 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder OutputAuthoredSource(string folder)
         {
             OutputAuthoredSourceFolder = folder;
-            return this;
-        }
-
-        public IFunctionHostBuilder ProxiesEnabled(bool enabled)
-        {
-            AreProxiesEnabled = enabled;
             return this;
         }
 

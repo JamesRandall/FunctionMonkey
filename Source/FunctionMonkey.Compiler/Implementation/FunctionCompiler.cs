@@ -19,13 +19,11 @@ namespace FunctionMonkey.Compiler.Implementation
 
         private readonly Assembly _configurationSourceAssembly;
         private readonly string _outputBinaryFolder;
-        private readonly bool _outputProxiesJson;
         private readonly TargetEnum _target;
         private readonly ICommandRegistry _commandRegistry;
         private readonly IAssemblyCompiler _assemblyCompiler;
         private readonly ITriggerReferenceProvider _triggerReferenceProvider;
         private readonly JsonCompiler _jsonCompiler;
-        private readonly ProxiesJsonCompiler _proxiesJsonCompiler;
         private readonly OpenApiCompiler _openApiCompiler;
 
         public enum TargetEnum
@@ -36,14 +34,12 @@ namespace FunctionMonkey.Compiler.Implementation
 
         public FunctionCompiler(Assembly configurationSourceAssembly,
             string outputBinaryFolder,
-            bool outputProxiesJson,
             TargetEnum target,
             IAssemblyCompiler assemblyCompiler = null,
             ITriggerReferenceProvider triggerReferenceProvider = null)
         {
             _configurationSourceAssembly = configurationSourceAssembly;
             _outputBinaryFolder = outputBinaryFolder;
-            _outputProxiesJson = outputProxiesJson;
             _target = target;
             _serviceCollection = new ServiceCollection();
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
@@ -55,7 +51,6 @@ namespace FunctionMonkey.Compiler.Implementation
             _assemblyCompiler = assemblyCompiler ?? new AssemblyCompiler();
             _triggerReferenceProvider = triggerReferenceProvider ?? new TriggerReferenceProvider();
             _jsonCompiler = new JsonCompiler();
-            _proxiesJsonCompiler = new ProxiesJsonCompiler();
             _openApiCompiler = new OpenApiCompiler();
         }
 
@@ -78,10 +73,6 @@ namespace FunctionMonkey.Compiler.Implementation
             OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
 
             _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
-            /*if (_outputProxiesJson && builder.AreProxiesEnabled)
-            {
-                _proxiesJsonCompiler.Compile(builder.FunctionDefinitions, builder.OpenApiConfiguration, openApi, _outputBinaryFolder);
-            }*/
             
             _assemblyCompiler.Compile(builder.FunctionDefinitions,
                 configuration.GetType(),

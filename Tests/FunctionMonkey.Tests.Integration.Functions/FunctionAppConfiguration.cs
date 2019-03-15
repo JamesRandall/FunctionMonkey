@@ -8,7 +8,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
 {
     public class FunctionAppConfiguration : IFunctionAppConfiguration
     {
-        // In the HTTP routes in adddition to verbs we also need to cover the following variations of response
+        // In the HTTP routes in addition to verbs we also need to cover the following variations of response
         // (it gets complicated due to permutations with the response handler and validation)
         //  1.  No response handler and a command with a result and no validation
         //  2.  No response handler and a command with a result and validation that passes
@@ -104,7 +104,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .CosmosDb("cosmosConnectionString", cosmos => cosmos
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
                     )
-
+                    .Timer<TimerCommand>("*/5 * * * * *")
                 );
         }
     }

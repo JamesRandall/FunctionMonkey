@@ -149,8 +149,6 @@
     <None Remove="Templates\eventhubqueue.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
     <None Remove="Templates\http.csharp.handlebars" />
-    <None Remove="Templates\proxies.explicit.json.handlebars" />
-    <None Remove="Templates\proxies.json.handlebars" />
     <None Remove="Templates\servicebusqueue.csharp.handlebars" />
     <None Remove="Templates\servicebusqueue.json.handlebars" />
     <None Remove="Templates\servicebussubscription.csharp.handlebars" />
@@ -302,7 +300,6 @@
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
-    <EmbeddedResource Include="Templates\proxies.explicit.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
     <EmbeddedResource Include="Templates\timer.csharp.handlebars" />
@@ -318,7 +315,6 @@
     <EmbeddedResource Include="Templates\servicebussubscription.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.csharp.handlebars" />
-    <EmbeddedResource Include="Templates\proxies.json.handlebars" />
     <EmbeddedResource Include="Templates\http.csharp.handlebars" />
     <EmbeddedResource Include="Templates\http.json.handlebars" />
   </ItemGroup>
