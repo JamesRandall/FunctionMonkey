@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
@@ -19,7 +18,7 @@ namespace FunctionMonkey.Testing
     public class AcceptanceTestScaffold
     {
         private static bool _environmentVariablesRegistered = false;
-        private static object _loadingAppVariablesLock = new object();
+        private static readonly object LoadingAppVariablesLock = new object();
 
         /// <summary>
         /// Setup the scaffold with the default TestFunctionHostBuilder
@@ -77,12 +76,10 @@ namespace FunctionMonkey.Testing
             beforeBuild?.Invoke(serviceCollection, commandRegistry);
 
             functionAppConfiguration.Build(testFunctionHostBuilder);
-
+            
             afterBuild?.Invoke(serviceCollection, commandRegistry);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
-
-            Dispatcher = ServiceProvider.GetService<ICommandDispatcher>();
         }
 
         /// <summary>
@@ -94,6 +91,7 @@ namespace FunctionMonkey.Testing
             serviceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinderMock>();
             serviceCollection.AddTransient<IContextSetter, ContextManagerMock>();
             serviceCollection.AddTransient<IContextProvider, ContextManagerMock>();
+            serviceCollection.AddTransient<ValidatingDispatcher>();
         }
 
         /// <summary>
@@ -131,7 +129,7 @@ namespace FunctionMonkey.Testing
 
         private static void SetEnvironmentVariables(Stream appSettings, bool oneTimeOnly)
         {
-            lock (_loadingAppVariablesLock)
+            lock (LoadingAppVariablesLock)
             {
                 if (_environmentVariablesRegistered && oneTimeOnly)
                 {
@@ -171,9 +169,20 @@ namespace FunctionMonkey.Testing
         public IServiceProvider ServiceProvider { get; private set; }
 
         /// <summary>
-        /// A convenience property to provide easy access to the registered ICommandDispatcher
+        /// Provides access to the command dispatcher registered in the service provider but wrapped
+        /// in a decorator that implements validation.
         /// </summary>
-        public ICommandDispatcher Dispatcher { get; private set; }
+        public ICommandDispatcher Dispatcher
+        {
+            get
+            {
+                //IValidator validator = ServiceProvider.GetService<IValidator>();
+                //ICommandDispatcher registeredDispatcher = ServiceProvider.GetService<ICommandDispatcher>();
+                //ValidatingDispatcher validatingDispatcher = new ValidatingDispatcher(registeredDispatcher, validator);
+                ValidatingDispatcher validatingDispatcher = ServiceProvider.GetService<ValidatingDispatcher>();
+                return validatingDispatcher;
+            }
+        }        
     }
 }
 

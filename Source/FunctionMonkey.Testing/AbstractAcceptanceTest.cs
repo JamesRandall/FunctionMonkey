@@ -80,7 +80,8 @@ namespace FunctionMonkey.Testing
         public IServiceProvider ServiceProvider => _scaffold.ServiceProvider;
 
         /// <summary>
-        /// A convenience property to provide easy access to the registered ICommandDispatcher
+        /// Provides access to the command dispatcher registered in the service provider but wrapped
+        /// in a decorator that implements validation.
         /// </summary>
         public ICommandDispatcher Dispatcher => _scaffold.Dispatcher;
     }

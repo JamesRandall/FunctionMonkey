@@ -42,6 +42,7 @@ namespace FunctionMonkey.Testing
 
         public IFunctionHostBuilder AddValidator<TValidator>() where TValidator : IValidator
         {
+            _serviceCollection.AddTransient(typeof(IValidator), typeof(TValidator));
             return this;
         }
 
