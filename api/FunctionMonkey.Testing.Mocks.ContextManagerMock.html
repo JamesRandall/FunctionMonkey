@@ -84,14 +84,13 @@ any set contexts when tests are running in parallel</p>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="FunctionMonkey.Abstractions.IContextSetter.html">IContextSetter</a></div>
-    <div><a class="xref" href="FunctionMonkey.Abstractions.IContextProvider.html">IContextProvider</a></div>
+    <div><span class="xref">IContextProvider</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Testing.Mocks.html">FunctionMonkey.Testing.Mocks</a></h6>
   <h6><strong>Assembly</strong>: FunctionMonkey.Testing.dll</h6>
   <h5 id="FunctionMonkey_Testing_Mocks_ContextManagerMock_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ContextManagerMock : object, IContextSetter, IContextProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class ContextManagerMock : IContextSetter, IContextProvider</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -120,7 +119,7 @@ any set contexts when tests are running in parallel</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.BlobContext.html">BlobContext</a></td>
+        <td><span class="xref">BlobContext</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -150,7 +149,7 @@ any set contexts when tests are running in parallel</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.EventHubContext.html">EventHubContext</a></td>
+        <td><span class="xref">EventHubContext</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -168,7 +167,7 @@ any set contexts when tests are running in parallel</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ExecutionContext ExecutionContext { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Abstractions.Contexts.ExecutionContext ExecutionContext { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -210,7 +209,7 @@ any set contexts when tests are running in parallel</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.HttpContext.html">HttpContext</a></td>
+        <td><span class="xref">HttpContext</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -240,7 +239,7 @@ any set contexts when tests are running in parallel</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.ServiceBusContext.html">ServiceBusContext</a></td>
+        <td><span class="xref">ServiceBusContext</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -270,7 +269,7 @@ any set contexts when tests are running in parallel</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Contexts.StorageQueueContext.html">StorageQueueContext</a></td>
+        <td><span class="xref">StorageQueueContext</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -316,10 +315,7 @@ any set contexts when tests are running in parallel</p>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.IContextSetter.html">IContextSetter</a>
-  </div>
-  <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.IContextProvider.html">IContextProvider</a>
+      <span class="xref">IContextProvider</span>
   </div>
 <div id="disqus_thread"></div>
             </article>

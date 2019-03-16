@@ -3288,13 +3288,13 @@ references:
   fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator(Of TValidator)()
   nameWithType: TestFunctionHostBuilder.AddValidator<TValidator>()
   nameWithType.vb: TestFunctionHostBuilder.AddValidator(Of TValidator)()
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action{FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder})
+- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action{IAuthorizationBuilder})
   name: Authorization(Action<IAuthorizationBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Authorization_Action_FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action{FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder})
+  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Authorization_Action_IAuthorizationBuilder__
+  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action{IAuthorizationBuilder})
   name.vb: Authorization(Action(Of IAuthorizationBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action<FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action(Of FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder))
+  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action<IAuthorizationBuilder>)
+  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action(Of IAuthorizationBuilder))
   nameWithType: TestFunctionHostBuilder.Authorization(Action<IAuthorizationBuilder>)
   nameWithType.vb: TestFunctionHostBuilder.Authorization(Action(Of IAuthorizationBuilder))
 - uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization*
@@ -3304,11 +3304,11 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization
   nameWithType: TestFunctionHostBuilder.Authorization
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration)
+- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
   name: DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_DefaultHttpHeaderBindingConfiguration_FunctionMonkey_Abstractions_Builders_Model_HeaderBindingConfiguration_
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration)
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration)
+  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_DefaultHttpHeaderBindingConfiguration_HeaderBindingConfiguration_
+  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
+  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
   nameWithType: TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
 - uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration*
   name: DefaultHttpHeaderBindingConfiguration
@@ -3333,13 +3333,13 @@ references:
   fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
   nameWithType: TestFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
   nameWithType.vb: TestFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action{FunctionMonkey.Abstractions.Builders.IFunctionBuilder})
+- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action{IFunctionBuilder})
   name: Functions(Action<IFunctionBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Functions_Action_FunctionMonkey_Abstractions_Builders_IFunctionBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action{FunctionMonkey.Abstractions.Builders.IFunctionBuilder})
+  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Functions_Action_IFunctionBuilder__
+  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action{IFunctionBuilder})
   name.vb: Functions(Action(Of IFunctionBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action<FunctionMonkey.Abstractions.Builders.IFunctionBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action(Of FunctionMonkey.Abstractions.Builders.IFunctionBuilder))
+  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action<IFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action(Of IFunctionBuilder))
   nameWithType: TestFunctionHostBuilder.Functions(Action<IFunctionBuilder>)
   nameWithType.vb: TestFunctionHostBuilder.Functions(Action(Of IFunctionBuilder))
 - uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions*
@@ -3349,13 +3349,13 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions
   nameWithType: TestFunctionHostBuilder.Functions
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action{FunctionMonkey.Abstractions.Builders.IOpenApiBuilder})
+- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action{IOpenApiBuilder})
   name: OpenApiEndpoint(Action<IOpenApiBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_OpenApiEndpoint_Action_FunctionMonkey_Abstractions_Builders_IOpenApiBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action{FunctionMonkey.Abstractions.Builders.IOpenApiBuilder})
+  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_OpenApiEndpoint_Action_IOpenApiBuilder__
+  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action{IOpenApiBuilder})
   name.vb: OpenApiEndpoint(Action(Of IOpenApiBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action<FunctionMonkey.Abstractions.Builders.IOpenApiBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action(Of FunctionMonkey.Abstractions.Builders.IOpenApiBuilder))
+  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action<IOpenApiBuilder>)
+  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action(Of IOpenApiBuilder))
   nameWithType: TestFunctionHostBuilder.OpenApiEndpoint(Action<IOpenApiBuilder>)
   nameWithType.vb: TestFunctionHostBuilder.OpenApiEndpoint(Action(Of IOpenApiBuilder))
 - uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint*
@@ -3378,13 +3378,13 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource
   nameWithType: TestFunctionHostBuilder.OutputAuthoredSource
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
+- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{ISerializationBuilder})
   name: Serialization(Action<ISerializationBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Serialization_Action_FunctionMonkey_Abstractions_Builders_ISerializationBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
+  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Serialization_Action_ISerializationBuilder__
+  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{ISerializationBuilder})
   name.vb: Serialization(Action(Of ISerializationBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action<FunctionMonkey.Abstractions.Builders.ISerializationBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action(Of FunctionMonkey.Abstractions.Builders.ISerializationBuilder))
+  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action<ISerializationBuilder>)
+  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action(Of ISerializationBuilder))
   nameWithType: TestFunctionHostBuilder.Serialization(Action<ISerializationBuilder>)
   nameWithType.vb: TestFunctionHostBuilder.Serialization(Action(Of ISerializationBuilder))
 - uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization*
@@ -3410,6 +3410,92 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Setup
   nameWithType: TestFunctionHostBuilder.Setup
+- uid: FunctionMonkey.Testing.ValidatingDispatcher
+  name: ValidatingDispatcher
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html
+  commentId: T:FunctionMonkey.Testing.ValidatingDispatcher
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher
+  nameWithType: ValidatingDispatcher
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.#ctor(ICommandDispatcher,IValidator)
+  name: ValidatingDispatcher(ICommandDispatcher, IValidator)
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher__ctor_ICommandDispatcher_IValidator_
+  commentId: M:FunctionMonkey.Testing.ValidatingDispatcher.#ctor(ICommandDispatcher,IValidator)
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.ValidatingDispatcher(ICommandDispatcher, IValidator)
+  nameWithType: ValidatingDispatcher.ValidatingDispatcher(ICommandDispatcher, IValidator)
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.#ctor*
+  name: ValidatingDispatcher
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher__ctor_
+  commentId: Overload:FunctionMonkey.Testing.ValidatingDispatcher.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.ValidatingDispatcher
+  nameWithType: ValidatingDispatcher.ValidatingDispatcher
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.AssociatedExecuter
+  name: AssociatedExecuter
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher_AssociatedExecuter
+  commentId: P:FunctionMonkey.Testing.ValidatingDispatcher.AssociatedExecuter
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.AssociatedExecuter
+  nameWithType: ValidatingDispatcher.AssociatedExecuter
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.AssociatedExecuter*
+  name: AssociatedExecuter
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher_AssociatedExecuter_
+  commentId: Overload:FunctionMonkey.Testing.ValidatingDispatcher.AssociatedExecuter
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.AssociatedExecuter
+  nameWithType: ValidatingDispatcher.AssociatedExecuter
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync(ICommand,CancellationToken)
+  name: DispatchAsync(ICommand, CancellationToken)
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher_DispatchAsync_ICommand_CancellationToken_
+  commentId: M:FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync(ICommand,CancellationToken)
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync(ICommand, CancellationToken)
+  nameWithType: ValidatingDispatcher.DispatchAsync(ICommand, CancellationToken)
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync*
+  name: DispatchAsync
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher_DispatchAsync_
+  commentId: Overload:FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync
+  nameWithType: ValidatingDispatcher.DispatchAsync
+- uid: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync``1(ICommand{``0},CancellationToken)
+  name: DispatchAsync<TResult>(ICommand<TResult>, CancellationToken)
+  href: api/FunctionMonkey.Testing.ValidatingDispatcher.html#FunctionMonkey_Testing_ValidatingDispatcher_DispatchAsync__1_ICommand___0__CancellationToken_
+  commentId: M:FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync``1(ICommand{``0},CancellationToken)
+  name.vb: DispatchAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
+  fullName: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync<TResult>(ICommand<TResult>, CancellationToken)
+  fullName.vb: FunctionMonkey.Testing.ValidatingDispatcher.DispatchAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
+  nameWithType: ValidatingDispatcher.DispatchAsync<TResult>(ICommand<TResult>, CancellationToken)
+  nameWithType.vb: ValidatingDispatcher.DispatchAsync(Of TResult)(ICommand(Of TResult), CancellationToken)
+- uid: FunctionMonkey.Testing.ValidationException
+  name: ValidationException
+  href: api/FunctionMonkey.Testing.ValidationException.html
+  commentId: T:FunctionMonkey.Testing.ValidationException
+  fullName: FunctionMonkey.Testing.ValidationException
+  nameWithType: ValidationException
+- uid: FunctionMonkey.Testing.ValidationException.#ctor(ValidationResult)
+  name: ValidationException(ValidationResult)
+  href: api/FunctionMonkey.Testing.ValidationException.html#FunctionMonkey_Testing_ValidationException__ctor_ValidationResult_
+  commentId: M:FunctionMonkey.Testing.ValidationException.#ctor(ValidationResult)
+  fullName: FunctionMonkey.Testing.ValidationException.ValidationException(ValidationResult)
+  nameWithType: ValidationException.ValidationException(ValidationResult)
+- uid: FunctionMonkey.Testing.ValidationException.#ctor*
+  name: ValidationException
+  href: api/FunctionMonkey.Testing.ValidationException.html#FunctionMonkey_Testing_ValidationException__ctor_
+  commentId: Overload:FunctionMonkey.Testing.ValidationException.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.ValidationException.ValidationException
+  nameWithType: ValidationException.ValidationException
+- uid: FunctionMonkey.Testing.ValidationException.ValidationResult
+  name: ValidationResult
+  href: api/FunctionMonkey.Testing.ValidationException.html#FunctionMonkey_Testing_ValidationException_ValidationResult
+  commentId: P:FunctionMonkey.Testing.ValidationException.ValidationResult
+  fullName: FunctionMonkey.Testing.ValidationException.ValidationResult
+  nameWithType: ValidationException.ValidationResult
+- uid: FunctionMonkey.Testing.ValidationException.ValidationResult*
+  name: ValidationResult
+  href: api/FunctionMonkey.Testing.ValidationException.html#FunctionMonkey_Testing_ValidationException_ValidationResult_
+  commentId: Overload:FunctionMonkey.Testing.ValidationException.ValidationResult
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.ValidationException.ValidationResult
+  nameWithType: ValidationException.ValidationResult
 - uid: FunctionMonkey.TypeLoadingException
   name: TypeLoadingException
   href: api/FunctionMonkey.TypeLoadingException.html

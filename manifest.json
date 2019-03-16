@@ -957,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html",
-          "hash": "f23LSxAgsi0+wP7n9JeYFg=="
+          "hash": "yc0BKwKFQpNHvde7clMlFA=="
         }
       },
       "is_incremental": false,
@@ -969,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.AbstractAcceptanceTest.html",
-          "hash": "4Tm9o4hjOs6M4MqfMqD6LQ=="
+          "hash": "nDA+5Z1S4K3yMmaqJpReOg=="
         }
       },
       "is_incremental": false,
@@ -981,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.AcceptanceTestScaffold.html",
-          "hash": "p2UNp8jAc5m71Is5A2NW+Q=="
+          "hash": "75iOjTligm0wg6cNoLnNFA=="
         }
       },
       "is_incremental": false,
@@ -993,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html",
-          "hash": "CPrVLizoH2m+ChxIV6lmsw=="
+          "hash": "6Y4fakJQjMH1kI6Yw8LniQ=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.Mocks.ContextManagerMock.html",
-          "hash": "gQclkO6pC3iKbe9LEAoVQg=="
+          "hash": "zQ45b8lc/AFGCItTFbOD0g=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +1029,31 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.TestFunctionHostBuilder.html",
-          "hash": "Xfww/h8xSeRCnUt5+meCcQ=="
+          "hash": "hc5d8KitoTeLtW5LQ8jLbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.ValidatingDispatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.ValidatingDispatcher.html",
+          "hash": "a9sJU7Yj+P7WQ3FcmL9Hqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Testing.ValidationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Testing.ValidationException.html",
+          "hash": "33aDo+7POb/MTKtizd6r6Q=="
         }
       },
       "is_incremental": false,
@@ -1041,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Testing.html",
-          "hash": "81vGbQOuhjcHT6lncYzwLw=="
+          "hash": "NEPSAttVC/0YgUxmJqn9eA=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1113,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "kx2kfplWZ7tP1OIUzYflMw=="
+          "hash": "57AxPgzfPJsDDI3qj9LSVg=="
         }
       },
       "is_incremental": false,
@@ -1576,7 +1600,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 89,
+          "total_file_count": 91,
           "skipped_file_count": 0
         }
       }
