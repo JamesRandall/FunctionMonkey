@@ -20,7 +20,7 @@ namespace FunctionMonkey.Testing.Tests
             });
 
             Assert.Equal(200, httpResponse.StatusCode);
-            SimpleResponse result = httpResponse.Body.DeserializeObject<SimpleResponse>();
+            SimpleResponse result = httpResponse.GetJson<SimpleResponse>();
             Assert.Equal(1, result.Value);
             Assert.Equal("success", result.Message);
         }
@@ -31,7 +31,7 @@ namespace FunctionMonkey.Testing.Tests
             HttpResponse httpResponse = await ExecuteHttpAsync(new HttpCommandWithResultAndValidatorThatPasses());
 
             Assert.Equal(200, httpResponse.StatusCode);
-            SimpleResponse result = httpResponse.Body.DeserializeObject<SimpleResponse>();
+            SimpleResponse result = httpResponse.GetJson<SimpleResponse>();
             Assert.Equal(1, result.Value);
             Assert.Equal("success", result.Message);
         }
@@ -42,7 +42,7 @@ namespace FunctionMonkey.Testing.Tests
             HttpResponse httpResponse = await ExecuteHttpAsync(new HttpCommandWithResultAndValidatorThatFails());
 
             Assert.Equal(400, httpResponse.StatusCode);
-            ValidationResult validationResult = httpResponse.Body.DeserializeObject<ValidationResult>();
+            ValidationResult validationResult = httpResponse.GetJson<ValidationResult>();
             Assert.False(validationResult.IsValid);
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.Property == "Value"));
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.ErrorCode == "NotEqualValidator"));
@@ -75,7 +75,7 @@ namespace FunctionMonkey.Testing.Tests
             HttpResponse httpResponse = await ExecuteHttpAsync(new HttpCommandWithNoResultAndValidatorThatFails());
 
             Assert.Equal(400, httpResponse.StatusCode);
-            ValidationResult validationResult = httpResponse.Body.DeserializeObject<ValidationResult>();
+            ValidationResult validationResult = httpResponse.GetJson<ValidationResult>();
             Assert.False(validationResult.IsValid);
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.Property == "Value"));
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.ErrorCode == "NotEqualValidator"));

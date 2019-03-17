@@ -31,7 +31,9 @@ namespace FunctionMonkey
             
         }
 
-        public RuntimeInstance(Assembly functionAppConfigurationAssembly, Action<IServiceCollection, ICommandRegistry> beforeBuild, Action<IServiceCollection, ICommandRegistry> afterBuild)
+        public RuntimeInstance(Assembly functionAppConfigurationAssembly,
+            Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild,
+            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild)
         {
             // Find the configuration implementation and service collection
             IFunctionAppConfiguration configuration = LocateConfiguration(functionAppConfigurationAssembly);
@@ -61,8 +63,6 @@ namespace FunctionMonkey
             // Register internal implementations
             RegisterInternalImplementations();
 
-            beforeBuild?.Invoke(ServiceCollection, commandRegistry);
-
             // Invoke the builder process
             FunctionHostBuilder builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
             Builder = builder;
@@ -76,12 +76,14 @@ namespace FunctionMonkey
 
             RegisterHttpDependencies(builder.FunctionDefinitions);
 
-            RegisterCosmosDependencies(builder.FunctionDefinitions);            
+            RegisterCosmosDependencies(builder.FunctionDefinitions);
 
+            beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
-            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
-            afterBuild?.Invoke(ServiceCollection, commandRegistry);
+            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            
         }
 
         private void RegisterCosmosDependencies(

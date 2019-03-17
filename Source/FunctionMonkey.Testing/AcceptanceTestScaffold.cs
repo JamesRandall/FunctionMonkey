@@ -30,16 +30,16 @@ namespace FunctionMonkey.Testing
         /// <summary>
         /// Setup the scaffold with a IFunctionHostBuilder
         /// </summary>
-        /// <param name="beforeBuild">An optional function to run before the Build method is called on the Function App configuration</param>
-        /// <param name="afterBuild">An optional function to run before the Build method is called after the Function App configuration</param>
+        /// <param name="beforeServiceProviderBuild">An optional function to run before the Build method is called on the Function App configuration</param>
+        /// <param name="afterServiceProviderBuild">An optional function to run before the Build method is called after the Function App configuration</param>
         /// /// <param name="functionAppConfigurationAssembly">If your Function App Configuration cannot be found you may need to provide the assembly it is located within to the setup - this is due to the as needed dependency loader and that a method setup based test may not yet have needed the required assembly.</param>
         public void Setup(
             Assembly functionAppConfigurationAssembly = null,
-            Action<IServiceCollection, ICommandRegistry> beforeBuild = null,
-            Action<IServiceCollection, ICommandRegistry> afterBuild = null
+            Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild = null,
+            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild = null
         )
         {
-            _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeBuild, afterBuild);
+            _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeServiceProviderBuild, afterServiceProviderBuild);
         }
 
         /// <summary>

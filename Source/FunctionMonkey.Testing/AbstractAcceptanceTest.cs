@@ -27,7 +27,7 @@ namespace FunctionMonkey.Testing
 
         protected AbstractAcceptanceTest()
         {
-            _scaffold.Setup(null, BeforeBuild, AfterBuild);
+            _scaffold.Setup(null, BeforeServiceProviderBuild, AfterServiceProviderBuild);
         }
 
         /// <summary>
@@ -49,29 +49,25 @@ namespace FunctionMonkey.Testing
         }
 
         /// <summary>
-        /// This method can be used to modify dependency and command setup before the Function App Configuration
-        /// builder has been run and before tests are run.
+        /// This method can be used to modify dependency and command setup before the service provider has been built
+        /// from the service collection.
         /// 
         /// This must not access members (and should not need to) as it is invoked from the constructor to
         /// support test frameworks such as XUnit that construct test cases this way.
         /// </summary>
-        /// <param name="serviceCollection"></param>
-        /// <param name="commandRegistry"></param>
-        public virtual void BeforeBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)
+        public virtual void BeforeServiceProviderBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)
         {
 
         }
 
         /// <summary>
-        /// This method can be used to modify dependency and command setup after the Function App Configuration
-        /// builder has been run and before tests are run.
+        /// This method can be used to modify dependency and command setup before the service provider has been built
+        /// from the service collection.
         /// 
         /// This must not access members (and should not need to) as it is invoked from the constructor to
         /// support test frameworks such as XUnit that construct test cases this way.
         /// </summary>
-        /// <param name="serviceCollection"></param>
-        /// <param name="commandRegistry"></param>
-        public virtual void AfterBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)
+        public virtual void AfterServiceProviderBuild(IServiceProvider serviceProvider, ICommandRegistry commandRegistry)
         {
 
         }
