@@ -366,6 +366,19 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
   nameWithType: IFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
   nameWithType.vb: IFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions
+  name: FunctionDefinitions
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_FunctionDefinitions
+  commentId: P:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions
+  nameWithType: IFunctionHostBuilder.FunctionDefinitions
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions*
+  name: FunctionDefinitions
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_FunctionDefinitions_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions
+  nameWithType: IFunctionHostBuilder.FunctionDefinitions
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions(Action{FunctionMonkey.Abstractions.Builders.IFunctionBuilder})
   name: Functions(Action<IFunctionBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Functions_Action_FunctionMonkey_Abstractions_Builders_IFunctionBuilder__
@@ -1013,6 +1026,233 @@ references:
   commentId: N:FunctionMonkey.Abstractions.Builders.Model
   fullName: FunctionMonkey.Abstractions.Builders.Model
   nameWithType: FunctionMonkey.Abstractions.Builders.Model
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition
+  name: AbstractFunctionDefinition
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition
+  nameWithType: AbstractFunctionDefinition
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor(System.String,Type)
+  name: AbstractFunctionDefinition(String, Type)
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition__ctor_System_String_Type_
+  commentId: M:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor(System.String,Type)
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AbstractFunctionDefinition(System.String, Type)
+  nameWithType: AbstractFunctionDefinition.AbstractFunctionDefinition(String, Type)
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor*
+  name: AbstractFunctionDefinition
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition__ctor_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AbstractFunctionDefinition
+  nameWithType: AbstractFunctionDefinition.AbstractFunctionDefinition
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AssemblyName
+  name: AssemblyName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_AssemblyName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AssemblyName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AssemblyName
+  nameWithType: AbstractFunctionDefinition.AssemblyName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AssemblyName*
+  name: AssemblyName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_AssemblyName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AssemblyName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AssemblyName
+  nameWithType: AbstractFunctionDefinition.AssemblyName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeseriaizerTypeName
+  name: CommandDeseriaizerTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandDeseriaizerTypeName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeseriaizerTypeName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeseriaizerTypeName
+  nameWithType: AbstractFunctionDefinition.CommandDeseriaizerTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeseriaizerTypeName*
+  name: CommandDeseriaizerTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandDeseriaizerTypeName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeseriaizerTypeName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeseriaizerTypeName
+  nameWithType: AbstractFunctionDefinition.CommandDeseriaizerTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeserializerType
+  name: CommandDeserializerType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandDeserializerType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeserializerType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeserializerType
+  nameWithType: AbstractFunctionDefinition.CommandDeserializerType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeserializerType*
+  name: CommandDeserializerType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandDeserializerType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeserializerType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandDeserializerType
+  nameWithType: AbstractFunctionDefinition.CommandDeserializerType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandHasResult
+  name: CommandHasResult
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandHasResult
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandHasResult
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandHasResult
+  nameWithType: AbstractFunctionDefinition.CommandHasResult
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandHasResult*
+  name: CommandHasResult
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandHasResult_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandHasResult
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandHasResult
+  nameWithType: AbstractFunctionDefinition.CommandHasResult
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType
+  name: CommandResultType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType
+  nameWithType: AbstractFunctionDefinition.CommandResultType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType*
+  name: CommandResultType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType
+  nameWithType: AbstractFunctionDefinition.CommandResultType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName
+  name: CommandResultTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultTypeName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName
+  nameWithType: AbstractFunctionDefinition.CommandResultTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName*
+  name: CommandResultTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultTypeName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName
+  nameWithType: AbstractFunctionDefinition.CommandResultTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType
+  name: CommandType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType
+  nameWithType: AbstractFunctionDefinition.CommandType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType*
+  name: CommandType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType
+  nameWithType: AbstractFunctionDefinition.CommandType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
+  name: CommandTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandTypeName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
+  nameWithType: AbstractFunctionDefinition.CommandTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName*
+  name: CommandTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandTypeName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
+  nameWithType: AbstractFunctionDefinition.CommandTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType
+  name: DeserializerNamingStrategyType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializerNamingStrategyType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType
+  nameWithType: AbstractFunctionDefinition.DeserializerNamingStrategyType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType*
+  name: DeserializerNamingStrategyType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializerNamingStrategyType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType
+  nameWithType: AbstractFunctionDefinition.DeserializerNamingStrategyType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+  name: DeserializerNamingStrategyTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializerNamingStrategyTypeName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+  nameWithType: AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName*
+  name: DeserializerNamingStrategyTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializerNamingStrategyTypeName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+  nameWithType: AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
+  name: FunctionClassTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionClassTypeName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
+  nameWithType: AbstractFunctionDefinition.FunctionClassTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName*
+  name: FunctionClassTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionClassTypeName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
+  nameWithType: AbstractFunctionDefinition.FunctionClassTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
+  name: IsUsingValidator
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsUsingValidator
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
+  nameWithType: AbstractFunctionDefinition.IsUsingValidator
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator*
+  name: IsUsingValidator
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsUsingValidator_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
+  nameWithType: AbstractFunctionDefinition.IsUsingValidator
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name
+  name: Name
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_Name
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name
+  nameWithType: AbstractFunctionDefinition.Name
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name*
+  name: Name
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_Name_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name
+  nameWithType: AbstractFunctionDefinition.Name
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Namespace
+  name: Namespace
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_Namespace
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Namespace
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Namespace
+  nameWithType: AbstractFunctionDefinition.Namespace
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Namespace*
+  name: Namespace
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_Namespace_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Namespace
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Namespace
+  nameWithType: AbstractFunctionDefinition.Namespace
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType
+  name: SerializerNamingStrategyType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializerNamingStrategyType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType
+  nameWithType: AbstractFunctionDefinition.SerializerNamingStrategyType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType*
+  name: SerializerNamingStrategyType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializerNamingStrategyType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType
+  nameWithType: AbstractFunctionDefinition.SerializerNamingStrategyType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+  name: SerializerNamingStrategyTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializerNamingStrategyTypeName
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+  nameWithType: AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName*
+  name: SerializerNamingStrategyTypeName
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializerNamingStrategyTypeName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+  nameWithType: AbstractFunctionDefinition.SerializerNamingStrategyTypeName
 - uid: FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration
   name: HeaderBindingConfiguration
   href: api/FunctionMonkey.Abstractions.Builders.Model.HeaderBindingConfiguration.html
@@ -1373,6 +1613,44 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.StorageQueueContext.QueueTrigger
   nameWithType: StorageQueueContext.QueueTrigger
+- uid: FunctionMonkey.Abstractions.Extensions
+  name: FunctionMonkey.Abstractions.Extensions
+  href: api/FunctionMonkey.Abstractions.Extensions.html
+  commentId: N:FunctionMonkey.Abstractions.Extensions
+  fullName: FunctionMonkey.Abstractions.Extensions
+  nameWithType: FunctionMonkey.Abstractions.Extensions
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions
+  name: TypeExtensions
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html
+  commentId: T:FunctionMonkey.Abstractions.Extensions.TypeExtensions
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions
+  nameWithType: TypeExtensions
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.EvaluateType(Type)
+  name: EvaluateType(Type)
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_EvaluateType_Type_
+  commentId: M:FunctionMonkey.Abstractions.Extensions.TypeExtensions.EvaluateType(Type)
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.EvaluateType(Type)
+  nameWithType: TypeExtensions.EvaluateType(Type)
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.EvaluateType*
+  name: EvaluateType
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_EvaluateType_
+  commentId: Overload:FunctionMonkey.Abstractions.Extensions.TypeExtensions.EvaluateType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.EvaluateType
+  nameWithType: TypeExtensions.EvaluateType
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName(Type)
+  name: GetFunctionName(Type)
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_GetFunctionName_Type_
+  commentId: M:FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName(Type)
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName(Type)
+  nameWithType: TypeExtensions.GetFunctionName(Type)
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName*
+  name: GetFunctionName
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_GetFunctionName_
+  commentId: Overload:FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName
+  nameWithType: TypeExtensions.GetFunctionName
 - uid: FunctionMonkey.Abstractions.Http
   name: FunctionMonkey.Abstractions.Http
   href: api/FunctionMonkey.Abstractions.Http.html
@@ -1933,6 +2211,136 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder.Options
   nameWithType: CosmosDbFunctionOptionBuilder.Options
+- uid: FunctionMonkey.Builders.FunctionBuilder
+  name: FunctionBuilder
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html
+  commentId: T:FunctionMonkey.Builders.FunctionBuilder
+  fullName: FunctionMonkey.Builders.FunctionBuilder
+  nameWithType: FunctionBuilder
+- uid: FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name: CosmosDb(String, Action<ICosmosDbFunctionBuilder>)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_CosmosDb_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name.vb: CosmosDb(String, Action(Of ICosmosDbFunctionBuilder))
+  fullName: FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String, Action<FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String, Action(Of FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder))
+  nameWithType: FunctionBuilder.CosmosDb(String, Action<ICosmosDbFunctionBuilder>)
+  nameWithType.vb: FunctionBuilder.CosmosDb(String, Action(Of ICosmosDbFunctionBuilder))
+- uid: FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name: CosmosDb(String, String, Action<ICosmosDbFunctionBuilder>)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_CosmosDb_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})
+  name.vb: CosmosDb(String, String, Action(Of ICosmosDbFunctionBuilder))
+  fullName: FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String, System.String, Action<FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.CosmosDb(System.String, System.String, Action(Of FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder))
+  nameWithType: FunctionBuilder.CosmosDb(String, String, Action<ICosmosDbFunctionBuilder>)
+  nameWithType.vb: FunctionBuilder.CosmosDb(String, String, Action(Of ICosmosDbFunctionBuilder))
+- uid: FunctionMonkey.Builders.FunctionBuilder.CosmosDb*
+  name: CosmosDb
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_CosmosDb_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.CosmosDb
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.CosmosDb
+  nameWithType: FunctionBuilder.CosmosDb
+- uid: FunctionMonkey.Builders.FunctionBuilder.Definitions
+  name: Definitions
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Definitions
+  commentId: P:FunctionMonkey.Builders.FunctionBuilder.Definitions
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Definitions
+  nameWithType: FunctionBuilder.Definitions
+- uid: FunctionMonkey.Builders.FunctionBuilder.Definitions*
+  name: Definitions
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Definitions_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.Definitions
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Definitions
+  nameWithType: FunctionBuilder.Definitions
+- uid: FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions
+  name: GetHttpFunctionDefinitions()
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_GetHttpFunctionDefinitions
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions
+  fullName: FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions()
+  nameWithType: FunctionBuilder.GetHttpFunctionDefinitions()
+- uid: FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions*
+  name: GetHttpFunctionDefinitions
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_GetHttpFunctionDefinitions_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions
+  nameWithType: FunctionBuilder.GetHttpFunctionDefinitions
+- uid: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute(String, Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_HttpRoute_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(String, Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(System.String, Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: FunctionBuilder.HttpRoute(String, Action<IHttpFunctionBuilder>)
+  nameWithType.vb: FunctionBuilder.HttpRoute(String, Action(Of IHttpFunctionBuilder))
+- uid: FunctionMonkey.Builders.FunctionBuilder.HttpRoute*
+  name: HttpRoute
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_HttpRoute_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.HttpRoute
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.HttpRoute
+  nameWithType: FunctionBuilder.HttpRoute
+- uid: FunctionMonkey.Builders.FunctionBuilder.ServiceBus(System.String,Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})
+  name: ServiceBus(String, Action<IServiceBusFunctionBuilder>)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_ServiceBus_System_String_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.ServiceBus(System.String,Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})
+  name.vb: ServiceBus(String, Action(Of IServiceBusFunctionBuilder))
+  fullName: FunctionMonkey.Builders.FunctionBuilder.ServiceBus(System.String, Action<FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.ServiceBus(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder))
+  nameWithType: FunctionBuilder.ServiceBus(String, Action<IServiceBusFunctionBuilder>)
+  nameWithType.vb: FunctionBuilder.ServiceBus(String, Action(Of IServiceBusFunctionBuilder))
+- uid: FunctionMonkey.Builders.FunctionBuilder.ServiceBus*
+  name: ServiceBus
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_ServiceBus_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.ServiceBus
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.ServiceBus
+  nameWithType: FunctionBuilder.ServiceBus
+- uid: FunctionMonkey.Builders.FunctionBuilder.Storage(System.String,Action{FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder})
+  name: Storage(String, Action<IStorageFunctionBuilder>)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Storage_System_String_Action_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder__
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.Storage(System.String,Action{FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder})
+  name.vb: Storage(String, Action(Of IStorageFunctionBuilder))
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Storage(System.String, Action<FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.Storage(System.String, Action(Of FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder))
+  nameWithType: FunctionBuilder.Storage(String, Action<IStorageFunctionBuilder>)
+  nameWithType.vb: FunctionBuilder.Storage(String, Action(Of IStorageFunctionBuilder))
+- uid: FunctionMonkey.Builders.FunctionBuilder.Storage*
+  name: Storage
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Storage_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.Storage
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Storage
+  nameWithType: FunctionBuilder.Storage
+- uid: FunctionMonkey.Builders.FunctionBuilder.Timer*
+  name: Timer
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Timer_
+  commentId: Overload:FunctionMonkey.Builders.FunctionBuilder.Timer
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Timer
+  nameWithType: FunctionBuilder.Timer
+- uid: FunctionMonkey.Builders.FunctionBuilder.Timer``1(System.String)
+  name: Timer<TCommand>(String)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Timer__1_System_String_
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.Timer``1(System.String)
+  name.vb: Timer(Of TCommand)(String)
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Timer<TCommand>(System.String)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.Timer(Of TCommand)(System.String)
+  nameWithType: FunctionBuilder.Timer<TCommand>(String)
+  nameWithType.vb: FunctionBuilder.Timer(Of TCommand)(String)
+- uid: FunctionMonkey.Builders.FunctionBuilder.Timer``2(System.String)
+  name: Timer<TCommand, TTimerCommandFactoryType>(String)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_Timer__2_System_String_
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.Timer``2(System.String)
+  name.vb: Timer(Of TCommand, TTimerCommandFactoryType)(String)
+  fullName: FunctionMonkey.Builders.FunctionBuilder.Timer<TCommand, TTimerCommandFactoryType>(System.String)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(System.String)
+  nameWithType: FunctionBuilder.Timer<TCommand, TTimerCommandFactoryType>(String)
+  nameWithType.vb: FunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(String)
 - uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1
   name: HttpFunctionOptionsBuilder<TCommand>
   href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html
@@ -2108,11 +2516,11 @@ references:
   commentId: T:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder
   fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder
   nameWithType: ServiceBusFunctionOptionBuilder
-- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
+- uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder,FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
   name: ServiceBusFunctionOptionBuilder(IServiceBusFunctionBuilder, AbstractFunctionDefinition)
-  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_FunctionMonkey_Model_AbstractFunctionDefinition_
-  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
-  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder, FunctionMonkey.Model.AbstractFunctionDefinition)
+  href: api/FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.html#FunctionMonkey_Builders_ServiceBusFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder_FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_
+  commentId: M:FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder,FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
+  fullName: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder, FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
   nameWithType: ServiceBusFunctionOptionBuilder.ServiceBusFunctionOptionBuilder(IServiceBusFunctionBuilder, AbstractFunctionDefinition)
 - uid: FunctionMonkey.Builders.ServiceBusFunctionOptionBuilder.#ctor*
   name: ServiceBusFunctionOptionBuilder
@@ -2191,11 +2599,11 @@ references:
   commentId: T:FunctionMonkey.Builders.StorageFunctionOptionBuilder
   fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder
   nameWithType: StorageFunctionOptionBuilder
-- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder,FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
   name: StorageFunctionOptionBuilder(IStorageFunctionBuilder, AbstractFunctionDefinition)
-  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_FunctionMonkey_Model_AbstractFunctionDefinition_
-  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder,FunctionMonkey.Model.AbstractFunctionDefinition)
-  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.StorageFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder, FunctionMonkey.Model.AbstractFunctionDefinition)
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder__ctor_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_
+  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder,FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder.StorageFunctionOptionBuilder(FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder, FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
   nameWithType: StorageFunctionOptionBuilder.StorageFunctionOptionBuilder(IStorageFunctionBuilder, AbstractFunctionDefinition)
 - uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder.#ctor*
   name: StorageFunctionOptionBuilder
@@ -2744,15 +3152,96 @@ references:
 - uid: FunctionMonkey.Runtime.FunctionProvidedLogger
   name: FunctionProvidedLogger
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_FunctionProvidedLogger
-  commentId: F:FunctionMonkey.Runtime.FunctionProvidedLogger
+  commentId: P:FunctionMonkey.Runtime.FunctionProvidedLogger
+  fullName: FunctionMonkey.Runtime.FunctionProvidedLogger
+  nameWithType: Runtime.FunctionProvidedLogger
+- uid: FunctionMonkey.Runtime.FunctionProvidedLogger*
+  name: FunctionProvidedLogger
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_FunctionProvidedLogger_
+  commentId: Overload:FunctionMonkey.Runtime.FunctionProvidedLogger
+  isSpec: "True"
   fullName: FunctionMonkey.Runtime.FunctionProvidedLogger
   nameWithType: Runtime.FunctionProvidedLogger
 - uid: FunctionMonkey.Runtime.ServiceProvider
   name: ServiceProvider
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_ServiceProvider
-  commentId: F:FunctionMonkey.Runtime.ServiceProvider
+  commentId: P:FunctionMonkey.Runtime.ServiceProvider
   fullName: FunctionMonkey.Runtime.ServiceProvider
   nameWithType: Runtime.ServiceProvider
+- uid: FunctionMonkey.Runtime.ServiceProvider*
+  name: ServiceProvider
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_ServiceProvider_
+  commentId: Overload:FunctionMonkey.Runtime.ServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.Runtime.ServiceProvider
+  nameWithType: Runtime.ServiceProvider
+- uid: FunctionMonkey.RuntimeInstance
+  name: RuntimeInstance
+  href: api/FunctionMonkey.RuntimeInstance.html
+  commentId: T:FunctionMonkey.RuntimeInstance
+  fullName: FunctionMonkey.RuntimeInstance
+  nameWithType: RuntimeInstance
+- uid: FunctionMonkey.RuntimeInstance.#ctor
+  name: RuntimeInstance()
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor
+  commentId: M:FunctionMonkey.RuntimeInstance.#ctor
+  fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance()
+  nameWithType: RuntimeInstance.RuntimeInstance()
+- uid: FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})
+  name: RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceProvider_ICommandRegistry__
+  commentId: M:FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})
+  name.vb: RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
+  fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
+  fullName.vb: FunctionMonkey.RuntimeInstance.RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
+  nameWithType: RuntimeInstance.RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
+  nameWithType.vb: RuntimeInstance.RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
+- uid: FunctionMonkey.RuntimeInstance.#ctor*
+  name: RuntimeInstance
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance
+  nameWithType: RuntimeInstance.RuntimeInstance
+- uid: FunctionMonkey.RuntimeInstance.Builder
+  name: Builder
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_Builder
+  commentId: P:FunctionMonkey.RuntimeInstance.Builder
+  fullName: FunctionMonkey.RuntimeInstance.Builder
+  nameWithType: RuntimeInstance.Builder
+- uid: FunctionMonkey.RuntimeInstance.Builder*
+  name: Builder
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_Builder_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.Builder
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.Builder
+  nameWithType: RuntimeInstance.Builder
+- uid: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
+  name: FunctionProvidedLogger
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionProvidedLogger
+  commentId: P:FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
+  fullName: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
+  nameWithType: RuntimeInstance.FunctionProvidedLogger
+- uid: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger*
+  name: FunctionProvidedLogger
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionProvidedLogger_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
+  nameWithType: RuntimeInstance.FunctionProvidedLogger
+- uid: FunctionMonkey.RuntimeInstance.ServiceProvider
+  name: ServiceProvider
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_ServiceProvider
+  commentId: P:FunctionMonkey.RuntimeInstance.ServiceProvider
+  fullName: FunctionMonkey.RuntimeInstance.ServiceProvider
+  nameWithType: RuntimeInstance.ServiceProvider
+- uid: FunctionMonkey.RuntimeInstance.ServiceProvider*
+  name: ServiceProvider
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_ServiceProvider_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.ServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.ServiceProvider
+  nameWithType: RuntimeInstance.ServiceProvider
 - uid: FunctionMonkey.Serialization
   name: FunctionMonkey.Serialization
   href: api/FunctionMonkey.Serialization.html
@@ -2904,125 +3393,112 @@ references:
   commentId: T:FunctionMonkey.Testing.AbstractAcceptanceTest
   fullName: FunctionMonkey.Testing.AbstractAcceptanceTest
   nameWithType: AbstractAcceptanceTest
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1
-  name: AbstractAcceptanceTest<TFunctionHostBuilder>
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html
-  commentId: T:FunctionMonkey.Testing.AbstractAcceptanceTest`1
-  name.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder)
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder)
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder)
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.#ctor
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.#ctor
   name: AbstractAcceptanceTest()
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1__ctor
-  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest`1.#ctor
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AbstractAcceptanceTest()
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AbstractAcceptanceTest()
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AbstractAcceptanceTest()
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AbstractAcceptanceTest()
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.#ctor*
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest__ctor
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.#ctor
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AbstractAcceptanceTest()
+  nameWithType: AbstractAcceptanceTest.AbstractAcceptanceTest()
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.#ctor*
   name: AbstractAcceptanceTest
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1__ctor_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest`1.#ctor
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest__ctor_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.#ctor
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AbstractAcceptanceTest
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AbstractAcceptanceTest
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AbstractAcceptanceTest
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AbstractAcceptanceTest
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables(Stream,System.Boolean)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AbstractAcceptanceTest
+  nameWithType: AbstractAcceptanceTest.AbstractAcceptanceTest
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(Stream,System.Boolean)
   name: AddEnvironmentVariables(Stream, Boolean)
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_Stream_System_Boolean_
-  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables(Stream,System.Boolean)
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AddEnvironmentVariables(Stream, System.Boolean)
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AddEnvironmentVariables(Stream, System.Boolean)
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AddEnvironmentVariables(Stream, Boolean)
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AddEnvironmentVariables(Stream, Boolean)
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables(System.String,System.Boolean)
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_Stream_System_Boolean_
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(Stream,System.Boolean)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(Stream, System.Boolean)
+  nameWithType: AbstractAcceptanceTest.AddEnvironmentVariables(Stream, Boolean)
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(System.String,System.Boolean)
   name: AddEnvironmentVariables(String, Boolean)
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_System_String_System_Boolean_
-  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables(System.String,System.Boolean)
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AddEnvironmentVariables(System.String, System.Boolean)
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AddEnvironmentVariables(System.String, System.Boolean)
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AddEnvironmentVariables(String, Boolean)
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AddEnvironmentVariables(String, Boolean)
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables*
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_System_String_System_Boolean_
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(System.String,System.Boolean)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(System.String, System.Boolean)
+  nameWithType: AbstractAcceptanceTest.AddEnvironmentVariables(String, Boolean)
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables*
   name: AddEnvironmentVariables
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest`1.AddEnvironmentVariables
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AddEnvironmentVariables
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AddEnvironmentVariables
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AddEnvironmentVariables
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AddEnvironmentVariables
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.AfterBuild(IServiceCollection,ICommandRegistry)
-  name: AfterBuild(IServiceCollection, ICommandRegistry)
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AfterBuild_IServiceCollection_ICommandRegistry_
-  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest`1.AfterBuild(IServiceCollection,ICommandRegistry)
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AfterBuild(IServiceCollection, ICommandRegistry)
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AfterBuild(IServiceCollection, ICommandRegistry)
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AfterBuild(IServiceCollection, ICommandRegistry)
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AfterBuild(IServiceCollection, ICommandRegistry)
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.AfterBuild*
-  name: AfterBuild
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AfterBuild_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest`1.AfterBuild
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables
+  nameWithType: AbstractAcceptanceTest.AddEnvironmentVariables
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider,ICommandRegistry)
+  name: AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_IServiceProvider_ICommandRegistry_
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider,ICommandRegistry)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)
+  nameWithType: AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild*
+  name: AfterServiceProviderBuild
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.AfterBuild
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).AfterBuild
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.AfterBuild
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).AfterBuild
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.BeforeBuild(IServiceCollection,ICommandRegistry)
-  name: BeforeBuild(IServiceCollection, ICommandRegistry)
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_BeforeBuild_IServiceCollection_ICommandRegistry_
-  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest`1.BeforeBuild(IServiceCollection,ICommandRegistry)
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.BeforeBuild(IServiceCollection, ICommandRegistry)
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).BeforeBuild(IServiceCollection, ICommandRegistry)
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.BeforeBuild(IServiceCollection, ICommandRegistry)
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).BeforeBuild(IServiceCollection, ICommandRegistry)
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.BeforeBuild*
-  name: BeforeBuild
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_BeforeBuild_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest`1.BeforeBuild
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild
+  nameWithType: AbstractAcceptanceTest.AfterServiceProviderBuild
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection,ICommandRegistry)
+  name: BeforeServiceProviderBuild(IServiceCollection, ICommandRegistry)
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_IServiceCollection_ICommandRegistry_
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection,ICommandRegistry)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection, ICommandRegistry)
+  nameWithType: AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection, ICommandRegistry)
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild*
+  name: BeforeServiceProviderBuild
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.BeforeBuild
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).BeforeBuild
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.BeforeBuild
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).BeforeBuild
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.Dispatcher
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild
+  nameWithType: AbstractAcceptanceTest.BeforeServiceProviderBuild
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher
   name: Dispatcher
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_Dispatcher
-  commentId: P:FunctionMonkey.Testing.AbstractAcceptanceTest`1.Dispatcher
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.Dispatcher
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).Dispatcher
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.Dispatcher
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).Dispatcher
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.Dispatcher*
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher
+  commentId: P:FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher
+  nameWithType: AbstractAcceptanceTest.Dispatcher
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher*
   name: Dispatcher
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_Dispatcher_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest`1.Dispatcher
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.Dispatcher
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).Dispatcher
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.Dispatcher
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).Dispatcher
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.ServiceProvider
-  name: ServiceProvider
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_ServiceProvider
-  commentId: P:FunctionMonkey.Testing.AbstractAcceptanceTest`1.ServiceProvider
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.ServiceProvider
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).ServiceProvider
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.ServiceProvider
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).ServiceProvider
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest`1.ServiceProvider*
-  name: ServiceProvider
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_ServiceProvider_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest`1.ServiceProvider
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher
+  nameWithType: AbstractAcceptanceTest.Dispatcher
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand,HttpMethod)
+  name: ExecuteHttpAsync(ICommand, HttpMethod)
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_ICommand_HttpMethod_
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand,HttpMethod)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand, HttpMethod)
+  nameWithType: AbstractAcceptanceTest.ExecuteHttpAsync(ICommand, HttpMethod)
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync*
+  name: ExecuteHttpAsync
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest<TFunctionHostBuilder>.ServiceProvider
-  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest(Of TFunctionHostBuilder).ServiceProvider
-  nameWithType: AbstractAcceptanceTest<TFunctionHostBuilder>.ServiceProvider
-  nameWithType.vb: AbstractAcceptanceTest(Of TFunctionHostBuilder).ServiceProvider
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync
+  nameWithType: AbstractAcceptanceTest.ExecuteHttpAsync
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync``1(ICommand{``0},HttpMethod)
+  name: ExecuteHttpAsync<TResult>(ICommand<TResult>, HttpMethod)
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync__1_ICommand___0__HttpMethod_
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync``1(ICommand{``0},HttpMethod)
+  name.vb: ExecuteHttpAsync(Of TResult)(ICommand(Of TResult), HttpMethod)
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync<TResult>(ICommand<TResult>, HttpMethod)
+  fullName.vb: FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(Of TResult)(ICommand(Of TResult), HttpMethod)
+  nameWithType: AbstractAcceptanceTest.ExecuteHttpAsync<TResult>(ICommand<TResult>, HttpMethod)
+  nameWithType.vb: AbstractAcceptanceTest.ExecuteHttpAsync(Of TResult)(ICommand(Of TResult), HttpMethod)
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider
+  name: ServiceProvider
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider
+  commentId: P:FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider
+  nameWithType: AbstractAcceptanceTest.ServiceProvider
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider*
+  name: ServiceProvider
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider
+  nameWithType: AbstractAcceptanceTest.ServiceProvider
 - uid: FunctionMonkey.Testing.AcceptanceTestScaffold
   name: AcceptanceTestScaffold
   href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html
@@ -3061,19 +3537,28 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Dispatcher
   nameWithType: AcceptanceTestScaffold.Dispatcher
-- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.RegisterFunctionMonkeyMocks(IServiceCollection)
-  name: RegisterFunctionMonkeyMocks(IServiceCollection)
-  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_RegisterFunctionMonkeyMocks_IServiceCollection_
-  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.RegisterFunctionMonkeyMocks(IServiceCollection)
-  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.RegisterFunctionMonkeyMocks(IServiceCollection)
-  nameWithType: AcceptanceTestScaffold.RegisterFunctionMonkeyMocks(IServiceCollection)
-- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.RegisterFunctionMonkeyMocks*
-  name: RegisterFunctionMonkeyMocks
-  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_RegisterFunctionMonkeyMocks_
-  commentId: Overload:FunctionMonkey.Testing.AcceptanceTestScaffold.RegisterFunctionMonkeyMocks
+- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync(ICommand,HttpMethod)
+  name: ExecuteHttpAsync(ICommand, HttpMethod)
+  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_ExecuteHttpAsync_ICommand_HttpMethod_
+  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync(ICommand,HttpMethod)
+  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync(ICommand, HttpMethod)
+  nameWithType: AcceptanceTestScaffold.ExecuteHttpAsync(ICommand, HttpMethod)
+- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync*
+  name: ExecuteHttpAsync
+  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_ExecuteHttpAsync_
+  commentId: Overload:FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.RegisterFunctionMonkeyMocks
-  nameWithType: AcceptanceTestScaffold.RegisterFunctionMonkeyMocks
+  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync
+  nameWithType: AcceptanceTestScaffold.ExecuteHttpAsync
+- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync``1(ICommand{``0},HttpMethod)
+  name: ExecuteHttpAsync<TResult>(ICommand<TResult>, HttpMethod)
+  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_ExecuteHttpAsync__1_ICommand___0__HttpMethod_
+  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync``1(ICommand{``0},HttpMethod)
+  name.vb: ExecuteHttpAsync(Of TResult)(ICommand(Of TResult), HttpMethod)
+  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync<TResult>(ICommand<TResult>, HttpMethod)
+  fullName.vb: FunctionMonkey.Testing.AcceptanceTestScaffold.ExecuteHttpAsync(Of TResult)(ICommand(Of TResult), HttpMethod)
+  nameWithType: AcceptanceTestScaffold.ExecuteHttpAsync<TResult>(ICommand<TResult>, HttpMethod)
+  nameWithType.vb: AcceptanceTestScaffold.ExecuteHttpAsync(Of TResult)(ICommand(Of TResult), HttpMethod)
 - uid: FunctionMonkey.Testing.AcceptanceTestScaffold.ServiceProvider
   name: ServiceProvider
   href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_ServiceProvider
@@ -3087,15 +3572,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.ServiceProvider
   nameWithType: AcceptanceTestScaffold.ServiceProvider
-- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceCollection,ICommandRegistry})
-  name: Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceCollection, ICommandRegistry>)
-  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceCollection_ICommandRegistry__
-  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceCollection,ICommandRegistry})
-  name.vb: Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceCollection, ICommandRegistry))
-  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceCollection, ICommandRegistry>)
-  fullName.vb: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceCollection, ICommandRegistry))
-  nameWithType: AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceCollection, ICommandRegistry>)
-  nameWithType.vb: AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceCollection, ICommandRegistry))
+- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})
+  name: Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
+  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceProvider_ICommandRegistry__
+  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})
+  name.vb: Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
+  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
+  fullName.vb: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
+  nameWithType: AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
+  nameWithType.vb: AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
 - uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup*
   name: Setup
   href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup_
@@ -3103,15 +3588,28 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup
   nameWithType: AcceptanceTestScaffold.Setup
-- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup``1(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceCollection,ICommandRegistry})
-  name: Setup<TFunctionHostBuilder>(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceCollection, ICommandRegistry>)
-  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup__1_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceCollection_ICommandRegistry__
-  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.Setup``1(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceCollection,ICommandRegistry})
-  name.vb: Setup(Of TFunctionHostBuilder)(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceCollection, ICommandRegistry))
-  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup<TFunctionHostBuilder>(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceCollection, ICommandRegistry>)
-  fullName.vb: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Of TFunctionHostBuilder)(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceCollection, ICommandRegistry))
-  nameWithType: AcceptanceTestScaffold.Setup<TFunctionHostBuilder>(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceCollection, ICommandRegistry>)
-  nameWithType.vb: AcceptanceTestScaffold.Setup(Of TFunctionHostBuilder)(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceCollection, ICommandRegistry))
+- uid: FunctionMonkey.Testing.HttpResponseExtensions
+  name: HttpResponseExtensions
+  href: api/FunctionMonkey.Testing.HttpResponseExtensions.html
+  commentId: T:FunctionMonkey.Testing.HttpResponseExtensions
+  fullName: FunctionMonkey.Testing.HttpResponseExtensions
+  nameWithType: HttpResponseExtensions
+- uid: FunctionMonkey.Testing.HttpResponseExtensions.GetJson*
+  name: GetJson
+  href: api/FunctionMonkey.Testing.HttpResponseExtensions.html#FunctionMonkey_Testing_HttpResponseExtensions_GetJson_
+  commentId: Overload:FunctionMonkey.Testing.HttpResponseExtensions.GetJson
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.HttpResponseExtensions.GetJson
+  nameWithType: HttpResponseExtensions.GetJson
+- uid: FunctionMonkey.Testing.HttpResponseExtensions.GetJson``1(HttpResponse)
+  name: GetJson<TResult>(HttpResponse)
+  href: api/FunctionMonkey.Testing.HttpResponseExtensions.html#FunctionMonkey_Testing_HttpResponseExtensions_GetJson__1_HttpResponse_
+  commentId: M:FunctionMonkey.Testing.HttpResponseExtensions.GetJson``1(HttpResponse)
+  name.vb: GetJson(Of TResult)(HttpResponse)
+  fullName: FunctionMonkey.Testing.HttpResponseExtensions.GetJson<TResult>(HttpResponse)
+  fullName.vb: FunctionMonkey.Testing.HttpResponseExtensions.GetJson(Of TResult)(HttpResponse)
+  nameWithType: HttpResponseExtensions.GetJson<TResult>(HttpResponse)
+  nameWithType.vb: HttpResponseExtensions.GetJson(Of TResult)(HttpResponse)
 - uid: FunctionMonkey.Testing.Mocks
   name: FunctionMonkey.Testing.Mocks
   href: api/FunctionMonkey.Testing.Mocks.html
@@ -3237,179 +3735,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.Mocks.ContextManagerMock.StorageQueueContext
   nameWithType: ContextManagerMock.StorageQueueContext
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder
-  name: TestFunctionHostBuilder
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html
-  commentId: T:FunctionMonkey.Testing.TestFunctionHostBuilder
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder
-  nameWithType: TestFunctionHostBuilder
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.#ctor(IServiceCollection,ICommandRegistry)
-  name: TestFunctionHostBuilder(IServiceCollection, ICommandRegistry)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder__ctor_IServiceCollection_ICommandRegistry_
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.#ctor(IServiceCollection,ICommandRegistry)
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.TestFunctionHostBuilder(IServiceCollection, ICommandRegistry)
-  nameWithType: TestFunctionHostBuilder.TestFunctionHostBuilder(IServiceCollection, ICommandRegistry)
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.#ctor*
-  name: TestFunctionHostBuilder
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder__ctor_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.#ctor
+- uid: FunctionMonkey.Testing.TestException
+  name: TestException
+  href: api/FunctionMonkey.Testing.TestException.html
+  commentId: T:FunctionMonkey.Testing.TestException
+  fullName: FunctionMonkey.Testing.TestException
+  nameWithType: TestException
+- uid: FunctionMonkey.Testing.TestException.#ctor(System.String)
+  name: TestException(String)
+  href: api/FunctionMonkey.Testing.TestException.html#FunctionMonkey_Testing_TestException__ctor_System_String_
+  commentId: M:FunctionMonkey.Testing.TestException.#ctor(System.String)
+  fullName: FunctionMonkey.Testing.TestException.TestException(System.String)
+  nameWithType: TestException.TestException(String)
+- uid: FunctionMonkey.Testing.TestException.#ctor*
+  name: TestException
+  href: api/FunctionMonkey.Testing.TestException.html#FunctionMonkey_Testing_TestException__ctor_
+  commentId: Overload:FunctionMonkey.Testing.TestException.#ctor
   isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.TestFunctionHostBuilder
-  nameWithType: TestFunctionHostBuilder.TestFunctionHostBuilder
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated(Action{IServiceProvider})
-  name: ActionOnServiceProviderCreated(Action<IServiceProvider>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_ActionOnServiceProviderCreated_Action_IServiceProvider__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated(Action{IServiceProvider})
-  name.vb: ActionOnServiceProviderCreated(Action(Of IServiceProvider))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated(Action<IServiceProvider>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated(Action(Of IServiceProvider))
-  nameWithType: TestFunctionHostBuilder.ActionOnServiceProviderCreated(Action<IServiceProvider>)
-  nameWithType.vb: TestFunctionHostBuilder.ActionOnServiceProviderCreated(Action(Of IServiceProvider))
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated*
-  name: ActionOnServiceProviderCreated
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_ActionOnServiceProviderCreated_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.ActionOnServiceProviderCreated
-  nameWithType: TestFunctionHostBuilder.ActionOnServiceProviderCreated
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator*
-  name: AddValidator
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_AddValidator_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator
-  nameWithType: TestFunctionHostBuilder.AddValidator
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator``1
-  name: AddValidator<TValidator>()
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_AddValidator__1
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator``1
-  name.vb: AddValidator(Of TValidator)()
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator<TValidator>()
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.AddValidator(Of TValidator)()
-  nameWithType: TestFunctionHostBuilder.AddValidator<TValidator>()
-  nameWithType.vb: TestFunctionHostBuilder.AddValidator(Of TValidator)()
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action{IAuthorizationBuilder})
-  name: Authorization(Action<IAuthorizationBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Authorization_Action_IAuthorizationBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action{IAuthorizationBuilder})
-  name.vb: Authorization(Action(Of IAuthorizationBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action<IAuthorizationBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization(Action(Of IAuthorizationBuilder))
-  nameWithType: TestFunctionHostBuilder.Authorization(Action<IAuthorizationBuilder>)
-  nameWithType.vb: TestFunctionHostBuilder.Authorization(Action(Of IAuthorizationBuilder))
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization*
-  name: Authorization
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Authorization_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Authorization
-  nameWithType: TestFunctionHostBuilder.Authorization
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
-  name: DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_DefaultHttpHeaderBindingConfiguration_HeaderBindingConfiguration_
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
-  nameWithType: TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration(HeaderBindingConfiguration)
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration*
-  name: DefaultHttpHeaderBindingConfiguration
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_DefaultHttpHeaderBindingConfiguration_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration
-  nameWithType: TestFunctionHostBuilder.DefaultHttpHeaderBindingConfiguration
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler*
-  name: DefaultHttpResponseHandler
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_DefaultHttpResponseHandler_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler
-  nameWithType: TestFunctionHostBuilder.DefaultHttpResponseHandler
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler``1
-  name: DefaultHttpResponseHandler<TResponseHandler>()
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_DefaultHttpResponseHandler__1
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler``1
-  name.vb: DefaultHttpResponseHandler(Of TResponseHandler)()
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
-  nameWithType: TestFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
-  nameWithType.vb: TestFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action{IFunctionBuilder})
-  name: Functions(Action<IFunctionBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Functions_Action_IFunctionBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action{IFunctionBuilder})
-  name.vb: Functions(Action(Of IFunctionBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action<IFunctionBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions(Action(Of IFunctionBuilder))
-  nameWithType: TestFunctionHostBuilder.Functions(Action<IFunctionBuilder>)
-  nameWithType.vb: TestFunctionHostBuilder.Functions(Action(Of IFunctionBuilder))
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions*
-  name: Functions
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Functions_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.Functions
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Functions
-  nameWithType: TestFunctionHostBuilder.Functions
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action{IOpenApiBuilder})
-  name: OpenApiEndpoint(Action<IOpenApiBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_OpenApiEndpoint_Action_IOpenApiBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action{IOpenApiBuilder})
-  name.vb: OpenApiEndpoint(Action(Of IOpenApiBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action<IOpenApiBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint(Action(Of IOpenApiBuilder))
-  nameWithType: TestFunctionHostBuilder.OpenApiEndpoint(Action<IOpenApiBuilder>)
-  nameWithType.vb: TestFunctionHostBuilder.OpenApiEndpoint(Action(Of IOpenApiBuilder))
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint*
-  name: OpenApiEndpoint
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_OpenApiEndpoint_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OpenApiEndpoint
-  nameWithType: TestFunctionHostBuilder.OpenApiEndpoint
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource(System.String)
-  name: OutputAuthoredSource(String)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_OutputAuthoredSource_System_String_
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource(System.String)
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource(System.String)
-  nameWithType: TestFunctionHostBuilder.OutputAuthoredSource(String)
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource*
-  name: OutputAuthoredSource
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_OutputAuthoredSource_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.OutputAuthoredSource
-  nameWithType: TestFunctionHostBuilder.OutputAuthoredSource
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{ISerializationBuilder})
-  name: Serialization(Action<ISerializationBuilder>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Serialization_Action_ISerializationBuilder__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action{ISerializationBuilder})
-  name.vb: Serialization(Action(Of ISerializationBuilder))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action<ISerializationBuilder>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization(Action(Of ISerializationBuilder))
-  nameWithType: TestFunctionHostBuilder.Serialization(Action<ISerializationBuilder>)
-  nameWithType.vb: TestFunctionHostBuilder.Serialization(Action(Of ISerializationBuilder))
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization*
-  name: Serialization
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Serialization_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Serialization
-  nameWithType: TestFunctionHostBuilder.Serialization
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Setup(Action{IServiceCollection,ICommandRegistry})
-  name: Setup(Action<IServiceCollection, ICommandRegistry>)
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Setup_Action_IServiceCollection_ICommandRegistry__
-  commentId: M:FunctionMonkey.Testing.TestFunctionHostBuilder.Setup(Action{IServiceCollection,ICommandRegistry})
-  name.vb: Setup(Action(Of IServiceCollection, ICommandRegistry))
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Setup(Action<IServiceCollection, ICommandRegistry>)
-  fullName.vb: FunctionMonkey.Testing.TestFunctionHostBuilder.Setup(Action(Of IServiceCollection, ICommandRegistry))
-  nameWithType: TestFunctionHostBuilder.Setup(Action<IServiceCollection, ICommandRegistry>)
-  nameWithType.vb: TestFunctionHostBuilder.Setup(Action(Of IServiceCollection, ICommandRegistry))
-- uid: FunctionMonkey.Testing.TestFunctionHostBuilder.Setup*
-  name: Setup
-  href: api/FunctionMonkey.Testing.TestFunctionHostBuilder.html#FunctionMonkey_Testing_TestFunctionHostBuilder_Setup_
-  commentId: Overload:FunctionMonkey.Testing.TestFunctionHostBuilder.Setup
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.TestFunctionHostBuilder.Setup
-  nameWithType: TestFunctionHostBuilder.Setup
+  fullName: FunctionMonkey.Testing.TestException.TestException
+  nameWithType: TestException.TestException
 - uid: FunctionMonkey.Testing.ValidatingDispatcher
   name: ValidatingDispatcher
   href: api/FunctionMonkey.Testing.ValidatingDispatcher.html

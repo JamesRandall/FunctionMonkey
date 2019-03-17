@@ -73,46 +73,397 @@
   
   <h1 id="FunctionMonkey_Testing_AbstractAcceptanceTest" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest" class="text-break">Class AbstractAcceptanceTest
   </h1>
-  <div class="markdown level0 summary"><p>A class that can be used as a basis for running acceptance tests with Function Monkey at the command dispatch level.</p>
+  <div class="markdown level0 summary"><p>A class that can be used as a basis for running acceptance tests with Function Monkey at the command dispatch level
+designed for use with test frameworks that take a constructor approach to </p>
 <p>One of the advantages of the pattern used by Function Monkey is that the host function triggers are separated cleanly
 from business logic and compiled with pre-tested templates allowing for comprehensive acceptance tests to be run
 just below this level which can often provide a high level of value with a lower level of complexity than also testing
 the Function triggers.</p>
+<p>Typically the none-generic version of this class is more useful but this version allows for a custom IFunctionHostBuilder
+to be used if additional functionality is required over and above that baked into the supplied TestFunctionHostBuilder which
+solely handles command registration and dependency injection management.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html">AbstractAcceptanceTest</a>&lt;<a class="xref" href="FunctionMonkey.Testing.TestFunctionHostBuilder.html">TestFunctionHostBuilder</a>&gt;</div>
-    <div class="level2"><span class="xref">AbstractAcceptanceTest</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_Stream_System_Boolean_">AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;.AddEnvironmentVariables(Stream, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AddEnvironmentVariables_System_String_System_Boolean_">AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;.AddEnvironmentVariables(String, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_BeforeBuild_IServiceCollection_ICommandRegistry_">AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;.BeforeBuild(IServiceCollection, ICommandRegistry)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_AfterBuild_IServiceCollection_ICommandRegistry_">AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;.AfterBuild(IServiceCollection, ICommandRegistry)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_ServiceProvider">AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;.ServiceProvider</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Testing.AbstractAcceptanceTest-1.html#FunctionMonkey_Testing_AbstractAcceptanceTest_1_Dispatcher">AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;.Dispatcher</a>
-    </div>
+    <div class="level1"><span class="xref">AbstractAcceptanceTest</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Testing.html">FunctionMonkey.Testing</a></h6>
   <h6><strong>Assembly</strong>: FunctionMonkey.Testing.dll</h6>
   <h5 id="FunctionMonkey_Testing_AbstractAcceptanceTest_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class AbstractAcceptanceTest : AbstractAcceptanceTest&lt;TestFunctionHostBuilder&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class AbstractAcceptanceTest : object</code></pre>
   </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest__ctor.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L28">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest__ctor_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.#ctor*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest__ctor" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.#ctor">AbstractAcceptanceTest()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected AbstractAcceptanceTest()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L86">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher">Dispatcher</h4>
+  <div class="markdown level1 summary"><p>Provides access to the command dispatcher registered in the service provider but wrapped
+in a decorator that implements validation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommandDispatcher Dispatcher { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICommandDispatcher</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L79">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider">ServiceProvider</h4>
+  <div class="markdown level1 summary"><p>The constructed service provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IServiceProvider ServiceProvider { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceProvider</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(Stream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L37">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_Stream_System_Boolean_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(Stream,System.Boolean)">AddEnvironmentVariables(Stream, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Set up environment variables based on a settings.json file in a stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddEnvironmentVariables(Stream appSettings, bool oneTimeOnly = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">appSettings</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">oneTimeOnly</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L46">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_AddEnvironmentVariables_System_String_System_Boolean_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables(System.String,System.Boolean)">AddEnvironmentVariables(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Set up environment variables based on a settings.json filename</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">appSettingsPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">oneTimeOnly</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_IServiceProvider_ICommandRegistry_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider%2CICommandRegistry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L70">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_IServiceProvider_ICommandRegistry_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider,ICommandRegistry)">AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)</h4>
+  <div class="markdown level1 summary"><p>This method can be used to modify dependency and command setup before the service provider has been built
+from the service collection.</p>
+<p>This must not access members (and should not need to) as it is invoked from the constructor to
+support test frameworks such as XUnit that construct test cases this way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void AfterServiceProviderBuild(IServiceProvider serviceProvider, ICommandRegistry commandRegistry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceProvider</span></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICommandRegistry</span></td>
+        <td><span class="parametername">commandRegistry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_IServiceCollection_ICommandRegistry_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection%2CICommandRegistry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L58">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_IServiceCollection_ICommandRegistry_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection,ICommandRegistry)">BeforeServiceProviderBuild(IServiceCollection, ICommandRegistry)</h4>
+  <div class="markdown level1 summary"><p>This method can be used to modify dependency and command setup before the service provider has been built
+from the service collection.</p>
+<p>This must not access members (and should not need to) as it is invoked from the constructor to
+support test frameworks such as XUnit that construct test cases this way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void BeforeServiceProviderBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IServiceCollection</span></td>
+        <td><span class="parametername">serviceCollection</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICommandRegistry</span></td>
+        <td><span class="parametername">commandRegistry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_ICommand_HttpMethod_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand%2CHttpMethod)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L102">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_ICommand_HttpMethod_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand,HttpMethod)">ExecuteHttpAsync(ICommand, HttpMethod)</h4>
+  <div class="markdown level1 summary"><p>Runs a command through the IActionResult ASP.Net pathways and returns a HTTP response.
+This is useful for testing end to end HTTP triggered functions without having to actually host the
+function app.
+A method only needs specifying in the function supports multiple methods.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;HttpResponse&gt; ExecuteHttpAsync(ICommand command, HttpMethod method = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICommand</span></td>
+        <td><span class="parametername">command</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">HttpMethod</span></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">HttpResponse</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync__1_ICommand___0__HttpMethod_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync%60%601(ICommand%7B%60%600%7D%2CHttpMethod)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L94">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync*"></a>
+  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync__1_ICommand___0__HttpMethod_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync``1(ICommand{``0},HttpMethod)">ExecuteHttpAsync&lt;TResult&gt;(ICommand&lt;TResult&gt;, HttpMethod)</h4>
+  <div class="markdown level1 summary"><p>Runs a command through the IActionResult ASP.Net pathways and returns a HTTP response.
+This is useful for testing end to end HTTP triggered functions without having to actually host the
+function app.
+A method only needs specifying in the function supports multiple methods.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;HttpResponse&gt; ExecuteHttpAsync&lt;TResult&gt;(ICommand&lt;TResult&gt; command, HttpMethod method = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICommand</span>&lt;TResult&gt;</td>
+        <td><span class="parametername">command</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">HttpMethod</span></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">HttpResponse</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -125,7 +476,7 @@ the Function triggers.</p>
                     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L97" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L24" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
