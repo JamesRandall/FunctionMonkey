@@ -5,24 +5,14 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
-using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Model;
-using FunctionMonkey.Serialization;
 using FunctionMonkey.Testing.Implementation;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using HttpResponse = Microsoft.AspNetCore.Http.HttpResponse;
-using Microsoft.AspNetCore.Hosting;
 
 namespace FunctionMonkey.Testing
 {
@@ -34,9 +24,7 @@ namespace FunctionMonkey.Testing
     {
         private RuntimeInstance _runtimeInstance;
 
-        // We register our ASP.Net dependencies separately to the Function dependencies as these are (in the current Azure Functions implementation)
-        // not shared with function apps.
-        private IServiceProvider _aspNetServiceProvider;
+        private readonly AspNetRuntime _aspNetRuntime = new AspNetRuntime();
 
 
         /// <summary>
@@ -51,7 +39,6 @@ namespace FunctionMonkey.Testing
             Action<IServiceCollection, ICommandRegistry> afterBuild = null
         )
         {
-            SetupAspNet();
             _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeBuild, afterBuild);
         }
 
@@ -100,15 +87,14 @@ namespace FunctionMonkey.Testing
         /// </summary>        
         public async Task<HttpResponse> ExecuteHttpAsync<TResult>(ICommand<TResult> command, HttpMethod method = null)
         {
-            HttpContext httpContext =
-                PrepareToExecuteHttp(command, out var actionContext, out var httpFunctionDefinition, out var httpResponseHandler, method);
+            HttpFunctionDefinition httpFunctionDefinition = FindHttpFunctionDefinition(command);
+            ActionContext actionContext = _aspNetRuntime.PrepareToExecuteHttp(command, httpFunctionDefinition, method);
+            IHttpResponseHandler httpResponseHandler = GetHttpResponseHandler(httpFunctionDefinition);
+            HttpDispatcher httpDispatcher = new HttpDispatcher(Dispatcher, ServiceProvider);
 
-            IActionResult actionResult = await DispatchAndConvertToActionResult(command, httpResponseHandler, httpFunctionDefinition);            
+            IActionResult actionResult = await httpDispatcher.DispatchAndConvertToActionResult(command, httpResponseHandler, httpFunctionDefinition);
 
-            await actionResult.ExecuteResultAsync(actionContext);
-            
-            
-            return SanitizeResponse(httpContext.Response);
+            return await _aspNetRuntime.CreateHttpResponse(actionContext, actionResult);
         }
 
         /// <summary>
@@ -119,199 +105,35 @@ namespace FunctionMonkey.Testing
         /// </summary>        
         public async Task<HttpResponse> ExecuteHttpAsync(ICommand command, HttpMethod method = null)
         {
-            HttpContext httpContext =
-                PrepareToExecuteHttp(command, out var actionContext, out var httpFunctionDefinition, out var httpResponseHandler, method);
+            HttpFunctionDefinition httpFunctionDefinition = FindHttpFunctionDefinition(command);            
+            ActionContext actionContext = _aspNetRuntime.PrepareToExecuteHttp(command, httpFunctionDefinition, method);
+            IHttpResponseHandler httpResponseHandler = GetHttpResponseHandler(httpFunctionDefinition);
+            HttpDispatcher httpDispatcher = new HttpDispatcher(Dispatcher, ServiceProvider);
 
-            IActionResult actionResult = await DispatchAndConvertToActionResult(command, httpResponseHandler, httpFunctionDefinition);
+            IActionResult actionResult = await httpDispatcher.DispatchAndConvertToActionResult(command, httpResponseHandler, httpFunctionDefinition);
 
-            await actionResult.ExecuteResultAsync(actionContext);
-
-            return SanitizeResponse(httpContext.Response);
+            return await _aspNetRuntime.CreateHttpResponse(actionContext, actionResult);
         }
 
-        private HttpContext PrepareToExecuteHttp(ICommand command, out ActionContext actionContext,
-            out HttpFunctionDefinition httpFunctionDefinition, out IHttpResponseHandler httpResponseHandler,
-            HttpMethod method)
+        private IHttpResponseHandler GetHttpResponseHandler(HttpFunctionDefinition httpFunctionDefinition)
         {
-            httpFunctionDefinition = FindFunctionDefinition(command.GetType()) as HttpFunctionDefinition;
-            if (httpFunctionDefinition == null)
+            IHttpResponseHandler httpResponseHandler = httpFunctionDefinition.HasHttpResponseHandler
+                ? (IHttpResponseHandler)ServiceProvider.GetRequiredService(httpFunctionDefinition.HttpResponseHandlerType)
+                : new DefaultHttpResponseHandler();
+            return httpResponseHandler;
+        }
+        
+        private HttpFunctionDefinition FindHttpFunctionDefinition(ICommand command)
+        {
+            AbstractFunctionDefinition functionDefinition = _runtimeInstance.Builder.FunctionDefinitions.Single(x => x.CommandType == command.GetType());
+            if (!(functionDefinition is HttpFunctionDefinition httpFunctionDefinition))
             {
                 throw new TestException(
-                    $"An http test can only be run for http trigger associated commands, command type {command.GetType()} is not associated with a HTTP trigger");
+                    $"An http test can only be run for http trigger associated commands, command type {command.GetType().Name} is not associated with a HTTP trigger");
             }
 
-            HttpContext httpContext = new DefaultHttpContext()
-            {
-                RequestServices = _aspNetServiceProvider,
-                Request =
-                {
-                    Method = (method ?? httpFunctionDefinition.Verbs.Single()).Method
-                },
-                Response = { Body = new MemoryStream()}
-            };
-            RouteData routeData = new RouteData();
-            ActionDescriptor actionDescriptor = new ActionDescriptor();
-            actionContext = new ActionContext(httpContext, routeData, actionDescriptor);
-
-            httpResponseHandler = httpFunctionDefinition.HasHttpResponseHandler
-                ? (IHttpResponseHandler) ServiceProvider.GetRequiredService(httpFunctionDefinition.HttpResponseHandlerType)
-                : new DefaultHttpResponseHandler();
-            return httpContext;
-        }
-
-        private async Task<IActionResult> DispatchAndConvertToActionResult<TResult>(ICommand<TResult> command, IHttpResponseHandler httpResponseHandler,
-            HttpFunctionDefinition httpFunctionDefinition)
-        {
-            IActionResult actionResult = null;
-            try
-            {
-                TResult result = await Dispatcher.DispatchAsync(command);
-                // TODO: Handle validation here
-                Task<IActionResult> responseHandlerTask = httpResponseHandler.CreateResponse(command, result);
-                if (responseHandlerTask != null)
-                {
-                    actionResult = await responseHandlerTask;
-                }
-
-                if (actionResult == null)
-                {
-                    actionResult = CreateResponse(200, result, httpFunctionDefinition);
-                }
-            }
-            catch (ValidationException vex)
-            {
-                actionResult = await CreateValidationResponse(command, vex.ValidationResult, httpFunctionDefinition, httpResponseHandler);
-            }
-            catch (Exception ex)
-            {
-                Task exceptionResponseHandlerTask = httpResponseHandler.CreateResponseFromException(command, ex);
-                if (exceptionResponseHandlerTask != null)
-                {
-                    actionResult = await httpResponseHandler.CreateResponseFromException(command, ex);
-                }
-
-                if (actionResult == null)
-                {
-                    actionResult = CreateResponse(500, "Unexpected error", httpFunctionDefinition);
-                }
-            }
-
-            return actionResult;
-        }
-
-        private async Task<IActionResult> DispatchAndConvertToActionResult(ICommand command, IHttpResponseHandler httpResponseHandler,
-            HttpFunctionDefinition httpFunctionDefinition)
-        {
-            IActionResult actionResult = null;
-            try
-            {
-                await Dispatcher.DispatchAsync(command);
-                // TODO: Handle validation here
-                Task<IActionResult> responseHandlerTask = httpResponseHandler.CreateResponse(command);
-                if (responseHandlerTask != null)
-                {
-                    actionResult = await responseHandlerTask;
-                }
-
-                if (actionResult == null)
-                {
-                    actionResult = new OkResult();
-                }
-            }
-            catch (ValidationException vex)
-            {
-                actionResult = await CreateValidationResponse(command, vex.ValidationResult, httpFunctionDefinition, httpResponseHandler);
-            }
-            catch (Exception ex)
-            {
-                Task exceptionResponseHandlerTask = httpResponseHandler.CreateResponseFromException(command, ex);
-                if (exceptionResponseHandlerTask != null)
-                {
-                    actionResult = await httpResponseHandler.CreateResponseFromException(command, ex);
-                }
-
-                if (actionResult == null)
-                {
-                    actionResult = CreateResponse(500, "Unexpected error", httpFunctionDefinition);
-                }
-            }
-
-            return actionResult;
-        }
-
-        private async Task<IActionResult> CreateValidationResponse(ICommand command, ValidationResult validationResult, HttpFunctionDefinition httpFunctionDefinition, IHttpResponseHandler responseHandler)
-        {
-            IActionResult actionResult = null;
-            Task<IActionResult> validationResponseHandlerTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
-            if (validationResponseHandlerTask != null)
-            {
-                actionResult = await validationResponseHandlerTask;
-            }
-
-            if (actionResult == null)
-            {
-                actionResult = CreateResponse(400, validationResult, httpFunctionDefinition);
-            }
-
-            return actionResult;
-        }
-
-        private AbstractFunctionDefinition FindFunctionDefinition(Type commandType)
-        {
-            return _runtimeInstance.Builder.FunctionDefinitions.Single(x => x.CommandType == commandType);
-        }
-
-        private IActionResult CreateResponse(int code, object content, HttpFunctionDefinition httpFunctionDefinition)
-        {
-            ISerializer serializer = CreateSerializer(httpFunctionDefinition);
-            ContentResult result = new ContentResult();
-            result.Content = serializer.Serialize(content);
-            result.ContentType = "application/json";
-            result.StatusCode = code;
-            return result;
-        }
-
-        private ISerializer CreateSerializer(HttpFunctionDefinition httpFunctionDefinition)
-        {
-            if (httpFunctionDefinition.SerializerNamingStrategyType != null)
-            {
-                NamingStrategy serializerNamingStrategy = (NamingStrategy)Activator.CreateInstance(httpFunctionDefinition.SerializerNamingStrategyType);
-                NamingStrategy deserializerNamingStrategy = (NamingStrategy)Activator.CreateInstance(httpFunctionDefinition.DeserializerNamingStrategyType);
-                ISerializer serializer = new NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
-                return serializer;
-            }
-
-            return (ISerializer)ServiceProvider.GetRequiredService(httpFunctionDefinition.CommandDeserializerType);
-        }
-
-        private HttpResponse SanitizeResponse(HttpResponse httpContextResponse)
-        {
-            httpContextResponse.Body.Seek(0, SeekOrigin.Begin);
-            return httpContextResponse;
-        }
-
-        private void SetupAspNet()
-        {
-            IWebHost host =
-                Microsoft.AspNetCore.WebHost.CreateDefaultBuilder()
-                    .ConfigureServices(sc => { sc.AddMvc(); })
-                    .UseStartup<DummyStartup>()
-                    .Build();
-            _aspNetServiceProvider = host.Services;
-        }
-
-        private class DummyStartup : IStartup
-        {
-            public IServiceProvider ConfigureServices(IServiceCollection services)
-            {
-                return services.BuildServiceProvider();
-            }
-
-            public void Configure(IApplicationBuilder app)
-            {
-                
-            }
-        }
+            return httpFunctionDefinition;
+        }        
     }
 }
 

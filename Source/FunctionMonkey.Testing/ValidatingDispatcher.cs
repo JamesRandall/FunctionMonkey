@@ -37,7 +37,7 @@ namespace FunctionMonkey.Testing
         private void Validate(ICommand command)
         {
             // The .Validate method uses its generic parameter to determine the type of the
-            // command as it uses generics with the IServiceCollecton, this has the unfortunate
+            // command as it uses generics with the IServiceCollection, this has the unfortunate
             // side-effect of meaning you can't ask it to validate a none-concretely typed ICommand
             // This isn't an issue in Function Monkey itself as we have the specific command type
             // but does cause a problem here as if we call .Validate(command) command will be resolved
@@ -48,7 +48,7 @@ namespace FunctionMonkey.Testing
             // for it.
             MethodInfo methodInfo = _validator.GetType().GetMethod("Validate");
             MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(command.GetType());
-            ValidationResult validationResult = (ValidationResult)genericMethodInfo.Invoke(_validator, new [] {command});
+            ValidationResult validationResult = (ValidationResult)genericMethodInfo.Invoke(_validator, new object[] {command});
 
             //ValidationResult validationResult = _validator.Validate(command);
             if (!validationResult.IsValid)

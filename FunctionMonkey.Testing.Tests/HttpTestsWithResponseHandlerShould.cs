@@ -37,5 +37,38 @@ namespace FunctionMonkey.Testing.Tests
             string transformedByHandlerResponse = httpResponse.Body.GetString();
             Assert.Equal("CreateValidationFailureResponse<TCommand>", transformedByHandlerResponse);
         }
+
+        [Fact]
+        public async Task ReturnOkResultForCommandWithNoResultWhenNoValidator()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpResponseHandlerCommandWithNoResultAndNoValidation
+            {
+                Value = 5
+            });
+
+            Assert.Equal(200, httpResponse.StatusCode);
+            string transformedByHandlerResponse = httpResponse.Body.GetString();
+            Assert.Equal("CreateResponse<TCommand>", transformedByHandlerResponse);
+        }
+
+        [Fact]
+        public async Task ReturnOkResultForCommandWithNoResultWhenValidatorPasses()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpResponseHandlerCommandWithNoResultAndValidatorThatPasses());
+
+            Assert.Equal(200, httpResponse.StatusCode);
+            string transformedByHandlerResponse = httpResponse.Body.GetString();
+            Assert.Equal("CreateResponse<TCommand>", transformedByHandlerResponse);
+        }
+
+        [Fact]
+        public async Task ReturnOkResultForCommandWithNoResultWhenValidatorFails()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpResponseHandlerCommandWithNoResultAndValidatorThatFails());
+
+            Assert.Equal(200, httpResponse.StatusCode);
+            string transformedByHandlerResponse = httpResponse.Body.GetString();
+            Assert.Equal("CreateValidationFailureResponse<TCommand>", transformedByHandlerResponse);
+        }
     }
 }

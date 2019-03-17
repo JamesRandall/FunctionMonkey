@@ -47,5 +47,38 @@ namespace FunctionMonkey.Testing.Tests
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.Property == "Value"));
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.ErrorCode == "NotEqualValidator"));
         }
+
+        [Fact]
+        public async Task ReturnOkResultForCommandWithNoResultWhenNoValidator()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpCommandWithNoResultAndNoValidation
+            {
+                Value = 5
+            });
+
+            Assert.Equal(200, httpResponse.StatusCode);
+            Assert.Equal(0, httpResponse.ContentLength);
+        }
+
+        [Fact]
+        public async Task ReturnOkResultForCommandWithNoResultWhenValidatorPasses()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpCommandWithNoResultAndValidatorThatPasses());
+
+            Assert.Equal(200, httpResponse.StatusCode);
+            Assert.Equal(0, httpResponse.ContentLength);
+        }
+
+        [Fact]
+        public async Task ReturnOkResultForCommandWithNoResultWhenValidatorFails()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpCommandWithNoResultAndValidatorThatFails());
+
+            Assert.Equal(400, httpResponse.StatusCode);
+            ValidationResult validationResult = httpResponse.Body.DeserializeObject<ValidationResult>();
+            Assert.False(validationResult.IsValid);
+            Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.Property == "Value"));
+            Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.ErrorCode == "NotEqualValidator"));
+        }
     }
 }

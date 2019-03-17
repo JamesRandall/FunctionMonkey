@@ -3,8 +3,6 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Abstractions.Builders;
-using FunctionMonkey.Builders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,7 +33,7 @@ namespace FunctionMonkey.Testing
         /// <summary>
         /// Set up environment variables based on a settings.json file in a stream
         /// </summary>
-        /// <param name="appSettings"></param>
+        // ReSharper disable once UnusedMember.Global - intended for use in derived classes in external assemblies
         protected void AddEnvironmentVariables(Stream appSettings, bool oneTimeOnly=true)
         {
             _scaffold.AddEnvironmentVariables(appSettings, oneTimeOnly);
@@ -44,7 +42,7 @@ namespace FunctionMonkey.Testing
         /// <summary>
         /// Set up environment variables based on a settings.json filename
         /// </summary>
-        /// <param name="appSettingsPath"></param>
+        // ReSharper disable once UnusedMember.Global - intended for use in derived classes in external assemblies
         protected void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true)
         {
             _scaffold.AddEnvironmentVariables(appSettingsPath, oneTimeOnly);
@@ -81,12 +79,14 @@ namespace FunctionMonkey.Testing
         /// <summary>
         /// The constructed service provider
         /// </summary>
+        // ReSharper disable once UnusedMember.Global - intended for use in derived classes in external assemblies
         public IServiceProvider ServiceProvider => _scaffold.ServiceProvider;
 
         /// <summary>
         /// Provides access to the command dispatcher registered in the service provider but wrapped
         /// in a decorator that implements validation.
         /// </summary>
+        // ReSharper disable once UnusedMember.Global - intended for use in derived classes in external assemblies
         public ICommandDispatcher Dispatcher => _scaffold.Dispatcher;
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace FunctionMonkey.Testing
         /// This is useful for testing end to end HTTP triggered functions without having to actually host the
         /// function app.
         /// A method only needs specifying in the function supports multiple methods.
-        /// </summary>        
+        /// </summary>
         public Task<HttpResponse> ExecuteHttpAsync(ICommand command, HttpMethod method = null) => _scaffold.ExecuteHttpAsync(command, method);
     }
 }
