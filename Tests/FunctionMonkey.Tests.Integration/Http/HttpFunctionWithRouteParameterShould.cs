@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using FunctionMonkey.Tests.Integration.Http.Helpers;
@@ -59,6 +62,76 @@ namespace FunctionMonkey.Tests.Integration.Http
             Assert.Equal(Value, response.Value);
             Assert.Equal(OptionalValue, response.OptionalValue);
             Assert.Null(response.OptionalMessage);
+        }
+
+        [Fact]
+        public async Task HandleGuidParametersInUri()
+        {
+            Guid guidOne = Guid.NewGuid();
+            Guid guidTwo = Guid.NewGuid();
+            // there is a bug in Azure Functions - using a GUID as a route parameter doesn't work
+            // Function Monkey will work round this by accepting them as strings in the trigger
+            // and parsing them internally
+            GuidPairResponse response = await Settings.Host
+                .AppendPathSegment("routeParameters")
+                .AppendPathSegment("guids")
+                .AppendPathSegment(guidOne)
+                .AppendPathSegment(guidTwo)
+                .GetJsonAsync<GuidPairResponse>();
+
+            Assert.Equal(guidOne, response.ValueOne);
+            Assert.Equal(guidTwo, response.ValueTwo);
+        }
+
+        [Fact]
+        public async Task HandleOptionalGuidParameterInUri()
+        {
+            Guid guidOne = Guid.NewGuid();
+            // there is a bug in Azure Functions - using a GUID as a route parameter doesn't work
+            // Function Monkey will work round this by accepting them as strings in the trigger
+            // and parsing them internally
+            GuidPairResponse response = await Settings.Host
+                .AppendPathSegment("routeParameters")
+                .AppendPathSegment("guids")
+                .AppendPathSegment(guidOne)
+                .GetJsonAsync<GuidPairResponse>();
+
+            Assert.Equal(guidOne, response.ValueOne);
+            Assert.Null(response.ValueTwo);
+        }
+
+        [Fact]
+        public async Task ReturnBadRequestOnBadlyFormedGuid()
+        {
+            // there is a bug in Azure Functions - using a GUID as a route parameter doesn't work
+            // Function Monkey will work round this by accepting them as strings in the trigger
+            // and parsing them internally
+            HttpResponseMessage response = await Settings.Host
+                .AppendPathSegment("routeParameters")
+                .AppendPathSegment("guids")
+                .AppendPathSegment("boo")
+                .AllowHttpStatus(HttpStatusCode.BadRequest)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task ReturnBadRequestOnBadlyFormedOptionalGuid()
+        {
+            Guid guidOne = Guid.NewGuid();
+            // there is a bug in Azure Functions - using a GUID as a route parameter doesn't work
+            // Function Monkey will work round this by accepting them as strings in the trigger
+            // and parsing them internally
+            HttpResponseMessage response = await Settings.Host
+                .AppendPathSegment("routeParameters")
+                .AppendPathSegment("guids")
+                .AppendPathSegment(guidOne)
+                .AppendPathSegment("boo")
+                .AllowHttpStatus(HttpStatusCode.BadRequest)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 }

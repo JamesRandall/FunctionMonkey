@@ -33,5 +33,6 @@ namespace FunctionMonkey.Model
         public string RouteName { get; set; }
         public string RouteTypeName { get; set; }
         public bool IsNullableType { get; set; }
+        public bool IsGuid => Type == typeof(Guid) || Type == typeof(Guid?);
     }
 }

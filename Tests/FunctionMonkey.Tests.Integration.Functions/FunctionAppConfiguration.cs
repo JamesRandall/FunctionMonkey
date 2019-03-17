@@ -54,6 +54,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     )
                     .HttpRoute("routeParameters", route => route
                         .HttpFunction<HttpGetRouteParameterCommand>("/{message}/{value:int}/{optionalValue?}/{optionalMessage?}")
+                        .HttpFunction<HttpGetGuidRouteParameterCommand>("/guids/{requiredGuid}/{optionalGuid?}")
                     )
                     .HttpRoute("noResponseHandler", route => route
                         // These are the functions for testing the HTTP route cases outlined above

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext
             {{#each RouteParameters}}
-            , {{{RouteTypeName}}} {{RouteName}}
+            , {{#if IsGuid}}string{{else}}{{{RouteTypeName}}}{{/if}} {{RouteName}}
             {{/each}}
     )
         {
@@ -182,28 +183,36 @@ namespace {{Namespace}}
             {{/if}}
 
             {{#each RouteParameters}}
-                {{#if IsNullableType}}
-                    if ({{RouteName}}.HasValue)
-                    {
+                {{#if IsGuid}}
+                    {{#if IsNullableType}}
+                        if ({{RouteName}} != null) {
+                            Guid guid{{RouteName}};
+                            if (Guid.TryParse({{RouteName}}, out guid{{RouteName}})) {
+                                command.{{Name}} = Guid.Parse({{RouteName}});
+                            } else {
+                                return CreateResponse(400, "Invalid guid supplied as route parameter", serializer);
+                            }
+                        }
+                    {{else}}
+                        Guid guid{{RouteName}};
+                        if (Guid.TryParse({{RouteName}}, out guid{{RouteName}})) {
+                            command.{{Name}} = Guid.Parse({{RouteName}});
+                        } else {
+                            return CreateResponse(400, "Invalid guid supplied as route parameter", serializer);
+                        }
+                    {{/if}}
+                {{else}}
+                    {{#if IsNullableType}}
+                        if ({{RouteName}}.HasValue)
+                        {
+                            command.{{Name}} = {{RouteName}};
+                        }
+                    {{else}}
                         command.{{Name}} = {{RouteName}};
-                    }
-                {{else}}
-                    command.{{Name}} = {{RouteName}};
+                    {{/if}}
                 {{/if}}
             {{/each}}
-    /*
-            {{#each RouteParameters}}
-            if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
-            {
-                {{#if IsString}}
-                command.{{Name}} = queryParameterValues[0];
-                {{else}}
-                {{{TypeName}}}.TryParse(queryParameterValues[0], out var candidate);
-                command.{{Name}} = candidate;
-                {{/if}}
-            }
-            {{/each}}
-    */
+    
             {{#if ValidatesToken}}
             var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
