@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Builders;
+using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Testing
@@ -12,7 +15,9 @@ namespace FunctionMonkey.Testing
     {
         private readonly IServiceCollection _serviceCollection;
         private readonly ICommandRegistry _commandRegistry;
+        private readonly FunctionBuilder _functionBuilder = new FunctionBuilder();
 
+        
         public TestFunctionHostBuilder(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)
         {
             _serviceCollection = serviceCollection;
@@ -48,6 +53,7 @@ namespace FunctionMonkey.Testing
 
         public IFunctionHostBuilder Functions(Action<IFunctionBuilder> functions)
         {
+            functions(_functionBuilder);
             return this;
         }
 
@@ -70,5 +76,12 @@ namespace FunctionMonkey.Testing
         {
             return this;
         }
+
+        public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions => _functionBuilder.Definitions;
+        public IAuthorizationBuilder AuthorizationBuilder { get; private set; }
+        public ISerializationBuilder SerializationBuilder { get; }
+        public Type ValidatorType { get; set; }
+        public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; }
+        public Type DefaultHttpResponseHandlerType { get; }
     }
 }

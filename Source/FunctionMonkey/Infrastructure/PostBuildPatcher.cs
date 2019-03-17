@@ -31,7 +31,7 @@ namespace FunctionMonkey.Infrastructure
                 definition.IsUsingValidator = builder.ValidatorType != null;
 
                 definition.CommandDeserializerType = definition.CommandDeserializerType ??
-                                                     builder.SerializationBuilder.DefaultCommandDeserializerType;
+                                                     ((SerializationBuilder)(builder.SerializationBuilder)).DefaultCommandDeserializerType;
                 
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)
                 {

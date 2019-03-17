@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Abstractions.Builders
@@ -79,5 +81,10 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="serialization">A serialization builder</param>
         IFunctionHostBuilder Serialization(Action<ISerializationBuilder> serialization);
+
+        /// <summary>
+        /// Access to the registered function definitions
+        /// </summary>
+        IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }        
     }
 }

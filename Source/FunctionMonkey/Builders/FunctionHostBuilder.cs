@@ -25,7 +25,7 @@ namespace FunctionMonkey.Builders
         public Action<IServiceProvider> ServiceProviderCreatedAction { get; private set; }
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
-        public SerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
+        public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)

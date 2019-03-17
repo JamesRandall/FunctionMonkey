@@ -8,10 +8,10 @@ using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders
 {
-    internal class FunctionBuilder : IFunctionBuilder
+    public class FunctionBuilder : IFunctionBuilder
     {
-        private readonly List<AbstractFunctionDefinition> _definitions = new List<AbstractFunctionDefinition>();        
-
+        private readonly List<AbstractFunctionDefinition> _definitions = new List<AbstractFunctionDefinition>();
+                
         public IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder)
         {
             string rootedRoutePrefix = routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);

@@ -75,6 +75,11 @@ namespace FunctionMonkey
 
         public static IFunctionAppConfiguration FindConfiguration(Assembly assembly)
         {
+            if (assembly == null)
+            {
+                return FindConfiguration();
+            }
+
             try
             {
                 Type interfaceType = typeof(IFunctionAppConfiguration);
