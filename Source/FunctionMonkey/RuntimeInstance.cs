@@ -7,6 +7,7 @@ using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
@@ -44,7 +45,7 @@ namespace FunctionMonkey
                 (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
                 (resolveType) => ServiceProvider.GetService(resolveType)
             );
-
+            
             ICommandRegistry commandRegistry;
             // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
             if (configuration is ICommandingConfigurator commandingConfigurator)
@@ -53,7 +54,8 @@ namespace FunctionMonkey
             }
             else
             {
-                commandRegistry = adapter.AddCommanding();
+                CommandingRuntime commandingRuntime = new CommandingRuntime();
+                commandRegistry = commandingRuntime.AddCommanding(adapter);
             }
 
             // Register internal implementations

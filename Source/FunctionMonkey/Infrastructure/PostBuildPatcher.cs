@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Commanding.Abstractions.Validation;

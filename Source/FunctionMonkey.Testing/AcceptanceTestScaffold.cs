@@ -6,10 +6,13 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Model;
 using FunctionMonkey.Serialization;
+using FunctionMonkey.Testing.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +32,6 @@ namespace FunctionMonkey.Testing
     /// </summary>
     public class AcceptanceTestScaffold
     {
-        private static bool _environmentVariablesRegistered;
-        private static readonly object LoadingAppVariablesLock = new object();
-
         private RuntimeInstance _runtimeInstance;
 
         // We register our ASP.Net dependencies separately to the Function dependencies as these are (in the current Azure Functions implementation)
@@ -60,69 +60,17 @@ namespace FunctionMonkey.Testing
         /// </summary>
         /// <param name="appSettingsStream">The app settings stream</param>
         /// <param name="oneTimeOnly">Defaults to true, if true only set the variables one time</param>
-        public void AddEnvironmentVariables(Stream appSettingsStream, bool oneTimeOnly = true)
-        {
-            if (_environmentVariablesRegistered && oneTimeOnly)
-            {
-                return;
-            }
-
-            SetEnvironmentVariables(appSettingsStream, oneTimeOnly);
-        }
+        public void AddEnvironmentVariables(Stream appSettingsStream, bool oneTimeOnly = true) =>
+            EnvironmentVariableManager.AddEnvironmentVariables(appSettingsStream, oneTimeOnly);
 
         /// <summary>
         /// Add environment variables from a file containing a Functions app settings file
         /// </summary>
         /// <param name="appSettingsPath">A path to the app settings file</param>
         /// <param name="oneTimeOnly">Defaults to true, if true only set the variables one time</param>
-        public void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true)
-        {
-            if (_environmentVariablesRegistered && oneTimeOnly)
-            {
-                return;
-            }
-
-            using (Stream stream = new FileStream(appSettingsPath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                SetEnvironmentVariables(stream, oneTimeOnly);
-            }
-        }
-
-        private static void SetEnvironmentVariables(Stream appSettings, bool oneTimeOnly)
-        {
-            lock (LoadingAppVariablesLock)
-            {
-                if (_environmentVariablesRegistered && oneTimeOnly)
-                {
-                    return;
-                }
-
-                string json;
-                using (StreamReader reader = new StreamReader(appSettings))
-                {
-                    json = reader.ReadToEnd();
-                }
-
-                if (!string.IsNullOrWhiteSpace(json))
-                {
-                    JObject settings = JObject.Parse(json);
-                    JObject values = (JObject) settings["Values"];
-                    if (values != null)
-                    {
-                        foreach (JProperty property in values.Properties())
-                        {
-                            if (property.Value != null)
-                            {
-                                Environment.SetEnvironmentVariable(property.Name, property.Value.ToString());
-                            }
-                        }
-                    }
-                }
-
-                _environmentVariablesRegistered = true;
-            }
-
-        }
+        public void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true) =>
+            EnvironmentVariableManager.AddEnvironmentVariables(appSettingsPath, oneTimeOnly);
+        
 
         /// <summary>
         /// The constructed service provider
@@ -230,6 +178,10 @@ namespace FunctionMonkey.Testing
                     actionResult = CreateResponse(200, result, httpFunctionDefinition);
                 }
             }
+            catch (ValidationException vex)
+            {
+                actionResult = await CreateValidationResponse(command, vex.ValidationResult, httpFunctionDefinition, httpResponseHandler);
+            }
             catch (Exception ex)
             {
                 Task exceptionResponseHandlerTask = httpResponseHandler.CreateResponseFromException(command, ex);
@@ -266,6 +218,10 @@ namespace FunctionMonkey.Testing
                     actionResult = new OkResult();
                 }
             }
+            catch (ValidationException vex)
+            {
+                actionResult = await CreateValidationResponse(command, vex.ValidationResult, httpFunctionDefinition, httpResponseHandler);
+            }
             catch (Exception ex)
             {
                 Task exceptionResponseHandlerTask = httpResponseHandler.CreateResponseFromException(command, ex);
@@ -278,6 +234,23 @@ namespace FunctionMonkey.Testing
                 {
                     actionResult = CreateResponse(500, "Unexpected error", httpFunctionDefinition);
                 }
+            }
+
+            return actionResult;
+        }
+
+        private async Task<IActionResult> CreateValidationResponse(ICommand command, ValidationResult validationResult, HttpFunctionDefinition httpFunctionDefinition, IHttpResponseHandler responseHandler)
+        {
+            IActionResult actionResult = null;
+            Task<IActionResult> validationResponseHandlerTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+            if (validationResponseHandlerTask != null)
+            {
+                actionResult = await validationResponseHandlerTask;
+            }
+
+            if (actionResult == null)
+            {
+                actionResult = CreateResponse(400, validationResult, httpFunctionDefinition);
             }
 
             return actionResult;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace FunctionMonkey.Extensions
+namespace FunctionMonkey.Abstractions.Extensions
 {
     public static class TypeExtensions
     {

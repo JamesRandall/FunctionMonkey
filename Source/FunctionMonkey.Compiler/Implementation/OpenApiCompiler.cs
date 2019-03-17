@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Compiler.Extensions;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi;

@@ -6,6 +6,7 @@ using System.Text;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;

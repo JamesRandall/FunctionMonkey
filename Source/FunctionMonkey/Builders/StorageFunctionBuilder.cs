@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Model;
 

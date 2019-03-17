@@ -2,6 +2,8 @@
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
 

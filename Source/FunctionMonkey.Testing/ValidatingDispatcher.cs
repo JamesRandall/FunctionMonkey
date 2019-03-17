@@ -32,7 +32,7 @@ namespace FunctionMonkey.Testing
             return await _underlyingDispatcher.DispatchAsync(command, cancellationToken);
         }
 
-        public ICommandExecuter AssociatedExecuter { get; }
+        public ICommandExecuter AssociatedExecuter { get; } = null;
 
         private void Validate(ICommand command)
         {

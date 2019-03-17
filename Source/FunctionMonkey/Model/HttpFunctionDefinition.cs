@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Extensions;
 
 namespace FunctionMonkey.Model

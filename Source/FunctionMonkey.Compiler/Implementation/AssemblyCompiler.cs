@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
+using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Extensions;

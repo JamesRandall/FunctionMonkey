@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Commanding.Abstractions.Validation;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FunctionMonkey.Testing
+namespace FunctionMonkey.Testing.Implementation
 {
     internal class DefaultHttpResponseHandler : IHttpResponseHandler
     {

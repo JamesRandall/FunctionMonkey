@@ -4,7 +4,6 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
-using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Abstractions.Builders

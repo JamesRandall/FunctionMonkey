@@ -13,5 +13,13 @@ namespace FunctionMonkey.Testing.Tests.Helpers
                 return JsonConvert.DeserializeObject<TResult>(json);
             }
         }
+
+        public static string GetString(this Stream stream)
+        {
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
     }
 }

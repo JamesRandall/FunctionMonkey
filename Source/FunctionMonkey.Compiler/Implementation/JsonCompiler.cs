@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;

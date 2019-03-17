@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Compiler.Implementation
