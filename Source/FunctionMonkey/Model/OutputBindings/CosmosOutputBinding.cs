@@ -8,6 +8,8 @@ namespace FunctionMonkey.Model.OutputBindings
         
         public string CollectionName { get; set; }
         
-        public override bool IsReturnType => false;
+        public CosmosOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName, connectionStringSettingName)
+        {
+        }
     }
 }

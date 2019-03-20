@@ -3,7 +3,7 @@ using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Commands
 {
-    public class HttpGetWithServiceBusQueueOutputCommand : ICommand<SimpleResponse>
+    public class HttpTriggerServiceBusQueueOutputCommand : ICommand<SimpleResponse>
     {
         
     }

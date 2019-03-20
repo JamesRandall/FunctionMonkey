@@ -6,6 +6,8 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public string QueueName { get; set; }
 
-        public override bool IsReturnType => true;
+        public ServiceBusQueueOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName, connectionStringSettingName)
+        {
+        }
     }
 }

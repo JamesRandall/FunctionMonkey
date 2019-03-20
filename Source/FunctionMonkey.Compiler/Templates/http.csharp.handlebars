@@ -17,8 +17,11 @@ namespace {{Namespace}}
     public static class {{Name}}
     {
         [FunctionName("{{Name}}")]
-        {{{returnOutputBinding}}}
+        {{#if OutputBinding}}
+        public static async Task Run(
+        {{else}}
         public static async Task<IActionResult> Run(
+        {{/if}}
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}},
@@ -240,7 +243,11 @@ namespace {{Namespace}}
                 {{/if}}
             }
             {{/if}}
-            
+
+            {{#if OutputBinding}}
+                {{CommandResultTypeName}} result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                {{{collectorOutputBinding}}}
+            {{else}}            
             try
             {
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
@@ -296,6 +303,7 @@ namespace {{Namespace}}
                     return CreateResponse(500, "Unexpected error", serializer);
                 {{/if}}
             }
+            {{/if}}
         }
 
         public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)

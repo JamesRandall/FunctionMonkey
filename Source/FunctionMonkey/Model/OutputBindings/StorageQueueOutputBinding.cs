@@ -5,7 +5,9 @@ namespace FunctionMonkey.Model.OutputBindings
     public class StorageQueueOutputBinding : AbstractConnectionStringOutputBinding
     {
         public string QueueName { get; set; }
-        
-        public override bool IsReturnType => true;
+
+        public StorageQueueOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName, connectionStringSettingName)
+        {
+        }
     }
 }

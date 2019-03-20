@@ -9,6 +9,9 @@ namespace FunctionMonkey.Compiler.Implementation
 {
     internal class TemplateProvider : ITemplateProvider
     {
+        private class DefaultOutputBinding
+        { }
+
         private static readonly Dictionary<Type, string> TypeToTemplatePrefixMap = new Dictionary<Type, string>
         {
             {typeof(HttpFunctionDefinition), "http"},
@@ -25,7 +28,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(CosmosOutputBinding), "cosmosdb" },
             {typeof(StorageBlobOutputBinding), "storageblob"},
             {typeof(StorageQueueOutputBinding), "storagequeue"},
-            {typeof(StorageTableOutputBinding), "storagetable"}
+            {typeof(StorageTableOutputBinding), "storagetable"},
+            {typeof(DefaultOutputBinding), "default" }
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)
@@ -48,9 +52,24 @@ namespace FunctionMonkey.Compiler.Implementation
             throw new ConfigurationException($"No templates are configured for function definitions of type {name}");
         }
 
-        public string GetCSharpOutputTemplate(AbstractOutputBinding outputBinding)
+        public string GetCSharpOutputParameterTemplate(AbstractOutputBinding outputBinding)
         {
-            return GetTemplate(outputBinding, "output.csharp");
+            return GetTemplate(outputBinding, "outputparameter.csharp");
+        }
+
+        public string GetCSharpOutputCollectorTemplate(AbstractOutputBinding outputBinding)
+        {
+            const string prefix = "outputcollector.csharp";
+
+            try
+            {
+                return GetTemplate(outputBinding, prefix);
+            }
+            catch (ConfigurationException e)
+            {
+                return GetTemplate(new DefaultOutputBinding(), prefix);
+            }
+            
         }
 
         public string GetJsonTemplate(AbstractFunctionDefinition functionDefinition)

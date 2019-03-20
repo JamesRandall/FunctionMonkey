@@ -145,6 +145,7 @@
     <None Remove="Templates\cosmosdb.csharp.handlebars" />
     <None Remove="Templates\cosmosdb.json.handlebars" />
     <None Remove="Templates\cosmosdbMonitor.json.handlebars" />
+    <None Remove="Templates\default.outputcollector.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
@@ -301,7 +302,8 @@
     <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
-    <EmbeddedResource Include="Templates\servicebusqueue.output.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\default.outputcollector.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
     <EmbeddedResource Include="Templates\timer.csharp.handlebars" />
     <EmbeddedResource Include="Templates\swaggerui.json.handlebars" />

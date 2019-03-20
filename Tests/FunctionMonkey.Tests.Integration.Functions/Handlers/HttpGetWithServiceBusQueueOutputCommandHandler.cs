@@ -5,9 +5,9 @@ using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Handlers
 {
-    public class HttpGetWithServiceBusQueueOutputCommandHandler : ICommandHandler<HttpGetWithServiceBusQueueOutputCommand, SimpleResponse>
+    public class HttpGetWithServiceBusQueueOutputCommandHandler : ICommandHandler<HttpTriggerServiceBusQueueOutputCommand, SimpleResponse>
     {
-        public Task<SimpleResponse> ExecuteAsync(HttpGetWithServiceBusQueueOutputCommand command, SimpleResponse previousResult)
+        public Task<SimpleResponse> ExecuteAsync(HttpTriggerServiceBusQueueOutputCommand command, SimpleResponse previousResult)
         {
             return SimpleResponse.Success();
         }

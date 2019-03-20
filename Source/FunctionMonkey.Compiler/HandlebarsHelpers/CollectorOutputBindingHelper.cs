@@ -6,11 +6,11 @@ using HandlebarsDotNet;
 
 namespace FunctionMonkey.Compiler.HandlebarsHelpers
 {
-    internal static class ParameterOutputBindingHelper
+    internal static class CollectorOutputBindingHelper
     {
         public static void Register()
         {
-            Handlebars.RegisterHelper("parameterOutputBinding", (writer, context, parameters) => HelperFunction(writer, context));
+            Handlebars.RegisterHelper("collectorOutputBinding", (writer, context, parameters) => HelperFunction(writer, context));
         }
 
         private static void HelperFunction(TextWriter writer, dynamic context)
@@ -29,7 +29,7 @@ namespace FunctionMonkey.Compiler.HandlebarsHelpers
         private static void WriteTemplate(TextWriter writer, AbstractFunctionDefinition functionDefinition)
         {
             TemplateProvider templateProvider = new TemplateProvider();
-            string templateSource = templateProvider.GetCSharpOutputParameterTemplate(functionDefinition.OutputBinding);
+            string templateSource = templateProvider.GetCSharpOutputCollectorTemplate(functionDefinition.OutputBinding);
             Func<object, string> template = Handlebars.Compile(templateSource);
 
             string output = template(functionDefinition.OutputBinding);

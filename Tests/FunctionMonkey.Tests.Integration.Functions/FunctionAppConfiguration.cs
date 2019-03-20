@@ -96,7 +96,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     
                     
                     .HttpRoute("outputBindings", route => route
-                        .HttpFunction<HttpGetWithServiceBusQueueOutputCommand>()
+                        .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>()
                         .OutputTo.ServiceBusQueue("serviceBusConnectionStringSettingName", "outputQueue")
                     )
                     

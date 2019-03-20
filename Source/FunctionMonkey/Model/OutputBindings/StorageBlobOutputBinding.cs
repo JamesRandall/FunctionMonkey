@@ -7,6 +7,8 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public List<StorageBlobOutput> Outputs { get; set; }
 
-        public override bool IsReturnType => false;
+        public StorageBlobOutputBinding(string commandResultTypeName) : base(commandResultTypeName)
+        {
+        }
     }
 }
