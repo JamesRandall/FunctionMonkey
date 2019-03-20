@@ -37,5 +37,8 @@ namespace FunctionMonkey.Builders
             options(builder);
             return this;
         }
+        
+        public IOutputBindingBuilder<IStorageFunctionOptionBuilder> OutputTo =>
+            new OutputBindingBuilder<IStorageFunctionOptionBuilder>(this, _definition);
     }
 }

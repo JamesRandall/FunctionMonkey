@@ -43,5 +43,8 @@ namespace FunctionMonkey.Builders
             options(builder);
             return this;
         }
+        
+        public IOutputBindingBuilder<IServiceBusFunctionOptionBuilder> OutputTo =>
+            new OutputBindingBuilder<IServiceBusFunctionOptionBuilder>(this, _functionDefinition);
     }
 }

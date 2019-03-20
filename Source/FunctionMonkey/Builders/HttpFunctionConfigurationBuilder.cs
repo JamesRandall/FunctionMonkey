@@ -74,5 +74,8 @@ namespace FunctionMonkey.Builders
             options(builder);
             return this;
         }
+        
+        public IOutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>>(this, _definition);
     }
 }

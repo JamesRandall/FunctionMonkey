@@ -2,7 +2,9 @@
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
+using FunctionMonkey.Serialization;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
+using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
@@ -91,6 +93,14 @@ namespace FunctionMonkey.Tests.Integration.Functions
                             "/result/validationPasses")
                         .Options(options => options.ResponseHandler<CustomResponseHandler>())
                     )
+                    
+                    
+                    .HttpRoute("outputBindings", route => route
+                        .HttpFunction<HttpGetWithServiceBusQueueOutputCommand>()
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionStringSettingName", "outputQueue")
+                    )
+                    
+                    
                     .Storage("storageConnectionString", storage => storage
                         .QueueFunction<StorageQueueCommand>(Constants.Storage.Queue.TestQueue)
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")

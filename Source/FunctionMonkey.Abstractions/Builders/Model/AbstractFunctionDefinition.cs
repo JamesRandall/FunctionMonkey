@@ -70,5 +70,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         public string FunctionClassTypeName { get; set; }
 
         #endregion
+        
+        public AbstractOutputBinding OutputBinding { get; set; }
     }
 }

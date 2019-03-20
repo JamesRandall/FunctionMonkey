@@ -60,5 +60,8 @@ namespace FunctionMonkey.Builders
             options(builder);
             return this;
         }
+
+        public IOutputBindingBuilder<ICosmosDbFunctionOptionBuilder> OutputTo =>
+            new OutputBindingBuilder<ICosmosDbFunctionOptionBuilder>(this, _functionDefinition);
     }
 }

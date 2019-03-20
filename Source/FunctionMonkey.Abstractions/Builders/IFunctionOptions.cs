@@ -10,5 +10,6 @@ namespace FunctionMonkey.Abstractions.Builders
         where TParentBuilder : class where TFunctionOptionsBuilder : class
     {
         TParentBuilder Options(Action<TFunctionOptionsBuilder> options);
+        IOutputBindingBuilder<TParentBuilder> OutputTo { get; }
     }
 }
