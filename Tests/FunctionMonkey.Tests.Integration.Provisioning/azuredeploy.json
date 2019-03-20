@@ -162,6 +162,17 @@
           }
         },
         {
+          "apiVersion": "[variables('sbVersion')]",
+          "name": "outputqueue",
+          "type": "Queues",
+          "dependsOn": [
+            "[concat('Microsoft.ServiceBus/namespaces/', variables('serviceBusNamespaceName'))]"
+          ],
+          "properties": {
+            "path": "outputqueue"
+          }
+        },
+        {
           "apiVersion": "2017-04-01",
           "name": "testtopic",
           "type": "topics",
@@ -186,6 +197,44 @@
               "type": "Subscriptions",
               "dependsOn": [
                 "testtopic"
+              ],
+              "properties": {
+                "lockDuration": "PT5M",
+                "requiresSession": "false",
+                "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                "deadLetteringOnMessageExpiration": "false",
+                "maxDeliveryCount": "10",
+                "enableBatchedOperations": "false",
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S"
+              }
+            }
+          ]
+        },
+        {
+          "apiVersion": "2017-04-01",
+          "name": "outputtopic",
+          "type": "topics",
+          "dependsOn": [
+            "[concat('Microsoft.ServiceBus/namespaces/', variables('serviceBusNamespaceName'))]"
+          ],
+          "properties": {
+            "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+            "maxSizeInMegabytes": "1024",
+            "requiresDuplicateDetection": "false",
+            "duplicateDetectionHistoryTimeWindow": "PT10M",
+            "enableBatchedOperations": "false",
+            "supportOrdering": "false",
+            "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+            "enablePartitioning": "false",
+            "enableExpress": "false"
+          },
+          "resources": [
+            {
+              "apiVersion": "2017-04-01",
+              "name": "outputsub",
+              "type": "Subscriptions",
+              "dependsOn": [
+                "outputtopic"
               ],
               "properties": {
                 "lockDuration": "PT5M",
