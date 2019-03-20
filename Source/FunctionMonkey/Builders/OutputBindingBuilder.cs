@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
@@ -21,7 +22,7 @@ namespace FunctionMonkey.Builders
             VerifyOutputBinding();
             _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding
             {
-                ConnectionStringName = connectionString,
+                ConnectionStringSettingName = connectionString,
                 QueueName = queueName
             };
 
@@ -33,7 +34,7 @@ namespace FunctionMonkey.Builders
             VerifyOutputBinding();
             _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding
             {
-                ConnectionStringName = connectionString,
+                ConnectionStringSettingName = connectionString,
                 TopicName = topicName
             };
 
@@ -79,22 +80,42 @@ namespace FunctionMonkey.Builders
         public TParentBuilder StorageQueue(string connectionStringSettingName, string queueName)
         {
             VerifyOutputBinding();
-            throw new System.NotImplementedException();
+            _functionDefinition.OutputBinding = new StorageQueueOutputBinding
+            {
+                QueueName = queueName,
+                ConnectionStringSettingName = connectionStringSettingName
+            };
+            return _parentBuilder;
         }
 
         public TParentBuilder StorageTable(string connectionStringSettingName, string tableName)
         {
             VerifyOutputBinding();
-            throw new System.NotImplementedException();
+            _functionDefinition.OutputBinding = new StorageTableOutputBinding
+            {
+                TableName = tableName,
+                ConnectionStringSettingName = connectionStringSettingName
+            };
+            return _parentBuilder;
         }
 
-        public TParentBuilder Cosmos(string connectionStringSettingName, string databaseName, string leaseName)
+        public TParentBuilder Cosmos(string connectionStringSettingName, string databaseName, string collectionName)
         {
             VerifyOutputBinding();
-            throw new System.NotImplementedException();
-            
+
             // we can use the command output type to determine whether or not to use a IAsyncCollector or an out parameter
             // if its based on IEnumerable we do the former, otherwise the latter
+            bool isCollection = typeof(IEnumerable).IsAssignableFrom(_functionDefinition.CommandResultType);
+            
+            _functionDefinition.OutputBinding = new CosmosOutputBinding
+            {
+                ConnectionStringSettingName = connectionStringSettingName,
+                CollectionName = collectionName,
+                DatabaseName = databaseName,
+                IsCollection = isCollection
+            };
+
+            return _parentBuilder;
         }
 
         private void VerifyOutputBinding()
@@ -103,7 +124,11 @@ namespace FunctionMonkey.Builders
             {
                 throw new ConfigurationException($"An output binding is already set for command {_functionDefinition.CommandType.Name}");
             }
-            
+
+            if (!_functionDefinition.CommandHasResult)
+            {
+                throw new ConfigurationException($"Command of type {_functionDefinition.CommandType.Name} requires a result to be used with an output binding");
+            }
         }
     }
 }

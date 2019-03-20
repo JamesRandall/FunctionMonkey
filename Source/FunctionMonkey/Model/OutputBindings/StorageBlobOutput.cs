@@ -2,9 +2,8 @@ using System.IO;
 
 namespace FunctionMonkey.Model.OutputBindings
 {
-    public class StorageBlobOutput
+    internal class StorageBlobOutput : AbstractConnectionStringOutputBinding
     {
-        public string ConnectionStringSettingName { get; set; }
         
         public string Name { get; set; }
         
