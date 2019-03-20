@@ -2,8 +2,10 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace FunctionMonkey.Model.OutputBindings
 {
-    internal class StorageQueueOutputBinding : AbstractConnectionStringOutputBinding
+    public class StorageQueueOutputBinding : AbstractConnectionStringOutputBinding
     {
         public string QueueName { get; set; }
+        
+        public override bool IsReturnType => true;
     }
 }

@@ -8,6 +8,8 @@
             HttpVerbsHelper.Register();
             RouteParametersHelper.Register();
             MappedHeaderNameForPropertyHelper.Register();
+            ReturnOutputBindingHelper.Register();
+            ParameterOutputBindingHelper.Register();
         }
     }
 }

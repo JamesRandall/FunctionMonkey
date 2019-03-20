@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Model;
+using FunctionMonkey.Model.OutputBindings;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -17,7 +18,14 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(BlobFunctionDefinition),"storageblob" },
             {typeof(BlobStreamFunctionDefinition),"storageblobstream" },
             {typeof(TimerFunctionDefinition),"timer" },
-            {typeof(CosmosDbFunctionDefinition), "cosmosdb" }
+            {typeof(CosmosDbFunctionDefinition), "cosmosdb" },
+            // output bindings
+            {typeof(ServiceBusQueueOutputBinding), "servicebusqueue" },
+            {typeof(ServiceBusTopicOutputBinding), "servicebustopic" },
+            {typeof(CosmosOutputBinding), "cosmosdb" },
+            {typeof(StorageBlobOutputBinding), "storageblob"},
+            {typeof(StorageQueueOutputBinding), "storagequeue"},
+            {typeof(StorageTableOutputBinding), "storagetable"}
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)
@@ -40,12 +48,17 @@ namespace FunctionMonkey.Compiler.Implementation
             throw new ConfigurationException($"No templates are configured for function definitions of type {name}");
         }
 
+        public string GetCSharpOutputTemplate(AbstractOutputBinding outputBinding)
+        {
+            return GetTemplate(outputBinding, "output.csharp");
+        }
+
         public string GetJsonTemplate(AbstractFunctionDefinition functionDefinition)
         {
             return GetTemplate(functionDefinition, "json");
         }
 
-        private string GetTemplate(AbstractFunctionDefinition functionDefinition, string type)
+        private string GetTemplate(object functionDefinition, string type)
         {
             if (TypeToTemplatePrefixMap.TryGetValue(functionDefinition.GetType(), out string prefix))
             {

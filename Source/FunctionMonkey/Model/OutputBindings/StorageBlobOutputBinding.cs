@@ -3,8 +3,10 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace FunctionMonkey.Model.OutputBindings
 {
-    internal class StorageBlobOutputBinding : AbstractOutputBinding
+    public class StorageBlobOutputBinding : AbstractOutputBinding
     {
         public List<StorageBlobOutput> Outputs { get; set; }
+
+        public override bool IsReturnType => false;
     }
 }

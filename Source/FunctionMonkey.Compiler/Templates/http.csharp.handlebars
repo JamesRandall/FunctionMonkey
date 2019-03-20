@@ -17,6 +17,7 @@ namespace {{Namespace}}
     public static class {{Name}}
     {
         [FunctionName("{{Name}}")]
+        {{{returnOutputBinding}}}
         public static async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
@@ -29,6 +30,7 @@ namespace {{Namespace}}
             {{#each RouteParameters}}
             , {{#if IsGuid}}string{{else}}{{{RouteTypeName}}}{{/if}} {{RouteName}}
             {{/each}}
+            {{{parameterOutputBinding}}}
     )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
