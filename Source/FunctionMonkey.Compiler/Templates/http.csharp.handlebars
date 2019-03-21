@@ -234,12 +234,17 @@ namespace {{Namespace}}
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                {{#if HasHttpResponseHandler}}
-                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
-                    var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
-                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                {{#if OutputBinding}}
+                    log.LogWarning("Command of type {commandType} failed validation {validationResult}", "{{CommandTypeName}}", validationResult);
+                    return;
                 {{else}}
-                    return CreateResponse(400, validationResult, serializer);
+                    {{#if HasHttpResponseHandler}}
+                        var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                        var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
+                        return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                    {{else}}
+                        return CreateResponse(400, validationResult, serializer);
+                    {{/if}}
                 {{/if}}
             }
             {{/if}}

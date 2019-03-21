@@ -152,6 +152,7 @@
     <None Remove="Templates\http.csharp.handlebars" />
     <None Remove="Templates\servicebusqueue.csharp.handlebars" />
     <None Remove="Templates\servicebusqueue.json.handlebars" />
+    <None Remove="Templates\servicebusqueue.output.json.handlebars" />
     <None Remove="Templates\servicebussubscription.csharp.handlebars" />
     <None Remove="Templates\servicebussubscription.json.handlebars" />
     <None Remove="Templates\storageblob.csharp.handlebars" />
@@ -303,6 +304,7 @@
     <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
     <EmbeddedResource Include="Templates\default.outputcollector.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\servicebusqueue.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
     <EmbeddedResource Include="Templates\timer.csharp.handlebars" />

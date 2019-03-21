@@ -9,9 +9,6 @@ namespace FunctionMonkey.Compiler.Implementation
 {
     internal class TemplateProvider : ITemplateProvider
     {
-        private class DefaultOutputBinding
-        { }
-
         private static readonly Dictionary<Type, string> TypeToTemplatePrefixMap = new Dictionary<Type, string>
         {
             {typeof(HttpFunctionDefinition), "http"},
@@ -28,8 +25,7 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(CosmosOutputBinding), "cosmosdb" },
             {typeof(StorageBlobOutputBinding), "storageblob"},
             {typeof(StorageQueueOutputBinding), "storagequeue"},
-            {typeof(StorageTableOutputBinding), "storagetable"},
-            {typeof(DefaultOutputBinding), "default" }
+            {typeof(StorageTableOutputBinding), "storagetable"}
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)
@@ -57,18 +53,16 @@ namespace FunctionMonkey.Compiler.Implementation
             return GetTemplate(outputBinding, "outputparameter.csharp");
         }
 
+        public string GetJsonOutputParameterTemplate(AbstractOutputBinding outputBinding)
+        {
+            return GetTemplate(outputBinding, "output.json");
+        }
+
         public string GetCSharpOutputCollectorTemplate(AbstractOutputBinding outputBinding)
         {
             const string prefix = "outputcollector.csharp";
 
-            try
-            {
-                return GetTemplate(outputBinding, prefix);
-            }
-            catch (ConfigurationException e)
-            {
-                return GetTemplate(new DefaultOutputBinding(), prefix);
-            }
+            return GetTemplate(outputBinding, prefix, true);            
             
         }
 
@@ -77,13 +71,38 @@ namespace FunctionMonkey.Compiler.Implementation
             return GetTemplate(functionDefinition, "json");
         }
 
-        private string GetTemplate(object functionDefinition, string type)
+        private string GetTemplate(object functionDefinition, string type, bool fallbackToDefault=false)
         {
+            string template = null;
             if (TypeToTemplatePrefixMap.TryGetValue(functionDefinition.GetType(), out string prefix))
             {
-                using (Stream stream = GetType().Assembly.GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.{prefix}.{type}.handlebars"))
-                using (StreamReader reader = new StreamReader(stream))
-                    return reader.ReadToEnd();
+                using (Stream stream = GetType().Assembly
+                    .GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.{prefix}.{type}.handlebars"))
+                {
+                    if (stream != null)
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                            template = reader.ReadToEnd();
+                    }                                        
+                }
+
+                if (string.IsNullOrWhiteSpace(template) && fallbackToDefault)
+                {
+                    using (Stream stream = GetType().Assembly
+                        .GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.default.{type}.handlebars"))
+                    {
+                        if (stream != null)
+                        {
+                            using (StreamReader reader = new StreamReader(stream))
+                                template = reader.ReadToEnd();
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(template))
+                {
+                    return template;
+                }
             }
             throw new ConfigurationException($"No templates are configured for function definitions of type {functionDefinition.GetType().Name}");
         }

@@ -1,6 +1,5 @@
-﻿/*
+﻿/*using System;
 using System.Collections.Generic;
-
 using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
@@ -15,19 +14,22 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Functions
 {
-    public static class HttpResponseHandlerCommandWithNoResultAndNoValidationScratch
+    public static class HttpTriggerServiceBusQueueOutput
     {
-        [FunctionName("HttpResponseHandlerCommandWithNoResultAndNoValidation")]
-        public static async Task<IActionResult> Run(
+        [FunctionName("HttpTriggerServiceBusQueueOutput")]
+        public static async Task Run(
             [HttpTrigger(
                 AuthorizationLevel.Function,
                 "GET",
-                Route = null)]
+                Route = "outputBindings")
+            ]
             HttpRequest req,
             ILogger log,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext
+            , [ServiceBus("outputQueue", Connection = "serviceBusConnectionString")]IAsyncCollector<FunctionMonkey.Tests.Integration.Functions.Commands.Model.SimpleResponse> collector
+    )
         {
-            log.LogInformation("HTTP trigger function HttpResponseHandlerCommandWithNoResultAndNoValidation processed a request.");
+            log.LogInformation("HTTP trigger function HttpTriggerServiceBusQueueOutput processed a request.");
 
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
@@ -54,7 +56,7 @@ namespace FunctionMonkey.Tests.Integration.Functions.Functions
             var serializer = (FunctionMonkey.Abstractions.ISerializer)
             FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Serialization.CamelCaseJsonSerializer));
 
-            FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseHandlerCommandWithNoResultAndNoValidation command;
+            FunctionMonkey.Tests.Integration.Functions.Commands.HttpTriggerServiceBusQueueOutputCommand command;
             string contentType = req.ContentType?.ToLower() ?? "application/json";
             if (contentType.Split(';').Any(x => x.Trim().Equals("application/json", System.StringComparison.InvariantCultureIgnoreCase)))
             {
@@ -62,16 +64,16 @@ namespace FunctionMonkey.Tests.Integration.Functions.Functions
 
                 if (!System.String.IsNullOrWhiteSpace(requestBody))
                 {
-                    command = serializer.Deserialize<FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseHandlerCommandWithNoResultAndNoValidation>(requestBody);
+                    command = serializer.Deserialize<FunctionMonkey.Tests.Integration.Functions.Commands.HttpTriggerServiceBusQueueOutputCommand>(requestBody);
                 }
                 else
                 {
-                    command = new FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseHandlerCommandWithNoResultAndNoValidation();
+                    command = new FunctionMonkey.Tests.Integration.Functions.Commands.HttpTriggerServiceBusQueueOutputCommand();
                 }
             }
             else
             {
-                command = new FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseHandlerCommandWithNoResultAndNoValidation();
+                command = new FunctionMonkey.Tests.Integration.Functions.Commands.HttpTriggerServiceBusQueueOutputCommand();
             }
 
 
@@ -79,41 +81,23 @@ namespace FunctionMonkey.Tests.Integration.Functions.Functions
             string method = req.Method.ToUpper();
             if (method == "GET" || method == "DELETE")
             {
-                if (req.Query.TryGetValue("Value", out queryParameterValues))
-                {
-                    System.Int32.TryParse(queryParameterValues[0], out var candidate);
-                    command.Value = candidate;
-                }
             }
 
 
 
 
-            var responseHandler = (FunctionMonkey.Tests.Integration.Functions.CustomResponseHandler)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Tests.Integration.Functions.CustomResponseHandler));
 
             var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
-                var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
-                return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                log.LogWarning("Command of type {commandType} failed validation {validationResult}", "FunctionMonkey.Tests.Integration.Functions.Commands.HttpTriggerServiceBusQueueOutputCommand", validationResult);
             }
 
-            try
-            {
-                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-                var responseTask = responseHandler.CreateResponse(command);
-                var handledResponse = responseTask != null ? (await responseTask) : null;
-                return handledResponse ?? new OkResult();
-            }
-            catch (System.Exception ex)
-            {
-                var responseTask = responseHandler.CreateResponseFromException(command, ex);
-                var handledResponse = responseTask != null ? (await responseTask) : null;
-                return handledResponse ?? CreateResponse(500, "Unexpected error", serializer);
-            }
+            FunctionMonkey.Tests.Integration.Functions.Commands.Model.SimpleResponse result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+            await collector.AddAsync(result);
+
         }
 
         public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)
