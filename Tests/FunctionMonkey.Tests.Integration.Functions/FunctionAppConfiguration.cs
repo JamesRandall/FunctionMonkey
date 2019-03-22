@@ -32,7 +32,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     serviceCollection
                         .AddValidatorsFromAssemblyContaining<FunctionAppConfiguration>()
                         ;
-                    commandRegistry.Discover<FunctionAppConfiguration>();
+                    //commandRegistry.Discover<FunctionAppConfiguration>();
                 })
                 .AddFluentValidation()
                 .OutputAuthoredSource(@"d:\wip\scratch\outputSource")

@@ -178,8 +178,77 @@ namespace FunctionMonkey
         {
             FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
             configuration.Build(builder);
+            RegisterCommandHandlersForCommandsWithNoAssociatedHandler(builder, commandRegistry);
             new PostBuildPatcher().Patch(builder, "");
             return builder;
+        }
+
+        private void RegisterCommandHandlersForCommandsWithNoAssociatedHandler(FunctionHostBuilder builder, ICommandRegistry commandRegistry)
+        {
+            // IN PROGRESS: This looks from the loaded set of assemblies and looks for a command handler for each command associated with a function.
+            // If the handler is not already registered in the command registry then this registers it.
+            IRegistrationCatalogue registrationCatalogue = (IRegistrationCatalogue) commandRegistry;
+            HashSet<Type> registeredCommandTypes = new HashSet<Type>(registrationCatalogue.GetRegisteredCommands());
+            
+            Dictionary<Type, List<Type>> commandTypesToHandlerTypes = null;
+
+            foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
+            {
+                if (registeredCommandTypes.Contains(functionDefinition.CommandType))
+                {
+                    continue;
+                }
+
+                if (commandTypesToHandlerTypes == null)
+                {
+                    commandTypesToHandlerTypes = HarvestCommandHandlers();
+                }
+
+                if (commandTypesToHandlerTypes.TryGetValue(functionDefinition.CommandType, out List<Type> handlerTypes))
+                {
+                    foreach (Type handlerType in handlerTypes)
+                    {
+                        commandRegistry.Register(handlerType);
+                    }
+                }
+            }
+        }
+
+        private static Dictionary<Type, List<Type>> HarvestCommandHandlers()
+        {
+            Type baseCommandHandlerType = typeof(ICommandHandler);
+            Dictionary<Type, List<Type>> commandTypesToHandlerTypes = new Dictionary<Type, List<Type>>();
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (Assembly assembly in assemblies)
+            {
+                foreach (Type candidateHandlerType in assembly.GetTypes())
+                {
+                    if (!candidateHandlerType.IsInterface && baseCommandHandlerType.IsAssignableFrom(candidateHandlerType))
+                    {
+                        Type[] genericArguments = candidateHandlerType.GetInterfaces()
+                            .Where(i => i.IsGenericType &&
+                                        (i.GetGenericTypeDefinition() == typeof(ICommandHandler<>) ||
+                                         i.GetGenericTypeDefinition() == typeof(ICommandHandler<,>)))
+                            .SelectMany(i => i.GetGenericArguments())
+                            .ToArray();
+
+                        if (genericArguments.Any())
+                        {
+                            Type commandArgumentType = genericArguments[0];
+                            if (!commandTypesToHandlerTypes.TryGetValue(commandArgumentType,
+                                out var handlerTypes))
+                            {
+                                handlerTypes = new List<Type>();
+                                commandTypesToHandlerTypes[commandArgumentType] = handlerTypes;
+                            }
+
+                            handlerTypes.Add(candidateHandlerType);
+                        }
+                    }
+                }
+            }
+
+            return commandTypesToHandlerTypes;
         }
 
         private void RegisterInternalImplementations()
