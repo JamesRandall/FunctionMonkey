@@ -2,9 +2,8 @@
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
-using FunctionMonkey.Serialization;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
-using Newtonsoft.Json.Serialization;
+using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
@@ -95,11 +94,18 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     
                     
                     .HttpRoute("outputBindings", route => route
-                        .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBus")
+                        // Service Bus
+                        .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBusQueue")
                         .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputQueue")
 
-                        .HttpFunction<HttpTriggerServiceBusQueueCollectionOutputCommand>("/collectionToServiceBus")
+                        .HttpFunction<HttpTriggerServiceBusQueueCollectionOutputCommand>("/collectionToServiceBusQueue")
                         .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputQueue")
+
+                        .HttpFunction<HttpTriggerServiceBusTopicOutputCommand>("/toServiceBusTopic")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
+
+                        .HttpFunction<HttpTriggerServiceBusTopicCollectionOutputCommand>("/collectionToServiceBusTopic")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
                     )                    
                     
                     

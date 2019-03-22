@@ -1,1 +1,1 @@
-[ServiceBus("{{QueueName}}", Connection = "{{ConnectionStringSettingName}}")]IAsyncCollector<{{{CommandResultItemTypeName}}}> collector
+[ServiceBus("{{QueueName}}", EntityType=Microsoft.Azure.WebJobs.ServiceBus.EntityType.Queue, Connection = "{{ConnectionStringSettingName}}")]IAsyncCollector<{{{CommandResultItemTypeName}}}> collector

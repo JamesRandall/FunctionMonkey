@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Tests.Integration.Functions.Commands;
 using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
+using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
 
-namespace FunctionMonkey.Tests.Integration.Functions.Handlers
+namespace FunctionMonkey.Tests.Integration.Functions.Handlers.OutputBindings
 {
-    public class HttpGetWithServiceBusQueueOutputCommandHandler : ICommandHandler<HttpTriggerServiceBusQueueOutputCommand, SimpleResponse>
+    public class HttpTriggerServiceBusQueueOutputCommandHandler : ICommandHandler<HttpTriggerServiceBusQueueOutputCommand, SimpleResponse>
     {
         public Task<SimpleResponse> ExecuteAsync(HttpTriggerServiceBusQueueOutputCommand command, SimpleResponse previousResult)
         {
