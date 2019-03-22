@@ -6,7 +6,7 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public string TopicName { get; set; }
 
-        public ServiceBusTopicOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName, connectionStringSettingName)
+        public ServiceBusTopicOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
         {
         }
     }

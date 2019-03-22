@@ -4,7 +4,7 @@ namespace FunctionMonkey.Model.OutputBindings
 {
     public abstract class AbstractConnectionStringOutputBinding : AbstractOutputBinding
     {
-        protected AbstractConnectionStringOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName)
+        protected AbstractConnectionStringOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName)
         {
             ConnectionStringSettingName = connectionStringSettingName;
         }

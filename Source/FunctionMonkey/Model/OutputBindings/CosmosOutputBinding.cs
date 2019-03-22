@@ -8,7 +8,7 @@ namespace FunctionMonkey.Model.OutputBindings
         
         public string CollectionName { get; set; }
         
-        public CosmosOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName, connectionStringSettingName)
+        public CosmosOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
         {
         }
     }

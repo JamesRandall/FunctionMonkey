@@ -20,7 +20,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder ServiceBusQueue(string connectionString, string queueName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition.CommandResultTypeName, connectionString)
+            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
             {
                 QueueName = queueName
             };
@@ -31,7 +31,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder ServiceBusTopic(string connectionString, string topicName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition.CommandResultTypeName, connectionString)
+            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
             {
                 TopicName = topicName
             };
@@ -55,12 +55,12 @@ namespace FunctionMonkey.Builders
         {
             if (_functionDefinition.OutputBinding is null)
             {
-                _functionDefinition.OutputBinding = new StorageBlobOutputBinding(_functionDefinition.CommandResultTypeName);
+                _functionDefinition.OutputBinding = new StorageBlobOutputBinding(_functionDefinition.CommandResultItemTypeName);
             }
 
             if (_functionDefinition.OutputBinding is StorageBlobOutputBinding blobBinding)
             {
-                blobBinding.Outputs.Add(new StorageBlobOutput(_functionDefinition.CommandResultTypeName, connectionStringSettingName)
+                blobBinding.Outputs.Add(new StorageBlobOutput(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
                 {
                     FileAccess = fileAccess,
                     Name = name
@@ -77,7 +77,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder StorageQueue(string connectionStringSettingName, string queueName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new StorageQueueOutputBinding(_functionDefinition.CommandResultTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new StorageQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
             {
                 QueueName = queueName
             };
@@ -87,7 +87,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder StorageTable(string connectionStringSettingName, string tableName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new StorageTableOutputBinding(_functionDefinition.CommandResultTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new StorageTableOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
             {
                 TableName = tableName
             };
@@ -102,7 +102,7 @@ namespace FunctionMonkey.Builders
             // if its based on IEnumerable we do the former, otherwise the latter
             bool isCollection = typeof(IEnumerable).IsAssignableFrom(_functionDefinition.CommandResultType);
             
-            _functionDefinition.OutputBinding = new CosmosOutputBinding(_functionDefinition.CommandResultTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new CosmosOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
             {
                 CollectionName = collectionName,
                 DatabaseName = databaseName,

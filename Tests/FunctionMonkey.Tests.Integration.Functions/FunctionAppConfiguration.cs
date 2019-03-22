@@ -32,7 +32,6 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     serviceCollection
                         .AddValidatorsFromAssemblyContaining<FunctionAppConfiguration>()
                         ;
-                    //commandRegistry.Discover<FunctionAppConfiguration>();
                 })
                 .AddFluentValidation()
                 .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
@@ -96,9 +95,12 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     
                     
                     .HttpRoute("outputBindings", route => route
-                        .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>()
+                        .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBus")
                         .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputQueue")
-                    )
+
+                        .HttpFunction<HttpTriggerServiceBusQueueCollectionOutputCommand>("/collectionToServiceBus")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputQueue")
+                    )                    
                     
                     
                     .Storage("storageConnectionString", storage => storage

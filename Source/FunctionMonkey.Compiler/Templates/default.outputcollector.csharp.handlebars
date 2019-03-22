@@ -1,1 +1,8 @@
+{{#if CommandResultIsCollection}}
+foreach (var commandResultItem in result)
+{
+    await collector.AddAsync(commandResultItem);
+}
+{{else}}
 await collector.AddAsync(result);
+{{/if}}

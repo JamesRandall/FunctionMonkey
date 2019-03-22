@@ -32,7 +32,7 @@ namespace FunctionMonkey.Compiler.HandlebarsHelpers
             string templateSource = templateProvider.GetCSharpOutputCollectorTemplate(functionDefinition.OutputBinding);
             Func<object, string> template = Handlebars.Compile(templateSource);
 
-            string output = template(functionDefinition.OutputBinding);
+            string output = template(functionDefinition);
             writer.Write(output);
         }
     }

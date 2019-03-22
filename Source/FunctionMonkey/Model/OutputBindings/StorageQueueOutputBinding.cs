@@ -6,7 +6,7 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public string QueueName { get; set; }
 
-        public StorageQueueOutputBinding(string commandResultTypeName, string connectionStringSettingName) : base(commandResultTypeName, connectionStringSettingName)
+        public StorageQueueOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
         {
         }
     }

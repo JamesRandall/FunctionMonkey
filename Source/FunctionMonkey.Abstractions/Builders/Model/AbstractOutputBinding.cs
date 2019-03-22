@@ -2,11 +2,11 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 {
     public abstract class AbstractOutputBinding
     {
-        protected AbstractOutputBinding(string commandResultTypeName)
+        protected AbstractOutputBinding(string CommandResultItemTypeName)
         {
-            CommandResultTypeName = commandResultTypeName;
+            this.CommandResultItemTypeName = CommandResultItemTypeName;
         }
 
-        public string CommandResultTypeName { get; }
+        public string CommandResultItemTypeName { get; }
     }
 }
