@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings
 {
-    public class HttpTriggerServiceBusQueueCollectionOutputCommand : ICommand<IReadOnlyCollection<QueuedMarkerIdCommand>>
+    public class HttpTriggerStorageBlobOutputCommandResultCommand : ICommand<QueuedMarkerIdCommand>
     {
         public Guid MarkerId { get; set; }
     }

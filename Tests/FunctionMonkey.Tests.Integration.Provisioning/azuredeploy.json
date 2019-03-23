@@ -173,6 +173,17 @@
           }
         },
         {
+          "apiVersion": "[variables('sbVersion')]",
+          "name": "markerqueue",
+          "type": "Queues",
+          "dependsOn": [
+            "[concat('Microsoft.ServiceBus/namespaces/', variables('serviceBusNamespaceName'))]"
+          ],
+          "properties": {
+            "path": "markerqueue"
+          }
+        },
+        {
           "apiVersion": "2017-04-01",
           "name": "testtopic",
           "type": "topics",

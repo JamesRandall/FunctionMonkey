@@ -106,6 +106,12 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                         .HttpFunction<HttpTriggerServiceBusTopicCollectionOutputCommand>("/collectionToServiceBusTopic")
                         .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
+
+                        // Blob
+                        //.HttpFunction<HttpTriggerStorageBlobOutputCommandResultCommand>("/toBlobOutputWithName")
+                        //.OutputTo.StorageBlob("storageConnectionString", "")
+
+
                     )                    
                     
                     
@@ -119,11 +125,15 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .QueueFunction<ServiceBusQueueCommand>(Constants.ServiceBus.Queue)
                         .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
                             Constants.ServiceBus.SubscriptionName)
+
+                        // This command isn't a direct test subject but it reads from a service bus queue and places
+                        // the IDs into the marker table so that tests can find them during async output trigger testing
+                        .QueueFunction<QueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)
                     )
                     .CosmosDb("cosmosConnectionString", cosmos => cosmos
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
                     )
-                    .Timer<TimerCommand>("*/5 * * * * *")
+                    .Timer<TimerCommand>("*/5 * * * * *")                    
                 );
         }
     }

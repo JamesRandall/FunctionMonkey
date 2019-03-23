@@ -19,11 +19,15 @@
                 public const string BlobCommandContainer = "blobcommands";
 
                 public const string StreamBlobCommandContainer = "streamblobcommands";
+
+                public const string OutputBlobContainer = "outputblobcontainer";
             }
         }
 
         public static class ServiceBus
         {
+            public const string MarkerQueue = "markerqueue";
+
             public const string Queue = "testqueue";
 
             public const string TopicName = "testtopic";

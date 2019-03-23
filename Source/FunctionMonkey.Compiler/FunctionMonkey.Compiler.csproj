@@ -163,6 +163,7 @@
     <None Remove="Templates\storageblobstream.json.handlebars" />
     <None Remove="Templates\storagequeue.csharp.handlebars" />
     <None Remove="Templates\storagequeue.json.handlebars" />
+    <None Remove="Templates\storagequeue.outputparameter.csharp.handlebars" />
     <None Remove="Templates\swaggerui.csharp.handlebars" />
     <None Remove="Templates\swaggerui.json.handlebars" />
     <None Remove="Templates\timer.csharp.handlebars" />
@@ -310,6 +311,7 @@
     <EmbeddedResource Include="Templates\servicebustopic.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\storagequeue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
     <EmbeddedResource Include="Templates\timer.csharp.handlebars" />
     <EmbeddedResource Include="Templates\swaggerui.json.handlebars" />
