@@ -49,5 +49,39 @@ namespace FunctionMonkey.Tests.Integration.ServiceBus
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
             await marker.Assert();
         }
+
+        [Fact]
+        public async Task WriteToServiceBusTopicWhenResponseIsSingular()
+        {
+            MarkerMessage marker = new MarkerMessage
+            {
+                MarkerId = Guid.NewGuid()
+            };
+            HttpResponseMessage response = await Settings.Host
+                .AppendPathSegment("outputBindings")
+                .AppendPathSegment("toServiceBusTopic")
+                .SetQueryParam("markerId", marker.MarkerId)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            await marker.Assert();
+        }
+
+        [Fact]
+        public async Task WriteToServiceBusTopicWhenResponseIsCollection()
+        {
+            MarkerMessage marker = new MarkerMessage
+            {
+                MarkerId = Guid.NewGuid()
+            };
+            HttpResponseMessage response = await Settings.Host
+                .AppendPathSegment("outputBindings")
+                .AppendPathSegment("collectionToServiceBusTopic")
+                .SetQueryParam("markerId", marker.MarkerId)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            await marker.Assert();
+        }
     }
 }
