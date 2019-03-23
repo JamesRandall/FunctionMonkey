@@ -125,6 +125,13 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                         .HttpFunction<HttpTriggerStorageTableCollectionOutputCommand>("/collectionToStorageTable")
                         .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
+
+                        // Cosmos
+                        .HttpFunction<HttpTriggerCosmosOutputCommand>("/toCosmos")
+                        .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)
+
+                        .HttpFunction<HttpTriggerCosmosCollectionOutputCommand>("/collectionToCosmos")
+                        .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)
                     )                    
                     
                     

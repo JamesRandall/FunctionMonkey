@@ -144,6 +144,7 @@
     <None Remove="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
     <None Remove="Templates\cosmosdb.csharp.handlebars" />
     <None Remove="Templates\cosmosdb.json.handlebars" />
+    <None Remove="Templates\cosmosdb.outputparameter.csharp.handlebars" />
     <None Remove="Templates\cosmosdbMonitor.json.handlebars" />
     <None Remove="Templates\default.outputcollector.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.csharp.handlebars" />
@@ -312,6 +313,7 @@
     <EmbeddedResource Include="Templates\servicebustopic.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\cosmosdb.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\storagetable.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\storagequeue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />

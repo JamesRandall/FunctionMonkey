@@ -11,6 +11,6 @@ namespace FunctionMonkey.Abstractions.Builders
         TFunctionTypeBuilder StorageBlob(string connectionStringSettingName, string name, FileAccess fileAccess = FileAccess.Write); // can use multiples of these 
         TFunctionTypeBuilder StorageQueue(string connectionStringSettingName, string queueName);
         TFunctionTypeBuilder StorageTable(string connectionStringSettingName, string tableName);
-        TFunctionTypeBuilder Cosmos(string connectionStringSettingName, string databaseName, string leaseName);
+        TFunctionTypeBuilder Cosmos(string connectionStringSettingName, string databaseName, string collectionName);
     }
 }
