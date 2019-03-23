@@ -14,6 +14,7 @@ using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
+using FunctionMonkey.SignalR;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -272,7 +273,9 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(Message).GetTypeInfo().Assembly.Location,
                 typeof(ChangeFeedProcessorBuilder).Assembly.Location,
                 typeof(TimerInfo).Assembly.Location,
-                typeof(DbConnectionStringBuilder).Assembly.Location
+                typeof(DbConnectionStringBuilder).Assembly.Location,
+                typeof(AzureSignalRAuthClient).Assembly.Location,
+                typeof(System.Environment).Assembly.Location
             };
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)

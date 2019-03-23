@@ -10,12 +10,16 @@ namespace FunctionMonkey.Builders
 {
     public class ServiceBusFunctionOptionBuilder : IServiceBusFunctionOptionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IServiceBusFunctionBuilder _underlyingBuilder;
         private readonly AbstractFunctionDefinition _functionDefinition;
 
-        public ServiceBusFunctionOptionBuilder(IServiceBusFunctionBuilder underlyingBuilder,
+        public ServiceBusFunctionOptionBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            IServiceBusFunctionBuilder underlyingBuilder,
             AbstractFunctionDefinition functionDefinition)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _underlyingBuilder = underlyingBuilder;
             _functionDefinition = functionDefinition;
         }
@@ -45,6 +49,6 @@ namespace FunctionMonkey.Builders
         }
         
         public IOutputBindingBuilder<IServiceBusFunctionOptionBuilder> OutputTo =>
-            new OutputBindingBuilder<IServiceBusFunctionOptionBuilder>(this, _functionDefinition);
+            new OutputBindingBuilder<IServiceBusFunctionOptionBuilder>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }

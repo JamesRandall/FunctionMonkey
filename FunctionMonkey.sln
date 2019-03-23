@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Tests.Integr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Testing.Tests", "FunctionMonkey.Testing.Tests\FunctionMonkey.Testing.Tests.csproj", "{5E41705F-CBB4-4426-8FA5-18AD8A41CD2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutputTriggerSample", "Samples\OutputTriggerSample\OutputTriggerSample.csproj", "{2768AE8A-32AA-4B79-8E77-D47FA1931F2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutputTriggerSample", "Samples\OutputTriggerSample\OutputTriggerSample.csproj", "{2768AE8A-32AA-4B79-8E77-D47FA1931F2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.SignalR", "Source\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj", "{30B41F72-840D-4C42-891D-46484836F13A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{2768AE8A-32AA-4B79-8E77-D47FA1931F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2768AE8A-32AA-4B79-8E77-D47FA1931F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2768AE8A-32AA-4B79-8E77-D47FA1931F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B41F72-840D-4C42-891D-46484836F13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B41F72-840D-4C42-891D-46484836F13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B41F72-840D-4C42-891D-46484836F13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B41F72-840D-4C42-891D-46484836F13A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

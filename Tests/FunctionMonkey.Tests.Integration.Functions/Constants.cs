@@ -2,6 +2,11 @@
 {
     internal static class Constants
     {
+        public static class SignalR
+        {
+            public const string HubName = "simplehub";
+        }
+
         public static class Storage
         {
             public static class Table
@@ -43,6 +48,8 @@
             public const string SubscriptionName = "testsub";
 
             public const string TableOutputQueue = "tableoutput";
+
+            public const string SignalRQueue = "signalr";
         }
 
         public static class Cosmos

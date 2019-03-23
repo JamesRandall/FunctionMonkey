@@ -9,11 +9,13 @@ namespace FunctionMonkey.Builders
 {
     internal class StorageFunctionBuilder : IStorageFunctionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly string _connectionName;
         private readonly List<AbstractFunctionDefinition> _definitions;
 
-        public StorageFunctionBuilder(string connectionName, List<AbstractFunctionDefinition> definitions)
+        public StorageFunctionBuilder(ConnectionStringSettingNames connectionStringSettingNames, string connectionName, List<AbstractFunctionDefinition> definitions)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _connectionName = connectionName;
             _definitions = definitions;
         }
@@ -32,7 +34,7 @@ namespace FunctionMonkey.Builders
                 QueueName = queueName
             };
             _definitions.Add(definition);
-            return new StorageFunctionOptionBuilder(this, definition);
+            return new StorageFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace FunctionMonkey.Builders
             }
             
             _definitions.Add(definition);
-            return new StorageFunctionOptionBuilder(this, definition);
+            return new StorageFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
         }
     }
 }

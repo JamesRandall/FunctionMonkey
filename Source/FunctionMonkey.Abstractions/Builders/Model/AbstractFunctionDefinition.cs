@@ -52,7 +52,9 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
         // when a command result is an enumerable this returns the type of the item in the collection
         // when it is not an enumerable it just returns the type
-        public string CommandResultItemTypeName
+        public string CommandResultItemTypeName => CommandResultItemType?.EvaluateType();
+
+        public Type CommandResultItemType
         {
             get
             {
@@ -69,9 +71,9 @@ namespace FunctionMonkey.Abstractions.Builders.Model
                         itemType = enumerableType.GetGenericArguments().Single();
                     }
                 }
-               
 
-                return itemType?.EvaluateType();
+
+                return itemType;
             }
         }
 

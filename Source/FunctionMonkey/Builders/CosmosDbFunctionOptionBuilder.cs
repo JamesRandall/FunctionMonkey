@@ -2,6 +2,7 @@ using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Commanding.Cosmos.Abstractions;
 using FunctionMonkey.Model;
 using Newtonsoft.Json.Serialization;
@@ -10,12 +11,16 @@ namespace FunctionMonkey.Builders
 {
     public class CosmosDbFunctionOptionBuilder : ICosmosDbFunctionOptionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly ICosmosDbFunctionBuilder _underlyingBuilder;
         private readonly CosmosDbFunctionDefinition _functionDefinition;
 
-        public CosmosDbFunctionOptionBuilder(ICosmosDbFunctionBuilder underlyingBuilder,
+        public CosmosDbFunctionOptionBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            ICosmosDbFunctionBuilder underlyingBuilder,
             CosmosDbFunctionDefinition functionDefinition)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _underlyingBuilder = underlyingBuilder;
             _functionDefinition = functionDefinition;
         }
@@ -62,6 +67,6 @@ namespace FunctionMonkey.Builders
         }
 
         public IOutputBindingBuilder<ICosmosDbFunctionOptionBuilder> OutputTo =>
-            new OutputBindingBuilder<ICosmosDbFunctionOptionBuilder>(this, _functionDefinition);
+            new OutputBindingBuilder<ICosmosDbFunctionOptionBuilder>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }

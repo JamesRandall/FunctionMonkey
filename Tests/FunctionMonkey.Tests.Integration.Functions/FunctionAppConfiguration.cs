@@ -4,7 +4,9 @@ using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
 using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
+using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
+using FunctionMonkey.Tests.Integration.Functions.Commands.SignalR;
 using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
 
 namespace FunctionMonkey.Tests.Integration.Functions
@@ -131,10 +133,23 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)
 
                         .HttpFunction<HttpTriggerCosmosCollectionOutputCommand>("/collectionToCosmos")
-                        .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)                        
-                    )                    
+                        .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)
+                    )
+
+                    // SignalR tests
+                    .HttpRoute("signalR", route => route
+                        .HttpFunction<SendMessageCommand>("/messageToAll")
+                        .OutputTo.SignalRMessage(Constants.SignalR.HubName)
+                    )
+                    .ServiceBus(serviceBus => serviceBus
+                        .QueueFunction<SendMessageToUserCommand>(Constants.ServiceBus.SignalRQueue)
+                        .OutputTo.SignalRMessage(Constants.SignalR.HubName)
+                    )
+                    .SignalR(signalR => signalR
+                        .Negotiate<NegotiateCommand>("/negotiate")
+                    )
                     
-                    
+                    // Storage
                     .Storage("storageConnectionString", storage => storage
                         .QueueFunction<StorageQueueCommand>(Constants.Storage.Queue.TestQueue)
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
@@ -164,7 +179,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.OutputTableCollection, Constants.Cosmos.Database, leaseCollectionName: Constants.Cosmos.OutputTableLeases)
                         .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
                     )
-                    .Timer<TimerCommand>("*/5 * * * * *")                    
+                    .Timer<TimerCommand>("*/5 * * * * *")
+
+                    
                 );
         }
     }

@@ -19,13 +19,15 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(BlobStreamFunctionDefinition),"storageblobstream" },
             {typeof(TimerFunctionDefinition),"timer" },
             {typeof(CosmosDbFunctionDefinition), "cosmosdb" },
+            {typeof(SignalRNegotiateFunctionDefinition), "signalrcommandnegotiate" },
             // output bindings
             {typeof(ServiceBusQueueOutputBinding), "servicebusqueue" },
             {typeof(ServiceBusTopicOutputBinding), "servicebustopic" },
             {typeof(CosmosOutputBinding), "cosmosdb" },
             {typeof(StorageBlobOutputBinding), "storageblob"},
             {typeof(StorageQueueOutputBinding), "storagequeue"},
-            {typeof(StorageTableOutputBinding), "storagetable"}
+            {typeof(StorageTableOutputBinding), "storagetable"},
+            {typeof(SignalROutputBinding), "signalr" }
         };
 
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)

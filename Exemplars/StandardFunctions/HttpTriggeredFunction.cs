@@ -47,6 +47,7 @@ namespace StandardFunctions
                 {
                     Message = "Hello world"
                 });
+            //return new OkObjectResult();
         }
 
         /*[FunctionName("HttpTriggeredFunction")]

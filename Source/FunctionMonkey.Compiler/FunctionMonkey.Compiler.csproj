@@ -158,6 +158,10 @@
     <None Remove="Templates\servicebussubscription.json.handlebars" />
     <None Remove="Templates\servicebustopic.output.json.handlebars" />
     <None Remove="Templates\servicebustopic.outputparameter.csharp.handlebars" />
+    <None Remove="Templates\signalr.outputcollector.csharp.handlebars" />
+    <None Remove="Templates\signalr.outputparameter.csharp.handlebars" />
+    <None Remove="Templates\signalrcommandnegotiate.csharp.handlebars" />
+    <None Remove="Templates\signalrcommandnegotiate.json.handlebars" />
     <None Remove="Templates\storageblob.csharp.handlebars" />
     <None Remove="Templates\storageblob.json.handlebars" />
     <None Remove="Templates\storageblobstream.csharp.handlebars" />
@@ -304,16 +308,20 @@
     <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
     <EmbeddedResource Include="Templates\cosmosdbMonitor.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.json.handlebars" />
+    <EmbeddedResource Include="Templates\signalr.outputcollector.csharp.handlebars" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
     <EmbeddedResource Include="Templates\default.outputcollector.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\signalrcommandnegotiate.json.handlebars" />
+    <EmbeddedResource Include="Templates\signalrcommandnegotiate.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebustopic.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebustopic.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.outputparameter.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\signalr.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\storagetable.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\storagequeue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
@@ -343,6 +351,7 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
@@ -352,6 +361,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
+    <ProjectReference Include="..\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj" />
     <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
   </ItemGroup>
 

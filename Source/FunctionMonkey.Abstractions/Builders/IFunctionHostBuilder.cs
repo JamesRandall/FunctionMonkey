@@ -18,6 +18,14 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder Setup(Action<IServiceCollection, ICommandRegistry> services);
 
         /// <summary>
+        /// Allows the default setting names to be specified - see ConnectionStringSettingNames for the defaults.
+        /// Currently this must be called before Functions - a future API breaking change will not require this.
+        /// </summary>
+        /// <param name="settingNames">The settings, new values can be set</param>
+        /// <returns></returns>
+        IFunctionHostBuilder DefaultConnectionStringSettingNames(Action<ConnectionStringSettingNames> settingNames);
+
+        /// <summary>
         /// Surfaces a builder for configurating authorization
         /// </summary>
         /// <param name="authorization"></param>

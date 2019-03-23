@@ -2,17 +2,20 @@ using System.Collections;
 using System.IO;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.SignalR;
 using FunctionMonkey.Model.OutputBindings;
 
 namespace FunctionMonkey.Builders
 {
     internal class OutputBindingBuilder<TParentBuilder> : IOutputBindingBuilder<TParentBuilder>
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly TParentBuilder _parentBuilder;
         private readonly AbstractFunctionDefinition _functionDefinition;
 
-        public OutputBindingBuilder(TParentBuilder parentBuilder, AbstractFunctionDefinition functionDefinition)
+        public OutputBindingBuilder(ConnectionStringSettingNames connectionStringSettingNames, TParentBuilder parentBuilder, AbstractFunctionDefinition functionDefinition)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _parentBuilder = parentBuilder;
             _functionDefinition = functionDefinition;
         }
@@ -41,15 +44,36 @@ namespace FunctionMonkey.Builders
 
         public TParentBuilder SignalRMessage(string hubName)
         {
-            VerifyOutputBinding();
-            throw new System.NotImplementedException();
+            return SignalRMessage(_connectionStringSettingNames.SignalR, hubName);
         }
 
-        public TParentBuilder SignalRGroup(string hubName)
+        public TParentBuilder SignalRMessage(string connectionStringSettingName, string hubName)
+        {
+            VerifyOutputBinding();
+            if (!typeof(SignalRMessage).IsAssignableFrom(_functionDefinition.CommandResultItemType))
+            {
+                throw new ConfigurationException("Commands that use SignalRMessage output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRMessage class or a derivative");
+            }
+            _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            {
+                HubName = hubName,
+                SignalROutputTypeName = "Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage" // can't use typeof() here as we don't want to bring the SignalR package into here
+            };
+            return _parentBuilder;
+        }
+
+        public TParentBuilder SignalRGroupAdd(string connectionStringSettingName, string hubName)
         {
             VerifyOutputBinding();
             throw new System.NotImplementedException();
         }
+
+        public TParentBuilder SignalRGroupRemove(string connectionStringSettingName, string hubName)
+        {
+            VerifyOutputBinding();
+            throw new System.NotImplementedException();
+        }
+
 
         public TParentBuilder StorageBlob(string connectionStringSettingName, string name, FileAccess fileAccess = FileAccess.Write)
         {

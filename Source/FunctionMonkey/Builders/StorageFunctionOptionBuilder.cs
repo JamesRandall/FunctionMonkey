@@ -10,12 +10,16 @@ namespace FunctionMonkey.Builders
 {
     public class StorageFunctionOptionBuilder : IStorageFunctionOptionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IStorageFunctionBuilder _underlyingBuilder;
         private readonly AbstractFunctionDefinition _definition;
 
-        public StorageFunctionOptionBuilder(IStorageFunctionBuilder underlyingBuilder,
+        public StorageFunctionOptionBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            IStorageFunctionBuilder underlyingBuilder,
             AbstractFunctionDefinition definition)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _underlyingBuilder = underlyingBuilder;
             _definition = definition;
         }
@@ -39,6 +43,6 @@ namespace FunctionMonkey.Builders
         }
         
         public IOutputBindingBuilder<IStorageFunctionOptionBuilder> OutputTo =>
-            new OutputBindingBuilder<IStorageFunctionOptionBuilder>(this, _definition);
+            new OutputBindingBuilder<IStorageFunctionOptionBuilder>(_connectionStringSettingNames, this, _definition);
     }
 }
