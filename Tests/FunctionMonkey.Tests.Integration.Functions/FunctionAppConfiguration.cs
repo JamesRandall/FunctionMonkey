@@ -131,7 +131,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)
 
                         .HttpFunction<HttpTriggerCosmosCollectionOutputCommand>("/collectionToCosmos")
-                        .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)
+                        .OutputTo.Cosmos("cosmosConnectionString", Constants.Cosmos.Database, Constants.Cosmos.Collection)                        
                     )                    
                     
                     
@@ -140,6 +140,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
                         .BlobFunction<StreamBlobCommand>(
                             $"{Constants.Storage.Blob.StreamBlobCommandContainer}/{{name}}")
+                        .BlobFunction<BlogTriggerTableOutputCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
 
                         // This command isn't a direct test subject but it reads from a service bus queue and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
@@ -149,6 +150,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .QueueFunction<ServiceBusQueueCommand>(Constants.ServiceBus.Queue)
                         .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
                             Constants.ServiceBus.SubscriptionName)
+                        .QueueFunction<ServiceBusQueueTriggerTableOutputCommand>(Constants.ServiceBus.TableOutputQueue)
 
                         // These commands aren't a direct test subject but read from a service bus queue and sub and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
@@ -156,7 +158,8 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .SubscriptionFunction<ServiceBusSubscriptionMarkerIdCommand>(Constants.ServiceBus.MarkerTopic, Constants.ServiceBus.MarkerSubscription)
                     )
                     .CosmosDb("cosmosConnectionString", cosmos => cosmos
-                        .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+                        .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database, leaseCollectionPrefix:"l1")
+                        .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database, leaseCollectionPrefix: "l2")
                     )
                     .Timer<TimerCommand>("*/5 * * * * *")                    
                 );

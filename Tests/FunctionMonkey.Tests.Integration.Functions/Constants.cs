@@ -39,6 +39,8 @@
             public const string TopicName = "testtopic";
 
             public const string SubscriptionName = "testsub";
+
+            public const string TableOutputQueue = "tableoutput";
         }
 
         public static class Cosmos
