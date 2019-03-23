@@ -3,7 +3,9 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
+using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
+using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
@@ -108,10 +110,17 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
 
                         // Blob
+
+
+                        // Storage
                         //.HttpFunction<HttpTriggerStorageBlobOutputCommandResultCommand>("/toBlobOutputWithName")
                         //.OutputTo.StorageBlob("storageConnectionString", "")
 
+                        .HttpFunction<HttpTriggerStorageQueueOutputCommand>("/toStorageQueue")
+                        .OutputTo.StorageQueue("storageConnectionString", Constants.Storage.Queue.MarkerQueue)
 
+                        .HttpFunction<HttpTriggerStorageQueueCollectionOutputCommand>("/collectionToStorageQueue")
+                        .OutputTo.StorageQueue("storageConnectionString", Constants.Storage.Queue.MarkerQueue)
                     )                    
                     
                     
@@ -120,6 +129,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
                         .BlobFunction<StreamBlobCommand>(
                             $"{Constants.Storage.Blob.StreamBlobCommandContainer}/{{name}}")
+
+                        // This command isn't a direct test subject but it reads from a service bus queue and places
+                        // the IDs into the marker table so that tests can find them during async output trigger testing
+                        .QueueFunction<StorageQueuedMarkerIdCommand>(Constants.Storage.Queue.MarkerQueue)
                     )
                     .ServiceBus("serviceBusConnectionString", serviceBus => serviceBus
                         .QueueFunction<ServiceBusQueueCommand>(Constants.ServiceBus.Queue)
@@ -128,7 +141,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                         // This command isn't a direct test subject but it reads from a service bus queue and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
-                        .QueueFunction<QueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)
+                        .QueueFunction<ServiceBusQueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)
                     )
                     .CosmosDb("cosmosConnectionString", cosmos => cosmos
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)

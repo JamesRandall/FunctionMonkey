@@ -4,14 +4,15 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
 using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
+using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Handlers.OutputBindings
 {
-    class HttpTriggerServiceBusQueueCollectionOutputCommandHandler : ICommandHandler<HttpTriggerServiceBusQueueCollectionOutputCommand, IReadOnlyCollection<QueuedMarkerIdCommand>>
+    class HttpTriggerServiceBusQueueCollectionOutputCommandHandler : ICommandHandler<HttpTriggerServiceBusQueueCollectionOutputCommand, IReadOnlyCollection<ServiceBusQueuedMarkerIdCommand>>
     {
-        public Task<IReadOnlyCollection<QueuedMarkerIdCommand>> ExecuteAsync(HttpTriggerServiceBusQueueCollectionOutputCommand command, IReadOnlyCollection<QueuedMarkerIdCommand> previousResult)
+        public Task<IReadOnlyCollection<ServiceBusQueuedMarkerIdCommand>> ExecuteAsync(HttpTriggerServiceBusQueueCollectionOutputCommand command, IReadOnlyCollection<ServiceBusQueuedMarkerIdCommand> previousResult)
         {
-            return QueuedMarkerIdCommand.SuccessCollection(command.MarkerId);
+            return ServiceBusQueuedMarkerIdCommand.SuccessCollection(command.MarkerId);
         }
     }
 }

@@ -12,6 +12,8 @@
             public static class Queue
             {
                 public const string TestQueue = "testqueue";
+
+                public const string MarkerQueue = "markerqueue";
             }
 
             public static class Blob

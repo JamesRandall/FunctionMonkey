@@ -24,13 +24,14 @@ namespace StandardFunctions
         }
 
         [FunctionName("HttpTriggeredFunction")]
-        public static async Task Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
+        public static void Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
             ILogger log,
             ExecutionContext executionContext,
             //[ServiceBus("outputQueue", EntityType = EntityType.Queue, Connection = "serviceBusConnectionString")] ICollector<SomeResult> collector
-            [Blob("outputblobcontainer/{name}", FileAccess.Write, Connection = "storageConnectionString")]Stream outputBlob
+            [Queue("markerqueue", Connection = "storageConnectionString")]ICollector<SomeResult> collector
             )
         {
+            /*
             //string name = req.Query["name"];
             string requestBody = new StreamReader(req.Body).ReadToEnd();
             //dynamic data = JsonConvert.DeserializeObject(requestBody);
@@ -38,14 +39,14 @@ namespace StandardFunctions
             using (StreamWriter writer = new StreamWriter(outputBlob))
             {
                 await writer.WriteAsync(requestBody);
-            }
+            }*/
 
             //return $"{Guid.NewGuid()}.json";
 
-            /*collector.Add(new SomeResult
+            collector.Add(new SomeResult
                 {
                     Message = "Hello world"
-                });*/
+                });
         }
 
         /*[FunctionName("HttpTriggeredFunction")]

@@ -55,7 +55,14 @@ namespace FunctionMonkey.Compiler.Implementation
 
         public string GetJsonOutputParameterTemplate(AbstractOutputBinding outputBinding)
         {
-            return GetTemplate(outputBinding, "output.json");
+            try
+            {
+                return GetTemplate(outputBinding, "output.json");
+            }
+            catch (ConfigurationException e)
+            {
+                return null;
+            }            
         }
 
         public string GetCSharpOutputCollectorTemplate(AbstractOutputBinding outputBinding)

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Tests.Integration.Functions.Commands;
+using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace FunctionMonkey.Tests.Integration.Functions.Handlers
+namespace FunctionMonkey.Tests.Integration.Functions.Handlers.TestInfrastructure
 {
     internal class SetupTestResourcesCommandHandler : ICommandHandler<SetupTestResourcesCommand>
     {
@@ -23,6 +23,8 @@ namespace FunctionMonkey.Tests.Integration.Functions.Handlers
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             CloudQueue testQueue = queueClient.GetQueueReference(Constants.Storage.Queue.TestQueue);
             await testQueue.CreateIfNotExistsAsync();
+            CloudQueue markerQueue = queueClient.GetQueueReference(Constants.Storage.Queue.MarkerQueue);
+            await markerQueue.CreateIfNotExistsAsync();
 
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer blobCommandsContainer = blobClient.GetContainerReference(Constants.Storage.Blob.BlobCommandContainer);

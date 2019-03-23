@@ -30,11 +30,14 @@ namespace FunctionMonkey.Compiler.HandlebarsHelpers
         {
             TemplateProvider templateProvider = new TemplateProvider();
             string templateSource = templateProvider.GetJsonOutputParameterTemplate(functionDefinition.OutputBinding);
-            Func<object, string> template = Handlebars.Compile(templateSource);
+            if (templateSource != null)
+            {
+                Func<object, string> template = Handlebars.Compile(templateSource);
 
-            string output = template(functionDefinition.OutputBinding);
-            writer.Write(",");
-            writer.Write(output);
+                string output = template(functionDefinition.OutputBinding);
+                writer.Write(",");
+                writer.Write(output);
+            }            
         }
     }
 }

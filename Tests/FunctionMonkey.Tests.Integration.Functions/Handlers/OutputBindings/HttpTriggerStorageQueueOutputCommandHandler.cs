@@ -1,15 +1,15 @@
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Tests.Integration.Functions.Commands;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
+using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Handlers.OutputBindings
 {
-    public class HttpTriggerStorageQueueOutputCommandHandler : ICommandHandler<HttpTriggerStorageQueueOutputCommand, QueuedMarkerIdCommand>
+    internal class HttpTriggerStorageQueueOutputCommandHandler : ICommandHandler<HttpTriggerStorageQueueOutputCommand, StorageQueuedMarkerIdCommand>
     {
-        public Task<QueuedMarkerIdCommand> ExecuteAsync(HttpTriggerStorageQueueOutputCommand command, QueuedMarkerIdCommand previousResult)
+        public Task<StorageQueuedMarkerIdCommand> ExecuteAsync(HttpTriggerStorageQueueOutputCommand command, StorageQueuedMarkerIdCommand previousResult)
         {
-            return QueuedMarkerIdCommand.Success(command.MarkerId);
+            return StorageQueuedMarkerIdCommand.Success(command.MarkerId);
         }
     }
 }
