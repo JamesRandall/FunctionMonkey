@@ -223,7 +223,7 @@
         },
         {
           "apiVersion": "2017-04-01",
-          "name": "outputtopic",
+          "name": "markertopic",
           "type": "topics",
           "dependsOn": [
             "[concat('Microsoft.ServiceBus/namespaces/', variables('serviceBusNamespaceName'))]"
@@ -242,10 +242,10 @@
           "resources": [
             {
               "apiVersion": "2017-04-01",
-              "name": "outputsub",
+              "name": "markersub",
               "type": "Subscriptions",
               "dependsOn": [
-                "outputtopic"
+                "markertopic"
               ],
               "properties": {
                 "lockDuration": "PT5M",

@@ -98,16 +98,16 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .HttpRoute("outputBindings", route => route
                         // Service Bus
                         .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBusQueue")
-                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputQueue")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", Constants.ServiceBus.MarkerQueue)
 
                         .HttpFunction<HttpTriggerServiceBusQueueCollectionOutputCommand>("/collectionToServiceBusQueue")
-                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputQueue")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", Constants.ServiceBus.MarkerQueue)
 
                         .HttpFunction<HttpTriggerServiceBusTopicOutputCommand>("/toServiceBusTopic")
-                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", Constants.ServiceBus.MarkerTopic)
 
                         .HttpFunction<HttpTriggerServiceBusTopicCollectionOutputCommand>("/collectionToServiceBusTopic")
-                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
+                        .OutputTo.ServiceBusQueue("serviceBusConnectionString", Constants.ServiceBus.MarkerTopic)
 
                         // Storage
 
@@ -150,9 +150,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
                             Constants.ServiceBus.SubscriptionName)
 
-                        // This command isn't a direct test subject but it reads from a service bus queue and places
+                        // These commands aren't a direct test subject but read from a service bus queue and sub and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
                         .QueueFunction<ServiceBusQueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)
+                        .SubscriptionFunction<ServiceBusSubscriptionMarkerIdCommand>(Constants.ServiceBus.MarkerTopic, Constants.ServiceBus.MarkerSubscription)
                     )
                     .CosmosDb("cosmosConnectionString", cosmos => cosmos
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)

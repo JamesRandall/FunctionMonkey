@@ -30,6 +30,10 @@
         {
             public const string MarkerQueue = "markerqueue";
 
+            public const string MarkerTopic = "markertopic";
+
+            public const string MarkerSubscription = "markersub";
+
             public const string Queue = "testqueue";
 
             public const string TopicName = "testtopic";
