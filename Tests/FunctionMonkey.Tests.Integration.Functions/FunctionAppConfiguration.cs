@@ -109,10 +109,8 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpTriggerServiceBusTopicCollectionOutputCommand>("/collectionToServiceBusTopic")
                         .OutputTo.ServiceBusQueue("serviceBusConnectionString", "outputTopic")
 
-                        // Blob
-
-
                         // Storage
+
                         //.HttpFunction<HttpTriggerStorageBlobOutputCommandResultCommand>("/toBlobOutputWithName")
                         //.OutputTo.StorageBlob("storageConnectionString", "")
 
@@ -121,6 +119,12 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                         .HttpFunction<HttpTriggerStorageQueueCollectionOutputCommand>("/collectionToStorageQueue")
                         .OutputTo.StorageQueue("storageConnectionString", Constants.Storage.Queue.MarkerQueue)
+
+                        .HttpFunction<HttpTriggerStorageTableOutputCommand>("/toStorageTable")
+                        .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
+
+                        .HttpFunction<HttpTriggerStorageTableCollectionOutputCommand>("/collectionToStorageTable")
+                        .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
                     )                    
                     
                     
