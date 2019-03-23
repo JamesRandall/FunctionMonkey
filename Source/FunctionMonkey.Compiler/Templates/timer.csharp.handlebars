@@ -11,7 +11,9 @@ namespace {{Namespace}}
         public static async Task Run(
             [TimerTrigger("{{CronExpression}}")]TimerInfo myTimer,
             ILogger log,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext
+            {{{parameterOutputBinding}}}
+        )
         {
             log.LogInformation("Timer trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
@@ -41,7 +43,12 @@ namespace {{Namespace}}
                 executionContext.FunctionName,
                 executionContext.InvocationId);
             
-            var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+            {{#if OutputBinding}}
+                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                {{{collectorOutputBinding}}}
+            {{else}} 
+                await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+            {{/if}}
             // The result will be useful when we want to include outputs too
         }
     }

@@ -33,6 +33,9 @@ namespace FunctionMonkey.Tests.Integration.Functions.Handlers.TestInfrastructure
             await streamBlobCommandsContainer.CreateIfNotExistsAsync();
             CloudBlobContainer outputBlobContainer = blobClient.GetContainerReference(Constants.Storage.Blob.OutputBlobContainer);
             await outputBlobContainer.CreateIfNotExistsAsync();
+            CloudBlobContainer outputBindingContainer =
+                blobClient.GetContainerReference(Constants.Storage.Blob.BlobOutputCommandContainer);
+            await outputBindingContainer.CreateIfNotExistsAsync();
 
             // Cosmos and Service Bus
             // Created through provisioning

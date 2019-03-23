@@ -27,5 +27,23 @@ namespace FunctionMonkey.Tests.Integration.Storage
 
             await marker.Assert();
         }
+
+        [Fact]
+        public async Task OutputToTableBinding()
+        {
+            var marker = new MarkerMessage
+            {
+                MarkerId = Guid.NewGuid()
+            };
+            string json = JsonConvert.SerializeObject(marker);
+
+            CloudBlobClient blobClient = StorageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("outputbindingcontainer");
+
+            CloudBlockBlob blob = container.GetBlockBlobReference($"{marker.MarkerId}.json");
+            await blob.UploadTextAsync(json);
+
+            await marker.Assert();
+        }
     }
 }

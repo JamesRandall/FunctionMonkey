@@ -23,6 +23,8 @@
                 public const string StreamBlobCommandContainer = "streamblobcommands";
 
                 public const string OutputBlobContainer = "outputblobcontainer";
+
+                public const string BlobOutputCommandContainer = "outputbindingcontainer";
             }
         }
 
@@ -48,6 +50,10 @@
             public const string Database = "testdatabase";
 
             public const string Collection = "testcollection";
+
+            public const string OutputTableCollection = "outputtablecollection";
+
+            public const string OutputTableLeases = "outputtableleases";
         }
     }
 }

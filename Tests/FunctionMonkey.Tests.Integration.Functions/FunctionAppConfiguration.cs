@@ -140,7 +140,8 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
                         .BlobFunction<StreamBlobCommand>(
                             $"{Constants.Storage.Blob.StreamBlobCommandContainer}/{{name}}")
-                        .BlobFunction<BlogTriggerTableOutputCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
+                        .BlobFunction<BlogTriggerTableOutputCommand>($"{Constants.Storage.Blob.BlobOutputCommandContainer}/{{name}}")
+                        .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
 
                         // This command isn't a direct test subject but it reads from a service bus queue and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
@@ -151,6 +152,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
                             Constants.ServiceBus.SubscriptionName)
                         .QueueFunction<ServiceBusQueueTriggerTableOutputCommand>(Constants.ServiceBus.TableOutputQueue)
+                        .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
 
                         // These commands aren't a direct test subject but read from a service bus queue and sub and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
@@ -158,8 +160,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .SubscriptionFunction<ServiceBusSubscriptionMarkerIdCommand>(Constants.ServiceBus.MarkerTopic, Constants.ServiceBus.MarkerSubscription)
                     )
                     .CosmosDb("cosmosConnectionString", cosmos => cosmos
-                        .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database, leaseCollectionPrefix:"l1")
-                        .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database, leaseCollectionPrefix: "l2")
+                        .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+                        .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.OutputTableCollection, Constants.Cosmos.Database, leaseCollectionName: Constants.Cosmos.OutputTableLeases)
+                        .OutputTo.StorageTable("storageConnectionString", Constants.Storage.Table.Markers)
                     )
                     .Timer<TimerCommand>("*/5 * * * * *")                    
                 );
