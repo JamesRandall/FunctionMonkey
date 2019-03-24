@@ -19,7 +19,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(BlobStreamFunctionDefinition),"storageblobstream" },
             {typeof(TimerFunctionDefinition),"timer" },
             {typeof(CosmosDbFunctionDefinition), "cosmosdb" },
-            {typeof(SignalRNegotiateFunctionDefinition), "signalrcommandnegotiate" },
+            {typeof(SignalRCommandNegotiateFunctionDefinition), "signalrcommandnegotiate" },
+            {typeof(SignalRBindingExpressionNegotiateFunctionDefinition), "signalrbindingexpressionnegotiate" },
             // output bindings
             {typeof(ServiceBusQueueOutputBinding), "servicebusqueue" },
             {typeof(ServiceBusTopicOutputBinding), "servicebustopic" },

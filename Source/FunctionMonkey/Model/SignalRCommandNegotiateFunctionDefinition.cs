@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FunctionMonkey.Model
 {
-    public class SignalRNegotiateFunctionDefinition : HttpFunctionDefinition
+    public class SignalRCommandNegotiateFunctionDefinition : HttpFunctionDefinition
     {
-        public SignalRNegotiateFunctionDefinition(Type commandType) : base(commandType)
+        public SignalRCommandNegotiateFunctionDefinition(Type commandType) : base(commandType)
         {
 
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Extensions.SignalRService;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SecurityToken = Microsoft.Azure.EventHubs.SecurityToken;
 
@@ -96,8 +98,9 @@ namespace StandardFunctions
         [FunctionName("SignalRNegotiate")]
         public static SignalRConnectionInfo Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get")]HttpRequest req,
-            [SignalRConnectionInfo(HubName = "chat", ConnectionStringSetting = "AzureSignalRConnectionString")]SignalRConnectionInfo connectionInfo)
+            [SignalRConnectionInfo(HubName = "chat", ConnectionStringSetting = "AzureSignalRConnectionString")]SignalRConnectionInfo connectionInfo, ILogger log)
         {
+            log.LogInformation(req.Headers["x-ms-client-principal-id"].FirstOrDefault());
             AzureSignalRClient client = new AzureSignalRClient(Environment.GetEnvironmentVariable("AzureSignalRConnectionString"));
             SignalRConnectionInfo info = client.GetClientConnectionInfo("chat");
             

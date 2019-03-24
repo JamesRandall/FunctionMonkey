@@ -167,6 +167,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     )
                     .SignalR(signalR => signalR
                         .Negotiate<NegotiateCommand>("/negotiate")
+                        .Negotiate("/simpleNegotiate", Constants.SignalR.HubName, "{headers.x-ms-client-principal-id}")
                     )
                     
                     // Storage

@@ -22,6 +22,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="method">The HTTP methods to bind to</param>
         /// <param name="hubName">The hub name</param>
         /// <returns></returns>
-        ISignalRFunctionBuilder Negotiate(string route, string hubName, string userIdMapping = null, AuthorizationTypeEnum? authorizationType = null, params HttpMethod[] method);
+        ISignalRFunctionBuilder Negotiate(string route, string hubName, string userIdExpression = null, AuthorizationTypeEnum? authorizationType = null, params HttpMethod[] method);
     }
 }

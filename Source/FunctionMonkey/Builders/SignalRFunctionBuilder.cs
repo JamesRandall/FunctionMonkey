@@ -25,7 +25,7 @@ namespace FunctionMonkey.Builders
         public ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType = null,
             params HttpMethod[] method) where TCommand : ICommand<SignalRNegotiateResponse>
         {
-            SignalRNegotiateFunctionDefinition definition = new SignalRNegotiateFunctionDefinition(typeof(TCommand))
+            SignalRCommandNegotiateFunctionDefinition definition = new SignalRCommandNegotiateFunctionDefinition(typeof(TCommand))
             {
                 ConnectionStringSettingName = _connectionStringSettingName,
                 SubRoute = route,
@@ -42,10 +42,26 @@ namespace FunctionMonkey.Builders
             return new SignalRFunctionConfigurationBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
 
-        public ISignalRFunctionBuilder Negotiate(string route, string hubName, string userIdMapping = null,
+        public ISignalRFunctionBuilder Negotiate(string route, string hubName, string userIdExpression = null,
             AuthorizationTypeEnum? authorizationType = null, params HttpMethod[] method)
         {
-            throw new NotImplementedException();
+            SignalRBindingExpressionNegotiateFunctionDefinition definition =
+                new SignalRBindingExpressionNegotiateFunctionDefinition()
+                {
+                    ConnectionStringSettingName = _connectionStringSettingName,
+                    SubRoute = route,
+                    RouteConfiguration = new HttpRouteConfiguration
+                    {
+                        Route = route
+                    },
+                    Route = route,
+                    Verbs = new HashSet<HttpMethod>(method),
+                    Authorization = authorizationType,
+                    HubName = hubName,
+                    UserIdExpression = userIdExpression
+                };
+            _definitions.Add(definition);
+            return new SignalRFunctionConfigurationBuilder<SignalRBindingExpressionNegotiateCommand>(_connectionStringSettingNames, this, definition);
         }
     }
 }

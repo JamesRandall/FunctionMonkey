@@ -20,6 +20,78 @@ namespace FunctionMonkey.Tests.Integration.SignalR
         }
 
         [Fact]
+        public async Task AuthenticateWithBindingExpressionNegotiateAndSendAndRecieveMessage()
+        {
+            ManualResetEventSlim resetEvent = new ManualResetEventSlim(false);
+            Guid markerId = Guid.NewGuid();
+
+            string receivedMessage = null;
+            SignalRToken token = await Settings.Host
+                .AppendPathSegment("simpleNegotiate")
+                .GetJsonAsync<SignalRToken>();
+
+            Assert.NotNull(token);
+
+            HubConnection connection = new HubConnectionBuilder()
+                .WithUrl(token.Url, options => options.AccessTokenProvider = () => Task.FromResult(token.AccessToken))
+                .Build();
+
+            connection.On<string>("sendMessageCommand", (message) =>
+            {
+                receivedMessage = message;
+                resetEvent.Set();
+            });
+            await connection.StartAsync();
+
+            await Settings.Host
+                .AppendPathSegment("signalR")
+                .AppendPathSegment("messageToAll")
+                .SetQueryParam("message", markerId.ToString())
+                .GetAsync();
+
+            bool didReceive = resetEvent.Wait(TimeSpan.FromSeconds(30));
+            Assert.True(didReceive);
+            Assert.Equal(markerId.ToString(), receivedMessage);
+        }
+
+        [Fact]
+        public async Task AuthenticateWithBindingExpressionNegotiateWithUserIdInHeaderAndSendAndRecieveMessage()
+        {
+            ManualResetEventSlim resetEvent = new ManualResetEventSlim(false);
+            Guid[] markerIds = { Guid.NewGuid()};
+            string userId = Guid.NewGuid().ToString();
+
+            SignalRToken token = await Settings.Host
+                .AppendPathSegment("simpleNegotiate")
+                .WithHeaders(new { x_ms_client_principal_id = userId })
+                .GetJsonAsync<SignalRToken>();
+
+            Assert.NotNull(token);
+
+            HubConnection connection = new HubConnectionBuilder()
+                .WithUrl(token.Url, options => options.AccessTokenProvider = () => Task.FromResult(token.AccessToken))
+                .Build();
+
+            connection.On<string>("sendMessageCollectionCommand", (message) =>
+            {
+                resetEvent.Set();
+            });
+            await connection.StartAsync();
+
+            await Settings.Host
+                .AppendPathSegment("signalR")
+                .AppendPathSegment("messageCollectionToUser")
+                .PostJsonAsync(new
+                {
+                    userId,
+                    markerIds
+                });
+
+            bool didReceive = resetEvent.Wait(TimeSpan.FromSeconds(10));
+            Assert.True(didReceive);
+        }
+
+        [Fact]
         public async Task CanRecieveMessageAfterAddingToGroupButNotAfterRemoving()
         {
             ManualResetEventSlim resetEvent = new ManualResetEventSlim(false);

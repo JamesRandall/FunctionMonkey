@@ -26,7 +26,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(BlobFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
             {typeof(TimerFunctionDefinition), typeof(TimerTriggerAttribute).Assembly },
             {typeof(CosmosDbFunctionDefinition), typeof(CosmosDBTriggerAttribute).Assembly },
-            {typeof(SignalRNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly }
+            {typeof(SignalRCommandNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly },
+            {typeof(SignalRBindingExpressionNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly }
         };
 
         public Assembly GetTriggerReference(AbstractFunctionDefinition functionDefinition)

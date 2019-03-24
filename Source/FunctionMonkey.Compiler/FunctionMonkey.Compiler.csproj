@@ -160,6 +160,8 @@
     <None Remove="Templates\servicebustopic.outputparameter.csharp.handlebars" />
     <None Remove="Templates\signalr.outputcollector.csharp.handlebars" />
     <None Remove="Templates\signalr.outputparameter.csharp.handlebars" />
+    <None Remove="Templates\signalrbindingexpressionnegotiate.csharp.handlebars" />
+    <None Remove="Templates\signalrbindingexpressionnegotiate.json.handlebars" />
     <None Remove="Templates\signalrcommandnegotiate.csharp.handlebars" />
     <None Remove="Templates\signalrcommandnegotiate.json.handlebars" />
     <None Remove="Templates\storageblob.csharp.handlebars" />
@@ -314,6 +316,8 @@
     <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
     <EmbeddedResource Include="Templates\default.outputcollector.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\signalrbindingexpressionnegotiate.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\signalrbindingexpressionnegotiate.json.handlebars" />
     <EmbeddedResource Include="Templates\signalrcommandnegotiate.json.handlebars" />
     <EmbeddedResource Include="Templates\signalrcommandnegotiate.csharp.handlebars" />
     <EmbeddedResource Include="Templates\servicebustopic.output.json.handlebars" />
