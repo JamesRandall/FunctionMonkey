@@ -31,6 +31,11 @@ namespace FunctionMonkey.Builders
             return _parentBuilder;
         }
 
+        public TParentBuilder ServiceBusQueue(string queueName)
+        {
+            return ServiceBusQueue(_connectionStringSettingNames.ServiceBus, queueName);
+        }
+
         public TParentBuilder ServiceBusTopic(string connectionString, string topicName)
         {
             VerifyOutputBinding();
@@ -40,6 +45,11 @@ namespace FunctionMonkey.Builders
             };
 
             return _parentBuilder;
+        }
+
+        public TParentBuilder ServiceBusTopic(string topicName)
+        {
+            return ServiceBusTopic(_connectionStringSettingNames.ServiceBus, topicName);
         }
 
         public TParentBuilder SignalRMessage(string hubName)
@@ -62,18 +72,27 @@ namespace FunctionMonkey.Builders
             return _parentBuilder;
         }
 
-        public TParentBuilder SignalRGroupAdd(string connectionStringSettingName, string hubName)
+        public TParentBuilder SignalRGroupAction(string connectionStringSettingName, string hubName)
         {
             VerifyOutputBinding();
-            throw new System.NotImplementedException();
+            if (!typeof(SignalRGroupAction).IsAssignableFrom(_functionDefinition.CommandResultItemType))
+            {
+                throw new ConfigurationException("Commands that use SignalRGroupAction output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRGroupAction class or a derivative");
+            }
+
+            _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition.CommandResultItemTypeName,
+                connectionStringSettingName)
+            {
+                HubName = hubName,
+                SignalROutputTypeName = "Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction" // can't use typeof() here as we don't want to bring the SignalR package into here
+            };
+            return _parentBuilder;
         }
 
-        public TParentBuilder SignalRGroupRemove(string connectionStringSettingName, string hubName)
+        public TParentBuilder SignalRGroupAction(string hubName)
         {
-            VerifyOutputBinding();
-            throw new System.NotImplementedException();
+            return SignalRGroupAction(_connectionStringSettingNames.SignalR, hubName);
         }
-
 
         public TParentBuilder StorageBlob(string connectionStringSettingName, string name, FileAccess fileAccess = FileAccess.Write)
         {
@@ -98,6 +117,11 @@ namespace FunctionMonkey.Builders
             return _parentBuilder;
         }
 
+        public TParentBuilder StorageBlob(string name, FileAccess fileAccess = FileAccess.Write)
+        {
+            return StorageBlob(_connectionStringSettingNames.Storage, name, fileAccess);
+        }
+
         public TParentBuilder StorageQueue(string connectionStringSettingName, string queueName)
         {
             VerifyOutputBinding();
@@ -106,6 +130,11 @@ namespace FunctionMonkey.Builders
                 QueueName = queueName
             };
             return _parentBuilder;
+        }
+
+        public TParentBuilder StorageQueue(string queueName)
+        {
+            return StorageQueue(_connectionStringSettingNames.Storage, queueName);
         }
 
         public TParentBuilder StorageTable(string connectionStringSettingName, string tableName)
@@ -118,7 +147,12 @@ namespace FunctionMonkey.Builders
             return _parentBuilder;
         }
 
-        public TParentBuilder Cosmos(string connectionStringSettingName, string databaseName, string collectionName)
+        public TParentBuilder StorageTable(string tableName)
+        {
+            return StorageTable(_connectionStringSettingNames.Storage, tableName);
+        }
+
+        public TParentBuilder Cosmos(string connectionStringSettingName, string collectionName, string databaseName)
         {
             VerifyOutputBinding();
 
@@ -134,6 +168,11 @@ namespace FunctionMonkey.Builders
             };
 
             return _parentBuilder;
+        }
+
+        public TParentBuilder Cosmos(string collectionName, string databaseName)
+        {
+            return Cosmos(_connectionStringSettingNames.CosmosDb, collectionName, databaseName);
         }
 
         private void VerifyOutputBinding()

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Message xmlns="http://schemas.microsoft.com/servicebusexplorer">
+  <Date>23 March 2019 21:01:49</Date>
+  <Content><![CDATA[<message>Hi mate, how are you?</message>]]></Content>
+</Message>

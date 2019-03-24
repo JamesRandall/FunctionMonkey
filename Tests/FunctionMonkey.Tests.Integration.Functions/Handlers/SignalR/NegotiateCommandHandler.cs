@@ -12,7 +12,7 @@ namespace FunctionMonkey.Tests.Integration.Functions.Handlers.SignalR
             return Task.FromResult(new SignalRNegotiateResponse
             {
                 HubName = Constants.SignalR.HubName,
-                UserId = "1234"
+                UserId = command.UserId
             });
         }
     }

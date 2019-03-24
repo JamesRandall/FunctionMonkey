@@ -8,6 +8,6 @@
 
         public string CosmosDb { get; set; } = "cosmosConnectionString";
 
-        public string SignalR { get; set; } = "azureSignalRConnectionString";
+        public string SignalR { get; set; } = "signalRConnectionString";
     }
 }

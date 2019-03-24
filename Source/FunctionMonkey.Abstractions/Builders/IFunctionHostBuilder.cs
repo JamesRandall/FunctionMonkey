@@ -58,10 +58,10 @@ namespace FunctionMonkey.Abstractions.Builders
 
         /// <summary>
         /// Surfaces a builder for declaring the command to function bindings
+        /// The functions declaration needs to be the last thing that is configured so it doesn't return a builder
         /// </summary>
         /// <param name="functions">The function builder</param>
-        /// <returns>The function host builder to support a Fluent API</returns>
-        IFunctionHostBuilder Functions(Action<IFunctionBuilder> functions);
+        void Functions(Action<IFunctionBuilder> functions);
 
         /// <summary>
         /// Surfaces a builder that allows Open API to be configured. If this builder

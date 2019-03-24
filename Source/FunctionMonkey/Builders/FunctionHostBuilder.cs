@@ -78,10 +78,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IFunctionHostBuilder Functions(Action<IFunctionBuilder> functions)
+        public void Functions(Action<IFunctionBuilder> functions)
         {
             functions(FunctionBuilder);
-            return this;
         }
 
         public IFunctionHostBuilder OpenApiEndpoint(Action<IOpenApiBuilder> openApi)
