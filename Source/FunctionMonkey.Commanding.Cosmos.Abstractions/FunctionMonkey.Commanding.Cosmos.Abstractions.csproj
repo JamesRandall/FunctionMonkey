@@ -2,9 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.1.2</Version>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Authors>James Randall</Authors>
+    <Company>James Randall</Company>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

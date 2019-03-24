@@ -12,8 +12,8 @@ namespace FunctionMonkey.Abstractions.Builders
         TFunctionTypeBuilder SignalRMessage(string hubName);        
         TFunctionTypeBuilder SignalRGroupAction(string connectionStringSettingName, string hubName);
         TFunctionTypeBuilder SignalRGroupAction(string hubName);
-        TFunctionTypeBuilder StorageBlob(string connectionStringSettingName, string name, FileAccess fileAccess = FileAccess.Write); // can use multiples of these 
-        TFunctionTypeBuilder StorageBlob(string name, FileAccess fileAccess = FileAccess.Write); // can use multiples of these 
+        //TFunctionTypeBuilder StorageBlob(string connectionStringSettingName, string name, FileAccess fileAccess = FileAccess.Write); // can use multiples of these 
+        //TFunctionTypeBuilder StorageBlob(string name, FileAccess fileAccess = FileAccess.Write); // can use multiples of these 
         TFunctionTypeBuilder StorageQueue(string connectionStringSettingName, string queueName);
         TFunctionTypeBuilder StorageQueue(string queueName);
         TFunctionTypeBuilder StorageTable(string connectionStringSettingName, string tableName);
