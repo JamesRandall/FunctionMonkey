@@ -28,6 +28,7 @@ namespace FunctionMonkey.Tests.Integration.SignalR
             string receivedMessage = null;
             SignalRToken token = await Settings.Host
                 .AppendPathSegment("simpleNegotiate")
+                .WithHeaders(new { x_ms_client_principal_id = Guid.NewGuid() })
                 .GetJsonAsync<SignalRToken>();
 
             Assert.NotNull(token);
