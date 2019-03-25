@@ -4,8 +4,8 @@
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey -pre
-    Install-Package FunctionMonkey.Compiler -pre
+    Install-Package FunctionMonkey
+    Install-Package FunctionMonkey.Compiler
 
 You will also need to add the Cosmos trigger bindings:
 

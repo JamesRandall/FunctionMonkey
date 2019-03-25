@@ -4,6 +4,10 @@ The following assumes a basic familiarity with serverless SignalR as [can be fou
 
 The examples below use [default connection strings](/crosscutting/connectionStrings.md).
 
+Before beginning you will need to install the Function Monkey SignalR package to your Functions project:
+
+    Install-Package FunctionMonkey.SignalR
+
 ## Providing a client with an access token and endpoint
 
 For a client to be able to listen for SignalR events it needs to connect to the SignalR hub and to do this it requires the URL of the hub and an access token. This is generally provided over an HTTP endpoint and typically behind some form of authentication / authorization mechanism.
@@ -93,7 +97,7 @@ Sending messages to SignalR clients is accomplished through an output binding. T
             builder
                 .Functions(functions => functions
                     .ServiceBus(serviceBus => serviceBus
-                        .QueueFunction<ProcessOrderCommand>(Constants.ServiceBus.SignalRQueue)
+                        .QueueFunction<ProcessOrderCommand>("orderQueue")
                         .OutputTo.SignalRMessage("myhub")  
                     )
                 );
@@ -128,3 +132,49 @@ And a simple handler for this would take the following form:
 The _GroupName_ property can be set to the name of any SignalR group (see below) and the _UserId_ property is optional. If it is not set then the message will be sent to all users.
 
 ## Adding and removing users from groups
+
+Adding and removing users from groups takes a similar form to sending messages and is again accomplished through an output binding:
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Functions(functions => functions
+                    .ServiceBus(serviceBus => serviceBus
+                        .QueueFunction<AddUserToMarketingGroupCommand>("userManagementQueue")
+                        .OutputTo.SignalRMessage("myhub")  
+                    )
+                );
+        }
+    }
+
+Commands that manipulate SignalR groups must have a return type of _SignalRGroupAction_:
+
+    public class AddUserToMarketingGroupCommand : ICommand<SignalRGroupAction>
+    {
+        public string UserId { get; set; }
+    }
+
+And a simple handler for this would take the following form:
+
+    internal class AddUserToMarketingGroupCommandHandler : ICommandHandler<AddUserToMarketingGroupCommand, SignalRMessage>
+    {
+        public Task<SignalRGroupAction> ExecuteAsync(AddUserToMarketingGroupCommand command, SignalRGroupAction previousResult)
+        {
+            return Task.FromResult(new SignalRGroupAction
+            {
+                Action = GroupActionEnum.Add,
+                GroupName = "marketingInfo",
+                UserId = command.UserId
+            });
+        }
+    }
+
+## SignalRMessage and SignalRGroupAction
+
+These two POCOs have exactly the same form as those that can be found in the Azure Functions WebJobs extension package but live inside the FunctionMonkey.Abstractions package and you must take care to ensure you use these classes.
+
+The reason I've cloned the POCOs like this is because the Azure Functions variants are bundled inside the extension package that has a large number of dependencies that are not appropriate in the business / domain tier of an application.
+
+Hopefully in time more teams within Microsoft will adopt the *.Abstractions form for packages.
