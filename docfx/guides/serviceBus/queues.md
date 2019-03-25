@@ -67,6 +67,8 @@ Finally we need to create an entry in local.settings.json for the Service Bus co
 
 And that's it! If you run this project having created a queue called sendEmailQueue and use a real connection string you'll find that the _SendEmailCommandHandler_ is invoked for each item you place on the queue.
 
+Note that it is possible to omit the connection setting name - see [default connection settings](/crosscutting/connectionStrings.md) for more details.
+
 ## Validation
 
 If you want to validate the queue messages as you recieve them then validation is supported and is [documented here](/crosscutting/validation.html).

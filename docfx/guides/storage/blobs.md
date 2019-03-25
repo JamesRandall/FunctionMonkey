@@ -68,6 +68,8 @@ Finally we need to create an entry in local.settings.json for the Azure Storage 
 
 And that's it! If you run this sample you should find that adding a blob to the container triggers the function. Note that Azure Functions blob triggers do not work with the storage emulator, you need to use a real storage account.
 
+Note that it is possible to omit the connection setting name - see [default connection settings](/crosscutting/connectionStrings.md) for more details.
+
 ## Using Streams
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:

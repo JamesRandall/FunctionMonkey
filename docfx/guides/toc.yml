@@ -55,8 +55,13 @@
     - name: Event Hub Triggers
       href: eventhubs/eventhubs.md
 
+- name: Output Bindings
+  href: outputBindings/overview.md
+
 - name: Cross Cutting Concerns
   items:
+    - name: Connection Strings
+      href: crosscutting/connectionStrings.md
     - name: IoC Containers
       href: crosscutting/iocContainers.md
     - name: Logging

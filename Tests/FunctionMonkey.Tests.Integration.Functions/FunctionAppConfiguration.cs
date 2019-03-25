@@ -138,10 +138,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                         // Cosmos
                         .HttpFunction<HttpTriggerCosmosOutputCommand>("/toCosmos")
-                        .OutputTo.Cosmos(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+                        .OutputTo.CosmosDb(Constants.Cosmos.Collection, Constants.Cosmos.Database)
 
                         .HttpFunction<HttpTriggerCosmosCollectionOutputCommand>("/collectionToCosmos")
-                        .OutputTo.Cosmos(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+                        .OutputTo.CosmosDb(Constants.Cosmos.Collection, Constants.Cosmos.Database)
                     )
 
                     // SignalR tests

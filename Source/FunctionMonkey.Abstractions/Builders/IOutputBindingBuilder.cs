@@ -18,7 +18,7 @@ namespace FunctionMonkey.Abstractions.Builders
         TFunctionTypeBuilder StorageQueue(string queueName);
         TFunctionTypeBuilder StorageTable(string connectionStringSettingName, string tableName);
         TFunctionTypeBuilder StorageTable(string tableName);
-        TFunctionTypeBuilder Cosmos(string connectionStringSettingName, string collectionName, string databaseName);
-        TFunctionTypeBuilder Cosmos(string collectionName, string databaseName);
+        TFunctionTypeBuilder CosmosDb(string connectionStringSettingName, string collectionName, string databaseName);
+        TFunctionTypeBuilder CosmosDb(string collectionName, string databaseName);
     }
 }

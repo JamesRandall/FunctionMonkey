@@ -152,7 +152,7 @@ namespace FunctionMonkey.Builders
             return StorageTable(_connectionStringSettingNames.Storage, tableName);
         }
 
-        public TParentBuilder Cosmos(string connectionStringSettingName, string collectionName, string databaseName)
+        public TParentBuilder CosmosDb(string connectionStringSettingName, string collectionName, string databaseName)
         {
             VerifyOutputBinding();
 
@@ -170,9 +170,9 @@ namespace FunctionMonkey.Builders
             return _parentBuilder;
         }
 
-        public TParentBuilder Cosmos(string collectionName, string databaseName)
+        public TParentBuilder CosmosDb(string collectionName, string databaseName)
         {
-            return Cosmos(_connectionStringSettingNames.CosmosDb, collectionName, databaseName);
+            return CosmosDb(_connectionStringSettingNames.CosmosDb, collectionName, databaseName);
         }
 
         private void VerifyOutputBinding()

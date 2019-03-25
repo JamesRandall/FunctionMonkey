@@ -85,6 +85,8 @@ Finally we need to create an entry in local.settings.json for the Cosmos connect
 
 And that's it! If you run this project against an appropriate Cosmos database and make changes to the documents you will find they are sent to the appropriate Cosmos handler.
 
+Note that it is possible to omit the connection setting name - see [default connection settings](/crosscutting/connectionStrings.md) for more details.
+
 ## Using Documents Directly
 
 Rather than constructing commands from the Cosmos Documents, Function Monkey also supports dealing with the Document class directly via the _ICosmosDbDocumentCommand_ and the _ICosmosDbDocumentBatchCommand_ interfaces that can be found in the _FunctionMonkey.Commanding.Cosmos.Abstractions_ NuGet package.
