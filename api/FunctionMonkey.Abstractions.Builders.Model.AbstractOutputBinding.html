@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IFunctionOptions&lt;TParentBuilder, TFunctionOptionsBuilder&gt;
+    <title>Class AbstractOutputBinding
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IFunctionOptions&lt;TParentBuilder, TFunctionOptionsBuilder&gt;
+    <meta name="title" content="Class AbstractOutputBinding
    ">
     <meta name="generator" content="docfx 2.40.12.0">
     
@@ -68,88 +68,40 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionOptions`2">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding">
   
   
-  <h1 id="FunctionMonkey_Abstractions_Builders_IFunctionOptions_2" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionOptions`2" class="text-break">Interface IFunctionOptions&lt;TParentBuilder, TFunctionOptionsBuilder&gt;
+  <h1 id="FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding" data-uid="FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding" class="text-break">Class AbstractOutputBinding
   </h1>
-  <div class="markdown level0 summary"><p>Allows additional function options and overrides for defaults to be configured </p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.Builders.html">FunctionMonkey.Abstractions.Builders</a></h6>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AbstractOutputBinding</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.Builders.Model.html">FunctionMonkey.Abstractions.Builders.Model</a></h6>
   <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
-  <h5 id="FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_syntax">Syntax</h5>
+  <h5 id="FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IFunctionOptions&lt;out TParentBuilder, out TFunctionOptionsBuilder&gt;
-    where TParentBuilder : class where TFunctionOptionsBuilder : class</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class AbstractOutputBinding : object</code></pre>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TParentBuilder</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="parametername">TFunctionOptionsBuilder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputTo.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionOptions%602.OutputTo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding__ctor_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionOptions.cs/#L13">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/AbstractOutputBinding.cs/#L5">View Source</a>
   </span>
-  <a id="FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputTo_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputTo*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputTo" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputTo">OutputTo</h4>
+  <a id="FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding__ctor_" data-uid="FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.#ctor*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding__ctor_System_String_" data-uid="FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.#ctor(System.String)">AbstractOutputBinding(String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IOutputBindingBuilder&lt;TParentBuilder&gt; OutputTo { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html">IOutputBindingBuilder</a>&lt;TParentBuilder&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_Action__1__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionOptions%602.Options(Action%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionOptions.cs/#L12">View Source</a>
-  </span>
-  <a id="FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_Action__1__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options(Action{`1})">Options(Action&lt;TFunctionOptionsBuilder&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TParentBuilder Options(Action&lt;TFunctionOptionsBuilder&gt; options)</code></pre>
+    <pre><code class="lang-csharp hljs">protected AbstractOutputBinding(string CommandResultItemTypeName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -162,13 +114,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Action</span>&lt;TFunctionOptionsBuilder&gt;</td>
-        <td><span class="parametername">options</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">CommandResultItemTypeName</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_CommandResultItemTypeName.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.CommandResultItemTypeName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/AbstractOutputBinding.cs/#L10">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_CommandResultItemTypeName_" data-uid="FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.CommandResultItemTypeName*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_CommandResultItemTypeName" data-uid="FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.CommandResultItemTypeName">CommandResultItemTypeName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CommandResultItemTypeName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -178,7 +147,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TParentBuilder</span></td>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -192,10 +161,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionOptions_2.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionOptions%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionOptions.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/Model/AbstractOutputBinding.cs/#L3" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

@@ -71,8 +71,8 @@
 
 <h2 id="getting-started">Getting Started</h2>
 <p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
-<pre><code>Install-Package FunctionMonkey -pre
-Install-Package FunctionMonkey.Compiler -pre
+<pre><code>Install-Package FunctionMonkey
+Install-Package FunctionMonkey.Compiler
 </code></pre><p>You will also need to add the Cosmos trigger bindings:</p>
 <pre><code>Install-Package Microsoft.Azure.WebJobs.Extensions.CosmosDB
 </code></pre><p>Now create a folder in the solution called commands and create a class called InvoiceUpdateCommand that matches the document schema in Cosmos:</p>
@@ -138,6 +138,7 @@ public class InvoiceUpdatedCommand : ICommand
   }
 }
 </code></pre><p>And that&#39;s it! If you run this project against an appropriate Cosmos database and make changes to the documents you will find they are sent to the appropriate Cosmos handler.</p>
+<p>Note that it is possible to omit the connection setting name - see <a href="/crosscutting/connectionStrings.md">default connection settings</a> for more details.</p>
 <h2 id="using-documents-directly">Using Documents Directly</h2>
 <p>Rather than constructing commands from the Cosmos Documents, Function Monkey also supports dealing with the Document class directly via the <em>ICosmosDbDocumentCommand</em> and the <em>ICosmosDbDocumentBatchCommand</em> interfaces that can be found in the <em>FunctionMonkey.Commanding.Cosmos.Abstractions</em> NuGet package.</p>
 <p>To deal with a single document simply implement the <em>ICosmosDbDocumentCommand</em>:</p>

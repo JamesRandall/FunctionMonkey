@@ -95,10 +95,116 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(Action%7BFunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L53">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})">CosmosDb(Action&lt;ICosmosDbFunctionBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>Allows Cosmos DB functions to be configured based on a connection name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IFunctionBuilder CosmosDb(Action&lt;ICosmosDbFunctionBuilder&gt; cosmosDbFunctionBuilder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html">ICosmosDbFunctionBuilder</a>&gt;</td>
+        <td><span class="parametername">cosmosDbFunctionBuilder</span></td>
+        <td><p>A builder that allows one or more functions to be created that are associated with the Cosmos connection</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></td>
+        <td><p>The function builder for a fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(Action%7BFunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L69">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__System_String_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder},System.String)">CosmosDb(Action&lt;ICosmosDbFunctionBuilder&gt;, String)</h4>
+  <div class="markdown level1 summary"><p>Allows Cosmos DB functions to be configured based on a default connection name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IFunctionBuilder CosmosDb(Action&lt;ICosmosDbFunctionBuilder&gt; cosmosDbFunctionBuilder, string leaseConnectionName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html">ICosmosDbFunctionBuilder</a>&gt;</td>
+        <td><span class="parametername">cosmosDbFunctionBuilder</span></td>
+        <td><p>A builder that allows one or more functions to be created that are associated with the Cosmos connection</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">leaseConnectionName</span></td>
+        <td><p>The name of the connection for the lease collection in the environment settings</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></td>
+        <td><p>The function builder for a fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String%2CAction%7BFunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L40">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L61">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})">CosmosDb(String, Action&lt;ICosmosDbFunctionBuilder&gt;)</h4>
@@ -154,7 +260,7 @@
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String%2CSystem.String%2CAction%7BFunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L49">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L78">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_CosmosDb_System_String_System_String_Action_FunctionMonkey_Abstractions_Builders_ICosmosDbFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb(System.String,System.String,Action{FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder})">CosmosDb(String, String, Action&lt;ICosmosDbFunctionBuilder&gt;)</h4>
@@ -269,6 +375,56 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(Action%7BFunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L31">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(Action{FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder})">ServiceBus(Action&lt;IServiceBusFunctionBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>Allows Service Bus functions to be configured based on the default connection name of serviceBusConnectionString </p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IFunctionBuilder ServiceBus(Action&lt;IServiceBusFunctionBuilder&gt; serviceBusFunctionBuilder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html">IServiceBusFunctionBuilder</a>&gt;</td>
+        <td><span class="parametername">serviceBusFunctionBuilder</span></td>
+        <td><p>A builder that allows one or more functions to be created that are associated with this connection</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></td>
+        <td><p>The function builder for a fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_ServiceBus_System_String_Action_FunctionMonkey_Abstractions_Builders_IServiceBusFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.ServiceBus(System.String%2CAction%7BFunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -325,10 +481,166 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_SignalR_Action_FunctionMonkey_Abstractions_Builders_ISignalRFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.SignalR(Action%7BFunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L93">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_SignalR_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.SignalR*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_SignalR_Action_FunctionMonkey_Abstractions_Builders_ISignalRFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.SignalR(Action{FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder})">SignalR(Action&lt;ISignalRFunctionBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>Allows SignalR functions to be built based on a default connection name of AzureSignalRConnectionString</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IFunctionBuilder SignalR(Action&lt;ISignalRFunctionBuilder&gt; signalRFunctionBuilder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.html">ISignalRFunctionBuilder</a>&gt;</td>
+        <td><span class="parametername">signalRFunctionBuilder</span></td>
+        <td><p>A builder that allows one or more SignalR functions to be created</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></td>
+        <td><p>The function builder for a fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_SignalR_System_String_Action_FunctionMonkey_Abstractions_Builders_ISignalRFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.SignalR(System.String%2CAction%7BFunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L86">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_SignalR_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.SignalR*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_SignalR_System_String_Action_FunctionMonkey_Abstractions_Builders_ISignalRFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.SignalR(System.String,Action{FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder})">SignalR(String, Action&lt;ISignalRFunctionBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>Allows SignalR functions to be built based on a connection name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IFunctionBuilder SignalR(string connectionSettingName, Action&lt;ISignalRFunctionBuilder&gt; signalRFunctionBuilder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionSettingName</span></td>
+        <td><p>The name of the connection in the environment settings</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.html">ISignalRFunctionBuilder</a>&gt;</td>
+        <td><span class="parametername">signalRFunctionBuilder</span></td>
+        <td><p>A builder that allows one or more SignalR functions to be created</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></td>
+        <td><p>The function builder for a fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_Action_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(Action%7BFunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L46">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_Action_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(Action{FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder})">Storage(Action&lt;IStorageFunctionBuilder&gt;)</h4>
+  <div class="markdown level1 summary"><p>Allows Azure Storage functions to be configured based on a default connection name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IFunctionBuilder Storage(Action&lt;IStorageFunctionBuilder&gt; storageFunctionBuilder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html">IStorageFunctionBuilder</a>&gt;</td>
+        <td><span class="parametername">storageFunctionBuilder</span></td>
+        <td><p>A builder that allows one or more functions to be created that are associated with this connection</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html">IFunctionBuilder</a></td>
+        <td><p>The function builder for a fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_System_String_Action_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(System.String%2CAction%7BFunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L32">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IFunctionBuilder.cs/#L39">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IFunctionBuilder_Storage_System_String_Action_FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IFunctionBuilder.Storage(System.String,Action{FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder})">Storage(String, Action&lt;IStorageFunctionBuilder&gt;)</h4>

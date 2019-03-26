@@ -70,8 +70,8 @@
 <h1 id="getting-started">Getting Started</h1>
 
 <p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
-<pre><code>Install-Package FunctionMonkey -pre
-Install-Package FunctionMonkey.Compiler -pre
+<pre><code>Install-Package FunctionMonkey
+Install-Package FunctionMonkey.Compiler
 </code></pre><p>The first package contains the core framework while the second will add a custom build step to your solution that generates the necessary assets required by the Azure Functions v2 host.</p>
 <p>As an example we&#39;ll create a simple HTTP triggered function that when given a name returns a simple hello world message as a response.</p>
 <p>Function Monkey is based on the mediator pattern and you can find more information about this in a series on <a href="https://www.azurefromthetrenches.com/c-cloud-application-architecture-commanding-with-a-mediator-the-full-series/">my blog here</a> or in the <a href="https://commanding.azurefromthetrenches.com">documentation for the mediator framework</a> used by Function Monkey. In short this works by defining commands as simple C# objects and then implementing command handlers that respond to those commands and optionally return a response.</p>
@@ -193,7 +193,7 @@ Install-Package FunctionMonkey.Compiler -pre
 </code></pre><p>You should now see a message like this:</p>
 <pre><code>&quot;Hello James, from now on I&#39;m going to call you k0WjWm/fF03/chkoKjrkh5eQ27eFxw9v/5HjL6/Wbqs=&quot;
 </code></pre><p>Finally lets add one more twist and introduce some validation - we&#39;ll the application so that a name of between 1 and 50 characters in length is required. First we&#39;ll need to add a new NuGet package:</p>
-<pre><code>Install-Package FunctionMonkey.FluentValidation -pre
+<pre><code>Install-Package FunctionMonkey.FluentValidation
 </code></pre><p>Now add a Validators folder to the root of the project and in there create a class called <em>HelloWorldCommandValidator</em>:</p>
 <pre><code>internal class HelloWorldCommandValidator : AbstractValidator&lt;HelloWorldCommand&gt;
 {

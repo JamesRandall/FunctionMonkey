@@ -76,10 +76,10 @@
 </ol>
 <h2 id="deserializing-directly-into-a-command">Deserializing Directly Into a Command</h2>
 <p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
-<pre><code>Install-Package FunctionMonkey -pre
-Install-Package FunctionMonkey.Compiler -pre
+<pre><code>Install-Package FunctionMonkey
+Install-Package FunctionMonkey.Compiler
 </code></pre><p>You will also need the extension package for the storage triggers (at the time of writing this is 3.0.0-beta8):</p>
-<pre><code>Install-Package Microsoft.Azure.WebJobs.Extensions.Storage -pre
+<pre><code>Install-Package Microsoft.Azure.WebJobs.Extensions.Storage
 </code></pre><p>Now create a folder in the solution called commands and create a class called HelloWorldCommand:</p>
 <pre><code>public class HelloWorldCommand : ICommand
 {
@@ -123,10 +123,11 @@ Install-Package FunctionMonkey.Compiler -pre
   }
 }
 </code></pre><p>And that&#39;s it! If you run this sample you should find that adding a blob to the container triggers the function. Note that Azure Functions blob triggers do not work with the storage emulator, you need to use a real storage account.</p>
+<p>Note that it is possible to omit the connection setting name - see <a href="/crosscutting/connectionStrings.md">default connection settings</a> for more details.</p>
 <h2 id="using-streams">Using Streams</h2>
 <p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
-<pre><code>Install-Package FunctionMonkey -pre
-Install-Package FunctionMonkey.Compiler -pre
+<pre><code>Install-Package FunctionMonkey
+Install-Package FunctionMonkey.Compiler
 </code></pre><p>Now create a folder in the solution called commands and create a class called HelloWorldCommand - in addition to implementing the <em>ICommand</em> interface we also must implement the <em>IStreamCommand</em>:</p>
 <pre><code>public class HelloWorldCommand : ICommand, IStreamCommand
 {

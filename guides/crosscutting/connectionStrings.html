@@ -5,19 +5,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IStorageFunctionOptionBuilder
-   </title>
+    <title>Connection Strings </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IStorageFunctionOptionBuilder
-   ">
+    <meta name="title" content="Connection Strings ">
     <meta name="generator" content="docfx 2.40.12.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
     
     
     
@@ -36,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" width="56" height="52" src="../images/largeLogo.png" alt="">
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" width="56" height="52" src="../../images/largeLogo.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -68,35 +66,51 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder">
-  
-  
-  <h1 id="FunctionMonkey_Abstractions_Builders_IStorageFunctionOptionBuilder" data-uid="FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder" class="text-break">Interface IStorageFunctionOptionBuilder
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_QueueFunction__1_System_String_">IStorageFunctionBuilder.QueueFunction&lt;TCommand&gt;(String)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IStorageFunctionBuilder_BlobFunction__1_System_String_">IStorageFunctionBuilder.BlobFunction&lt;TCommand&gt;(String)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_Action__1__">IFunctionOptions&lt;IStorageFunctionOptionBuilder, IFunctionOptionsBuilder&gt;.Options(Action&lt;IFunctionOptionsBuilder&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputTo">IFunctionOptions&lt;IStorageFunctionOptionBuilder, IFunctionOptionsBuilder&gt;.OutputTo</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.Builders.html">FunctionMonkey.Abstractions.Builders</a></h6>
-  <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
-  <h5 id="FunctionMonkey_Abstractions_Builders_IStorageFunctionOptionBuilder_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IStorageFunctionOptionBuilder : IStorageFunctionBuilder, IFunctionOptions&lt;IStorageFunctionOptionBuilder, IFunctionOptionsBuilder&gt;</code></pre>
-  </div>
-<div id="disqus_thread"></div>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="connection-strings">Connection Strings</h1>
+
+<p>Many trigger types require a conncetion string setting names to be supplied. For example using the Service Bus you may declare a queue function like this:</p>
+<pre><code>.Functions(functions =&gt; functions
+    .ServiceBus(&quot;serviceBusConnectionString&quot;, serviceBus =&gt; serviceBus
+        .QueueFunction&lt;SendEmailCommand&gt;(QueueName)
+    )
+);
+</code></pre><p>An alternative approach is to rely on default connection string setting names (again using the Service Bus as an example but this applies to all trigger types):</p>
+<pre><code>.Functions(functions =&gt; functions
+    .ServiceBus(serviceBus =&gt; serviceBus
+        .QueueFunction&lt;SendEmailCommand&gt;(QueueName)
+    )
+);
+</code></pre><p>The default connection string setting names are as follows (showed in a sample .settings.json):</p>
+<pre><code>{
+    &quot;Values&quot;: {
+        &quot;FUNCTIONS_WORKER_RUNTIME&quot;: &quot;dotnet&quot;,
+        &quot;AzureWebJobsStorage&quot;: &quot;&quot;,
+        &quot;AzureWebJobsDashboard&quot;: &quot;&quot;,
+
+        &quot;storageConnectionString&quot;: &quot;default azure storage connection string - queues, blob, table&quot;,
+        &quot;cosmosConnectionString&quot;: &quot;default cosmos connection string&quot;,
+        &quot;serviceBusConnectionString&quot;: &quot;default service bus connection string&quot;,
+        &quot;signalRConnectionString&quot;: &quot;default signalR connection string&quot;
+    }
+}
+</code></pre><p>You can change the default setting names as shown in the following example (you don&#39;t have to set them all, just the ones you need):</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .DefaultConnectionStringSettingNames(settingNames =&gt;
+                {
+                    settingNames.Storage = &quot;newStorageConnectionSettingName&quot;;
+                    settingNames.CosmosDb = &quot;newCosmosConnectionSettingName&quot;;
+                    settingNames.ServiceBus = &quot;newServiceBusConnectionSettingName&quot;;
+                    settingNames.SignalR = &quot;newSignalRConnectionSetingName&quot;;
+                })
+            .Functions(...);
+    }
+}
+</code></pre><div id="disqus_thread"></div>
             </article>
           </div>
           
@@ -105,10 +119,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IStorageFunctionOptionBuilder.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IStorageFunctionOptionBuilder.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/crosscutting/connectionStrings.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
@@ -137,9 +148,9 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
     <script id="dsq-count-scr" src="//docfx-github.disqus.com/count.js" async=""></script>
     
     <!-- Global site tag (gtag.js) - Google Analytics -->

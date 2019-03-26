@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Service Bus Queues </title>
+    <title>Output Bindings </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Service Bus Queues ">
+    <meta name="title" content="Output Bindings ">
     <meta name="generator" content="docfx 2.40.12.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -67,67 +67,85 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="service-bus-queues">Service Bus Queues</h1>
+<h1 id="output-bindings">Output Bindings</h1>
 
-<h2 id="getting-started">Getting Started</h2>
-<p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
-<pre><code>Install-Package FunctionMonkey
-Install-Package FunctionMonkey.Compiler
-</code></pre><p>You will also need to add the Service Bus trigger bindings:</p>
-<pre><code>Install-Package Microsoft.Azure.WebJobs.ServiceBus
-</code></pre><p>Now create a folder in the solution called commands and create a class called SendEmailCommand:</p>
-<pre><code>public class SendEmailCommand : ICommand
+<p>Function Monkey supports output bindings on all of its function types - a prerequisite for using them is that your command must return a result. For example:</p>
+<pre><code>public class OutputDocument
 {
-    public string To { get; set; }
+    public string Message { get; set; }
 
-    public string Title { get; set; }
-
-    public string Body { get; set; }
+    public int Value { get; set; }
 }
-</code></pre><p>Next create a folder in the solution called Handlers and create a class called SendEmailCommandHandler:</p>
-<pre><code>internal class SendEmailCommandHandler : ICommandHandler&lt;SendEmailCommand&gt;
+
+public class ExampleOutputCommand : ICommand&lt;OutputDocument&gt;
 {
-    public Task ExecuteAsync(SendEmailCommand command)
-    {
-        // We won&#39;t really send an email from this sample
-        return Task.CompletedTask;
-    }
+
 }
-</code></pre><p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a service bus queue:</p>
+</code></pre><p>To use this command with a HTTP trigger and output the result to the Service Bus you would use the following configuration (note tthis example uses <a href="/crosscutting/connectionStrings.md">default connection strings</a>):</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
-    private const string QueueName = &quot;sendEmailQueue&quot;;
-    private const string ServiceBusConnectionName = &quot;serviceBusConnection&quot;;
-
     public void Build(IFunctionHostBuilder builder)
     {
         builder
-            .Setup((serviceCollection, commandRegistry) =&gt;
-                commandRegistry.Register&lt;SendEmailCommandHandler&gt;()
-            )
             .Functions(functions =&gt; functions
-                .ServiceBus(ServiceBusConnectionName, serviceBus =&gt; serviceBus
-                    .QueueFunction&lt;SendEmailCommand&gt;(QueueName)
+                .HttpRoute(&quot;outputExample&quot;, route =&gt; route
+                    .HttpFunction&lt;ExampleOutputCommand&gt;()
+                    .OutputTo.ServiceBusQueue(&quot;myqueue&quot;)
                 )
             );
     }
 }
-</code></pre><p>Finally we need to create an entry in local.settings.json for the Service Bus connection string:</p>
-<pre><code>{
-  &quot;IsEncrypted&quot;: false,
-  &quot;Values&quot;: {
-    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
-    &quot;serviceBusConnection&quot;: &quot;&lt;connection string&gt;&quot; 
-  }
+</code></pre><p>All the output bindings are available through the .OutputTo property on each Function and include:</p>
+<ul>
+<li>Service Bus Queue</li>
+<li>Service Bus Topic</li>
+<li>Storage Queue</li>
+<li>Storage Table</li>
+<li>Cosmos</li>
+<li>SignalR (both message and action)</li>
+</ul>
+<p>An example of each in use is shown below:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;outputExample&quot;, route =&gt; route
+                    .HttpFunction&lt;ExampleOutputCommand&gt;()
+                    .OutputTo.ServiceBusQueue(&quot;myqueue&quot;)
+                )
+
+                .ServiceBus(serviceBus =&gt; serviceBus
+                    .QueueFunction&lt;ServiceBusQueueTriggerTableOutputCommand&gt;(&quot;myqueue&quot;)
+                    .OutputTo.ServiceBusTopic(&quot;mytopic&quot;)
+
+                    .SubscriptionFunction&lt;ServiceBusSubscriptionMarkerIdCommand&gt;(&quot;mytopic&quot;, &quot;mysubscription&quot;)
+                    .OutputTo.CosmosDb(&quot;mycollection&quot;, &quot;mydatabase&quot;)
+
+                    .QueueFunction&lt;SendSignalRMessage&gt;(&quot;signalRMessages&quot;)
+                    .OutputTo.SignalRMessage(&quot;myHub&quot;)
+                )
+
+                .HttpRoute(&quot;addUserToGroup&quot;, route =&gt; route
+                    .HttpFunction&lt;AddUserToSignalRGroupCommand&gt;(HttpMethod.Put)
+                    .OutputTo.SignalRGroup(&quot;myHub&quot;)
+                )
+
+                .CosmosDb(cosmos =&gt; cosmos
+                    .ChangeFeedFunction&lt;CosmosTriggerTableOutputCommand&gt;(&quot;mycollection&quot;, &quot;mydatabase)
+                    .OutputTo.StorageTable(&quot;mystoragetable)
+                )
+
+                .Storage(storage =&gt; storage
+                    .BlobFunction&lt;BlogTriggerTableOutputCommand&gt;($&quot;{Constants.Storage.Blob.BlobOutputCommandContainer}/{{name}}&quot;)
+                    .OutputTo.StorageQueue(&quot;mystoragequeue&quot;)
+            );
+    }
 }
-</code></pre><p>And that&#39;s it! If you run this project having created a queue called sendEmailQueue and use a real connection string you&#39;ll find that the <em>SendEmailCommandHandler</em> is invoked for each item you place on the queue.</p>
-<p>Note that it is possible to omit the connection setting name - see <a href="/crosscutting/connectionStrings.md">default connection settings</a> for more details.</p>
-<h2 id="validation">Validation</h2>
-<p>If you want to validate the queue messages as you recieve them then validation is supported and is <a href="/crosscutting/validation.html">documented here</a>.</p>
-<h2 id="sample-code">Sample Code</h2>
-<p>The source code for the above can be found over in <a href="https://github.com/JamesRandall/FunctionMonkey/tree/master/Samples/DocumentationSamples/ServiceBusSample">GitHub</a>.</p>
-<div id="disqus_thread"></div>
+
+Note that there are some specific command result types required for SignalR. More details can be found in its own section.
+</code></pre><div id="disqus_thread"></div>
             </article>
           </div>
           
@@ -136,7 +154,7 @@ Install-Package FunctionMonkey.Compiler
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/serviceBus/queues.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/docfx/guides/outputBindings/overview.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>
