@@ -44,6 +44,8 @@
           href: cosmos/changeFeed.md
         - name: Error Handling
           href: cosmos/errorHandling.md
+    - name: SignalR
+      href: signalR/overview.md
     - name: Timer Triggers
       href: timers/timers.md      
     - name: Azure Storage Triggers
