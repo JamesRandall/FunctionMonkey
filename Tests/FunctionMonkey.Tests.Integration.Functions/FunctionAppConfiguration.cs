@@ -91,6 +91,11 @@ namespace FunctionMonkey.Tests.Integration.Functions
                             "/result/validationPasses")
                         .Options(options => options.ResponseHandler<CustomResponseHandler>())
                     )
+
+                    .HttpRoute(route => route
+                        .HttpFunction<HttpCommandWithNoRoute>()
+                    )
+
                     .Storage("storageConnectionString", storage => storage
                         .QueueFunction<StorageQueueCommand>(Constants.Storage.Queue.TestQueue)
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")

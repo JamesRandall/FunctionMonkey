@@ -20,8 +20,9 @@ namespace {{Namespace}}
         public static async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
-                {{{httpVerbs}}},
-                Route = "{{Route}}")                
+                {{{httpVerbs}}}
+                {{#if HasRoute}},Route = "{{Route}}"{{/if}}
+                )
             ]
             HttpRequest req,
             ILogger log,

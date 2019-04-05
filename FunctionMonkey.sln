@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Abstractions", "Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj", "{964DB972-B1A6-4434-AB1C-ED716B8987B1}"
 EndProject
@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Testing", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Tests.Integration.Functions", "Tests\FunctionMonkey.Tests.Integration.Functions\FunctionMonkey.Tests.Integration.Functions.csproj", "{8A4152AF-B172-4E9C-A339-3CCA128D5C13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Testing.Tests", "FunctionMonkey.Testing.Tests\FunctionMonkey.Testing.Tests.csproj", "{5E41705F-CBB4-4426-8FA5-18AD8A41CD2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Testing.Tests", "FunctionMonkey.Testing.Tests\FunctionMonkey.Testing.Tests.csproj", "{5E41705F-CBB4-4426-8FA5-18AD8A41CD2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -155,7 +155,7 @@ namespace FunctionMonkey.Compiler.Implementation
         private static void CreateOperationsFromRoutes(HttpFunctionDefinition[] functionDefinitions,
             OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
         {
-            var operationsByRoute = functionDefinitions.GroupBy(x => x.Route);
+            var operationsByRoute = functionDefinitions.Where(x => x.Route != null).GroupBy(x => x.Route);
             foreach (IGrouping<string, HttpFunctionDefinition> route in operationsByRoute)
             {
                 OpenApiPathItem pathItem = new OpenApiPathItem()
@@ -228,7 +228,6 @@ namespace FunctionMonkey.Compiler.Implementation
                             // TODO: We need to consider what to do with the payload model here - if its a route parameter
                             // we need to ignore it in the payload model                            
                         }
-
 
                         if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                         {
