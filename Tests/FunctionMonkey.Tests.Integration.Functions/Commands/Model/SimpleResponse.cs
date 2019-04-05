@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FunctionMonkey.Tests.Integration.Functions.Commands.Model
 {
@@ -15,6 +16,25 @@ namespace FunctionMonkey.Tests.Integration.Functions.Commands.Model
                 Message = "success",
                 Value = 1
             });
+        }
+
+        public static Task<IReadOnlyCollection<SimpleResponse>> SuccessCollection()
+        {
+            IReadOnlyCollection<SimpleResponse> collection = new SimpleResponse[]
+            {
+                new SimpleResponse
+                {
+                    Message = "success1",
+                    Value = 1
+                },
+                new SimpleResponse
+                {
+                    Message = "success2",
+                    Value = 2
+                }
+            };
+
+            return Task.FromResult(collection);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Extensions;
@@ -24,7 +26,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
         public Type CommandType { get; set; }
 
-        public string CommandTypeName => CommandType.FullName;
+        public string CommandTypeName => CommandType.EvaluateType();
 
         public Type CommandResultType
         {
@@ -45,7 +47,37 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             }
         }
 
-        public string CommandResultTypeName => CommandResultType?.FullName;
+        public bool CommandResultIsCollection =>
+            CommandHasResult && typeof(IEnumerable).IsAssignableFrom(CommandResultType);
+
+        // when a command result is an enumerable this returns the type of the item in the collection
+        // when it is not an enumerable it just returns the type
+        public string CommandResultItemTypeName => CommandResultItemType?.EvaluateType();
+
+        public Type CommandResultItemType
+        {
+            get
+            {
+                Type itemType = CommandResultType;
+                if (CommandResultType.IsGenericType && CommandResultType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                {
+                    itemType = CommandResultType.GetGenericArguments().Single();
+                }
+                else
+                {
+                    Type enumerableType = CommandResultType.GetInterfaces().SingleOrDefault(x => x.IsGenericType && typeof(IEnumerable<>).IsAssignableFrom(x.GetGenericTypeDefinition()));
+                    if (enumerableType != null)
+                    {
+                        itemType = enumerableType.GetGenericArguments().Single();
+                    }
+                }
+
+
+                return itemType;
+            }
+        }
+
+        public string CommandResultTypeName => CommandResultType.EvaluateType();
 
         public bool CommandHasResult => CommandResultType != null;
 
@@ -70,5 +102,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         public string FunctionClassTypeName { get; set; }
 
         #endregion
+        
+        public AbstractOutputBinding OutputBinding { get; set; }
     }
 }

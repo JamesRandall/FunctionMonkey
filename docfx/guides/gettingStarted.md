@@ -2,8 +2,8 @@
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey -pre
-    Install-Package FunctionMonkey.Compiler -pre
+    Install-Package FunctionMonkey
+    Install-Package FunctionMonkey.Compiler
 
 The first package contains the core framework while the second will add a custom build step to your solution that generates the necessary assets required by the Azure Functions v2 host.
 
@@ -164,7 +164,7 @@ You should now see a message like this:
 
 Finally lets add one more twist and introduce some validation - we'll the application so that a name of between 1 and 50 characters in length is required. First we'll need to add a new NuGet package:
 
-    Install-Package FunctionMonkey.FluentValidation -pre
+    Install-Package FunctionMonkey.FluentValidation
 
 Now add a Validators folder to the root of the project and in there create a class called _HelloWorldCommandValidator_:
 

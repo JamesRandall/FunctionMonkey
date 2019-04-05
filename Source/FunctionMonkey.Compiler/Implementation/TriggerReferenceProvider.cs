@@ -5,6 +5,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Model;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions;
+using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -24,7 +25,9 @@ namespace FunctionMonkey.Compiler.Implementation
             {typeof(BlobStreamFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
             {typeof(BlobFunctionDefinition), typeof(BlobTriggerAttribute).Assembly },
             {typeof(TimerFunctionDefinition), typeof(TimerTriggerAttribute).Assembly },
-            {typeof(CosmosDbFunctionDefinition), typeof(CosmosDBTriggerAttribute).Assembly }
+            {typeof(CosmosDbFunctionDefinition), typeof(CosmosDBTriggerAttribute).Assembly },
+            {typeof(SignalRCommandNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly },
+            {typeof(SignalRBindingExpressionNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly }
         };
 
         public Assembly GetTriggerReference(AbstractFunctionDefinition functionDefinition)

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Testing.Tests.Helpers;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
+using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
 using FunctionMonkey.Tests.Integration.Functions.Commands.Model;
 using Microsoft.AspNetCore.Http;
 using Xunit;

@@ -9,12 +9,12 @@ Function Monkey supports two approaches for responding to blob storage events:
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey -pre
-    Install-Package FunctionMonkey.Compiler -pre
+    Install-Package FunctionMonkey
+    Install-Package FunctionMonkey.Compiler
 
 You will also need the extension package for the storage triggers (at the time of writing this is 3.0.0-beta8):
 
-    Install-Package Microsoft.Azure.WebJobs.Extensions.Storage -pre
+    Install-Package Microsoft.Azure.WebJobs.Extensions.Storage
 
 Now create a folder in the solution called commands and create a class called HelloWorldCommand:
 
@@ -68,12 +68,14 @@ Finally we need to create an entry in local.settings.json for the Azure Storage 
 
 And that's it! If you run this sample you should find that adding a blob to the container triggers the function. Note that Azure Functions blob triggers do not work with the storage emulator, you need to use a real storage account.
 
+Note that it is possible to omit the connection setting name - see [default connection settings](/crosscutting/connectionStrings.md) for more details.
+
 ## Using Streams
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey -pre
-    Install-Package FunctionMonkey.Compiler -pre
+    Install-Package FunctionMonkey
+    Install-Package FunctionMonkey.Compiler
 
 Now create a folder in the solution called commands and create a class called HelloWorldCommand - in addition to implementing the _ICommand_ interface we also must implement the _IStreamCommand_:
 

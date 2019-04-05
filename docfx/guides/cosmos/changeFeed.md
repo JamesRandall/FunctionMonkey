@@ -4,8 +4,8 @@
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey -pre
-    Install-Package FunctionMonkey.Compiler -pre
+    Install-Package FunctionMonkey
+    Install-Package FunctionMonkey.Compiler
 
 You will also need to add the Cosmos trigger bindings:
 
@@ -84,6 +84,8 @@ Finally we need to create an entry in local.settings.json for the Cosmos connect
     }
 
 And that's it! If you run this project against an appropriate Cosmos database and make changes to the documents you will find they are sent to the appropriate Cosmos handler.
+
+Note that it is possible to omit the connection setting name - see [default connection settings](/crosscutting/connectionStrings.md) for more details.
 
 ## Using Documents Directly
 

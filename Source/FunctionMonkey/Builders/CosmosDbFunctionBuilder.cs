@@ -11,14 +11,18 @@ namespace FunctionMonkey.Builders
 {
     internal class CosmosDbFunctionBuilder : ICosmosDbFunctionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly string _connectionStringName;
         private readonly string _leaseConnectionStringName;
         private readonly List<AbstractFunctionDefinition> _functionDefinitions;
 
-        public CosmosDbFunctionBuilder(string connectionStringName,
+        public CosmosDbFunctionBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            string connectionStringName,
             string leaseConnectionName,
             List<AbstractFunctionDefinition> functionDefinitions)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _connectionStringName = connectionStringName;
             _functionDefinitions = functionDefinitions;
             _leaseConnectionStringName = leaseConnectionName;
@@ -67,7 +71,7 @@ namespace FunctionMonkey.Builders
                 RemainingWorkCronExpression = remainingWorkCronExpression
             };
             _functionDefinitions.Add(definition);
-            return new CosmosDbFunctionOptionBuilder(this, definition);
+            return new CosmosDbFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
         }
 
         public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(
@@ -115,7 +119,7 @@ namespace FunctionMonkey.Builders
                 RemainingWorkCronExpression = remainingWorkCronExpression
             };
             _functionDefinitions.Add(definition);
-            return new CosmosDbFunctionOptionBuilder(this, definition);
+            return new CosmosDbFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
         }
     }
 }

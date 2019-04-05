@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Commanding.Abstractions;
+
+namespace FunctionMonkey.Abstractions.Builders
+{
+    public interface ISignalRFunctionBuilder
+    {
+
+        ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType  = null, params HttpMethod[] method) where TCommand : ICommand<SignalRNegotiateResponse>;
+
+        /// <summary>
+        /// Creates a SignalR negotiator at the specified route attached to the given hub name and, optionally, with a user ID sourced using a binding expression e.g.
+        /// {headers.x-ms-client-principal-id} to use the ID passed in from App Service Authentication (EasyAuth).
+        /// </summary>
+        /// <param name="route">The route</param>
+        /// <param name="userIdMapping">Optional user ID mapping</param>
+        /// <param name="authorizationType">The authorization type to use</param>
+        /// <param name="method">The HTTP methods to bind to</param>
+        /// <param name="hubName">The hub name</param>
+        /// <returns></returns>
+        ISignalRFunctionBuilder Negotiate(string route, string hubName, string userIdExpression = null, AuthorizationTypeEnum? authorizationType = null, params HttpMethod[] method);
+    }
+}

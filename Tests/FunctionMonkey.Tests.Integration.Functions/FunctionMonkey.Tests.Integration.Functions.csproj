@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey.FluentValidation\FunctionMonkey.FluentValidation.csproj" />
+    <ProjectReference Include="..\..\Source\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey\FunctionMonkey.csproj" />
   </ItemGroup>
   <ItemGroup>

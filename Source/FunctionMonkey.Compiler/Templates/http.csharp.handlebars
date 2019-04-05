@@ -17,7 +17,11 @@ namespace {{Namespace}}
     public static class {{Name}}
     {
         [FunctionName("{{Name}}")]
+        {{#if OutputBinding}}
+        public static async Task Run(
+        {{else}}
         public static async Task<IActionResult> Run(
+        {{/if}}
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}}
@@ -30,6 +34,7 @@ namespace {{Namespace}}
             {{#each RouteParameters}}
             , {{#if IsGuid}}string{{else}}{{{RouteTypeName}}}{{/if}} {{RouteName}}
             {{/each}}
+            {{{parameterOutputBinding}}}
     )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
@@ -230,16 +235,25 @@ namespace {{Namespace}}
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                {{#if HasHttpResponseHandler}}
-                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
-                    var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
-                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                {{#if OutputBinding}}
+                    log.LogWarning("Command of type {commandType} failed validation {validationResult}", "{{CommandTypeName}}", validationResult);
+                    return;
                 {{else}}
-                    return CreateResponse(400, validationResult, serializer);
+                    {{#if HasHttpResponseHandler}}
+                        var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                        var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
+                        return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                    {{else}}
+                        return CreateResponse(400, validationResult, serializer);
+                    {{/if}}
                 {{/if}}
             }
             {{/if}}
-            
+
+            {{#if OutputBinding}}
+                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                {{{collectorOutputBinding}}}
+            {{else}}            
             try
             {
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
@@ -295,6 +309,7 @@ namespace {{Namespace}}
                     return CreateResponse(500, "Unexpected error", serializer);
                 {{/if}}
             }
+            {{/if}}
         }
 
         public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)
@@ -314,7 +329,7 @@ namespace {{Namespace}}
           string str4 = request.QueryString.Value;
           return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
-	
+    
         public delegate System.Boolean TryDelegate<T>(System.String input, out T result);
 
         private static System.Boolean TryParseNullable<T>(

@@ -18,7 +18,9 @@ namespace {{Namespace}}
             string popReceipt,
             int dequeueCount,
             ILogger log,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext
+            {{{parameterOutputBinding}}}
+        )
         {
             log.LogInformation("Storage queue trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
@@ -53,8 +55,12 @@ namespace {{Namespace}}
             }
             {{/if}}
             
-            var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-            // The result will be useful when we want to include outputs too
+            {{#if OutputBinding}}
+                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                {{{collectorOutputBinding}}}
+            {{else}} 
+                await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+            {{/if}}
         }
     }
 }

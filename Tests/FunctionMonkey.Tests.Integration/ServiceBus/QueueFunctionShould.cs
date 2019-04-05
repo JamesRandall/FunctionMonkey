@@ -26,5 +26,21 @@ namespace FunctionMonkey.Tests.Integration.ServiceBus
 
             await marker.Assert();
         }
+
+        [Fact]
+        public async Task OutputToTableBinding()
+        {
+            MarkerMessage marker = new MarkerMessage
+            {
+                MarkerId = Guid.NewGuid()
+            };
+            string json = JsonConvert.SerializeObject(marker);
+            byte[] body = Encoding.UTF8.GetBytes(json);
+
+            IQueueClient queueClient = new QueueClient(Settings.ServiceBusConnectionString, "tableoutput");
+            await queueClient.SendAsync(new Message(body));
+
+            await marker.Assert();
+        }
     }
 }

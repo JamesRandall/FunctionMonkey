@@ -3,6 +3,10 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
+using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
+using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
+using FunctionMonkey.Tests.Integration.Functions.Commands.SignalR;
+using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
@@ -30,7 +34,6 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     serviceCollection
                         .AddValidatorsFromAssemblyContaining<FunctionAppConfiguration>()
                         ;
-                    commandRegistry.Discover<FunctionAppConfiguration>();
                 })
                 .AddFluentValidation()
                 .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
@@ -39,6 +42,15 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .Title("Integration Test Functions")
                     .Version("1.0.0")
                 )
+                .DefaultConnectionStringSettingNames(settingNames =>
+                    {
+                        // These are the default values - you don't have to set them
+                        // I've set them here just to show what they are
+                        settingNames.Storage = "storageConnectionString";
+                        settingNames.CosmosDb = "cosmosConnectionString";
+                        settingNames.ServiceBus = "serviceBusConnectionString";
+                        settingNames.SignalR = "signalRConnectionString";
+                    })
                 .Functions(functions => functions
                     // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
                     // essentially pre-reqs for tracking things in the test suite
@@ -94,22 +106,106 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                     .HttpRoute(route => route
                         .HttpFunction<HttpCommandWithNoRoute>()
+                    )                    
+                    
+                    .HttpRoute("outputBindings", route => route
+                        // Service Bus
+                        .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBusQueue")
+                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueue)
+
+                        .HttpFunction<HttpTriggerServiceBusQueueCollectionOutputCommand>("/collectionToServiceBusQueue")
+                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueue)
+
+                        .HttpFunction<HttpTriggerServiceBusTopicOutputCommand>("/toServiceBusTopic")
+                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerTopic)
+
+                        .HttpFunction<HttpTriggerServiceBusTopicCollectionOutputCommand>("/collectionToServiceBusTopic")
+                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerTopic)
+
+                        // Storage
+
+                        //.HttpFunction<HttpTriggerStorageBlobOutputCommandResultCommand>("/toBlobOutputWithName")
+                        //.OutputTo.StorageBlob("storageConnectionString", "")
+
+                        .HttpFunction<HttpTriggerStorageQueueOutputCommand>("/toStorageQueue")
+                        .OutputTo.StorageQueue(Constants.Storage.Queue.MarkerQueue)
+
+                        .HttpFunction<HttpTriggerStorageQueueCollectionOutputCommand>("/collectionToStorageQueue")
+                        .OutputTo.StorageQueue(Constants.Storage.Queue.MarkerQueue)
+
+                        .HttpFunction<HttpTriggerStorageTableOutputCommand>("/toStorageTable")
+                        .OutputTo.StorageTable(Constants.Storage.Table.Markers)
+
+                        .HttpFunction<HttpTriggerStorageTableCollectionOutputCommand>("/collectionToStorageTable")
+                        .OutputTo.StorageTable(Constants.Storage.Table.Markers)
+
+                        // Cosmos
+                        .HttpFunction<HttpTriggerCosmosOutputCommand>("/toCosmos")
+                        .OutputTo.CosmosDb(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+
+                        .HttpFunction<HttpTriggerCosmosCollectionOutputCommand>("/collectionToCosmos")
+                        .OutputTo.CosmosDb(Constants.Cosmos.Collection, Constants.Cosmos.Database)
                     )
 
-                    .Storage("storageConnectionString", storage => storage
+                    // SignalR tests
+                    .HttpRoute("signalR", route => route
+                        .HttpFunction<SendMessageCommand>("/messageToAll")
+                        .OutputTo.SignalRMessage(Constants.SignalR.HubName)
+
+                        .HttpFunction<SendMessageToGroupCommand>("/messageToGroup/{groupName}")
+                        .OutputTo.SignalRMessage(Constants.SignalR.HubName)
+
+                        .HttpFunction<SendMessageCollectionCommand>("/messageCollectionToUser", HttpMethod.Post)
+                        .OutputTo.SignalRMessage(Constants.SignalR.HubName)
+
+                        .HttpFunction<AddUserToGroupCommand>("/addUserToGroup", HttpMethod.Put)
+                        .OutputTo.SignalRGroupAction(Constants.SignalR.HubName)
+
+                        .HttpFunction<RemoveUserFromGroupCommand>("/removeUserFromGroup", HttpMethod.Put)
+                        .OutputTo.SignalRGroupAction(Constants.SignalR.HubName)
+                    )
+                    .ServiceBus(serviceBus => serviceBus
+                        .QueueFunction<SendMessageToUserCommand>(Constants.ServiceBus.SignalRQueue)
+                        .OutputTo.SignalRMessage(Constants.SignalR.HubName)                    
+                    )
+                    .SignalR(signalR => signalR
+                        .Negotiate<NegotiateCommand>("/negotiate")
+                        .Negotiate("/simpleNegotiate", Constants.SignalR.HubName, "{headers.x-ms-client-principal-id}")
+                    )
+                    
+                    // Storage
+                    .Storage(storage => storage
                         .QueueFunction<StorageQueueCommand>(Constants.Storage.Queue.TestQueue)
                         .BlobFunction<BlobCommand>($"{Constants.Storage.Blob.BlobCommandContainer}/{{name}}")
                         .BlobFunction<StreamBlobCommand>(
                             $"{Constants.Storage.Blob.StreamBlobCommandContainer}/{{name}}")
+                        .BlobFunction<BlogTriggerTableOutputCommand>($"{Constants.Storage.Blob.BlobOutputCommandContainer}/{{name}}")
+                        .OutputTo.StorageTable(Constants.Storage.Table.Markers)
+
+                        // This command isn't a direct test subject but it reads from a service bus queue and places
+                        // the IDs into the marker table so that tests can find them during async output trigger testing
+                        .QueueFunction<StorageQueuedMarkerIdCommand>(Constants.Storage.Queue.MarkerQueue)
                     )
-                    .ServiceBus("serviceBusConnectionString", serviceBus => serviceBus
+
+                    .ServiceBus(serviceBus => serviceBus
                         .QueueFunction<ServiceBusQueueCommand>(Constants.ServiceBus.Queue)
                         .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
                             Constants.ServiceBus.SubscriptionName)
+                        .QueueFunction<ServiceBusQueueTriggerTableOutputCommand>(Constants.ServiceBus.TableOutputQueue)
+                        .OutputTo.StorageTable(Constants.Storage.Table.Markers)
+
+                        // These commands aren't a direct test subject but read from a service bus queue and sub and places
+                        // the IDs into the marker table so that tests can find them during async output trigger testing
+                        .QueueFunction<ServiceBusQueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)
+                        .SubscriptionFunction<ServiceBusSubscriptionMarkerIdCommand>(Constants.ServiceBus.MarkerTopic, Constants.ServiceBus.MarkerSubscription)
                     )
-                    .CosmosDb("cosmosConnectionString", cosmos => cosmos
+
+                    .CosmosDb(cosmos => cosmos
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
+                        .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.OutputTableCollection, Constants.Cosmos.Database, leaseCollectionName: Constants.Cosmos.OutputTableLeases)
+                        .OutputTo.StorageTable(Constants.Storage.Table.Markers)
                     )
+
                     .Timer<TimerCommand>("*/5 * * * * *")
                 );
         }

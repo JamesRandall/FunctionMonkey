@@ -10,7 +10,6 @@ namespace SwaggerBuildOut.Handlers
         public Task ExecuteAsync(CosmosCommand command)
         {
             throw new Exception("eeek");
-            return Task.CompletedTask;
         }
     }
 }

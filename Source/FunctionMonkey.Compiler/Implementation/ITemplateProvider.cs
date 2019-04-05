@@ -9,5 +9,6 @@ namespace FunctionMonkey.Compiler.Implementation
         string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition);
         string GetJsonTemplate(AbstractFunctionDefinition functionDefinition);
         string GetTemplate(string name, string type);
+        string GetCSharpOutputParameterTemplate(AbstractOutputBinding outputBinding);
     }
 }

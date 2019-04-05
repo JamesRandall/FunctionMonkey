@@ -17,7 +17,7 @@ namespace FunctionMonkey.Builders
         private readonly bool _isRuntime;
         public IServiceCollection ServiceCollection { get; }
         public ICommandRegistry CommandRegistry { get; }
-        public IFunctionBuilder FunctionBuilder { get; } = new FunctionBuilder();
+        public IFunctionBuilder FunctionBuilder { get; }
         public IAuthorizationBuilder AuthorizationBuilder { get; } = new AuthorizationBuilder();
         public Type ValidatorType { get; set; }
         public OpenApiConfiguration OpenApiConfiguration { get; } = new OpenApiConfiguration();
@@ -26,6 +26,7 @@ namespace FunctionMonkey.Builders
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
+        public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -33,6 +34,7 @@ namespace FunctionMonkey.Builders
             _isRuntime = isRuntime;
             ServiceCollection = serviceCollection;
             CommandRegistry = commandRegistry;
+            FunctionBuilder = new FunctionBuilder(ConnectionStringSettingNames);
         }
 
         public IFunctionHostBuilder Setup(Action<IServiceCollection, ICommandRegistry> services)
@@ -41,6 +43,12 @@ namespace FunctionMonkey.Builders
             {
                 services(ServiceCollection, CommandRegistry);
             }            
+            return this;
+        }
+
+        public IFunctionHostBuilder DefaultConnectionStringSettingNames(Action<ConnectionStringSettingNames> settingNames)
+        {
+            settingNames(ConnectionStringSettingNames);
             return this;
         }
 
@@ -70,10 +78,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IFunctionHostBuilder Functions(Action<IFunctionBuilder> functions)
+        public void Functions(Action<IFunctionBuilder> functions)
         {
             functions(FunctionBuilder);
-            return this;
         }
 
         public IFunctionHostBuilder OpenApiEndpoint(Action<IOpenApiBuilder> openApi)

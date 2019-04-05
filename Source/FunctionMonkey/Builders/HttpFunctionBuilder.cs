@@ -12,11 +12,16 @@ namespace FunctionMonkey.Builders
     {
         private static readonly HttpMethod DefaultMethod = HttpMethod.Get;
 
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly HttpRouteConfiguration _routeConfiguration;
         private readonly List<AbstractFunctionDefinition> _definitions;
 
-        public HttpFunctionBuilder(HttpRouteConfiguration routeConfiguration, List<AbstractFunctionDefinition> definitions)
+        public HttpFunctionBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            HttpRouteConfiguration routeConfiguration,
+            List<AbstractFunctionDefinition> definitions)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _routeConfiguration = routeConfiguration;
             _definitions = definitions;
         }
@@ -72,7 +77,7 @@ namespace FunctionMonkey.Builders
                 ClaimsPrincipalAuthorizationType = _routeConfiguration.ClaimsPrincipalAuthorizationType
             };
             _definitions.Add(definition);
-            return new HttpFunctionConfigurationBuilder<TCommand>(this, definition);
+            return new HttpFunctionConfigurationBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
     }
 }

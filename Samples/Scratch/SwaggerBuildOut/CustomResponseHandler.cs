@@ -34,6 +34,11 @@ namespace SwaggerBuildOut
             return null;
         }
 
+        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand
+        {
+            return null;
+        }
+
         public Task<IActionResult> CreateResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand
         {
             return null;

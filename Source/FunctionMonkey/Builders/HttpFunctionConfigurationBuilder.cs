@@ -14,12 +14,16 @@ namespace FunctionMonkey.Builders
 {
     internal class HttpFunctionConfigurationBuilder<TCommandOuter> : IHttpFunctionConfigurationBuilder<TCommandOuter> where TCommandOuter : ICommand
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IHttpFunctionBuilder _httpFunctionBuilder;
         private readonly HttpFunctionDefinition _definition;
 
-        public HttpFunctionConfigurationBuilder(IHttpFunctionBuilder httpFunctionBuilder,
+        public HttpFunctionConfigurationBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            IHttpFunctionBuilder httpFunctionBuilder,
             HttpFunctionDefinition definition)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _httpFunctionBuilder = httpFunctionBuilder;
             _definition = definition;
         }
@@ -74,5 +78,8 @@ namespace FunctionMonkey.Builders
             options(builder);
             return this;
         }
+        
+        public IOutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
     }
 }

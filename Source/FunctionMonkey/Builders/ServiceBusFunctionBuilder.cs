@@ -8,11 +8,13 @@ namespace FunctionMonkey.Builders
 {
     class ServiceBusFunctionBuilder : IServiceBusFunctionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly string _connectionName;
         private readonly List<AbstractFunctionDefinition> _definitions;
 
-        public ServiceBusFunctionBuilder(string connectionName, List<AbstractFunctionDefinition> definitions)
+        public ServiceBusFunctionBuilder(ConnectionStringSettingNames connectionStringSettingNames, string connectionName, List<AbstractFunctionDefinition> definitions)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _connectionName = connectionName;
             _definitions = definitions;
         }
@@ -25,7 +27,7 @@ namespace FunctionMonkey.Builders
                 QueueName = queueName
             };
             _definitions.Add(definition);
-            return new ServiceBusFunctionOptionBuilder(this, definition);
+            return new ServiceBusFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
         }
 
         public IServiceBusFunctionOptionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName) where TCommand : ICommand
@@ -38,7 +40,7 @@ namespace FunctionMonkey.Builders
                     SubscriptionName = subscriptionName
                 };
             _definitions.Add(definition);
-            return new ServiceBusFunctionOptionBuilder(this, definition);
+            return new ServiceBusFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
         }
     }
 }

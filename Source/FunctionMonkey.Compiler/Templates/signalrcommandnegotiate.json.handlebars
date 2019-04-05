@@ -1,0 +1,19 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions.Generator-1.0.26",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "methods": [
+        {{{lowerHttpVerbs}}}
+      ],
+      "route": "{{Route}}",
+      "authLevel": "{{{jsonAuthenticationType}}}",
+      "name": "req"
+    }
+    {{{outputTriggerJson}}}
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/{{AssemblyName}}",
+  "entryPoint": "{{FunctionClassTypeName}}.Run"
+}

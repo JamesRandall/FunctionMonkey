@@ -4,12 +4,12 @@
 
 First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:
 
-    Install-Package FunctionMonkey -pre
-    Install-Package FunctionMonkey.Compiler -pre
+    Install-Package FunctionMonkey
+    Install-Package FunctionMonkey.Compiler
 
 You will also need to add the Service Bus trigger bindings:
 
-    Install-Package Microsoft.Azure.WebJobs.ServiceBus -pre
+    Install-Package Microsoft.Azure.WebJobs.ServiceBus
 
 In our hyptotheitcal solution we're going to listen to new user registration messages on a topic subscription, begin by Now creating a folder in the solution called commands and create a class called NewUserRegistrationCommand:
 
@@ -68,6 +68,8 @@ Finally we need to create an entry in local.settings.json for the Service Bus co
     }
 
 And that's it! If you run this project having created a topic and subscription with the appropriate names and use a real connection string you'll find that the _SendEmailCommandHandler_ is invoked for each item you place on the queue.
+
+Note that it is possible to omit the connection setting name - see [default connection settings](/crosscutting/connectionStrings.md) for more details.
 
 ## Validation
 
