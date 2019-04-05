@@ -253,6 +253,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.CosmosDb
   nameWithType: IFunctionBuilder.CosmosDb
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute(Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: IFunctionBuilder.HttpRoute(Action<IHttpFunctionBuilder>)
+  nameWithType.vb: IFunctionBuilder.HttpRoute(Action(Of IHttpFunctionBuilder))
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
   name: HttpRoute(String, Action<IHttpFunctionBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionBuilder_HttpRoute_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
@@ -2933,6 +2942,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Builders.FunctionBuilder.GetHttpFunctionDefinitions
   nameWithType: FunctionBuilder.GetHttpFunctionDefinitions
+- uid: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name: HttpRoute(Action<IHttpFunctionBuilder>)
+  href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_HttpRoute_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
+  commentId: M:FunctionMonkey.Builders.FunctionBuilder.HttpRoute(Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
+  name.vb: HttpRoute(Action(Of IHttpFunctionBuilder))
+  fullName: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(Action<FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder>)
+  fullName.vb: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(Action(Of FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder))
+  nameWithType: FunctionBuilder.HttpRoute(Action<IHttpFunctionBuilder>)
+  nameWithType.vb: FunctionBuilder.HttpRoute(Action(Of IHttpFunctionBuilder))
 - uid: FunctionMonkey.Builders.FunctionBuilder.HttpRoute(System.String,Action{FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder})
   name: HttpRoute(String, Action<IHttpFunctionBuilder>)
   href: api/FunctionMonkey.Builders.FunctionBuilder.html#FunctionMonkey_Builders_FunctionBuilder_HttpRoute_System_String_Action_FunctionMonkey_Abstractions_Builders_IHttpFunctionBuilder__
