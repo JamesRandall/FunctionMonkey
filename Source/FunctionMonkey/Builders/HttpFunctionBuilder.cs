@@ -8,7 +8,7 @@ using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders
 {
-    class HttpFunctionBuilder : IHttpFunctionBuilder
+    public class HttpFunctionBuilder : IHttpFunctionBuilder
     {
         private static readonly HttpMethod DefaultMethod = HttpMethod.Get;
 
@@ -22,8 +22,8 @@ namespace FunctionMonkey.Builders
             List<AbstractFunctionDefinition> definitions)
         {
             _connectionStringSettingNames = connectionStringSettingNames;
-            _routeConfiguration = routeConfiguration;
-            _definitions = definitions;
+            _routeConfiguration = routeConfiguration ?? throw new System.ArgumentNullException(nameof(routeConfiguration));
+            _definitions = definitions ?? throw new System.ArgumentNullException(nameof(definitions));
         }
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>() where TCommand : ICommand

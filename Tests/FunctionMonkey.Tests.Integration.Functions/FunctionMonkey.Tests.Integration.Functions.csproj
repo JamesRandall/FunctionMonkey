@@ -6,10 +6,12 @@
     <RootNamespace>FunctionMonkey.Tests.Integration.Functions</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <!--<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.26" />-->
+    <!--This is the version referenced by Microsoft.NET.Sdk.Functions.1.0.26, other versions cause issues with the compiler-->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.3" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.0.3" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.26" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />

@@ -108,11 +108,13 @@ namespace FunctionMonkey.Infrastructure
                 throw new ConfigurationException($"Command {httpFunctionDefinition.CommandType.Name} expects to be authenticated with token validation but no token validator is registered");
             }
 
-            ExtractRouteParameters(httpFunctionDefinition);
+            HttpParameterExtractor hpe = new HttpParameterExtractor(httpFunctionDefinition);
 
-            ExtractPossibleQueryParameters(httpFunctionDefinition);
+            httpFunctionDefinition.RouteParameters = hpe.ExtractRouteParameters();
 
-            ExtractPossibleFormParameters(httpFunctionDefinition);
+            httpFunctionDefinition.PossibleBindingProperties = hpe.ExtractPossibleQueryParameters();
+
+            httpFunctionDefinition.PossibleFormProperties = hpe.ExtractPossibleFormParameters();
 
             EnsureOpenApiDescription(httpFunctionDefinition);
         }
@@ -174,140 +176,6 @@ namespace FunctionMonkey.Infrastructure
                     };
                 })
                 .ToArray();
-        }
-
-        private static void ExtractPossibleQueryParameters(HttpFunctionDefinition httpFunctionDefinition)
-        {
-            Debug.Assert(httpFunctionDefinition.RouteParameters != null);
-
-            httpFunctionDefinition.PossibleBindingProperties = httpFunctionDefinition
-                .CommandType
-                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
-                            && x.SetMethod != null
-                            && (x.PropertyType == typeof(string) 
-                                || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")
-                                || x.PropertyType.IsEnum
-                                || x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                            && httpFunctionDefinition.RouteParameters.All(y => y.Name != x.Name) // we can't be a query parameter and a route parameter
-                            )
-                .Select(x => new HttpParameter
-                {
-                    Name = x.Name,
-                    TypeName = x.PropertyType.EvaluateType(),
-                    Type = x.PropertyType,
-                    IsOptional = !x.PropertyType.IsValueType
-                })
-                .ToArray();
-        }
-        
-        private static void ExtractPossibleFormParameters(HttpFunctionDefinition httpFunctionDefinition)
-        {
-            httpFunctionDefinition.PossibleFormProperties = httpFunctionDefinition
-                .CommandType
-                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
-                            && x.SetMethod != null
-                            && (x.PropertyType == typeof(IFormCollection)))
-                .Select(x => new HttpParameter
-                {
-                    Name = x.Name,
-                    TypeName = x.PropertyType.EvaluateType(),
-                    Type = x.PropertyType
-                })
-                .ToArray();
-        }
-
-        private static void ExtractRouteParameters(HttpFunctionDefinition httpFunctionDefinition1)
-        {
-            List<HttpParameter> routeParameters = new List<HttpParameter>();
-            if (httpFunctionDefinition1.Route == null)
-            {
-                httpFunctionDefinition1.RouteParameters = routeParameters;
-                return;
-            }
-            
-            PropertyInfo[] candidateCommandProperties = httpFunctionDefinition1.CommandType
-                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
-                            && x.SetMethod != null
-                            && (x.PropertyType == typeof(string)
-                                || Nullable.GetUnderlyingType(x.PropertyType) != null
-                                || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse"))).ToArray();
-            Regex regex = new Regex("{(.*?)}");
-            MatchCollection matches = regex.Matches(httpFunctionDefinition1.Route);
-            foreach (Match match in matches) //you can loop through your matches like this
-            {
-                string routeParameter = match.Groups[1].Value;
-                bool isOptional = routeParameter.EndsWith("?");
-                string[] routeParameterParts = routeParameter.Split(':');
-                if (routeParameterParts.Length == 0)
-                {
-                    throw new ConfigurationException($"Bad route parameter in route {httpFunctionDefinition1.Route} for command type {httpFunctionDefinition1.CommandType.FullName}");
-                }
-
-                string routeParameterName = routeParameterParts[0].TrimEnd('?');
-                PropertyInfo[] candidateProperties = candidateCommandProperties
-                    .Where(p => p.Name.ToLower() == routeParameterName.ToLower()).ToArray();
-                PropertyInfo matchedProperty = null;
-                if (candidateProperties.Length == 1)
-                {
-                    matchedProperty = candidateProperties[0];
-                }
-                else if (candidateProperties.Length > 1)
-                {
-                    matchedProperty = candidateProperties.SingleOrDefault(x => x.Name == routeParameterName);
-                }
-
-                if (matchedProperty == null)
-                {
-                    throw new ConfigurationException($"Unable to match route parameter {routeParameterName} to property on command type {httpFunctionDefinition1.CommandType}");
-                }
-
-                bool isPropertyNullable = !matchedProperty.PropertyType.IsValueType ||
-                                          Nullable.GetUnderlyingType(matchedProperty.PropertyType) != null;
-
-                string routeTypeName;
-                if (isOptional && matchedProperty.PropertyType.IsValueType &&
-                    Nullable.GetUnderlyingType(matchedProperty.PropertyType) == null)
-                {
-                    routeTypeName = $"{matchedProperty.PropertyType.EvaluateType()}?";
-                }
-                else
-                {
-                    routeTypeName = matchedProperty.PropertyType.EvaluateType();
-                }
-
-                routeParameters.Add(new HttpParameter
-                {
-                    Name = matchedProperty.Name,
-                    Type = matchedProperty.PropertyType,
-                    TypeName = matchedProperty.PropertyType.EvaluateType(),
-                    IsOptional = isOptional,
-                    IsNullableType = Nullable.GetUnderlyingType(matchedProperty.PropertyType) != null,
-                    RouteName = routeParameterName,
-                    RouteTypeName = routeTypeName
-                });
-            }
-
-            httpFunctionDefinition1.RouteParameters = routeParameters;
-
-            /*string lowerCaseRoute = httpFunctionDefinition1.Route.ToLower();
-            httpFunctionDefinition1.RouteParameters = httpFunctionDefinition1
-                .CommandType
-                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
-                            && x.SetMethod != null
-                            && (x.PropertyType == typeof(string) || x.PropertyType
-                                    .GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse"))
-                            && lowerCaseRoute.Contains("{" + x.Name.ToLower() + "}"))
-                .Select(x => new HttpParameter
-                {
-                    Name = x.Name,
-                    TypeName = x.PropertyType.EvaluateType(),
-                    Type = x.PropertyType
-                })
-                .ToArray();*/
         }
     }
 }
