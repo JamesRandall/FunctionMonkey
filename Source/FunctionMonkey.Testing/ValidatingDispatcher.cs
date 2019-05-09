@@ -36,6 +36,11 @@ namespace FunctionMonkey.Testing
 
         private void Validate(ICommand command)
         {
+            if (_validator == null)
+            {
+                return;
+            }
+
             // The .Validate method uses its generic parameter to determine the type of the
             // command as it uses generics with the IServiceCollection, this has the unfortunate
             // side-effect of meaning you can't ask it to validate a none-concretely typed ICommand
