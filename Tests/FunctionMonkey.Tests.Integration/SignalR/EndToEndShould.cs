@@ -242,17 +242,22 @@ namespace FunctionMonkey.Tests.Integration.SignalR
                 new ManualResetEvent(false),
                 new ManualResetEvent(false)
             };
+            WaitHandle[] finishedListening =
+            {
+                new ManualResetEvent(false),
+                new ManualResetEvent(false)
+            };
 
 #pragma warning disable 4014
             Task.Run(async () =>
 #pragma warning restore 4014
             {
-                await Task.WhenAll(ConnectAndWaitForMessages("345", usersThatRecievedMessages, (ManualResetEvent)listeningStarted[0]),
-                    ConnectAndWaitForMessages("678", usersThatRecievedMessages, (ManualResetEvent)listeningStarted[1]));
+                await Task.WhenAll(ConnectAndWaitForMessages("345", usersThatRecievedMessages, (ManualResetEvent)listeningStarted[0], (ManualResetEvent)finishedListening[0]),
+                    ConnectAndWaitForMessages("678", usersThatRecievedMessages, (ManualResetEvent)listeningStarted[1], (ManualResetEvent)finishedListening[1]));
                 doneWaiting.Set();
             });
             
-            bool areListening = WaitHandle.WaitAll(listeningStarted, TimeSpan.FromSeconds(5)); // wait for the clients to start listening
+            bool areListening = WaitHandle.WaitAll(listeningStarted, TimeSpan.FromSeconds(10)); // wait for the clients to start listening
             Assert.True(areListening);
 
             Guid[] markerIds = new Guid[] { Guid.NewGuid() };
@@ -264,14 +269,15 @@ namespace FunctionMonkey.Tests.Integration.SignalR
                     userId = "345",
                     markerIds
                 });
-            
+
+            WaitHandle.WaitAll(finishedListening, TimeSpan.FromSeconds(10));
 
             Assert.Contains("345", usersThatRecievedMessages);
             Assert.DoesNotContain("678", usersThatRecievedMessages);
         }
 
         private async Task ConnectAndWaitForMessages(string userId,
-            ConcurrentBag<string> usersThatRecievedMessages, ManualResetEvent listeningStartedEvent)
+            ConcurrentBag<string> usersThatRecievedMessages, ManualResetEvent listeningStartedEvent, ManualResetEvent finishedListeningEvent)
         {
             ManualResetEventSlim resetEvent = new ManualResetEventSlim(false);
             
@@ -294,11 +300,13 @@ namespace FunctionMonkey.Tests.Integration.SignalR
 
             listeningStartedEvent.Set();
 
-            bool didReceive = resetEvent.Wait(TimeSpan.FromSeconds(5));
+            bool didReceive = resetEvent.Wait(TimeSpan.FromSeconds(10));
             if (didReceive)
             {
                 usersThatRecievedMessages.Add(userId);
             }
+
+            finishedListeningEvent.Set();
         }
     }
 }

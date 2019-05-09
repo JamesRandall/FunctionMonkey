@@ -16,6 +16,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder);
 
         /// <summary>
+        /// Create a route for one or more HTTP triggered functions
+        /// </summary>
+        /// <param name="httpFunctionBuilder">The builder function for creating functions under this route</param>
+        /// <returns>The function builder for a fluent API, additionally contains options for configuring the route with OpenAPI info</returns>
+        IHttpRouteFunctionBuilder HttpRoute(Action<IHttpFunctionBuilder> httpFunctionBuilder);
+
+        /// <summary>
         /// Allows Service Bus functions to be configured based on a connection name
         /// </summary>
         /// <param name="connectionName">The name of the connection in the environment settings</param>

@@ -6,6 +6,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "storageConnectionString": "",
     "serviceBusConnectionString": "",
-    "cosmosConnectionString": ""
+    "cosmosConnectionString": "",
+    "signalRConnectionString": "" 
   }
 }

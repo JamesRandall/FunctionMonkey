@@ -101,5 +101,10 @@ namespace FunctionMonkey.Builders
         {
             return _decoratedBuilder.Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
         }
+
+        public IHttpRouteFunctionBuilder HttpRoute(Action<IHttpFunctionBuilder> httpFunctionBuilder)
+        {
+            return _decoratedBuilder.HttpRoute(httpFunctionBuilder);
+        }
     }
 }

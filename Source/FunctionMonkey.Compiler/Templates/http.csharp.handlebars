@@ -24,8 +24,9 @@ namespace {{Namespace}}
         {{/if}}
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
-                {{{httpVerbs}}},
-                Route = "{{Route}}")                
+                {{{httpVerbs}}}
+                {{#if HasRoute}},Route = "{{Route}}"{{/if}}
+                )
             ]
             HttpRequest req,
             ILogger log,

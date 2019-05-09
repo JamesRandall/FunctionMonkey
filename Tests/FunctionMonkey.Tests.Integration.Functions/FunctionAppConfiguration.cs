@@ -103,7 +103,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                             "/result/validationPasses")
                         .Options(options => options.ResponseHandler<CustomResponseHandler>())
                     )
-                    
+
+                    .HttpRoute(route => route
+                        .HttpFunction<HttpCommandWithNoRoute>()
+                    )                    
                     
                     .HttpRoute("outputBindings", route => route
                         // Service Bus
@@ -183,6 +186,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         // the IDs into the marker table so that tests can find them during async output trigger testing
                         .QueueFunction<StorageQueuedMarkerIdCommand>(Constants.Storage.Queue.MarkerQueue)
                     )
+
                     .ServiceBus(serviceBus => serviceBus
                         .QueueFunction<ServiceBusQueueCommand>(Constants.ServiceBus.Queue)
                         .SubscriptionFunction<ServiceBusSubscriptionCommand>(Constants.ServiceBus.TopicName,
@@ -195,11 +199,13 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .QueueFunction<ServiceBusQueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)
                         .SubscriptionFunction<ServiceBusSubscriptionMarkerIdCommand>(Constants.ServiceBus.MarkerTopic, Constants.ServiceBus.MarkerSubscription)
                     )
+
                     .CosmosDb(cosmos => cosmos
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
                         .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.OutputTableCollection, Constants.Cosmos.Database, leaseCollectionName: Constants.Cosmos.OutputTableLeases)
                         .OutputTo.StorageTable(Constants.Storage.Table.Markers)
                     )
+
                     .Timer<TimerCommand>("*/5 * * * * *")
                 );
         }

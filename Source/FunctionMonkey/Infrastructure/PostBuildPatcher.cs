@@ -108,7 +108,7 @@ namespace FunctionMonkey.Infrastructure
                 throw new ConfigurationException($"Command {httpFunctionDefinition.CommandType.Name} expects to be authenticated with token validation but no token validator is registered");
             }
 
-            httpFunctionDefinition.Route = httpFunctionDefinition.Route.TrimStart('/');
+            httpFunctionDefinition.Route = httpFunctionDefinition.Route?.TrimStart('/');
 
             ExtractRouteParameters(httpFunctionDefinition);
 
@@ -121,6 +121,10 @@ namespace FunctionMonkey.Infrastructure
 
         private static void EnsureOpenApiDescription(HttpFunctionDefinition httpFunctionDefinition)
         {
+            if (httpFunctionDefinition.Route == null)
+            {
+                return;
+            }
             // function definitions share route definitions so setting properties for one sets for all
             // but we set only if absent and based on the parent route
             // alternative would be to gather up the unique route configurations and set once but will
@@ -219,6 +223,12 @@ namespace FunctionMonkey.Infrastructure
         private static void ExtractRouteParameters(HttpFunctionDefinition httpFunctionDefinition1)
         {
             List<HttpParameter> routeParameters = new List<HttpParameter>();
+            if (httpFunctionDefinition1.Route == null)
+            {
+                httpFunctionDefinition1.RouteParameters = routeParameters;
+                return;
+            }
+            
             PropertyInfo[] candidateCommandProperties = httpFunctionDefinition1.CommandType
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null

@@ -21,7 +21,7 @@ namespace FunctionMonkey.Builders
 
         public IHttpRouteFunctionBuilder HttpRoute(string routePrefix, Action<IHttpFunctionBuilder> httpFunctionBuilder)
         {
-            string rootedRoutePrefix = routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);
+            string rootedRoutePrefix = routePrefix == null ? null : routePrefix.StartsWith("/") ? routePrefix : string.Concat("/", routePrefix);
             HttpRouteConfiguration routeConfiguration = new HttpRouteConfiguration()
             {
                 ClaimsPrincipalAuthorizationType = null,
@@ -33,6 +33,10 @@ namespace FunctionMonkey.Builders
             return new HttpRouteFunctionBuilder(this, routeConfiguration);
         }
 
+        public IHttpRouteFunctionBuilder HttpRoute(Action<IHttpFunctionBuilder> httpFunctionBuilder)
+        {
+            return HttpRoute(null, httpFunctionBuilder);
+        }
 
         public IFunctionBuilder ServiceBus(string connectionName, Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder)
         {
@@ -112,6 +116,6 @@ namespace FunctionMonkey.Builders
         public IFunctionBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
             return new TimerFunctionBuilder(this, _definitions).Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
-        }        
+        }
     }
 }

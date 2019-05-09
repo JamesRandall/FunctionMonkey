@@ -7,7 +7,7 @@
       "methods": [
         {{{lowerHttpVerbs}}}
       ],
-      "route": "{{Route}}",
+      {{#if HasRoute}}"route": "{{Route}}",{{/if}}
       "authLevel": "{{{jsonAuthenticationType}}}",
       "name": "req"
     }
