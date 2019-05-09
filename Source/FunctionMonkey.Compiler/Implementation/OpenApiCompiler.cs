@@ -12,6 +12,7 @@ using FunctionMonkey.Model;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Linq;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -29,6 +30,8 @@ namespace FunctionMonkey.Compiler.Implementation
 
         public OpenApiOutputModel Compile(OpenApiConfiguration configuration, IReadOnlyCollection<AbstractFunctionDefinition> abstractFunctionDefinitions, string outputBinaryFolder)
         {
+            string apiPrefix = GetApiPrefix(outputBinaryFolder);
+
             if (!configuration.IsValid)
             {
                 throw new ConfigurationException("Open API implementation is partially complete, a title and a version must be specified");
@@ -65,7 +68,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
             CreateSchemas(functionDefinitions, openApiDocument, registry);
 
-            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry);
+            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix);
 
             if (openApiDocument.Paths.Count == 0)
             {
@@ -88,6 +91,32 @@ namespace FunctionMonkey.Compiler.Implementation
             }
 
             return result;
+        }
+
+        private static string GetApiPrefix(string outputBinaryFolder)
+        {
+            string apiPrefix = "api"; // default function setting
+            string hostJsonPath = Path.Combine(outputBinaryFolder, "../host.json");
+            if (File.Exists(hostJsonPath))
+            {
+                string hostJson = File.ReadAllText(hostJsonPath);
+                JObject host = JObject.Parse(hostJson);
+                JObject extensions = (JObject) host["extensions"];
+                if (extensions != null)
+                {
+                    JObject http = (JObject) extensions["http"];
+                    if (http != null)
+                    {
+                        string hostApiPrefix = (string) http["routePrefix"];
+                        if (hostApiPrefix != null)
+                        {
+                            apiPrefix = hostApiPrefix;
+                        }
+                    }
+                }
+            }
+
+            return apiPrefix;
         }
 
         private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder()
@@ -153,9 +182,10 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         private static void CreateOperationsFromRoutes(HttpFunctionDefinition[] functionDefinitions,
-            OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
+            OpenApiDocument openApiDocument, SchemaReferenceRegistry registry, string apiPrefix)
         {
-            var operationsByRoute = functionDefinitions.GroupBy(x => x.Route);
+            string prependedApiPrefix = string.IsNullOrEmpty(apiPrefix) ? $"" : $"/{apiPrefix}";
+            var operationsByRoute = functionDefinitions.GroupBy(x => $"{prependedApiPrefix}/{x.Route}");
             foreach (IGrouping<string, HttpFunctionDefinition> route in operationsByRoute)
             {
                 OpenApiPathItem pathItem = new OpenApiPathItem()

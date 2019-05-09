@@ -108,6 +108,8 @@ namespace FunctionMonkey.Infrastructure
                 throw new ConfigurationException($"Command {httpFunctionDefinition.CommandType.Name} expects to be authenticated with token validation but no token validator is registered");
             }
 
+            httpFunctionDefinition.Route = httpFunctionDefinition.Route.TrimStart('/');
+
             ExtractRouteParameters(httpFunctionDefinition);
 
             ExtractPossibleQueryParameters(httpFunctionDefinition);

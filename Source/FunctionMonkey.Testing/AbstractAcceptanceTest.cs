@@ -27,6 +27,8 @@ namespace FunctionMonkey.Testing
 
         protected AbstractAcceptanceTest()
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
+            BeforeSetup();
             _scaffold.Setup(null, BeforeServiceProviderBuild, AfterServiceProviderBuild);
         }
 
@@ -46,6 +48,14 @@ namespace FunctionMonkey.Testing
         protected void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true)
         {
             _scaffold.AddEnvironmentVariables(appSettingsPath, oneTimeOnly);
+        }
+
+        /// <summary>
+        /// Called during construction before setup is called (overriding methods cannot use member data)
+        /// </summary>
+        protected virtual void BeforeSetup()
+        {
+
         }
 
         /// <summary>
