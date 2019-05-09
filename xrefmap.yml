@@ -4307,6 +4307,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild
   nameWithType: AbstractAcceptanceTest.BeforeServiceProviderBuild
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeSetup
+  name: BeforeSetup()
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeSetup
+  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeSetup
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeSetup()
+  nameWithType: AbstractAcceptanceTest.BeforeSetup()
+- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeSetup*
+  name: BeforeSetup
+  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeSetup_
+  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeSetup
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeSetup
+  nameWithType: AbstractAcceptanceTest.BeforeSetup
 - uid: FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher
   name: Dispatcher
   href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher
