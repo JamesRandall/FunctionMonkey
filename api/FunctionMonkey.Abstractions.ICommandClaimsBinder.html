@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface ICommandClaimsBinder
    ">
-    <meta name="generator" content="docfx 2.42.0.0">
+    <meta name="generator" content="docfx 2.42.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -90,7 +90,7 @@ onto the properties of a command</p>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_ClaimsPrincipal_ICommand_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal%2CICommand)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICommandClaimsBinder.cs/#L15">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICommandClaimsBinder.cs/#L16">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_" data-uid="FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind*"></a>
   <h4 id="FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_ClaimsPrincipal_ICommand_" data-uid="FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,ICommand)">Bind(ClaimsPrincipal, ICommand)</h4>
@@ -138,6 +138,60 @@ onto the properties of a command</p>
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_ClaimsPrincipal_ICommand_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal%2CICommand)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICommandClaimsBinder.cs/#L22">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_" data-uid="FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync*"></a>
+  <h4 id="FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_ClaimsPrincipal_ICommand_" data-uid="FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,ICommand)">BindAsync(ClaimsPrincipal, ICommand)</h4>
+  <div class="markdown level1 summary"><p>Binds the claims in the principal onto properties of the command. If this returns null then
+the non-async binder will be called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; BindAsync(ClaimsPrincipal principal, ICommand command)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ClaimsPrincipal</span></td>
+        <td><span class="parametername">principal</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICommand</span></td>
+        <td><span class="parametername">command</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -150,7 +204,7 @@ onto the properties of a command</p>
                     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_ICommandClaimsBinder.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.ICommandClaimsBinder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICommandClaimsBinder.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/ICommandClaimsBinder.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

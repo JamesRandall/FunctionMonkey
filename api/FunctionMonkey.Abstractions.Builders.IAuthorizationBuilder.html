@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IAuthorizationBuilder
    ">
-    <meta name="generator" content="docfx 2.42.0.0">
+    <meta name="generator" content="docfx 2.42.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -89,7 +89,7 @@
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_AuthorizationDefault_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L47">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L56">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_AuthorizationDefault_" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_AuthorizationDefault_FunctionMonkey_Abstractions_Builders_AuthorizationTypeEnum_" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.AuthorizationDefault(FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum)">AuthorizationDefault(AuthorizationTypeEnum)</h4>
@@ -138,7 +138,7 @@
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_Claims_Action_FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder__.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims(Action%7BFunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L54">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L63">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_Claims_" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_Claims_Action_FunctionMonkey_Abstractions_Builders_IClaimsMappingBuilder__" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.Claims(Action{FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder})">Claims(Action&lt;IClaimsMappingBuilder&gt;)</h4>
@@ -187,7 +187,7 @@
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_ClaimsPrincipalAuthorizationDefault__1.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L61">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L70">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_ClaimsPrincipalAuthorizationDefault_" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_ClaimsPrincipalAuthorizationDefault__1" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault``1">ClaimsPrincipalAuthorizationDefault&lt;TAuthorizationType&gt;()</h4>
@@ -226,6 +226,56 @@
       <tr>
         <td><span class="parametername">TAuthorizationType</span></td>
         <td><p>The authorizer - must implement IClaimsPrincipalAuthorization</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_CustomClaimsBinder__1.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IAuthorizationBuilder.cs/#L48">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_CustomClaimsBinder_" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_CustomClaimsBinder__1" data-uid="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder``1">CustomClaimsBinder&lt;TCustomClaimsBinder&gt;()</h4>
+  <div class="markdown level1 summary"><p>Allows a custom claims binder to be registered. This can only occur globally and must take responsibility
+for all claims mapping.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IAuthorizationBuilder CustomClaimsBinder&lt;TCustomClaimsBinder&gt;()
+    where TCustomClaimsBinder : ICommandClaimsBinder</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html">IAuthorizationBuilder</a></td>
+        <td><p>The builder for use in a Fluent API</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCustomClaimsBinder</span></td>
+        <td><p>The type of the claims binder</p>
 </td>
       </tr>
     </tbody>

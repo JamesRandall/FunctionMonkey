@@ -94,6 +94,22 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault(Of TAuthorizationType)()
   nameWithType: IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault<TAuthorizationType>()
   nameWithType.vb: IAuthorizationBuilder.ClaimsPrincipalAuthorizationDefault(Of TAuthorizationType)()
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder*
+  name: CustomClaimsBinder
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_CustomClaimsBinder_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder
+  nameWithType: IAuthorizationBuilder.CustomClaimsBinder
+- uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder``1
+  name: CustomClaimsBinder<TCustomClaimsBinder>()
+  href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_CustomClaimsBinder__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder``1
+  name.vb: CustomClaimsBinder(Of TCustomClaimsBinder)()
+  fullName: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder<TCustomClaimsBinder>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.CustomClaimsBinder(Of TCustomClaimsBinder)()
+  nameWithType: IAuthorizationBuilder.CustomClaimsBinder<TCustomClaimsBinder>()
+  nameWithType.vb: IAuthorizationBuilder.CustomClaimsBinder(Of TCustomClaimsBinder)()
 - uid: FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.TokenValidator*
   name: TokenValidator
   href: api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html#FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_TokenValidator_
@@ -2293,6 +2309,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind
   nameWithType: ICommandClaimsBinder.Bind
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,ICommand)
+  name: BindAsync(ClaimsPrincipal, ICommand)
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_ClaimsPrincipal_ICommand_
+  commentId: M:FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,ICommand)
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal, ICommand)
+  nameWithType: ICommandClaimsBinder.BindAsync(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync*
+  name: BindAsync
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_
+  commentId: Overload:FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync
+  nameWithType: ICommandClaimsBinder.BindAsync
 - uid: FunctionMonkey.Abstractions.ICommandingConfigurator
   name: ICommandingConfigurator
   href: api/FunctionMonkey.Abstractions.ICommandingConfigurator.html
@@ -4504,6 +4533,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind
   nameWithType: CommandClaimsBinderMock.Bind
+- uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal,ICommand)
+  name: BindAsync(ClaimsPrincipal, ICommand)
+  href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_BindAsync_ClaimsPrincipal_ICommand_
+  commentId: M:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal,ICommand)
+  fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal, ICommand)
+  nameWithType: CommandClaimsBinderMock.BindAsync(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync*
+  name: BindAsync
+  href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_BindAsync_
+  commentId: Overload:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync
+  nameWithType: CommandClaimsBinderMock.BindAsync
 - uid: FunctionMonkey.Testing.Mocks.ContextManagerMock
   name: ContextManagerMock
   href: api/FunctionMonkey.Testing.Mocks.ContextManagerMock.html
