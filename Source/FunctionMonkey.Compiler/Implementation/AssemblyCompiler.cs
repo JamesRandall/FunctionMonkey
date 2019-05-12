@@ -272,6 +272,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(Document).GetTypeInfo().Assembly.Location,
                 typeof(Message).GetTypeInfo().Assembly.Location,
                 typeof(ChangeFeedProcessorBuilder).Assembly.Location,
+                typeof(CosmosDBAttribute).Assembly.Location,
                 typeof(TimerInfo).Assembly.Location,
                 typeof(DbConnectionStringBuilder).Assembly.Location,
                 typeof(AzureSignalRAuthClient).Assembly.Location,
