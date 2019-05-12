@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 
 namespace FunctionMonkey.Abstractions
@@ -13,5 +14,11 @@ namespace FunctionMonkey.Abstractions
         /// Binds the claims in the principal onto properties of the command
         /// </summary>
         bool Bind(ClaimsPrincipal principal, ICommand command);        
+        
+        /// <summary>
+        /// Binds the claims in the principal onto properties of the command. If this returns null then
+        /// the non-async binder will be called.
+        /// </summary>
+        Task<bool> BindAsync(ClaimsPrincipal principal, ICommand command);
     }
 }

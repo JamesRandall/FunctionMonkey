@@ -40,6 +40,15 @@ namespace FunctionMonkey.Abstractions.Builders
         IAuthorizationBuilder TokenValidator<TTokenValidator>(string header=null) where TTokenValidator : ITokenValidator;
 
         /// <summary>
+        /// Allows a custom claims binder to be registered. This can only occur globally and must take responsibility
+        /// for all claims mapping.
+        /// </summary>
+        /// <typeparam name="TCustomClaimsBinder">The type of the claims binder</typeparam>
+        /// <returns>The builder for use in a Fluent API</returns>
+        IAuthorizationBuilder CustomClaimsBinder<TCustomClaimsBinder>()
+            where TCustomClaimsBinder : ICommandClaimsBinder;
+
+        /// <summary>
         /// Allows the default authorization mode for HTTP functions to be set. Defaults to Function Code if this method is not used.
         /// </summary>
         /// <param name="authorizationDefault"></param>

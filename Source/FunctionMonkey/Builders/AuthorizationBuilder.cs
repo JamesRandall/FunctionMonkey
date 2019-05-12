@@ -14,6 +14,8 @@ namespace FunctionMonkey.Builders
         public string AuthorizationHeader { get; set; }
 
         public Type DefaultClaimsPrincipalAuthorizationType { get; set; }
+        
+        public Type CustomClaimsBinderType { get; set; }
 
         public AuthorizationTypeEnum AuthorizationDefaultValue { get; set; } = AuthorizationTypeEnum.Function;
 
@@ -21,6 +23,12 @@ namespace FunctionMonkey.Builders
         {
             TokenValidatorType = typeof(TTokenValidator);
             AuthorizationHeader = header;
+            return this;
+        }
+
+        public IAuthorizationBuilder CustomClaimsBinder<TCustomClaimsBinder>() where TCustomClaimsBinder : ICommandClaimsBinder
+        {
+            CustomClaimsBinderType = typeof(TCustomClaimsBinder);
             return this;
         }
 

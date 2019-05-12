@@ -222,7 +222,15 @@ namespace {{Namespace}}
             {{#if ValidatesToken}}
             var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
-            claimsBinder.Bind(principal, command);
+            var claimsBinderTask = claimsBinder.BindAsync(principal, command);
+            if (claimsBinderTask == null)
+            {
+                claimsBinder.Bind(principal, command);
+            }
+            else
+            {
+                await claimsBinderTask;
+            }
             {{/if}}
 
             {{#if HasHttpResponseHandler}}

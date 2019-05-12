@@ -160,10 +160,17 @@ namespace FunctionMonkey
 
             // don't register the token validator type here - that gets passed down to the HTTP function
             // definitions to allow for function overrides and so is registered as part of HTTP dependencies
-
-            ICommandClaimsBinder commandClaimsBinder = authorizationBuilder.ClaimsMappingBuilder.Build(
-                functionBuilder.GetHttpFunctionDefinitions().Select(x => x.CommandType).ToArray());
-            ServiceCollection.AddSingleton(commandClaimsBinder);
+            if (authorizationBuilder.CustomClaimsBinderType == null)
+            {
+                ICommandClaimsBinder commandClaimsBinder = authorizationBuilder.ClaimsMappingBuilder.Build(
+                    functionBuilder.GetHttpFunctionDefinitions().Select(x => x.CommandType).ToArray());
+                ServiceCollection.AddSingleton(commandClaimsBinder);
+            }
+            else
+            {
+                ServiceCollection.AddTransient(typeof(ICommandClaimsBinder),
+                    authorizationBuilder.CustomClaimsBinderType);
+            }
         }
 
         private IFunctionAppConfiguration LocateConfiguration(Assembly functionAppConfigurationAssembly)
