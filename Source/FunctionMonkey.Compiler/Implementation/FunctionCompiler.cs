@@ -122,6 +122,10 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 assemblies.Add(_triggerReferenceProvider.GetTriggerReference(functionDefinition));
                 assemblies.Add(functionDefinition.CommandType.Assembly);
+                foreach (Type commandInterface in functionDefinition.CommandType.GetInterfaces())
+                {
+                    assemblies.Add(commandInterface.Assembly);
+                }
 
                 if (functionDefinition.CommandResultType != null)
                 {
