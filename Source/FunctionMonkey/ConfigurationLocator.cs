@@ -40,7 +40,7 @@ namespace FunctionMonkey
 
         private static bool Scan(out MethodInfo linkBackInfo, out IFunctionAppConfiguration findConfiguration)
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.GetName().Name.StartsWith("Microsoft.")).ToArray();
             linkBackInfo = null;
             findConfiguration = null;
 
