@@ -26,5 +26,21 @@ namespace FunctionMonkey.Tests.Integration.ServiceBus
 
             await marker.Assert();
         }
+
+        [Fact]
+        public async Task RespondToEnqueuedItemWithSessionId()
+        {
+            MarkerMessage marker = new MarkerMessage
+            {
+                MarkerId = Guid.NewGuid()
+            };
+            string json = JsonConvert.SerializeObject(marker);
+            byte[] body = Encoding.UTF8.GetBytes(json);
+
+            ITopicClient topicClient = new TopicClient(Settings.ServiceBusConnectionString, "sessionidtesttopic");
+            await topicClient.SendAsync(new Message(body) { SessionId = Guid.NewGuid().ToString()});
+
+            await marker.Assert();
+        }
     }
 }
