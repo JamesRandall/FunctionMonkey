@@ -14,5 +14,7 @@ namespace FunctionMonkey.Model
         public string TopicName { get; set; }
 
         public string SubscriptionName { get; set; }
+        
+        public bool IsSessionEnabled { get; set; }
     }
 }

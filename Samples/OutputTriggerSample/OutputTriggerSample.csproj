@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.1" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.28" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Source\FunctionMonkey.Compiler\FunctionMonkey.Compiler.csproj" />

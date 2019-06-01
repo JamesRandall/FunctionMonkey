@@ -10,7 +10,7 @@ namespace {{Namespace}}
     {
         [FunctionName("{{Name}}")]
         public static async Task Run(
-            [ServiceBusTrigger("{{QueueName}}", Connection="{{ConnectionStringName}}")]
+            [ServiceBusTrigger("{{QueueName}}", Connection="{{ConnectionStringName}}"{{#if IsSessionEnabled}}, IsSessionsEnabled=true{{/if}})]
             Message queueItem,
             int deliveryCount,
             DateTime enqueuedTimeUtc,

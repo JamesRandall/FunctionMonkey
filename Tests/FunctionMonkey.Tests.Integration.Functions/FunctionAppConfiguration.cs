@@ -194,6 +194,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .QueueFunction<ServiceBusQueueTriggerTableOutputCommand>(Constants.ServiceBus.TableOutputQueue)
                         .OutputTo.StorageTable(Constants.Storage.Table.Markers)
 
+                        .QueueFunction<ServiceBusSessionIdQueueCommand>(Constants.ServiceBus.SessionIdQueue, true)
+                        .SubscriptionFunction<ServiceBusSessionIdSubscriptionCommand>(Constants.ServiceBus.SessionIdTopicName,
+                            Constants.ServiceBus.SessionIdSubscriptionName, true)
+
                         // These commands aren't a direct test subject but read from a service bus queue and sub and places
                         // the IDs into the marker table so that tests can find them during async output trigger testing
                         .QueueFunction<ServiceBusQueuedMarkerIdCommand>(Constants.ServiceBus.MarkerQueue)

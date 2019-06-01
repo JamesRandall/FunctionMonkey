@@ -3,9 +3,10 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>    
-    <Version>2.2.1</Version>
+    <Version>2.3.0-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
+    <PackageVersion>2.3.0-beta000</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -354,7 +355,7 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.3" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.0-beta2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />

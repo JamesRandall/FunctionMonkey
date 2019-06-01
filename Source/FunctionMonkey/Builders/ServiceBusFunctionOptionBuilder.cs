@@ -24,14 +24,14 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public IServiceBusFunctionOptionBuilder QueueFunction<TCommand>(string queueName) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
         {
-            return _underlyingBuilder.QueueFunction<TCommand>(queueName);
+            return _underlyingBuilder.QueueFunction<TCommand>(queueName, isSessionEnabled);
         }
 
-        public IServiceBusFunctionOptionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
         {
-            return _underlyingBuilder.SubscriptionFunction<TCommand>(topicName, subscriptionName);
+            return _underlyingBuilder.SubscriptionFunction<TCommand>(topicName, subscriptionName, isSessionEnabled);
         }
 
         public IServiceBusFunctionOptionBuilder Serializer<TSerializer>() where TSerializer : ISerializer

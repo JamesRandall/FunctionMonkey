@@ -1,8 +1,8 @@
 #Requires -Version 3.0
 
 Param(
-    [string] [Parameter(Mandatory=$true)] $ResourceGroupLocation,
-    [string] $ResourceGroupName = 'functionMonkey',
+    [string] $ResourceGroupLocation = 'UK South',
+    [string] $ResourceGroupName = 'functionMonkeyTests',
     [switch] $UploadArtifacts,
     [string] $StorageAccountName,
     [string] $StorageContainerName = $ResourceGroupName.ToLowerInvariant() + '-stageartifacts',
@@ -12,6 +12,8 @@ Param(
     [string] $DSCSourceFolder = 'DSC',
     [switch] $ValidateOnly
 )
+
+Select-AzureRmSubscription -Subscription a41bc6ea-b24a-400f-b630-e2201c5a513f
 
 try {
     [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace(' ','_'), '3.0.0')

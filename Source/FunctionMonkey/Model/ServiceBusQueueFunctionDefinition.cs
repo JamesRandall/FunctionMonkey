@@ -12,5 +12,7 @@ namespace FunctionMonkey.Model
         public string ConnectionStringName { get; set; }
 
         public string QueueName { get; set; }
+        
+        public bool IsSessionEnabled { get; set; }
     }
 }

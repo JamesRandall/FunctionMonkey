@@ -43,9 +43,15 @@
 
             public const string Queue = "testqueue";
 
+            public const string SessionIdQueue = "sessionidtestqueue";
+
             public const string TopicName = "testtopic";
 
             public const string SubscriptionName = "testsub";
+
+            public const string SessionIdTopicName = "sessionidtesttopic";
+
+            public const string SessionIdSubscriptionName = "sessionidtestsub";
 
             public const string TableOutputQueue = "tableoutput";
 
