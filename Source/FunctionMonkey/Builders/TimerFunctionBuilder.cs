@@ -4,44 +4,54 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
-using FunctionMonkey.Extensions;
 using FunctionMonkey.Model;
+using IFunctionBuilder = FunctionMonkey.Abstractions.Builders.IFunctionBuilder;
 
 namespace FunctionMonkey.Builders
 {
     class TimerFunctionBuilder : ITimerFunctionBuilder
     {
+        private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IFunctionBuilder _functionBuilder;
         private readonly List<AbstractFunctionDefinition> _functionDefinitions;
 
-        public TimerFunctionBuilder(IFunctionBuilder functionBuilder,
+        public TimerFunctionBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            IFunctionBuilder functionBuilder,
             List<AbstractFunctionDefinition> functionDefinitions)
         {
+            _connectionStringSettingNames = connectionStringSettingNames;
             _functionBuilder = functionBuilder;
             _functionDefinitions = functionDefinitions;
         }
 
         
-        public IFunctionBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        public ITimerFunctionOptionsBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
         {
-            _functionDefinitions.Add(new TimerFunctionDefinition(typeof(TCommand))
+            TimerFunctionDefinition timerFunctionDefinition = new TimerFunctionDefinition(typeof(TCommand))
             {
                 CronExpression = cronExpression
-            });
-            return _functionBuilder;
+            };
+
+            _functionDefinitions.Add(timerFunctionDefinition);
+            return new TimerFunctionOptionsBuilder(_connectionStringSettingNames, _functionBuilder, timerFunctionDefinition);
         }
 
-        public IFunctionBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression)
+        public ITimerFunctionOptionsBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression)
             where TCommand : ICommand
             where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
-            _functionDefinitions.Add(new TimerFunctionDefinition(typeof(TCommand))
+            TimerFunctionDefinition timerFunctionDefinition = new TimerFunctionDefinition(typeof(TCommand))
             {
                 CronExpression = cronExpression,
                 TimerCommandFactoryType = typeof(TTimerCommandFactoryType),
                 TimerCommandFactoryTypeName = typeof(TTimerCommandFactoryType).EvaluateType()
-            });
-            return _functionBuilder;
+            };
+
+            _functionDefinitions.Add(timerFunctionDefinition);
+            return new TimerFunctionOptionsBuilder(_connectionStringSettingNames, _functionBuilder, timerFunctionDefinition);
         }
+
+
     }
 }

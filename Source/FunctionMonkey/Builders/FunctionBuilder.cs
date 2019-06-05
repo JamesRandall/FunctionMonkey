@@ -108,14 +108,14 @@ namespace FunctionMonkey.Builders
         public IReadOnlyCollection<AbstractFunctionDefinition> Definitions => _definitions;
 
 
-        public IFunctionBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        public ITimerFunctionOptionsBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
         {
-            return new TimerFunctionBuilder(this, _definitions).Timer<TCommand>(cronExpression);
+            return new TimerFunctionBuilder(_connectionStringSettingNames,this, _definitions).Timer<TCommand>(cronExpression);
         }
 
-        public IFunctionBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
+        public ITimerFunctionOptionsBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
-            return new TimerFunctionBuilder(this, _definitions).Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
+            return new TimerFunctionBuilder(_connectionStringSettingNames,this, _definitions).Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
         }
     }
 }
