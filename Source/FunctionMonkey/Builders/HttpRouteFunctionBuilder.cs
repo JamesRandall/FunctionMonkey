@@ -92,12 +92,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IFunctionBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        public ITimerFunctionOptionsBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
         {
             return _decoratedBuilder.Timer<TCommand>(cronExpression);
         }
 
-        public IFunctionBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
+        public ITimerFunctionOptionsBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
             return _decoratedBuilder.Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
         }
