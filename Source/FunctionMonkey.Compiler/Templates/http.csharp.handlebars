@@ -17,11 +17,7 @@ namespace {{Namespace}}
     public static class {{Name}}
     {
         [FunctionName("{{Name}}")]
-        {{#if OutputBinding}}
-        public static async Task Run(
-        {{else}}
         public static async Task<IActionResult> Run(
-        {{/if}}
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}}
@@ -243,17 +239,12 @@ namespace {{Namespace}}
             var validationResult = validator.Validate(command);
             if (!validationResult.IsValid)
             {
-                {{#if OutputBinding}}
-                    log.LogWarning("Command of type {commandType} failed validation {validationResult}", "{{CommandTypeName}}", validationResult);
-                    return;
+                {{#if HasHttpResponseHandler}}
+                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                    var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
+                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
                 {{else}}
-                    {{#if HasHttpResponseHandler}}
-                        var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
-                        var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
-                        return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
-                    {{else}}
-                        return CreateResponse(400, validationResult, serializer);
-                    {{/if}}
+                    return CreateResponse(400, validationResult, serializer);
                 {{/if}}
             }
             {{/if}}
@@ -266,6 +257,7 @@ namespace {{Namespace}}
                 {{/if}}
                 
                 {{{collectorOutputBinding}}}
+                return new NoContentResult();
             {{else}}            
             try
             {

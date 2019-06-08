@@ -277,7 +277,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(DbConnectionStringBuilder).Assembly.Location,
                 typeof(AzureSignalRAuthClient).Assembly.Location,
                 typeof(System.Environment).Assembly.Location,
-                typeof(HttpTriggerAttribute).Assembly.Location
+                typeof(HttpTriggerAttribute).Assembly.Location,
+                typeof(ServiceBusAttribute).Assembly.Location
             };
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)
