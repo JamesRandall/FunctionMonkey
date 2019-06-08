@@ -1,7 +1,7 @@
 {{#if CommandResultIsCollection}}
 foreach (var commandResultItem in result)
 { 
-    string resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+    string resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(commandResultItem);
     byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
     Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
     await collector.AddAsync(serviceBusMessage);

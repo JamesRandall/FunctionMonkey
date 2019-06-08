@@ -55,7 +55,11 @@ namespace {{Namespace}}
             {{/if}}
             
             {{#if OutputBinding}}
-                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                {{#if NoCommandHandler}}
+                    {{{CommandType}}} result = command;
+                {{else}}
+                    {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                {{/if}}
                 {{{collectorOutputBinding}}}
             {{else}}               
                 await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
