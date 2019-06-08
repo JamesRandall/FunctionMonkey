@@ -2,12 +2,14 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.Extensions.Logging;
@@ -27,8 +29,8 @@ namespace StandardFunctions
         public static void Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
             ILogger log,
             ExecutionContext executionContext,
-            //[ServiceBus("outputQueue", EntityType = EntityType.Queue, Connection = "serviceBusConnectionString")] ICollector<SomeResult> collector
-            [Queue("markerqueue", Connection = "storageConnectionString")]ICollector<SomeResult> collector
+            [ServiceBus("testqueue", Connection = "serviceBusConnectionString")] ICollector<Message> collector
+            //[Queue("markerqueue", Connection = "storageConnectionString")]ICollector<SomeResult> collector
             )
         {
             /*
@@ -43,10 +45,12 @@ namespace StandardFunctions
 
             //return $"{Guid.NewGuid()}.json";
 
-            collector.Add(new SomeResult
-                {
-                    Message = "Hello world"
-                });
+            string json = JsonConvert.SerializeObject(new SomeResult
+            {
+                Message = "Hello world"
+            });
+            Message message = new Message(Encoding.UTF8.GetBytes(json));
+            collector.Add(message);
             //return new OkObjectResult();
         }
 

@@ -9,7 +9,7 @@ using IFunctionBuilder = FunctionMonkey.Abstractions.Builders.IFunctionBuilder;
 
 namespace FunctionMonkey.Builders
 {
-    class TimerFunctionBuilder : ITimerFunctionBuilder
+    class TimerFunctionBuilder<TCommandOuter> : ITimerFunctionBuilder where TCommandOuter : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IFunctionBuilder _functionBuilder;
@@ -26,7 +26,7 @@ namespace FunctionMonkey.Builders
         }
 
         
-        public ITimerFunctionOptionsBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand>(string cronExpression) where TCommand : ICommand
         {
             TimerFunctionDefinition timerFunctionDefinition = new TimerFunctionDefinition(typeof(TCommand))
             {
@@ -34,10 +34,10 @@ namespace FunctionMonkey.Builders
             };
 
             _functionDefinitions.Add(timerFunctionDefinition);
-            return new TimerFunctionOptionsBuilder(_connectionStringSettingNames, _functionBuilder, timerFunctionDefinition);
+            return new TimerFunctionOptionsBuilder<TCommand>(_connectionStringSettingNames, _functionBuilder, timerFunctionDefinition);
         }
 
-        public ITimerFunctionOptionsBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression)
+        public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand, TTimerCommandFactoryType>(string cronExpression)
             where TCommand : ICommand
             where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
@@ -49,7 +49,7 @@ namespace FunctionMonkey.Builders
             };
 
             _functionDefinitions.Add(timerFunctionDefinition);
-            return new TimerFunctionOptionsBuilder(_connectionStringSettingNames, _functionBuilder, timerFunctionDefinition);
+            return new TimerFunctionOptionsBuilder<TCommand>(_connectionStringSettingNames, _functionBuilder, timerFunctionDefinition);
         }
 
 

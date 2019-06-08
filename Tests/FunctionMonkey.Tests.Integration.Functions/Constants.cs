@@ -37,6 +37,10 @@
         {
             public const string MarkerQueue = "markerqueue";
 
+            public const string MarkerQueueWithSessionId = "markerqueuesessionid";
+
+            public const string MarkerTopicWithSessionId = "markertopicsessionid";
+
             public const string MarkerTopic = "markertopic";
 
             public const string MarkerSubscription = "markersub";

@@ -28,7 +28,7 @@ namespace FunctionMonkey.Builders
             _leaseConnectionStringName = leaseConnectionName;
         }
 
-        public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand>(
+        public ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand>(
             string collectionName,
             string databaseName,
             string leaseCollectionName = "leases",
@@ -71,10 +71,10 @@ namespace FunctionMonkey.Builders
                 RemainingWorkCronExpression = remainingWorkCronExpression
             };
             _functionDefinitions.Add(definition);
-            return new CosmosDbFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
+            return new CosmosDbFunctionOptionBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
 
-        public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(
+        public ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(
             string collectionName,
             string databaseName,
             string leaseCollectionName = "leases",
@@ -119,7 +119,7 @@ namespace FunctionMonkey.Builders
                 RemainingWorkCronExpression = remainingWorkCronExpression
             };
             _functionDefinitions.Add(definition);
-            return new CosmosDbFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
+            return new CosmosDbFunctionOptionBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
     }
 }

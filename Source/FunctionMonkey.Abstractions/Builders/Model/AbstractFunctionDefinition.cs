@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Extensions;
+using FunctionMonkey.Commanding.Abstractions;
 
 namespace FunctionMonkey.Abstractions.Builders.Model
 {
@@ -32,6 +33,11 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         {
             get
             {
+                if (NoCommandHandler || CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler)))
+                {
+                    return CommandType;
+                }
+                
                 Type commandInterface = typeof(ICommand);
                 Type[] interfaces = CommandType.GetInterfaces();
                 Type[] minimalInterfaces = interfaces.Except(interfaces.SelectMany(i => i.GetInterfaces())).ToArray();
@@ -104,5 +110,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         #endregion
         
         public AbstractOutputBinding OutputBinding { get; set; }
+        
+        public bool NoCommandHandler { get; set; }
     }
 }

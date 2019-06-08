@@ -1,6 +1,8 @@
+using AzureFromTheTrenches.Commanding.Abstractions;
+
 namespace FunctionMonkey.Abstractions.Builders
 {
-    public interface ICosmosDbFunctionOptionBuilder : ICosmosDbFunctionBuilder, IFunctionOptions<ICosmosDbFunctionOptionBuilder, IFunctionOptionsBuilder>
+    public interface ICosmosDbFunctionOptionBuilder<TCommand> : ICosmosDbFunctionBuilder, IFunctionOptions<TCommand, ICosmosDbFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder> where TCommand : ICommand
     {
         
     }

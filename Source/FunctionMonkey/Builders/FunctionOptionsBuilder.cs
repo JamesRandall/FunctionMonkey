@@ -27,5 +27,11 @@ namespace FunctionMonkey.Builders
             _functionDefinition.SerializerNamingStrategyType = typeof(TSerializerNamingStrategy);
             return this;
         }
+
+        public IFunctionOptionsBuilder NoCommandHandler()
+        {
+            _functionDefinition.NoCommandHandler = true;
+            return this;
+        }
     }
 }

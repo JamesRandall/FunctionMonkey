@@ -8,7 +8,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace FunctionMonkey.Builders
 {
-    internal class TimerFunctionOptionsBuilder : ITimerFunctionOptionsBuilder
+    internal class TimerFunctionOptionsBuilder<TCommandOuter> : ITimerFunctionOptionsBuilder<TCommandOuter> where TCommandOuter : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IFunctionBuilder _functionBuilder;
@@ -21,12 +21,12 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
 
-        public ITimerFunctionOptionsBuilder Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand>(string cronExpression) where TCommand : ICommand
         {
             return _functionBuilder.Timer<TCommand>(cronExpression);
         }
 
-        public ITimerFunctionOptionsBuilder Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
+        public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand, TTimerCommandFactoryType>(string cronExpression) where TCommand : ICommand where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
             return _functionBuilder.Timer<TCommand, TTimerCommandFactoryType>(cronExpression);
         }
@@ -91,6 +91,6 @@ namespace FunctionMonkey.Builders
             return _functionBuilder.SignalR(signalRFunctionBuilder);
         }
 
-        public IOutputBindingBuilder<IFunctionBuilder> OutputTo => new OutputBindingBuilder<IFunctionBuilder>(_connectionStringSettingNames, _functionBuilder, _functionDefinition);
+        public IOutputBindingBuilder<TCommandOuter, IFunctionBuilder> OutputTo => new OutputBindingBuilder<TCommandOuter, IFunctionBuilder>(_connectionStringSettingNames, _functionBuilder, _functionDefinition);
     }
 }

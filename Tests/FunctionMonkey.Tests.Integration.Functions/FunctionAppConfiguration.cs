@@ -36,7 +36,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         ;
                 })
                 .AddFluentValidation()
-                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
+                .OutputAuthoredSource(@"~/code/authoredSource")
                 .OpenApiEndpoint(openApi => openApi
                     .UserInterface()
                     .Title("Integration Test Functions")
@@ -120,7 +120,14 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerTopic)
 
                         .HttpFunction<HttpTriggerServiceBusTopicCollectionOutputCommand>("/collectionToServiceBusTopic")
-                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerTopic)
+                        .OutputTo.ServiceBusTopic(Constants.ServiceBus.MarkerTopic)
+                        
+                        .HttpFunction<HttpTriggerServiceBusQueueWithSessionIdOutputCommand>("/toServiceBusQueueWithSessionId")
+                        .Options(options => options.NoCommandHandler())
+                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueueWithSessionId, command => command.ASessionId)
+                        
+                        .HttpFunction<HttpTriggerServiceBusTopicWithSessionIdOutputCommand>("/toServiceBusTopicWithSessionId")
+                        .OutputTo.ServiceBusTopic(Constants.ServiceBus.MarkerTopicWithSessionId, command => command.ASessionId)
 
                         // Storage
 

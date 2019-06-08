@@ -38,7 +38,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="trackRemainingWork">If true (default value) this will create a timer function that will output a remaining work estimate to the log - the metric name will be of the form {functionName}RemainingWork </param>
         /// <param name="remainingWorkCronExpression">The frequency that the monitor timer runs - defaults to once per every 5 seconds</param>
         /// <returns></returns>
-        ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand>(string collectionName,
+        ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand>(string collectionName,
             string databaseName,
             string leaseCollectionName="leases",
             string leaseDatabaseName=null,
@@ -92,7 +92,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="trackRemainingWork">If true (default value) this will create a timer function that will output a remaining work estimate to the log - the metric name will be of the form {functionName}RemainingWork </param>
         /// <param name="remainingWorkCronExpression">The frequency that the monitor timer runs - defaults to once per every 5 seconds</param>
         /// <returns></returns>
-        ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName,
+        ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName,
             string databaseName,
             string leaseCollectionName = "leases",
             string leaseDatabaseName = null,

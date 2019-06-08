@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 
 namespace FunctionMonkey.Abstractions
 {
-    public interface ITimerFunctionOptionsBuilder : IFunctionBuilder
+    public interface ITimerFunctionOptionsBuilder<TCommand> : IFunctionBuilder where TCommand : ICommand
     {
-        IOutputBindingBuilder<IFunctionBuilder> OutputTo { get; }
+        IOutputBindingBuilder<TCommand, IFunctionBuilder> OutputTo { get; }
     }
 }

@@ -8,7 +8,9 @@ namespace FunctionMonkey.Abstractions.Builders
     /// Allows for additional HTTP function configuration including Open API and header bindings
     /// </summary>
     public interface IHttpFunctionConfigurationBuilder<TCommand> : IHttpFunctionBuilder,
-        IFunctionOptions<IHttpFunctionConfigurationBuilder<TCommand>,
+        IFunctionOptions<
+            TCommand,
+            IHttpFunctionConfigurationBuilder<TCommand>,
             IHttpFunctionOptionsBuilder<TCommand>> where TCommand : ICommand
     {
         /// <summary>

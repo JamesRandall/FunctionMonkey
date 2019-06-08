@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class ServiceBusFunctionOptionBuilder : IServiceBusFunctionOptionBuilder
+    public class ServiceBusFunctionOptionBuilder<TCommandOuter> : IServiceBusFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IServiceBusFunctionBuilder _underlyingBuilder;
@@ -24,31 +24,31 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public IServiceBusFunctionOptionBuilder QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
         {
             return _underlyingBuilder.QueueFunction<TCommand>(queueName, isSessionEnabled);
         }
 
-        public IServiceBusFunctionOptionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
         {
             return _underlyingBuilder.SubscriptionFunction<TCommand>(topicName, subscriptionName, isSessionEnabled);
         }
 
-        public IServiceBusFunctionOptionBuilder Serializer<TSerializer>() where TSerializer : ISerializer
+        public IServiceBusFunctionOptionBuilder<TCommandOuter> Serializer<TSerializer>() where TSerializer : ISerializer
         {
             new FunctionOptions(_functionDefinition).Serializer<TSerializer>();
             return this;
         }
 
 
-        public IServiceBusFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)
+        public IServiceBusFunctionOptionBuilder<TCommandOuter> Options(Action<IFunctionOptionsBuilder> options)
         {
             FunctionOptionsBuilder builder = new FunctionOptionsBuilder(_functionDefinition);
             options(builder);
             return this;
         }
         
-        public IOutputBindingBuilder<IServiceBusFunctionOptionBuilder> OutputTo =>
-            new OutputBindingBuilder<IServiceBusFunctionOptionBuilder>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<TCommandOuter, IServiceBusFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<TCommandOuter, IServiceBusFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }

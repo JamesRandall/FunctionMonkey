@@ -1,6 +1,10 @@
+using AzureFromTheTrenches.Commanding.Abstractions;
+
 namespace FunctionMonkey.Abstractions.Builders
 {
-    public interface IServiceBusFunctionOptionBuilder : IServiceBusFunctionBuilder, IFunctionOptions<IServiceBusFunctionOptionBuilder, IFunctionOptionsBuilder>
+    public interface IServiceBusFunctionOptionBuilder<TCommand> : 
+        IServiceBusFunctionBuilder,
+        IFunctionOptions<TCommand, IServiceBusFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder> where TCommand : ICommand
     {
         
     }

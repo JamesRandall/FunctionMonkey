@@ -34,7 +34,12 @@ namespace FunctionMonkey.Infrastructure
 
                 definition.CommandDeserializerType = definition.CommandDeserializerType ??
                                                      ((SerializationBuilder)(builder.SerializationBuilder)).DefaultCommandDeserializerType;
-                
+
+                if (CommandRequiresNoHandler(definition.CommandType))
+                {
+                    definition.NoCommandHandler = true; // don't skip the if statement, this may also be set through options
+                }
+
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)
                 {
                     CompleteHttpFunctionDefinition(builder, httpFunctionDefinition, authorizationBuilder, validationResultType);
@@ -44,6 +49,11 @@ namespace FunctionMonkey.Infrastructure
                     CompleteCosmosDbFunctionDefinition(cosmosDbFunctionDefinition);
                 }
             }
+        }
+
+        private bool CommandRequiresNoHandler(Type commandType)
+        {
+            return commandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler));
         }
 
         private void CompleteCosmosDbFunctionDefinition(CosmosDbFunctionDefinition cosmosDbFunctionDefinition)

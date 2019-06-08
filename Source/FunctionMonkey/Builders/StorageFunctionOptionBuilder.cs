@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class StorageFunctionOptionBuilder : IStorageFunctionOptionBuilder
+    public class StorageFunctionOptionBuilder<TCommandOuter> : IStorageFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IStorageFunctionBuilder _underlyingBuilder;
@@ -24,25 +24,25 @@ namespace FunctionMonkey.Builders
             _definition = definition;
         }
         
-        public IStorageFunctionOptionBuilder QueueFunction<TCommand>(string queueName) where TCommand : ICommand
+        public IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName) where TCommand : ICommand
         {
             return _underlyingBuilder.QueueFunction<TCommand>(queueName);
         }
 
-        public IStorageFunctionOptionBuilder BlobFunction<TCommand>(string blobPath) where TCommand : ICommand
+        public IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath) where TCommand : ICommand
         {
             return _underlyingBuilder.BlobFunction<TCommand>(blobPath);
         }
 
 
-        public IStorageFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)
+        public IStorageFunctionOptionBuilder<TCommandOuter> Options(Action<IFunctionOptionsBuilder> options)
         {
             FunctionOptionsBuilder builder = new FunctionOptionsBuilder(_definition);
             options(builder);
             return this;
         }
         
-        public IOutputBindingBuilder<IStorageFunctionOptionBuilder> OutputTo =>
-            new OutputBindingBuilder<IStorageFunctionOptionBuilder>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<TCommandOuter, IStorageFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<TCommandOuter, IStorageFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
     }
 }

@@ -59,5 +59,12 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <returns></returns>
         IHttpFunctionOptionsBuilder<TCommand> AddHeaderMapping<TProperty>(
             Expression<Func<TCommand, TProperty>> property, string headerName);
+
+        /// <summary>
+        /// Use this to tell Function Monkey to not attempt to dispatch a command - this can be useful if you
+        /// want to, for example, receive a payload on an HTTP API, validate it, then drop it onto a queue
+        /// </summary>
+        /// <returns></returns>
+        IHttpFunctionOptionsBuilder<TCommand> NoCommandHandler();
     }
 }

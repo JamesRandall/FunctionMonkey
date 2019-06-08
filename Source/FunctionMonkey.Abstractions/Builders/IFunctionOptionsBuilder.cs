@@ -21,5 +21,11 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <returns></returns>
         IFunctionOptionsBuilder JsonNamingStrategies<TDeserializerNamingStrategy, TSerializerNamingStrategy>()
             where TSerializerNamingStrategy : NamingStrategy where TDeserializerNamingStrategy : NamingStrategy;
+        
+        /// <summary>
+        /// Use this to tell Function Monkey to not attempt to dispatch a command - this can be useful if you
+        /// want to, for example, receive a payload on an HTTP API, validate it, then drop it onto a queue
+        /// </summary>
+        IFunctionOptionsBuilder NoCommandHandler();
     }
 }

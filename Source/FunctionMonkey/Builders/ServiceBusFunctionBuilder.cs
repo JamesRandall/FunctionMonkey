@@ -19,7 +19,7 @@ namespace FunctionMonkey.Builders
             _definitions = definitions;
         }
 
-        public IServiceBusFunctionOptionBuilder QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
         {
             ServiceBusQueueFunctionDefinition definition = new ServiceBusQueueFunctionDefinition(typeof(TCommand))
             {
@@ -28,10 +28,10 @@ namespace FunctionMonkey.Builders
                 IsSessionEnabled = isSessionEnabled
             };
             _definitions.Add(definition);
-            return new ServiceBusFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
+            return new ServiceBusFunctionOptionBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
 
-        public IServiceBusFunctionOptionBuilder SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
         {
             ServiceBusSubscriptionFunctionDefinition definition =
                 new ServiceBusSubscriptionFunctionDefinition(typeof(TCommand))
@@ -42,7 +42,7 @@ namespace FunctionMonkey.Builders
                     IsSessionEnabled = isSessionEnabled
                 };
             _definitions.Add(definition);
-            return new ServiceBusFunctionOptionBuilder(_connectionStringSettingNames, this, definition);
+            return new ServiceBusFunctionOptionBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
     }
 }

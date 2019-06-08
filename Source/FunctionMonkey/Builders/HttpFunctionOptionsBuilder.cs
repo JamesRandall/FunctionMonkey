@@ -69,5 +69,11 @@ namespace FunctionMonkey.Builders
 
             return this;
         }
+
+        public IHttpFunctionOptionsBuilder<TCommand> NoCommandHandler()
+        {
+            _functionDefinition.NoCommandHandler = true;
+            return this;
+        }
     }
 }

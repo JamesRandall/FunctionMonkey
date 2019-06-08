@@ -1,3 +1,4 @@
+/*
 using System.IO;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
@@ -21,3 +22,4 @@ namespace StandardFunctions
         }
     }
 }
+*/

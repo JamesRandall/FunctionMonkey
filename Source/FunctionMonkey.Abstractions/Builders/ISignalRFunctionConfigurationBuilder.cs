@@ -7,9 +7,10 @@ namespace FunctionMonkey.Abstractions.Builders
     /// <summary>
     /// Allows for additional HTTP function configuration including Open API and header bindings
     /// </summary>
-    public interface ISignalRFunctionConfigurationBuilder<TCommand> : ISignalRFunctionBuilder,
-        IFunctionOptions<ISignalRFunctionConfigurationBuilder<TCommand>,
-            IHttpFunctionOptionsBuilder<TCommand>> where TCommand : ICommand
+    public interface ISignalRFunctionConfigurationBuilder<TCommand> : 
+        ISignalRFunctionBuilder,
+        IFunctionOptions<TCommand, ISignalRFunctionConfigurationBuilder<TCommand>,
+        IHttpFunctionOptionsBuilder<TCommand>> where TCommand : ICommand
     {
         /// <summary>
         /// The Open API / Swagger description for the endpoint

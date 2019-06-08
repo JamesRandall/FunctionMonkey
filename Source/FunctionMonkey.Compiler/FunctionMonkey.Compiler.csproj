@@ -311,6 +311,8 @@
     <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
     <EmbeddedResource Include="Templates\cosmosdbMonitor.json.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.json.handlebars" />
+    <EmbeddedResource Include="Templates\servicebusqueue.outputcollector.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\servicebustopic.outputcollector.csharp.handlebars" />
     <EmbeddedResource Include="Templates\signalr.outputcollector.csharp.handlebars" />
     <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
     <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
@@ -355,7 +357,7 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.3" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.0-beta2" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.0-beta3" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />

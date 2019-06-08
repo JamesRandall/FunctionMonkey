@@ -1,13 +1,19 @@
+using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.SignalR;
+using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Model.OutputBindings;
 
 namespace FunctionMonkey.Builders
 {
-    internal class OutputBindingBuilder<TParentBuilder> : IOutputBindingBuilder<TParentBuilder>
+    internal class OutputBindingBuilder<TCommand, TParentBuilder> : IOutputBindingBuilder<TCommand, TParentBuilder> where TCommand : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly TParentBuilder _parentBuilder;
@@ -20,36 +26,48 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public TParentBuilder ServiceBusQueue(string connectionString, string queueName)
+        public TParentBuilder ServiceBusQueue(string connectionString, string queueName, Expression<Func<TCommand,object>> sessionIdProperty=null)
         {
             VerifyOutputBinding();
+            string sessionIdPropertyName = null;
+            if (sessionIdProperty != null)
+            {
+                sessionIdPropertyName = GetMemberName(sessionIdProperty.Body);
+            }
             _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
             {
-                QueueName = queueName
+                QueueName = queueName,
+                SessionIdPropertyName = sessionIdPropertyName
             };
 
             return _parentBuilder;
         }
 
-        public TParentBuilder ServiceBusQueue(string queueName)
+        public TParentBuilder ServiceBusQueue(string queueName, Expression<Func<TCommand,object>> sessionIdProperty=null)
         {
-            return ServiceBusQueue(_connectionStringSettingNames.ServiceBus, queueName);
+            return ServiceBusQueue(_connectionStringSettingNames.ServiceBus, queueName, sessionIdProperty);
         }
 
-        public TParentBuilder ServiceBusTopic(string connectionString, string topicName)
+        public TParentBuilder ServiceBusTopic(string connectionString, string topicName, Expression<Func<TCommand,object>> sessionIdProperty=null)
         {
             VerifyOutputBinding();
+            string sessionIdPropertyName = null;
+            if (sessionIdProperty != null)
+            {
+                sessionIdPropertyName = GetMemberName(sessionIdProperty.Body);
+            }
             _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
             {
-                TopicName = topicName
+                TopicName = topicName,
+                SessionIdPropertyName = sessionIdPropertyName
             };
 
             return _parentBuilder;
         }
 
-        public TParentBuilder ServiceBusTopic(string topicName)
+        public TParentBuilder ServiceBusTopic(string topicName, Expression<Func<TCommand,object>> sessionIdProperty=null)
         {
-            return ServiceBusTopic(_connectionStringSettingNames.ServiceBus, topicName);
+            return ServiceBusTopic(_connectionStringSettingNames.ServiceBus, topicName, sessionIdProperty);
         }
 
         public TParentBuilder SignalRMessage(string hubName)
@@ -182,10 +200,33 @@ namespace FunctionMonkey.Builders
                 throw new ConfigurationException($"An output binding is already set for command {_functionDefinition.CommandType.Name}");
             }
 
-            if (!_functionDefinition.CommandHasResult)
+            if (!_functionDefinition.CommandHasResult &&
+                !(_functionDefinition.NoCommandHandler || _functionDefinition.CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler))))
             {
                 throw new ConfigurationException($"Command of type {_functionDefinition.CommandType.Name} requires a result to be used with an output binding");
             }
+        }
+        
+        private static string GetMemberName(Expression expression)
+        {
+            if (expression is UnaryExpression)
+            {
+                UnaryExpression unaryExpression = (UnaryExpression) expression;
+                return GetMemberName(unaryExpression);
+            }
+
+            throw new ArgumentException("Only root properties names are supported for session IDs");
+        }
+
+        private static string GetMemberName(UnaryExpression unaryExpression)
+        {
+            if (unaryExpression.Operand is MethodCallExpression)
+            {
+                var methodExpression = (MethodCallExpression) unaryExpression.Operand;
+                return methodExpression.Method.Name;
+            }
+
+            return ((MemberExpression) unaryExpression.Operand).Member.Name;
         }
     }
 }

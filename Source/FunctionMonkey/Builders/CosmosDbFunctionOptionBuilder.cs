@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class CosmosDbFunctionOptionBuilder : ICosmosDbFunctionOptionBuilder
+    public class CosmosDbFunctionOptionBuilder<TCommandOuter> : ICosmosDbFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly ICosmosDbFunctionBuilder _underlyingBuilder;
@@ -25,7 +25,7 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand>(string collectionName, string databaseName,
+        public ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand>(string collectionName, string databaseName,
             string leaseCollectionName = "leases", string leaseDatabaseName = null,
             bool createLeaseCollectionIfNotExists = false, bool startFromBeginning = false, bool convertToPascalCase = false,
             string leaseCollectionPrefix = null, int? maxItemsPerInvocation = null, int? feedPollDelay = null,
@@ -42,7 +42,7 @@ namespace FunctionMonkey.Builders
                 checkpointFrequency, leasesCollectionThroughput, trackRemainingWork, remainingWorkCronExpression);
         }
 
-        public ICosmosDbFunctionOptionBuilder ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName, string databaseName,
+        public ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(string collectionName, string databaseName,
             string leaseCollectionName = "leases", string leaseDatabaseName = null,
             bool createLeaseCollectionIfNotExists = false, bool startFromBeginning = false, bool convertToPascalCase = false,
             string leaseCollectionPrefix = null, int? maxItemsPerInvocation = null, int? feedPollDelay = null,
@@ -59,14 +59,14 @@ namespace FunctionMonkey.Builders
                 checkpointFrequency, leasesCollectionThroughput, trackRemainingWork, remainingWorkCronExpression);
         }
 
-        public ICosmosDbFunctionOptionBuilder Options(Action<IFunctionOptionsBuilder> options)
+        public ICosmosDbFunctionOptionBuilder<TCommandOuter> Options(Action<IFunctionOptionsBuilder> options)
         {
             FunctionOptionsBuilder builder = new FunctionOptionsBuilder(_functionDefinition);
             options(builder);
             return this;
         }
 
-        public IOutputBindingBuilder<ICosmosDbFunctionOptionBuilder> OutputTo =>
-            new OutputBindingBuilder<ICosmosDbFunctionOptionBuilder>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<TCommandOuter, ICosmosDbFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<TCommandOuter, ICosmosDbFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }
