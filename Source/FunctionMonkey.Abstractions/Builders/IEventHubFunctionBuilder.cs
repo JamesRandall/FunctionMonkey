@@ -5,7 +5,7 @@ namespace FunctionMonkey.Abstractions.Builders
     /// <summary>
     /// Provides an interface that allows commands to be mapped to event hubs
     /// </summary>
-    public interface IEventHubFunctionBuilder<TCommand> : IFunctionOptions<TCommand, IEventHubFunctionBuilder<TCommand>, IFunctionOptionsBuilder> where TCommand : ICommand
+    public interface IEventHubFunctionBuilder<TCommandOuter> : IFunctionOptions<TCommandOuter, IEventHubFunctionBuilder<TCommandOuter>, IFunctionOptionsBuilder> where TCommandOuter : ICommand
     {
         /// <summary>
         /// Associate an event hub with a given command type

@@ -206,7 +206,6 @@ namespace FunctionMonkey.Infrastructure
                 .Select(x => new HttpParameter
                 {
                     Name = x.Name,
-                    TypeName = x.PropertyType.EvaluateType(),
                     Type = x.PropertyType,
                     IsOptional = !x.PropertyType.IsValueType
                 })
@@ -224,7 +223,6 @@ namespace FunctionMonkey.Infrastructure
                 .Select(x => new HttpParameter
                 {
                     Name = x.Name,
-                    TypeName = x.PropertyType.EvaluateType(),
                     Type = x.PropertyType
                 })
                 .ToArray();
@@ -294,7 +292,6 @@ namespace FunctionMonkey.Infrastructure
                 {
                     Name = matchedProperty.Name,
                     Type = matchedProperty.PropertyType,
-                    TypeName = matchedProperty.PropertyType.EvaluateType(),
                     IsOptional = isOptional,
                     IsNullableType = Nullable.GetUnderlyingType(matchedProperty.PropertyType) != null,
                     RouteName = routeParameterName,

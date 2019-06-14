@@ -36,7 +36,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         ;
                 })
                 .AddFluentValidation()
-                .OutputAuthoredSource(@"~/code/authoredSource")
+                .OutputAuthoredSource(@"/Users/jamesrandall/code/authoredSource")
                 .OpenApiEndpoint(openApi => openApi
                     .UserInterface()
                     .Title("Integration Test Functions")
@@ -82,6 +82,14 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .Options(options => options
                             .AddHeaderMapping(cmd => cmd.Value, "x-value")
                             .AddHeaderMapping(cmd => cmd.Message, "x-message")
+                        )
+                        .HttpFunction<HttpHeaderNullableValueTypeBindingCommand>("/nullableValueType")
+                        .Options(options => options
+                            .AddHeaderMapping(cmd => cmd.Value, "x-value")
+                        )
+                        .HttpFunction<HttpHeaderEnumTypeBindingCommand>("/enumType")
+                        .Options(options => options
+                            .AddHeaderMapping(cmd => cmd.Value, "x-enum-value")
                         )
                     )
                     .HttpRoute("responseHandler", route => route

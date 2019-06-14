@@ -25,34 +25,54 @@ namespace FunctionMonkey.Abstractions.Extensions
         {
             StringBuilder retType = new StringBuilder();
 
-            if (type.IsGenericType)
+            void ExpandType(Type currentType, bool includeNamespace)
             {
-                string[] parentType = type.FullName.Split('`');
-                Type[] arguments = type.GetGenericArguments();
-
-                StringBuilder argList = new StringBuilder();
-                foreach (Type t in arguments)
+                if (currentType.IsGenericType)
                 {
-                    string arg = EvaluateType(t);
+                    string[] parentType = (includeNamespace ? currentType.FullName : currentType.Name).Split('`');
+                    Type[] arguments = currentType.GetGenericArguments();
+
+                    StringBuilder argList = new StringBuilder();
+                    foreach (Type t in arguments)
+                    {
+                        string arg = EvaluateType(t);
+                        if (argList.Length > 0)
+                        {
+                            argList.AppendFormat(", {0}", arg);
+                        }
+                        else
+                        {
+                            argList.Append(arg);
+                        }
+                    }
+
                     if (argList.Length > 0)
                     {
-                        argList.AppendFormat(", {0}", arg);
-                    }
-                    else
-                    {
-                        argList.Append(arg);
+                        retType.AppendFormat("{0}<{1}>", parentType[0], argList.ToString());
                     }
                 }
-
-                if (argList.Length > 0)
+                else
                 {
-                    retType.AppendFormat("{0}<{1}>", parentType[0], argList.ToString());
+                    retType.Append(includeNamespace ? currentType.ToString() : currentType.Name);
                 }
             }
-            else
+            
+            void RecurseUpDeclaringTypes(Type currentType)
             {
-                return type.ToString();
+                if (currentType.DeclaringType == null)
+                {
+                    ExpandType(currentType, true);
+                }
+                else
+                {
+                    RecurseUpDeclaringTypes(currentType.DeclaringType);
+                    retType.Append(".");
+                    ExpandType(currentType, false);
+                }
             }
+            
+            RecurseUpDeclaringTypes(type);
+            
 
             return retType.ToString();
         }

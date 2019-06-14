@@ -124,44 +124,40 @@ namespace {{Namespace}}
             {{/each}}
 
             Microsoft.Extensions.Primitives.StringValues queryParameterValues;
-            string method = req.Method.ToUpper();
-            if (method == "GET" || method=="DELETE")
-            {
-                {{#each PossibleBindingProperties}}
-                    {{#unless IsFormCollection}}
-                        if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+            {{#each PossibleBindingProperties}}
+                {{#unless IsFormCollection}}
+                    if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+                    {
+                        {{#if IsString}}
+                        command.{{Name}} = queryParameterValues[0];
+                        {{else if IsEnum}}
                         {
-                            {{#if IsString}}
-                            command.{{Name}} = queryParameterValues[0];
-                            {{else if IsEnum}}
+                            {{{TypeName}}} result;
+                            if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
                             {
-                                {{{TypeName}}} result;
-                                if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
+                                command.{{Name}} = result;
+                            }
+                        }
+                        {{else if IsNullable}}
+                        {
+                            {{#if IsNullableTypeHasTryParseMethod}}
+                            {
+                                {{{TypeName}}} nullableValue;
+                                if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
                                 {
-                                    command.{{Name}} = result;
+                                    command.{{Name}} = nullableValue;
                                 }
                             }
-                            {{else if IsNullable}}
-                            {
-                                {{#if IsNullableTypeHasTryParseMethod}}
-                                {
-                                    {{{TypeName}}} nullableValue;
-                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
-                                    {
-                                        command.{{Name}} = nullableValue;
-                                    }
-                                }
-                                {{/if}}
-                            }
-                            {{else}}
-                            {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
-                            command.{{Name}} = candidate;
                             {{/if}}
                         }
-                    {{/unless}}
-                {{/each}}
-            }
-
+                        {{else}}
+                        {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
+                        command.{{Name}} = candidate;
+                        {{/if}}
+                    }
+                {{/unless}}
+            {{/each}}
+            
             {{#if HeaderBindingConfiguration}}
                 string headerName;
                 {{#each PossibleBindingProperties}}
@@ -174,6 +170,24 @@ namespace {{Namespace}}
                         string headerValue = stringValues.FirstOrDefault();
                         {{#if IsString}}
                             command.{{Name}} = headerValue;
+                        {{else if IsEnum}}
+                            {
+                                {{{TypeName}}} result;
+                                if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
+                                {
+                                    command.{{Name}} = result;
+                                }
+                            }
+                        {{else if IsNullable}}
+                            {{#if IsNullableTypeHasTryParseMethod}}
+                                {
+                                    {{{TypeName}}} nullableValue;
+                                    if(TryParseNullable(headerValue, {{NullableType}}.TryParse, out nullableValue))
+                                    {
+                                        command.{{Name}} = nullableValue;
+                                    }
+                                }
+                            {{/if}}
                         {{else}}
                             {{TypeName}}.TryParse(headerValue, out var candidate);
                             command.{{Name}} = candidate;

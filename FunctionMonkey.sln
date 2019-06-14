@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.SignalR", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Integration", "Tests\FunctionMonkey.Tests.Integration\FunctionMonkey.Tests.Integration.csproj", "{00E4E907-FEF9-4124-A5AA-02E9078D2EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Unit", "Tests\FunctionMonkey.Tests.Unit\FunctionMonkey.Tests.Unit.csproj", "{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{00E4E907-FEF9-4124-A5AA-02E9078D2EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00E4E907-FEF9-4124-A5AA-02E9078D2EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00E4E907-FEF9-4124-A5AA-02E9078D2EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +153,7 @@ Global
 		{5E41705F-CBB4-4426-8FA5-18AD8A41CD2B} = {68C555D0-6537-4D5B-B36C-E62F34F5E890}
 		{2768AE8A-32AA-4B79-8E77-D47FA1931F2E} = {CB492EF3-6255-4528-8978-0D0974B7F081}
 		{00E4E907-FEF9-4124-A5AA-02E9078D2EF9} = {68C555D0-6537-4D5B-B36C-E62F34F5E890}
+		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62} = {68C555D0-6537-4D5B-B36C-E62F34F5E890}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9ABA812-671D-4486-B9D8-4F16D4BE11BD}

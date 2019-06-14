@@ -257,7 +257,7 @@ namespace FunctionMonkey.Tests.Integration.SignalR
                 doneWaiting.Set();
             });
             
-            bool areListening = WaitHandle.WaitAll(listeningStarted, TimeSpan.FromSeconds(10)); // wait for the clients to start listening
+            bool areListening = WaitHandle.WaitAll(listeningStarted, TimeSpan.FromSeconds(20)); // wait for the clients to start listening
             Assert.True(areListening);
 
             Guid[] markerIds = new Guid[] { Guid.NewGuid() };

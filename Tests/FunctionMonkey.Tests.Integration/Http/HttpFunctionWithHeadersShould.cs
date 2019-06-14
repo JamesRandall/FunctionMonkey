@@ -32,5 +32,27 @@ namespace FunctionMonkey.Tests.Integration.Http
 
             ValidateEchoedResponse(response);
         }
+        
+        [Fact]
+        public async Task BindHeaderToNullableValueType()
+        {
+            SimpleResponse response = await Settings.Host
+                .AppendPathSegment("headers/nullableValueType")
+                .WithHeader("x-value", Value)
+                .GetJsonAsync<SimpleResponse>();
+
+            Assert.Equal(Value, response.Value);
+        }
+        
+        [Fact]
+        public async Task BindHeaderToEnumType()
+        {
+            SimpleResponse response = await Settings.Host
+                .AppendPathSegment("headers/enumType")
+                .WithHeader("x-enum-value", "AnotherValue")
+                .GetJsonAsync<SimpleResponse>();
+
+            Assert.Equal(Value, response.Value);
+        }
     }
 }
