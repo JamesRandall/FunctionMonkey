@@ -28,7 +28,7 @@ namespace {{Namespace}}
             ILogger log,
             ExecutionContext executionContext
             {{#each RouteParameters}}
-            , {{#if IsGuid}}string{{else}}{{{RouteTypeName}}}{{/if}} {{RouteName}}
+            , string {{RouteName}}
             {{/each}}
             {{{parameterOutputBinding}}}
     )
@@ -199,33 +199,48 @@ namespace {{Namespace}}
             {{/if}}
 
             {{#each RouteParameters}}
-                {{#if IsGuid}}
-                    {{#if IsNullableType}}
-                        if ({{RouteName}} != null) {
-                            Guid guid{{RouteName}};
-                            if (Guid.TryParse({{RouteName}}, out guid{{RouteName}})) {
-                                command.{{Name}} = Guid.Parse({{RouteName}});
-                            } else {
-                                return CreateResponse(400, "Invalid guid supplied as route parameter", serializer);
+                {{#if IsString}}
+                    command.{{Name}} = {{RouteName}};
+                {{else if IsEnum}}
+                    {
+                        {{{RouteTypeName}}} result;
+                        if (System.Enum.TryParse<{{RouteTypeName}}>({{RouteName}}, out result))
+                        {
+                            command.{{Name}} = result;
+                        }
+                        else
+                        {
+                            return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                        }
+                    }
+                {{else if IsNullable}}
+                    {
+                    {{#if IsNullableTypeHasTryParseMethod}}
+                        {
+                            {{{RouteTypeName}}} nullableValue;
+                            if ({{RouteName}} != null)
+                            {
+                                if(TryParseNullable({{RouteName}}, {{NullableType}}.TryParse, out nullableValue))
+                                {
+                                    command.{{Name}} = nullableValue;
+                                }
+                                else
+                                {
+                                    return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                                }
                             }
                         }
-                    {{else}}
-                        Guid guid{{RouteName}};
-                        if (Guid.TryParse({{RouteName}}, out guid{{RouteName}})) {
-                            command.{{Name}} = Guid.Parse({{RouteName}});
-                        } else {
-                            return CreateResponse(400, "Invalid guid supplied as route parameter", serializer);
-                        }
                     {{/if}}
+                    }
                 {{else}}
-                    {{#if IsNullableType}}
-                        if ({{RouteName}}.HasValue)
-                        {
-                            command.{{Name}} = {{RouteName}};
-                        }
-                    {{else}}
-                        command.{{Name}} = {{RouteName}};
-                    {{/if}}
+                    if ({{TypeName}}.TryParse({{RouteName}}, out var candidate))
+                    {
+                        command.{{Name}} = candidate;
+                    }
+                    else
+                    {
+                        return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                    }
                 {{/if}}
             {{/each}}
     

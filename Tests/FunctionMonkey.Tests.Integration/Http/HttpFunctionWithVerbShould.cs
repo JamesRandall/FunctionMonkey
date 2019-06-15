@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Flurl;
@@ -89,6 +91,19 @@ namespace FunctionMonkey.Tests.Integration.Http
                 .ReceiveJson<SimpleResponse>();
 
             ValidateEchoedResponse(response);
+        }
+        
+        [Fact]
+        public async Task ReturnBadRequestForGETWithMismatchedTypeRouteParam()
+        {
+            HttpResponseMessage response = await Settings.Host
+                .AllowAnyHttpStatus()
+                .AppendPathSegment("verbs")
+                .AppendPathSegment("mismatch")
+                .SetQueryParam("message", Message)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 }
