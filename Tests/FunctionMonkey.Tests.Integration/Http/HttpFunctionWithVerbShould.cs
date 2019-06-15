@@ -92,18 +92,5 @@ namespace FunctionMonkey.Tests.Integration.Http
 
             ValidateEchoedResponse(response);
         }
-        
-        [Fact]
-        public async Task ReturnBadRequestForGETWithMismatchedTypeRouteParam()
-        {
-            HttpResponseMessage response = await Settings.Host
-                .AllowAnyHttpStatus()
-                .AppendPathSegment("verbs")
-                .AppendPathSegment("mismatch")
-                .SetQueryParam("message", Message)
-                .GetAsync();
-
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-        }
     }
 }

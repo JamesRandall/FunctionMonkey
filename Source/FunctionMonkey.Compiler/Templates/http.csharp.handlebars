@@ -137,22 +137,39 @@ namespace {{Namespace}}
                             {
                                 command.{{Name}} = result;
                             }
+                            else
+                            {
+                                return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                            }
                         }
                         {{else if IsNullable}}
                         {
                             {{#if IsNullableTypeHasTryParseMethod}}
                             {
                                 {{{TypeName}}} nullableValue;
-                                if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
+                                if (queryParameterValues[0] != null)
                                 {
-                                    command.{{Name}} = nullableValue;
+                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
+                                    {
+                                        command.{{Name}} = nullableValue;
+                                    }
+                                    else
+                                    {
+                                        return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                    }
                                 }
                             }
                             {{/if}}
                         }
                         {{else}}
-                        {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
-                        command.{{Name}} = candidate;
+                            if ({{TypeName}}.TryParse(queryParameterValues[0], out var candidate))
+                            {   
+                                command.{{Name}} = candidate;
+                            }
+                            else
+                            {
+                                return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                            }
                         {{/if}}
                     }
                 {{/unless}}
@@ -210,7 +227,7 @@ namespace {{Namespace}}
                         }
                         else
                         {
-                            return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                            return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
                         }
                     }
                 {{else if IsNullable}}
@@ -226,7 +243,7 @@ namespace {{Namespace}}
                                 }
                                 else
                                 {
-                                    return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                                    return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
                                 }
                             }
                         }
@@ -239,7 +256,7 @@ namespace {{Namespace}}
                     }
                     else
                     {
-                        return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                        return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
                     }
                 {{/if}}
             {{/each}}
@@ -352,6 +369,15 @@ namespace {{Namespace}}
             result.Content = serializer.Serialize(content, true);
             result.ContentType = "application/json";
             result.StatusCode = code;
+            return result;
+        }
+
+        public static IActionResult CreateBadParameterResponse(string message)
+        {
+            ContentResult result = new ContentResult();
+            result.Content = message;
+            result.ContentType = "text/plain";
+            result.StatusCode = 400;
             return result;
         }
 
