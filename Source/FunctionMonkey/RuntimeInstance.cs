@@ -122,6 +122,7 @@ namespace FunctionMonkey
 
             // Inject an ILogger that picks up the runtime provided logger
             ServiceCollection.AddTransient<ILogger, FunctionLogger>();
+            ServiceCollection.AddSingleton<ILoggerFactory, FunctionLoggerFactory>();
         }
 
         private void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
