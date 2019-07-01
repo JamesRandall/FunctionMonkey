@@ -10,8 +10,10 @@ using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
 using FunctionMonkey.Model;
 using FunctionMonkey.Testing.Implementation;
+using FunctionMonkey.Testing.Mocks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using HttpResponse = Microsoft.AspNetCore.Http.HttpResponse;
 
 namespace FunctionMonkey.Testing
@@ -32,14 +34,17 @@ namespace FunctionMonkey.Testing
         /// </summary>
         /// <param name="beforeServiceProviderBuild">An optional function to run before the Build method is called on the Function App configuration</param>
         /// <param name="afterServiceProviderBuild">An optional function to run before the Build method is called after the Function App configuration</param>
-        /// /// <param name="functionAppConfigurationAssembly">If your Function App Configuration cannot be found you may need to provide the assembly it is located within to the setup - this is due to the as needed dependency loader and that a method setup based test may not yet have needed the required assembly.</param>
+        /// <param name="functionAppConfigurationAssembly">If your Function App Configuration cannot be found you may need to provide the assembly it is located within to the setup - this is due to the as needed dependency loader and that a method setup based test may not yet have needed the required assembly.</param>
+        /// <param name="mockLogger">A logger that will be injected into any handlers - handy for supplying a Moq<ILogger> or such like. If not specified a simple internal stub will be used.</param>
         public void Setup(
             Assembly functionAppConfigurationAssembly = null,
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild = null,
-            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild = null
+            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild = null,
+            ILogger mockLogger = null
         )
         {
             _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeServiceProviderBuild, afterServiceProviderBuild);
+            _runtimeInstance.FunctionProvidedLogger.Value = mockLogger ?? new LoggerMock();
         }
 
         /// <summary>

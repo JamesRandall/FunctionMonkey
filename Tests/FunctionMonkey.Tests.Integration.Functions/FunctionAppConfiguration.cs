@@ -64,6 +64,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                         .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
                     )
+                    .HttpRoute("withLogger", route => route
+                        .HttpFunction<HttpGetWithLoggerCommand>(HttpMethod.Get)
+                    )
                     .HttpRoute("queryParameters", route => route
                         .HttpFunction<HttpGetQueryParamCommand>(HttpMethod.Get)
                     )

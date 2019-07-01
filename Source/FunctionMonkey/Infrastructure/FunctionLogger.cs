@@ -5,9 +5,16 @@ namespace FunctionMonkey.Infrastructure
 {
     class FunctionLogger : ILogger
     {
+        private readonly RuntimeInstance _runtimeInstance;
+
+        public FunctionLogger(RuntimeInstance runtimeInstance)
+        {
+            _runtimeInstance = runtimeInstance;
+        }
+        
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            Runtime.FunctionProvidedLogger.Value.Log(logLevel, eventId, state, exception, formatter);
+            _runtimeInstance.FunctionProvidedLogger.Value.Log(logLevel, eventId, state, exception, formatter);
         }
 
         public bool IsEnabled(LogLevel logLevel)

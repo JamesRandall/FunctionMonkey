@@ -81,5 +81,13 @@ namespace FunctionMonkey.Testing.Tests
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.Property == "Value"));
             Assert.NotNull(validationResult.Errors.SingleOrDefault(x => x.ErrorCode == "NotEqualValidator"));
         }
+
+        [Fact]
+        public async Task ReturnsOkForCommandWithNoResultAndLogger()
+        {
+            HttpResponse httpResponse = await ExecuteHttpAsync(new HttpGetWithLoggerCommand());
+            Assert.Equal(200, httpResponse.StatusCode);
+            Assert.Equal(0, httpResponse.ContentLength);
+        }
     }
 }
