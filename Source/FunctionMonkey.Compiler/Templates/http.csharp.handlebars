@@ -128,48 +128,62 @@ namespace {{Namespace}}
                 {{#unless IsFormCollection}}
                     if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
                     {
-                        {{#if IsString}}
-                        command.{{Name}} = queryParameterValues[0];
-                        {{else if IsEnum}}
+
+                        {{#if IsCollection}}
+                            {{#if IsCollectionArray}}
+                                var collection = new {{{CollectionInstanceTypeName}}}[queryParameterValues.Count];
+                                int queryParameterArrayIndex = 0;
+                            {{else}}
+                                var collection = new {{{CollectionInstanceTypeName}}}();
+                            {{/if}}
+                        {{/if}}
+                        foreach(string queryParameterValue in queryParameterValues)
                         {
-                            {{{TypeName}}} result;
-                            if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
+                            {{{TypeName}}} parsedValue = default({{{TypeName}}});
+                
+                            {{#if IsString}}
+                            parsedValue = queryParameterValues[0];
+                            {{else if IsEnum}}
                             {
-                                command.{{Name}} = result;
-                            }
-                            else
-                            {
-                                return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
-                            }
-                        }
-                        {{else if IsNullable}}
-                        {
-                            {{#if IsNullableTypeHasTryParseMethod}}
-                            {
-                                {{{TypeName}}} nullableValue;
-                                if (queryParameterValues[0] != null)
+                                if (!System.Enum.TryParse<{{TypeName}}>(queryParameterValue, out parsedValue))
                                 {
-                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
-                                    {
-                                        command.{{Name}} = nullableValue;
-                                    }
-                                    else
-                                    {
-                                        return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
-                                    }
+                                    return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }
                             }
+                            {{else if IsNullable}}
+                            {
+                                {{#if IsNullableTypeHasTryParseMethod}}
+                                    if (queryParameterValue != null)
+                                    {
+                                        if(!TryParseNullable(queryParameterValue, {{NullableType}}.TryParse, out parsedValue))
+                                        {
+                                            return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                        }
+                                    }
+                                {{/if}}
+                            }
+                            {{else}}
+                                if (!{{TypeName}}.TryParse(queryParameterValues[0], out parsedValue))
+                                {
+                                    return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                }
+                            {{/if}}
+                
+                            {{#if IsCollection}}
+                                {{#if IsCollectionArray}}
+                                    collection[queryParameterArrayIndex] = parsedValue;
+                                    queryParameterArrayIndex++;
+                                {{else}}
+                                    collection.Add(parsedValue);
+                                {{/if}}
+                            {{else}}
+                                command.{{Name}} = parsedValue;
+                                break;
                             {{/if}}
                         }
-                        {{else}}
-                            if ({{TypeName}}.TryParse(queryParameterValues[0], out var candidate))
-                            {   
-                                command.{{Name}} = candidate;
-                            }
-                            else
-                            {
-                                return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
-                            }
+                
+                        {{#if IsCollection}}
+                            command.{{Name}} = collection;
                         {{/if}}
                     }
                 {{/unless}}

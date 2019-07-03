@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FunctionMonkey.Abstractions.Extensions;
@@ -20,7 +22,31 @@ namespace FunctionMonkey.Model
 
         public bool IsEnum => Type.IsEnum;
 
-		public bool IsNullable => Type.IsGenericType && Type.GetGenericTypeDefinition() == typeof(Nullable<>);
+        public bool IsCollection => typeof(IEnumerable<>).IsAssignableFrom(Type);
+
+        public bool IsCollectionArray => Type.IsArray;
+
+        public Type CollectionInstanceType
+        {
+	        get
+	        {
+		        if (Type.IsInterface)
+		        {
+			        // we need to figure out the right collection type for the interface
+			        Type genericList = typeof(List<>);
+			        Type typedList = genericList.MakeGenericType(Type.GenericTypeArguments[0]);
+			        return typedList;
+		        }
+
+		        // TODO: Get generic argument from IEnumerable and make sure the collection
+		        // has an add method
+		        return Type; // can we always return the type if its a concrete collection?
+	        }
+        }
+
+        public string CollectionInstanceTypeName => CollectionInstanceType.EvaluateType();
+
+        public bool IsNullable => Type.IsGenericType && Type.GetGenericTypeDefinition() == typeof(Nullable<>);
 
 	    public string NullableType => Type.GetGenericArguments().First().FullName;
 
