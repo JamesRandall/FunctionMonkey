@@ -131,7 +131,7 @@ namespace {{Namespace}}
 
                         {{#if IsCollection}}
                             {{#if IsCollectionArray}}
-                                var collection = new {{{CollectionInstanceTypeName}}}[queryParameterValues.Count];
+                                var collection = new {{{DiscreteTypeName}}}[queryParameterValues.Count];
                                 int queryParameterArrayIndex = 0;
                             {{else}}
                                 var collection = new {{{CollectionInstanceTypeName}}}();
@@ -139,13 +139,13 @@ namespace {{Namespace}}
                         {{/if}}
                         foreach(string queryParameterValue in queryParameterValues)
                         {
-                            {{{TypeName}}} parsedValue = default({{{TypeName}}});
+                            {{{DiscreteTypeName}}} parsedValue = default({{{DiscreteTypeName}}});
                 
                             {{#if IsString}}
-                            parsedValue = queryParameterValues[0];
+                            parsedValue = queryParameterValue;
                             {{else if IsEnum}}
                             {
-                                if (!System.Enum.TryParse<{{TypeName}}>(queryParameterValue, out parsedValue))
+                                if (!System.Enum.TryParse<{{DiscreteTypeName}}>(queryParameterValue, out parsedValue))
                                 {
                                     return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }
@@ -163,7 +163,7 @@ namespace {{Namespace}}
                                 {{/if}}
                             }
                             {{else}}
-                                if (!{{TypeName}}.TryParse(queryParameterValues[0], out parsedValue))
+                                if (!{{DiscreteTypeName}}.TryParse(queryParameterValue, out parsedValue))
                                 {
                                     return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }

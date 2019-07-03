@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using FunctionMonkey.Abstractions.Extensions;
+using FunctionMonkey.Extensions;
 using Microsoft.AspNetCore.Http;
 
 namespace FunctionMonkey.Model
@@ -22,7 +23,7 @@ namespace FunctionMonkey.Model
 
         public bool IsEnum => Type.IsEnum;
 
-        public bool IsCollection => typeof(IEnumerable<>).IsAssignableFrom(Type);
+        public bool IsCollection => Type.IsSupportedQueryParameterCollectionType();
 
         public bool IsCollectionArray => Type.IsArray;
 
@@ -44,13 +45,18 @@ namespace FunctionMonkey.Model
 	        }
         }
 
+        public Type DiscreteType =>
+	        (Type.IsSupportedQueryParameterCollectionType() ? Type.SupportedCollectionValueType() : Type);
+
+        public string DiscreteTypeName => DiscreteType.EvaluateType();
+
         public string CollectionInstanceTypeName => CollectionInstanceType.EvaluateType();
 
-        public bool IsNullable => Type.IsGenericType && Type.GetGenericTypeDefinition() == typeof(Nullable<>);
+        public bool IsNullable => DiscreteType.IsGenericType && DiscreteType.GetGenericTypeDefinition() == typeof(Nullable<>);
 
-	    public string NullableType => Type.GetGenericArguments().First().FullName;
+	    public string NullableType => DiscreteType.GetGenericArguments().First().FullName;
 
-	    public bool IsNullableTypeHasTryParseMethod => IsNullable && Type.GetGenericArguments().First()
+	    public bool IsNullableTypeHasTryParseMethod => IsNullable && DiscreteType.GetGenericArguments().First()
 		                                                   .GetMethods(BindingFlags.Public | BindingFlags.Static)
 		                                                   .Any(x => x.Name == "TryParse");
 

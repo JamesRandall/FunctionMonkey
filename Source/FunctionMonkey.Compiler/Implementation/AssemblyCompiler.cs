@@ -114,7 +114,8 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputCode = template(functionDefinition);
             OutputDiagnosticCode(directoryInfo, name, outputCode);
 
-            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode);
+            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode, path:$"{name}.cs");
+            //syntaxTree = syntaxTree.WithFilePath($"{name}.cs");
             syntaxTrees.Add(syntaxTree);
         }
 

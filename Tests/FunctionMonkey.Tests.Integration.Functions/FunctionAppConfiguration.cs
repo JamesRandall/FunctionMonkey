@@ -69,6 +69,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     )
                     .HttpRoute("queryParameters", route => route
                         .HttpFunction<HttpGetQueryParamCommand>(HttpMethod.Get)
+                        .HttpFunction<HttpArrayQueryParamCommand>("/array", HttpMethod.Get)
                     )
                     .HttpRoute("routeParameters", route => route
                         .HttpFunction<HttpGetRouteParameterCommand>("/{message}/{value:int}/{optionalValue?}/{optionalMessage?}")

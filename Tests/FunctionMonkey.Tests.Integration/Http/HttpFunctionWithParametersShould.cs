@@ -55,5 +55,17 @@ namespace FunctionMonkey.Tests.Integration.Http
             string errorMessage = await response.Content.ReadAsStringAsync();
             Assert.Equal("Invalid type for query parameter NullableGuid", errorMessage);
         }
+
+        [Fact]
+        public async Task ReturnSumOfArrayQueryParams()
+        {
+            string url = $"{Settings.Host}queryParameters/array?value=1&value=3&value=5&strval=some,sss&strval=pol,rtt";
+                
+                
+            string response = await url.GetStringAsync();
+
+            int sumResult = int.Parse(response);
+            Assert.Equal(9, sumResult);
+        }
     }
 }

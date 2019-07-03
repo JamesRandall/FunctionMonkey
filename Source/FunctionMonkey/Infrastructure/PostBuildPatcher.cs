@@ -197,10 +197,7 @@ namespace FunctionMonkey.Infrastructure
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
                             && x.SetMethod != null
-                            && (x.PropertyType == typeof(string) 
-                                || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse")
-                                || x.PropertyType.IsEnum
-                                || x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                            && x.PropertyType.IsSupportedQueryParameterType()
                             && httpFunctionDefinition.RouteParameters.All(y => y.Name != x.Name) // we can't be a query parameter and a route parameter
                             )
                 .Select(x => new HttpParameter
