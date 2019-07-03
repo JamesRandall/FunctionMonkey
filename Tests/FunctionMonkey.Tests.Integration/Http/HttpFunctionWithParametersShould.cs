@@ -59,7 +59,43 @@ namespace FunctionMonkey.Tests.Integration.Http
         [Fact]
         public async Task ReturnSumOfArrayQueryParams()
         {
-            string url = $"{Settings.Host}queryParameters/array?value=1&value=3&value=5&strval=some,sss&strval=pol,rtt";
+            string url = $"{Settings.Host}queryParameters/array?value=1&value=3&value=5";
+                
+                
+            string response = await url.GetStringAsync();
+
+            int sumResult = int.Parse(response);
+            Assert.Equal(9, sumResult);
+        }
+        
+        [Fact]
+        public async Task ReturnSumOfReadonlyCollectionQueryParams()
+        {
+            string url = $"{Settings.Host}queryParameters/readonlyCollection?value=1&value=3&value=5";
+                
+                
+            string response = await url.GetStringAsync();
+
+            int sumResult = int.Parse(response);
+            Assert.Equal(9, sumResult);
+        }
+        
+        [Fact]
+        public async Task ReturnSumOfListQueryParams()
+        {
+            string url = $"{Settings.Host}queryParameters/list?value=1&value=3&value=5";
+                
+                
+            string response = await url.GetStringAsync();
+
+            int sumResult = int.Parse(response);
+            Assert.Equal(9, sumResult);
+        }
+        
+        [Fact]
+        public async Task ReturnSumOfEnumerableQueryParams()
+        {
+            string url = $"{Settings.Host}queryParameters/enumerable?value=1&value=3&value=5";
                 
                 
             string response = await url.GetStringAsync();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -27,16 +28,15 @@ namespace FunctionMonkey.Extensions
             {
                 return false;
             }
-            Type genericEnumerableType = typeof(IEnumerable<>);
-            Type enumerableType = type.GetInterfaces()
-                .SingleOrDefault(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericEnumerableType);
+            
+            Type enumerableType = type.GetEnumerableType();
             if (enumerableType != null)
             {
                 Type enumerableValueType = enumerableType.GenericTypeArguments[0]; 
                 if (enumerableValueType.IsSupportedQueryParameterDiscreteType())
                 {
                     return 
-                        type.IsArray ||
+                        type.IsArray || type.IsInterface ||
                         type.GetMethods().Any(x =>
                             x.Name == "Add" &&
                             x.GetParameters().Length == 1 &&
@@ -51,9 +51,25 @@ namespace FunctionMonkey.Extensions
         public static Type SupportedCollectionValueType(this Type type)
         {
             Type genericEnumerableType = typeof(IEnumerable<>);
-            Type enumerableType = type.GetInterfaces()
-                .Single(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericEnumerableType);
+            Type enumerableType = type.GetEnumerableType();
+            Debug.Assert(enumerableType != null);
             return enumerableType.GenericTypeArguments[0];
+        }
+
+        private static Type GetEnumerableType(this Type type)
+        {
+            Type genericEnumerableType = typeof(IEnumerable<>);
+            Type enumerableType = type.GetInterfaces()
+                .SingleOrDefault(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericEnumerableType);
+            if (enumerableType == null)
+            {
+                if (type.IsGenericType && type.GetGenericTypeDefinition() == genericEnumerableType)
+                {
+                    enumerableType = type;
+                }
+            }
+
+            return enumerableType;
         }
     }
 }
