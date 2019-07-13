@@ -42,6 +42,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .Title("Integration Test Functions")
                     .Version("1.0.0")
                 )
+                .Authorization(authorization => authorization.AuthorizationDefault(AuthorizationTypeEnum.Anonymous))
                 .DefaultConnectionStringSettingNames(settingNames =>
                     {
                         // These are the default values - you don't have to set them
@@ -68,7 +69,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpGetWithLoggerCommand>(HttpMethod.Get)
                     )
                     .HttpRoute("queryParameters", route => route
-                        .HttpFunction<HttpGetQueryParamCommand>(HttpMethod.Get)
+                        .HttpFunction<HttpGetQueryParamCommand>(AuthorizationTypeEnum.Function, HttpMethod.Get)
                         .HttpFunction<HttpArrayQueryParamCommand>("/array", HttpMethod.Get)
                         .HttpFunction<HttpIReadOnlyCollectionQueryParamCommand>("/readonlyCollection", HttpMethod.Get)
                         .HttpFunction<HttpListQueryParamCommand>("/list", HttpMethod.Get)

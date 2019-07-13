@@ -204,7 +204,7 @@ namespace FunctionMonkey.Infrastructure
                 {
                     Name = x.Name,
                     Type = x.PropertyType,
-                    IsOptional = !x.PropertyType.IsValueType
+                    IsOptional = !x.PropertyType.IsValueType || Nullable.GetUnderlyingType(x.PropertyType) != null
                 })
                 .ToArray();
         }

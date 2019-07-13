@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Compiler.Extensions;
 using FunctionMonkey.Model;
@@ -243,6 +244,18 @@ namespace FunctionMonkey.Compiler.Implementation
                                     Description = ""
                                 });
                             }
+                        }
+
+                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function  && method == HttpMethod.Get || method == HttpMethod.Delete)
+                        {
+                            operation.Parameters.Add(new OpenApiParameter
+                            {
+                                Name = "code",
+                                In = ParameterLocation.Query,
+                                Required = true,
+                                Schema = typeof(string).MapToOpenApiSchema(),
+                                Description = ""
+                            });
                         }
 
                         foreach (HttpParameter property in functionByRoute.RouteParameters)
