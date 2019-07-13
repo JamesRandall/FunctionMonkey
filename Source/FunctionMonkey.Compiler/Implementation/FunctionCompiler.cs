@@ -63,7 +63,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 throw new ConfigurationException($"The assembly {_configurationSourceAssembly.GetName().Name} does not contain a public class implementing the IFunctionAppConfiguration interface");
             }
 
-            string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name}.Functions";
+            string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name.Replace("-", "_")}.Functions";
             FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
             configuration.Build(builder);
             new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
