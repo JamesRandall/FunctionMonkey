@@ -1,3 +1,7 @@
+# v3.0.5-beta2
+
+* Corrected mistake in output binding for Session ID
+
 # v3.0.4-beta1
 
 This is released as a beta as it includes support for Service Bus session IDs which are currently only available in a beta version of the Microsoft.Azure.WebJobs.Extensions.ServiceBus package. Its not causing me any issues but the versioning of this as a beta is to give fair warning.

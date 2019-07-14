@@ -38,6 +38,8 @@
           href: serviceBus/topics.md
         - name: Message Properties
           href: serviceBus/messageProperties.md
+        - name: Message Sessions
+          href: serviceBus/sessionId.md
     - name: Cosmos DB
       items:
         - name: Overview
