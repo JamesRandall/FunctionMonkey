@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace FunctionMonkey.Commanding.Abstractions
    ">
-    <meta name="generator" content="docfx 2.42.4.0">
+    <meta name="generator" content="docfx 2.43.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -83,6 +83,10 @@
       <section></section>
     <h3 id="interfaces">Interfaces
   </h3>
+      <h4><a class="xref" href="FunctionMonkey.Commanding.Abstractions.ICommandWithNoHandler.html">ICommandWithNoHandler</a></h4>
+      <section><p>This interface can be used to signify that a command has no handler and therefore shouldn&apos;t be dispatched.
+This is useful if you want to accept and validate a payload and route it directly to an output binding</p>
+</section>
       <h4><a class="xref" href="FunctionMonkey.Commanding.Abstractions.IStreamCommand.html">IStreamCommand</a></h4>
       <section><p>If a command implements this interface then when its handler is executed
 it will have the Stream property set to the input of the function that was
