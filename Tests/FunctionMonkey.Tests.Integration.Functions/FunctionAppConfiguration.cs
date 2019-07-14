@@ -143,10 +143,20 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         
                         .HttpFunction<HttpTriggerServiceBusQueueWithSessionIdOutputCommand>("/toServiceBusQueueWithSessionId")
                         .Options(options => options.NoCommandHandler())
-                        .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueueWithSessionId, command => command.ASessionId)
+                        .OutputTo.ServiceBusQueue<HttpTriggerServiceBusTopicWithSessionIdOutputCommand>(
+                            Constants.ServiceBus.MarkerQueueWithSessionId, 
+                            command => command.ASessionId)
                         
                         .HttpFunction<HttpTriggerServiceBusTopicWithSessionIdOutputCommand>("/toServiceBusTopicWithSessionId")
-                        .OutputTo.ServiceBusTopic(Constants.ServiceBus.MarkerTopicWithSessionId, command => command.ASessionId)
+                        .OutputTo.ServiceBusTopic<HttpTriggerServiceBusTopicWithSessionIdOutputCommand>(
+                            Constants.ServiceBus.MarkerTopicWithSessionId, 
+                            command => command.ASessionId)
+                        
+                        .HttpFunction<HttpTriggerServiceBusQueueWithSessionIdResultOutputCommand>("/toServiceBusQueueWithResultSessionId")
+                        .OutputTo.ServiceBusQueue<ModelWithSessionId>(
+                            Constants.ServiceBus.MarkerQueueWithSessionId, 
+                            result => result.SessionId)
+
 
                         // Storage
 

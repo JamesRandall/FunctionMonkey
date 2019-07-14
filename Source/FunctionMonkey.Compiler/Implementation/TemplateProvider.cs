@@ -62,7 +62,7 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 return GetTemplate(outputBinding, "output.json");
             }
-            catch (ConfigurationException e)
+            catch (ConfigurationException)
             {
                 return null;
             }            

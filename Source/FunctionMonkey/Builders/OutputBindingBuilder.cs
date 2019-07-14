@@ -26,7 +26,24 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public TParentBuilder ServiceBusQueue(string connectionString, string queueName, Expression<Func<TCommand,object>> sessionIdProperty=null)
+        public TParentBuilder ServiceBusQueue(string connectionString, string queueName)
+        {
+            VerifyOutputBinding();
+            
+            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
+            {
+                QueueName = queueName
+            };
+
+            return _parentBuilder;
+        }
+
+        public TParentBuilder ServiceBusQueue(string queueName)
+        {
+            return ServiceBusQueue(_connectionStringSettingNames.ServiceBus, queueName);
+        }
+        
+        public TParentBuilder ServiceBusQueue<TResult>(string connectionString, string queueName, Expression<Func<TResult,object>> sessionIdProperty)
         {
             VerifyOutputBinding();
             string sessionIdPropertyName = null;
@@ -42,13 +59,29 @@ namespace FunctionMonkey.Builders
 
             return _parentBuilder;
         }
-
-        public TParentBuilder ServiceBusQueue(string queueName, Expression<Func<TCommand,object>> sessionIdProperty=null)
+        
+        public TParentBuilder ServiceBusQueue<TResult>(string queueName, Expression<Func<TResult,object>> sessionIdProperty=null)
         {
             return ServiceBusQueue(_connectionStringSettingNames.ServiceBus, queueName, sessionIdProperty);
         }
+        
+        public TParentBuilder ServiceBusTopic(string connectionString, string topicName)
+        {
+            VerifyOutputBinding();
+            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
+            {
+                TopicName = topicName
+            };
 
-        public TParentBuilder ServiceBusTopic(string connectionString, string topicName, Expression<Func<TCommand,object>> sessionIdProperty=null)
+            return _parentBuilder;
+        }
+        
+        public TParentBuilder ServiceBusTopic(string topicName)
+        {
+            return ServiceBusTopic(_connectionStringSettingNames.ServiceBus, topicName);
+        }
+
+        public TParentBuilder ServiceBusTopic<TResult>(string connectionString, string topicName, Expression<Func<TResult,object>> sessionIdProperty=null)
         {
             VerifyOutputBinding();
             string sessionIdPropertyName = null;
@@ -65,7 +98,7 @@ namespace FunctionMonkey.Builders
             return _parentBuilder;
         }
 
-        public TParentBuilder ServiceBusTopic(string topicName, Expression<Func<TCommand,object>> sessionIdProperty=null)
+        public TParentBuilder ServiceBusTopic<TResult>(string topicName, Expression<Func<TResult,object>> sessionIdProperty)
         {
             return ServiceBusTopic(_connectionStringSettingNames.ServiceBus, topicName, sessionIdProperty);
         }

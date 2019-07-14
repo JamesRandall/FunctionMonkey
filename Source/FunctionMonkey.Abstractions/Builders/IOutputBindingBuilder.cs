@@ -7,10 +7,14 @@ namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IOutputBindingBuilder<TCommand, out TFunctionTypeBuilder> where TCommand : ICommand
     {
-        TFunctionTypeBuilder ServiceBusQueue(string connectionStringSettingName, string queueName, Expression<Func<TCommand,object>> sessionIdProperty=null);
-        TFunctionTypeBuilder ServiceBusQueue(string queueName, Expression<Func<TCommand,object>> sessionIdProperty=null);
-        TFunctionTypeBuilder ServiceBusTopic(string connectionStringSettingName, string topicName, Expression<Func<TCommand,object>> sessionIdProperty=null);
-        TFunctionTypeBuilder ServiceBusTopic(string topicName, Expression<Func<TCommand,object>> sessionIdProperty=null);
+        TFunctionTypeBuilder ServiceBusQueue(string connectionStringSettingName, string queueName);
+        TFunctionTypeBuilder ServiceBusQueue<TResult>(string connectionStringSettingName, string queueName, Expression<Func<TResult,object>> sessionIdProperty=null);
+        TFunctionTypeBuilder ServiceBusQueue(string queueName);
+        TFunctionTypeBuilder ServiceBusQueue<TResult>(string queueName, Expression<Func<TResult,object>> sessionIdProperty); 
+        TFunctionTypeBuilder ServiceBusTopic(string connectionStringSettingName, string topicName);
+        TFunctionTypeBuilder ServiceBusTopic<TResult>(string connectionStringSettingName, string topicName, Expression<Func<TResult,object>> sessionIdProperty=null);
+        TFunctionTypeBuilder ServiceBusTopic(string topicName);
+        TFunctionTypeBuilder ServiceBusTopic<TResult>(string topicName, Expression<Func<TResult,object>> sessionIdProperty=null);
         TFunctionTypeBuilder SignalRMessage(string connectionStringSettingName, string hubName);
         TFunctionTypeBuilder SignalRMessage(string hubName);        
         TFunctionTypeBuilder SignalRGroupAction(string connectionStringSettingName, string hubName);
