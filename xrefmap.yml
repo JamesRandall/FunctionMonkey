@@ -1070,24 +1070,22 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb
   nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb
   nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,Expression{Func{`0,System.Object}})
-  name: ServiceBusQueue(String, Expression<Func<TCommand, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_Expression_Func__0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,Expression{Func{`0,System.Object}})
-  name.vb: ServiceBusQueue(String, Expression(Of Func(Of TCommand, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(System.String, Expression<Func<TCommand, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(System.String, Expression(Of Func(Of TCommand, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(String, Expression<Func<TCommand, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(String, Expression(Of Func(Of TCommand, Object)))
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,System.String,Expression{Func{`0,System.Object}})
-  name: ServiceBusQueue(String, String, Expression<Func<TCommand, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_System_String_Expression_Func__0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,System.String,Expression{Func{`0,System.Object}})
-  name.vb: ServiceBusQueue(String, String, Expression(Of Func(Of TCommand, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(System.String, System.String, Expression<Func<TCommand, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(System.String, System.String, Expression(Of Func(Of TCommand, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(String, String, Expression<Func<TCommand, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(String, String, Expression(Of Func(Of TCommand, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String)
+  name: ServiceBusQueue(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(System.String)
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,System.String)
+  name: ServiceBusQueue(String, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(String, String)
 - uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue*
   name: ServiceBusQueue
   href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_
@@ -1097,24 +1095,40 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue
   nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue
   nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,Expression{Func{`0,System.Object}})
-  name: ServiceBusTopic(String, Expression<Func<TCommand, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_System_String_Expression_Func__0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,Expression{Func{`0,System.Object}})
-  name.vb: ServiceBusTopic(String, Expression(Of Func(Of TCommand, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(System.String, Expression<Func<TCommand, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(System.String, Expression(Of Func(Of TCommand, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(String, Expression<Func<TCommand, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(String, Expression(Of Func(Of TCommand, Object)))
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,System.String,Expression{Func{`0,System.Object}})
-  name: ServiceBusTopic(String, String, Expression<Func<TCommand, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_System_String_System_String_Expression_Func__0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,System.String,Expression{Func{`0,System.Object}})
-  name.vb: ServiceBusTopic(String, String, Expression(Of Func(Of TCommand, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(System.String, System.String, Expression<Func<TCommand, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(System.String, System.String, Expression(Of Func(Of TCommand, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(String, String, Expression<Func<TCommand, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(String, String, Expression(Of Func(Of TCommand, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,Expression{Func{``0,System.Object}})
+  name: ServiceBusQueue<TResult>(String, Expression<Func<TResult, Object>>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue__1_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,Expression{Func{``0,System.Object}})
+  name.vb: ServiceBusQueue(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  name: ServiceBusQueue<TResult>(String, String, Expression<Func<TResult, Object>>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue__1_System_String_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  name.vb: ServiceBusQueue(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(System.String, System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(System.String, System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(String, String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String)
+  name: ServiceBusTopic(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(System.String)
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,System.String)
+  name: ServiceBusTopic(String, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(String, String)
 - uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic*
   name: ServiceBusTopic
   href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_
@@ -1124,6 +1138,24 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic
   nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic
   nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,Expression{Func{``0,System.Object}})
+  name: ServiceBusTopic<TResult>(String, Expression<Func<TResult, Object>>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic__1_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,Expression{Func{``0,System.Object}})
+  name.vb: ServiceBusTopic(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  name: ServiceBusTopic<TResult>(String, String, Expression<Func<TResult, Object>>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic__1_System_String_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  name.vb: ServiceBusTopic(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(System.String, System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(System.String, System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(String, String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
 - uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction(System.String)
   name: SignalRGroupAction(String)
   href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRGroupAction_System_String_
