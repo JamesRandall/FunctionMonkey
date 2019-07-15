@@ -161,7 +161,8 @@
         return result;
     }
 }
-</code></pre><p>Token validators can also be specified on a per function basis as shown in the example below:</p>
+</code></pre><p>To use the above example you will need to add the Microsoft.IdentityModel.Protocols.OpenIdConnect package to your project.</p>
+<p>Token validators can also be specified on a per function basis as shown in the example below:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
     public void Build(IFunctionHostBuilder builder)
@@ -220,7 +221,9 @@
             );
     }
 }
-</code></pre><div id="disqus_thread"></div>
+</code></pre><h2 id="accessing-the-claims-from-command-handlers">Accessing the Claims From Command Handlers</h2>
+<p>Claims are accessed by mapping them onto command properties as described in the <a href="/http/claimsmapping.md">next section</a>.</p>
+<div id="disqus_thread"></div>
             </article>
           </div>
           
