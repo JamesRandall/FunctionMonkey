@@ -80,4 +80,54 @@ An example of each in use is shown below:
         }
     }
 
-    Note that there are some specific command result types required for SignalR. More details can be found in its own section.
+Note that there are some specific command result types required for SignalR. More details can be found in its own section.
+
+## Output Bindings without Command Handlers
+
+If you simply want to accept a payload from a trigger and hand it straight off to an output trigger then a command handler is somewhat superfluous - it won't take the payload and return the payload. This can be useful if, for example, you have a HTTP endpoint for which you want to enforce authorization and validation before placing the payload onto a Service Bus queue.
+
+Function Monkey makes it possible to use a command without creating and registering a command handler in one of two ways.
+
+Firstly you can mark your command with the _ICommandWithNoHandler_ interface rather than the _ICommand_ interface.
+
+    public class SampleCommand : ICommandWithNoHandler
+    {
+        public string SomeValue { get; set; }
+    }
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Functions(functions => functions
+                    .HttpRoute("outputExample", route => route
+                        .HttpFunction<SampleCommand>()
+                        .OutputTo.ServiceBusQueue("myqueue")
+                    )
+                );
+        }
+    }
+
+Alternatively you can use the NoCommandHandler option as shown below:
+
+    public class SampleCommand : ICommand
+    {
+        public string SomeValue { get; set; }
+    }
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Functions(functions => functions
+                    .HttpRoute("outputExample", route => route
+                        .HttpFunction<SampleCommand>()
+                        .Options(options => options.NoCommandHandler())
+                        .OutputTo.ServiceBusQueue("myqueue")
+                    )
+                );
+        }
+    }
+

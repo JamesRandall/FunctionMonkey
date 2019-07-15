@@ -99,6 +99,8 @@ Validators should implement the _ITokenValidator_ interface as shown in the exam
         }
     }
 
+To use the above example you will need to add the Microsoft.IdentityModel.Protocols.OpenIdConnect package to your project.
+
 Token validators can also be specified on a per function basis as shown in the example below:
 
     public class FunctionAppConfiguration : IFunctionAppConfiguration
@@ -166,3 +168,7 @@ And it is shown specified at the route level in the below Function App configura
                 );
         }
     }
+
+## Accessing the Claims From Command Handlers
+
+Claims are accessed by mapping them onto command properties as described in the [next section](/http/claimsmapping.md).
