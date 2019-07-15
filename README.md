@@ -37,7 +37,8 @@ Full documentation is available here:
 
 https://functionmonkey.azurefromthetrenches.com
 
-In addition there are a series of videos on building out a simple application:
+In addition there is a video tutorial series on building out a simple application:
 
-https://www.youtube.com/playlist?list=PLB09mElO-eDipUqGup9d8GFCL2KUj1JYx
+[![Video tutorial series](https://github.com/JamesRandall/FunctionMonkey/blob/master/videoScreenshot.png?raw=true)](https://www.youtube.com/playlist?list=PLB09mElO-eDipUqGup9d8GFCL2KUj1JYx "Video tutorial series")
+
 
