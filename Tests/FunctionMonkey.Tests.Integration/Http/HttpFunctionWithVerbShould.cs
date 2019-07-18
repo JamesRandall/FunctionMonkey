@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using FunctionMonkey.Tests.Integration.Http.Helpers;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace FunctionMonkey.Tests.Integration.Http
@@ -91,6 +92,23 @@ namespace FunctionMonkey.Tests.Integration.Http
                 .ReceiveJson<SimpleResponse>();
 
             ValidateEchoedResponse(response);
+        }
+
+        [Fact]
+        public async Task ReturnBadRequestOnTypeMismtachForPOST()
+        {
+            HttpResponseMessage response = await Settings.Host
+                .AllowAnyHttpStatus()
+                .AppendPathSegment("verbs")
+                .PostJsonAsync(new
+                {
+                    Value="mismatchedType",
+                    Message
+                });
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            string responseString = await response.Content.ReadAsStringAsync();
+            Assert.Equal("Invalid type in message body at line 1 for path Value", responseString);
         }
     }
 }

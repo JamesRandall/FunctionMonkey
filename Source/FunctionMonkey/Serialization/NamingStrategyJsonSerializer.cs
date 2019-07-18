@@ -49,7 +49,14 @@ namespace FunctionMonkey.Serialization
                     ? new JsonSecurityPropertyContractResolver() {NamingStrategy = _deserializerNamingStrategy}
                     : new DefaultContractResolver() {NamingStrategy = _deserializerNamingStrategy}
             };
-            return JsonConvert.DeserializeObject<TCommand>(json, serializerSettings);
+            try
+            {
+                return JsonConvert.DeserializeObject<TCommand>(json, serializerSettings);
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new DeserializationException(ex.Path, ex.LineNumber, ex.LinePosition);
+            }
         }
 
         /// <summary>

@@ -69,7 +69,8 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpGetWithLoggerCommand>(HttpMethod.Get)
                     )
                     .HttpRoute("queryParameters", route => route
-                        .HttpFunction<HttpGetQueryParamCommand>(AuthorizationTypeEnum.Function, HttpMethod.Get)
+                        .HttpFunction<HttpGetQueryParamCommand>(HttpMethod.Get)
+                        .HttpFunction<HttpGetGuidQueryParameterCommand>("/guidQueryParam", HttpMethod.Get)
                         .HttpFunction<HttpArrayQueryParamCommand>("/array", HttpMethod.Get)
                         .HttpFunction<HttpIReadOnlyCollectionQueryParamCommand>("/readonlyCollection", HttpMethod.Get)
                         .HttpFunction<HttpListQueryParamCommand>("/list", HttpMethod.Get)

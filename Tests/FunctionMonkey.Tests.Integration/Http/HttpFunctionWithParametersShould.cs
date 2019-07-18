@@ -1,7 +1,9 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl.Http;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace FunctionMonkey.Tests.Integration.Http
@@ -11,6 +13,39 @@ namespace FunctionMonkey.Tests.Integration.Http
         private const int Value = 92316;
 
         private const string Message = "this is some text to be echoed";
+        
+        [Fact]
+        public async Task ReturnGuidFromGETWithGuidTypeQueryParam()
+        {
+            Guid value = Guid.NewGuid();
+            
+            HttpResponseMessage response = await Settings.Host
+                .AllowAnyHttpStatus()
+                .AppendPathSegment("queryParameters")
+                .AppendPathSegment("guidQueryParam")
+                .SetQueryParam("value", value)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            string responseString = await response.Content.ReadAsStringAsync();
+            Guid responseGuid = JsonConvert.DeserializeObject<Guid>(responseString);
+            Assert.Equal(value, responseGuid);
+        }
+        
+        [Fact]
+        public async Task ReturnBadRequestForGETWithMismatchedGuidTypeQueryParam()
+        {
+            HttpResponseMessage response = await Settings.Host
+                .AllowAnyHttpStatus()
+                .AppendPathSegment("queryParameters")
+                .AppendPathSegment("guidQueryParam")
+                .SetQueryParam("value", "invalidguid")
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            string errorMessage = await response.Content.ReadAsStringAsync();
+            Assert.Equal("Invalid type for query parameter Value", errorMessage);
+        }
         
         [Fact]
         public async Task ReturnBadRequestForGETWithMismatchedTypeRouteParam()

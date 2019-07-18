@@ -106,7 +106,18 @@ namespace {{Namespace}}
                 
                 if (!System.String.IsNullOrWhiteSpace(requestBody))
                 {
-                    command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                    try
+                    {
+                        command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                    }
+                    catch(FunctionMonkey.DeserializationException dex)
+                    {
+                        System.Text.StringBuilder sbError = new System.Text.StringBuilder("Invalid type in message body at line ");
+                        sbError.Append(dex.LineNumber);
+                        sbError.Append(" for path ");
+                        sbError.Append(dex.Path);
+                        return CreateBadParameterResponse(sbError.ToString());
+                    }
                 }
                 else
                 {
