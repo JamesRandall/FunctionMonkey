@@ -4054,6 +4054,64 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.ConfigurationException.ConfigurationException
   nameWithType: ConfigurationException.ConfigurationException
+- uid: FunctionMonkey.DeserializationException
+  name: DeserializationException
+  href: api/FunctionMonkey.DeserializationException.html
+  commentId: T:FunctionMonkey.DeserializationException
+  fullName: FunctionMonkey.DeserializationException
+  nameWithType: DeserializationException
+- uid: FunctionMonkey.DeserializationException.#ctor(System.String,System.Int32,System.Int32)
+  name: DeserializationException(String, Int32, Int32)
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException__ctor_System_String_System_Int32_System_Int32_
+  commentId: M:FunctionMonkey.DeserializationException.#ctor(System.String,System.Int32,System.Int32)
+  fullName: FunctionMonkey.DeserializationException.DeserializationException(System.String, System.Int32, System.Int32)
+  nameWithType: DeserializationException.DeserializationException(String, Int32, Int32)
+- uid: FunctionMonkey.DeserializationException.#ctor*
+  name: DeserializationException
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException__ctor_
+  commentId: Overload:FunctionMonkey.DeserializationException.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.DeserializationException.DeserializationException
+  nameWithType: DeserializationException.DeserializationException
+- uid: FunctionMonkey.DeserializationException.LineNumber
+  name: LineNumber
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException_LineNumber
+  commentId: P:FunctionMonkey.DeserializationException.LineNumber
+  fullName: FunctionMonkey.DeserializationException.LineNumber
+  nameWithType: DeserializationException.LineNumber
+- uid: FunctionMonkey.DeserializationException.LineNumber*
+  name: LineNumber
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException_LineNumber_
+  commentId: Overload:FunctionMonkey.DeserializationException.LineNumber
+  isSpec: "True"
+  fullName: FunctionMonkey.DeserializationException.LineNumber
+  nameWithType: DeserializationException.LineNumber
+- uid: FunctionMonkey.DeserializationException.LinePosition
+  name: LinePosition
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException_LinePosition
+  commentId: P:FunctionMonkey.DeserializationException.LinePosition
+  fullName: FunctionMonkey.DeserializationException.LinePosition
+  nameWithType: DeserializationException.LinePosition
+- uid: FunctionMonkey.DeserializationException.LinePosition*
+  name: LinePosition
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException_LinePosition_
+  commentId: Overload:FunctionMonkey.DeserializationException.LinePosition
+  isSpec: "True"
+  fullName: FunctionMonkey.DeserializationException.LinePosition
+  nameWithType: DeserializationException.LinePosition
+- uid: FunctionMonkey.DeserializationException.Path
+  name: Path
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException_Path
+  commentId: P:FunctionMonkey.DeserializationException.Path
+  fullName: FunctionMonkey.DeserializationException.Path
+  nameWithType: DeserializationException.Path
+- uid: FunctionMonkey.DeserializationException.Path*
+  name: Path
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException_Path_
+  commentId: Overload:FunctionMonkey.DeserializationException.Path
+  isSpec: "True"
+  fullName: FunctionMonkey.DeserializationException.Path
+  nameWithType: DeserializationException.Path
 - uid: FunctionMonkey.FluentValidation
   name: FunctionMonkey.FluentValidation
   href: api/FunctionMonkey.FluentValidation.html

@@ -1025,6 +1025,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.DeserializationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.DeserializationException.html",
+          "hash": "aZYEZc6F2CALdRGj5LzLFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.yml",
       "output": {
         ".html": {
@@ -1125,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html",
-          "hash": "6sxpnHBUufySB4rrx4gcCg=="
+          "hash": "dzSxOzYCf4x1SQoOAGOCOQ=="
         }
       },
       "is_incremental": false,
@@ -1329,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.html",
-          "hash": "C+9uFkgmZ3EpCWrPcAIoeA=="
+          "hash": "jToIISkVbDJ6DorqTKo1Tg=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "maEGQ5kD36jOHd6QWHlLwQ=="
+          "hash": "tf06cmIILc6aygd5KL9P2w=="
         }
       },
       "is_incremental": false,
@@ -1865,18 +1877,6 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 111,
-          "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 36,
-          "skipped_file_count": 0
-        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
@@ -1884,11 +1884,23 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 112,
+          "skipped_file_count": 0
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 36,
           "skipped_file_count": 0
         }
       }
