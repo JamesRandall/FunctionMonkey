@@ -4,7 +4,47 @@ Function Monkey supports the standard authorization types of Azure Functions and
 
 This functionality is comprised of two discrete parts - token validation and claims authorization.
 
-## Token Validation
+## OpenID Connect Token Validation
+
+If you are using an Open ID Connect supporting identity provider such as Auth0, Azure AD B2C, or IdentityServer then you can use the FunctionMonkey.TokenValidation package to quickly and easily add authorization to your functions based API.
+
+First install the NuGet package into your Azure Functions project:
+
+    Install-Package FunctionMonkey.TokenValidation
+
+_At the time of writing you may need to add -pre onto the above as Function Monkey is listed as a preview package due to its reliance on a preview Service Bus package_
+
+Next add an Authorization block to your app configuration:
+
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    {
+        private const string Domain = "functionmonkey.eu.auth0.com";
+        private const string Audience = "https://serverlessblog";
+
+        public void Build(IFunctionHostBuilder builder)
+        {
+            builder
+                .Setup((serviceCollection, commandRegistry) =>
+                {
+                    commandRegistry.Register<InvoiceQueryHandler>();
+                })
+                .Authorization(authorization => authorization
+                    .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                    .AddOpenIdConnectTokenValidator($"https://{Domain}/.well-known/openid-configuration", Audience)
+                )
+                .Functions(functions => functions
+                    .HttpRoute("Invoice", route => route
+                        .HttpFunction<InvoiceQuery>()
+                    )
+                    .HttpRoute("Version", route => route
+                        .HttpFunction<VersionQuery>(AuthorizationTypeEnum.Anonymous))
+                );
+        }
+    }
+
+The audience is optional (it depends on how you have configured your identity provider) and the well known endpoint may be in a different location based on your identity provider. The example shown is for Auth0.
+
+## Custom Token Validation
 
 Token Validation validates a bearer token and returns a populated ClaimsPrincipal object. The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:
 
