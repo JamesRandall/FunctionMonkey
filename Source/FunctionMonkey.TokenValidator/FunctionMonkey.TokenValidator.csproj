@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <PackageVersion>3.0.10-beta4</PackageVersion>
+        <Authors>James Randall</Authors>
+        <Description>Token validator for Function Monkey</Description>
+        <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com</PackageProjectUrl>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/FunctionMonkey/master/LICENSE</PackageLicenseUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
+    </ItemGroup>
+
+</Project>

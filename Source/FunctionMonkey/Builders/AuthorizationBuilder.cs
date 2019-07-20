@@ -12,6 +12,8 @@ namespace FunctionMonkey.Builders
         public Type TokenValidatorType { get; set; }
 
         public string AuthorizationHeader { get; set; }
+        
+        public string WellKnownEndpoint { get; set; }
 
         public Type DefaultClaimsPrincipalAuthorizationType { get; set; }
         

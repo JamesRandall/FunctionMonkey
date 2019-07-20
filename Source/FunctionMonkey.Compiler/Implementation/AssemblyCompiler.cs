@@ -279,7 +279,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(AzureSignalRAuthClient).Assembly.Location,
                 typeof(System.Environment).Assembly.Location,
                 typeof(HttpTriggerAttribute).Assembly.Location,
-                typeof(ServiceBusAttribute).Assembly.Location
+                typeof(ServiceBusAttribute).Assembly.Location,
+                typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location
             };
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)

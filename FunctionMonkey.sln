@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Unit", "Tests\FunctionMonkey.Tests.Unit\FunctionMonkey.Tests.Unit.csproj", "{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.TokenValidator", "Source\FunctionMonkey.TokenValidator\FunctionMonkey.TokenValidator.csproj", "{8F86226B-3E2B-4ED1-B05C-E698728B7638}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,10 @@ Global
 		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

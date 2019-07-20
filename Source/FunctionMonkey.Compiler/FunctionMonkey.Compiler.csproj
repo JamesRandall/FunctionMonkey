@@ -6,7 +6,7 @@
     <Version>2.4.0-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
-    <PackageVersion>3.0.6-beta3</PackageVersion>
+    <PackageVersion>3.0.10-beta4</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -362,6 +362,7 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.1.2" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>

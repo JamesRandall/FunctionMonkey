@@ -7,3 +7,4 @@ dotnet pack ./Source/FunctionMonkey.Compiler/FunctionMonkey.Compiler.csproj --ou
 dotnet pack ./Source/FunctionMonkey.FluentValidation/FunctionMonkey.FluentValidation.csproj --output ../../ --configuration Release
 dotnet pack ./Source/FunctionMonkey.SignalR/FunctionMonkey.SignalR.csproj --output ../../ --configuration Release
 dotnet pack ./Source/FunctionMonkey.Testing/FunctionMonkey.Testing.csproj --output ../../ --configuration Release
+dotnet pack ./Source/FunctionMonkey.TokenValidator/FunctionMonkey.TokenValidator.csproj --output ../../ --configuration Release
