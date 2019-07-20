@@ -112,11 +112,18 @@ namespace {{Namespace}}
                     }
                     catch(FunctionMonkey.DeserializationException dex)
                     {
-                        System.Text.StringBuilder sbError = new System.Text.StringBuilder("Invalid type in message body at line ");
-                        sbError.Append(dex.LineNumber);
-                        sbError.Append(" for path ");
-                        sbError.Append(dex.Path);
-                        return CreateBadParameterResponse(sbError.ToString());
+                        if (dex.LineNumber != -1)
+                        {
+                            System.Text.StringBuilder sbError = new System.Text.StringBuilder("Invalid type in message body at line ");
+                            sbError.Append(dex.LineNumber);
+                            sbError.Append(" for path ");
+                            sbError.Append(dex.Path);
+                            return CreateBadParameterResponse(sbError.ToString());
+                        }
+                        else
+                        {
+                            return CreateBadParameterResponse(dex.Message);
+                        }
                     }
                 }
                 else

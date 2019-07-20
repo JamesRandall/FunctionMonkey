@@ -57,6 +57,10 @@ namespace FunctionMonkey.Serialization
             {
                 throw new DeserializationException(ex.Path, ex.LineNumber, ex.LinePosition);
             }
+            catch (JsonException ex)
+            {
+                throw new DeserializationException(ex.Message);
+            }
         }
 
         /// <summary>

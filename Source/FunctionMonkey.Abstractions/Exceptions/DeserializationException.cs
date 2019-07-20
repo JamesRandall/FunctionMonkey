@@ -16,5 +16,12 @@ namespace FunctionMonkey
             LineNumber = lineNumber;
             LinePosition = linePosition;
         }
+
+        public DeserializationException(string message) : base(message)
+        {
+            Path = null;
+            LineNumber = -1;
+            LinePosition = -1;
+        }
     }
 }
