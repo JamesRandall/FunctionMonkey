@@ -41,4 +41,4 @@ In addition there is a video tutorial series on building out a simple applicatio
 
 [![Video tutorial series](https://github.com/JamesRandall/FunctionMonkey/blob/master/videoScreenshot.png?raw=true)](https://www.youtube.com/playlist?list=PLB09mElO-eDipUqGup9d8GFCL2KUj1JYx "Video tutorial series")
 
-
+https://www.youtube.com/playlist?list=PLB09mElO-eDipUqGup9d8GFCL2KUj1JYx
