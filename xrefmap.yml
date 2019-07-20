@@ -4060,6 +4060,12 @@ references:
   commentId: T:FunctionMonkey.DeserializationException
   fullName: FunctionMonkey.DeserializationException
   nameWithType: DeserializationException
+- uid: FunctionMonkey.DeserializationException.#ctor(System.String)
+  name: DeserializationException(String)
+  href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException__ctor_System_String_
+  commentId: M:FunctionMonkey.DeserializationException.#ctor(System.String)
+  fullName: FunctionMonkey.DeserializationException.DeserializationException(System.String)
+  nameWithType: DeserializationException.DeserializationException(String)
 - uid: FunctionMonkey.DeserializationException.#ctor(System.String,System.Int32,System.Int32)
   name: DeserializationException(String, Int32, Int32)
   href: api/FunctionMonkey.DeserializationException.html#FunctionMonkey_DeserializationException__ctor_System_String_System_Int32_System_Int32_
