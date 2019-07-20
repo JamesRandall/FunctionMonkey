@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder.html",
-          "hash": "/WhTtBh12xaSZtCYNcRwCQ=="
+          "hash": "X7Su0nRnpOekcftEfyXNkQ=="
         }
       },
       "is_incremental": false,
@@ -1325,6 +1325,54 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.html",
+          "hash": "9pwslDZ/eVJ3hHJZ7sdbtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.TokenValidator.Implementation.TokenValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.TokenValidator.Implementation.TokenValidator.html",
+          "hash": "15yIvoOyeygpkvtf3DCFbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.TokenValidator.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.TokenValidator.Implementation.html",
+          "hash": "e3zAayo90VDCg83IYkto2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.TokenValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.TokenValidator.html",
+          "hash": "AWEPWP3tkzQaaupSXVQ3fQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.TypeLoadingException.yml",
       "output": {
         ".html": {
@@ -1365,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "tf06cmIILc6aygd5KL9P2w=="
+          "hash": "EvJtBqJ8ms/PSS0IYh3g5Q=="
         }
       },
       "is_incremental": false,
@@ -1545,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/http/authorization.html",
-          "hash": "/J26iQ6JaVOZYdAjeT0DQw=="
+          "hash": "EFl/1BjqfnPcF5xj9pYspg=="
         }
       },
       "is_incremental": false,
@@ -1877,17 +1925,17 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 36,
+          "skipped_file_count": 0
+        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 112,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
@@ -1897,10 +1945,10 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 36,
+          "total_file_count": 116,
           "skipped_file_count": 0
         }
       }

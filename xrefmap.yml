@@ -5002,6 +5002,59 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.ValidationException.ValidationResult
   nameWithType: ValidationException.ValidationResult
+- uid: FunctionMonkey.TokenValidator
+  name: FunctionMonkey.TokenValidator
+  href: api/FunctionMonkey.TokenValidator.html
+  commentId: N:FunctionMonkey.TokenValidator
+  fullName: FunctionMonkey.TokenValidator
+  nameWithType: FunctionMonkey.TokenValidator
+- uid: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions
+  name: IAuthorizationBuilderExtensions
+  href: api/FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.html
+  commentId: T:FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions
+  fullName: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions
+  nameWithType: IAuthorizationBuilderExtensions
+- uid: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator(FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder,System.String,System.String,Func{OpenIdConnectConfiguration,System.String,TokenValidationParameters},System.String)
+  name: AddOpenIdConnectTokenValidator(IAuthorizationBuilder, String, String, Func<OpenIdConnectConfiguration, String, TokenValidationParameters>, String)
+  href: api/FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.html#FunctionMonkey_TokenValidator_IAuthorizationBuilderExtensions_AddOpenIdConnectTokenValidator_FunctionMonkey_Abstractions_Builders_IAuthorizationBuilder_System_String_System_String_Func_OpenIdConnectConfiguration_System_String_TokenValidationParameters__System_String_
+  commentId: M:FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator(FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder,System.String,System.String,Func{OpenIdConnectConfiguration,System.String,TokenValidationParameters},System.String)
+  name.vb: AddOpenIdConnectTokenValidator(IAuthorizationBuilder, String, String, Func(Of OpenIdConnectConfiguration, String, TokenValidationParameters), String)
+  fullName: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator(FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder, System.String, System.String, Func<OpenIdConnectConfiguration, System.String, TokenValidationParameters>, System.String)
+  fullName.vb: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator(FunctionMonkey.Abstractions.Builders.IAuthorizationBuilder, System.String, System.String, Func(Of OpenIdConnectConfiguration, System.String, TokenValidationParameters), System.String)
+  nameWithType: IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator(IAuthorizationBuilder, String, String, Func<OpenIdConnectConfiguration, String, TokenValidationParameters>, String)
+  nameWithType.vb: IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator(IAuthorizationBuilder, String, String, Func(Of OpenIdConnectConfiguration, String, TokenValidationParameters), String)
+- uid: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator*
+  name: AddOpenIdConnectTokenValidator
+  href: api/FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.html#FunctionMonkey_TokenValidator_IAuthorizationBuilderExtensions_AddOpenIdConnectTokenValidator_
+  commentId: Overload:FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.TokenValidator.IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator
+  nameWithType: IAuthorizationBuilderExtensions.AddOpenIdConnectTokenValidator
+- uid: FunctionMonkey.TokenValidator.Implementation
+  name: FunctionMonkey.TokenValidator.Implementation
+  href: api/FunctionMonkey.TokenValidator.Implementation.html
+  commentId: N:FunctionMonkey.TokenValidator.Implementation
+  fullName: FunctionMonkey.TokenValidator.Implementation
+  nameWithType: FunctionMonkey.TokenValidator.Implementation
+- uid: FunctionMonkey.TokenValidator.Implementation.TokenValidator
+  name: TokenValidator
+  href: api/FunctionMonkey.TokenValidator.Implementation.TokenValidator.html
+  commentId: T:FunctionMonkey.TokenValidator.Implementation.TokenValidator
+  fullName: FunctionMonkey.TokenValidator.Implementation.TokenValidator
+  nameWithType: TokenValidator
+- uid: FunctionMonkey.TokenValidator.Implementation.TokenValidator.ValidateAsync(System.String)
+  name: ValidateAsync(String)
+  href: api/FunctionMonkey.TokenValidator.Implementation.TokenValidator.html#FunctionMonkey_TokenValidator_Implementation_TokenValidator_ValidateAsync_System_String_
+  commentId: M:FunctionMonkey.TokenValidator.Implementation.TokenValidator.ValidateAsync(System.String)
+  fullName: FunctionMonkey.TokenValidator.Implementation.TokenValidator.ValidateAsync(System.String)
+  nameWithType: TokenValidator.ValidateAsync(String)
+- uid: FunctionMonkey.TokenValidator.Implementation.TokenValidator.ValidateAsync*
+  name: ValidateAsync
+  href: api/FunctionMonkey.TokenValidator.Implementation.TokenValidator.html#FunctionMonkey_TokenValidator_Implementation_TokenValidator_ValidateAsync_
+  commentId: Overload:FunctionMonkey.TokenValidator.Implementation.TokenValidator.ValidateAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.TokenValidator.Implementation.TokenValidator.ValidateAsync
+  nameWithType: TokenValidator.ValidateAsync
 - uid: FunctionMonkey.TypeLoadingException
   name: TypeLoadingException
   href: api/FunctionMonkey.TypeLoadingException.html

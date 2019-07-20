@@ -71,7 +71,39 @@
 
 <p>Function Monkey supports the standard authorization types of Azure Functions and adds support for token validation through the Authorization header - typically for use with OpenID Connect and an access token. If you&#39;re using token validation then you need to register a class that is able to verify the token and populate a ClaimsPrincipal.</p>
 <p>This functionality is comprised of two discrete parts - token validation and claims authorization.</p>
-<h2 id="token-validation">Token Validation</h2>
+<h2 id="openid-connect-token-validation">OpenID Connect Token Validation</h2>
+<p>If you are using an Open ID Connect supporting identity provider such as Auth0, Azure AD B2C, or IdentityServer then you can use the FunctionMonkey.TokenValidation package to quickly and easily add authorization to your functions based API.</p>
+<p>First install the NuGet package into your Azure Functions project:</p>
+<pre><code>Install-Package FunctionMonkey.TokenValidation
+</code></pre><p><em>At the time of writing you may need to add -pre onto the above as Function Monkey is listed as a preview package due to its reliance on a preview Service Bus package</em></p>
+<p>Next add an Authorization block to your app configuration:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string Domain = &quot;functionmonkey.eu.auth0.com&quot;;
+    private const string Audience = &quot;https://serverlessblog&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+            {
+                commandRegistry.Register&lt;InvoiceQueryHandler&gt;();
+            })
+            .Authorization(authorization =&gt; authorization
+                .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                .AddOpenIdConnectTokenValidator($&quot;https://{Domain}/.well-known/openid-configuration&quot;, Audience)
+            )
+            .Functions(functions =&gt; functions
+                .HttpRoute(&quot;Invoice&quot;, route =&gt; route
+                    .HttpFunction&lt;InvoiceQuery&gt;()
+                )
+                .HttpRoute(&quot;Version&quot;, route =&gt; route
+                    .HttpFunction&lt;VersionQuery&gt;(AuthorizationTypeEnum.Anonymous))
+            );
+    }
+}
+</code></pre><p>The audience is optional (it depends on how you have configured your identity provider) and the well known endpoint may be in a different location based on your identity provider. The example shown is for Auth0.</p>
+<h2 id="custom-token-validation">Custom Token Validation</h2>
 <p>Token Validation validates a bearer token and returns a populated ClaimsPrincipal object. The authorization type can be specified per function and a default can be set. In the example below token validation is set as a default, a token validator is registered while one of the functions is set to use anonymous authorization:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
 {
