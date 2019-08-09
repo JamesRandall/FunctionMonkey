@@ -48,7 +48,7 @@ module EntryPoint =
             azureFunction.http<CreateOrderCommand> (createOrderCommand, Post)
         ]
         
-        start
+        build
     }
             
     let app = functionApp {
@@ -57,6 +57,6 @@ module EntryPoint =
             azureFunction.http<CreateOrderCommand> (createOrderCommand, Post)
         ]
         
-        start
+        build
     }
                 

@@ -85,8 +85,8 @@ module Configuration =
                     |> Seq.toList
             }
             
-        [<CustomOperation("start")>]
-        member this.start (configurationBuilder: FunctionAppConfiguration) =
+        [<CustomOperation("build")>]
+        member this.build (configurationBuilder: FunctionAppConfiguration) =
             0
         
     let functionApp = FunctionAppConfigurationBuilder()
