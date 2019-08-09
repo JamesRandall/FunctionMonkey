@@ -8,6 +8,7 @@ using System.Text;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Compiler.Extensions;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi;

@@ -8,4 +8,9 @@
         <Compile Include="Configuration.fs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+      <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
+    </ItemGroup>
+
 </Project>

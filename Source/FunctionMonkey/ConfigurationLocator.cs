@@ -11,7 +11,7 @@ namespace FunctionMonkey
     /// </summary>
     public static class ConfigurationLocator
     {
-        public static IFunctionAppConfiguration FindConfiguration()
+        public static TType Find<TType>() where TType : class
         {
             // We scan the assemblies looking for:
             //
@@ -22,7 +22,7 @@ namespace FunctionMonkey
             //
             // 2. A class called ReferenceLinkBack that has the ReferenceLinkBackAttribute on it and a single static
             // method called ForceLinkBack
-            if (Scan(out var linkBackInfo, out var findConfiguration)) return findConfiguration;
+            if (Scan<TType>(out var linkBackInfo, out var findConfiguration)) return findConfiguration;
 
             // If we ge there then we found (2) but not an implementation of IFunctionAppConfiguration. That being the case
             // we call that method. This will force the assembly to load, we rescane, and we should now find our implementation.
@@ -32,13 +32,13 @@ namespace FunctionMonkey
             if (linkBackInfo != null)
             {
                 linkBackInfo.Invoke(null, null);
-                if (Scan(out var dummyLinkBackInfo, out var secondAttemptFindConfiguration)) return secondAttemptFindConfiguration;
+                if (Scan<TType>(out var dummyLinkBackInfo, out var secondAttemptFindConfiguration)) return secondAttemptFindConfiguration;
             }
 
             throw new ConfigurationException("Unable to find implementation of IFunctionAppConfiguration");
         }
 
-        private static bool Scan(out MethodInfo linkBackInfo, out IFunctionAppConfiguration findConfiguration)
+        private static bool Scan<TType>(out MethodInfo linkBackInfo, out TType findConfiguration) where TType : class
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             linkBackInfo = null;
@@ -46,7 +46,7 @@ namespace FunctionMonkey
 
             foreach (Assembly assembly in assemblies)
             {
-                IFunctionAppConfiguration configuration = FindConfiguration(assembly);
+                TType configuration = Find<TType>(assembly);
                 if (configuration != null)
                 {
                     {
@@ -75,18 +75,23 @@ namespace FunctionMonkey
 
         public static IFunctionAppConfiguration FindConfiguration(Assembly assembly)
         {
+            return Find<IFunctionAppConfiguration>(assembly);
+        }
+        
+        private static TType Find<TType>(Assembly assembly) where TType : class
+        {
             if (assembly == null)
             {
-                return FindConfiguration();
+                return Find<TType>();
             }
 
             try
             {
-                Type interfaceType = typeof(IFunctionAppConfiguration);
+                Type interfaceType = typeof(TType);
                 Type foundType = assembly.GetTypes().FirstOrDefault(x => interfaceType.IsAssignableFrom(x) && x.IsClass);
                 if (foundType != null)
                 {
-                    return (IFunctionAppConfiguration)Activator.CreateInstance(foundType);
+                    return (TType)Activator.CreateInstance(foundType);
                 }
 
                 return null;

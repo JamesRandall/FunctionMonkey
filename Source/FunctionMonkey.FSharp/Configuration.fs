@@ -1,37 +1,44 @@
 ﻿namespace FunctionMonkey.FSharp
+open FunctionMonkey.Abstractions
+open FunctionMonkey.Abstractions.Builders.Model
+open FunctionMonkey.Abstractions.Http
+open FunctionMonkey.Model
 open System
+open System.Net.Http
 
-module Configuration =    
-    type HttpVerb =
-            | Get
-            | Put
-            | Post
-            | Patch
-            | Delete
-            | Custom of string
-
-    type HttpRoute =
-        | Path of string
-        | Unspecified
-    
-    type IAzureFunction =
-        abstract commandType: Type
-        abstract resultType: Type
-        
-    type IHttpAzureFunction =
-        inherit IAzureFunction
-        abstract verbs: HttpVerb list
-        abstract route: HttpRoute
-        
+module Configuration =
     type IFunctionHandler = interface end
-    
     type Handler<'commandType, 'commandResult> =
         {        
             handler: 'commandType -> 'commandResult
         }
         interface IFunctionHandler
         
-
+    type OutputAuthoredSource =
+        | Path of string
+        | NoSourceOutput
+        
+    type FunctionCompilerMetadata =
+         {
+             functionDefinitions: AbstractFunctionDefinition list
+             openApiConfiguration: OpenApiConfiguration
+             outputAuthoredSourceFolder: OutputAuthoredSource
+         }
+         interface IFunctionCompilerMetadata with
+            member i.FunctionDefinitions = i.functionDefinitions :> System.Collections.Generic.IReadOnlyCollection<AbstractFunctionDefinition>
+            member i.OpenApiConfiguration = i.openApiConfiguration
+            member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
+        
+    type HttpVerb =
+            | Get
+            | Put
+            | Post
+            | Patch
+            | Delete
+            //| Custom of string
+    type HttpRoute =
+        | Path of string
+        | Unspecified
     type HttpFunction =
         {
             commandType: Type
@@ -40,18 +47,12 @@ module Configuration =
             verbs: HttpVerb list
             route: HttpRoute
         }
-        (*interface IHttpAzureFunction with
-            member i.commandType = i.commandType
-            member i.resultType = i.resultType
-            member i.verbs = i.verbs
-            member i.route = i.route*)
     
     type FunctionAppConfiguration = {
-        httpFunctions: HttpFunction list
-        functions: IAzureFunction list        
+        httpFunctions: HttpFunction list     
     }
     
-    let private defaultFunctionAppConfiguration = { functions = [] ; httpFunctions = [] }
+    let private defaultFunctionAppConfiguration = { httpFunctions = [] }
     
     let private combineRoutes firstPart secondPart =
         match firstPart with
@@ -59,6 +60,29 @@ module Configuration =
         | Path p -> match secondPart with
                     | Unspecified -> firstPart
                     | Path p2 -> Path(p + p2)
+
+    let createHttpFunctionDefinition httpFunction =
+        let convertVerb verb =
+            match verb with
+            | Get -> HttpMethod.Get
+            | Put -> HttpMethod.Put
+            | Post -> HttpMethod.Post
+            | Patch -> HttpMethod.Patch
+            | Delete -> HttpMethod.Delete
+            
+        HttpFunctionDefinition(
+            httpFunction.commandType,
+            Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb)
+        ) :> AbstractFunctionDefinition
+    
+    let private createFunctionCompilerMetadata configuration =
+        {
+            outputAuthoredSourceFolder = NoSourceOutput
+            openApiConfiguration = OpenApiConfiguration()
+            functionDefinitions =
+                configuration.httpFunctions |> Seq.map createHttpFunctionDefinition |> Seq.toList
+                
+        } :> IFunctionCompilerMetadata
     
     type azureFunction private() =
         static member inline http<'commandType, 'commandResultType> (handler:'commandType -> 'commandResultType, verb, ?subRoute) =
@@ -72,16 +96,17 @@ module Configuration =
         static member inline http<'commandType> (handler:'commandType -> unit , verb, ?subRoute) =
             azureFunction.http<'commandType, unit> (handler, verb, ?subRoute = subRoute)
                         
-
     type FunctionAppConfigurationBuilder() =
         member __.Yield (item: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
+        member __.Run (configuration: FunctionAppConfiguration) =
+            createFunctionCompilerMetadata configuration
         
         [<CustomOperation("httpRoute")>]
-        member this.httpRoute(configurationBuilder:FunctionAppConfiguration, prefix, x) =
-            { configurationBuilder
+        member this.httpRoute(configuration:FunctionAppConfiguration, prefix, x) =
+            { configuration
                 with httpFunctions = x
                     |> Seq.map (fun f -> { f with route = (combineRoutes (Path(prefix)) f.route) })
-                    |> Seq.append configurationBuilder.httpFunctions
+                    |> Seq.append configuration.httpFunctions
                     |> Seq.toList
             }
             
@@ -90,6 +115,3 @@ module Configuration =
             0
         
     let functionApp = FunctionAppConfigurationBuilder()
-    
-    let createFunctionAppWith config =
-        0

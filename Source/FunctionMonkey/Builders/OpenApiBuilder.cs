@@ -1,4 +1,5 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders

@@ -57,32 +57,43 @@ namespace FunctionMonkey.Compiler.Implementation
 
         public void Compile()
         {
+            string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name.Replace("-", "_")}.Functions";
+            IFunctionCompilerMetadata functionCompilerMetadata = null;
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration(_configurationSourceAssembly);
             if (configuration == null)
             {
+                // TODO - this is where we look for a static IFunctionCompilerMetadata property on a class / module
+                // to support F#
                 throw new ConfigurationException($"The assembly {_configurationSourceAssembly.GetName().Name} does not contain a public class implementing the IFunctionAppConfiguration interface");
             }
+            else
+            {
+                FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
+                configuration.Build(builder);
+                new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
+                VerifyCommandAndResponseTypes(builder);
 
-            string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name.Replace("-", "_")}.Functions";
-            FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
-            configuration.Build(builder);
-            new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
+                functionCompilerMetadata = new FunctionCompilerMetadata
+                {
+                    FunctionDefinitions = builder.FunctionDefinitions,
+                    OpenApiConfiguration = builder.OpenApiConfiguration,
+                    OutputAuthoredSourceFolder = builder.OutputAuthoredSourceFolder
+                };
+            }
 
-            VerifyCommandAndResponseTypes(builder);
+            IReadOnlyCollection<string> externalAssemblies = GetExternalAssemblyLocations(functionCompilerMetadata.FunctionDefinitions);
+            OpenApiOutputModel openApi = _openApiCompiler.Compile(functionCompilerMetadata.OpenApiConfiguration, functionCompilerMetadata.FunctionDefinitions, _outputBinaryFolder);
+
+            _jsonCompiler.Compile(functionCompilerMetadata.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
             
-            IReadOnlyCollection<string> externalAssemblies = GetExternalAssemblyLocations(builder.FunctionDefinitions);
-            OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
-
-            _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
-            
-            _assemblyCompiler.Compile(builder.FunctionDefinitions,
+            _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
                 configuration.GetType(),
                 newAssemblyNamespace,
                 externalAssemblies, 
                 _outputBinaryFolder, 
                 $"{newAssemblyNamespace}.dll",
                 openApi,
-                _target, builder.OutputAuthoredSourceFolder);
+                _target, functionCompilerMetadata.OutputAuthoredSourceFolder);
         }
 
         private void VerifyCommandAndResponseTypes(FunctionHostBuilder builder)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FunctionMonkey.Model
+namespace FunctionMonkey.Abstractions.Http
 {
     public class OpenApiConfiguration
     {

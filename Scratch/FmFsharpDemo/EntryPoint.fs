@@ -42,21 +42,10 @@ module EntryPoint =
         printf "Run"
         result
             
-    let c = functionApp {
-        httpRoute "/api/v1/order" [
-            azureFunction.http<GetOrderQuery, Order> (getOrderQuery, Get, "/{id}")
-            azureFunction.http<CreateOrderCommand> (createOrderCommand, Post)
-        ]
-        
-        build
-    }
-            
     let app = functionApp {
         httpRoute "/api/v1/order" [
             azureFunction.http<GetOrderQuery, Order> (getOrderQuery, Get, "/{id}")
             azureFunction.http<CreateOrderCommand> (createOrderCommand, Post)
         ]
-        
-        build
     }
                 
