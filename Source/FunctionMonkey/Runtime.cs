@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,8 @@ namespace FunctionMonkey
         public static IServiceProvider ServiceProvider => RuntimeInstance.ServiceProvider;
 
         public static AsyncLocal<ILogger> FunctionProvidedLogger => RuntimeInstance.FunctionProvidedLogger;
+
+        public static Dictionary<string, PluginFunctions> PluginFunctions => RuntimeInstance.PluginFunctions;
 
         private static readonly RuntimeInstance RuntimeInstance;
 

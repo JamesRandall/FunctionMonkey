@@ -36,6 +36,7 @@ namespace {{Namespace}}
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
 
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             string requestUrl = GetRequestUrl(req);
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
@@ -65,9 +66,8 @@ namespace {{Namespace}}
             {
                 return new UnauthorizedResult();
             }
-            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{TokenValidatorTypeName}}));
-            principal = await tokenValidator.ValidateAsync(authorizationHeader);
+            
+            principal = await pluginFunctions.ValidateToken(authorizationHeader);
             if (principal == null)
             {
                 return new UnauthorizedResult();
@@ -75,22 +75,11 @@ namespace {{Namespace}}
             {{/if}}
 
             {{#if AuthorizesClaims}}
-            var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
-            var claimsPrincipalAuthorizationResult = await claimsPrincipalAuthorization.IsAuthorized(principal, req.Method, requestUrl);
+            var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(principal, req.Method, requestUrl);
             if (!claimsPrincipalAuthorizationResult)
             {
                 return new UnauthorizedResult();
             }
-            {{/if}}
-
-            {{#if SerializerNamingStrategyTypeName}}
-                var serializerNamingStrategy = new {{SerializerNamingStrategyTypeName}}();
-                var deserializerNamingStrategy = new {{DeserializerNamingStrategyTypeName}}();
-                FunctionMonkey.Abstractions.ISerializer serializer = new FunctionMonkey.Serialization.NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
-            {{else}}
-                var serializer = (FunctionMonkey.Abstractions.ISerializer)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
             {{/if}}
 
             {{CommandTypeName}} command;
@@ -108,7 +97,7 @@ namespace {{Namespace}}
                 {
                     try
                     {
-                        command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                        command = ({{CommandTypeName}})pluginFunctions.Deserialize(requestBody);
                     }
                     catch(FunctionMonkey.DeserializationException dex)
                     {
@@ -294,35 +283,19 @@ namespace {{Namespace}}
             {{/each}}
     
             {{#if ValidatesToken}}
-            var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
-            var claimsBinderTask = claimsBinder.BindAsync(principal, command);
-            if (claimsBinderTask == null)
-            {
-                claimsBinder.Bind(principal, command);
-            }
-            else
-            {
-                await claimsBinderTask;
-            }
-            {{/if}}
-
-            {{#if HasHttpResponseHandler}}
-            var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
+            await pluginFunctions.BindClaims(principal, command);
             {{/if}}
 
             {{#if IsUsingValidator}}
-            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
-            var validationResult = validator.Validate(command);
+            var validationResult = pluginFunctions.Validate(command);
             if (!validationResult.IsValid)
             {
                 {{#if HasHttpResponseHandler}}
-                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                    var validatorResponseTask = pluginFunctions.CreateValidationFailureResponse(command, validationResult);
                     var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
-                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                    return handledValidationResponse ?? CreateResponse(400, validationResult, pluginFunctions);
                 {{else}}
-                    return CreateResponse(400, validationResult, serializer);
+                    return CreateResponse(400, validationResult, pluginFunctions);
                 {{/if}}
             }
             {{/if}}
@@ -346,34 +319,34 @@ namespace {{Namespace}}
                             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
                             if (!validationResult.IsValid)
                             {
-                                var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                                var validatorResponseTask = pluginFunctions.CreateValidationFailureResponse(command, validationResult);
                                 var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
-                                return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                                return handledValidationResponse ?? CreateResponse(400, validationResult, pluginFunctions);
                             }
                             else
                             {
-                                var responseTask = responseHandler.CreateResponse(command, result.Result);
+                                var responseTask = pluginFunctions.CreateResponseForResult(command, result.Result);
                                 var handledResponse = responseTask != null ? (await responseTask) : null;
-                                return handledResponse ?? CreateResponse(200, result.Result, serializer);
+                                return handledResponse ?? CreateResponse(200, result.Result, pluginFunctions);
                             }
                         {{else}}
-                            var responseTask = responseHandler.CreateResponse(command, result.Result);
+                            var responseTask = pluginFunctions.CreateResponseForResult(command, result.Result);
                             var handledResponse = responseTask != null ? (await responseTask) : null;
-                            return handledResponse ?? CreateResponse(200, result.Result, serializer);
+                            return handledResponse ?? CreateResponse(200, result.Result, pluginFunctions);
                         {{/if}}                        
                     {{else}}
                         {{#if IsValidationResult}}
                             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
                             if (!validationResult.IsValid)
                             {
-                                return CreateResponse(400, validationResult, serializer);
+                                return CreateResponse(400, validationResult, pluginFunctions);
                             }
                         {{/if}}
-                        return CreateResponse(200, result.Result, serializer);
+                        return CreateResponse(200, result.Result, pluginFunctions);
                     {{/if}}
                 {{else}}
                     {{#if HasHttpResponseHandler}}
-                        var responseTask = responseHandler.CreateResponse(command);
+                        var responseTask = pluginFunctions.CreateResponse(command);
                         var handledResponse = responseTask != null ? (await responseTask) : null; 
                         return handledResponse ?? new OkResult();
                     {{else}}
@@ -384,21 +357,21 @@ namespace {{Namespace}}
             catch(System.Exception ex)
             {
                 {{#if HasHttpResponseHandler}}
-                    var responseTask = responseHandler.CreateResponseFromException(command, ex);
+                    var responseTask = pluginFunctions.CreateResponseFromException(command, ex);
                     var handledResponse = responseTask != null ? (await responseTask) : null;
-                    return handledResponse ?? CreateResponse(500, "Unexpected error", serializer);
+                    return handledResponse ?? CreateResponse(500, "Unexpected error", pluginFunctions);
                 {{else}}
                     log.LogError(ex, $"Error occurred executing command {command.GetType().Name}");
-                    return CreateResponse(500, "Unexpected error", serializer);
+                    return CreateResponse(500, "Unexpected error", pluginFunctions);
                 {{/if}}
             }
             {{/if}}
         }
 
-        public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)
+        public static IActionResult CreateResponse(int code, object content, FunctionMonkey.PluginFunctions pluginFunctions)
         {
             ContentResult result = new ContentResult();
-            result.Content = serializer.Serialize(content, true);
+            result.Content = pluginFunctions.Serialize(content, true);
             result.ContentType = "application/json";
             result.StatusCode = code;
             return result;

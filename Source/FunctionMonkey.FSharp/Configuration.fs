@@ -1,12 +1,16 @@
 ﻿namespace FunctionMonkey.FSharp
 open FunctionMonkey.Abstractions
+open FunctionMonkey.Abstractions.Builders
 open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
+open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.Model
 open System
 open System.Net.Http
 
 module Configuration =
+    exception ConfigurationException
+    
     type IFunctionHandler = interface end
     type Handler<'commandType, 'commandResult> =
         {        
@@ -47,12 +51,27 @@ module Configuration =
             verbs: HttpVerb list
             route: HttpRoute
         }
+        
+    type Authorization =
+        {
+            defaultAuthorizationMode: AuthorizationTypeEnum
+            defaultAuthorizationHeader: string
+        }
     
     type FunctionAppConfiguration = {
+        authorization: Authorization       
         httpFunctions: HttpFunction list     
     }
     
-    let private defaultFunctionAppConfiguration = { httpFunctions = [] }
+    let private defaultAuthorization = {
+        defaultAuthorizationMode = AuthorizationTypeEnum.Function
+        defaultAuthorizationHeader = "Bearer"
+    }
+    
+    let private defaultFunctionAppConfiguration = {
+        authorization = defaultAuthorization
+        httpFunctions = []
+    }
     
     let private combineRoutes firstPart secondPart =
         match firstPart with
@@ -61,7 +80,7 @@ module Configuration =
                     | Unspecified -> firstPart
                     | Path p2 -> Path(p + p2)
 
-    let createHttpFunctionDefinition httpFunction =
+    let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
         let convertVerb verb =
             match verb with
             | Get -> HttpMethod.Get
@@ -70,17 +89,29 @@ module Configuration =
             | Patch -> HttpMethod.Patch
             | Delete -> HttpMethod.Delete
             
-        HttpFunctionDefinition(
-            httpFunction.commandType,
-            Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb)
-        ) :> AbstractFunctionDefinition
+        let httpFunctionDefinition =
+            HttpFunctionDefinition(
+                httpFunction.commandType,
+                Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
+                Authorization = new System.Nullable<AuthorizationTypeEnum>(configuration.authorization.defaultAuthorizationMode),
+                ValidatesToken = (configuration.authorization.defaultAuthorizationMode = AuthorizationTypeEnum.TokenValidation),
+                TokenHeader = configuration.authorization.defaultAuthorizationHeader,
+                ClaimsPrincipalAuthorizationType = null,
+                HeaderBindingConfiguration = null,
+                HttpResponseHandlerType = null,
+                IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
+                IsStreamCommand = false,
+                TokenValidatorType = null
+            )
+        
+        httpFunctionDefinition :> AbstractFunctionDefinition
     
     let private createFunctionCompilerMetadata configuration =
         {
             outputAuthoredSourceFolder = NoSourceOutput
             openApiConfiguration = OpenApiConfiguration()
             functionDefinitions =
-                configuration.httpFunctions |> Seq.map createHttpFunctionDefinition |> Seq.toList
+                configuration.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f) |> Seq.toList
                 
         } :> IFunctionCompilerMetadata
     

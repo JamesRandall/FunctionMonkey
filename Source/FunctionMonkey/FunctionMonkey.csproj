@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="9.0.1" />
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />

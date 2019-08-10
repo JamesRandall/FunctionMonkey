@@ -2,20 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Threading;
+using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
+using FunctionMonkey.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey
 {
+
+    public abstract class AbstractPluginFunctions
+    {
+        
+    }
+    
+    public class PluginFunctions : AbstractPluginFunctions // where TCommand : ICommand
+    {
+        public Func<string, Task<ClaimsPrincipal>> ValidateToken { get; set; }
+
+        public Func<ClaimsPrincipal, string, string, Task<bool>> IsAuthorized { get; set; }
+        
+        public Func<string, object> Deserialize { get; set; }
+        
+        public Func<object, bool, string> Serialize { get; set; }
+        
+        public Func<ClaimsPrincipal, ICommand, Task<bool>> BindClaims { get; set; }
+        
+        public Func<object, Exception, Task<IActionResult>> CreateResponseFromException { get; set; }
+        
+        public Func<object, object, Task<IActionResult>> CreateResponseForResult { get; set; }
+        
+        public Func<object, Task<IActionResult>> CreateResponse { get; set; }
+        
+        public Func<object, ValidationResult, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
+        
+        public Func<object, ValidationResult> Validate { get; set; }
+    }
+    
     public class RuntimeInstance
     {
         public IServiceProvider ServiceProvider { get; }
@@ -25,6 +61,8 @@ namespace FunctionMonkey
         public AsyncLocal<ILogger> FunctionProvidedLogger { get;  }= new AsyncLocal<ILogger>(null);
 
         public IFunctionHostBuilder Builder { get; }
+        
+        public Dictionary<string, PluginFunctions> PluginFunctions { get; } = new Dictionary<string, PluginFunctions>();
 
         public RuntimeInstance() : this(null, null, null)
         {
@@ -78,12 +116,117 @@ namespace FunctionMonkey
 
             RegisterCosmosDependencies(builder.FunctionDefinitions);
 
+            CreatePluginFunctions(builder.FunctionDefinitions);
+
             beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
             builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
-            
+        }
+
+        private ISerializer CreateSerializer(AbstractFunctionDefinition functionDefinition)
+        {
+            ISerializer serializer;
+            if (functionDefinition.SerializerNamingStrategyType != null)
+            {
+                var deserializerNamingStrategy = (NamingStrategy)
+                    Activator.CreateInstance(functionDefinition.DeserializerNamingStrategyType);
+                var serializerNamingStrategy = (NamingStrategy)
+                    Activator.CreateInstance(functionDefinition.SerializerNamingStrategyType);
+                serializer =
+                    new NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
+            }
+            else
+            {
+                serializer = (FunctionMonkey.Abstractions.ISerializer)
+                    ServiceProvider.GetService(functionDefinition.CommandDeserializerType);
+            }
+
+            return serializer;
+        }
+
+        private void CreatePluginFunctions(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
+            {
+                PluginFunctions pluginFunctions = new PluginFunctions();
+                
+                pluginFunctions.Deserialize = (body) =>
+                    CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body);
+
+                pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
+                    CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties); 
+                
+                if (functionDefinition is HttpFunctionDefinition httpFunctionDefinition)
+                {
+                    pluginFunctions.ValidateToken = async (authorizationHeader) =>
+                    {
+                        var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
+                            ServiceProvider.GetService(httpFunctionDefinition
+                                .TokenValidatorType);
+                        ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
+                        return principal;
+                    };
+                    pluginFunctions.IsAuthorized = async (principal, httpVerb, requestUrl) =>
+                    {
+                        var claimsPrincipalAuthorization = (IClaimsPrincipalAuthorization)
+                            ServiceProvider.GetService(httpFunctionDefinition.ClaimsPrincipalAuthorizationType);
+                        return await claimsPrincipalAuthorization.IsAuthorized(principal, httpVerb, requestUrl);
+                    };
+                    pluginFunctions.BindClaims = async (principal, command) =>
+                    {
+                        var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
+                            ServiceProvider.GetService(
+                                typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
+                        var claimsBinderTask = claimsBinder.BindAsync(principal, command);
+                        if (claimsBinderTask == null)
+                        {
+                            return claimsBinder.Bind(principal, command);
+                        }
+                        return await claimsBinderTask;
+                    };
+                    pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
+                    {
+                        var responseHandler =
+                            (IHttpResponseHandler) ServiceProvider.GetService(
+                                httpFunctionDefinition.HttpResponseHandlerType);
+                        return responseHandler.CreateValidationFailureResponse((ICommand) command, validationResult);
+                    };
+                    pluginFunctions.CreateResponseForResult = (command, result) =>
+                    {
+                        var responseHandler =
+                            (IHttpResponseHandler) ServiceProvider.GetService(
+                                httpFunctionDefinition.HttpResponseHandlerType);
+                        return responseHandler.CreateResponse((ICommand) command, result);
+                    };
+                    pluginFunctions.CreateResponse = command =>
+                    {
+                        var responseHandler =
+                            (IHttpResponseHandler) ServiceProvider.GetService(
+                                httpFunctionDefinition.HttpResponseHandlerType);
+                        return responseHandler.CreateResponse((ICommand) command);
+                    };
+                    pluginFunctions.CreateResponseFromException = (command, exception) =>
+                    {
+                        var responseHandler =
+                            (IHttpResponseHandler) ServiceProvider.GetService(
+                                httpFunctionDefinition.HttpResponseHandlerType);
+                        return responseHandler.CreateResponseFromException((ICommand) command, exception);
+                    };
+                    pluginFunctions.Validate = command =>
+                    {
+                        var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
+                            ServiceProvider.GetService(
+                                typeof(FunctionMonkey.Abstractions.Validation.IValidator));
+                        var validationResult = validator.Validate((ICommand) command);
+                        return validationResult;
+                    };
+                };
+                    
+                PluginFunctions.Add(functionDefinition.Name, pluginFunctions);
+                
+            }
         }
 
         private void RegisterCosmosDependencies(

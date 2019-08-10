@@ -27,7 +27,7 @@ namespace FunctionMonkey.Abstractions.Http
         /// <param name="command">The command</param>
         /// <param name="result">The result</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
-        Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand<TResult>;
+        Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand;
 
         /// <summary>
         /// Invoked when a command with no associated result is successfully invoked.

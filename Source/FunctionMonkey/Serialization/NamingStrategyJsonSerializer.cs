@@ -63,6 +63,28 @@ namespace FunctionMonkey.Serialization
             }
         }
 
+        public object Deserialize(Type type, string json, bool enforceSecurityProperties = true)
+        {
+            JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = enforceSecurityProperties
+                    ? new JsonSecurityPropertyContractResolver() {NamingStrategy = _deserializerNamingStrategy}
+                    : new DefaultContractResolver() {NamingStrategy = _deserializerNamingStrategy}
+            };
+            try
+            {
+                return JsonConvert.DeserializeObject(json, type, serializerSettings);
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new DeserializationException(ex.Path, ex.LineNumber, ex.LinePosition);
+            }
+            catch (JsonException ex)
+            {
+                throw new DeserializationException(ex.Message);
+            }
+        }
+
         /// <summary>
         /// Serialize the object
         /// </summary>

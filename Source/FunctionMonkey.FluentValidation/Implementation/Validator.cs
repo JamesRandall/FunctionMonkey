@@ -5,6 +5,7 @@ using FluentValidation;
 using FunctionMonkey.Abstractions.Validation;
 using FunctionMonkey.Commanding.Abstractions.Validation;
 using Microsoft.Extensions.DependencyInjection;
+using IValidator = FluentValidation.IValidator;
 
 namespace FunctionMonkey.FluentValidation.Implementation
 {
@@ -19,7 +20,10 @@ namespace FunctionMonkey.FluentValidation.Implementation
 
         public ValidationResult Validate<TCommand>(TCommand command) where TCommand : ICommand
         {
-            IValidator<TCommand> validator = _serviceProvider.GetService<IValidator<TCommand>>();
+            Type validatorGenericType = typeof(IValidator<>);
+            Type validatorType = validatorGenericType.MakeGenericType(command.GetType());
+            
+            IValidator validator = (IValidator)_serviceProvider.GetService(validatorType);
             if (validator == null)
             {
                 return new ValidationResult();
