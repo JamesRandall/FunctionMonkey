@@ -312,7 +312,12 @@ namespace {{Namespace}}
             {{else}}            
             try
             {
-                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                {{#if IsFunctionalFunction}}
+                    Func<{{{CommandType}}}, Task<{{{CommandResultTypeName}}}> handler = (Func<{{{CommandType}}}, Task<{{{CommandResultTypeName}}}>)pluginFunctions.Handler;
+                    var result = await handler(command);
+                {{else}}
+                    var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                {{/if}}             
                 {{#if CommandHasResult}}
                     {{#if HasHttpResponseHandler}}
                         {{#if IsValidationResult}}

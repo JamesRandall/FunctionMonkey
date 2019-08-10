@@ -11,7 +11,36 @@ namespace FunctionMonkey
     /// </summary>
     public static class ConfigurationLocator
     {
-        public static TType Find<TType>() where TType : class
+        public static IFunctionAppConfiguration FindConfiguration(Assembly assembly)
+        {
+            return Find<IFunctionAppConfiguration>(assembly);
+        }
+        
+        public static IFunctionCompilerMetadata FindCompilerMetadata(Assembly assembly)
+        {
+            try
+            {
+                foreach (Type type in assembly.ExportedTypes)
+                {
+                    foreach (PropertyInfo propertyInfo in type.GetProperties(BindingFlags.Public | BindingFlags.Static))
+                    {
+                        if (propertyInfo.PropertyType == typeof(IFunctionCompilerMetadata))
+                        {
+                            IFunctionCompilerMetadata metadata = (IFunctionCompilerMetadata)propertyInfo.GetValue(null);
+                            return metadata;
+                        }
+                    }
+                }
+
+                return null;
+            }
+            catch (ReflectionTypeLoadException rex)
+            {
+                throw RaiseTypeLoadingException(rex);
+            }
+        }
+        
+        private static TType Find<TType>() where TType : class
         {
             // We scan the assemblies looking for:
             //
@@ -25,7 +54,7 @@ namespace FunctionMonkey
             if (Scan<TType>(out var linkBackInfo, out var findConfiguration)) return findConfiguration;
 
             // If we ge there then we found (2) but not an implementation of IFunctionAppConfiguration. That being the case
-            // we call that method. This will force the assembly to load, we rescane, and we should now find our implementation.
+            // we call that method. This will force the assembly to load, we rescan, and we should now find our implementation.
             //
             // This is a bit long-winded but I'm trying to avoid loading referenced assemblies myself in an already pretty
             // complex runtime environment that is likely to already to have various resolution hooks.
@@ -73,11 +102,6 @@ namespace FunctionMonkey
             return false;
         }
 
-        public static IFunctionAppConfiguration FindConfiguration(Assembly assembly)
-        {
-            return Find<IFunctionAppConfiguration>(assembly);
-        }
-        
         private static TType Find<TType>(Assembly assembly) where TType : class
         {
             if (assembly == null)
@@ -88,43 +112,48 @@ namespace FunctionMonkey
             try
             {
                 Type interfaceType = typeof(TType);
-                Type foundType = assembly.GetTypes().FirstOrDefault(x => interfaceType.IsAssignableFrom(x) && x.IsClass);
+                Type foundType = assembly.GetTypes()
+                    .FirstOrDefault(x => interfaceType.IsAssignableFrom(x) && x.IsClass);
                 if (foundType != null)
                 {
-                    return (TType)Activator.CreateInstance(foundType);
+                    return (TType) Activator.CreateInstance(foundType);
                 }
 
                 return null;
             }
             catch (ReflectionTypeLoadException rex)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"ReflectionTypeLoadException: {rex.Message}");
-                if (rex.Types != null)
-                {
-                    sb.AppendLine("Unable to load types:");
-                    foreach (Type loaderType in rex.Types)
-                    {
-                        sb.AppendLine(loaderType != null
-                            ? $"    {loaderType.FullName}"
-                            : "    null type in ReflectionTypeLoadException");
-                    }
-                }
-
-                if (rex.LoaderExceptions != null)
-                {
-                    sb.AppendLine("With errors:");
-                    foreach (var loaderException in rex.LoaderExceptions)
-                    {
-                        sb.AppendLine(loaderException != null
-                            ? $"    {loaderException.GetType().Name}: {loaderException.Message}"
-                            : "    null LoadedException in ReflectionTypeLoadException");
-                    }
-                }
-                
-                throw new TypeLoadingException(sb.ToString());
+                throw RaiseTypeLoadingException(rex);
             }
-            
+        }
+
+        private static TypeLoadingException RaiseTypeLoadingException(ReflectionTypeLoadException rex)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"ReflectionTypeLoadException: {rex.Message}");
+            if (rex.Types != null)
+            {
+                sb.AppendLine("Unable to load types:");
+                foreach (Type loaderType in rex.Types)
+                {
+                    sb.AppendLine(loaderType != null
+                        ? $"    {loaderType.FullName}"
+                        : "    null type in ReflectionTypeLoadException");
+                }
+            }
+
+            if (rex.LoaderExceptions != null)
+            {
+                sb.AppendLine("With errors:");
+                foreach (var loaderException in rex.LoaderExceptions)
+                {
+                    sb.AppendLine(loaderException != null
+                        ? $"    {loaderException.GetType().Name}: {loaderException.Message}"
+                        : "    null LoadedException in ReflectionTypeLoadException");
+                }
+            }
+
+            return new TypeLoadingException(sb.ToString());
         }
     }
 }

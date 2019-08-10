@@ -20,6 +20,10 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             Name = string.Concat(namePrefix,commandType.GetFunctionName());
             CommandType = commandType;
         }
+        
+        public object FunctionHandler { get; set; }
+
+        public bool IsFunctionalFunction => FunctionHandler != null;
 
         public string Namespace { get; set; }
 

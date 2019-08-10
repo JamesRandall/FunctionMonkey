@@ -130,7 +130,7 @@ namespace FunctionMonkey.Testing
         
         private HttpFunctionDefinition FindHttpFunctionDefinition(ICommand command)
         {
-            AbstractFunctionDefinition functionDefinition = _runtimeInstance.Builder.FunctionDefinitions.Single(x => x.CommandType == command.GetType());
+            AbstractFunctionDefinition functionDefinition = _runtimeInstance.FunctionDefinitions.Single(x => x.CommandType == command.GetType());
             if (!(functionDefinition is HttpFunctionDefinition httpFunctionDefinition))
             {
                 throw new TestException(

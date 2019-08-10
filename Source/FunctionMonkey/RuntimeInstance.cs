@@ -50,6 +50,10 @@ namespace FunctionMonkey
         public Func<object, ValidationResult, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
         
         public Func<object, ValidationResult> Validate { get; set; }
+        
+        // This is a func cast to an object that, when set, will be used to execute the command instead of the
+        // built in dispatcher
+        public object Handler { get; set; }
     }
     
     public class RuntimeInstance
@@ -60,9 +64,10 @@ namespace FunctionMonkey
 
         public AsyncLocal<ILogger> FunctionProvidedLogger { get;  }= new AsyncLocal<ILogger>(null);
 
-        public IFunctionHostBuilder Builder { get; }
-        
         public Dictionary<string, PluginFunctions> PluginFunctions { get; } = new Dictionary<string, PluginFunctions>();
+        
+        //public IFunctionHostBuilder Builder { get; }
+        public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }
 
         public RuntimeInstance() : this(null, null, null)
         {
@@ -73,13 +78,25 @@ namespace FunctionMonkey
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild,
             Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild)
         {
+
+            IContainerProvider containerProvider;
+            
             // Find the configuration implementation and service collection
             IFunctionAppConfiguration configuration = LocateConfiguration(functionAppConfigurationAssembly);
-            IContainerProvider containerProvider =
-                // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
-                (configuration as IContainerProvider) ?? new DefaultContainerProvider();
+            if (configuration != null)
+            {
+                containerProvider =
+                    // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
+                    (configuration as IContainerProvider) ?? new DefaultContainerProvider();
 
+                ServiceCollection = containerProvider.CreateServiceCollection();
+            }
+            else
+            {
+                containerProvider = new DefaultContainerProvider();
+            }
             ServiceCollection = containerProvider.CreateServiceCollection();
+            
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
                 (fromType, toInstance) => ServiceCollection.AddSingleton(fromType, toInstance),
                 (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
@@ -88,7 +105,7 @@ namespace FunctionMonkey
             
             ICommandRegistry commandRegistry;
             // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
-            if (configuration is ICommandingConfigurator commandingConfigurator)
+            if (configuration != null && configuration is ICommandingConfigurator commandingConfigurator)
             {
                 commandRegistry = commandingConfigurator.AddCommanding(adapter);
             }
@@ -100,29 +117,38 @@ namespace FunctionMonkey
 
             // Register internal implementations
             RegisterInternalImplementations();
+            
+            FunctionHostBuilder builder = null;
+            if (configuration != null)
+            {
+                // Invoke the builder process
+                builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
+                FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
+                FunctionDefinitions = builder.FunctionDefinitions;
+                
+                SetupAuthorization(builder, functionBuilder);
+            }
+            else
+            {
+                IFunctionCompilerMetadata functionCompilerMetadata = LocateFunctionCompilerMetadata(functionAppConfigurationAssembly);
+                FunctionDefinitions = functionCompilerMetadata.FunctionDefinitions;
+            }
 
-            // Invoke the builder process
-            FunctionHostBuilder builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
-            Builder = builder;
-            FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
+            RegisterCoreDependencies(FunctionDefinitions);
 
-            SetupAuthorization(builder, functionBuilder);
+            RegisterTimerCommandFactories(FunctionDefinitions);
 
-            RegisterCoreDependencies(builder.FunctionDefinitions);
+            RegisterHttpDependencies(FunctionDefinitions);
 
-            RegisterTimerCommandFactories(builder.FunctionDefinitions);
+            RegisterCosmosDependencies(FunctionDefinitions);
 
-            RegisterHttpDependencies(builder.FunctionDefinitions);
-
-            RegisterCosmosDependencies(builder.FunctionDefinitions);
-
-            CreatePluginFunctions(builder.FunctionDefinitions);
+            CreatePluginFunctions(FunctionDefinitions);
 
             beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
-            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
         }
 
         private ISerializer CreateSerializer(AbstractFunctionDefinition functionDefinition)
@@ -321,6 +347,12 @@ namespace FunctionMonkey
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration(functionAppConfigurationAssembly);
 
             return configuration;
+        }
+        
+        private IFunctionCompilerMetadata LocateFunctionCompilerMetadata(Assembly functionAppConfigurationAssembly)
+        {
+            IFunctionCompilerMetadata metadata = ConfigurationLocator.FindCompilerMetadata(functionAppConfigurationAssembly);
+            throw new NotImplementedException();
         }
 
         private FunctionHostBuilder CreateBuilderFromConfiguration(ICommandRegistry commandRegistry,

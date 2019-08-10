@@ -62,9 +62,11 @@ namespace FunctionMonkey.Compiler.Implementation
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration(_configurationSourceAssembly);
             if (configuration == null)
             {
-                // TODO - this is where we look for a static IFunctionCompilerMetadata property on a class / module
-                // to support F#
-                throw new ConfigurationException($"The assembly {_configurationSourceAssembly.GetName().Name} does not contain a public class implementing the IFunctionAppConfiguration interface");
+                functionCompilerMetadata = ConfigurationLocator.FindCompilerMetadata(_configurationSourceAssembly);
+                if (functionCompilerMetadata == null)
+                {
+                    throw new ConfigurationException($"The assembly {_configurationSourceAssembly.GetName().Name} does not contain a public class implementing the IFunctionAppConfiguration interface");
+                }
             }
             else
             {

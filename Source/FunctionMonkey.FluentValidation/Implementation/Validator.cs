@@ -18,7 +18,7 @@ namespace FunctionMonkey.FluentValidation.Implementation
             _serviceProvider = serviceProvider;
         }
 
-        public ValidationResult Validate<TCommand>(TCommand command) where TCommand : ICommand
+        public ValidationResult Validate(object command)
         {
             Type validatorGenericType = typeof(IValidator<>);
             Type validatorType = validatorGenericType.MakeGenericType(command.GetType());
