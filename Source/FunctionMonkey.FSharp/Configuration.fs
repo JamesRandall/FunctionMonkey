@@ -28,7 +28,7 @@ module Configuration =
              {
                  verbs = [verb]
                  route = (match subRoute with | Some r -> r | None -> "")
-                 handler = box handler
+                 handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
                  commandType = typedefof<'a>
                  resultType = typedefof<'b>
              }

@@ -6,6 +6,15 @@ open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
 
 module Models =
+    
+    type IHandler = interface end
+    
+    type FunctionHandler<'command, 'result> =
+        {
+            func: Func<'command, 'result>
+        }
+        interface IHandler
+    
     type OutputAuthoredSource =
         | Path of string
         | NoSourceOutput
