@@ -58,9 +58,13 @@ module Configuration =
             defaultAuthorizationHeader: string
         }
     
+    type Functions = {
+        httpFunctions: HttpFunction list 
+    }
+    
     type FunctionAppConfiguration = {
         authorization: Authorization       
-        httpFunctions: HttpFunction list     
+        functions: Functions
     }
     
     let private defaultAuthorization = {
@@ -68,9 +72,13 @@ module Configuration =
         defaultAuthorizationHeader = "Bearer"
     }
     
+    let private defaultFunctions = {
+        httpFunctions = []
+    }
+    
     let private defaultFunctionAppConfiguration = {
         authorization = defaultAuthorization
-        httpFunctions = []
+        functions = defaultFunctions
     }
     
     let private combineRoutes firstPart secondPart =
@@ -80,38 +88,40 @@ module Configuration =
                     | Unspecified -> firstPart
                     | Path p2 -> Path(p + p2)
 
-    let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
-        let convertVerb verb =
-            match verb with
-            | Get -> HttpMethod.Get
-            | Put -> HttpMethod.Put
-            | Post -> HttpMethod.Post
-            | Patch -> HttpMethod.Patch
-            | Delete -> HttpMethod.Delete
-            
-        let httpFunctionDefinition =
-            HttpFunctionDefinition(
-                httpFunction.commandType,
-                Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
-                Authorization = new System.Nullable<AuthorizationTypeEnum>(configuration.authorization.defaultAuthorizationMode),
-                ValidatesToken = (configuration.authorization.defaultAuthorizationMode = AuthorizationTypeEnum.TokenValidation),
-                TokenHeader = configuration.authorization.defaultAuthorizationHeader,
-                ClaimsPrincipalAuthorizationType = null,
-                HeaderBindingConfiguration = null,
-                HttpResponseHandlerType = null,
-                IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
-                IsStreamCommand = false,
-                TokenValidatorType = null
-            )
-        
-        httpFunctionDefinition :> AbstractFunctionDefinition
-    
     let private createFunctionCompilerMetadata configuration =
+        let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
+            let convertVerb verb =
+                match verb with
+                | Get -> HttpMethod.Get
+                | Put -> HttpMethod.Put
+                | Post -> HttpMethod.Post
+                | Patch -> HttpMethod.Patch
+                | Delete -> HttpMethod.Delete
+                
+            let httpFunctionDefinition =
+                HttpFunctionDefinition(
+                    httpFunction.commandType,
+                    Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
+                    Authorization = new System.Nullable<AuthorizationTypeEnum>(configuration.authorization.defaultAuthorizationMode),
+                    ValidatesToken = (configuration.authorization.defaultAuthorizationMode = AuthorizationTypeEnum.TokenValidation),
+                    TokenHeader = configuration.authorization.defaultAuthorizationHeader,
+                    ClaimsPrincipalAuthorizationType = null,
+                    HeaderBindingConfiguration = null,
+                    HttpResponseHandlerType = null,
+                    IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
+                    IsStreamCommand = false,
+                    TokenValidatorType = null
+                )
+            
+            httpFunctionDefinition :> AbstractFunctionDefinition
+        
         {
             outputAuthoredSourceFolder = NoSourceOutput
             openApiConfiguration = OpenApiConfiguration()
             functionDefinitions =
-                configuration.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f) |> Seq.toList
+                [] |> 
+                Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
+                |> Seq.toList
                 
         } :> IFunctionCompilerMetadata
     
@@ -128,21 +138,20 @@ module Configuration =
             azureFunction.http<'commandType, unit> (handler, verb, ?subRoute = subRoute)
                         
     type FunctionAppConfigurationBuilder() =
-        member __.Yield (item: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
+        member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
         member __.Run (configuration: FunctionAppConfiguration) =
             createFunctionCompilerMetadata configuration
         
         [<CustomOperation("httpRoute")>]
         member this.httpRoute(configuration:FunctionAppConfiguration, prefix, x) =
             { configuration
-                with httpFunctions = x
-                    |> Seq.map (fun f -> { f with route = (combineRoutes (Path(prefix)) f.route) })
-                    |> Seq.append configuration.httpFunctions
-                    |> Seq.toList
+                with functions = {
+                    configuration.functions
+                        with httpFunctions = x
+                            |> Seq.map (fun f -> { f with route = (combineRoutes (Path(prefix)) f.route) })
+                            |> Seq.append configuration.functions.httpFunctions
+                            |> Seq.toList
+                }
             }
-            
-        [<CustomOperation("build")>]
-        member this.build (configurationBuilder: FunctionAppConfiguration) =
-            0
         
     let functionApp = FunctionAppConfigurationBuilder()
