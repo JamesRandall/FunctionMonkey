@@ -5,6 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Models.fs" />
+        <Compile Include="FunctionCompilerMetadata.fs" />
         <Compile Include="Configuration.fs" />
     </ItemGroup>
 

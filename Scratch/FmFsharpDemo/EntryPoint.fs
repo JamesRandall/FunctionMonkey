@@ -2,6 +2,7 @@ namespace FmFsharpDemo
 open AzureFromTheTrenches.Commanding.Abstractions
 open FunctionMonkey.Abstractions
 open FunctionMonkey.Abstractions.Builders
+open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
 
 module EntryPoint =
@@ -25,27 +26,20 @@ module EntryPoint =
         order: Order
     }
     
-    let getOrderQuery query =
+    let getOrderQuery (query:GetOrderQuery) : Order =
         {
             id = query.id
             customer = "Fred Smith"
             value = 95.
         }
         
-    let createOrderCommand newOrder =
+    let createOrderCommand command =
         printf "Creating order"
-        
-    
-    let loggingHandler (cmd:'a) (handler:'a -> 'b) =
-        printf "Running"
-        let result = handler cmd
-        printf "Run"
-        result
-            
+                                    
     let app = functionApp {
         httpRoute "/api/v1/order" [
-            azureFunction.http<GetOrderQuery, Order> (getOrderQuery, Get, "/{id}")
-            azureFunction.http<CreateOrderCommand> (createOrderCommand, Post)
+            azureFunction.http (getOrderQuery, Get, "/{id}")
+            azureFunction.http (createOrderCommand, Post)
         ]
     }
                 

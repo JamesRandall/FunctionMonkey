@@ -16,10 +16,10 @@ namespace FSharpDiscoveryExample
                 foreach (PropertyInfo propertyInfo in type.GetProperties())
                 {
                     if (propertyInfo.PropertyType ==
-                        typeof(FunctionMonkey.FSharp.Configuration.FunctionAppConfiguration))
+                        typeof(FunctionMonkey.FSharp.Models.FunctionAppConfiguration))
                     {
-                        FunctionMonkey.FSharp.Configuration.FunctionAppConfiguration configuration2 =
-                            (FunctionMonkey.FSharp.Configuration.FunctionAppConfiguration)propertyInfo.GetValue(null);
+                        FunctionMonkey.FSharp.Models.FunctionAppConfiguration configuration2 =
+                            (FunctionMonkey.FSharp.Models.FunctionAppConfiguration)propertyInfo.GetValue(null);
                     }
                 }
             }

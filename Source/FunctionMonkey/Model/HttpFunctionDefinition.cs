@@ -14,6 +14,10 @@ namespace FunctionMonkey.Model
         public HttpFunctionDefinition(Type commandType) : base("", commandType)
         {
         }
+        
+        public HttpFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("", commandType, explicitCommandResultType)
+        {
+        }
 
         public HashSet<HttpMethod> Verbs { get; set; } = new HashSet<HttpMethod>();
 

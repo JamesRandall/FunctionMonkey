@@ -10,6 +10,8 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 {
     public abstract class AbstractFunctionDefinition
     {
+        private readonly Type _explicitCommandResultType;
+        
         protected AbstractFunctionDefinition(string namePrefix, Type commandType)
         {
             if (!commandType.IsPublic && !commandType.IsNested)
@@ -19,6 +21,19 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
             Name = string.Concat(namePrefix,commandType.GetFunctionName());
             CommandType = commandType;
+            _explicitCommandResultType = null;
+        }
+        
+        protected AbstractFunctionDefinition(string namePrefix, Type commandType, Type explicitCommandResultType)
+        {
+            if (!commandType.IsPublic && !commandType.IsNested)
+            {
+                throw new ConfigurationException($"Command of type {commandType} is not public. All command types must be public.");
+            }
+
+            Name = string.Concat(namePrefix,commandType.GetFunctionName());
+            CommandType = commandType;
+            _explicitCommandResultType = explicitCommandResultType;
         }
         
         public object FunctionHandler { get; set; }
@@ -37,6 +52,11 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         {
             get
             {
+                if (_explicitCommandResultType != null)
+                {
+                    return _explicitCommandResultType;
+                }
+                
                 if (NoCommandHandler || CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler)))
                 {
                     return CommandType;
