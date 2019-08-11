@@ -18,7 +18,7 @@ module EntryPoint =
     }
     
     type GetOrderQuery = {
-        id: OrderId
+        id: string // OrderId
     }
     
     type CreateOrderCommand = {
@@ -28,7 +28,7 @@ module EntryPoint =
     
     let getOrderQuery (query:GetOrderQuery) : Order =
         {
-            id = query.id
+            id = OrderId(query.id)
             customer = "Fred Smith"
             value = 95.
         }
@@ -37,9 +37,10 @@ module EntryPoint =
         printf "Creating order"
                                     
     let app = functionApp {
+        outputSourcePath "/Users/jamesrandall/code/authoredSource"
         httpRoute "/api/v1/order" [
             azureFunction.http (getOrderQuery, Get, "/{id}")
-            azureFunction.http (createOrderCommand, Post)
+            //azureFunction.http (createOrderCommand, Post)
         ]
     }
                 

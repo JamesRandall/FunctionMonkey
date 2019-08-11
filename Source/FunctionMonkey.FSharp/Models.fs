@@ -6,13 +6,6 @@ open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
 
 module Models =
-    type IFunctionHandler = interface end
-    type Handler<'commandType, 'commandResult> =
-        {        
-            handler: 'commandType -> 'commandResult
-        }
-        interface IFunctionHandler
-        
     type OutputAuthoredSource =
         | Path of string
         | NoSourceOutput
@@ -42,9 +35,9 @@ module Models =
         {
             commandType: Type
             resultType: Type
-            handler: IFunctionHandler
+            handler: obj
             verbs: HttpVerb list
-            route: HttpRoute
+            route: string
         }
         
     type Authorization =
@@ -55,9 +48,15 @@ module Models =
     
     type Functions = {
         httpFunctions: HttpFunction list 
+    }   
+    
+    type Diagnostics = {
+        outputSourcePath: OutputAuthoredSource
     }
     
     type FunctionAppConfiguration = {
+        enableFunctionModules: bool
+        diagnostics: Diagnostics
         authorization: Authorization       
         functions: Functions
     }

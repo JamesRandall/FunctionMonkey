@@ -35,7 +35,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             CommandType = commandType;
             _explicitCommandResultType = explicitCommandResultType;
         }
-        
+
         public object FunctionHandler { get; set; }
 
         public bool IsFunctionalFunction => FunctionHandler != null;

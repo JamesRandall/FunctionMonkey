@@ -243,7 +243,7 @@ namespace FunctionMonkey.Infrastructure
                                 || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse"))).ToArray();
             Regex regex = new Regex("{(.*?)}");
             MatchCollection matches = regex.Matches(httpFunctionDefinition1.Route);
-            foreach (Match match in matches) //you can loop through your matches like this
+            foreach (Match match in matches)
             {
                 string routeParameter = match.Groups[1].Value;
                 bool isOptional = routeParameter.EndsWith("?");

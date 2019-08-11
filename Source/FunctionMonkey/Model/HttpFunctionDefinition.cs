@@ -8,6 +8,15 @@ using FunctionMonkey.Extensions;
 
 namespace FunctionMonkey.Model
 {
+    public class ImmutableTypeConstructorParameter
+    {
+        public string Name { get; set; }
+        
+        public Type Type { get; set; }
+
+        public string TypeName => Type?.EvaluateType();
+    }
+    
     public class HttpFunctionDefinition : AbstractFunctionDefinition
     {
         // We want these to have nice routes so we don't apply the name prefix - every other type does
@@ -18,6 +27,9 @@ namespace FunctionMonkey.Model
         public HttpFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("", commandType, explicitCommandResultType)
         {
         }
+        
+        // If set to true then the command class must expose a constructor with each property a parameter.
+        public bool UsesImmutableTypes { get; set; }
 
         public HashSet<HttpMethod> Verbs { get; set; } = new HashSet<HttpMethod>();
 
@@ -36,6 +48,8 @@ namespace FunctionMonkey.Model
         public IReadOnlyCollection<HttpParameter> PossibleFormProperties { get; set; }
 
         public IReadOnlyCollection<HttpParameter> RouteParameters { get; set; }
+        
+        public IReadOnlyCollection<ImmutableTypeConstructorParameter> ImmutableTypeConstructorParameters { get; set; }
 
         public string OpenApiDescription { get; set; }
 

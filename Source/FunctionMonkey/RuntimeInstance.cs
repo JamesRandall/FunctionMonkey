@@ -50,7 +50,7 @@ namespace FunctionMonkey
         public Func<object, ValidationResult, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
         
         public Func<object, ValidationResult> Validate { get; set; }
-        
+
         // This is a func cast to an object that, when set, will be used to execute the command instead of the
         // built in dispatcher
         public object Handler { get; set; }
@@ -183,6 +183,8 @@ namespace FunctionMonkey
 
                 pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
                     CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties); 
+                
+                pluginFunctions.Handler = functionDefinition.FunctionHandler;
                 
                 if (functionDefinition is HttpFunctionDefinition httpFunctionDefinition)
                 {

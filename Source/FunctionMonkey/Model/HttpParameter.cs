@@ -27,6 +27,20 @@ namespace FunctionMonkey.Model
 
         public bool IsCollectionArray => Type.IsArray;
 
+        public bool IsTryParse => !IsEnum && !IsCollection && !IsCollectionArray &&
+                                  Type.GetMembers().Any(x => x.Name == "TryParse");
+
+        // We currently look to see if we are dealing with an F# discriminated union type by looking for an assignment
+        // pattern of a type having a constructor with one parameter that is of the same type of a readonly Item property
+        public bool IsDiscriminatedUnion => !IsTryParse &&
+                                            Type.GetProperty("Item") != null &&
+                                            !Type.GetProperty("Item").CanWrite &&
+                                            Type.GetConstructor(new [] { Type.GetProperty("Item").PropertyType }) != null;
+
+        public Type DiscriminatedUnionUnderlyingType => Type.GetProperty("Item")?.PropertyType;
+
+        public string DiscriminatedUnionUnderlyingTypeName => DiscriminatedUnionUnderlyingType?.EvaluateType();
+
         public Type CollectionInstanceType
         {
 	        get

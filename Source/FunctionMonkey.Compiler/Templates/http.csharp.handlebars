@@ -117,18 +117,22 @@ namespace {{Namespace}}
                 }
                 else
                 {
-                    command = new {{CommandTypeName}}();
+                    command = CreateNewCommand();
                 }
             }
             else
             {
-                command = new {{CommandTypeName}}();
+                command = CreateNewCommand();
             }
             {{/if}}
 
             {{#each PossibleFormProperties}}
                 command.{{Name}} = req.Form;
             {{/each}}
+
+            {{#if UsesImmutableTypes}}
+                Dictionary<string, object> imtPropertyValues = new Dictionary<string, object>();
+            {{/if}}
 
             Microsoft.Extensions.Primitives.StringValues queryParameterValues;
             {{#each PossibleBindingProperties}}
@@ -184,13 +188,21 @@ namespace {{Namespace}}
                                     collection.Add(parsedValue);
                                 {{/if}}
                             {{else}}
-                                command.{{Name}} = parsedValue;
+                                {{#if ../UsesImmutableTypes}}
+                                    imtPropertyValues["{{Name}}"] = parsedValue;
+                                {{else}}
+                                    command.{{Name}} = parsedValue;
+                                {{/if}}                             
                                 break;
                             {{/if}}
                         }
                 
                         {{#if IsCollection}}
-                            command.{{Name}} = collection;
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = collection;
+                            {{else}}
+                                command.{{Name}} = collection;
+                            {{/if}}
                         {{/if}}
                     }
                 {{/unless}}
@@ -207,13 +219,21 @@ namespace {{Namespace}}
                         {
                         string headerValue = stringValues.FirstOrDefault();
                         {{#if IsString}}
-                            command.{{Name}} = headerValue;
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = headerValue;
+                            {{else}}
+                                command.{{Name}} = headerValue;
+                            {{/if}}
                         {{else if IsEnum}}
                             {
                                 {{{TypeName}}} result;
                                 if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
                                 {
-                                    command.{{Name}} = result;
+                                    {{#if ../UsesImmutableTypes}}
+                                        imtPropertyValues["{{Name}}"] = result;
+                                    {{else}}
+                                        command.{{Name}} = result;
+                                    {{/if}}
                                 }
                             }
                         {{else if IsNullable}}
@@ -222,13 +242,21 @@ namespace {{Namespace}}
                                     {{{TypeName}}} nullableValue;
                                     if(TryParseNullable(headerValue, {{NullableType}}.TryParse, out nullableValue))
                                     {
-                                        command.{{Name}} = nullableValue;
+                                        {{#if ../UsesImmutableTypes}}
+                                            imtPropertyValues["{{Name}}"] = nullableValue;
+                                        {{else}}
+                                            command.{{Name}} = nullableValue;
+                                        {{/if}}
                                     }
                                 }
                             {{/if}}
                         {{else}}
                             {{TypeName}}.TryParse(headerValue, out var candidate);
-                            command.{{Name}} = candidate;
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = candidate;
+                            {{else}}
+                                command.{{Name}} = candidate;
+                            {{/if}}
                         {{/if}}
                         }
                         }
@@ -238,13 +266,21 @@ namespace {{Namespace}}
 
             {{#each RouteParameters}}
                 {{#if IsString}}
-                    command.{{Name}} = {{RouteName}};
+                    {{#if ../UsesImmutableTypes}}
+                        imtPropertyValues["{{Name}}"] = {{RouteName}};
+                    {{else}}
+                        command.{{Name}} = {{RouteName}};
+                    {{/if}}
                 {{else if IsEnum}}
                     {
                         {{{RouteTypeName}}} result;
                         if (System.Enum.TryParse<{{RouteTypeName}}>({{RouteName}}, out result))
                         {
-                            command.{{Name}} = result;
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = result;
+                            {{else}}
+                                command.{{Name}} = result;
+                            {{/if}}
                         }
                         else
                         {
@@ -260,7 +296,11 @@ namespace {{Namespace}}
                             {
                                 if(TryParseNullable({{RouteName}}, {{NullableType}}.TryParse, out nullableValue))
                                 {
-                                    command.{{Name}} = nullableValue;
+                                    {{#if ../UsesImmutableTypes}}
+                                        imtPropertyValues["{{Name}}"] = nullableValue;
+                                    {{else}}
+                                        command.{{Name}} = nullableValue;
+                                    {{/if}}
                                 }
                                 else
                                 {
@@ -270,10 +310,19 @@ namespace {{Namespace}}
                         }
                     {{/if}}
                     }
+                {{else if IsDiscriminatedUnion}}
+                    {
+                        return CreateBadParameterResponse("Unions not yet supported for route parameters");
+                        //{{{DiscriminatedUnionUnderlyingTypeName}}} discriminatedUnionValue = pluginFunctions.ParseFromString<{{{RouteTypeName}}}>({{RouteName}}));
+                    }
                 {{else}}
                     if ({{TypeName}}.TryParse({{RouteName}}, out var candidate))
                     {
-                        command.{{Name}} = candidate;
+                        {{#if ../UsesImmutableTypes}}
+                            imtPropertyValues["{{Name}}"] = candidate;
+                        {{else}}
+                            command.{{Name}} = candidate;
+                        {{/if}}
                     }
                     else
                     {
@@ -412,6 +461,19 @@ namespace {{Namespace}}
             result = temp;
 
           return success;
+        }
+                        
+        private static {{CommandTypeName}} CreateNewCommand()
+        {
+            {{#if UsesImmutableTypes}}
+                return new {{CommandTypeName}}(
+                    {{#each ImmutableTypeConstructorParameters}}
+                        default({{{TypeName}}}){{#unless @last}},{{/unless}}
+                    {{/each}}
+                );
+            {{else}}
+                return new {{CommandTypeName}}();
+            {{/if}}
         }
     }    
 }
