@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Commanding.Abstractions;
+using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Abstractions.Builders.Model
 {
@@ -36,7 +38,12 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             _explicitCommandResultType = explicitCommandResultType;
         }
 
+        public IReadOnlyCollection<ImmutableTypeConstructorParameter> ImmutableTypeConstructorParameters { get; set; }
+        
         public object FunctionHandler { get; set; }
+
+        public bool FunctionHandlerIsAsync => FunctionHandler != null &&
+                                      typeof(Task).IsAssignableFrom(FunctionHandler.GetType().GetGenericArguments().Last());
 
         public bool IsFunctionalFunction => FunctionHandler != null;
 

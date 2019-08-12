@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -8,6 +9,8 @@ namespace FunctionMonkey.Compiler.Implementation
     {
         public string Namespace { get; set; }
 
-        public string ConfigurationTypeName { get; set; }
+        public string TypeName { get; set; }
+        
+        public IReadOnlyCollection<ImmutableTypeConstructorParameter> ConstructorParameters { get; set; }
     }
 }

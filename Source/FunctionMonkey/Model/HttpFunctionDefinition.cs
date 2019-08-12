@@ -8,15 +8,6 @@ using FunctionMonkey.Extensions;
 
 namespace FunctionMonkey.Model
 {
-    public class ImmutableTypeConstructorParameter
-    {
-        public string Name { get; set; }
-        
-        public Type Type { get; set; }
-
-        public string TypeName => Type?.EvaluateType();
-    }
-    
     public class HttpFunctionDefinition : AbstractFunctionDefinition
     {
         // We want these to have nice routes so we don't apply the name prefix - every other type does
@@ -48,8 +39,6 @@ namespace FunctionMonkey.Model
         public IReadOnlyCollection<HttpParameter> PossibleFormProperties { get; set; }
 
         public IReadOnlyCollection<HttpParameter> RouteParameters { get; set; }
-        
-        public IReadOnlyCollection<ImmutableTypeConstructorParameter> ImmutableTypeConstructorParameters { get; set; }
 
         public string OpenApiDescription { get; set; }
 

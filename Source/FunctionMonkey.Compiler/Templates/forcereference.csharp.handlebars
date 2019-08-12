@@ -15,7 +15,11 @@ namespace {{Namespace}}
     {
         public static void ForceLinkBack()
         {
-            new {{ConfigurationTypeName}}();
+            new {{TypeName}}(
+                {{#each ConstructorParameters}}
+                    default({{{TypeName}}}){{#unless @last}},{{/unless}}
+                {{/each}}
+            );
         }
     }
 }

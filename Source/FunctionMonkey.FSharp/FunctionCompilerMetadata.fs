@@ -22,6 +22,14 @@ module FunctionCompilerMetadata =
         if m.Success then Some (List.tail [ for g in m.Groups -> g.Value ]) else None
     
     let create configuration =
+        let extractConstructorParameters func =
+                let createParameter (cp:ParameterInfo) =
+                    ImmutableTypeConstructorParameter(
+                        Name = cp.Name,
+                        Type = cp.ParameterType
+                    )                    
+                func.commandType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
+        
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
             let convertVerb verb =
                 match verb with
@@ -30,14 +38,6 @@ module FunctionCompilerMetadata =
                 | Post -> HttpMethod.Post
                 | Patch -> HttpMethod.Patch
                 | Delete -> HttpMethod.Delete
-                
-            let extractConstructorParameters () =
-                let createParameter (cp:ParameterInfo) =
-                    ImmutableTypeConstructorParameter(
-                        Name = cp.Name,
-                        Type = cp.ParameterType
-                    )                    
-                httpFunction.commandType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
                 
             let extractRouteParameters () =
                 let createRouteParameter (parameterName:string) =
@@ -67,7 +67,6 @@ module FunctionCompilerMetadata =
                 
                 
             let httpFunctionDefinition =
-                let constructorParameters = extractConstructorParameters ()
                 HttpFunctionDefinition(
                     httpFunction.commandType,
                     httpFunction.resultType,
@@ -83,7 +82,7 @@ module FunctionCompilerMetadata =
                     IsStreamCommand = false,
                     TokenValidatorType = null,
                     RouteParameters = extractRouteParameters (),
-                    ImmutableTypeConstructorParameters = constructorParameters,
+                    ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
                     FunctionHandler = httpFunction.handler
                 )
             

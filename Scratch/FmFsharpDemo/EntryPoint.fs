@@ -35,12 +35,20 @@ module EntryPoint =
         
     let createOrderCommand command =
         printf "Creating order"
+        
+    let wrapHandler handler =
+        let wrapped cmd =
+            printf "before"
+            let result = handler cmd
+            printf "after"
+            result
+        wrapped
                                     
     let app = functionApp {
         outputSourcePath "/Users/jamesrandall/code/authoredSource"
         httpRoute "/api/v1/order" [
-            azureFunction.http (getOrderQuery, Get, "/{id}")
-            //azureFunction.http (createOrderCommand, Post)
+            azureFunction.http (wrapHandler getOrderQuery, Get, "/{id}")
+            //azureFunction.http (wrapHandler createOrderCommand, Post)
         ]
     }
                 

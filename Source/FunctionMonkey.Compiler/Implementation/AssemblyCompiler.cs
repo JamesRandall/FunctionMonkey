@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Commanding.Abstractions;
@@ -88,22 +89,44 @@ namespace FunctionMonkey.Compiler.Implementation
                 }, directoryInfo, syntaxTrees);
             }
 
-            // Now we need to create a class that references the assembly with the configuration builder
+            CreateLinkBack(functionDefinitions, functionAppConfigurationType, newAssemblyNamespace, directoryInfo, syntaxTrees);
+
+            return syntaxTrees;
+        }
+
+        private void CreateLinkBack(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions, Type functionAppConfigurationType, string newAssemblyNamespace, DirectoryInfo directoryInfo,
+            List<SyntaxTree> syntaxTrees)
+        {
+// Now we need to create a class that references the assembly with the configuration builder
             // otherwise the reference will be optimised away by Roslyn and it will then never get loaded
             // by the function host - and so at runtime the builder with the runtime info in won't be located
             string linkBackTemplateSource = _templateProvider.GetCSharpLinkBackTemplate();
             Func<object, string> linkBackTemplate = Handlebars.Compile(linkBackTemplateSource);
-            LinkBackModel linkBackModel = new LinkBackModel
+
+            LinkBackModel linkBackModel = null;
+            if (typeof(IFunctionCompilerMetadata).IsAssignableFrom(functionAppConfigurationType))
             {
-                ConfigurationTypeName = functionAppConfigurationType.EvaluateType(),
-                Namespace = newAssemblyNamespace
-            };
+                linkBackModel = new LinkBackModel
+                {
+                    TypeName = functionDefinitions.First().CommandType.EvaluateType(),
+                    ConstructorParameters = functionDefinitions.First().ImmutableTypeConstructorParameters,
+                    Namespace = newAssemblyNamespace
+                };
+            }
+            else
+            {
+                linkBackModel = new LinkBackModel
+                {
+                    TypeName = functionAppConfigurationType.EvaluateType(),
+                    ConstructorParameters = new ImmutableTypeConstructorParameter[0],
+                    Namespace = newAssemblyNamespace
+                };
+            }
+            
             string outputLinkBackCode = linkBackTemplate(linkBackModel);
             OutputDiagnosticCode(directoryInfo, "ReferenceLinkBack", outputLinkBackCode);
             SyntaxTree linkBackSyntaxTree = CSharpSyntaxTree.ParseText(outputLinkBackCode);
             syntaxTrees.Add(linkBackSyntaxTree);
-
-            return syntaxTrees;
         }
 
         private static void AddSyntaxTreeFromHandlebarsTemplate(string templateSource, string name,
