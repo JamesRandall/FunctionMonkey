@@ -12,7 +12,7 @@ module EntryPoint =
         | UserId of string
     
     type Order = {
-        id: OrderId
+        id: string
         customer: string
         value: float
     }
@@ -28,7 +28,7 @@ module EntryPoint =
     
     let getOrderQuery (query:GetOrderQuery) : Order =
         {
-            id = OrderId(query.id)
+            id = query.id
             customer = "Fred Smith"
             value = 95.
         }

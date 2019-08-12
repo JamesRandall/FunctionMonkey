@@ -13,6 +13,7 @@ open FunctionMonkey.Abstractions.Http
 open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.Model
 open FunctionMonkey.Model
+open FunctionMonkey.Serialization
 open Models
 
 module FunctionCompilerMetadata =
@@ -70,6 +71,7 @@ module FunctionCompilerMetadata =
                 HttpFunctionDefinition(
                     httpFunction.commandType,
                     httpFunction.resultType,
+                    Route = httpFunction.route,
                     UsesImmutableTypes = true,
                     Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
                     Authorization = new System.Nullable<AuthorizationTypeEnum>(configuration.authorization.defaultAuthorizationMode),
@@ -83,7 +85,9 @@ module FunctionCompilerMetadata =
                     TokenValidatorType = null,
                     RouteParameters = extractRouteParameters (),
                     ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
-                    FunctionHandler = httpFunction.handler
+                    FunctionHandler = httpFunction.handler,
+                    Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
+                    CommandDeserializerType = typedefof<CamelCaseJsonSerializer>
                 )
             
             httpFunctionDefinition :> AbstractFunctionDefinition

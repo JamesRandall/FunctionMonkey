@@ -354,7 +354,7 @@ namespace FunctionMonkey
         private IFunctionCompilerMetadata LocateFunctionCompilerMetadata(Assembly functionAppConfigurationAssembly)
         {
             IFunctionCompilerMetadata metadata = ConfigurationLocator.FindCompilerMetadata(functionAppConfigurationAssembly);
-            throw new NotImplementedException();
+            return metadata;
         }
 
         private FunctionHostBuilder CreateBuilderFromConfiguration(ICommandRegistry commandRegistry,
