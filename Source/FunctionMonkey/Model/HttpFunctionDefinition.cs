@@ -10,7 +10,6 @@ namespace FunctionMonkey.Model
 {
     public class HttpFunctionDefinition : AbstractFunctionDefinition
     {
-        // We want these to have nice routes so we don't apply the name prefix - every other type does
         public HttpFunctionDefinition(Type commandType) : base("", commandType)
         {
         }

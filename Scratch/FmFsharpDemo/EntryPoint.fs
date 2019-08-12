@@ -1,16 +1,8 @@
 namespace FmFsharpDemo
-open AzureFromTheTrenches.Commanding.Abstractions
-open FunctionMonkey.Abstractions
-open FunctionMonkey.Abstractions.Builders
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
 
 module EntryPoint =
-    type OrderId =
-        | OrderId of string
-    type UserId =
-        | UserId of string
-    
     type Order = {
         id: string
         customer: string
@@ -18,15 +10,15 @@ module EntryPoint =
     }
     
     type GetOrderQuery = {
-        id: string // OrderId
+        id: string
     }
     
     type CreateOrderCommand = {
-        userId: UserId
+        userId: string
         order: Order
     }
     
-    let getOrderQuery (query:GetOrderQuery) : Order =
+    let getOrderQuery query =
         {
             id = query.id
             customer = "Fred Smith"
@@ -34,21 +26,18 @@ module EntryPoint =
         }
         
     let createOrderCommand command =
-        printf "Creating order"
+        printf "Creating order for user %s" command.userId
         
-    let wrapHandler handler =
-        let wrapped cmd =
-            printf "before"
-            let result = handler cmd
-            printf "after"
-            result
-        wrapped
+    let validateTokenAsync (bearerToken:string) =
+        async {
+            return bearerToken.Length > 0
+        } // |> Async.StartAsTask // - for ref for tomorrow
                                     
     let app = functionApp {
-        outputSourcePath "/Users/jamesrandall/code/authoredSource"
-        httpRoute "/api/v1/order" [
-            azureFunction.http (wrapHandler getOrderQuery, Get, "/{id}")
-            //azureFunction.http (wrapHandler createOrderCommand, Post)
+        tokenValidatorAsync validateTokenAsync
+        httpRoute "api/v1/order" [
+            azureFunction.http (getOrderQuery, Get, "/{id}")
+            azureFunction.http (createOrderCommand, Post)
         ]
     }
                 
