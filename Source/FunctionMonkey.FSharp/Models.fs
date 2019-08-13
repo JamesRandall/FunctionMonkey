@@ -49,6 +49,23 @@ module Models =
             route: string
         }
         
+    type ServiceBusQueueFunction = {
+        serviceBusConnectionStringSettiingName: string
+        queueName: string
+        sessionIdEnabled: bool
+    }
+    
+    type ServiceBusSubscriptionFunction = {
+        serviceBusConnectionStringSettiingName: string
+        topicName: string
+        subscriptionName: string
+        sessionIdEnabled: bool
+    }
+    
+    type ServiceBusFunction =
+        | Queue of ServiceBusQueueFunction
+        | Subscription of ServiceBusSubscriptionFunction
+        
     type Authorization =
         {
             defaultAuthorizationMode: AuthorizationTypeEnum
@@ -56,7 +73,8 @@ module Models =
         }
     
     type Functions = {
-        httpFunctions: HttpFunction list 
+        httpFunctions: HttpFunction list
+        serviceBusFunctions: ServiceBusFunction list
     }   
     
     type Diagnostics = {

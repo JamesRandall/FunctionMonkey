@@ -12,6 +12,7 @@ module Configuration =
     
     let private defaultFunctions = {
         httpFunctions = []
+        serviceBusFunctions = []
     }
     
     let private defaultDiagnostics = {
@@ -37,6 +38,9 @@ module Configuration =
         {
             httpFunctions = functionsListA |> Seq.collect(fun f -> f.httpFunctions)
                             |> Seq.append (functionsListB |> Seq.collect(fun f -> f.httpFunctions))
+                            |> Seq.toList
+            serviceBusFunctions = functionsListA |> Seq.collect(fun f -> f.serviceBusFunctions)
+                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.serviceBusFunctions))
                             |> Seq.toList
         }
     
@@ -83,7 +87,22 @@ module Configuration =
                             |> Seq.append configuration.functions.httpFunctions
                             |> Seq.toList
                 }
-            }  
+            }
+            
+        member this.serviceBus(configuration, serviceBusConnectionStringSettingName, serviceBusFunctions) =
+            { configuration
+                with functions = {
+                    configuration.functions
+                        with serviceBusFunctions = serviceBusFunctions
+                            |> Seq.map (fun f -> match f with
+                                                 | Queue q -> Queue({ q with serviceBusConnectionStringSettiingName = serviceBusConnectionStringSettingName })
+                                                 | Subscription s -> Subscription({ s with serviceBusConnectionStringSettiingName = serviceBusConnectionStringSettingName })
+                                       )
+                            |> Seq.append configuration.functions.serviceBusFunctions
+                            |> Seq.toList
+                }
+            }
+        
     let functionApp = FunctionAppConfigurationBuilder()
     
     type FunctionsBuilder() =
