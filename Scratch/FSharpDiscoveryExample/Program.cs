@@ -8,9 +8,9 @@ namespace FSharpDiscoveryExample
     {
         static void Main(string[] args)
         {
-            
-            
-            Assembly assembly = typeof(FmFsharpDemo.EntryPoint.Order).Assembly;
+
+            //Microsoft.FSharp.Core.Unit
+            /*Assembly assembly = typeof(FmFsharpDemo.EntryPoint.Order).Assembly;
             foreach (Type type in assembly.ExportedTypes)
             {
                 foreach (PropertyInfo propertyInfo in type.GetProperties())
@@ -22,7 +22,7 @@ namespace FSharpDiscoveryExample
                             (FunctionMonkey.FSharp.Models.FunctionAppConfiguration)propertyInfo.GetValue(null);
                     }
                 }
-            }
+            }*/
         }
     }
 }

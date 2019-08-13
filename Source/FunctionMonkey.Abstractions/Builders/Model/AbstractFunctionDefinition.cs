@@ -53,6 +53,8 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
         public Type CommandType { get; set; }
 
+        public bool CommandTypeIsUnit => CommandType.FullName == "Microsoft.FSharp.Core.Unit";
+
         public string CommandTypeName => CommandType.EvaluateType();
 
         public Type CommandResultType
@@ -115,6 +117,8 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         }
 
         public string CommandResultTypeName => CommandResultType.EvaluateType();
+
+        public bool CommandResultTypeIsUnit => CommandResultType?.FullName == "Microsoft.FSharp.Core.Unit";
 
         public bool CommandHasResult => CommandResultType != null;
 

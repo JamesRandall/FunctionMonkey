@@ -332,10 +332,13 @@ namespace {{Namespace}}
             {{/each}}
     
             {{#if ValidatesToken}}
+            {{#unless CommandTypeIsUnit}}    
             await pluginFunctions.BindClaims(principal, command);
+            {{/unless}}    
             {{/if}}
 
             {{#if IsUsingValidator}}
+            {{#unless CommandTypeIsUnit}}
             var validationResult = pluginFunctions.Validate(command);
             if (!validationResult.IsValid)
             {
@@ -347,6 +350,7 @@ namespace {{Namespace}}
                     return CreateResponse(400, validationResult, pluginFunctions);
                 {{/if}}
             }
+            {{/unless}}
             {{/if}}
 
             {{#if OutputBinding}}
@@ -470,11 +474,15 @@ namespace {{Namespace}}
         private static {{CommandTypeName}} CreateNewCommand()
         {
             {{#if UsesImmutableTypes}}
+                {{#if CommandTypeIsUnit}}
+                    return null;
+                {{else}}    
                 return new {{CommandTypeName}}(
                     {{#each ImmutableTypeConstructorParameters}}
                         default({{{TypeName}}}){{#unless @last}},{{/unless}}
                     {{/each}}
                 );
+                {{/if}}    
             {{else}}
                 return new {{CommandTypeName}}();
             {{/if}}

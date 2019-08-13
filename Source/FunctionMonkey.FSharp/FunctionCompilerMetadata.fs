@@ -17,6 +17,7 @@ open FunctionMonkey.Serialization
 open Models
 
 module FunctionCompilerMetadata =
+    exception OnlyRecordTypesSupportedForCommandsException
     
     let private (|Match|_|) pattern input =
         let m = Regex.Match(input, pattern) in
@@ -28,8 +29,12 @@ module FunctionCompilerMetadata =
                     ImmutableTypeConstructorParameter(
                         Name = cp.Name,
                         Type = cp.ParameterType
-                    )                    
-                func.commandType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
+                    )
+                let constructors = func.commandType.GetConstructors()
+                match constructors.Length with
+                | 0 -> []
+                | 1 -> func.commandType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
+                | _ -> raise OnlyRecordTypesSupportedForCommandsException
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
             let convertVerb verb =

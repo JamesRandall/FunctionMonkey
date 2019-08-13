@@ -45,10 +45,6 @@ namespace FunctionMonkey
             {
                 throw RaiseTypeLoadingException(rex);
             }
-            catch (Exception ex)
-            {
-                throw;
-            }
         }
 
         private static IFunctionCompilerMetadata FindCompilerMetadata()

@@ -1,4 +1,5 @@
 ﻿namespace FunctionMonkey.FSharp
+open System.Reflection
 open System.Threading.Tasks
 open FunctionMonkey.Abstractions.Builders
 open Models
@@ -24,6 +25,21 @@ module Configuration =
         functions = defaultFunctions
     }
     
+    let private gatherModuleFunctions (assembly:Assembly) =
+        assembly.GetTypes()
+        |> Seq.collect (
+               fun t -> t.GetProperties(BindingFlags.Public + BindingFlags.Static)
+                        |> Seq.filter(fun p  -> p.PropertyType = typedefof<Functions>)
+           )
+        |> Seq.map (fun p -> p.GetValue(null) :?> Functions)
+        
+    let private concatFunctions functionsListA functionsListB =
+        {
+            httpFunctions = functionsListA |> Seq.collect(fun f -> f.httpFunctions)
+                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.httpFunctions))
+                            |> Seq.toList
+        }
+    
     type azureFunction private() =
         static member inline http ((handler:'a -> 'b), verb, ?subRoute) =
              {
@@ -37,7 +53,9 @@ module Configuration =
     type FunctionAppConfigurationBuilder() =
         member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
         member __.Run (configuration: FunctionAppConfiguration) =
-            FunctionCompilerMetadata.create configuration
+            let moduleFunctions = gatherModuleFunctions (Assembly.GetCallingAssembly())
+            let configurationWithModuleFunctions = { configuration with functions = (concatFunctions [configuration.functions] moduleFunctions) }
+            FunctionCompilerMetadata.create configurationWithModuleFunctions
         
         [<CustomOperation("disableFunctionModules")>]
         member this.disableFunctionModules(configuration:FunctionAppConfiguration) =
