@@ -10,6 +10,18 @@ using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Abstractions.Builders.Model
 {
+    public class BridgedFunction
+    {
+        public BridgedFunction(object handler)
+        {
+            Handler = handler;
+        }
+        
+        public object Handler { get; }
+        
+        public bool IsAsync => typeof(Task).IsAssignableFrom(Handler.GetType().GetGenericArguments().Last());
+    }
+    
     public abstract class AbstractFunctionDefinition
     {
         private readonly Type _explicitCommandResultType;
@@ -39,13 +51,6 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         }
 
         public IReadOnlyCollection<ImmutableTypeConstructorParameter> ImmutableTypeConstructorParameters { get; set; }
-        
-        public object FunctionHandler { get; set; }
-
-        public bool FunctionHandlerIsAsync => FunctionHandler != null &&
-                                      typeof(Task).IsAssignableFrom(FunctionHandler.GetType().GetGenericArguments().Last());
-
-        public bool IsFunctionalFunction => FunctionHandler != null;
 
         public string Namespace { get; set; }
 
@@ -147,5 +152,16 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         public AbstractOutputBinding OutputBinding { get; set; }
         
         public bool NoCommandHandler { get; set; }
+        
+        // F# support
+        
+        public object FunctionHandler { get; set; }
+
+        public bool FunctionHandlerIsAsync => FunctionHandler != null &&
+                                              typeof(Task).IsAssignableFrom(FunctionHandler.GetType().GetGenericArguments().Last());
+
+        public bool IsFunctionalFunction => FunctionHandler != null;
+        
+        public BridgedFunction TokenValidatorFunction { get; set; }
     }
 }

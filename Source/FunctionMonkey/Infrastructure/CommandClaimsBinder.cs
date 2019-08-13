@@ -16,7 +16,7 @@ namespace FunctionMonkey.Infrastructure
             _mappers = mappers;
         }
 
-        public bool Bind(ClaimsPrincipal principal, ICommand command)
+        public bool Bind(ClaimsPrincipal principal, object command)
         {
             if (_mappers.TryGetValue(command.GetType(), out var binder))
             {
@@ -27,7 +27,7 @@ namespace FunctionMonkey.Infrastructure
             return false;
         }
         
-        public Task<bool> BindAsync(ClaimsPrincipal principal, ICommand command)
+        public Task<bool> BindAsync(ClaimsPrincipal principal, object command)
         {
             if (_mappers.TryGetValue(command.GetType(), out var binder))
             {

@@ -7,12 +7,12 @@ namespace FunctionMonkey.Testing.Mocks
 {
     public class CommandClaimsBinderMock : ICommandClaimsBinder
     {
-        public bool Bind(ClaimsPrincipal principal, ICommand command)
+        public bool Bind(ClaimsPrincipal principal, object command)
         {
             return false;
         }
 
-        public Task<bool> BindAsync(ClaimsPrincipal principal, ICommand command)
+        public Task<bool> BindAsync(ClaimsPrincipal principal, object command)
         {
             return null;
         }

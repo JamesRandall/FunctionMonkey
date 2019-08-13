@@ -6,15 +6,7 @@ open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
 
 module Models =
-    
-    type IHandler = interface end
-    
-    type FunctionHandler<'command, 'result> =
-        {
-            func: Func<'command, 'result>
-        }
-        interface IHandler
-    
+        
     type OutputAuthoredSource =
         | Path of string
         | NoSourceOutput
@@ -29,14 +21,18 @@ module Models =
             member i.FunctionDefinitions = i.functionDefinitions :> System.Collections.Generic.IReadOnlyCollection<AbstractFunctionDefinition>
             member i.OpenApiConfiguration = i.openApiConfiguration
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
-        
+    
+    type AuthorizationMode =
+        | Anonymous
+        | Token
+        | Function
+    
     type HttpVerb =
             | Get
             | Put
             | Post
             | Patch
-            | Delete
-            //| Custom of string
+            | Delete    
     type HttpRoute =
         | Path of string
         | Unspecified
@@ -44,9 +40,9 @@ module Models =
         {
             commandType: Type
             resultType: Type
-            handler: obj
             verbs: HttpVerb list
             route: string
+            handler: obj
         }
         
     type ServiceBusQueueFunction = {
@@ -68,8 +64,9 @@ module Models =
         
     type Authorization =
         {
-            defaultAuthorizationMode: AuthorizationTypeEnum
+            defaultAuthorizationMode: AuthorizationMode
             defaultAuthorizationHeader: string
+            tokenValidator: obj
         }
     
     type Functions = {

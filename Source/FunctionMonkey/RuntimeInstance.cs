@@ -39,7 +39,7 @@ namespace FunctionMonkey
         
         public Func<object, bool, string> Serialize { get; set; }
         
-        public Func<ClaimsPrincipal, ICommand, Task<bool>> BindClaims { get; set; }
+        public Func<ClaimsPrincipal, object, Task<bool>> BindClaims { get; set; }
         
         public Func<object, Exception, Task<IActionResult>> CreateResponseFromException { get; set; }
         
@@ -188,14 +188,34 @@ namespace FunctionMonkey
                 
                 if (functionDefinition is HttpFunctionDefinition httpFunctionDefinition)
                 {
-                    pluginFunctions.ValidateToken = async (authorizationHeader) =>
+                    if (httpFunctionDefinition.TokenValidatorFunction != null)
                     {
-                        var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
-                            ServiceProvider.GetService(httpFunctionDefinition
-                                .TokenValidatorType);
-                        ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
-                        return principal;
-                    };
+                        if (httpFunctionDefinition.TokenValidatorFunction.IsAsync)
+                        {
+                            pluginFunctions.ValidateToken =
+                                (Func<string, Task<ClaimsPrincipal>>) httpFunctionDefinition.TokenValidatorFunction
+                                    .Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.ValidateToken = authorizationHeader => Task.FromResult(
+                                ((Func<string, ClaimsPrincipal>) httpFunctionDefinition.TokenValidatorFunction
+                                    .Handler)(authorizationHeader)
+                            );
+                        }
+                    }
+                    else
+                    {
+                        pluginFunctions.ValidateToken = async (authorizationHeader) =>
+                        {
+                            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
+                                ServiceProvider.GetService(httpFunctionDefinition
+                                    .TokenValidatorType);
+                            ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
+                            return principal;
+                        };
+                    }
+                    
                     pluginFunctions.IsAuthorized = async (principal, httpVerb, requestUrl) =>
                     {
                         var claimsPrincipalAuthorization = (IClaimsPrincipalAuthorization)

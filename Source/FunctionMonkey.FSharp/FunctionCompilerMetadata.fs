@@ -45,6 +45,12 @@ module FunctionCompilerMetadata =
                 | Patch -> HttpMethod.Patch
                 | Delete -> HttpMethod.Delete
                 
+            let convertAuthorizationMode mode =
+                match mode with
+                | Anonymous -> AuthorizationTypeEnum.Anonymous
+                | Token -> AuthorizationTypeEnum.TokenValidation
+                | Function -> AuthorizationTypeEnum.Function
+                
             let extractRouteParameters () =
                 let createRouteParameter (parameterName:string) =
                     let isOptional = parameterName.EndsWith("?")
@@ -79,8 +85,8 @@ module FunctionCompilerMetadata =
                     Route = httpFunction.route,
                     UsesImmutableTypes = true,
                     Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
-                    Authorization = new System.Nullable<AuthorizationTypeEnum>(configuration.authorization.defaultAuthorizationMode),
-                    ValidatesToken = (configuration.authorization.defaultAuthorizationMode = AuthorizationTypeEnum.TokenValidation),
+                    Authorization = new System.Nullable<AuthorizationTypeEnum>(convertAuthorizationMode configuration.authorization.defaultAuthorizationMode),
+                    ValidatesToken = (configuration.authorization.defaultAuthorizationMode = Token),
                     TokenHeader = configuration.authorization.defaultAuthorizationHeader,
                     ClaimsPrincipalAuthorizationType = null,
                     HeaderBindingConfiguration = null,
@@ -90,9 +96,13 @@ module FunctionCompilerMetadata =
                     TokenValidatorType = null,
                     RouteParameters = extractRouteParameters (),
                     ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
-                    FunctionHandler = httpFunction.handler,
                     Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
-                    CommandDeserializerType = typedefof<CamelCaseJsonSerializer>
+                    CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                    // function handlers
+                    FunctionHandler = httpFunction.handler,
+                    TokenValidatorFunction = match configuration.authorization.tokenValidator with
+                                             | null -> null
+                                             | _ -> new BridgedFunction(configuration.authorization.tokenValidator)
                 )
             
             httpFunctionDefinition :> AbstractFunctionDefinition

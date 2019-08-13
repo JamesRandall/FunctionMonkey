@@ -1,13 +1,16 @@
 ﻿namespace FunctionMonkey.FSharp
 open System.Reflection
+open System.Security.Claims
+open System.Security.Claims
 open System.Threading.Tasks
 open FunctionMonkey.Abstractions.Builders
 open Models
 
 module Configuration =
     let private defaultAuthorization = {
-        defaultAuthorizationMode = AuthorizationTypeEnum.Function
-        defaultAuthorizationHeader = "Bearer"
+        defaultAuthorizationMode = Function
+        defaultAuthorizationHeader = "Authorization"
+        tokenValidator = null
     }
     
     let private defaultFunctions = {
@@ -57,10 +60,16 @@ module Configuration =
     type FunctionAppConfigurationBuilder() =
         member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
         member __.Run (configuration: FunctionAppConfiguration) =
-            let moduleFunctions = gatherModuleFunctions (Assembly.GetCallingAssembly())
-            let configurationWithModuleFunctions = { configuration with functions = (concatFunctions [configuration.functions] moduleFunctions) }
-            FunctionCompilerMetadata.create configurationWithModuleFunctions
+            let configurationToCreate =
+                match configuration.enableFunctionModules with
+                | true ->
+                    let moduleFunctions = gatherModuleFunctions (Assembly.GetCallingAssembly())
+                    { configuration with functions = (concatFunctions [configuration.functions] moduleFunctions) }
+                | false -> configuration
+            FunctionCompilerMetadata.create configurationToCreate
         
+        // Use to prevent functions being scavenged from functions { } blocks in other modules.
+        // Useful in unit test scenarios (of Function Monkey)
         [<CustomOperation("disableFunctionModules")>]
         member this.disableFunctionModules(configuration:FunctionAppConfiguration) =
             { configuration with enableFunctionModules = false }
@@ -68,15 +77,35 @@ module Configuration =
         [<CustomOperation("outputSourcePath")>]
         member this.outputSourcePath(configuration:FunctionAppConfiguration, path) =
             { configuration with diagnostics = { configuration.diagnostics with outputSourcePath = OutputAuthoredSource.Path(path) } }
-            
-        [<CustomOperation("tokenValidatorAsync")>]
-        member this.tokenValidatorAsync(configuration:FunctionAppConfiguration, validator:string -> Async<bool>) =
-            configuration
-            
-        [<CustomOperation("tokenValidator")>]
-        member this.tokenValidator(configuration:FunctionAppConfiguration, validator:string -> bool) =
-            configuration
         
+        // Authorization
+        [<CustomOperation("defaultAuthorizationMode")>]
+        member this.defaultAuthorizationMode(configuration: FunctionAppConfiguration, mode) =
+            { configuration with authorization = { configuration.authorization with defaultAuthorizationMode = mode } }
+        
+        [<CustomOperation("defaultAuthorizationHeader")>]    
+        member this.defaultAuthorizationHeader(configuration: FunctionAppConfiguration, header) =
+            { configuration with authorization = { configuration.authorization with defaultAuthorizationHeader = header } }
+        
+        [<CustomOperation("tokenValidatorAsync")>]
+        member this.tokenValidatorAsync(configuration:FunctionAppConfiguration, validator:string -> Async<ClaimsPrincipal>) =
+            { configuration
+                with authorization = {
+                    configuration.authorization
+                        with tokenValidator = new System.Func<string, Task<ClaimsPrincipal>>(fun t -> validator(t) |> Async.StartAsTask)
+                }
+            }
+        
+        [<CustomOperation("tokenValidator")>]
+        member this.tokenValidator(configuration:FunctionAppConfiguration, validator:string -> ClaimsPrincipal) =
+            { configuration
+                with authorization = {
+                    configuration.authorization
+                        with tokenValidator = new System.Func<string, ClaimsPrincipal>(fun t -> validator(t))
+                }
+            }
+        
+        // Functions
         [<CustomOperation("httpRoute")>]
         member this.httpRoute(configuration:FunctionAppConfiguration, prefix, httpFunctions) =
             { configuration
@@ -88,7 +117,8 @@ module Configuration =
                             |> Seq.toList
                 }
             }
-            
+        
+        [<CustomOperation("serviceBus")>]    
         member this.serviceBus(configuration, serviceBusConnectionStringSettingName, serviceBusFunctions) =
             { configuration
                 with functions = {
