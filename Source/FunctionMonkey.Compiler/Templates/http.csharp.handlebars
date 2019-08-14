@@ -330,6 +330,10 @@ namespace {{Namespace}}
                     }
                 {{/if}}
             {{/each}}
+        
+            {{#if UsesImmutableTypes}}
+                command = MergeCommandWithParameters(imtPropertyValues);
+            {{/if}}
     
             {{#if ValidatesToken}}
             {{#unless CommandTypeIsUnit}}    
@@ -487,5 +491,20 @@ namespace {{Namespace}}
                 return new {{CommandTypeName}}();
             {{/if}}
         }
+
+        {{#if UsesImmutableTypes}}
+        private static {{{CommandTypeName}}} MergeCommandWithParameters(Dictionary<string, object> values)
+        {
+            {{#if CommandTypeIsUnit}}
+                return null;
+            {{else}}
+            return new {{CommandTypeName}}(
+            {{#each ImmutableTypeConstructorParameters}}
+                values.TryGetValue("{{Name}}", out object uncastValue{{@index}}) ? ({{{TypeName}}})uncastValue{{@index}} : default({{{TypeName}}}){{#unless @last}},{{/unless}}
+            {{/each}}
+            );
+            {{/if}}
+        }
+        {{/if}}
     }    
 }

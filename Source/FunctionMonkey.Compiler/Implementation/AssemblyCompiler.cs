@@ -210,7 +210,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                     foreach (Diagnostic diagnostic in failures)
                     {
-                        messageBuilder.AppendFormat("{0}:{1} {2}", diagnostic.Id, diagnostic.GetMessage(), diagnostic.Location.ToString());
+                        messageBuilder.AppendLine(diagnostic.ToString());
                     }
 
                     throw new ConfigurationException(messageBuilder.ToString());
