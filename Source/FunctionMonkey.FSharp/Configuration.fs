@@ -4,9 +4,15 @@ open System.Security.Claims
 open System.Security.Claims
 open System.Threading.Tasks
 open FunctionMonkey.Abstractions.Builders
+open FunctionMonkey.Commanding.Abstractions.Validation
+open FunctionMonkey.Commanding.Abstractions.Validation
+open FunctionMonkey.Commanding.Abstractions.Validation
 open Models
 
 module Configuration =
+    let bridgeWith creator func =
+        func |> Option.map(creator) |> Option.defaultValue null
+    
     let private defaultAuthorization = {
         defaultAuthorizationMode = Function
         defaultAuthorizationHeader = "Authorization"
@@ -29,6 +35,24 @@ module Configuration =
         functions = defaultFunctions
     }
     
+    let createBridgedValidatorFunc (validator:'a -> ValidationError list) =
+        new System.Func<obj, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult>(fun cmd ->
+            let createBridgedValidationError (error:FunctionMonkey.FSharp.Models.ValidationError) =
+                new FunctionMonkey.Commanding.Abstractions.Validation.ValidationError(
+                    Severity = (match error.severity with
+                                | Error -> SeverityEnum.Error
+                                | Warning -> SeverityEnum.Warning
+                                | Info -> SeverityEnum.Info),
+                    ErrorCode = (match error.errorCode with Some c -> c | None -> null),
+                    Property = (match error.property with Some p -> p | None -> null),
+                    Message = (match error.message with Some m -> m | None -> null)
+                )
+            let result = validator (cmd :?> 'a)
+            new FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(
+                Errors = (result |> Seq.map createBridgedValidationError |> Seq.toList)
+            )
+        )
+    
     let private gatherModuleFunctions (assembly:Assembly) =
         assembly.GetTypes()
         |> Seq.collect (
@@ -48,13 +72,15 @@ module Configuration =
         }
     
     type azureFunction private() =
-        static member inline http ((handler:'a -> 'b), verb, ?subRoute) =
+        static member inline http ((handler:'a -> 'b), verb, ?subRoute, (?validator:'a -> ValidationError list)) =
              {
                  verbs = [verb]
-                 route = (match subRoute with | Some r -> r | None -> "")
-                 handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
+                 route = (match subRoute with | Some r -> r | None -> "")                 
                  commandType = typedefof<'a>
                  resultType = typedefof<'b>
+                 // functions
+                 handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
+                 validator = validator |> bridgeWith createBridgedValidatorFunc
              }
                         
     type FunctionAppConfigurationBuilder() =

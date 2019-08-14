@@ -22,6 +22,11 @@ module FunctionCompilerMetadata =
     let private (|Match|_|) pattern input =
         let m = Regex.Match(input, pattern) in
         if m.Success then Some (List.tail [ for g in m.Groups -> g.Value ]) else None
+        
+    let private createBridgedFunction func =
+        match func with
+        | null -> null
+        | _ -> new BridgedFunction(func)
     
     let create configuration =
         let extractConstructorParameters func =
@@ -98,11 +103,13 @@ module FunctionCompilerMetadata =
                     ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
                     Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
                     CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                    IsUsingValidator = not (httpFunction.validator = null),
                     // function handlers
                     FunctionHandler = httpFunction.handler,
-                    TokenValidatorFunction = match configuration.authorization.tokenValidator with
+                    TokenValidatorFunction = (match configuration.authorization.tokenValidator with
                                              | null -> null
-                                             | _ -> new BridgedFunction(configuration.authorization.tokenValidator)
+                                             | _ -> new BridgedFunction(configuration.authorization.tokenValidator)),
+                    ValidatorFunction = (httpFunction.validator |> createBridgedFunction)
                 )
             
             httpFunctionDefinition :> AbstractFunctionDefinition

@@ -22,6 +22,19 @@ module Models =
             member i.OpenApiConfiguration = i.openApiConfiguration
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
     
+    type ValidationErrorSeverity =
+        | Error
+        | Warning
+        | Info
+        
+    type ValidationError =
+        {
+            severity: ValidationErrorSeverity
+            errorCode: string option
+            property: string option
+            message: string option
+        }
+        
     type AuthorizationMode =
         | Anonymous
         | Token
@@ -43,6 +56,7 @@ module Models =
             verbs: HttpVerb list
             route: string
             handler: obj
+            validator: obj
         }
         
     type ServiceBusQueueFunction = {

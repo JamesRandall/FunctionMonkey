@@ -26,10 +26,15 @@ module Orders =
     let createOrderCommand command =
         printf "Creating order for user %s" command.userId
         
+    let createOrderCommandValidator command =
+        match command.userId.Length with
+        | 0 -> [{severity=Error ; message = Some "Must specify a user ID" ; errorCode = None ; property = Some "userId"}]
+        | _ -> []
+        
     let orderFunctions = functions {
         httpRoute "api/v1/order" [
             azureFunction.http (getOrderQuery, Get, "/{id}")
-            azureFunction.http (createOrderCommand, Post)
+            azureFunction.http (createOrderCommand, Post, validator=createOrderCommandValidator)
         ]
     }
 

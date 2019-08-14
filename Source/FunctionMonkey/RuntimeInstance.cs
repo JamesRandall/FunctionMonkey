@@ -185,6 +185,22 @@ namespace FunctionMonkey
                     CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties); 
                 
                 pluginFunctions.Handler = functionDefinition.FunctionHandler;
+                if (functionDefinition.ValidatorFunction != null)
+                {
+                    pluginFunctions.Validate = obj =>
+                        ((Func<object, ValidationResult>) functionDefinition.ValidatorFunction.Handler)(obj);
+                }
+                else
+                {
+                    pluginFunctions.Validate = command =>
+                    {
+                        var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
+                            ServiceProvider.GetService(
+                                typeof(FunctionMonkey.Abstractions.Validation.IValidator));
+                        var validationResult = validator.Validate((ICommand) command);
+                        return validationResult;
+                    };
+                }
                 
                 if (functionDefinition is HttpFunctionDefinition httpFunctionDefinition)
                 {
@@ -203,6 +219,8 @@ namespace FunctionMonkey
                                     .Handler)(authorizationHeader)
                             );
                         }
+
+                        pluginFunctions.BindClaims = (principal, command) => { return Task.FromResult(true); };
                     }
                     else
                     {
@@ -214,26 +232,29 @@ namespace FunctionMonkey
                             ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
                             return principal;
                         };
+                        
+                        pluginFunctions.BindClaims = async (principal, command) =>
+                        {
+                            var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
+                                ServiceProvider.GetService(
+                                    typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
+                            var claimsBinderTask = claimsBinder.BindAsync(principal, command);
+                            if (claimsBinderTask == null)
+                            {
+                                return claimsBinder.Bind(principal, command);
+                            }
+                            return await claimsBinderTask;
+                        };
                     }
                     
+
                     pluginFunctions.IsAuthorized = async (principal, httpVerb, requestUrl) =>
                     {
                         var claimsPrincipalAuthorization = (IClaimsPrincipalAuthorization)
                             ServiceProvider.GetService(httpFunctionDefinition.ClaimsPrincipalAuthorizationType);
                         return await claimsPrincipalAuthorization.IsAuthorized(principal, httpVerb, requestUrl);
                     };
-                    pluginFunctions.BindClaims = async (principal, command) =>
-                    {
-                        var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
-                            ServiceProvider.GetService(
-                                typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
-                        var claimsBinderTask = claimsBinder.BindAsync(principal, command);
-                        if (claimsBinderTask == null)
-                        {
-                            return claimsBinder.Bind(principal, command);
-                        }
-                        return await claimsBinderTask;
-                    };
+                    
                     pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
                     {
                         var responseHandler =
@@ -261,14 +282,6 @@ namespace FunctionMonkey
                             (IHttpResponseHandler) ServiceProvider.GetService(
                                 httpFunctionDefinition.HttpResponseHandlerType);
                         return responseHandler.CreateResponseFromException((ICommand) command, exception);
-                    };
-                    pluginFunctions.Validate = command =>
-                    {
-                        var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
-                            ServiceProvider.GetService(
-                                typeof(FunctionMonkey.Abstractions.Validation.IValidator));
-                        var validationResult = validator.Validate((ICommand) command);
-                        return validationResult;
                     };
                 };
                     

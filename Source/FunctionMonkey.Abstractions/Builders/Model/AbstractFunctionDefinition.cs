@@ -163,5 +163,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         public bool IsFunctionalFunction => FunctionHandler != null;
         
         public BridgedFunction TokenValidatorFunction { get; set; }
+        
+        public BridgedFunction ValidatorFunction { get; set; }
     }
 }
