@@ -17,10 +17,10 @@
         <None Include="host.json">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <Compile Include="Orders.fs" />
     </ItemGroup>
     <ItemGroup>
       <Compile Include="EntryPoint.fs" />
-      <Compile Include="Orders.fs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />

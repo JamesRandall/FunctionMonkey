@@ -1,5 +1,7 @@
 namespace FunctionMonkey.FSharp
 open System
+open System.Linq.Expressions
+open System.Reflection
 open FunctionMonkey.Abstractions
 open FunctionMonkey.Abstractions.Builders
 open FunctionMonkey.Abstractions.Builders.Model
@@ -11,14 +13,25 @@ module Models =
         | Path of string
         | NoSourceOutput
         
+    type CommandClaimsMapper =
+        {
+            commandType: Type
+            propertyInfo: PropertyInfo
+        }
+        
+    type ClaimsMapper =
+        | Shared of string
+        | Command of CommandClaimsMapper
+        
     type ClaimsMapping =
         {
-            claim: string
-            propertyName: string
+            claim: string            
+            mapper: ClaimsMapper
         }
         
     type FunctionCompilerMetadata =
          {
+             claimsMappings: ClaimsMapping list
              functionDefinitions: AbstractFunctionDefinition list
              openApiConfiguration: OpenApiConfiguration
              outputAuthoredSourceFolder: OutputAuthoredSource
@@ -63,7 +76,6 @@ module Models =
             route: string
             handler: obj
             validator: obj
-            claimsMapper: obj
         }
         
     type ServiceBusQueueFunction = {
@@ -88,7 +100,7 @@ module Models =
             defaultAuthorizationMode: AuthorizationMode
             defaultAuthorizationHeader: string
             tokenValidator: obj
-            sharedClaimsMappings: ClaimsMapping list
+            claimsMappings: ClaimsMapping list
         }
     
     type Functions = {

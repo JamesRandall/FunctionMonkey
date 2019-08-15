@@ -1,4 +1,9 @@
 ﻿namespace FunctionMonkey.FSharp
+open System
+open System.Linq.Expressions
+open System.Linq.Expressions
+open System.Linq.Expressions
+open System.Reflection
 open System.Reflection
 open System.Security.Claims
 open System.Security.Claims
@@ -17,7 +22,7 @@ module Configuration =
         defaultAuthorizationMode = Function
         defaultAuthorizationHeader = "Authorization"
         tokenValidator = null
-        sharedClaimsMappings = []
+        claimsMappings = []
     }
     
     let private defaultFunctions = {
@@ -76,6 +81,23 @@ module Configuration =
                             |> Seq.append (functionsListB |> Seq.collect(fun f -> f.serviceBusFunctions))
                             |> Seq.toList
         }
+        
+    let private getPropertyInfo (expression:Expression<Func<'commandType, 'propertyType>>) =
+        let memberExpression =
+            if expression.Body :? UnaryExpression then
+                let unaryExpression = expression.Body :?> UnaryExpression
+                unaryExpression.Operand :?> MemberExpression
+            else
+                expression.Body :?> MemberExpression
+            
+        memberExpression.Member :?> PropertyInfo            
+    
+    type claimsMapper private () =
+        static member inline shared (claimName, propertyName) =
+            { claim = claimName ; mapper = Shared(propertyName) }
+        static member command<'commandType, 'propertyType> (claimName, (propertyExpression: Expression<Func<'commandType, 'propertyType>>)) =
+            let commandMapper = { commandType = typedefof<'commandType> ; propertyInfo = (getPropertyInfo propertyExpression) }
+            { claim = claimName ; mapper = Command (commandMapper) }
     
     type azureFunction private() =
         static member inline http (
@@ -83,8 +105,7 @@ module Configuration =
                 verb,
                 ?subRoute,
                 // common
-                (?validator:'a -> ValidationError list),
-                (?claimsMapper:'a -> ClaimsPrincipal -> 'a)
+                (?validator:'a -> ValidationError list)
             ) =
              {
                  verbs = [verb]
@@ -94,7 +115,6 @@ module Configuration =
                  // functions
                  handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
                  validator = validator |> bridgeWith createBridgedValidatorFunc
-                 claimsMapper = claimsMapper |> bridgeWith createBridgedClaimsMapperFunc
              }
                         
     type FunctionAppConfigurationBuilder() =
@@ -144,11 +164,12 @@ module Configuration =
                         with tokenValidator = new System.Func<string, ClaimsPrincipal>(fun t -> validator(t))
                 }
             }
-            
+        
+        [<CustomOperation("claimsMappings")>]    
         member this.claimsMappings(configuration: FunctionAppConfiguration, claimsMappings) =
             { configuration
                 with authorization = {
-                    configuration.authorization with sharedClaimsMappings = claimsMappings
+                    configuration.authorization with claimsMappings = claimsMappings
                 }
             }
         
