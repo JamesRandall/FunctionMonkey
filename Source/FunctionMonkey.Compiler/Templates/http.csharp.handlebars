@@ -337,7 +337,7 @@ namespace {{Namespace}}
     
             {{#if ValidatesToken}}
             {{#unless CommandTypeIsUnit}}    
-            await pluginFunctions.BindClaims(principal, command);
+            command = await pluginFunctions.BindClaims(principal, command);
             {{/unless}}    
             {{/if}}
 
@@ -377,7 +377,11 @@ namespace {{Namespace}}
                         var result = handler(command);
                     {{/if}}
                 {{else}}
-                    var result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                    {{#if CommandHasResult}}
+                        var result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                    {{else}}
+                        await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                    {{/if}}
                 {{/if}}             
                 {{#if CommandHasResult}}
                     {{#if HasHttpResponseHandler}}

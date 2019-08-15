@@ -39,7 +39,7 @@ namespace FunctionMonkey
         
         public Func<object, bool, string> Serialize { get; set; }
         
-        public Func<ClaimsPrincipal, object, Task<bool>> BindClaims { get; set; }
+        public Func<ClaimsPrincipal, object, Task<object>> BindClaims { get; set; }
         
         public Func<object, Exception, Task<IActionResult>> CreateResponseFromException { get; set; }
         
@@ -220,7 +220,7 @@ namespace FunctionMonkey
                             );
                         }
 
-                        pluginFunctions.BindClaims = (principal, command) => { return Task.FromResult(true); };
+                        pluginFunctions.BindClaims = (principal, command) => { return Task.FromResult(command); };
                     }
                     else
                     {

@@ -115,6 +115,7 @@ module FunctionCompilerMetadata =
             httpFunctionDefinition :> AbstractFunctionDefinition
         
         {
+            claimsMappings = []
             outputAuthoredSourceFolder = configuration.diagnostics.outputSourcePath
             openApiConfiguration = OpenApiConfiguration()
             functionDefinitions =
