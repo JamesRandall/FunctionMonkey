@@ -17,6 +17,7 @@ module Configuration =
         defaultAuthorizationMode = Function
         defaultAuthorizationHeader = "Authorization"
         tokenValidator = null
+        sharedClaimsMappings = []
     }
     
     let private defaultFunctions = {
@@ -52,6 +53,11 @@ module Configuration =
                 Errors = (result |> Seq.map createBridgedValidationError |> Seq.toList)
             )
         )
+        
+    let createBridgedClaimsMapperFunc (claimsMapper:'a -> ClaimsPrincipal -> 'a) =
+        new System.Func<obj, ClaimsPrincipal, obj>(fun cmd claimsPrincipal ->
+            claimsMapper (cmd :?> 'a) claimsPrincipal 
+        )
     
     let private gatherModuleFunctions (assembly:Assembly) =
         assembly.GetTypes()
@@ -72,7 +78,14 @@ module Configuration =
         }
     
     type azureFunction private() =
-        static member inline http ((handler:'a -> 'b), verb, ?subRoute, (?validator:'a -> ValidationError list)) =
+        static member inline http (
+                (handler:'a -> 'b),
+                verb,
+                ?subRoute,
+                // common
+                (?validator:'a -> ValidationError list),
+                (?claimsMapper:'a -> ClaimsPrincipal -> 'a)
+            ) =
              {
                  verbs = [verb]
                  route = (match subRoute with | Some r -> r | None -> "")                 
@@ -81,6 +94,7 @@ module Configuration =
                  // functions
                  handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
                  validator = validator |> bridgeWith createBridgedValidatorFunc
+                 claimsMapper = claimsMapper |> bridgeWith createBridgedClaimsMapperFunc
              }
                         
     type FunctionAppConfigurationBuilder() =
@@ -128,6 +142,13 @@ module Configuration =
                 with authorization = {
                     configuration.authorization
                         with tokenValidator = new System.Func<string, ClaimsPrincipal>(fun t -> validator(t))
+                }
+            }
+            
+        member this.claimsMappings(configuration: FunctionAppConfiguration, claimsMappings) =
+            { configuration
+                with authorization = {
+                    configuration.authorization with sharedClaimsMappings = claimsMappings
                 }
             }
         

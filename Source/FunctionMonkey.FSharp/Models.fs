@@ -11,6 +11,12 @@ module Models =
         | Path of string
         | NoSourceOutput
         
+    type ClaimsMapping =
+        {
+            claim: string
+            propertyName: string
+        }
+        
     type FunctionCompilerMetadata =
          {
              functionDefinitions: AbstractFunctionDefinition list
@@ -57,6 +63,7 @@ module Models =
             route: string
             handler: obj
             validator: obj
+            claimsMapper: obj
         }
         
     type ServiceBusQueueFunction = {
@@ -81,6 +88,7 @@ module Models =
             defaultAuthorizationMode: AuthorizationMode
             defaultAuthorizationHeader: string
             tokenValidator: obj
+            sharedClaimsMappings: ClaimsMapping list
         }
     
     type Functions = {
