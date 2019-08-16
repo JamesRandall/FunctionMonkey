@@ -3,7 +3,6 @@ open System
 open System.Linq.Expressions
 open System.Reflection
 open FunctionMonkey.Abstractions
-open FunctionMonkey.Abstractions.Builders
 open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
 

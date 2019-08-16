@@ -14,7 +14,7 @@ namespace FunctionMonkey.Abstractions.Http
         public string PropertyPath { get; set; }
     }
 
-    public class CommandClaimsMappingDefinition : AbstractClaimsMappingDefinition
+    public class CommandPropertyClaimsMappingDefinition : AbstractClaimsMappingDefinition
     {
         public Type CommandType { get; set; }
         

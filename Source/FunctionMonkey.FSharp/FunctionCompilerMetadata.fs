@@ -4,19 +4,16 @@ open System.Net.Http
 open System.Reflection
 open System.Text.RegularExpressions
 open FunctionMonkey.Abstractions
-open FunctionMonkey.Abstractions
-open FunctionMonkey.Abstractions
 open FunctionMonkey.Abstractions.Builders
 open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Extensions
 open FunctionMonkey.Abstractions.Http
 open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.Model
-open FunctionMonkey.Model
 open FunctionMonkey.Serialization
 open Models
 
-module FunctionCompilerMetadata =
+module internal FunctionCompilerMetadata =
     exception OnlyRecordTypesSupportedForCommandsException
     
     let private (|Match|_|) pattern input =
@@ -118,7 +115,7 @@ module FunctionCompilerMetadata =
             claimsMappings = configuration.authorization.claimsMappings |> Seq.map (
                                 fun m -> match m.mapper with
                                          | Shared s -> SharedClaimsMappingDefinition(ClaimName = m.claim, PropertyPath = s) :> AbstractClaimsMappingDefinition
-                                         | Command c -> CommandClaimsMappingDefinition(ClaimName = m.claim, CommandType = c.commandType, PropertyInfo = c.propertyInfo) :> AbstractClaimsMappingDefinition
+                                         | Command c -> CommandPropertyClaimsMappingDefinition(ClaimName = m.claim, CommandType = c.commandType, PropertyInfo = c.propertyInfo) :> AbstractClaimsMappingDefinition
                                 ) |> Seq.toList
             outputAuthoredSourceFolder = configuration.diagnostics.outputSourcePath
             openApiConfiguration = OpenApiConfiguration()

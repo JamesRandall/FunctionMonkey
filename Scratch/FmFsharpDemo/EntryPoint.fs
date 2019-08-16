@@ -18,10 +18,12 @@ module EntryPointCopy =
         "1.0.0"
                                     
     let app = functionApp {
+        outputSourcePath "/Users/jamesrandall/code/authoredSource"
         defaultAuthorizationMode Token
         tokenValidator validateToken
         claimsMappings [
-            claimsMapper.command ("userId", (fun cmd -> cmd.userId) )
+            claimsMapper.shared ("userId", "userId")
+            //claimsMapper.command ("userId", (fun cmd -> cmd.userId) )
         ]
         httpRoute "version" [
             azureFunction.http (getApiVersion, Get)

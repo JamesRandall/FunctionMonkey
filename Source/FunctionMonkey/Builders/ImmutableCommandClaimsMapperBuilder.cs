@@ -20,8 +20,8 @@ namespace FunctionMonkey.Builders
                 return (o, cp) => o;
             }
 
-            IReadOnlyCollection<CommandClaimsMappingDefinition> commandMappings = claimsMappings
-                .Where(t => t is CommandClaimsMappingDefinition).Cast<CommandClaimsMappingDefinition>()
+            IReadOnlyCollection<CommandPropertyClaimsMappingDefinition> commandMappings = claimsMappings
+                .Where(t => t is CommandPropertyClaimsMappingDefinition).Cast<CommandPropertyClaimsMappingDefinition>()
                 .ToList();
             IReadOnlyCollection<SharedClaimsMappingDefinition> sharedMappings = claimsMappings
                 .Where(t => t is SharedClaimsMappingDefinition).Cast<SharedClaimsMappingDefinition>()
@@ -38,12 +38,12 @@ namespace FunctionMonkey.Builders
             {
                 // there could be a shared mapping and a command -> property mapping - we use the latter first
                 // in order of precedence
-                CommandClaimsMappingDefinition commandDefinition = commandMappings.SingleOrDefault(
+                CommandPropertyClaimsMappingDefinition commandPropertyDefinition = commandMappings.SingleOrDefault(
                     x => x.CommandType == functionDefinition.CommandType &&
                          x.PropertyInfo.Name == constructorParameter.Name);
-                if (commandDefinition != null)
+                if (commandPropertyDefinition != null)
                 {
-                    constructorClaims.Add(BuildExpressionForPropertyName(commandDefinition.ClaimName, constructorParameter.Type, claimsPrincipalParameter));
+                    constructorClaims.Add(BuildExpressionForPropertyName(commandPropertyDefinition.ClaimName, constructorParameter.Type, claimsPrincipalParameter));
                     didBuildAMappingFunc = true;
                 }
                 else
