@@ -402,7 +402,7 @@ namespace {{Namespace}}
                         {{else}}
                             var responseTask = pluginFunctions.CreateResponseForResult(command, result);
                             var handledResponse = responseTask != null ? (await responseTask) : null;
-                            return handledResponse ?? CreateResponse(200, result, pluginFunctions);
+                            return handledResponse ?? {{#if ResultIsFSharpUnit}}new OkResult(){{else}}CreateResponse(200, result, pluginFunctions){{/if}};
                         {{/if}}                        
                     {{else}}
                         {{#if IsValidationResult}}
@@ -412,9 +412,10 @@ namespace {{Namespace}}
                                 return CreateResponse(400, validationResult, pluginFunctions);
                             }
                         {{/if}}
-                        return CreateResponse(200, result, pluginFunctions);
+                        return {{#if ResultIsFSharpUnit}}new OkResult(){{else}}CreateResponse(200, result, pluginFunctions){{/if}};
                     {{/if}}
                 {{else}}
+                    // We don't need to cover this branch for F# as all handlers have results
                     {{#if HasHttpResponseHandler}}
                         var responseTask = pluginFunctions.CreateResponse(command);
                         var handledResponse = responseTask != null ? (await responseTask) : null; 

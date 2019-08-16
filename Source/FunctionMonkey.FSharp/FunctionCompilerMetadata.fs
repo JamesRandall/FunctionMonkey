@@ -101,12 +101,16 @@ module internal FunctionCompilerMetadata =
                                      Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
                                      CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
                                      IsUsingValidator = not (httpFunction.validator = null),
-                                     // function handlers
+                                     // function handlers - common
                                      FunctionHandler = httpFunction.handler,
+                                     ValidatorFunction = (httpFunction.validator |> createBridgedFunction),
+                                     // function handlers - http specific
                                      TokenValidatorFunction = (match configuration.authorization.tokenValidator with
                                                               | null -> null
                                                               | _ -> new BridgedFunction(configuration.authorization.tokenValidator)),
-                                     ValidatorFunction = (httpFunction.validator |> createBridgedFunction)
+                                     CreateResponseFromExceptionFunction = httpFunction.exceptionResponseHandler,
+                                     CreateResponseForResultFunction = httpFunction.responseHandler,
+                                     CreateValidationFailureResponseFunction = httpFunction.validationFailureResponseHandler
                                  )
             
             httpFunctionDefinition :> AbstractFunctionDefinition

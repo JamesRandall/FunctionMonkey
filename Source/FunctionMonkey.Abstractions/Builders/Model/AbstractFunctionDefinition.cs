@@ -162,8 +162,9 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
         public bool IsFunctionalFunction => FunctionHandler != null;
         
-        public BridgedFunction TokenValidatorFunction { get; set; }
-        
         public BridgedFunction ValidatorFunction { get; set; }
+        
+        // we have to use a string name comparison here as we don't want to bring in the  FSharp assembly
+        public bool ResultIsFSharpUnit => CommandResultType?.FullName == "Microsoft.FSharp.Core.Unit";
     }
 }

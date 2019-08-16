@@ -1,10 +1,16 @@
 ﻿namespace FunctionMonkey.FSharp
+open FunctionMonkey.Abstractions.Builders.Model
+open FunctionMonkey.Abstractions.Builders.Model
 open System
 open System.Linq.Expressions
 open System.Reflection
 open System.Security.Claims
 open System.Threading.Tasks
 open FunctionMonkey.Commanding.Abstractions.Validation
+open Microsoft.AspNetCore.Mvc
+open Microsoft.AspNetCore.Mvc
+open Microsoft.AspNetCore.Mvc
+open Microsoft.AspNetCore.Mvc
 open Models
 
 module Configuration =
@@ -52,6 +58,25 @@ module Configuration =
             )
         )
         
+    let createBridgedExceptionResponseHandlerAsync (exceptionResponseHandler:'a -> Exception -> Async<IActionResult>) =
+        new BridgedFunction(
+            new System.Func<obj, Exception, Task<IActionResult>>(
+                fun cmd e -> ((exceptionResponseHandler (cmd :?> 'a) e) |> Async.StartAsTask)
+            )
+        )
+        
+    let createBridgedResponseHandlerAsync (responseHandler:'a -> 'b -> Async<IActionResult>) =
+        new BridgedFunction(
+            new System.Func<obj, obj, Task<IActionResult>>(fun cmd res -> (responseHandler (cmd :?> 'a) (res :?> 'b) |> Async.StartAsTask))
+        )
+        
+    let createBridgedValidationFailureResponseHandlerAsync (validationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>) =
+        new BridgedFunction(
+            new System.Func<obj, ValidationResult, Task<IActionResult>>(
+               fun cmd vr -> (validationFailureResponseHandler (cmd :?> 'a) vr) |> Async.StartAsTask
+           )
+        )
+        
     let private gatherModuleFunctions (assembly:Assembly) =
         assembly.GetTypes()
         |> Seq.collect (
@@ -94,7 +119,10 @@ module Configuration =
                 verb,
                 ?subRoute,
                 // common
-                (?validator:'a -> ValidationError list)
+                (?validator:'a -> ValidationError list),
+                (?exceptionResponseHandlerAsync:'a -> Exception -> Async<IActionResult>),
+                (?responseHandlerAsync:'a -> 'b -> Async<IActionResult>),
+                (?validationFailureResponseHandlerAsync:'a -> ValidationResult -> Async<IActionResult>)
             ) =
              {
                  verbs = [verb]
@@ -104,6 +132,9 @@ module Configuration =
                  // functions
                  handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
                  validator = validator |> bridgeWith createBridgedValidatorFunc
+                 exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync
+                 responseHandler = responseHandlerAsync |> bridgeWith createBridgedResponseHandlerAsync
+                 validationFailureResponseHandler = validationFailureResponseHandlerAsync |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
              }
                         
     type FunctionAppConfigurationBuilder() =

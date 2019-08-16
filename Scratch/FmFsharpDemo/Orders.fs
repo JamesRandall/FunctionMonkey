@@ -1,6 +1,8 @@
 namespace FmFsharpDemo
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
+open Microsoft.AspNetCore.Mvc
+open Microsoft.AspNetCore.Mvc
 
 module Orders =
     type Order = {
@@ -25,6 +27,11 @@ module Orders =
         
     let createOrderCommand command =
         printf "Creating order for user %s" command.userId
+        
+    let responseHandlerAsync cmd result =
+        async {
+            return new OkObjectResult("hello world") :> IActionResult
+        }
         
     let createOrderCommandValidator command =
         match command.userId.Length with

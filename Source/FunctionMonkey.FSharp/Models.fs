@@ -4,6 +4,9 @@ open System.Linq.Expressions
 open System.Reflection
 open FunctionMonkey.Abstractions
 open FunctionMonkey.Abstractions.Builders.Model
+open FunctionMonkey.Abstractions.Builders.Model
+open FunctionMonkey.Abstractions.Builders.Model
+open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
 
 module Models =
@@ -76,6 +79,9 @@ module Models =
             route: string
             handler: obj
             validator: obj
+            exceptionResponseHandler: BridgedFunction
+            responseHandler: BridgedFunction
+            validationFailureResponseHandler: BridgedFunction
         }
         
     type ServiceBusQueueFunction = {

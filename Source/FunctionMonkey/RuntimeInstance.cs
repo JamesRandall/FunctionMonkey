@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding;
@@ -258,7 +259,6 @@ namespace FunctionMonkey
                             return await claimsBinderTask;
                         };
                     }
-                    
 
                     pluginFunctions.IsAuthorized = async (principal, httpVerb, requestUrl) =>
                     {
@@ -266,40 +266,100 @@ namespace FunctionMonkey
                             ServiceProvider.GetService(httpFunctionDefinition.ClaimsPrincipalAuthorizationType);
                         return await claimsPrincipalAuthorization.IsAuthorized(principal, httpVerb, requestUrl);
                     };
+
+                    if (HasResponseFunctions(httpFunctionDefinition))
+                    {
+                        if (httpFunctionDefinition.CreateValidationFailureResponseFunction != null)
+                        {
+                            pluginFunctions.CreateValidationFailureResponse =
+                                (Func<object, ValidationResult, Task<IActionResult>>)
+                                httpFunctionDefinition.CreateValidationFailureResponseFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateValidationFailureResponse = (cmd, vr) => null;
+                        }
+
+                        if (httpFunctionDefinition.CreateResponseForResultFunction != null)
+                        {
+                            pluginFunctions.CreateResponseForResult =
+                                (Func<object, object, Task<IActionResult>>) httpFunctionDefinition
+                                    .CreateResponseForResultFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateResponseForResult = (cmd, result) => null;
+                        }
                     
-                    pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
+                        if (httpFunctionDefinition.CreateResponseFunction != null)
+                        {
+                            pluginFunctions.CreateResponse =
+                                (Func<object, Task<IActionResult>>) httpFunctionDefinition.CreateResponseFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateResponse = cmd => null;
+                        }
+                    
+                        if (httpFunctionDefinition.CreateResponseFromExceptionFunction != null)
+                        {
+                            pluginFunctions.CreateResponseFromException =
+                                (Func<object, Exception, Task<IActionResult>>)httpFunctionDefinition.CreateResponseFromExceptionFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateResponseFromException = (cmd, ex) => null;
+                        }
+                    }
+                    else
                     {
-                        var responseHandler =
-                            (IHttpResponseHandler) ServiceProvider.GetService(
-                                httpFunctionDefinition.HttpResponseHandlerType);
-                        return responseHandler.CreateValidationFailureResponse((ICommand) command, validationResult);
-                    };
-                    pluginFunctions.CreateResponseForResult = (command, result) =>
-                    {
-                        var responseHandler =
-                            (IHttpResponseHandler) ServiceProvider.GetService(
-                                httpFunctionDefinition.HttpResponseHandlerType);
-                        return responseHandler.CreateResponse((ICommand) command, result);
-                    };
-                    pluginFunctions.CreateResponse = command =>
-                    {
-                        var responseHandler =
-                            (IHttpResponseHandler) ServiceProvider.GetService(
-                                httpFunctionDefinition.HttpResponseHandlerType);
-                        return responseHandler.CreateResponse((ICommand) command);
-                    };
-                    pluginFunctions.CreateResponseFromException = (command, exception) =>
-                    {
-                        var responseHandler =
-                            (IHttpResponseHandler) ServiceProvider.GetService(
-                                httpFunctionDefinition.HttpResponseHandlerType);
-                        return responseHandler.CreateResponseFromException((ICommand) command, exception);
-                    };
+                        pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateValidationFailureResponse((ICommand) command, validationResult);
+                        };
+                        
+                        pluginFunctions.CreateResponseForResult = (command, result) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateResponse((ICommand) command, result);
+                        };
+                        pluginFunctions.CreateResponse = command =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateResponse((ICommand) command);
+                        };
+                        pluginFunctions.CreateResponseFromException = (command, exception) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateResponseFromException((ICommand) command, exception);
+                        };
+                    }
+
+                    
+                    
+                    
                 };
                     
                 PluginFunctions.Add(functionDefinition.Name, pluginFunctions);
                 
             }
+        }
+        
+        private static bool HasResponseFunctions(HttpFunctionDefinition httpFunctionDefinition)
+        {
+            return httpFunctionDefinition.CreateValidationFailureResponseFunction != null ||
+                   httpFunctionDefinition.CreateResponseForResultFunction != null ||
+                   httpFunctionDefinition.CreateResponseFunction != null ||
+                   httpFunctionDefinition.CreateResponseFromExceptionFunction != null;
         }
 
         private void RegisterCosmosDependencies(

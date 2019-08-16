@@ -61,12 +61,28 @@ namespace FunctionMonkey.Model
 
         public HeaderBindingConfiguration HeaderBindingConfiguration { get; set; }
 
-        public bool HasHttpResponseHandler => HttpResponseHandlerType != null;
+        public bool HasHttpResponseHandler => 
+            HttpResponseHandlerType != null ||
+            CreateResponseFromExceptionFunction != null ||
+            CreateResponseFunction != null ||
+            CreateResponseForResultFunction != null ||
+            CreateValidationFailureResponseFunction != null;
 
         public Type HttpResponseHandlerType { get; set; }
 
         public string HttpResponseHandlerTypeName => HttpResponseHandlerType.EvaluateType();
 
         public bool IsStreamCommand { get; set; }
+        
+        // F# Support
+        public BridgedFunction TokenValidatorFunction { get; set; }
+        
+        public BridgedFunction CreateResponseFromExceptionFunction { get; set; }
+        
+        public BridgedFunction CreateResponseFunction { get; set; }
+        
+        public BridgedFunction CreateResponseForResultFunction { get; set; }
+        
+        public BridgedFunction CreateValidationFailureResponseFunction { get; set; }
     }
 }
