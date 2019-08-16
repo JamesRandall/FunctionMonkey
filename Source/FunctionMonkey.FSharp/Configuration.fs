@@ -1,6 +1,4 @@
 ﻿namespace FunctionMonkey.FSharp
-open FunctionMonkey.Abstractions.Builders.Model
-open FunctionMonkey.Abstractions.Builders.Model
 open System
 open System.Linq.Expressions
 open System.Reflection
@@ -8,103 +6,11 @@ open System.Security.Claims
 open System.Threading.Tasks
 open FunctionMonkey.Commanding.Abstractions.Validation
 open Microsoft.AspNetCore.Mvc
-open Microsoft.AspNetCore.Mvc
-open Microsoft.AspNetCore.Mvc
-open Microsoft.AspNetCore.Mvc
 open Models
+open BridgeFunctions
+open Helpers
 
 module Configuration =
-    let bridgeWith creator func =
-        func |> Option.map(creator) |> Option.defaultValue null
-    
-    let private defaultAuthorization = {
-        defaultAuthorizationMode = Function
-        defaultAuthorizationHeader = "Authorization"
-        tokenValidator = null
-        claimsMappings = []
-    }
-    
-    let private defaultFunctions = {
-        httpFunctions = []
-        serviceBusFunctions = []
-    }
-    
-    let private defaultDiagnostics = {
-        outputSourcePath = NoSourceOutput
-    }
-    
-    let private defaultFunctionAppConfiguration = {
-        enableFunctionModules = true
-        diagnostics = defaultDiagnostics
-        authorization = defaultAuthorization
-        functions = defaultFunctions
-    }
-    
-    let createBridgedValidatorFunc (validator:'a -> ValidationError list) =
-        new System.Func<obj, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult>(fun cmd ->
-            let createBridgedValidationError (error:FunctionMonkey.FSharp.Models.ValidationError) =
-                new FunctionMonkey.Commanding.Abstractions.Validation.ValidationError(
-                    Severity = (match error.severity with
-                                | Error -> SeverityEnum.Error
-                                | Warning -> SeverityEnum.Warning
-                                | Info -> SeverityEnum.Info),
-                    ErrorCode = (match error.errorCode with Some c -> c | None -> null),
-                    Property = (match error.property with Some p -> p | None -> null),
-                    Message = (match error.message with Some m -> m | None -> null)
-                )
-            let result = validator (cmd :?> 'a)
-            new FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(
-                Errors = (result |> Seq.map createBridgedValidationError |> Seq.toList)
-            )
-        )
-        
-    let createBridgedExceptionResponseHandlerAsync (exceptionResponseHandler:'a -> Exception -> Async<IActionResult>) =
-        new BridgedFunction(
-            new System.Func<obj, Exception, Task<IActionResult>>(
-                fun cmd e -> ((exceptionResponseHandler (cmd :?> 'a) e) |> Async.StartAsTask)
-            )
-        )
-        
-    let createBridgedResponseHandlerAsync (responseHandler:'a -> 'b -> Async<IActionResult>) =
-        new BridgedFunction(
-            new System.Func<obj, obj, Task<IActionResult>>(fun cmd res -> (responseHandler (cmd :?> 'a) (res :?> 'b) |> Async.StartAsTask))
-        )
-        
-    let createBridgedValidationFailureResponseHandlerAsync (validationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>) =
-        new BridgedFunction(
-            new System.Func<obj, ValidationResult, Task<IActionResult>>(
-               fun cmd vr -> (validationFailureResponseHandler (cmd :?> 'a) vr) |> Async.StartAsTask
-           )
-        )
-        
-    let private gatherModuleFunctions (assembly:Assembly) =
-        assembly.GetTypes()
-        |> Seq.collect (
-               fun t -> t.GetProperties(BindingFlags.Public + BindingFlags.Static)
-                        |> Seq.filter(fun p  -> p.PropertyType = typedefof<Functions>)
-           )
-        |> Seq.map (fun p -> p.GetValue(null) :?> Functions)
-        
-    let private concatFunctions functionsListA functionsListB =
-        {
-            httpFunctions = functionsListA |> Seq.collect(fun f -> f.httpFunctions)
-                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.httpFunctions))
-                            |> Seq.toList
-            serviceBusFunctions = functionsListA |> Seq.collect(fun f -> f.serviceBusFunctions)
-                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.serviceBusFunctions))
-                            |> Seq.toList
-        }
-        
-    let private getPropertyInfo (expression:Expression<Func<'commandType, 'propertyType>>) =
-        let memberExpression =
-            if expression.Body :? UnaryExpression then
-                let unaryExpression = expression.Body :?> UnaryExpression
-                unaryExpression.Operand :?> MemberExpression
-            else
-                expression.Body :?> MemberExpression
-            
-        memberExpression.Member :?> PropertyInfo            
-    
     type claimsMapper private () =
         static member inline shared (claimName, propertyName) =
             { claim = claimName ; mapper = Shared(propertyName) }
@@ -113,7 +19,7 @@ module Configuration =
             { claim = claimName ; mapper = Command (commandMapper) }
     
     type azureFunction private() =
-        static member inline http
+        static member http
             (
                 (handler:'a -> 'b),
                 verb,

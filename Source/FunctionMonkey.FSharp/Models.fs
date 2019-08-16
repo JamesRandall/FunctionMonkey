@@ -1,11 +1,7 @@
 namespace FunctionMonkey.FSharp
 open System
-open System.Linq.Expressions
 open System.Reflection
 open FunctionMonkey.Abstractions
-open FunctionMonkey.Abstractions.Builders.Model
-open FunctionMonkey.Abstractions.Builders.Model
-open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
 
@@ -78,7 +74,7 @@ module Models =
             verbs: HttpVerb list
             route: string
             handler: obj
-            validator: obj
+            validator: BridgedFunction
             exceptionResponseHandler: BridgedFunction
             responseHandler: BridgedFunction
             validationFailureResponseHandler: BridgedFunction
@@ -125,3 +121,26 @@ module Models =
         functions: Functions
     }
 
+
+    let private defaultAuthorization = {
+        defaultAuthorizationMode = Function
+        defaultAuthorizationHeader = "Authorization"
+        tokenValidator = null
+        claimsMappings = []
+    }
+    
+    let defaultFunctions = {
+        httpFunctions = []
+        serviceBusFunctions = []
+    }
+    
+    let private defaultDiagnostics = {
+        outputSourcePath = NoSourceOutput
+    }
+    
+    let defaultFunctionAppConfiguration = {
+        enableFunctionModules = true
+        diagnostics = defaultDiagnostics
+        authorization = defaultAuthorization
+        functions = defaultFunctions
+    }
