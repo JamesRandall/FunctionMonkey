@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -119,6 +120,7 @@ namespace FunctionMonkey
             RegisterInternalImplementations();
             
             FunctionHostBuilder builder = null;
+            IFunctionCompilerMetadata functionCompilerMetadata = null;
             if (configuration != null)
             {
                 // Invoke the builder process
@@ -130,7 +132,7 @@ namespace FunctionMonkey
             }
             else
             {
-                IFunctionCompilerMetadata functionCompilerMetadata = LocateFunctionCompilerMetadata(functionAppConfigurationAssembly);
+                functionCompilerMetadata = LocateFunctionCompilerMetadata(functionAppConfigurationAssembly);
                 FunctionDefinitions = functionCompilerMetadata.FunctionDefinitions;
             }
 
@@ -142,7 +144,7 @@ namespace FunctionMonkey
 
             RegisterCosmosDependencies(FunctionDefinitions);
 
-            CreatePluginFunctions(FunctionDefinitions);
+            CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
             beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
             ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
@@ -172,7 +174,9 @@ namespace FunctionMonkey
             return serializer;
         }
 
-        private void CreatePluginFunctions(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        private void CreatePluginFunctions(
+            IReadOnlyCollection<AbstractClaimsMappingDefinition> claimsMappings,
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
             foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
             {
@@ -220,7 +224,15 @@ namespace FunctionMonkey
                             );
                         }
 
-                        pluginFunctions.BindClaims = (principal, command) => { return Task.FromResult(command); };
+                        if (claimsMappings == null)
+                        {
+                            pluginFunctions.BindClaims = (principal, command) => Task.FromResult(command);
+                        }
+                        else
+                        {
+                            var mapperFunc = ImmutableCommandClaimsMapperBuilder.Build(httpFunctionDefinition, claimsMappings);
+                            pluginFunctions.BindClaims = (principal, command) => Task.FromResult(mapperFunc(command, principal));
+                        }
                     }
                     else
                     {

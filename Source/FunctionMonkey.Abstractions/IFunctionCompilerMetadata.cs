@@ -11,5 +11,7 @@ namespace FunctionMonkey.Abstractions
         OpenApiConfiguration OpenApiConfiguration { get; }
             
         string OutputAuthoredSourceFolder { get; }
+        
+        IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
     }
 }

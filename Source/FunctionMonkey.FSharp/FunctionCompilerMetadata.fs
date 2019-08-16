@@ -85,37 +85,41 @@ module FunctionCompilerMetadata =
                 
             let httpFunctionDefinition =
                 HttpFunctionDefinition(
-                    httpFunction.commandType,
-                    httpFunction.resultType,
-                    Route = httpFunction.route,
-                    UsesImmutableTypes = true,
-                    Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
-                    Authorization = new System.Nullable<AuthorizationTypeEnum>(convertAuthorizationMode configuration.authorization.defaultAuthorizationMode),
-                    ValidatesToken = (configuration.authorization.defaultAuthorizationMode = Token),
-                    TokenHeader = configuration.authorization.defaultAuthorizationHeader,
-                    ClaimsPrincipalAuthorizationType = null,
-                    HeaderBindingConfiguration = null,
-                    HttpResponseHandlerType = null,
-                    IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
-                    IsStreamCommand = false,
-                    TokenValidatorType = null,
-                    RouteParameters = extractRouteParameters (),
-                    ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
-                    Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
-                    CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
-                    IsUsingValidator = not (httpFunction.validator = null),
-                    // function handlers
-                    FunctionHandler = httpFunction.handler,
-                    TokenValidatorFunction = (match configuration.authorization.tokenValidator with
-                                             | null -> null
-                                             | _ -> new BridgedFunction(configuration.authorization.tokenValidator)),
-                    ValidatorFunction = (httpFunction.validator |> createBridgedFunction)
-                )
+                                     httpFunction.commandType,
+                                     httpFunction.resultType,
+                                     Route = httpFunction.route,
+                                     UsesImmutableTypes = true,
+                                     Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
+                                     Authorization = new System.Nullable<AuthorizationTypeEnum>(convertAuthorizationMode configuration.authorization.defaultAuthorizationMode),
+                                     ValidatesToken = (configuration.authorization.defaultAuthorizationMode = Token),
+                                     TokenHeader = configuration.authorization.defaultAuthorizationHeader,
+                                     ClaimsPrincipalAuthorizationType = null,
+                                     HeaderBindingConfiguration = null,
+                                     HttpResponseHandlerType = null,
+                                     IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
+                                     IsStreamCommand = false,
+                                     TokenValidatorType = null,
+                                     RouteParameters = extractRouteParameters (),
+                                     ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
+                                     Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
+                                     CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                                     IsUsingValidator = not (httpFunction.validator = null),
+                                     // function handlers
+                                     FunctionHandler = httpFunction.handler,
+                                     TokenValidatorFunction = (match configuration.authorization.tokenValidator with
+                                                              | null -> null
+                                                              | _ -> new BridgedFunction(configuration.authorization.tokenValidator)),
+                                     ValidatorFunction = (httpFunction.validator |> createBridgedFunction)
+                                 )
             
             httpFunctionDefinition :> AbstractFunctionDefinition
         
         {
-            claimsMappings = []
+            claimsMappings = configuration.authorization.claimsMappings |> Seq.map (
+                                fun m -> match m.mapper with
+                                         | Shared s -> SharedClaimsMappingDefinition(ClaimName = m.claim, PropertyPath = s) :> AbstractClaimsMappingDefinition
+                                         | Command c -> CommandClaimsMappingDefinition(ClaimName = m.claim, CommandType = c.commandType, PropertyInfo = c.propertyInfo) :> AbstractClaimsMappingDefinition
+                                ) |> Seq.toList
             outputAuthoredSourceFolder = configuration.diagnostics.outputSourcePath
             openApiConfiguration = OpenApiConfiguration()
             functionDefinitions =

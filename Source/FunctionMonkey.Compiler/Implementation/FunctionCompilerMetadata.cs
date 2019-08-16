@@ -10,5 +10,7 @@ namespace FunctionMonkey.Compiler.Implementation
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; set;  }
         public OpenApiConfiguration OpenApiConfiguration { get; set; }
         public string OutputAuthoredSourceFolder { get; set; }
+        
+        public IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
     }
 }

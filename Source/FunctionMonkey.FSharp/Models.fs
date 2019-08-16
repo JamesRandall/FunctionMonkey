@@ -31,12 +31,13 @@ module Models =
         
     type FunctionCompilerMetadata =
          {
-             claimsMappings: ClaimsMapping list
+             claimsMappings: AbstractClaimsMappingDefinition list
              functionDefinitions: AbstractFunctionDefinition list
              openApiConfiguration: OpenApiConfiguration
              outputAuthoredSourceFolder: OutputAuthoredSource
          }
          interface IFunctionCompilerMetadata with
+            member i.ClaimsMappings = i.claimsMappings :> System.Collections.Generic.IReadOnlyCollection<AbstractClaimsMappingDefinition>
             member i.FunctionDefinitions = i.functionDefinitions :> System.Collections.Generic.IReadOnlyCollection<AbstractFunctionDefinition>
             member i.OpenApiConfiguration = i.openApiConfiguration
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null

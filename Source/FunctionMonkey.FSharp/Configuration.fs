@@ -59,11 +59,6 @@ module Configuration =
             )
         )
         
-    let createBridgedClaimsMapperFunc (claimsMapper:'a -> ClaimsPrincipal -> 'a) =
-        new System.Func<obj, ClaimsPrincipal, obj>(fun cmd claimsPrincipal ->
-            claimsMapper (cmd :?> 'a) claimsPrincipal 
-        )
-    
     let private gatherModuleFunctions (assembly:Assembly) =
         assembly.GetTypes()
         |> Seq.collect (
@@ -100,7 +95,8 @@ module Configuration =
             { claim = claimName ; mapper = Command (commandMapper) }
     
     type azureFunction private() =
-        static member inline http (
+        static member inline http
+            (
                 (handler:'a -> 'b),
                 verb,
                 ?subRoute,
