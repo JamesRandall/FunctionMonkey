@@ -1,10 +1,7 @@
 namespace FmFsharpDemo
 open System.Security.Claims
-open FunctionMonkey.Abstractions.Builders
-open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Models
-open Orders
 
 module EntryPointCopy =
     exception InvalidTokenException

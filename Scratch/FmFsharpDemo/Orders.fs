@@ -35,7 +35,7 @@ module Orders =
         
     let createOrderCommandValidator command =
         match command.userId.Length with
-        | 0 -> [{severity=Error ; message = Some "Must specify a user ID" ; errorCode = None ; property = Some "userId"}]
+        | 0 -> [{severity=ValidationError ; message = Some "Must specify a user ID" ; errorCode = None ; property = Some "userId"}]
         | _ -> []
         
     let orderFunctions = functions {

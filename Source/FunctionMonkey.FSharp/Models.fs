@@ -41,9 +41,9 @@ module Models =
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
     
     type ValidationErrorSeverity =
-        | Error
-        | Warning
-        | Info
+        | ValidationError
+        | ValidationWarning
+        | ValidationInfo
         
     type ValidationError =
         {

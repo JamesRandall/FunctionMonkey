@@ -4,6 +4,7 @@
         <AzureFunctionsVersion>v2</AzureFunctionsVersion>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="AccidentalFish.FSharp.Validation" Version="0.10.1" />
         <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
     </ItemGroup>
     <ItemGroup>
@@ -18,6 +19,7 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <Compile Include="Orders.fs" />
+        <Compile Include="ToDo.fs" />
     </ItemGroup>
     <ItemGroup>
       <Compile Include="EntryPoint.fs" />

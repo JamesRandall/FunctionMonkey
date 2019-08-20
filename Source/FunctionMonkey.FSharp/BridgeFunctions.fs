@@ -17,9 +17,9 @@ module internal BridgeFunctions =
                 let createBridgedValidationError (error:FunctionMonkey.FSharp.Models.ValidationError) =
                     new FunctionMonkey.Commanding.Abstractions.Validation.ValidationError(
                         Severity = (match error.severity with
-                                    | Error -> SeverityEnum.Error
-                                    | Warning -> SeverityEnum.Warning
-                                    | Info -> SeverityEnum.Info),
+                                    | ValidationError -> SeverityEnum.Error
+                                    | ValidationWarning -> SeverityEnum.Warning
+                                    | ValidationInfo -> SeverityEnum.Info),
                         ErrorCode = (match error.errorCode with Some c -> c | None -> null),
                         Property = (match error.property with Some p -> p | None -> null),
                         Message = (match error.message with Some m -> m | None -> null)
