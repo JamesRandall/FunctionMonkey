@@ -109,7 +109,9 @@ module internal FunctionCompilerMetadata =
                                           | _ -> new BridgedFunction(configuration.authorization.tokenValidator)),
                  CreateResponseFromExceptionFunction = httpFunction.exceptionResponseHandler,
                  CreateResponseForResultFunction = httpFunction.responseHandler,
-                 CreateValidationFailureResponseFunction = httpFunction.validationFailureResponseHandler
+                 CreateValidationFailureResponseFunction = httpFunction.validationFailureResponseHandler,
+                 IsValidFunction = configuration.isValidHandler
+                 
             ) :> AbstractFunctionDefinition
         
         

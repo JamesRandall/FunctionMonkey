@@ -1,9 +1,10 @@
 namespace FmFsharpDemo
+open AccidentalFish.FSharp.Validation
 open System.Security.Claims
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Models
 
-module EntryPointCopy =
+module EntryPoint =
     exception InvalidTokenException
     
     let validateToken (bearerToken:string) =
@@ -13,17 +14,26 @@ module EntryPointCopy =
     
     let getApiVersion () =
         "1.0.0"
+        
+    let isResultValid (result:ValidationState) =
+        match result with
+        | Ok -> true
+        | _ -> false
                                     
     let app = functionApp {
         outputSourcePath "/Users/jamesrandall/code/authoredSource"
+        // authorization
         defaultAuthorizationMode Token
         tokenValidator validateToken
         claimsMappings [
             claimsMapper.shared ("userId", "userId")
             //claimsMapper.command ("userId", (fun cmd -> cmd.userId) )
         ]
+        // validation
+        isValid isResultValid        
+        // functions
         httpRoute "version" [
-            azureFunction.http (getApiVersion, Get)
+            azureFunction.http (Handler(getApiVersion), Get)
         ]
     }
                 

@@ -330,10 +330,12 @@ namespace {{Namespace}}
                     }
                 {{/if}}
             {{/each}}
-        
+
+            log.LogWarning("{command}", command);
             {{#if UsesImmutableTypes}}
-                command = MergeCommandWithParameters(imtPropertyValues);
+                command = MergeCommandWithParameters(imtPropertyValues, command);
             {{/if}}
+            log.LogWarning("{command}", command);
     
             {{#if ValidatesToken}}
             {{#unless CommandTypeIsUnit}}    
@@ -344,7 +346,7 @@ namespace {{Namespace}}
             {{#if IsUsingValidator}}
             {{#unless CommandTypeIsUnit}}
             var validationResult = pluginFunctions.Validate(command);
-            if (!validationResult.IsValid)
+            if (!pluginFunctions.IsValid(validationResult))
             {
                 {{#if HasHttpResponseHandler}}
                     var validatorResponseTask = pluginFunctions.CreateValidationFailureResponse(command, validationResult);
@@ -370,7 +372,7 @@ namespace {{Namespace}}
             try
             {
                 {{#if IsFunctionalFunction}}
-                    Func<{{{CommandTypeName}}}, {{{CommandResultTypeName}}}> handler = (Func<{{{CommandTypeName}}}, {{{CommandResultTypeName}}}>)pluginFunctions.Handler;
+                    Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>> handler = (Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>>)pluginFunctions.Handler;
                     {{#if FunctionHandlerIsAsync}}
                         var result = await handler(command);
                     {{else}}
@@ -498,14 +500,14 @@ namespace {{Namespace}}
         }
 
         {{#if UsesImmutableTypes}}
-        private static {{{CommandTypeName}}} MergeCommandWithParameters(Dictionary<string, object> values)
+        private static {{{CommandTypeName}}} MergeCommandWithParameters(Dictionary<string, object> values, {{{CommandTypeName}}} originalCommand)
         {
             {{#if CommandTypeIsUnit}}
                 return null;
             {{else}}
             return new {{CommandTypeName}}(
             {{#each ImmutableTypeConstructorParameters}}
-                values.TryGetValue("{{Name}}", out object uncastValue{{@index}}) ? ({{{TypeName}}})uncastValue{{@index}} : default({{{TypeName}}}){{#unless @last}},{{/unless}}
+                values.TryGetValue("{{Name}}", out object uncastValue{{@index}}) ? ({{{TypeName}}})uncastValue{{@index}} : originalCommand.{{Name}}{{#unless @last}},{{/unless}}
             {{/each}}
             );
             {{/if}}

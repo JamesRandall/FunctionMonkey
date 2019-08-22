@@ -30,34 +30,7 @@ namespace FunctionMonkey
     {
         
     }
-    
-    public class PluginFunctions : AbstractPluginFunctions // where TCommand : ICommand
-    {
-        public Func<string, Task<ClaimsPrincipal>> ValidateToken { get; set; }
 
-        public Func<ClaimsPrincipal, string, string, Task<bool>> IsAuthorized { get; set; }
-        
-        public Func<string, object> Deserialize { get; set; }
-        
-        public Func<object, bool, string> Serialize { get; set; }
-        
-        public Func<ClaimsPrincipal, object, Task<object>> BindClaims { get; set; }
-        
-        public Func<object, Exception, Task<IActionResult>> CreateResponseFromException { get; set; }
-        
-        public Func<object, object, Task<IActionResult>> CreateResponseForResult { get; set; }
-        
-        public Func<object, Task<IActionResult>> CreateResponse { get; set; }
-        
-        public Func<object, ValidationResult, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
-        
-        public Func<object, ValidationResult> Validate { get; set; }
-
-        // This is a func cast to an object that, when set, will be used to execute the command instead of the
-        // built in dispatcher
-        public object Handler { get; set; }
-    }
-    
     public class RuntimeInstance
     {
         public IServiceProvider ServiceProvider { get; }
@@ -193,7 +166,7 @@ namespace FunctionMonkey
                 if (functionDefinition.ValidatorFunction != null)
                 {
                     pluginFunctions.Validate = obj =>
-                        ((Func<object, ValidationResult>) functionDefinition.ValidatorFunction.Handler)(obj);
+                        ((Func<object, object>) functionDefinition.ValidatorFunction.Handler)(obj);
                 }
                 else
                 {
@@ -204,6 +177,19 @@ namespace FunctionMonkey
                                 typeof(FunctionMonkey.Abstractions.Validation.IValidator));
                         var validationResult = validator.Validate((ICommand) command);
                         return validationResult;
+                    };
+                }
+                
+                if (functionDefinition.IsValidFunction != null)
+                {
+                    pluginFunctions.IsValid = (Func<object,bool>)functionDefinition.IsValidFunction.Handler;
+                }
+                else
+                {
+                    pluginFunctions.IsValid = validationResult =>
+                    {
+                        ValidationResult castValidationResult = (ValidationResult) validationResult;
+                        return castValidationResult.IsValid;
                     };
                 }
                 

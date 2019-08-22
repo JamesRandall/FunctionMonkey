@@ -4,30 +4,16 @@ open System
 open System.Threading.Tasks
 open FunctionMonkey.Commanding.Abstractions.Validation
 open Microsoft.AspNetCore.Mvc
-open Models
-
 
 module internal BridgeFunctions =
     let bridgeWith creator func =
         func |> Option.map(creator) |> Option.defaultValue null
     
-    let createBridgedValidatorFunc (validator:'a -> ValidationError list) =
+    let createBridgedFunc (func:'a -> 'result) =
         new BridgedFunction(
-            new System.Func<obj, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult>(fun cmd ->
-                let createBridgedValidationError (error:FunctionMonkey.FSharp.Models.ValidationError) =
-                    new FunctionMonkey.Commanding.Abstractions.Validation.ValidationError(
-                        Severity = (match error.severity with
-                                    | ValidationError -> SeverityEnum.Error
-                                    | ValidationWarning -> SeverityEnum.Warning
-                                    | ValidationInfo -> SeverityEnum.Info),
-                        ErrorCode = (match error.errorCode with Some c -> c | None -> null),
-                        Property = (match error.property with Some p -> p | None -> null),
-                        Message = (match error.message with Some m -> m | None -> null)
-                    )
-                let result = validator (cmd :?> 'a)
-                new FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult(
-                    Errors = (result |> Seq.map createBridgedValidationError |> Seq.toList)
-                )
+            new System.Func<obj, 'result>(fun cmd ->
+                let result = func (cmd :?> 'a)
+                result
             )
         )
         

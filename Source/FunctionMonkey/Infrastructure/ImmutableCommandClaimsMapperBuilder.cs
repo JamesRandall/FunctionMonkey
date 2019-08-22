@@ -7,7 +7,7 @@ using System.Security.Claims;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Model;
 
-namespace FunctionMonkey.Builders
+namespace FunctionMonkey.Infrastructure
 {
     internal static class ImmutableCommandClaimsMapperBuilder
     {

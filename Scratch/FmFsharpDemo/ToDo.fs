@@ -35,6 +35,13 @@ module ToDo =
     }
         
     let addToDoItem command =
+        (*let newItem = {
+                id = Guid.NewGuid().ToString()
+                owningUserId = command.userId
+                title = command.title
+                complete = command.complete
+            }
+        newItem.id*)
         async {
             let newItem = {
                 id = Guid.NewGuid().ToString()
@@ -48,7 +55,7 @@ module ToDo =
                 
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
-            azureFunction.http (addToDoItem, Post, validator=validateAddToDoItemCommand)
+            azureFunction.http (AsyncHandler(addToDoItem), Post, validator=validateAddToDoItemCommand)
         ]
     } 
 

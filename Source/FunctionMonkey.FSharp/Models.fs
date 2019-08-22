@@ -117,6 +117,7 @@ module Models =
     type FunctionAppConfiguration = {
         enableFunctionModules: bool
         diagnostics: Diagnostics
+        isValidHandler: BridgedFunction // TODO: I need to throw some kind of error if a validation function is supplied at some point and a isValid function is not
         authorization: Authorization       
         functions: Functions
     }
@@ -140,6 +141,7 @@ module Models =
     
     let defaultFunctionAppConfiguration = {
         enableFunctionModules = true
+        isValidHandler = null
         diagnostics = defaultDiagnostics
         authorization = defaultAuthorization
         functions = defaultFunctions

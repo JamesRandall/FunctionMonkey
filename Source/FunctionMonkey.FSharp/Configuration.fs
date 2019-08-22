@@ -4,6 +4,7 @@ open System.Linq.Expressions
 open System.Reflection
 open System.Security.Claims
 open System.Threading.Tasks
+open System.Threading.Tasks
 open FunctionMonkey.Commanding.Abstractions.Validation
 open Microsoft.AspNetCore.Mvc
 open Models
@@ -17,18 +18,22 @@ module Configuration =
         static member command<'commandType, 'propertyType> (claimName, (propertyExpression: Expression<Func<'commandType, 'propertyType>>)) =
             let commandMapper = { commandType = typedefof<'commandType> ; propertyInfo = (getPropertyInfo propertyExpression) }
             { claim = claimName ; mapper = Command (commandMapper) }
+            
+    type FunctionHandler<'a, 'b> =
+        | AsyncHandler of ('a -> Async<'b>)
+        | Handler of ('a -> 'b)
     
     type azureFunction private() =
         static member http
             (
-                (handler:'a -> 'b),
+                (handler:FunctionHandler<'a,'b>),
                 verb,
                 ?subRoute,
                 // common
-                (?validator:'a -> ValidationError list),
+                (?validator:'a -> 'validationResult),
                 (?exceptionResponseHandlerAsync:'a -> Exception -> Async<IActionResult>),
-                (?responseHandlerAsync:'a -> 'b -> Async<IActionResult>),
-                (?validationFailureResponseHandlerAsync:'a -> ValidationResult -> Async<IActionResult>)
+                (?asyncResponseHandler:'a -> 'b -> Async<IActionResult>),
+                (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>)
             ) =
              {
                  verbs = [verb]
@@ -36,11 +41,13 @@ module Configuration =
                  commandType = typedefof<'a>
                  resultType = typedefof<'b>
                  // functions
-                 handler = new System.Func<'a, 'b>(fun (cmd) -> handler (cmd))
-                 validator = validator |> bridgeWith createBridgedValidatorFunc
+                 handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
+                                                                      | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                                      | Handler h -> Task.FromResult(h(cmd)))
+                 validator = validator |> bridgeWith createBridgedFunc
                  exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync
-                 responseHandler = responseHandlerAsync |> bridgeWith createBridgedResponseHandlerAsync
-                 validationFailureResponseHandler = validationFailureResponseHandlerAsync |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
+                 responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
+                 validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
              }
                         
     type FunctionAppConfigurationBuilder() =
@@ -73,6 +80,10 @@ module Configuration =
         member this.defaultAuthorizationHeader(configuration: FunctionAppConfiguration, header) =
             { configuration with authorization = { configuration.authorization with defaultAuthorizationHeader = header } }
         
+        [<CustomOperation("isValid")>]
+        member this.isValid(configuration:FunctionAppConfiguration, isValid:'validationResult -> bool) =
+            { configuration with isValidHandler = Some isValid |> bridgeWith createBridgedFunc }            
+        
         [<CustomOperation("tokenValidatorAsync")>]
         member this.tokenValidatorAsync(configuration:FunctionAppConfiguration, validator:string -> Async<ClaimsPrincipal>) =
             { configuration
@@ -81,7 +92,7 @@ module Configuration =
                         with tokenValidator = new System.Func<string, Task<ClaimsPrincipal>>(fun t -> validator(t) |> Async.StartAsTask)
                 }
             }
-        
+            
         [<CustomOperation("tokenValidator")>]
         member this.tokenValidator(configuration:FunctionAppConfiguration, validator:string -> ClaimsPrincipal) =
             { configuration
