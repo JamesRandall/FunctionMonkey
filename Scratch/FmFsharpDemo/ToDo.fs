@@ -3,8 +3,7 @@ open AccidentalFish.FSharp.Validation
 open System
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
-open FunctionMonkey.FSharp.Models
-open Result
+open FunctionMonkey.FSharp.OutputBindings
 
 module ToDo =
     type ToDoItem =
@@ -22,26 +21,29 @@ module ToDo =
             complete: bool
         }
         
+    let withIdValidations = [
+       isNotEmpty
+       hasLengthOf 36
+    ]
+    
+    let withTitleValidations = [
+        isNotEmpty
+        hasMinLengthOf 1
+        hasMaxLengthOf 255
+    ]
+        
     let validateAddToDoItemCommand = createValidatorFor<AddToDoItemCommand>() {
-        validate (fun c -> c.userId) [
-            isNotEmpty
-            hasLengthOf 36
-        ]
-        validate (fun c -> c.title) [
-            isNotEmpty
-            hasMinLengthOf 1
-            hasMaxLengthOf 255
-        ]
+        validate (fun c -> c.userId) withIdValidations
+        validate (fun c -> c.title) withTitleValidations
+    }
+    
+    let validateToDoItem = createValidatorFor<ToDoItem>() {
+        validate (fun c -> c.id) withIdValidations
+        validate (fun c -> c.title) withTitleValidations
+        validate (fun c -> c.owningUserId) withIdValidations
     }
         
     let addToDoItem command =
-        (*let newItem = {
-                id = Guid.NewGuid().ToString()
-                owningUserId = command.userId
-                title = command.title
-                complete = command.complete
-            }
-        newItem.id*)
         async {
             let newItem = {
                 id = Guid.NewGuid().ToString()
@@ -50,12 +52,15 @@ module ToDo =
                 complete = command.complete
             }
             
-            return newItem.id
+            return newItem
         }
                 
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
-            azureFunction.http (AsyncHandler(addToDoItem), Post, validator=validateAddToDoItemCommand)
+            azureFunction.http (AsyncHandler(addToDoItem), verb=Post, validator=validateAddToDoItemCommand)
+                |> cosmosDb "dbToDo" "colToDoItems"
+            azureFunction.http (NoHandler, verb=Put, validator=validateToDoItem)
+                |> cosmosDb "dbToDo" "colToDoItems"
         ]
     } 
 

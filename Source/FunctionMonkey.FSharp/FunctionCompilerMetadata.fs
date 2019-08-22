@@ -100,6 +100,7 @@ module internal FunctionCompilerMetadata =
                  Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
                  CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
                  IsUsingValidator = not (httpFunction.validator = null),
+                 OutputBinding = (match httpFunction.outputBinding with | Some s -> s :?> AbstractOutputBinding | None -> null),
                  // function handlers - common
                  FunctionHandler = httpFunction.handler,
                  ValidatorFunction = httpFunction.validator,

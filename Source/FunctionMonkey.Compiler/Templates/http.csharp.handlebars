@@ -363,7 +363,16 @@ namespace {{Namespace}}
                 {{#if NoCommandHandler}}
                     {{{CommandTypeName}}} result = command;
                 {{else}}
-                    {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                    {{#if IsFunctionalFunction}}
+                        Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>> handler = (Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>>)pluginFunctions.Handler;
+                        {{#if FunctionHandlerIsAsync}}
+                            var result = await handler(command);
+                        {{else}}
+                            var result = handler(command);
+                        {{/if}}
+                    {{else}}
+                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                    {{/if}}
                 {{/if}}
                 
                 {{{collectorOutputBinding}}}

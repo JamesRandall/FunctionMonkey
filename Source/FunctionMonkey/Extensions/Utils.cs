@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Extensions
 {
     public static class Utils
     {
@@ -35,10 +35,10 @@ namespace FunctionMonkey.Compiler.Implementation
             }
             else
             {
-                return type.ToString();
+                return type.ToString().Replace("+", ".");
             }
 
-            return retType.ToString();
+            return retType.ToString().Replace("+", ".");
         }
     }
 }

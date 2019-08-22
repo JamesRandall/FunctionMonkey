@@ -10,6 +10,7 @@
         <Compile Include="FunctionCompilerMetadata.fs" />
         <Compile Include="Helpers.fs" />
         <Compile Include="Configuration.fs" />
+        <Compile Include="OutputBindings.fs" />
     </ItemGroup>
 
     <ItemGroup>

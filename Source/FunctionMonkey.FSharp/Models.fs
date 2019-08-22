@@ -7,6 +7,10 @@ open FunctionMonkey.Abstractions.Http
 
 module Models =
         
+    type IOutputBindingTarget<'functionType> =
+        abstract member setOutputBinding : obj -> 'functionType
+        abstract member resultType : Type
+    
     type OutputAuthoredSource =
         | Path of string
         | NoSourceOutput
@@ -78,7 +82,11 @@ module Models =
             exceptionResponseHandler: BridgedFunction
             responseHandler: BridgedFunction
             validationFailureResponseHandler: BridgedFunction
+            outputBinding: obj option
         }
+        interface IOutputBindingTarget<HttpFunction> with
+            member this.setOutputBinding(binding: obj) = { this with outputBinding = Some binding }
+            member this.resultType = this.resultType
         
     type ServiceBusQueueFunction = {
         serviceBusConnectionStringSettiingName: string

@@ -22,6 +22,7 @@ module Configuration =
     type FunctionHandler<'a, 'b> =
         | AsyncHandler of ('a -> Async<'b>)
         | Handler of ('a -> 'b)
+        | NoHandler
     
     type azureFunction private() =
         static member http
@@ -43,12 +44,15 @@ module Configuration =
                  // functions
                  handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
                                                                       | AsyncHandler h -> h(cmd) |> Async.StartAsTask
-                                                                      | Handler h -> Task.FromResult(h(cmd)))
+                                                                      | Handler h -> Task.FromResult(h(cmd))
+                                                                      | NoHandler -> null
+                                                        )
                  validator = validator |> bridgeWith createBridgedFunc
                  exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
                  validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
-             }
+                 outputBinding = None
+             }            
                         
     type FunctionAppConfigurationBuilder() =
         member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
