@@ -10,6 +10,14 @@ module Models =
     type IOutputBindingTarget<'functionType> =
         abstract member setOutputBinding : obj -> 'functionType
         abstract member resultType : Type
+        
+    type DefaultConnectionSettingNames =
+        {
+            cosmosDb: string
+            serviceBus: string
+            storage: string
+            signalR: string
+        }
     
     type OutputAuthoredSource =
         | Path of string
@@ -33,6 +41,7 @@ module Models =
         
     type FunctionCompilerMetadata =
          {
+             defaultConnectionSettingNames: DefaultConnectionSettingNames
              claimsMappings: AbstractClaimsMappingDefinition list
              functionDefinitions: AbstractFunctionDefinition list
              openApiConfiguration: OpenApiConfiguration
@@ -123,6 +132,7 @@ module Models =
     }
     
     type FunctionAppConfiguration = {
+        defaultConnectionSettingNames: DefaultConnectionSettingNames
         enableFunctionModules: bool
         diagnostics: Diagnostics
         isValidHandler: BridgedFunction // TODO: I need to throw some kind of error if a validation function is supplied at some point and a isValid function is not
@@ -147,10 +157,20 @@ module Models =
         outputSourcePath = NoSourceOutput
     }
     
+    let defaultConnectionSettingNames = {
+        cosmosDb = "cosmosConnectionString"
+        storage = "storageConnectionString"
+        serviceBus = "serviceBusConnectionString"
+        signalR = "signalRConnectionString"
+    }
+    
     let defaultFunctionAppConfiguration = {
         enableFunctionModules = true
         isValidHandler = null
         diagnostics = defaultDiagnostics
         authorization = defaultAuthorization
         functions = defaultFunctions
+        defaultConnectionSettingNames = defaultConnectionSettingNames
     }
+    
+    

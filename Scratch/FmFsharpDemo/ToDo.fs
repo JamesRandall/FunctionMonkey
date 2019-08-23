@@ -58,9 +58,9 @@ module ToDo =
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
             azureFunction.http (AsyncHandler(addToDoItem), verb=Post, validator=validateAddToDoItemCommand)
-                |> cosmosDb "dbToDo" "colToDoItems"
+                |> cosmosDb "testdatabase" "colToDoItems"
             azureFunction.http (NoHandler, verb=Put, validator=validateToDoItem)
-                |> cosmosDb "dbToDo" "colToDoItems"
+                |> cosmosDb "testdatabase" "colToDoItems"
         ]
     } 
 

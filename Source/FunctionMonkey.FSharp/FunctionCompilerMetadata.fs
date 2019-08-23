@@ -10,6 +10,7 @@ open FunctionMonkey.Abstractions.Extensions
 open FunctionMonkey.Abstractions.Http
 open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.Model
+open FunctionMonkey.Model.OutputBindings
 open FunctionMonkey.Serialization
 open Models
 
@@ -26,6 +27,21 @@ module internal FunctionCompilerMetadata =
         | _ -> new BridgedFunction(func)
     
     let create configuration =
+        let patchOutputBindingConnectionString (abstractOutputBinding:AbstractOutputBinding) =
+            let ensureIsSet defaultValue (existingSetting:string) =
+                match String.IsNullOrWhiteSpace(existingSetting) with | true -> defaultValue | _ -> existingSetting 
+            
+            match abstractOutputBinding with
+            | :? CosmosOutputBinding as c -> c.ConnectionStringSettingName <- c.ConnectionStringSettingName |> ensureIsSet configuration.defaultConnectionSettingNames.cosmosDb
+            | :? ServiceBusQueueOutputBinding as s -> s.ConnectionStringSettingName <- s.ConnectionStringSettingName |> ensureIsSet configuration.defaultConnectionSettingNames.serviceBus
+            | :? ServiceBusTopicOutputBinding as t -> t.ConnectionStringSettingName <- t.ConnectionStringSettingName |> ensureIsSet configuration.defaultConnectionSettingNames.serviceBus
+            | :? StorageQueueOutputBinding as sq -> sq.ConnectionStringSettingName <- sq.ConnectionStringSettingName |> ensureIsSet configuration.defaultConnectionSettingNames.storage
+            | :? StorageTableOutputBinding as st -> st.ConnectionStringSettingName <- st.ConnectionStringSettingName |> ensureIsSet configuration.defaultConnectionSettingNames.storage
+            | :? SignalROutputBinding as sr -> sr.ConnectionStringSettingName <- sr.ConnectionStringSettingName |> ensureIsSet configuration.defaultConnectionSettingNames.storage
+            | _ -> ()
+            
+            abstractOutputBinding
+        
         let extractConstructorParameters func =
                 let createParameter (cp:ParameterInfo) =
                     ImmutableTypeConstructorParameter(
@@ -100,7 +116,9 @@ module internal FunctionCompilerMetadata =
                  Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
                  CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
                  IsUsingValidator = not (httpFunction.validator = null),
-                 OutputBinding = (match httpFunction.outputBinding with | Some s -> s :?> AbstractOutputBinding | None -> null),
+                 OutputBinding = (match httpFunction.outputBinding with
+                                  | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
+                                  | None -> null),
                  // function handlers - common
                  FunctionHandler = httpFunction.handler,
                  ValidatorFunction = httpFunction.validator,
@@ -119,6 +137,7 @@ module internal FunctionCompilerMetadata =
         // form up and return the function compiler metadata
         
         {
+            defaultConnectionSettingNames = configuration.defaultConnectionSettingNames
             claimsMappings = configuration.authorization.claimsMappings |> Seq.map (
                                 fun m -> match m.mapper with
                                          | Shared s -> SharedClaimsMappingDefinition(ClaimName = m.claim, PropertyPath = s) :> AbstractClaimsMappingDefinition

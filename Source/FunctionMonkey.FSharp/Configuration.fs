@@ -45,7 +45,7 @@ module Configuration =
                  handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
                                                                       | AsyncHandler h -> h(cmd) |> Async.StartAsTask
                                                                       | Handler h -> Task.FromResult(h(cmd))
-                                                                      | NoHandler -> null
+                                                                      | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
                                                         )
                  validator = validator |> bridgeWith createBridgedFunc
                  exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync

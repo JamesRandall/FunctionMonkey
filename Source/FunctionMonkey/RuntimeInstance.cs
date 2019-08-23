@@ -160,9 +160,10 @@ namespace FunctionMonkey
                     CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body);
 
                 pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
-                    CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties); 
-                
+                    CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties);
+
                 pluginFunctions.Handler = functionDefinition.FunctionHandler;
+                
                 if (functionDefinition.ValidatorFunction != null)
                 {
                     pluginFunctions.Validate = obj =>
