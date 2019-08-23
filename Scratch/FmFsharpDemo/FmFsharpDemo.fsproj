@@ -5,6 +5,7 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="AccidentalFish.FSharp.Validation" Version="0.10.1" />
+        <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.1.1" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.3" />
         <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
     </ItemGroup>
@@ -20,6 +21,7 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <Compile Include="Orders.fs" />
+        <Compile Include="CosmosDb.fs" />
         <Compile Include="ToDo.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>

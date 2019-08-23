@@ -4,8 +4,12 @@ open System
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.OutputBindings
+open CosmosDb
 
 module ToDo =
+    let toDoCosmos functionDefinition =
+        cosmosDb cosmosDatabase cosmosCollection functionDefinition
+    
     type ToDoItem =
         {
             id: string
@@ -21,6 +25,11 @@ module ToDo =
             complete: bool
         }
         
+    type GetToDoItemQuery =
+        {
+            id: string
+        }
+        
     let withIdValidations = [
        isNotEmpty
        hasLengthOf 36
@@ -31,6 +40,10 @@ module ToDo =
         hasMinLengthOf 1
         hasMaxLengthOf 255
     ]
+    
+    let validateGetToDoItemQuery = createValidatorFor<GetToDoItemQuery>() {
+        validate (fun q -> q.id) withIdValidations
+    }
         
     let validateAddToDoItemCommand = createValidatorFor<AddToDoItemCommand>() {
         validate (fun c -> c.userId) withIdValidations
@@ -54,13 +67,17 @@ module ToDo =
             
             return newItem
         }
+        
+    let getToDoItem query =
+        query.id |> CosmosDb.read<ToDoItem>       
                 
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
             azureFunction.http (AsyncHandler(addToDoItem), verb=Post, validator=validateAddToDoItemCommand)
-                |> cosmosDb "testdatabase" "colToDoItems"
+                |> toDoCosmos
             azureFunction.http (NoHandler, verb=Put, validator=validateToDoItem)
-                |> cosmosDb "testdatabase" "colToDoItems"
+                |> toDoCosmos
+            azureFunction.http (AsyncHandler(getToDoItem), verb=Get, subRoute="/{id}", validator=validateGetToDoItemQuery)
         ]
     } 
 
