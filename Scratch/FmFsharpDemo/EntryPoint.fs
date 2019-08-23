@@ -21,16 +21,14 @@ module EntryPoint =
         | _ -> false
                                     
     let app = functionApp {
-        outputSourcePath "/Users/jamesrandall/code/authoredSource"
         // authorization
         defaultAuthorizationMode Token
         tokenValidator validateToken
         claimsMappings [
             claimsMapper.shared ("userId", "userId")
-            //claimsMapper.command ("userId", (fun cmd -> cmd.userId) )
         ]
         // validation
-        isValid isResultValid        
+        isValid isResultValid
         // functions
         httpRoute "version" [
             azureFunction.http (Handler(getApiVersion), Get)
