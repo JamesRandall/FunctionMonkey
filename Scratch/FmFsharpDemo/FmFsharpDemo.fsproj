@@ -20,7 +20,6 @@
         <None Include="host.json">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <Compile Include="Orders.fs" />
         <Compile Include="CosmosDb.fs" />
         <Compile Include="ToDo.fs" />
         <None Include="local.settings.json">

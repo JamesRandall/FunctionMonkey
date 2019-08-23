@@ -92,6 +92,8 @@ module Models =
             responseHandler: BridgedFunction
             validationFailureResponseHandler: BridgedFunction
             outputBinding: obj option
+            authorizationMode: AuthorizationMode option
+            returnResponseBodyWithOutputBinding: bool
         }
         interface IOutputBindingTarget<HttpFunction> with
             member this.setOutputBinding(binding: obj) = { this with outputBinding = Some binding }

@@ -74,6 +74,8 @@ namespace FunctionMonkey.Model
 
         public bool IsStreamCommand { get; set; }
         
+        public bool ReturnResponseBodyWithOutputBinding { get; set; }
+        
         // F# Support
         public BridgedFunction TokenValidatorFunction { get; set; }
         

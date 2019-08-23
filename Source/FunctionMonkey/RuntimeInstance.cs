@@ -298,7 +298,7 @@ namespace FunctionMonkey
                             pluginFunctions.CreateResponseFromException = (cmd, ex) => null;
                         }
                     }
-                    else
+                    else if (httpFunctionDefinition.HttpResponseHandlerType != null)
                     {
                         pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
                         {
@@ -329,6 +329,13 @@ namespace FunctionMonkey
                                     httpFunctionDefinition.HttpResponseHandlerType);
                             return responseHandler.CreateResponseFromException((ICommand) command, exception);
                         };
+                    }
+                    else
+                    {
+                        pluginFunctions.CreateValidationFailureResponse = (cmd, vr) => null;
+                        pluginFunctions.CreateResponseForResult = (cmd, result) => null;
+                        pluginFunctions.CreateResponse = cmd => null;
+                        pluginFunctions.CreateResponseFromException = (cmd, ex) => null;
                     }
 
                     

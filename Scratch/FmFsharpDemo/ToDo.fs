@@ -7,22 +7,19 @@ open FunctionMonkey.FSharp.OutputBindings
 open CosmosDb
 
 module ToDo =
-    let toDoCosmos functionDefinition =
-        cosmosDb cosmosDatabase cosmosCollection functionDefinition
-    
     type ToDoItem =
         {
             id: string
             owningUserId: string
             title: string
-            complete: bool
+            isComplete: bool
         }
         
     type AddToDoItemCommand =
         {
             userId: string
             title: string
-            complete: bool
+            isComplete: bool
         }
         
     type GetToDoItemQuery =
@@ -55,29 +52,34 @@ module ToDo =
         validate (fun c -> c.title) withTitleValidations
         validate (fun c -> c.owningUserId) withIdValidations
     }
-        
+    
     let addToDoItem command =
-        async {
-            let newItem = {
-                id = Guid.NewGuid().ToString()
-                owningUserId = command.userId
-                title = command.title
-                complete = command.complete
-            }
-            
-            return newItem
+        {
+            id = Guid.NewGuid().ToString()
+            owningUserId = command.userId
+            title = command.title
+            isComplete = command.isComplete
         }
         
     let getToDoItem query =
-        query.id |> CosmosDb.read<ToDoItem>       
+        CosmosDb.reader<ToDoItem> <| query.id
+        
+    let todoDatabase =
+        cosmosDb cosmosCollection cosmosDatabase
                 
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
-            azureFunction.http (AsyncHandler(addToDoItem), verb=Post, validator=validateAddToDoItemCommand)
-                |> toDoCosmos
+            azureFunction.http (AsyncHandler(getToDoItem),
+                                verb=Get, subRoute="/{id}",
+                                validator=validateGetToDoItemQuery)
+            azureFunction.http (Handler(addToDoItem),
+                                verb=Post,
+                                validator=validateAddToDoItemCommand,
+                                returnResponseBodyWithOutputBinding=true)
+                |> todoDatabase
             azureFunction.http (NoHandler, verb=Put, validator=validateToDoItem)
-                |> toDoCosmos
-            azureFunction.http (AsyncHandler(getToDoItem), verb=Get, subRoute="/{id}", validator=validateGetToDoItemQuery)
+                |> todoDatabase
         ]
-    } 
+    }
+
 

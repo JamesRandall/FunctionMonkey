@@ -95,6 +95,9 @@ module internal FunctionCompilerMetadata =
                 | Match "{(.*?)}" routeParams -> routeParams |> Seq.map createRouteParameter |> Seq.toList
                 | _ -> []
                 
+            let resolvedAuthorizationMode = match httpFunction.authorizationMode with
+                                            | Some a -> a
+                                            | None -> configuration.authorization.defaultAuthorizationMode                
                 
             HttpFunctionDefinition(
                  httpFunction.commandType,
@@ -102,8 +105,8 @@ module internal FunctionCompilerMetadata =
                  Route = httpFunction.route,
                  UsesImmutableTypes = true,
                  Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
-                 Authorization = new System.Nullable<AuthorizationTypeEnum>(convertAuthorizationMode configuration.authorization.defaultAuthorizationMode),
-                 ValidatesToken = (configuration.authorization.defaultAuthorizationMode = Token),
+                 Authorization = new System.Nullable<AuthorizationTypeEnum>(convertAuthorizationMode resolvedAuthorizationMode),
+                 ValidatesToken = (resolvedAuthorizationMode = Token),
                  TokenHeader = configuration.authorization.defaultAuthorizationHeader,
                  ClaimsPrincipalAuthorizationType = null,
                  HeaderBindingConfiguration = null,
@@ -129,7 +132,9 @@ module internal FunctionCompilerMetadata =
                  CreateResponseFromExceptionFunction = httpFunction.exceptionResponseHandler,
                  CreateResponseForResultFunction = httpFunction.responseHandler,
                  CreateValidationFailureResponseFunction = httpFunction.validationFailureResponseHandler,
-                 IsValidFunction = configuration.isValidHandler
+                 IsValidFunction = configuration.isValidHandler,
+                 // Added for Function Monkey and also needed to be added to the C#
+                 ReturnResponseBodyWithOutputBinding = httpFunction.returnResponseBodyWithOutputBinding
                  
             ) :> AbstractFunctionDefinition
         

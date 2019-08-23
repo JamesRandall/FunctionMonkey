@@ -331,11 +331,9 @@ namespace {{Namespace}}
                 {{/if}}
             {{/each}}
 
-            log.LogWarning("{command}", command);
             {{#if UsesImmutableTypes}}
                 command = MergeCommandWithParameters(imtPropertyValues, command);
             {{/if}}
-            log.LogWarning("{command}", command);
     
             {{#if ValidatesToken}}
             {{#unless CommandTypeIsUnit}}    
@@ -376,7 +374,20 @@ namespace {{Namespace}}
                 {{/if}}
                 
                 {{{collectorOutputBinding}}}
-                return new NoContentResult();
+            
+                {{#if ReturnResponseBodyWithOutputBinding}}
+                    log.LogWarning("0");
+                    log.LogWarning("{command}", command);
+                    log.LogWarning("{result}", result);
+                    var responseTask = pluginFunctions.CreateResponseForResult(command, result);
+                    log.LogWarning("1");
+                    var handledResponse = responseTask != null ? (await responseTask) : null;
+                    log.LogWarning("2");
+                    return handledResponse ?? {{#if ResultIsFSharpUnit}}new OkResult(){{else}}CreateResponse(200, result, pluginFunctions){{/if}};
+                {{else}}
+                    return new NoContentResult();
+                {{/if}}
+                
             {{else}}            
             try
             {

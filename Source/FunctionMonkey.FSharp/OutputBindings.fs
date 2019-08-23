@@ -6,7 +6,7 @@ open FunctionMonkey.Extensions
 
 module OutputBindings =
     
-    let cosmosDbWithConnectionStringSettingName databaseName collectionName connectionStringSettingName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+    let cosmosDbWithConnectionStringSettingName collectionName databaseName  connectionStringSettingName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
         outputBindingTarget.setOutputBinding(
             new CosmosOutputBinding(
                FunctionMonkey.Extensions.Utils.EvaluateType(outputBindingTarget.resultType),
@@ -16,8 +16,8 @@ module OutputBindings =
             )
         )
     
-    let cosmosDb databaseName collectionName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
-        cosmosDbWithConnectionStringSettingName databaseName collectionName "" outputBindingTarget
+    let cosmosDb collectionName databaseName  (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+        cosmosDbWithConnectionStringSettingName collectionName databaseName  "" outputBindingTarget
 
             
 

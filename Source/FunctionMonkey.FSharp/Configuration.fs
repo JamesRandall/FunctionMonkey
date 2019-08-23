@@ -34,13 +34,16 @@ module Configuration =
                 (?validator:'a -> 'validationResult),
                 (?exceptionResponseHandlerAsync:'a -> Exception -> Async<IActionResult>),
                 (?asyncResponseHandler:'a -> 'b -> Async<IActionResult>),
-                (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>)
+                (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>),
+                (?authorizationMode: AuthorizationMode),
+                (?returnResponseBodyWithOutputBinding: bool)
             ) =
              {
                  verbs = [verb]
                  route = (match subRoute with | Some r -> r | None -> "")                 
                  commandType = typedefof<'a>
                  resultType = typedefof<'b>
+                 authorizationMode = authorizationMode
                  // functions
                  handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
                                                                       | AsyncHandler h -> h(cmd) |> Async.StartAsTask
@@ -52,6 +55,7 @@ module Configuration =
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
                  validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
                  outputBinding = None
+                 returnResponseBodyWithOutputBinding = match returnResponseBodyWithOutputBinding with | Some r -> r | _ -> false
              }            
                         
     type FunctionAppConfigurationBuilder() =

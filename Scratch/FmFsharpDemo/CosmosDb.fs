@@ -7,7 +7,7 @@ module CosmosDb =
     let cosmosCollection = "colToDoItems"
     let cosmosConnectionString = Environment.GetEnvironmentVariable("cosmosConnectionString")
     
-    let read<'t> id =
+    let reader<'t> id =
         async {
             use client = new CosmosClient(cosmosConnectionString)
             let container = client.GetContainer(cosmosDatabase, cosmosCollection)
