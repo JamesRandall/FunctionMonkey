@@ -4,7 +4,7 @@ open System.Linq.Expressions
 open System.Reflection
 open Models
 
-module internal Helpers =
+module internal InternalHelpers =
     let gatherModuleFunctions (assembly:Assembly) =
         assembly.GetTypes()
         |> Seq.collect (

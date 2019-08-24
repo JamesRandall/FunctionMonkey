@@ -129,9 +129,15 @@ module internal FunctionCompilerMetadata =
                  TokenValidatorFunction = (match configuration.authorization.tokenValidator with
                                           | null -> null
                                           | _ -> new BridgedFunction(configuration.authorization.tokenValidator)),
-                 CreateResponseFromExceptionFunction = httpFunction.exceptionResponseHandler,
-                 CreateResponseForResultFunction = httpFunction.responseHandler,
-                 CreateValidationFailureResponseFunction = httpFunction.validationFailureResponseHandler,
+                 CreateResponseFromExceptionFunction = (match httpFunction.exceptionResponseHandler with
+                                                       | null -> configuration.defaultHttpResponseHandlers.exceptionResponseHandler
+                                                       | _ -> httpFunction.exceptionResponseHandler),
+                 CreateResponseForResultFunction = (match httpFunction.responseHandler with
+                                                    | null -> configuration.defaultHttpResponseHandlers.responseHandler
+                                                    | _ -> httpFunction.responseHandler),
+                 CreateValidationFailureResponseFunction = (match httpFunction.validationFailureResponseHandler with
+                                                            | null -> configuration.defaultHttpResponseHandlers.validationFailureResponseHandler
+                                                            | _ -> httpFunction.validationFailureResponseHandler),
                  IsValidFunction = configuration.isValidHandler,
                  // Added for Function Monkey and also needed to be added to the C#
                  ReturnResponseBodyWithOutputBinding = httpFunction.returnResponseBodyWithOutputBinding

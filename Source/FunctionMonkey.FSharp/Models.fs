@@ -100,13 +100,13 @@ module Models =
             member this.resultType = this.resultType
         
     type ServiceBusQueueFunction = {
-        serviceBusConnectionStringSettiingName: string
+        serviceBusConnectionStringSettingName: string
         queueName: string
         sessionIdEnabled: bool
     }
     
     type ServiceBusSubscriptionFunction = {
-        serviceBusConnectionStringSettiingName: string
+        serviceBusConnectionStringSettingName: string
         topicName: string
         subscriptionName: string
         sessionIdEnabled: bool
@@ -133,11 +133,18 @@ module Models =
         outputSourcePath: OutputAuthoredSource
     }
     
+    type HttpResponseHandlers = {
+        exceptionResponseHandler: BridgedFunction
+        responseHandler: BridgedFunction
+        validationFailureResponseHandler: BridgedFunction
+    }
+    
     type FunctionAppConfiguration = {
         defaultConnectionSettingNames: DefaultConnectionSettingNames
+        defaultHttpResponseHandlers: HttpResponseHandlers
         enableFunctionModules: bool
         diagnostics: Diagnostics
-        isValidHandler: BridgedFunction // TODO: I need to throw some kind of error if a validation function is supplied at some point and a isValid function is not
+        isValidHandler: BridgedFunction
         authorization: Authorization       
         functions: Functions
     }
@@ -166,10 +173,17 @@ module Models =
         signalR = "signalRConnectionString"
     }
     
+    let defaultHttpResponseHandlers = {
+        exceptionResponseHandler = null
+        responseHandler = null
+        validationFailureResponseHandler = null
+    }
+    
     let defaultFunctionAppConfiguration = {
         enableFunctionModules = true
         isValidHandler = null
         diagnostics = defaultDiagnostics
+        defaultHttpResponseHandlers = defaultHttpResponseHandlers
         authorization = defaultAuthorization
         functions = defaultFunctions
         defaultConnectionSettingNames = defaultConnectionSettingNames

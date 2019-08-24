@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Contexts;
@@ -7,19 +8,22 @@ using ExecutionContext = FunctionMonkey.Abstractions.Contexts.ExecutionContext;
 
 namespace FunctionMonkey.Infrastructure
 {
-    class ContextManager : IContextSetter, IContextProvider
+    internal class ContextManager : IContextSetter, IContextProvider
     {
-        private static readonly AsyncLocal<ServiceBusContext> ServiceBusContextLocal = new AsyncLocal<ServiceBusContext>();
+        // These are internal to allow the F# view of the world to gain access to them.
+        // May refactor in the future though the F# package conceptually forms part of this
+        // domain.
+        internal static readonly AsyncLocal<ServiceBusContext> ServiceBusContextLocal = new AsyncLocal<ServiceBusContext>();
 
-        private static readonly AsyncLocal<StorageQueueContext> StorageQueueContextLocal = new AsyncLocal<StorageQueueContext>();
+        internal static readonly AsyncLocal<StorageQueueContext> StorageQueueContextLocal = new AsyncLocal<StorageQueueContext>();
 
-        private static readonly AsyncLocal<BlobContext> BlobContextLocal = new AsyncLocal<BlobContext>();
+        internal static readonly AsyncLocal<BlobContext> BlobContextLocal = new AsyncLocal<BlobContext>();
 
-        private static readonly AsyncLocal<EventHubContext> EventHubContextLocal = new AsyncLocal<EventHubContext>();
+        internal static readonly AsyncLocal<EventHubContext> EventHubContextLocal = new AsyncLocal<EventHubContext>();
 
-        private static readonly AsyncLocal<ExecutionContext> ExecutionContextLocal = new AsyncLocal<ExecutionContext>();
+        internal static readonly AsyncLocal<ExecutionContext> ExecutionContextLocal = new AsyncLocal<ExecutionContext>();
 
-        private static readonly AsyncLocal<HttpContext> HttpContextLocal = new AsyncLocal<HttpContext>();
+        internal static readonly AsyncLocal<HttpContext> HttpContextLocal = new AsyncLocal<HttpContext>();
 
         void IContextSetter.SetServiceBusContext(int deliveryCount, DateTime enqueuedTimeUtc, string messageId, string lockToken)
         {
@@ -78,10 +82,11 @@ namespace FunctionMonkey.Infrastructure
             };
         }
 
-        public void SetHttpContext(string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers)
+        public void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers)
         {
             HttpContextLocal.Value = new HttpContext
             {
+                ClaimsPrincipal = claimsPrincipal,
                 RequestUrl = requestUrl,
                 Headers = headers
             };

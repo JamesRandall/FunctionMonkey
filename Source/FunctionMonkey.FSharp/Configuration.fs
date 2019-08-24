@@ -9,7 +9,7 @@ open FunctionMonkey.Commanding.Abstractions.Validation
 open Microsoft.AspNetCore.Mvc
 open Models
 open BridgeFunctions
-open Helpers
+open InternalHelpers
 
 module Configuration =
     type claimsMapper private () =
@@ -74,6 +74,18 @@ module Configuration =
         [<CustomOperation("disableFunctionModules")>]
         member this.disableFunctionModules(configuration:FunctionAppConfiguration) =
             { configuration with enableFunctionModules = false }
+            
+            
+        [<CustomOperation("httpExceptionResponseHandler")>]
+        member this.httpExceptionResponseHandler(configuration:FunctionAppConfiguration,
+                                                 handler:('a -> Exception -> Async<IActionResult>)) =
+            {
+                configuration with defaultHttpResponseHandlers = {
+                                configuration.defaultHttpResponseHandlers with exceptionResponseHandler =
+                                                                                (Some handler)
+                                                                                |> bridgeWith createBridgedExceptionResponseHandlerAsync
+                }
+            }
         
         [<CustomOperation("outputSourcePath")>]
         member this.outputSourcePath(configuration:FunctionAppConfiguration, path) =
@@ -138,8 +150,8 @@ module Configuration =
                     configuration.functions
                         with serviceBusFunctions = serviceBusFunctions
                             |> Seq.map (fun f -> match f with
-                                                 | Queue q -> Queue({ q with serviceBusConnectionStringSettiingName = serviceBusConnectionStringSettingName })
-                                                 | Subscription s -> Subscription({ s with serviceBusConnectionStringSettiingName = serviceBusConnectionStringSettingName })
+                                                 | Queue q -> Queue({ q with serviceBusConnectionStringSettingName = serviceBusConnectionStringSettingName })
+                                                 | Subscription s -> Subscription({ s with serviceBusConnectionStringSettingName = serviceBusConnectionStringSettingName })
                                        )
                             |> Seq.append configuration.functions.serviceBusFunctions
                             |> Seq.toList

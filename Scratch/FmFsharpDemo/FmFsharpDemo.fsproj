@@ -21,14 +21,12 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <Compile Include="CosmosDb.fs" />
+        <Compile Include="EntryPoint.fs" />
         <Compile Include="ToDo.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
           <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Include="EntryPoint.fs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />

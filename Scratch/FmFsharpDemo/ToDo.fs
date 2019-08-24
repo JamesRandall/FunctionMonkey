@@ -1,10 +1,12 @@
 namespace FmFsharpDemo
 open AccidentalFish.FSharp.Validation
+open AzureFromTheTrenches.Commanding.Abstractions
 open System
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.OutputBindings
 open CosmosDb
+open EntryPoint
 
 module ToDo =
     type ToDoItem =
@@ -17,13 +19,25 @@ module ToDo =
         
     type AddToDoItemCommand =
         {
+            [<SecurityProperty>]
             userId: string
+            title: string
+            isComplete: bool
+        }
+        
+    type UpdateToDoItemCommand =
+        {
+            [<SecurityProperty>]
+            userId: string
+            id: string
             title: string
             isComplete: bool
         }
         
     type GetToDoItemQuery =
         {
+            [<SecurityProperty>]
+            userId: string
             id: string
         }
         
@@ -37,6 +51,12 @@ module ToDo =
         hasMinLengthOf 1
         hasMaxLengthOf 255
     ]
+    
+    let validateUpdateToDoItemCommand = createValidatorFor<UpdateToDoItemCommand>() {
+        validate (fun q -> q.id) withIdValidations
+        validate (fun c -> c.userId) withIdValidations
+        validate (fun c -> c.title) withTitleValidations
+    }
     
     let validateGetToDoItemQuery = createValidatorFor<GetToDoItemQuery>() {
         validate (fun q -> q.id) withIdValidations
@@ -53,7 +73,7 @@ module ToDo =
         validate (fun c -> c.owningUserId) withIdValidations
     }
     
-    let addToDoItem command =
+    let addToDoItem (command:AddToDoItemCommand) =
         {
             id = Guid.NewGuid().ToString()
             owningUserId = command.userId
@@ -62,7 +82,21 @@ module ToDo =
         }
         
     let getToDoItem query =
-        CosmosDb.reader<ToDoItem> <| query.id
+        async {
+            let! result = CosmosDb.reader<ToDoItem> <| query.id
+            if result.owningUserId = query.userId then raise AuthorizationException
+            return result
+        }
+        
+        
+    let updateToDoItem (updateToDoItemCommand:UpdateToDoItemCommand) =
+        async {
+            let! existingItem = CosmosDb.reader<ToDoItem> <| updateToDoItemCommand.id
+            if not (existingItem.owningUserId = updateToDoItemCommand.userId) then
+                raise AuthorizationException
+            return { existingItem with title = updateToDoItemCommand.title
+                                       isComplete = updateToDoItemCommand.isComplete }  
+        }        
         
     let todoDatabase =
         cosmosDb cosmosCollection cosmosDatabase
@@ -77,7 +111,7 @@ module ToDo =
                                 validator=validateAddToDoItemCommand,
                                 returnResponseBodyWithOutputBinding=true)
                 |> todoDatabase
-            azureFunction.http (NoHandler, verb=Put, validator=validateToDoItem)
+            azureFunction.http (AsyncHandler(updateToDoItem), verb=Put, validator=validateUpdateToDoItemCommand)
                 |> todoDatabase
         ]
     }

@@ -1,11 +1,15 @@
 namespace FmFsharpDemo
+open System
 open AccidentalFish.FSharp.Validation
 open System.Security.Claims
+open System.Web.Http
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Models
+open Microsoft.AspNetCore.Mvc
 
 module EntryPoint =
     exception InvalidTokenException
+    exception AuthorizationException
     
     let validateToken (bearerToken:string) =
         match bearerToken.Length with
@@ -13,9 +17,19 @@ module EntryPoint =
         | _ -> new ClaimsPrincipal(new ClaimsIdentity([new Claim("userId", "2FF4D861-F9E3-4694-9553-C49A94D7E665")]))
             
     let isResultValid result = match result with | Ok -> true | _ -> false
+    
+    let httpExceptionHandler _ (ex:Exception) =
+        async {
+            return match ex with
+                   | :? AuthorizationException -> UnauthorizedResult() :> IActionResult
+                   | _ -> InternalServerErrorResult() :> IActionResult
+        }
+        
                                     
     let app = functionApp {
         outputSourcePath "/Users/jamesrandall/code/authoredSource"
+        // response handlers
+        httpExceptionResponseHandler httpExceptionHandler
         // authorization
         defaultAuthorizationMode Token
         tokenValidator validateToken
