@@ -259,7 +259,7 @@ namespace FunctionMonkey
                         if (httpFunctionDefinition.CreateValidationFailureResponseFunction != null)
                         {
                             pluginFunctions.CreateValidationFailureResponse =
-                                (Func<object, ValidationResult, Task<IActionResult>>)
+                                (Func<object, object, Task<IActionResult>>)
                                 httpFunctionDefinition.CreateValidationFailureResponseFunction.Handler;
                         }
                         else
@@ -305,7 +305,7 @@ namespace FunctionMonkey
                             var responseHandler =
                                 (IHttpResponseHandler) ServiceProvider.GetService(
                                     httpFunctionDefinition.HttpResponseHandlerType);
-                            return responseHandler.CreateValidationFailureResponse((ICommand) command, validationResult);
+                            return responseHandler.CreateValidationFailureResponse((ICommand) command, (ValidationResult)validationResult);
                         };
                         
                         pluginFunctions.CreateResponseForResult = (command, result) =>

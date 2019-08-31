@@ -92,6 +92,19 @@ namespace FunctionMonkey.Compiler.Implementation
                 result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder();
             }
 
+            if (!string.IsNullOrWhiteSpace(configuration.OutputPath))
+            {
+                if (Directory.Exists(configuration.OutputPath))
+                {
+                    string pathAndFilename = Path.Combine(configuration.OutputPath, "openapi.yaml");
+                    if (File.Exists(pathAndFilename))
+                    {
+                        File.Delete(pathAndFilename);
+                    }
+                    File.WriteAllText(pathAndFilename, yaml, Encoding.UTF8);
+                }
+            }
+
             return result;
         }
 
@@ -232,7 +245,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         }
 
                         string lowerCaseRoute = functionByRoute.Route;
-                        foreach (HttpParameter property in functionByRoute.PossibleBindingProperties)
+                        foreach (HttpParameter property in functionByRoute.QueryParameters)
                         {
                             if (method == HttpMethod.Get || method == HttpMethod.Delete)
                             {

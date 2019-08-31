@@ -192,7 +192,7 @@ namespace FunctionMonkey.Infrastructure
         {
             Debug.Assert(httpFunctionDefinition.RouteParameters != null);
 
-            httpFunctionDefinition.PossibleBindingProperties = httpFunctionDefinition
+            httpFunctionDefinition.QueryParameters = httpFunctionDefinition
                 .CommandType
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null

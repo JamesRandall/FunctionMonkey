@@ -129,7 +129,7 @@ namespace {{Namespace}}
             string method = req.Method.ToUpper();
             if (method == "GET" || method=="DELETE")
             {
-                {{#each PossibleBindingProperties}}
+                {{#each QueryParameters}}
                     {{#unless IsFormCollection}}
                         if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
                         {
@@ -166,7 +166,7 @@ namespace {{Namespace}}
 
             {{#if HeaderBindingConfiguration}}
                 string headerName;
-                {{#each PossibleBindingProperties}}
+                {{#each QueryParameters}}
                     {{#unless IsFormCollection}}
                         headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
                         if (!string.IsNullOrWhiteSpace(headerName))

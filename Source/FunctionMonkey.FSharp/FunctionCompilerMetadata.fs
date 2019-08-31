@@ -1,4 +1,5 @@
 namespace FunctionMonkey.FSharp
+open AzureFromTheTrenches.Commanding.Abstractions
 open System
 open System.Net.Http
 open System.Reflection
@@ -69,6 +70,25 @@ module internal FunctionCompilerMetadata =
                 | Token -> AuthorizationTypeEnum.TokenValidation
                 | Function -> AuthorizationTypeEnum.Function
                 
+            let extractQueryParameters (routeParameters:HttpParameter list) =
+                let propertyIsPossibleQueryParameter (x:PropertyInfo) =
+                    x.GetCustomAttribute<SecurityPropertyAttribute>() = null
+                    && not(x.SetMethod = null)
+                    && x.PropertyType.IsSupportedQueryParameterType()
+                    && not(routeParameters |> Seq.exists (fun y -> y.Name = x.Name))
+                
+                httpFunction
+                    .commandType
+                    .GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
+                    |> Seq.filter propertyIsPossibleQueryParameter
+                    |> Seq.map (fun q -> HttpParameter(Name=q.Name,
+                                                       Type=q.PropertyType,
+                                                       IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null))
+                                                      )
+                               )
+                    |> Seq.toList
+                    
+                
             let extractRouteParameters () =
                 let createRouteParameter (parameterName:string) =
                     let isOptional = parameterName.EndsWith("?")
@@ -98,11 +118,13 @@ module internal FunctionCompilerMetadata =
             let resolvedAuthorizationMode = match httpFunction.authorizationMode with
                                             | Some a -> a
                                             | None -> configuration.authorization.defaultAuthorizationMode                
-                
+            let routeParameters = extractRouteParameters ()
             HttpFunctionDefinition(
                  httpFunction.commandType,
                  httpFunction.resultType,
                  Route = httpFunction.route,
+                 RouteConfiguration = HttpRouteConfiguration(OpenApiName = null, // TODO: Populate this from real values
+                                                             OpenApiDescription = null),
                  UsesImmutableTypes = true,
                  Verbs = System.Collections.Generic.HashSet(httpFunction.verbs |> Seq.map convertVerb),
                  Authorization = new System.Nullable<AuthorizationTypeEnum>(convertAuthorizationMode resolvedAuthorizationMode),
@@ -114,7 +136,8 @@ module internal FunctionCompilerMetadata =
                  IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
                  IsStreamCommand = false,
                  TokenValidatorType = null,
-                 RouteParameters = extractRouteParameters (),
+                 QueryParameters = extractQueryParameters (routeParameters),
+                 RouteParameters = routeParameters,
                  ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
                  Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
                  CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
@@ -155,7 +178,16 @@ module internal FunctionCompilerMetadata =
                                          | Command c -> CommandPropertyClaimsMappingDefinition(ClaimName = m.claim, CommandType = c.commandType, PropertyInfo = c.propertyInfo) :> AbstractClaimsMappingDefinition
                                 ) |> Seq.toList
             outputAuthoredSourceFolder = configuration.diagnostics.outputSourcePath
-            openApiConfiguration = OpenApiConfiguration()
+            openApiConfiguration = (match configuration.openApi with
+                                    | Some o -> OpenApiConfiguration(Version=o.version,
+                                                                     Title=o.title,
+                                                                     UserInterfaceRoute=(match o.userInterfaceEndpoint with
+                                                                                         | Some e -> e
+                                                                                         | None -> null),
+                                                                     Servers=o.servers,
+                                                                     OutputPath=(match o.outputPath with | Some p -> p | None -> null)
+                                                                    )
+                                    | None -> null)
             functionDefinitions =
                 [] |> 
                 Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))

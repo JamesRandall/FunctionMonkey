@@ -136,7 +136,7 @@ namespace {{Namespace}}
             {{/if}}
 
             Microsoft.Extensions.Primitives.StringValues queryParameterValues;
-            {{#each PossibleBindingProperties}}
+            {{#each QueryParameters}}
                 {{#unless IsFormCollection}}
                     if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
                     {
@@ -211,7 +211,7 @@ namespace {{Namespace}}
             
             {{#if HeaderBindingConfiguration}}
                 string headerName;
-                {{#each PossibleBindingProperties}}
+                {{#each QueryParameters}}
                     {{#unless IsFormCollection}}
                         headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
                         if (!string.IsNullOrWhiteSpace(headerName))

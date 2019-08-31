@@ -24,7 +24,7 @@ namespace FunctionMonkey
         
         public Func<object, Task<IActionResult>> CreateResponse { get; set; }
         
-        public Func<object, ValidationResult, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
+        public Func<object, object, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
         
         public Func<object, bool> IsValid { get; set; }
         

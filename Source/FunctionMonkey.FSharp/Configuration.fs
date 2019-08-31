@@ -113,6 +113,30 @@ module Configuration =
                 }
             }
             
+        [<CustomOperation("openApi")>]
+        member this.openApi(configuration: FunctionAppConfiguration, title: string, version: string) =
+            { configuration with openApi = Some (match configuration.openApi with
+                                                 | Some c -> { c with title = title ; version = version }
+                                                 | None -> { title = title ; version = version; userInterfaceEndpoint = None ; servers = []; outputPath = None } 
+                                                )
+            }
+            
+        [<CustomOperation("outputOpenApiPath")>]
+        member this.outputOpenApiPath(configuration: FunctionAppConfiguration, path: string) =
+            { configuration with openApi = Some (match configuration.openApi with
+                                                 | Some c -> { c with outputPath = Some path }
+                                                 | None -> { title = "Api" ; version = "1.0.0"; outputPath = Some path ; servers = []; userInterfaceEndpoint = None }
+                                                )
+            }
+           
+        [<CustomOperation("openApiUserInterface")>]
+        member this.openApiUserInterface(configuration: FunctionAppConfiguration, endpoint: string) =
+            { configuration with openApi = Some (match configuration.openApi with
+                                                 | Some c -> { c with userInterfaceEndpoint = Some endpoint }
+                                                 | None -> { title = "Api" ; version = "1.0.0"; userInterfaceEndpoint = Some endpoint ; servers = []; outputPath = None }
+                                                )
+            }
+            
         [<CustomOperation("tokenValidator")>]
         member this.tokenValidator(configuration:FunctionAppConfiguration, validator:string -> ClaimsPrincipal) =
             { configuration

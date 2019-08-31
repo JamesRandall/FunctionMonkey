@@ -33,7 +33,7 @@ namespace FunctionMonkey.Model
 
         public bool HasRoute => Route != null;
 
-        public IReadOnlyCollection<HttpParameter> PossibleBindingProperties { get; set; }
+        public IReadOnlyCollection<HttpParameter> QueryParameters { get; set; }
         
         public IReadOnlyCollection<HttpParameter> PossibleFormProperties { get; set; }
 

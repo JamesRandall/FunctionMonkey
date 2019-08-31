@@ -24,5 +24,7 @@ namespace FunctionMonkey.Abstractions.Http
         }        
 
         public string UserInterfaceRoute { get; set; }
+        
+        public string OutputPath { get; set; }
     }
 }

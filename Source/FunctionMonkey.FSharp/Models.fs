@@ -18,6 +18,15 @@ module Models =
             storage: string
             signalR: string
         }
+        
+    type OpenApi =
+        {
+            title: string
+            version: string
+            userInterfaceEndpoint: string option
+            servers: string list
+            outputPath: string option
+        }
     
     type OutputAuthoredSource =
         | Path of string
@@ -140,6 +149,7 @@ module Models =
     }
     
     type FunctionAppConfiguration = {
+        openApi: OpenApi option
         defaultConnectionSettingNames: DefaultConnectionSettingNames
         defaultHttpResponseHandlers: HttpResponseHandlers
         enableFunctionModules: bool
@@ -187,6 +197,7 @@ module Models =
         authorization = defaultAuthorization
         functions = defaultFunctions
         defaultConnectionSettingNames = defaultConnectionSettingNames
+        openApi = None
     }
     
     

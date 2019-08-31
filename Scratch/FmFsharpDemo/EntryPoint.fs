@@ -27,7 +27,12 @@ module EntryPoint =
         
                                     
     let app = functionApp {
+        // diagnostics
         outputSourcePath "/Users/jamesrandall/code/authoredSource"
+        outputOpenApiPath "/Users/jamesrandall/code/authoredSource"
+        // open api
+        openApi "ToDo" "1.0.0"
+        openApiUserInterface "/openapi"
         // response handlers
         httpExceptionResponseHandler httpExceptionHandler
         // authorization
