@@ -6,7 +6,7 @@
     <Version>2.4.0-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
-    <PackageVersion>4.0.0-alpha1</PackageVersion>
+    <PackageVersion>4.0.0-alpha2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

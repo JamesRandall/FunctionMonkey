@@ -12,7 +12,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyVersion>2.2.0.0</AssemblyVersion>
     <FileVersion>2.2.0.0</FileVersion>
-    <PackageVersion>4.0.0-alpha1</PackageVersion>
+    <PackageVersion>4.0.0-alpha2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
