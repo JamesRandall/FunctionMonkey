@@ -43,7 +43,8 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         public void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            Type functionAppConfigurationType,
+            Type backlinkType,
+            PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
             IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,
@@ -55,7 +56,8 @@ namespace FunctionMonkey.Compiler.Implementation
             HandlebarsHelperRegistration.RegisterHelpers();
             IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
                 openApiOutputModel,
-                functionAppConfigurationType,
+                backlinkType,
+                backlinkPropertyInfo,
                 newAssemblyNamespace,
                 outputAuthoredSourceFolder);
 
@@ -64,7 +66,8 @@ namespace FunctionMonkey.Compiler.Implementation
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             OpenApiOutputModel openApiOutputModel,
-            Type functionAppConfigurationType,
+            Type backlinkType,
+            PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
             string outputAuthoredSourceFolder)
         {
@@ -89,14 +92,21 @@ namespace FunctionMonkey.Compiler.Implementation
                 }, directoryInfo, syntaxTrees);
             }
 
-            CreateLinkBack(functionDefinitions, functionAppConfigurationType, newAssemblyNamespace, directoryInfo, syntaxTrees);
+            CreateLinkBack(functionDefinitions, backlinkType, backlinkPropertyInfo, newAssemblyNamespace, directoryInfo, syntaxTrees);
 
             return syntaxTrees;
         }
 
-        private void CreateLinkBack(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions, Type functionAppConfigurationType, string newAssemblyNamespace, DirectoryInfo directoryInfo,
+        private void CreateLinkBack(
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+            Type backlinkType,
+            PropertyInfo backlinkPropertyInfo,
+            string newAssemblyNamespace,
+            DirectoryInfo directoryInfo,
             List<SyntaxTree> syntaxTrees)
         {
+            if (backlinkType == null) return; // back link referencing has been disabled
+            
 // Now we need to create a class that references the assembly with the configuration builder
             // otherwise the reference will be optimised away by Roslyn and it will then never get loaded
             // by the function host - and so at runtime the builder with the runtime info in won't be located
@@ -104,12 +114,13 @@ namespace FunctionMonkey.Compiler.Implementation
             Func<object, string> linkBackTemplate = Handlebars.Compile(linkBackTemplateSource);
 
             LinkBackModel linkBackModel = null;
-            if (typeof(IFunctionCompilerMetadata).IsAssignableFrom(functionAppConfigurationType))
+            if (backlinkPropertyInfo != null)
             {
                 linkBackModel = new LinkBackModel
                 {
-                    TypeName = functionDefinitions.First().CommandType.EvaluateType(),
-                    ConstructorParameters = functionDefinitions.First().ImmutableTypeConstructorParameters,
+                    TypeName = backlinkType.EvaluateType(),
+                    PropertyName = backlinkPropertyInfo.Name,
+                    PropertyTypeName = backlinkPropertyInfo.PropertyType.EvaluateType(),
                     Namespace = newAssemblyNamespace
                 };
             }
@@ -117,8 +128,8 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 linkBackModel = new LinkBackModel
                 {
-                    TypeName = functionAppConfigurationType.EvaluateType(),
-                    ConstructorParameters = new ImmutableTypeConstructorParameter[0],
+                    TypeName = backlinkType.EvaluateType(),
+                    PropertyName = null,
                     Namespace = newAssemblyNamespace
                 };
             }

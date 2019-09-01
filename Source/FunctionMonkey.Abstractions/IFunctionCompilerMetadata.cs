@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
+using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Abstractions
 {
@@ -16,5 +18,7 @@ namespace FunctionMonkey.Abstractions
         IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
         
         Type BacklinkReferenceType { get; }
+
+        PropertyInfo BacklinkPropertyInfo { get; }
     }
 }

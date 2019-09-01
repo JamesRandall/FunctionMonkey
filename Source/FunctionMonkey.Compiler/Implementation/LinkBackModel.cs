@@ -12,5 +12,11 @@ namespace FunctionMonkey.Compiler.Implementation
         public string TypeName { get; set; }
         
         public IReadOnlyCollection<ImmutableTypeConstructorParameter> ConstructorParameters { get; set; }
+        
+        public string PropertyName { get; set; }
+        
+        public string PropertyTypeName { get; set; }
+
+        public bool IsPropertyReference => !string.IsNullOrWhiteSpace(PropertyName);
     }
 }

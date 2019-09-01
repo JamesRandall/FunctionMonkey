@@ -64,8 +64,12 @@ module Configuration =
             let configurationToCreate =
                 match configuration.enableFunctionModules with
                 | true ->
-                    let moduleFunctions = gatherModuleFunctions (Assembly.GetCallingAssembly())
-                    { configuration with functions = (concatFunctions [configuration.functions] moduleFunctions) }
+                    let callingAssembly = Assembly.GetCallingAssembly()
+                    let backlinkPropertyInfo = gatherBacklinkPropertyInfo callingAssembly
+                    let moduleFunctions = gatherModuleFunctions callingAssembly
+                    { configuration with functions = (concatFunctions [configuration.functions] moduleFunctions)
+                                         backlinkPropertyInfo = backlinkPropertyInfo
+                    }
                 | false -> configuration
             FunctionCompilerMetadata.create configurationToCreate
         
@@ -86,11 +90,7 @@ module Configuration =
                                                                                 |> bridgeWith createBridgedExceptionResponseHandlerAsync
                 }
             }
-            
-        [<CustomOperation("backlinkReference")>]
-        member this.backlinkReference(configuration: FunctionAppConfiguration, backlinkReferenceType) =
-            { configuration with backlinkReference = backlinkReferenceType }
-        
+                    
         [<CustomOperation("outputSourcePath")>]
         member this.outputSourcePath(configuration:FunctionAppConfiguration, path) =
             { configuration with diagnostics = { configuration.diagnostics with outputSourcePath = OutputAuthoredSource.Path(path) } }

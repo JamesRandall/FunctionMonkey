@@ -9,7 +9,8 @@ namespace FunctionMonkey.Compiler.Implementation
     internal interface IAssemblyCompiler
     {
         void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            Type functionAppConfigurationType,
+            Type backlinkType,
+            PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
             IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,

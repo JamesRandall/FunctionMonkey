@@ -47,17 +47,20 @@ module internal FunctionCompilerMetadata =
             
             abstractOutputBinding
         
+        let extractConstructorParametersForType (aType:Type) =
+            let createParameter (cp:ParameterInfo) =
+                ImmutableTypeConstructorParameter(
+                    Name = cp.Name,
+                    Type = cp.ParameterType
+                )
+            let constructors = aType.GetConstructors()
+            match constructors.Length with
+            | 0 -> []
+            | 1 -> aType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
+            | _ -> raise OnlyRecordTypesSupportedForCommandsException
+        
         let extractConstructorParameters func =
-                let createParameter (cp:ParameterInfo) =
-                    ImmutableTypeConstructorParameter(
-                        Name = cp.Name,
-                        Type = cp.ParameterType
-                    )
-                let constructors = func.commandType.GetConstructors()
-                match constructors.Length with
-                | 0 -> []
-                | 1 -> func.commandType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
-                | _ -> raise OnlyRecordTypesSupportedForCommandsException
+            extractConstructorParametersForType func.commandType
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
             let convertVerb verb =
@@ -196,8 +199,6 @@ module internal FunctionCompilerMetadata =
                 [] |> 
                 Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
                 |> Seq.toList
-            backlinkReferenceType = match configuration.backlinkReference with
-                                    | Disabled -> null
-                                    | WithType t -> t
-                                    | AutoDetect -> findBackReferenceType configuration.functions
+            backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
+            backlinkPropertyInfo = configuration.backlinkPropertyInfo
         } :> IFunctionCompilerMetadata

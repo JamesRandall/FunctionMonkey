@@ -97,10 +97,11 @@ module ToDo =
             return { existingItem with title = updateToDoItemCommand.title
                                        isComplete = updateToDoItemCommand.isComplete }  
         }        
-        
+    
+    (*    
     let todoDatabase =
         cosmosDb cosmosCollection cosmosDatabase
-                
+               
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
             azureFunction.http (AsyncHandler(getToDoItem),
@@ -117,3 +118,4 @@ module ToDo =
     }
 
 
+*)

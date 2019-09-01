@@ -1,9 +1,11 @@
 namespace FunctionMonkey.FSharp
 open System
+open System.Collections.Generic
 open System.Reflection
 open FunctionMonkey.Abstractions
 open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
+open FunctionMonkey.Model
 
 module Models =
         
@@ -61,6 +63,7 @@ module Models =
              openApiConfiguration: OpenApiConfiguration
              outputAuthoredSourceFolder: OutputAuthoredSource
              backlinkReferenceType: Type
+             backlinkPropertyInfo: PropertyInfo
          }
          interface IFunctionCompilerMetadata with
             member i.ClaimsMappings = i.claimsMappings :> System.Collections.Generic.IReadOnlyCollection<AbstractClaimsMappingDefinition>
@@ -68,6 +71,7 @@ module Models =
             member i.OpenApiConfiguration = i.openApiConfiguration
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
             member i.BacklinkReferenceType = i.backlinkReferenceType
+            member i.BacklinkPropertyInfo = i.backlinkPropertyInfo
     
     type ValidationErrorSeverity =
         | ValidationError
@@ -165,7 +169,7 @@ module Models =
         isValidHandler: BridgedFunction
         authorization: Authorization       
         functions: Functions
-        backlinkReference: BacklinkReference
+        backlinkPropertyInfo: PropertyInfo
     }
 
 
@@ -207,7 +211,7 @@ module Models =
         functions = defaultFunctions
         defaultConnectionSettingNames = defaultConnectionSettingNames
         openApi = None
-        backlinkReference = AutoDetect
+        backlinkPropertyInfo = null
     }
     
     

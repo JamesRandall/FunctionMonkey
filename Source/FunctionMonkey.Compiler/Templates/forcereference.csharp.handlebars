@@ -13,13 +13,15 @@ namespace {{Namespace}}
     [FunctionMonkey.ReferenceLinkBack]
     public static class ReferenceLinkBack
     {
+        public static {{PropertyTypeName}} Value;
+
         public static void ForceLinkBack()
         {
-            new {{TypeName}}(
-                {{#each ConstructorParameters}}
-                    default({{{TypeName}}}){{#unless @last}},{{/unless}}
-                {{/each}}
-            );
+            {{#if IsPropertyReference}}
+                ReferenceLinkBack.Value = {{TypeName}}.{{PropertyName}};
+            {{else}}
+                new {{TypeName}}();
+            {{/if}} 
         }
     }
 }

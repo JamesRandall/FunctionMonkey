@@ -1,4 +1,5 @@
 namespace FunctionMonkey.FSharp
+open FunctionMonkey.Abstractions
 open System
 open System.Linq.Expressions
 open System.Reflection
@@ -31,5 +32,19 @@ module internal InternalHelpers =
             else
                 expression.Body :?> MemberExpression
             
-        memberExpression.Member :?> PropertyInfo       
+        memberExpression.Member :?> PropertyInfo
+        
+    let gatherBacklinkPropertyInfo (assembly:Assembly) =
+        let functionCompilerMetadataProperty =
+            assembly.GetTypes()
+            |> Seq.collect (
+               fun t -> t.GetProperties(BindingFlags.Public + BindingFlags.Static)
+                        |> Seq.filter(fun p  -> typedefof<IFunctionCompilerMetadata>.IsAssignableFrom(p.PropertyType))
+               )
+            |> Seq.toList
+
+        // we have to find at least one of these as the presence of an IFunctionnCompilerMetadata is what triggers this
+        functionCompilerMetadataProperty.[0]
+                               
+        
 

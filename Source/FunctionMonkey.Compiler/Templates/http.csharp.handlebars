@@ -34,8 +34,11 @@ namespace {{Namespace}}
     )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
-
+            
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            
+            log.LogInformation("HTTP trigger function {{Name}} accessed runtime.");
+            
             FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             string requestUrl = GetRequestUrl(req);

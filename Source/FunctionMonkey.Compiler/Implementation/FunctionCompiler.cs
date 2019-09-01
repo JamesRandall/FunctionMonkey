@@ -89,7 +89,8 @@ namespace FunctionMonkey.Compiler.Implementation
             _jsonCompiler.Compile(functionCompilerMetadata.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
             
             _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
-                configuration?.GetType() ?? functionCompilerMetadata.GetType(),
+                configuration?.GetType() ?? functionCompilerMetadata.BacklinkReferenceType,
+                configuration != null ? null : functionCompilerMetadata.BacklinkPropertyInfo,
                 newAssemblyNamespace,
                 externalAssemblies, 
                 _outputBinaryFolder, 
