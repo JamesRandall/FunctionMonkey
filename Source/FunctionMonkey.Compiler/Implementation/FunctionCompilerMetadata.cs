@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
@@ -10,7 +11,7 @@ namespace FunctionMonkey.Compiler.Implementation
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; set;  }
         public OpenApiConfiguration OpenApiConfiguration { get; set; }
         public string OutputAuthoredSourceFolder { get; set; }
-        
+        public Type BacklinkReferenceType { get; set; }
         public IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
     }
 }

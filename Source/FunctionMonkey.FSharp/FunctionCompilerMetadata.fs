@@ -28,6 +28,10 @@ module internal FunctionCompilerMetadata =
         | _ -> new BridgedFunction(func)
     
     let create configuration =
+        let findBackReferenceType functions =
+            // TODO: We need to find the best type to back reference to
+            functions.httpFunctions.[0].commandType
+        
         let patchOutputBindingConnectionString (abstractOutputBinding:AbstractOutputBinding) =
             let ensureIsSet defaultValue (existingSetting:string) =
                 match String.IsNullOrWhiteSpace(existingSetting) with | true -> defaultValue | _ -> existingSetting 
@@ -192,5 +196,8 @@ module internal FunctionCompilerMetadata =
                 [] |> 
                 Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
                 |> Seq.toList
-                
+            backlinkReferenceType = match configuration.backlinkReference with
+                                    | Disabled -> null
+                                    | WithType t -> t
+                                    | AutoDetect -> findBackReferenceType configuration.functions
         } :> IFunctionCompilerMetadata

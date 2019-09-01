@@ -86,6 +86,10 @@ module Configuration =
                                                                                 |> bridgeWith createBridgedExceptionResponseHandlerAsync
                 }
             }
+            
+        [<CustomOperation("backlinkReference")>]
+        member this.backlinkReference(configuration: FunctionAppConfiguration, backlinkReferenceType) =
+            { configuration with backlinkReference = backlinkReferenceType }
         
         [<CustomOperation("outputSourcePath")>]
         member this.outputSourcePath(configuration:FunctionAppConfiguration, path) =

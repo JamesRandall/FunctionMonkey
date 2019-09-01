@@ -27,6 +27,11 @@ module Models =
             servers: string list
             outputPath: string option
         }
+        
+    type BacklinkReference =
+        | Disabled
+        | AutoDetect
+        | WithType of Type
     
     type OutputAuthoredSource =
         | Path of string
@@ -55,12 +60,14 @@ module Models =
              functionDefinitions: AbstractFunctionDefinition list
              openApiConfiguration: OpenApiConfiguration
              outputAuthoredSourceFolder: OutputAuthoredSource
+             backlinkReferenceType: Type
          }
          interface IFunctionCompilerMetadata with
             member i.ClaimsMappings = i.claimsMappings :> System.Collections.Generic.IReadOnlyCollection<AbstractClaimsMappingDefinition>
             member i.FunctionDefinitions = i.functionDefinitions :> System.Collections.Generic.IReadOnlyCollection<AbstractFunctionDefinition>
             member i.OpenApiConfiguration = i.openApiConfiguration
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
+            member i.BacklinkReferenceType = i.backlinkReferenceType
     
     type ValidationErrorSeverity =
         | ValidationError
@@ -89,6 +96,7 @@ module Models =
     type HttpRoute =
         | Path of string
         | Unspecified
+        
     type HttpFunction =
         {
             commandType: Type
@@ -157,6 +165,7 @@ module Models =
         isValidHandler: BridgedFunction
         authorization: Authorization       
         functions: Functions
+        backlinkReference: BacklinkReference
     }
 
 
@@ -198,6 +207,7 @@ module Models =
         functions = defaultFunctions
         defaultConnectionSettingNames = defaultConnectionSettingNames
         openApi = None
+        backlinkReference = AutoDetect
     }
     
     

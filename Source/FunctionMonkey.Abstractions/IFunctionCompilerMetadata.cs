@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
@@ -13,5 +14,7 @@ namespace FunctionMonkey.Abstractions
         string OutputAuthoredSourceFolder { get; }
         
         IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
+        
+        Type BacklinkReferenceType { get; }
     }
 }
