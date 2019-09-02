@@ -98,7 +98,6 @@ module ToDo =
                                        isComplete = updateToDoItemCommand.isComplete }  
         }        
     
-    (*    
     let todoDatabase =
         cosmosDb cosmosCollection cosmosDatabase
                
@@ -116,6 +115,3 @@ module ToDo =
                 |> todoDatabase
         ]
     }
-
-
-*)
