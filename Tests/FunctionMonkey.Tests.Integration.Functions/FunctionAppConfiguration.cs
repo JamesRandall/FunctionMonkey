@@ -74,6 +74,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpArrayQueryParamCommand>("/array", HttpMethod.Get)
                         .HttpFunction<HttpIReadOnlyCollectionQueryParamCommand>("/readonlyCollection", HttpMethod.Get)
                         .HttpFunction<HttpListQueryParamCommand>("/list", HttpMethod.Get)
+                        .HttpFunction<HttpListQueryStringParamCommand>("/stringList", HttpMethod.Get)
                         .HttpFunction<HttpIEnumerableQueryParamCommand>("/enumerable", HttpMethod.Get)
                     )
                     .HttpRoute("routeParameters", route => route

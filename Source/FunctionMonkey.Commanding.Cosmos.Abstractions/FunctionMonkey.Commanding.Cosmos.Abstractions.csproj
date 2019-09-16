@@ -10,7 +10,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
-    <PackageVersion>3.0.11-beta5</PackageVersion>
+    <PackageVersion>3.0.13-beta5</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

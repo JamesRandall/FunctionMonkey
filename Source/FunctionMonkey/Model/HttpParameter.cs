@@ -15,13 +15,13 @@ namespace FunctionMonkey.Model
 
         public string TypeName => Type.EvaluateType();
 
-        public bool IsString => TypeName.Equals("System.String");
+        public bool IsString => DiscreteTypeName.Equals("System.String");
 
         public Type Type { get; set; }
 
         public bool IsFormCollection => Type == typeof(IFormCollection);
 
-        public bool IsEnum => Type.IsEnum;
+        public bool IsEnum => DiscreteType.IsEnum;
 
         public bool IsCollection => Type.IsSupportedQueryParameterCollectionType();
 
