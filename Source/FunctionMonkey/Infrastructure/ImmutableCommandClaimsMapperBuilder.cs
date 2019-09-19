@@ -43,7 +43,14 @@ namespace FunctionMonkey.Infrastructure
                          x.PropertyInfo.Name == constructorParameter.Name);
                 if (commandPropertyDefinition != null)
                 {
-                    constructorClaims.Add(BuildExpressionForPropertyName(commandPropertyDefinition.ClaimName, constructorParameter.Type, claimsPrincipalParameter));
+                    constructorClaims.Add(BuildExpressionForPropertyName(
+                        commandPropertyDefinition.ClaimName,
+                        constructorParameter.Type,
+                        claimsPrincipalParameter,
+                        functionDefinition.CommandType, 
+                        constructorParameter.Name, 
+                        commandParameter)
+                    );
                     didBuildAMappingFunc = true;
                 }
                 else
@@ -52,7 +59,13 @@ namespace FunctionMonkey.Infrastructure
                         x => x.PropertyPath == constructorParameter.Name);
                     if (sharedDefinition != null)
                     {
-                        constructorClaims.Add(BuildExpressionForPropertyName(sharedDefinition.ClaimName, constructorParameter.Type, claimsPrincipalParameter));
+                        constructorClaims.Add(BuildExpressionForPropertyName(
+                            sharedDefinition.ClaimName,
+                            constructorParameter.Type,
+                            claimsPrincipalParameter,
+                            functionDefinition.CommandType, 
+                            constructorParameter.Name, 
+                            commandParameter));
                         didBuildAMappingFunc = true;
                     }
                     else
@@ -72,7 +85,11 @@ namespace FunctionMonkey.Infrastructure
             return BuildConstructorFunc(constructorInfo, constructorClaims, commandParameter, claimsPrincipalParameter);
         }
 
-        private static Expression BuildExpressionForPropertyName(string claimName, Type constructorParameterType, ParameterExpression claimsPrincipalParameter)
+        private static Expression BuildExpressionForPropertyName(
+            string claimName,
+            Type constructorParameterType,
+            ParameterExpression claimsPrincipalParameter,
+            Type commandType, string constructorParameterName, ParameterExpression commandParameter)
         {
             Type claimsPrincipalType = typeof(ClaimsPrincipal);
             MethodInfo findFirstClaim = claimsPrincipalType.GetMethod("FindFirst", new[] { typeof(string) });
@@ -84,7 +101,12 @@ namespace FunctionMonkey.Infrastructure
             Expression claimValueParserExpression;
             if (constructorParameterType == typeof(string))
             {
-                claimValueParserExpression = Expression.Call(getClaim, getClaimValue);
+                //claimValueParserExpression = Expression.Call(getClaim, getClaimValue);
+                claimValueParserExpression = Expression.Condition(
+                    Expression.Equal(getClaim, Expression.Constant(null, typeof(Claim))),
+                    BuildExpressionForPreviousValue(commandType, constructorParameterName, commandParameter),
+                    Expression.Call(getClaim, getClaimValue)
+                );
             }
             else
             {
@@ -97,7 +119,14 @@ namespace FunctionMonkey.Infrastructure
                 {
                     throw new ConfigurationException("Claims must be mapped to strings or data types that have a Parse method");
                 }
-                claimValueParserExpression = Expression.Call(parseMethod, Expression.Call(getClaim, getClaimValue));
+                
+                claimValueParserExpression = Expression.Condition(
+                    Expression.Equal(getClaim, Expression.Constant(null)),
+                    BuildExpressionForPreviousValue(commandType, constructorParameterName, commandParameter),
+                    Expression.Call(parseMethod, Expression.Call(getClaim, getClaimValue))
+                    );
+                
+                //claimValueParserExpression = Expression.Call(parseMethod, Expression.Call(getClaim, getClaimValue));
             }
 
             return claimValueParserExpression;

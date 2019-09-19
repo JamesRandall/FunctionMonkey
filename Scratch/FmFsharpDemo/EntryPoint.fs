@@ -14,7 +14,7 @@ module EntryPoint =
     let validateToken (bearerToken:string) =
         match bearerToken.Length with
         | 0 -> raise InvalidTokenException
-        | _ -> new ClaimsPrincipal(new ClaimsIdentity([new Claim("userId", "2FF4D861-F9E3-4694-9553-C49A94D7E665")]))
+        | _ -> new ClaimsPrincipal(new ClaimsIdentity([new Claim("userIds", "2FF4D861-F9E3-4694-9553-C49A94D7E665")]))
             
     let isResultValid result = match result with | Ok -> true | _ -> false
     

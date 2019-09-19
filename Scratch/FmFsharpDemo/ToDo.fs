@@ -104,8 +104,8 @@ module ToDo =
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
             azureFunction.http (AsyncHandler(getToDoItem),
-                                verb=Get, subRoute="/{id}",
-                                validator=validateGetToDoItemQuery)
+                                verb=Get, subRoute="/{id}")
+                                //validator=validateGetToDoItemQuery)
             azureFunction.http (Handler(addToDoItem),
                                 verb=Post,
                                 validator=validateAddToDoItemCommand,
