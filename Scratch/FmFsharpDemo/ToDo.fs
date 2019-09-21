@@ -41,6 +41,13 @@ module ToDo =
             id: string
         }
         
+    type GetToDoItemParamQuery =
+        {
+            [<SecurityProperty>]
+            userId: string
+            id: string
+        }
+        
     let withIdValidations = [
        isNotEmpty
        hasLengthOf 36
@@ -81,7 +88,14 @@ module ToDo =
             isComplete = command.isComplete
         }
         
-    let getToDoItem query =
+    let getToDoItem (query:GetToDoItemQuery) =
+        async {
+            let! result = CosmosDb.reader<ToDoItem> <| query.id
+            if result.owningUserId = query.userId then raise AuthorizationException
+            return result
+        }
+        
+    let getToDoItemParam (query:GetToDoItemParamQuery) =
         async {
             let! result = CosmosDb.reader<ToDoItem> <| query.id
             if result.owningUserId = query.userId then raise AuthorizationException
@@ -103,6 +117,8 @@ module ToDo =
                
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
+            azureFunction.http (AsyncHandler(getToDoItemParam),
+                                verb=Get, subRoute="/withParam")
             azureFunction.http (AsyncHandler(getToDoItem),
                                 verb=Get, subRoute="/{id}")
                                 //validator=validateGetToDoItemQuery)

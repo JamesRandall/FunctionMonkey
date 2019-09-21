@@ -80,20 +80,23 @@ module internal FunctionCompilerMetadata =
             let extractQueryParameters (routeParameters:HttpParameter list) =
                 let propertyIsPossibleQueryParameter (x:PropertyInfo) =
                     x.GetCustomAttribute<SecurityPropertyAttribute>() = null
-                    && not(x.SetMethod = null)
                     && x.PropertyType.IsSupportedQueryParameterType()
                     && not(routeParameters |> Seq.exists (fun y -> y.Name = x.Name))
                 
-                httpFunction
-                    .commandType
-                    .GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
-                    |> Seq.filter propertyIsPossibleQueryParameter
-                    |> Seq.map (fun q -> HttpParameter(Name=q.Name,
-                                                       Type=q.PropertyType,
-                                                       IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null))
-                                                      )
-                               )
-                    |> Seq.toList
+                let properties =
+                    httpFunction
+                        .commandType
+                        .GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
+                let queryParameters =
+                    properties
+                        |> Seq.filter propertyIsPossibleQueryParameter
+                        |> Seq.map (fun q -> HttpParameter(Name=q.Name,
+                                                           Type=q.PropertyType,
+                                                           IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null))
+                                                          )
+                                   )
+                        |> Seq.toList
+                queryParameters
                     
                 
             let extractRouteParameters () =
