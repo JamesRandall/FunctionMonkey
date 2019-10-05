@@ -70,7 +70,18 @@ module internal FunctionCompilerMetadata =
                                       | ConnectionStringSettingName s -> s),
                 QueueName=sbqFunction.queueName,
                 IsSessionEnabled=sbqFunction.sessionIdEnabled
-            )
+            ) :> AbstractFunctionDefinition
+            
+        let createServiceBusSubscriptionFunctionDefinition  (configuration:FunctionAppConfiguration) (sbsFunction:ServiceBusSubscriptionFunction) =
+            ServiceBusSubscriptionFunctionDefinition(
+                sbsFunction.coreAttributes.commandType,
+                ConnectionStringName=(match sbsFunction.connectionStringSettingName with
+                                      | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.serviceBus
+                                      | ConnectionStringSettingName s -> s),
+                TopicName=sbsFunction.topicName,
+                SubscriptionName=sbsFunction.subscriptionName,
+                IsSessionEnabled=sbsFunction.sessionIdEnabled
+            ) :> AbstractFunctionDefinition
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) (httpFunction:HttpFunction) =
             let convertVerb verb =
@@ -211,8 +222,12 @@ module internal FunctionCompilerMetadata =
                                     | None -> null)
             functionDefinitions =
                 [] 
-                |> Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
-                // |> Seq.append (configuration.functions.serviceBusFunctions |> Seq.filter)
+                |> Seq.append (configuration.functions.httpFunctions
+                               |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
+                |> Seq.append (configuration.functions.serviceBusFunctions
+                               |> Seq.map (function
+                                   | Queue q -> q |> createServiceBusQueueFunctionDefinition configuration
+                                   | Subscription s -> s |> createServiceBusSubscriptionFunctionDefinition configuration))
                 |> Seq.toList
             backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
             backlinkPropertyInfo = configuration.backlinkPropertyInfo
