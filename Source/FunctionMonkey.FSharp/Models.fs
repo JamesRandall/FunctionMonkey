@@ -21,6 +21,10 @@ module Models =
             signalR: string
         }
         
+    type ConnectionString =
+        | DefaultConnectionStringSettingName
+        | ConnectionStringSettingName of string
+        
     type OpenApi =
         {
             title: string
@@ -101,37 +105,46 @@ module Models =
         | Path of string
         | Unspecified
         
-    type HttpFunction =
+    type CoreFunctionAttributes =
         {
             commandType: Type
             resultType: Type
-            verbs: HttpVerb list
-            route: string
             handler: obj
             validator: BridgedFunction
+            outputBinding: obj option
+        }
+        
+    type HttpFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            verbs: HttpVerb list
+            route: string
             exceptionResponseHandler: BridgedFunction
             responseHandler: BridgedFunction
             validationFailureResponseHandler: BridgedFunction
-            outputBinding: obj option
             authorizationMode: AuthorizationMode option
             returnResponseBodyWithOutputBinding: bool
         }
         interface IOutputBindingTarget<HttpFunction> with
-            member this.setOutputBinding(binding: obj) = { this with outputBinding = Some binding }
-            member this.resultType = this.resultType
+            member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.resultType = this.coreAttributes.resultType
         
-    type ServiceBusQueueFunction = {
-        serviceBusConnectionStringSettingName: string
-        queueName: string
-        sessionIdEnabled: bool
-    }
+    type ServiceBusQueueFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            connectionStringSettingName: ConnectionString
+            queueName: string
+            sessionIdEnabled: bool
+        }
     
-    type ServiceBusSubscriptionFunction = {
-        serviceBusConnectionStringSettingName: string
-        topicName: string
-        subscriptionName: string
-        sessionIdEnabled: bool
-    }
+    type ServiceBusSubscriptionFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            connectionStringSettingName: ConnectionString
+            topicName: string
+            subscriptionName: string
+            sessionIdEnabled: bool
+        }
     
     type ServiceBusFunction =
         | Queue of ServiceBusQueueFunction

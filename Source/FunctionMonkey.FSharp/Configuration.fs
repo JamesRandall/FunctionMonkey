@@ -23,6 +23,9 @@ module Configuration =
         | AsyncHandler of ('a -> Async<'b>)
         | Handler of ('a -> 'b)
         | NoHandler
+        
+    let private connectionStringSettingNameFromString value =
+        match value with | Some s -> ConnectionStringSettingName(s) | None -> DefaultConnectionStringSettingName
     
     type azureFunction private() =
         static member http
@@ -37,26 +40,85 @@ module Configuration =
                 (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>),
                 (?authorizationMode: AuthorizationMode),
                 (?returnResponseBodyWithOutputBinding: bool)
-            ) =
+            ) : HttpFunction =
              {
-                 verbs = [verb]
-                 route = (match subRoute with | Some r -> r | None -> "")                 
-                 commandType = typedefof<'a>
-                 resultType = typedefof<'b>
-                 authorizationMode = authorizationMode
-                 // functions
-                 handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
-                                                                      | AsyncHandler h -> h(cmd) |> Async.StartAsTask
-                                                                      | Handler h -> Task.FromResult(h(cmd))
-                                                                      | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                 coreAttributes = {
+                    commandType = typedefof<'a>
+                    resultType = typedefof<'b>
+                    validator = validator |> bridgeWith createBridgedFunc
+                    outputBinding = None
+                    handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
+                                                                         | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                                         | Handler h -> Task.FromResult(h(cmd))
+                                                                         | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
                                                         )
-                 validator = validator |> bridgeWith createBridgedFunc
+                 }
+                 // http specific
+                 verbs = [verb]
+                 route = (match subRoute with | Some r -> r | None -> "")
+                 authorizationMode = authorizationMode
+                 // functions                 
                  exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
                  validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
-                 outputBinding = None
                  returnResponseBodyWithOutputBinding = match returnResponseBodyWithOutputBinding with | Some r -> r | _ -> false
-             }            
+             }
+             
+        static member serviceBusQueue
+            (
+                (handler:FunctionHandler<'a,'b>),
+                (queueName:string),
+                (?validator:'a -> 'validationResult),
+                (?connectionStringSettingName:string),
+                (?sessionIdEnabled:bool)
+            ) : ServiceBusFunction =
+             Queue(
+                  {
+                     coreAttributes = {
+                        commandType = typedefof<'a>
+                        resultType = typedefof<'b>
+                        validator = validator |> bridgeWith createBridgedFunc
+                        outputBinding = None
+                        handler = new System.Func<'a, Task<'b>>(
+                                    fun (cmd) -> match handler with
+                                                 | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                 | Handler h -> Task.FromResult(h(cmd))
+                                                 | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                    )
+                     }
+                     queueName = queueName
+                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                     sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
+                  }
+             )
+             
+        static member serviceBusSubscription
+            (
+                (handler:FunctionHandler<'a,'b>),
+                (topicName:string),
+                (subscriptionName:string),
+                (?validator:'a -> 'validationResult),
+                (?connectionStringSettingName:string),
+                (?sessionIdEnabled:bool)
+            ) : ServiceBusSubscriptionFunction =
+             {
+                 coreAttributes = {
+                    commandType = typedefof<'a>
+                    resultType = typedefof<'b>
+                    validator = validator |> bridgeWith createBridgedFunc
+                    outputBinding = None
+                    handler = new System.Func<'a, Task<'b>>(
+                                fun (cmd) -> match handler with
+                                             | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                             | Handler h -> Task.FromResult(h(cmd))
+                                             | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                )
+                 }
+                 topicName = topicName
+                 subscriptionName = subscriptionName
+                 connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                 sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false 
+             }
                         
     type FunctionAppConfigurationBuilder() =
         member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
@@ -183,14 +245,14 @@ module Configuration =
             }
         
         [<CustomOperation("serviceBus")>]    
-        member this.serviceBus(configuration, serviceBusConnectionStringSettingName, serviceBusFunctions) =
+        member this.serviceBus(configuration, connectionStringSettingName, serviceBusFunctions) =
             { configuration
                 with functions = {
                     configuration.functions
                         with serviceBusFunctions = serviceBusFunctions
                             |> Seq.map (fun f -> match f with
-                                                 | Queue q -> Queue({ q with serviceBusConnectionStringSettingName = serviceBusConnectionStringSettingName })
-                                                 | Subscription s -> Subscription({ s with serviceBusConnectionStringSettingName = serviceBusConnectionStringSettingName })
+                                                 | Queue q -> Queue({ q with connectionStringSettingName = connectionStringSettingName })
+                                                 | Subscription s -> Subscription({ s with connectionStringSettingName = connectionStringSettingName })
                                        )
                             |> Seq.append configuration.functions.serviceBusFunctions
                             |> Seq.toList

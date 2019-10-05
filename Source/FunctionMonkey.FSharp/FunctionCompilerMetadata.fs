@@ -30,7 +30,7 @@ module internal FunctionCompilerMetadata =
     let create configuration =
         let findBackReferenceType functions =
             // TODO: We need to find the best type to back reference to
-            functions.httpFunctions.[0].commandType
+            functions.httpFunctions.[0].coreAttributes.commandType
         
         let patchOutputBindingConnectionString (abstractOutputBinding:AbstractOutputBinding) =
             let ensureIsSet defaultValue (existingSetting:string) =
@@ -59,10 +59,20 @@ module internal FunctionCompilerMetadata =
             | 1 -> aType.GetConstructors().[0].GetParameters() |> Seq.map createParameter |> Seq.toList
             | _ -> raise OnlyRecordTypesSupportedForCommandsException
         
-        let extractConstructorParameters func =
-            extractConstructorParametersForType func.commandType
+        let extractConstructorParameters attributes =
+            extractConstructorParametersForType attributes.commandType
+            
+        let createServiceBusQueueFunctionDefinition (configuration:FunctionAppConfiguration) (sbqFunction:ServiceBusQueueFunction) =
+            ServiceBusQueueFunctionDefinition(
+                sbqFunction.coreAttributes.commandType,
+                ConnectionStringName=(match sbqFunction.connectionStringSettingName with
+                                      | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.serviceBus
+                                      | ConnectionStringSettingName s -> s),
+                QueueName=sbqFunction.queueName,
+                IsSessionEnabled=sbqFunction.sessionIdEnabled
+            )
         
-        let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) httpFunction =
+        let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) (httpFunction:HttpFunction) =
             let convertVerb verb =
                 match verb with
                 | Get -> HttpMethod.Get
@@ -85,6 +95,7 @@ module internal FunctionCompilerMetadata =
                 
                 let properties =
                     httpFunction
+                        .coreAttributes
                         .commandType
                         .GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
                 let queryParameters =
@@ -105,7 +116,7 @@ module internal FunctionCompilerMetadata =
                     let parts = parameterName.Split(':')
                     let routeParameterName = parts.[0].TrimEnd('?')
                     
-                    let matchedProperty = httpFunction.commandType.GetProperties() |> Seq.find (fun p -> p.Name.ToLower() = routeParameterName.ToLower())
+                    let matchedProperty = httpFunction.coreAttributes.commandType.GetProperties() |> Seq.find (fun p -> p.Name.ToLower() = routeParameterName.ToLower())
                     let isPropertyNullable = matchedProperty.PropertyType.IsValueType && not (Nullable.GetUnderlyingType(matchedProperty.PropertyType) = null)
                     
                     let routeTypeName = match isOptional && isPropertyNullable with
@@ -130,8 +141,8 @@ module internal FunctionCompilerMetadata =
                                             | None -> configuration.authorization.defaultAuthorizationMode                
             let routeParameters = extractRouteParameters ()
             HttpFunctionDefinition(
-                 httpFunction.commandType,
-                 httpFunction.resultType,
+                 httpFunction.coreAttributes.commandType,
+                 httpFunction.coreAttributes.resultType,
                  Route = httpFunction.route,
                  RouteConfiguration = HttpRouteConfiguration(OpenApiName = null, // TODO: Populate this from real values
                                                              OpenApiDescription = null),
@@ -143,21 +154,21 @@ module internal FunctionCompilerMetadata =
                  ClaimsPrincipalAuthorizationType = null,
                  HeaderBindingConfiguration = null,
                  HttpResponseHandlerType = null,
-                 IsValidationResult = (not (httpFunction.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.resultType)),
+                 IsValidationResult = (not (httpFunction.coreAttributes.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.coreAttributes.resultType)),
                  IsStreamCommand = false,
                  TokenValidatorType = null,
                  QueryParameters = extractQueryParameters (routeParameters),
                  RouteParameters = routeParameters,
-                 ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction,
-                 Namespace = (sprintf "%s.Functions" (httpFunction.commandType.Assembly.GetName().Name.Replace("-", "_"))),
+                 ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction.coreAttributes,
+                 Namespace = (sprintf "%s.Functions" (httpFunction.coreAttributes.commandType.Assembly.GetName().Name.Replace("-", "_"))),
                  CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
-                 IsUsingValidator = not (httpFunction.validator = null),
-                 OutputBinding = (match httpFunction.outputBinding with
+                 IsUsingValidator = not (httpFunction.coreAttributes.validator = null),
+                 OutputBinding = (match httpFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
                                   | None -> null),
                  // function handlers - common
-                 FunctionHandler = httpFunction.handler,
-                 ValidatorFunction = httpFunction.validator,
+                 FunctionHandler = httpFunction.coreAttributes.handler,
+                 ValidatorFunction = httpFunction.coreAttributes.validator,
                  // function handlers - http specific
                  TokenValidatorFunction = (match configuration.authorization.tokenValidator with
                                           | null -> null
@@ -199,8 +210,9 @@ module internal FunctionCompilerMetadata =
                                                                     )
                                     | None -> null)
             functionDefinitions =
-                [] |> 
-                Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
+                [] 
+                |> Seq.append (configuration.functions.httpFunctions |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
+                // |> Seq.append (configuration.functions.serviceBusFunctions |> Seq.filter)
                 |> Seq.toList
             backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
             backlinkPropertyInfo = configuration.backlinkPropertyInfo

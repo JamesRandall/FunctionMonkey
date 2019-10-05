@@ -34,7 +34,11 @@ module EntryPoint =
                | VersionSuccess v -> OkObjectResult(v) :> IActionResult
                | _ -> InternalServerErrorResult() :> IActionResult
     }
-                                          
+
+    type SbQueueCommand = {
+        someValue: string
+    }
+
     let app = functionApp {
         // diagnostics
         outputSourcePath "/Users/jamesrandall/code/authoredSource"
@@ -56,6 +60,9 @@ module EntryPoint =
         // functions
         httpRoute "version" [
             azureFunction.http (Handler(fun () -> VersionSuccess(0,0,0)), Get, authorizationMode=Anonymous)
+        ]
+        serviceBus DefaultConnectionStringSettingName [
+            azureFunction.serviceBusQueue (Handler(fun (c:SbQueueCommand) -> System.Console.WriteLine("SbQueueCommand")), "sbQueueCommand")
         ]
     }
                 
