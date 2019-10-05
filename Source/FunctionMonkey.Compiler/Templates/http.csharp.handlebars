@@ -255,12 +255,17 @@ namespace {{Namespace}}
                                 }
                             {{/if}}
                         {{else}}
+<<<<<<< HEAD
                             {{TypeName}}.TryParse(headerValue, out var candidate);
                             {{#if ../UsesImmutableTypes}}
                                 imtPropertyValues["{{Name}}"] = candidate;
                             {{else}}
                                 command.{{Name}} = candidate;
                             {{/if}}
+=======
+                            {{TypeName}}.TryParse(headerValue, out var hcandidate{{@index}});
+                            command.{{Name}} = hcandidate{{@index}};
+>>>>>>> master
                         {{/if}}
                         }
                         }
@@ -320,12 +325,12 @@ namespace {{Namespace}}
                         //{{{DiscriminatedUnionUnderlyingTypeName}}} discriminatedUnionValue = pluginFunctions.ParseFromString<{{{RouteTypeName}}}>({{RouteName}}));
                     }
                 {{else}}
-                    if ({{TypeName}}.TryParse({{RouteName}}, out var candidate))
+                    if ({{TypeName}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
                     {
                         {{#if ../UsesImmutableTypes}}
-                            imtPropertyValues["{{Name}}"] = candidate;
+                            imtPropertyValues["{{Name}}"] = rcandidate;
                         {{else}}
-                            command.{{Name}} = candidate;
+                            command.{{Name}} = rcandidate;
                         {{/if}}
                     }
                     else
