@@ -128,6 +128,18 @@ namespace FunctionMonkey.Tests.Integration.Http
         }
         
         [Fact]
+        public async Task ReturnSumOfStringListQueryParams()
+        {
+            string url = $"{Settings.Host}queryParameters/stringList?value=1&value=3&value=5";
+                
+                
+            string response = await url.GetStringAsync();
+
+            int sumResult = int.Parse(response);
+            Assert.Equal(9, sumResult);
+        }
+        
+        [Fact]
         public async Task ReturnSumOfEnumerableQueryParams()
         {
             string url = $"{Settings.Host}queryParameters/enumerable?value=1&value=3&value=5";

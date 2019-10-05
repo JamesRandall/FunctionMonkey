@@ -323,9 +323,7 @@
     <EmbeddedResource Include="Templates\signalrbindingexpressionnegotiate.json.handlebars" />
     <EmbeddedResource Include="Templates\signalrcommandnegotiate.json.handlebars" />
     <EmbeddedResource Include="Templates\signalrcommandnegotiate.csharp.handlebars" />
-    <EmbeddedResource Include="Templates\servicebustopic.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebustopic.outputparameter.csharp.handlebars" />
-    <EmbeddedResource Include="Templates\servicebusqueue.output.json.handlebars" />
     <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\signalr.outputparameter.csharp.handlebars" />
@@ -352,14 +350,14 @@
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="9.0.1" />
     <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.1" />
-    <PackageReference Include="Handlebars.Net" Version="1.9.5" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.1" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.3" />
+    <PackageReference Include="Handlebars.Net" Version="1.10.1" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.4" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.2" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.0-beta3" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.8" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
