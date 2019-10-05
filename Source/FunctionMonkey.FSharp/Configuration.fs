@@ -90,6 +90,17 @@ module Configuration =
                                                                                 |> bridgeWith createBridgedExceptionResponseHandlerAsync
                 }
             }
+            
+        [<CustomOperation("httpResponseHandler")>]
+        member this.httpResponseHandler(configuration:FunctionAppConfiguration,
+                                        handler:('a -> 'b -> Async<IActionResult>)) =
+            {
+                configuration with defaultHttpResponseHandlers = {
+                                configuration.defaultHttpResponseHandlers with responseHandler =
+                                                                                (Some handler)
+                                                                                |> bridgeWith createBridgedResponseHandlerAsync
+                }
+            }
                     
         [<CustomOperation("outputSourcePath")>]
         member this.outputSourcePath(configuration:FunctionAppConfiguration, path) =

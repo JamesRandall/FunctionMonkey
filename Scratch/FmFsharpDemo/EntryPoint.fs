@@ -24,8 +24,17 @@ module EntryPoint =
                    | :? AuthorizationException -> UnauthorizedResult() :> IActionResult
                    | _ -> InternalServerErrorResult() :> IActionResult
         }
+     
+    type Version =
+        | VersionSuccess of obj
+        | Error of int
         
-                                    
+    let httpResponseHandlerFunc cmd result = async {
+        return match result with
+               | VersionSuccess v -> OkObjectResult(v) :> IActionResult
+               | _ -> InternalServerErrorResult() :> IActionResult
+    }
+                                          
     let app = functionApp {
         // diagnostics
         outputSourcePath "/Users/jamesrandall/code/authoredSource"
@@ -35,6 +44,7 @@ module EntryPoint =
         openApiUserInterface "/openapi"
         // response handlers
         httpExceptionResponseHandler httpExceptionHandler
+        httpResponseHandler httpResponseHandlerFunc
         // authorization
         defaultAuthorizationMode Token
         tokenValidator validateToken
@@ -45,7 +55,7 @@ module EntryPoint =
         isValid isResultValid
         // functions
         httpRoute "version" [
-            azureFunction.http (Handler(fun () -> "1.0.0"), Get, authorizationMode=Anonymous)
+            azureFunction.http (Handler(fun () -> VersionSuccess(0,0,0)), Get, authorizationMode=Anonymous)
         ]
     }
                 
