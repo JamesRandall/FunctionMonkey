@@ -12,7 +12,7 @@ namespace FunctionMonkey.Tests.Integration.Common
         public async Task Assert()
         {
             const int delayIncrement = 750;
-            const int maximumDelay = delayIncrement * 60;
+            const int maximumDelay = delayIncrement * 120;
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(AbstractIntegrationTest.Settings.StorageConnectionString);
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable markerTable = tableClient.GetTableReference("markers");

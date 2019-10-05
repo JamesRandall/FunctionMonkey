@@ -6,8 +6,8 @@
   <ItemGroup>
     <PackageReference Include="FunctionMonkey" Version="0.16.1-beta000" />
     <PackageReference Include="FunctionMonkey.Compiler" Version="0.16.1-beta000" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.0-beta3" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.28" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.1" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
