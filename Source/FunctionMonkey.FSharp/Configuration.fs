@@ -38,8 +38,10 @@ module Configuration =
                 (?exceptionResponseHandlerAsync:'a -> Exception -> Async<IActionResult>),
                 (?asyncResponseHandler:'a -> 'b -> Async<IActionResult>),
                 (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>),
-                (?authorizationMode: AuthorizationMode),
-                (?returnResponseBodyWithOutputBinding: bool)
+                ?authorizationMode,
+                ?returnResponseBodyWithOutputBinding,
+                ?serializer,
+                ?deserializer
             ) : HttpFunction =
              {
                  coreAttributes = {
@@ -62,15 +64,19 @@ module Configuration =
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
                  validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
                  returnResponseBodyWithOutputBinding = match returnResponseBodyWithOutputBinding with | Some r -> r | _ -> false
+                 serializer = serializer |> bridgeWith createBridgedSerializer
+                 deserializer = deserializer |> bridgeWith createBridgedDeserializer
              }
              
         static member serviceBusQueue
             (
                 (handler:FunctionHandler<'a,'b>),
-                (queueName:string),
+                queueName,
                 (?validator:'a -> 'validationResult),
-                (?connectionStringSettingName:string),
-                (?sessionIdEnabled:bool)
+                ?connectionStringSettingName,
+                ?sessionIdEnabled,
+                ?serializer,
+                ?deserializer
             ) : ServiceBusFunction =
              Queue(
                   {
@@ -89,17 +95,21 @@ module Configuration =
                      queueName = queueName
                      connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
                      sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
+                     serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                     deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                   }
              )
              
         static member serviceBusSubscription
             (
                 (handler:FunctionHandler<'a,'b>),
-                (topicName:string),
+                topicName,
                 (subscriptionName:string),
                 (?validator:'a -> 'validationResult),
-                (?connectionStringSettingName:string),
-                (?sessionIdEnabled:bool)
+                ?connectionStringSettingName,
+                ?sessionIdEnabled,
+                ?serializer,
+                ?deserializer
             ) : ServiceBusSubscriptionFunction =
              {
                  coreAttributes = {
@@ -117,7 +127,9 @@ module Configuration =
                  topicName = topicName
                  subscriptionName = subscriptionName
                  connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
-                 sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false 
+                 sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
+                 serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                 deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
              }
                         
     type FunctionAppConfigurationBuilder() =
@@ -229,6 +241,18 @@ module Configuration =
                 with authorization = {
                     configuration.authorization with claimsMappings = claimsMappings
                 }
+            }
+            
+        [<CustomOperation("defaultSerializer")>]
+        member this.defaultSerializer(configuration: FunctionAppConfiguration, serializer) =
+            {
+                configuration with defaultSerializer = Some serializer |> bridgeWith createBridgedSerializer
+            }
+            
+        [<CustomOperation("defaultDeserializer")>]
+        member this.defaultDeserializer(configuration: FunctionAppConfiguration, serializer) =
+            {
+                configuration with defaultDeserializer = Some serializer |> bridgeWith createBridgedDeserializer
             }
         
         // Functions

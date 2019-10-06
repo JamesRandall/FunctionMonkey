@@ -7,6 +7,7 @@ open System.Web.Http
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Models
 open Microsoft.AspNetCore.Mvc
+open Newtonsoft.Json
 
 module EntryPoint =
     exception InvalidTokenException
@@ -56,6 +57,7 @@ module EntryPoint =
         claimsMappings [
             claimsMapper.shared ("userId", "userId")
         ]
+        defaultSerializer (fun o _ -> JsonConvert.SerializeObject(o))
         // validation
         isValid isResultValid
         // functions
@@ -63,7 +65,10 @@ module EntryPoint =
             azureFunction.http (Handler(fun () -> VersionSuccess(0,0,0)), Get, authorizationMode=Anonymous)
         ]
         httpRoute "queueItem" [
-            azureFunction.http(FunctionHandler<SbQueueCommand, SbQueueCommand>.NoHandler, Post, authorizationMode=Anonymous)
+            azureFunction.http(FunctionHandler<SbQueueCommand, SbQueueCommand>.NoHandler,
+                               Post,
+                               authorizationMode=Anonymous,
+                               serializer=(fun o _ -> JsonConvert.SerializeObject(o)))
                 |> serviceBusQueue ("sbQueueCommand")
                 |> withServiceBusConnectionStringSettingName ""
         ]

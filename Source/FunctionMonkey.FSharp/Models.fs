@@ -126,6 +126,8 @@ module Models =
             validationFailureResponseHandler: BridgedFunction
             authorizationMode: AuthorizationMode option
             returnResponseBodyWithOutputBinding: bool
+            serializer: BridgedFunction
+            deserializer: BridgedFunction
         }
         interface IOutputBindingTarget<HttpFunction> with
             member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
@@ -139,6 +141,8 @@ module Models =
             connectionStringSettingName: ConnectionString
             queueName: string
             sessionIdEnabled: bool
+            serializer: BridgedFunction
+            deserializer: BridgedFunction
         }
     
     type ServiceBusSubscriptionFunction =
@@ -148,6 +152,8 @@ module Models =
             topicName: string
             subscriptionName: string
             sessionIdEnabled: bool
+            serializer: BridgedFunction
+            deserializer: BridgedFunction
         }
     
     type ServiceBusFunction =
@@ -187,6 +193,8 @@ module Models =
         authorization: Authorization       
         functions: Functions
         backlinkPropertyInfo: PropertyInfo
+        defaultSerializer: BridgedFunction
+        defaultDeserializer: BridgedFunction
     }
 
 
@@ -229,6 +237,8 @@ module Models =
         defaultConnectionSettingNames = defaultConnectionSettingNames
         openApi = None
         backlinkPropertyInfo = null
+        defaultSerializer = null
+        defaultDeserializer = null
     }
     
     

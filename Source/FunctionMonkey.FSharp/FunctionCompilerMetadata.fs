@@ -82,7 +82,9 @@ module internal FunctionCompilerMetadata =
                 FunctionHandler = sbqFunction.coreAttributes.handler,
                 ValidatorFunction = sbqFunction.coreAttributes.validator,                
                 IsValidFunction = configuration.isValidHandler,
-                Namespace = (sbqFunction.coreAttributes |> getNamespace) + "2"
+                Namespace = (sbqFunction.coreAttributes |> getNamespace) + "2",
+                SerializeFunction = (match sbqFunction.serializer with | null -> configuration.defaultSerializer | _ -> sbqFunction.serializer),
+                DeserializeFunction = (match sbqFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbqFunction.deserializer)
             ) :> AbstractFunctionDefinition
             
         let createServiceBusSubscriptionFunctionDefinition  (configuration:FunctionAppConfiguration) (sbsFunction:ServiceBusSubscriptionFunction) =
@@ -103,7 +105,9 @@ module internal FunctionCompilerMetadata =
                 FunctionHandler = sbsFunction.coreAttributes.handler,
                 ValidatorFunction = sbsFunction.coreAttributes.validator,                
                 IsValidFunction = configuration.isValidHandler,
-                Namespace = (sbsFunction.coreAttributes |> getNamespace)
+                Namespace = (sbsFunction.coreAttributes |> getNamespace),
+                SerializeFunction = (match sbsFunction.serializer with | null -> configuration.defaultSerializer | _ -> sbsFunction.serializer),
+                DeserializeFunction = (match sbsFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbsFunction.deserializer)
             ) :> AbstractFunctionDefinition
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) (httpFunction:HttpFunction) =
@@ -218,7 +222,9 @@ module internal FunctionCompilerMetadata =
                                                             | _ -> httpFunction.validationFailureResponseHandler),
                  IsValidFunction = configuration.isValidHandler,
                  // Added for Function Monkey and also needed to be added to the C#
-                 ReturnResponseBodyWithOutputBinding = httpFunction.returnResponseBodyWithOutputBinding
+                 ReturnResponseBodyWithOutputBinding = httpFunction.returnResponseBodyWithOutputBinding,
+                 SerializeFunction = (match httpFunction.serializer with | null -> configuration.defaultSerializer | _ -> httpFunction.serializer),
+                 DeserializeFunction = (match httpFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> httpFunction.deserializer)
                  
             ) :> AbstractFunctionDefinition
         

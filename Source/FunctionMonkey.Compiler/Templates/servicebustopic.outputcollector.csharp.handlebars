@@ -1,13 +1,13 @@
 {{#if CommandResultIsCollection}}
 foreach (var commandResultItem in result)
-{ 
-    string resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(commandResultItem);
+{
+    string resultJson = pluginFunctions.Serialize(commandResultItem, false);
     byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
     Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
     await collector.AddAsync(serviceBusMessage);
 }
 {{else}}
-string resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+string resultJson = pluginFunctions.Serialize(result, false);
 byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
 Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
 {{#if OutputBinding.HasSessionId}}

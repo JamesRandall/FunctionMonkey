@@ -35,4 +35,19 @@ module internal BridgeFunctions =
                fun cmd vr -> (validationFailureResponseHandler (cmd :?> 'a) vr) |> Async.StartAsTask
            )
         )
+        
+    let createBridgedSerializer (func:obj -> bool -> string) =
+        new BridgedFunction(
+            new System.Func<obj, bool, string>(fun o e ->
+                let result = func o e
+                result
+            )   
+        )
 
+    let createBridgedDeserializer (func:string -> bool -> obj) =
+        new BridgedFunction(
+            new System.Func<string, bool, obj>(fun o e ->
+                let result = func o e
+                result
+            )   
+        )

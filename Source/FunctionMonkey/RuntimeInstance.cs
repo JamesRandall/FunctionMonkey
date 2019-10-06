@@ -156,12 +156,30 @@ namespace FunctionMonkey
             {
                 PluginFunctions pluginFunctions = new PluginFunctions();
                 
-                pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
-                    CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body, enforceSecurityProperties);
+                if (functionDefinition.DeserializeFunction != null)
+                {
+                    pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
+                        ((Func<string, bool, object>) functionDefinition.SerializeFunction.Handler)(body, enforceSecurityProperties);
+                }
+                else
+                {
+                    pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
+                        CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body,
+                            enforceSecurityProperties);
+                }
 
-                pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
-                    CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties);
-
+                if (functionDefinition.SerializeFunction != null)
+                {
+                    pluginFunctions.Serialize = (obj, enforceSecurityProperties) =>
+                        ((Func<object, bool, string>) functionDefinition.SerializeFunction.Handler)(obj,
+                            enforceSecurityProperties);
+                }
+                else
+                {
+                    pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
+                        CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties);
+                }
+                
                 pluginFunctions.Handler = functionDefinition.FunctionHandler;
                 
                 if (functionDefinition.ValidatorFunction != null)
