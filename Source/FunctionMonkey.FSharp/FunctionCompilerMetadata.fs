@@ -84,7 +84,10 @@ module internal FunctionCompilerMetadata =
                 IsValidFunction = configuration.isValidHandler,
                 Namespace = (sbqFunction.coreAttributes |> getNamespace) + "2",
                 SerializeFunction = (match sbqFunction.serializer with | null -> configuration.defaultSerializer | _ -> sbqFunction.serializer),
-                DeserializeFunction = (match sbqFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbqFunction.deserializer)
+                DeserializeFunction = (match sbqFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbqFunction.deserializer),
+                OutputBinding = (match sbqFunction.coreAttributes.outputBinding with
+                                  | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
+                                  | None -> null)
             ) :> AbstractFunctionDefinition
             
         let createServiceBusSubscriptionFunctionDefinition  (configuration:FunctionAppConfiguration) (sbsFunction:ServiceBusSubscriptionFunction) =
@@ -107,7 +110,10 @@ module internal FunctionCompilerMetadata =
                 IsValidFunction = configuration.isValidHandler,
                 Namespace = (sbsFunction.coreAttributes |> getNamespace),
                 SerializeFunction = (match sbsFunction.serializer with | null -> configuration.defaultSerializer | _ -> sbsFunction.serializer),
-                DeserializeFunction = (match sbsFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbsFunction.deserializer)
+                DeserializeFunction = (match sbsFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbsFunction.deserializer),
+                OutputBinding = (match sbsFunction.coreAttributes.outputBinding with
+                                  | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
+                                  | None -> null)
             ) :> AbstractFunctionDefinition
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) (httpFunction:HttpFunction) =

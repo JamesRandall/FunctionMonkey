@@ -15,6 +15,6 @@ let queueHandler c =
 let additionalFunctions = functions {
     serviceBus DefaultConnectionStringSettingName [
         azureFunction.serviceBusQueue (Handler(queueHandler), "sbQueueCommand")
-            //|> serviceBusQueue ("junk")
+            |> serviceBusQueue ("junk")
     ]
 }
