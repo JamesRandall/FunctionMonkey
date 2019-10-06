@@ -16,7 +16,7 @@ module Configuration =
         static member inline shared (claimName, propertyName) =
             { claim = claimName ; mapper = Shared(propertyName) }
         static member command<'commandType, 'propertyType> (claimName, (propertyExpression: Expression<Func<'commandType, 'propertyType>>)) =
-            let commandMapper = { commandType = typedefof<'commandType> ; propertyInfo = (getPropertyInfo propertyExpression) }
+            let commandMapper = { commandType = typeof<'commandType> ; propertyInfo = (getPropertyInfo propertyExpression) }
             { claim = claimName ; mapper = Command (commandMapper) }
             
     type FunctionHandler<'a, 'b> =
@@ -45,8 +45,8 @@ module Configuration =
             ) : HttpFunction =
              {
                  coreAttributes = {
-                    commandType = typedefof<'a>
-                    resultType = typedefof<'b>
+                    commandType = typeof<'a>
+                    resultType = typeof<'b>
                     validator = validator |> bridgeWith createBridgedFunc
                     outputBinding = None
                     handler = new System.Func<'a, Task<'b>>(fun (cmd) -> match handler with
@@ -81,8 +81,8 @@ module Configuration =
              Queue(
                   {
                      coreAttributes = {
-                        commandType = typedefof<'a>
-                        resultType = typedefof<'b>
+                        commandType = typeof<'a>
+                        resultType = typeof<'b>
                         validator = validator |> bridgeWith createBridgedFunc
                         outputBinding = None
                         handler = new System.Func<'a, Task<'b>>(
@@ -110,27 +110,29 @@ module Configuration =
                 ?sessionIdEnabled,
                 ?serializer,
                 ?deserializer
-            ) : ServiceBusSubscriptionFunction =
-             {
-                 coreAttributes = {
-                    commandType = typedefof<'a>
-                    resultType = typedefof<'b>
-                    validator = validator |> bridgeWith createBridgedFunc
-                    outputBinding = None
-                    handler = new System.Func<'a, Task<'b>>(
-                                fun (cmd) -> match handler with
-                                             | AsyncHandler h -> h(cmd) |> Async.StartAsTask
-                                             | Handler h -> Task.FromResult(h(cmd))
-                                             | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
-                                )
+            ) : ServiceBusFunction =
+             Subscription(
+                 {
+                     coreAttributes = {
+                        commandType = typeof<'a>
+                        resultType = typeof<'b>
+                        validator = validator |> bridgeWith createBridgedFunc
+                        outputBinding = None
+                        handler = new System.Func<'a, Task<'b>>(
+                                    fun (cmd) -> match handler with
+                                                 | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                 | Handler h -> Task.FromResult(h(cmd))
+                                                 | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                    )
+                     }
+                     topicName = topicName
+                     subscriptionName = subscriptionName
+                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                     sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
+                     serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                     deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                  }
-                 topicName = topicName
-                 subscriptionName = subscriptionName
-                 connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
-                 sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
-                 serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
-                 deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
-             }
+             )
                         
     type FunctionAppConfigurationBuilder() =
         member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
@@ -288,6 +290,9 @@ module Configuration =
     type FunctionsBuilder() =
         member __.Yield (_: 'a) : Functions = defaultFunctions
         
+        member __.Run (functions: Functions) =
+            functions
+        
         [<CustomOperation("httpRoute")>]
         member this.httpRoute(functions:Functions, prefix, httpFunctions) =
             { functions
@@ -295,6 +300,19 @@ module Configuration =
                     |> Seq.map (fun f -> { f with route = prefix + f.route })
                     |> Seq.append functions.httpFunctions
                     |> Seq.toList
+            }
+            
+        [<CustomOperation("serviceBus")>]    
+        member this.serviceBus(functions:Functions, connectionStringSettingName, serviceBusFunctions) =
+            { functions
+                with serviceBusFunctions = serviceBusFunctions
+                    |> Seq.map (function
+                                | Queue q -> Queue({ q with connectionStringSettingName = connectionStringSettingName })
+                                | Subscription s -> Subscription({ s with connectionStringSettingName = connectionStringSettingName })
+                               )
+                    |> Seq.append functions.serviceBusFunctions
+                    |> Seq.toList
+                
             }
     
     let functions = FunctionsBuilder()

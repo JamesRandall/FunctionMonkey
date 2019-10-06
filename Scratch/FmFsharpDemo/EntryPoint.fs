@@ -72,8 +72,19 @@ module EntryPoint =
                 |> serviceBusQueue ("sbQueueCommand")
                 |> withServiceBusConnectionStringSettingName ""
         ]
-        serviceBus DefaultConnectionStringSettingName [
+        (*serviceBus DefaultConnectionStringSettingName [
             azureFunction.serviceBusQueue (Handler(fun (c:SbQueueCommand) -> System.Console.WriteLine("SbQueueCommand: " + c.someValue)), "sbQueueCommand")
+                |> serviceBusQueue ("junk")
+        ]*)
+    }
+    
+    (*
+    let additionalFunctions = functions {
+        serviceBus DefaultConnectionStringSettingName [
+            azureFunction.serviceBusQueue (Handler(fun (c:SbQueueCommand) -> System.Console.WriteLine("SbQueueCommand: " + c.someValue) ; 50), "sbQueueCommand")
+                //|> serviceBusQueue ("junk")
         ]
     }
+    *)
+    
                 

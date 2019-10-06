@@ -144,6 +144,11 @@ module Models =
             serializer: BridgedFunction
             deserializer: BridgedFunction
         }
+        interface IOutputBindingTarget<ServiceBusQueueFunction> with
+            member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
     
     type ServiceBusSubscriptionFunction =
         {
@@ -155,10 +160,24 @@ module Models =
             serializer: BridgedFunction
             deserializer: BridgedFunction
         }
+        interface IOutputBindingTarget<ServiceBusSubscriptionFunction> with
+            member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
     
     type ServiceBusFunction =
         | Queue of ServiceBusQueueFunction
         | Subscription of ServiceBusSubscriptionFunction
+        member this.coreAttributes = match this with | Queue q -> q.coreAttributes | Subscription s -> s.coreAttributes
+        interface IOutputBindingTarget<ServiceBusFunction> with
+            member this.setOutputBinding(binding: obj) =
+                match this with
+                | Queue q -> Queue({q with coreAttributes= { this.coreAttributes with outputBinding = Some binding } })
+                | Subscription q -> Subscription({q with coreAttributes= { this.coreAttributes with outputBinding = Some binding } })                
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
         
     type Authorization =
         {

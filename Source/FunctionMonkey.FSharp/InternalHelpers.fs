@@ -10,9 +10,12 @@ module internal InternalHelpers =
         assembly.GetTypes()
         |> Seq.collect (
                fun t -> t.GetProperties(BindingFlags.Public + BindingFlags.Static)
-                        |> Seq.filter(fun p  -> p.PropertyType = typedefof<Functions>)
+                        |> Seq.filter(fun p  -> p.PropertyType = typeof<Functions>)
            )
-        |> Seq.map (fun p -> p.GetValue(null) :?> Functions)
+        |> Seq.map (fun p ->
+            let propertyValue = p.GetValue(null)
+            propertyValue :?> Functions)
+        |> Seq.toList
         
     let concatFunctions functionsListA functionsListB =
         {
@@ -39,7 +42,7 @@ module internal InternalHelpers =
             assembly.GetTypes()
             |> Seq.collect (
                fun t -> t.GetProperties(BindingFlags.Public + BindingFlags.Static)
-                        |> Seq.filter(fun p  -> typedefof<IFunctionCompilerMetadata>.IsAssignableFrom(p.PropertyType))
+                        |> Seq.filter(fun p  -> typeof<IFunctionCompilerMetadata>.IsAssignableFrom(p.PropertyType))
                )
             |> Seq.toList
 

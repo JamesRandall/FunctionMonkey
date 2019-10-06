@@ -102,7 +102,6 @@ module ToDo =
             return result
         }
         
-        
     let updateToDoItem (updateToDoItemCommand:UpdateToDoItemCommand) =
         async {
             let! existingItem = CosmosDb.reader<ToDoItem> <| updateToDoItemCommand.id
@@ -114,7 +113,7 @@ module ToDo =
     
     let todoDatabase =
         cosmosDb cosmosCollection cosmosDatabase
-               
+           
     let toDoFunctions = functions {
         httpRoute "api/v1/todo" [
             azureFunction.http (AsyncHandler(getToDoItemParam),
@@ -131,3 +130,4 @@ module ToDo =
                 |> todoDatabase
         ]
     }
+    

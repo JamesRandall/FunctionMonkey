@@ -76,7 +76,7 @@ module internal FunctionCompilerMetadata =
                 IsSessionEnabled=sbqFunction.sessionIdEnabled,
                 // common settings
                 ImmutableTypeConstructorParameters = extractConstructorParameters sbqFunction.coreAttributes,
-                CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                CommandDeserializerType = typeof<CamelCaseJsonSerializer>,
                 IsUsingValidator = not (sbqFunction.coreAttributes.validator = null),
                 UsesImmutableTypes = true,
                 FunctionHandler = sbqFunction.coreAttributes.handler,
@@ -99,7 +99,7 @@ module internal FunctionCompilerMetadata =
                 IsSessionEnabled=sbsFunction.sessionIdEnabled,
                 // common settings
                 ImmutableTypeConstructorParameters = extractConstructorParameters sbsFunction.coreAttributes,
-                CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                CommandDeserializerType = typeof<CamelCaseJsonSerializer>,
                 IsUsingValidator = not (sbsFunction.coreAttributes.validator = null),
                 UsesImmutableTypes = true,
                 FunctionHandler = sbsFunction.coreAttributes.handler,
@@ -192,14 +192,14 @@ module internal FunctionCompilerMetadata =
                  ClaimsPrincipalAuthorizationType = null,
                  HeaderBindingConfiguration = null,
                  HttpResponseHandlerType = null,
-                 IsValidationResult = (not (httpFunction.coreAttributes.resultType = typedefof<unit>) && typedefof<ValidationResult>.IsAssignableFrom(httpFunction.coreAttributes.resultType)),
+                 IsValidationResult = (not (httpFunction.coreAttributes.resultType = typeof<unit>) && typeof<ValidationResult>.IsAssignableFrom(httpFunction.coreAttributes.resultType)),
                  IsStreamCommand = false,
                  TokenValidatorType = null,
                  QueryParameters = extractQueryParameters (routeParameters),
                  RouteParameters = routeParameters,
                  ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction.coreAttributes,
                  Namespace = (httpFunction.coreAttributes |> getNamespace),                 
-                 CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                 CommandDeserializerType = typeof<CamelCaseJsonSerializer>,
                  IsUsingValidator = not (httpFunction.coreAttributes.validator = null),
                  OutputBinding = (match httpFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)

@@ -25,9 +25,9 @@ let routeParameterExtractionTests =
             let parameters = httpFunction.ImmutableTypeConstructorParameters
             Expect.hasLength parameters 2 "Should have 2 constructor parameters"
             Expect.equal (parameters.First().Name) "value" "First Parameter should be called value"
-            Expect.equal (parameters.First().Type) typedefof<int> "First Parameter should be of type int"
+            Expect.equal (parameters.First().Type) typeof<int> "First Parameter should be of type int"
             Expect.equal (parameters.Skip(1).First().Name) "message" "First Parameter should be called message"
-            Expect.equal (parameters.Skip(1).First().Type) typedefof<string> "Second Parameter should be of type string"            
+            Expect.equal (parameters.Skip(1).First().Type) typeof<string> "Second Parameter should be of type string"            
         }
         
         test "Extracts route parameters for record based command" {
@@ -43,7 +43,7 @@ let routeParameterExtractionTests =
             let parameters = httpFunction.RouteParameters
             Expect.hasLength parameters 1 "Should have 1 route parameter"
             Expect.equal (parameters.Single().Name) "value" "Route parameter should be called value"
-            Expect.equal (parameters.Single().Type) typedefof<int> "Route parameter should be of type int"                     
+            Expect.equal (parameters.Single().Type) typeof<int> "Route parameter should be of type int"                     
         }
     ]
     
