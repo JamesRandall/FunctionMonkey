@@ -11,7 +11,9 @@ module Models =
         
     type IOutputBindingTarget<'functionType> =
         abstract member setOutputBinding : obj -> 'functionType
+        abstract member getOutputBinding : unit -> obj option
         abstract member resultType : Type
+        abstract member getFunction : unit -> 'functionType
         
     type DefaultConnectionSettingNames =
         {
@@ -127,6 +129,8 @@ module Models =
         }
         interface IOutputBindingTarget<HttpFunction> with
             member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
             member this.resultType = this.coreAttributes.resultType
         
     type ServiceBusQueueFunction =

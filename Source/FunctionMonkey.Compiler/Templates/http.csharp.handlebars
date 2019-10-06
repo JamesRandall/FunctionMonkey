@@ -101,7 +101,7 @@ namespace {{Namespace}}
                 {
                     try
                     {
-                        command = ({{CommandTypeName}})pluginFunctions.Deserialize(requestBody);
+                        command = ({{CommandTypeName}})pluginFunctions.Deserialize(requestBody, true); // true is to enforce security properties
                     }
                     catch(FunctionMonkey.DeserializationException dex)
                     {
@@ -255,17 +255,12 @@ namespace {{Namespace}}
                                 }
                             {{/if}}
                         {{else}}
-<<<<<<< HEAD
-                            {{TypeName}}.TryParse(headerValue, out var candidate);
-                            {{#if ../UsesImmutableTypes}}
-                                imtPropertyValues["{{Name}}"] = candidate;
-                            {{else}}
-                                command.{{Name}} = candidate;
-                            {{/if}}
-=======
                             {{TypeName}}.TryParse(headerValue, out var hcandidate{{@index}});
-                            command.{{Name}} = hcandidate{{@index}};
->>>>>>> master
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = hcandidate{{@index}};
+                            {{else}}
+                                command.{{Name}} = hcandidate{{@index}};
+                            {{/if}}
                         {{/if}}
                         }
                         }

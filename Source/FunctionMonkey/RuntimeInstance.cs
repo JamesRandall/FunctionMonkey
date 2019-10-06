@@ -156,8 +156,8 @@ namespace FunctionMonkey
             {
                 PluginFunctions pluginFunctions = new PluginFunctions();
                 
-                pluginFunctions.Deserialize = (body) =>
-                    CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body);
+                pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
+                    CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body, enforceSecurityProperties);
 
                 pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
                     CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties);

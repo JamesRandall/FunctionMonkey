@@ -8,6 +8,10 @@ namespace FunctionMonkey.Model
         public ServiceBusSubscriptionFunctionDefinition(Type commandType) : base("SbsFn", commandType)
         {
         }
+        
+        public ServiceBusSubscriptionFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("SbsFn", commandType, explicitCommandResultType)
+        {
+        }
 
         public string ConnectionStringName { get; set; }
 

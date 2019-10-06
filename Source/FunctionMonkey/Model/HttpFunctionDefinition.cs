@@ -18,9 +18,6 @@ namespace FunctionMonkey.Model
         {
         }
         
-        // If set to true then the command class must expose a constructor with each property a parameter.
-        public bool UsesImmutableTypes { get; set; }
-
         public HashSet<HttpMethod> Verbs { get; set; } = new HashSet<HttpMethod>();
 
         public AuthorizationTypeEnum? Authorization { get; set; }

@@ -21,19 +21,18 @@ namespace {{Namespace}}
         )
         {
             log.LogInformation("Service bus subscription trigger function {{Name}} processed a request.");
-            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;         
-            
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
+
             string body = System.Text.Encoding.UTF8.GetString(queueItem.Body);
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(body))
             {
-                var serializer = (FunctionMonkey.Abstractions.ISerializer)
-                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
-                command = serializer.Deserialize<{{CommandTypeName}}>(body, false); // we don't enforce security properties from message buses
+                command = ({{CommandTypeName}})pluginFunctions.Deserialize(body, false); // we don't enforce security properties from message buses
             }
             else
             {
-                command = new {{CommandTypeName}}();
+                command = CreateNewCommand();
             }
 
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
@@ -45,24 +44,59 @@ namespace {{Namespace}}
                 executionContext.InvocationId);
 
             {{#if IsUsingValidator}}
-            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
-            var validationResult = validator.Validate(command);
-            if (!validationResult.IsValid)
-            {
-                throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
-            }
+                {{#unless CommandTypeIsUnit}}
+                    var validationResult = pluginFunctions.Validate(command);
+                    if (!pluginFunctions.IsValid(validationResult))
+                    {
+                        throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
+                    }
+                {{/unless}}
             {{/if}}
             
             {{#if OutputBinding}}
                 {{#if NoCommandHandler}}
                     {{{CommandType}}} result = command;
                 {{else}}
-                    {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                    {{#if IsFunctionalFunction}}
+                        Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>> handler = (Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>>)pluginFunctions.Handler;
+                        {{#if FunctionHandlerIsAsync}}
+                            var result = await handler(command);
+                        {{else}}
+                            var result = handler(command);
+                        {{/if}}
+                    {{else}}
+                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                    {{/if}}
                 {{/if}}
                 {{{collectorOutputBinding}}}
-            {{else}}               
-                await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+            {{else}}
+                {{#if IsFunctionalFunction}}
+                    Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>> handler = (Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>>)pluginFunctions.Handler;
+                    {{#if FunctionHandlerIsAsync}}
+                        await handler(command);
+                    {{else}}
+                        handler(command);
+                    {{/if}}
+                {{else}}
+                    await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                {{/if}}
+            {{/if}}
+        }
+
+        private static {{CommandTypeName}} CreateNewCommand()
+        {
+            {{#if UsesImmutableTypes}}
+                {{#if CommandTypeIsUnit}}
+                    return null;
+                {{else}}
+                    return new {{CommandTypeName}}(
+                    {{#each ImmutableTypeConstructorParameters}}
+                        default({{{TypeName}}}){{#unless @last}},{{/unless}}
+                    {{/each}}
+                    );
+                {{/if}}
+            {{else}}
+                return new {{CommandTypeName}}();
             {{/if}}
         }
     }

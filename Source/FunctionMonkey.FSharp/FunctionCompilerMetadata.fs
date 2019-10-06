@@ -62,25 +62,48 @@ module internal FunctionCompilerMetadata =
         let extractConstructorParameters attributes =
             extractConstructorParametersForType attributes.commandType
             
+        let getNamespace coreAttributes =
+            (sprintf "%s.Functions" (coreAttributes.commandType.Assembly.GetName().Name.Replace("-", "_")))
+            
         let createServiceBusQueueFunctionDefinition (configuration:FunctionAppConfiguration) (sbqFunction:ServiceBusQueueFunction) =
             ServiceBusQueueFunctionDefinition(
                 sbqFunction.coreAttributes.commandType,
+                sbqFunction.coreAttributes.resultType,
                 ConnectionStringName=(match sbqFunction.connectionStringSettingName with
                                       | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.serviceBus
                                       | ConnectionStringSettingName s -> s),
                 QueueName=sbqFunction.queueName,
-                IsSessionEnabled=sbqFunction.sessionIdEnabled
+                IsSessionEnabled=sbqFunction.sessionIdEnabled,
+                // common settings
+                ImmutableTypeConstructorParameters = extractConstructorParameters sbqFunction.coreAttributes,
+                CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                IsUsingValidator = not (sbqFunction.coreAttributes.validator = null),
+                UsesImmutableTypes = true,
+                FunctionHandler = sbqFunction.coreAttributes.handler,
+                ValidatorFunction = sbqFunction.coreAttributes.validator,                
+                IsValidFunction = configuration.isValidHandler,
+                Namespace = (sbqFunction.coreAttributes |> getNamespace) + "2"
             ) :> AbstractFunctionDefinition
             
         let createServiceBusSubscriptionFunctionDefinition  (configuration:FunctionAppConfiguration) (sbsFunction:ServiceBusSubscriptionFunction) =
             ServiceBusSubscriptionFunctionDefinition(
                 sbsFunction.coreAttributes.commandType,
+                sbsFunction.coreAttributes.resultType,
                 ConnectionStringName=(match sbsFunction.connectionStringSettingName with
                                       | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.serviceBus
                                       | ConnectionStringSettingName s -> s),
                 TopicName=sbsFunction.topicName,
                 SubscriptionName=sbsFunction.subscriptionName,
-                IsSessionEnabled=sbsFunction.sessionIdEnabled
+                IsSessionEnabled=sbsFunction.sessionIdEnabled,
+                // common settings
+                ImmutableTypeConstructorParameters = extractConstructorParameters sbsFunction.coreAttributes,
+                CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
+                IsUsingValidator = not (sbsFunction.coreAttributes.validator = null),
+                UsesImmutableTypes = true,
+                FunctionHandler = sbsFunction.coreAttributes.handler,
+                ValidatorFunction = sbsFunction.coreAttributes.validator,                
+                IsValidFunction = configuration.isValidHandler,
+                Namespace = (sbsFunction.coreAttributes |> getNamespace)
             ) :> AbstractFunctionDefinition
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) (httpFunction:HttpFunction) =
@@ -171,7 +194,7 @@ module internal FunctionCompilerMetadata =
                  QueryParameters = extractQueryParameters (routeParameters),
                  RouteParameters = routeParameters,
                  ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction.coreAttributes,
-                 Namespace = (sprintf "%s.Functions" (httpFunction.coreAttributes.commandType.Assembly.GetName().Name.Replace("-", "_"))),
+                 Namespace = (httpFunction.coreAttributes |> getNamespace),                 
                  CommandDeserializerType = typedefof<CamelCaseJsonSerializer>,
                  IsUsingValidator = not (httpFunction.coreAttributes.validator = null),
                  OutputBinding = (match httpFunction.coreAttributes.outputBinding with

@@ -155,6 +155,9 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         
         // F# support
         
+        // If set to true then the command class must expose a constructor with each property a parameter.
+        public bool UsesImmutableTypes { get; set; }
+        
         public object FunctionHandler { get; set; }
 
         public bool FunctionHandlerIsAsync => FunctionHandler != null &&

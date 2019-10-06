@@ -1,6 +1,7 @@
 namespace FmFsharpDemo
 open System
 open AccidentalFish.FSharp.Validation
+open FunctionMonkey.FSharp.OutputBindings
 open System.Security.Claims
 open System.Web.Http
 open FunctionMonkey.FSharp.Configuration
@@ -61,8 +62,13 @@ module EntryPoint =
         httpRoute "version" [
             azureFunction.http (Handler(fun () -> VersionSuccess(0,0,0)), Get, authorizationMode=Anonymous)
         ]
+        httpRoute "queueItem" [
+            azureFunction.http(FunctionHandler<SbQueueCommand, SbQueueCommand>.NoHandler, Post, authorizationMode=Anonymous)
+                |> serviceBusQueue ("sbQueueCommand")
+                |> withServiceBusConnectionStringSettingName ""
+        ]
         serviceBus DefaultConnectionStringSettingName [
-            azureFunction.serviceBusQueue (Handler(fun (c:SbQueueCommand) -> System.Console.WriteLine("SbQueueCommand")), "sbQueueCommand")
+            azureFunction.serviceBusQueue (Handler(fun (c:SbQueueCommand) -> System.Console.WriteLine("SbQueueCommand: " + c.someValue)), "sbQueueCommand")
         ]
     }
                 

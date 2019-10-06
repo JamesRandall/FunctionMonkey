@@ -12,7 +12,7 @@ namespace FunctionMonkey
 
         public Func<ClaimsPrincipal, string, string, Task<bool>> IsAuthorized { get; set; }
         
-        public Func<string, object> Deserialize { get; set; }
+        public Func<string, bool, object> Deserialize { get; set; }
         
         public Func<object, bool, string> Serialize { get; set; }
         
