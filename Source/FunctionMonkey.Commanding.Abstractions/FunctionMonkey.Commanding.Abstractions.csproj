@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
     <AssemblyVersion>2.2.0.0</AssemblyVersion>
     <FileVersion>2.2.0.0</FileVersion>
-    <PackageVersion>4.0.5-alpha4</PackageVersion>
+    <PackageVersion>4.0.6-alpha5</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
