@@ -10,7 +10,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
-    <PackageVersion>4.0.6-alpha5</PackageVersion>
+    <PackageVersion>4.0.12-alpha5</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

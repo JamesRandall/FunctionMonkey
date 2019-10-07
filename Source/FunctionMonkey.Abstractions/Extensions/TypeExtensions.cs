@@ -22,7 +22,8 @@ namespace FunctionMonkey.Abstractions.Extensions
                 return shortCommandName.Substring(0, shortCommandName.Length - 7);
             }
 
-            return shortCommandName;
+            // this deals with generic function types
+            return shortCommandName.Replace(@"`", "__");
         }
 
         public static string EvaluateType(this Type type)

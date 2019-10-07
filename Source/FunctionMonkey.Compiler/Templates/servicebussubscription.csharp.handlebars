@@ -25,10 +25,10 @@ namespace {{Namespace}}
             FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             string body = System.Text.Encoding.UTF8.GetString(queueItem.Body);
-            {{CommandTypeName}} command;
+            {{{CommandTypeName}}} command;
             if (!System.String.IsNullOrWhiteSpace(body))
             {
-                command = ({{CommandTypeName}})pluginFunctions.Deserialize(body, false); // we don't enforce security properties from message buses
+                command = ({{{CommandTypeName}}})pluginFunctions.Deserialize(body, false); // we don't enforce security properties from message buses
             }
             else
             {
@@ -83,20 +83,20 @@ namespace {{Namespace}}
             {{/if}}
         }
 
-        private static {{CommandTypeName}} CreateNewCommand()
+        private static {{{CommandTypeName}}} CreateNewCommand()
         {
             {{#if UsesImmutableTypes}}
                 {{#if CommandTypeIsUnit}}
                     return null;
                 {{else}}
-                    return new {{CommandTypeName}}(
+                    return new {{{CommandTypeName}}}(
                     {{#each ImmutableTypeConstructorParameters}}
                         default({{{TypeName}}}){{#unless @last}},{{/unless}}
                     {{/each}}
                     );
                 {{/if}}
             {{else}}
-                return new {{CommandTypeName}}();
+                return new {{{CommandTypeName}}}();
             {{/if}}
         }
     }

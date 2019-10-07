@@ -86,10 +86,10 @@ namespace {{Namespace}}
             }
             {{/if}}
 
-            {{CommandTypeName}} command;
+            {{{CommandTypeName}}} command;
             string contentType = req.ContentType?.ToLower() ?? "application/json";
             {{#if IsStreamCommand}}
-                command = new {{CommandTypeName}}() {
+                command = new {{{CommandTypeName}}}() {
                     Stream = req.Body
                 };
             {{else}}
@@ -101,7 +101,7 @@ namespace {{Namespace}}
                 {
                     try
                     {
-                        command = ({{CommandTypeName}})pluginFunctions.Deserialize(requestBody, true); // true is to enforce security properties
+                        command = ({{{CommandTypeName}}})pluginFunctions.Deserialize(requestBody, true); // true is to enforce security properties
                     }
                     catch(FunctionMonkey.DeserializationException dex)
                     {
@@ -506,20 +506,20 @@ namespace {{Namespace}}
           return success;
         }
                         
-        private static {{CommandTypeName}} CreateNewCommand()
+        private static {{{CommandTypeName}}} CreateNewCommand()
         {
             {{#if UsesImmutableTypes}}
                 {{#if CommandTypeIsUnit}}
                     return null;
                 {{else}}    
-                return new {{CommandTypeName}}(
+                return new {{{CommandTypeName}}}(
                     {{#each ImmutableTypeConstructorParameters}}
                         default({{{TypeName}}}){{#unless @last}},{{/unless}}
                     {{/each}}
                 );
                 {{/if}}    
             {{else}}
-                return new {{CommandTypeName}}();
+                return new {{{CommandTypeName}}}();
             {{/if}}
         }
 
@@ -529,7 +529,7 @@ namespace {{Namespace}}
             {{#if CommandTypeIsUnit}}
                 return null;
             {{else}}
-            return new {{CommandTypeName}}(
+            return new {{{CommandTypeName}}}(
             {{#each ImmutableTypeConstructorParameters}}
                 values.TryGetValue("{{Name}}", out object uncastValue{{@index}}) ? ({{{TypeName}}})uncastValue{{@index}} : originalCommand.{{Name}}{{#unless @last}},{{/unless}}
             {{/each}}
