@@ -280,6 +280,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(System.Environment).Assembly.Location,
                 typeof(HttpTriggerAttribute).Assembly.Location,
                 typeof(ServiceBusAttribute).Assembly.Location,
+                typeof(QueueAttribute).Assembly.Location,
                 typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location
             };
 
