@@ -25,6 +25,9 @@ module internal InternalHelpers =
             serviceBusFunctions = functionsListA |> Seq.collect(fun f -> f.serviceBusFunctions)
                             |> Seq.append (functionsListB |> Seq.collect(fun f -> f.serviceBusFunctions))
                             |> Seq.toList
+            timerFunctions = functionsListA |> Seq.collect(fun f -> f.timerFunctions)
+                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.timerFunctions))
+                            |> Seq.toList
         }
         
     let getPropertyInfo (expression:Expression<Func<'commandType, 'propertyType>>) =

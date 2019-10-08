@@ -114,6 +114,8 @@ module Models =
             handler: obj
             validator: BridgedFunction
             outputBinding: obj option
+            serializer: BridgedFunction
+            deserializer: BridgedFunction
         }
         
     type HttpFunction =
@@ -126,23 +128,25 @@ module Models =
             validationFailureResponseHandler: BridgedFunction
             authorizationMode: AuthorizationMode option
             returnResponseBodyWithOutputBinding: bool
-            serializer: BridgedFunction
-            deserializer: BridgedFunction
         }
         interface IOutputBindingTarget<HttpFunction> with
             member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
             member this.getOutputBinding() = this.coreAttributes.outputBinding
             member this.getFunction() = this
             member this.resultType = this.coreAttributes.resultType
-        
+    
+    type TimerFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            cronExpression: string
+        }
+    
     type ServiceBusQueueFunction =
         {
             coreAttributes: CoreFunctionAttributes
             connectionStringSettingName: ConnectionString
             queueName: string
             sessionIdEnabled: bool
-            serializer: BridgedFunction
-            deserializer: BridgedFunction
         }
         interface IOutputBindingTarget<ServiceBusQueueFunction> with
             member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
@@ -157,8 +161,6 @@ module Models =
             topicName: string
             subscriptionName: string
             sessionIdEnabled: bool
-            serializer: BridgedFunction
-            deserializer: BridgedFunction
         }
         interface IOutputBindingTarget<ServiceBusSubscriptionFunction> with
             member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
@@ -190,6 +192,7 @@ module Models =
     type Functions = {
         httpFunctions: HttpFunction list
         serviceBusFunctions: ServiceBusFunction list
+        timerFunctions: TimerFunction list
     }   
     
     type Diagnostics = {
@@ -227,6 +230,7 @@ module Models =
     let defaultFunctions = {
         httpFunctions = []
         serviceBusFunctions = []
+        timerFunctions = []
     }
     
     let private defaultDiagnostics = {

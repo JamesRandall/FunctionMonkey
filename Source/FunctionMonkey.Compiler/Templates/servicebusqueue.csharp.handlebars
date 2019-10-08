@@ -48,7 +48,13 @@ namespace {{Namespace}}
             var validationResult = pluginFunctions.Validate(command);
             if (!pluginFunctions.IsValid(validationResult))
             {
-                throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException("{{Name}}", validationResult, messageId);
+            {{#if IsFunctionalFunction}}
+                throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException("{{Name}}", validationResult);
+            {{else}}
+                throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException(
+                    "{{Name}}",
+                    (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult) validationResult);
+            {{/if}}
             }
             {{/unless}}
             {{/if}}

@@ -323,9 +323,9 @@ namespace {{Namespace}}
                     if ({{TypeName}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
                     {
                         {{#if ../UsesImmutableTypes}}
-                            imtPropertyValues["{{Name}}"] = rcandidate;
+                            imtPropertyValues["{{Name}}"] = rcandidate{{@index}};
                         {{else}}
-                            command.{{Name}} = rcandidate;
+                            command.{{Name}} = rcandidate{{@index}};
                         {{/if}}
                     }
                     else

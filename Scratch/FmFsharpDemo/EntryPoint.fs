@@ -72,6 +72,9 @@ module EntryPoint =
                 |> serviceBusQueue ("sbQueueCommand")
                 |> withServiceBusConnectionStringSettingName ""
         ]
+        timers [
+            azureFunction.timer(Handler(fun () -> System.Console.WriteLine("Timer func")), "*/5 * * * * *")
+        ]
         (*serviceBus DefaultConnectionStringSettingName [
             azureFunction.serviceBusQueue (Handler(fun (c:SbQueueCommand) -> System.Console.WriteLine("SbQueueCommand: " + c.someValue)), "sbQueueCommand")
                 |> serviceBusQueue ("junk")

@@ -13,7 +13,9 @@ namespace {{Namespace}}
     [FunctionMonkey.ReferenceLinkBack]
     public static class ReferenceLinkBack
     {
+        {{#if IsPropertyReference}}
         public static {{PropertyTypeName}} Value;
+        {{/if}}
 
         public static void ForceLinkBack()
         {

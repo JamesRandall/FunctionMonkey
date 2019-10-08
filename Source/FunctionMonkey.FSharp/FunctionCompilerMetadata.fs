@@ -64,7 +64,28 @@ module internal FunctionCompilerMetadata =
             
         let getNamespace coreAttributes =
             (sprintf "%s.Functions" (coreAttributes.commandType.Assembly.GetName().Name.Replace("-", "_")))
-            
+        
+        let createTimerFunctionDefinition (configuration:FunctionAppConfiguration) (timerFunction:TimerFunction) =
+            TimerFunctionDefinition(
+                timerFunction.coreAttributes.commandType,
+                timerFunction.coreAttributes.resultType,
+                CronExpression = timerFunction.cronExpression,
+                // common settings
+                ImmutableTypeConstructorParameters = extractConstructorParameters timerFunction.coreAttributes,
+                CommandDeserializerType = typeof<CamelCaseJsonSerializer>,
+                IsUsingValidator = not (timerFunction.coreAttributes.validator = null),
+                UsesImmutableTypes = true,
+                FunctionHandler = timerFunction.coreAttributes.handler,
+                ValidatorFunction = timerFunction.coreAttributes.validator,                
+                IsValidFunction = configuration.isValidHandler,
+                Namespace = (timerFunction.coreAttributes |> getNamespace) + "2",
+                SerializeFunction = (match timerFunction.coreAttributes.serializer with | null -> configuration.defaultSerializer | _ -> timerFunction.coreAttributes.serializer),
+                DeserializeFunction = (match timerFunction.coreAttributes.deserializer with | null -> configuration.defaultDeserializer | _ -> timerFunction.coreAttributes.deserializer),
+                OutputBinding = (match timerFunction.coreAttributes.outputBinding with
+                                  | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
+                                  | None -> null)
+            ) :> AbstractFunctionDefinition
+        
         let createServiceBusQueueFunctionDefinition (configuration:FunctionAppConfiguration) (sbqFunction:ServiceBusQueueFunction) =
             ServiceBusQueueFunctionDefinition(
                 sbqFunction.coreAttributes.commandType,
@@ -83,8 +104,8 @@ module internal FunctionCompilerMetadata =
                 ValidatorFunction = sbqFunction.coreAttributes.validator,                
                 IsValidFunction = configuration.isValidHandler,
                 Namespace = (sbqFunction.coreAttributes |> getNamespace) + "2",
-                SerializeFunction = (match sbqFunction.serializer with | null -> configuration.defaultSerializer | _ -> sbqFunction.serializer),
-                DeserializeFunction = (match sbqFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbqFunction.deserializer),
+                SerializeFunction = (match sbqFunction.coreAttributes.serializer with | null -> configuration.defaultSerializer | _ -> sbqFunction.coreAttributes.serializer),
+                DeserializeFunction = (match sbqFunction.coreAttributes.deserializer with | null -> configuration.defaultDeserializer | _ -> sbqFunction.coreAttributes.deserializer),
                 OutputBinding = (match sbqFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
                                   | None -> null)
@@ -109,8 +130,8 @@ module internal FunctionCompilerMetadata =
                 ValidatorFunction = sbsFunction.coreAttributes.validator,                
                 IsValidFunction = configuration.isValidHandler,
                 Namespace = (sbsFunction.coreAttributes |> getNamespace),
-                SerializeFunction = (match sbsFunction.serializer with | null -> configuration.defaultSerializer | _ -> sbsFunction.serializer),
-                DeserializeFunction = (match sbsFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> sbsFunction.deserializer),
+                SerializeFunction = (match sbsFunction.coreAttributes.serializer with | null -> configuration.defaultSerializer | _ -> sbsFunction.coreAttributes.serializer),
+                DeserializeFunction = (match sbsFunction.coreAttributes.deserializer with | null -> configuration.defaultDeserializer | _ -> sbsFunction.coreAttributes.deserializer),
                 OutputBinding = (match sbsFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
                                   | None -> null)
@@ -229,8 +250,8 @@ module internal FunctionCompilerMetadata =
                  IsValidFunction = configuration.isValidHandler,
                  // Added for Function Monkey and also needed to be added to the C#
                  ReturnResponseBodyWithOutputBinding = httpFunction.returnResponseBodyWithOutputBinding,
-                 SerializeFunction = (match httpFunction.serializer with | null -> configuration.defaultSerializer | _ -> httpFunction.serializer),
-                 DeserializeFunction = (match httpFunction.deserializer with | null -> configuration.defaultDeserializer | _ -> httpFunction.deserializer)
+                 SerializeFunction = (match httpFunction.coreAttributes.serializer with | null -> configuration.defaultSerializer | _ -> httpFunction.coreAttributes.serializer),
+                 DeserializeFunction = (match httpFunction.coreAttributes.deserializer with | null -> configuration.defaultDeserializer | _ -> httpFunction.coreAttributes.deserializer)
                  
             ) :> AbstractFunctionDefinition
         
@@ -263,6 +284,8 @@ module internal FunctionCompilerMetadata =
                                |> Seq.map (function
                                    | Queue q -> q |> createServiceBusQueueFunctionDefinition configuration
                                    | Subscription s -> s |> createServiceBusSubscriptionFunctionDefinition configuration))
+                |> Seq.append (configuration.functions.timerFunctions
+                               |> Seq.map (fun f -> f |> createTimerFunctionDefinition configuration))
                 |> Seq.toList
             backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
             backlinkPropertyInfo = configuration.backlinkPropertyInfo

@@ -52,7 +52,7 @@ namespace {{Namespace}}
                 string[] values = headerKeyValuesPair.Value.ToArray();
                 headerDictionary.Add(headerKeyValuesPair.Key, values);
             }
-            contextSetter.SetHttpContext(requestUrl, headerDictionary);
+            contextSetter.SetHttpContext(null, requestUrl, headerDictionary);
 
             System.Security.Claims.ClaimsPrincipal principal = null;
             // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
@@ -73,7 +73,8 @@ namespace {{Namespace}}
             if (principal == null)
             {
                 return new UnauthorizedResult();
-            }            
+            }
+            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);
             {{/if}}
 
             {{#if AuthorizesClaims}}

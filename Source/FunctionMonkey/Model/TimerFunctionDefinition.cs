@@ -8,6 +8,10 @@ namespace FunctionMonkey.Model
         public TimerFunctionDefinition(Type commandType) : base("Timer", commandType)
         {
         }
+        
+        public TimerFunctionDefinition(Type commandType, Type resultType) : base("Timer", commandType, resultType)
+        {
+        }
 
         public string CronExpression { get; set; }
 

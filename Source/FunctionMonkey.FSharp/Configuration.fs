@@ -54,6 +54,8 @@ module Configuration =
                                                                          | Handler h -> Task.FromResult(h(cmd))
                                                                          | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
                                                         )
+                    serializer = serializer |> bridgeWith createBridgedSerializer
+                    deserializer = deserializer |> bridgeWith createBridgedDeserializer
                  }
                  // http specific
                  verbs = [verb]
@@ -64,8 +66,6 @@ module Configuration =
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
                  validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
                  returnResponseBodyWithOutputBinding = match returnResponseBodyWithOutputBinding with | Some r -> r | _ -> false
-                 serializer = serializer |> bridgeWith createBridgedSerializer
-                 deserializer = deserializer |> bridgeWith createBridgedDeserializer
              }
              
         static member serviceBusQueue
@@ -91,12 +91,12 @@ module Configuration =
                                                  | Handler h -> Task.FromResult(h(cmd))
                                                  | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
                                     )
+                        serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                        deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                      }
                      queueName = queueName
                      connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
                      sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
-                     serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
-                     deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                   }
              )
              
@@ -124,15 +124,41 @@ module Configuration =
                                                  | Handler h -> Task.FromResult(h(cmd))
                                                  | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
                                     )
+                        serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                        deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                      }
                      topicName = topicName
                      subscriptionName = subscriptionName
                      connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
                      sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
-                     serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
-                     deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                  }
              )
+             
+        static member timer
+            (
+                (handler:FunctionHandler<'a,'b>),
+                cronExpression,
+                ?serializer,
+                ?deserializer
+            ) : TimerFunction =
+                {
+                    coreAttributes = {
+                        commandType = typeof<'a>
+                        resultType = typeof<'b>
+                        validator = null
+                        outputBinding = None
+                        handler = new System.Func<'a, Task<'b>>(
+                                    fun (cmd) -> match handler with
+                                                 | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                 | Handler h -> Task.FromResult(h(cmd))
+                                                 | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                    )
+                        serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                        deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
+                    }
+                    cronExpression = cronExpression
+                }
+            
                         
     type FunctionAppConfigurationBuilder() =
         member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
@@ -283,6 +309,16 @@ module Configuration =
                             |> Seq.append configuration.functions.serviceBusFunctions
                             |> Seq.toList
                 }
+            }
+            
+        [<CustomOperation("timers")>]
+        member this.timers(configuration, timerFunctions) =
+            { configuration
+                with functions = {
+                    configuration.functions
+                        with timerFunctions = timerFunctions
+                            |> List.append configuration.functions.timerFunctions
+                }  
             }
         
     let functionApp = FunctionAppConfigurationBuilder()
