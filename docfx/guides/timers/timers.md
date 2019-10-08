@@ -38,8 +38,7 @@ And now we'll create our function app configuration in the root of the project t
                 )
                 .Functions(functions => functions
                     .Timer<CleanUpCommand>("0 */5 * * * *")
-                    )
-                );
+                    );
         }
     }
 
@@ -81,7 +80,6 @@ And finally update our function app configuration to instruct the function to us
                 )
                 .Functions(functions => functions
                     .Timer<CleanUpCommand, CleanupCommandTimerCommandFactory>("0 */5 * * * *")
-                    )
                 );
         }
     }
