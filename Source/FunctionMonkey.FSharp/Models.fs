@@ -140,6 +140,43 @@ module Models =
             coreAttributes: CoreFunctionAttributes
             cronExpression: string
         }
+        
+    type StorageQueueFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            connectionStringSettingName: ConnectionString
+            queueName: string
+        }
+        interface IOutputBindingTarget<StorageQueueFunction> with
+            member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
+    
+    type StorageBlobFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            connectionStringSettingName: ConnectionString
+            blobPath: string
+        }
+        interface IOutputBindingTarget<StorageBlobFunction> with
+            member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
+        
+    type StorageFunction =
+        | StorageQueue of StorageQueueFunction
+        | Blob of StorageBlobFunction
+        member this.coreAttributes = match this with | StorageQueue q -> q.coreAttributes | Blob s -> s.coreAttributes
+        interface IOutputBindingTarget<StorageFunction> with
+            member this.setOutputBinding(binding: obj) =
+                match this with
+                | StorageQueue q -> StorageQueue({q with coreAttributes= { this.coreAttributes with outputBinding = Some binding } })
+                | Blob q -> Blob({q with coreAttributes= { this.coreAttributes with outputBinding = Some binding } })                
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
     
     type ServiceBusQueueFunction =
         {
@@ -193,6 +230,7 @@ module Models =
         httpFunctions: HttpFunction list
         serviceBusFunctions: ServiceBusFunction list
         timerFunctions: TimerFunction list
+        storageFunctions: StorageFunction list
     }   
     
     type Diagnostics = {
@@ -231,6 +269,7 @@ module Models =
         httpFunctions = []
         serviceBusFunctions = []
         timerFunctions = []
+        storageFunctions = []
     }
     
     let private defaultDiagnostics = {

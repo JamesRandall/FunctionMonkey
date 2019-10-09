@@ -68,6 +68,66 @@ module Configuration =
                  returnResponseBodyWithOutputBinding = match returnResponseBodyWithOutputBinding with | Some r -> r | _ -> false
              }
              
+        static member storageQueue
+            (
+                (handler:FunctionHandler<'a,'b>),
+                queueName,
+                (?validator:'a -> 'validationResult),
+                ?connectionStringSettingName,
+                ?serializer,
+                ?deserializer
+            ) : StorageFunction =
+             StorageQueue(
+                  {
+                     coreAttributes = {
+                        commandType = typeof<'a>
+                        resultType = typeof<'b>
+                        validator = validator |> bridgeWith createBridgedFunc
+                        outputBinding = None
+                        handler = new System.Func<'a, Task<'b>>(
+                                    fun (cmd) -> match handler with
+                                                 | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                 | Handler h -> Task.FromResult(h(cmd))
+                                                 | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                    )
+                        serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                        deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
+                     }
+                     queueName = queueName
+                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                  }
+             )
+             
+        static member blob
+            (
+                (handler:FunctionHandler<'a,'b>),
+                blobPath,
+                (?validator:'a -> 'validationResult),
+                ?connectionStringSettingName,
+                ?serializer,
+                ?deserializer
+            ) : StorageFunction =
+             Blob(
+                  {
+                     coreAttributes = {
+                        commandType = typeof<'a>
+                        resultType = typeof<'b>
+                        validator = validator |> bridgeWith createBridgedFunc
+                        outputBinding = None
+                        handler = new System.Func<'a, Task<'b>>(
+                                    fun (cmd) -> match handler with
+                                                 | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                 | Handler h -> Task.FromResult(h(cmd))
+                                                 | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                    )
+                        serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                        deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
+                     }
+                     blobPath = blobPath
+                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                  }
+             )
+             
         static member serviceBusQueue
             (
                 (handler:FunctionHandler<'a,'b>),
@@ -311,6 +371,21 @@ module Configuration =
                 }
             }
             
+        [<CustomOperation("storage")>]
+        member this.storage(configuration, connectionStringSettingName, storageFunctions) =
+            { configuration
+                with functions = {
+                    configuration.functions
+                        with storageFunctions = storageFunctions
+                            |> Seq.map (fun f -> match f with
+                                                 | StorageQueue q -> StorageQueue({ q with connectionStringSettingName = connectionStringSettingName })
+                                                 | Blob b -> Blob({ b with connectionStringSettingName = connectionStringSettingName })
+                                       )
+                            |> Seq.append configuration.functions.storageFunctions
+                            |> Seq.toList
+                }
+            }
+            
         [<CustomOperation("timers")>]
         member this.timers(configuration, timerFunctions) =
             { configuration
@@ -348,7 +423,18 @@ module Configuration =
                                )
                     |> Seq.append functions.serviceBusFunctions
                     |> Seq.toList
-                
+            }
+            
+        [<CustomOperation("storage")>]    
+        member this.serviceBus(functions:Functions, connectionStringSettingName, storageFunctions) =
+            { functions
+                with storageFunctions = storageFunctions
+                    |> Seq.map (function
+                                | StorageQueue q -> StorageQueue({ q with connectionStringSettingName = connectionStringSettingName })
+                                | Blob s -> Blob({ s with connectionStringSettingName = connectionStringSettingName })
+                               )
+                    |> Seq.append functions.storageFunctions
+                    |> Seq.toList
             }
     
     let functions = FunctionsBuilder()

@@ -284,6 +284,10 @@ module internal FunctionCompilerMetadata =
                                |> Seq.map (function
                                    | Queue q -> q |> createServiceBusQueueFunctionDefinition configuration
                                    | Subscription s -> s |> createServiceBusSubscriptionFunctionDefinition configuration))
+                |> Seq.append (configuration.functions.storageFunctions
+                               |> Seq.map (function
+                                   | StorageQueue q -> q |> createStorageQueueFunctionDefinition configuration
+                                   | Blob s -> s |> createStorageBlobFunctionDefinition configuration))
                 |> Seq.append (configuration.functions.timerFunctions
                                |> Seq.map (fun f -> f |> createTimerFunctionDefinition configuration))
                 |> Seq.toList
