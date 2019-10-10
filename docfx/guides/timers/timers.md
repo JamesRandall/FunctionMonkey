@@ -80,7 +80,7 @@ And finally update our function app configuration to instruct the function to us
                     commandRegistry.Register<CleanupCommandHandler>()
                 )
                 .Functions(functions => functions
-                    .Timer<CleanUpCommand, CleanupCommandTimerCommandFactory>("0 */5 * * * *)
+                    .Timer<CleanUpCommand, CleanupCommandTimerCommandFactory>("0 */5 * * * *")
                     )
                 );
         }
