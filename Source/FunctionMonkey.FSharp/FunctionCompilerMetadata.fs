@@ -28,10 +28,7 @@ module internal FunctionCompilerMetadata =
         | _ -> new BridgedFunction(func)
     
     let create configuration =
-        let findBackReferenceType functions =
-            // TODO: We need to find the best type to back reference to
-            functions.httpFunctions.[0].coreAttributes.commandType
-        
+       
         let patchOutputBindingConnectionString (abstractOutputBinding:AbstractOutputBinding) =
             let ensureIsSet defaultValue (existingSetting:string) =
                 match String.IsNullOrWhiteSpace(existingSetting) with | true -> defaultValue | _ -> existingSetting 
@@ -64,6 +61,87 @@ module internal FunctionCompilerMetadata =
             
         let getNamespace coreAttributes =
             (sprintf "%s.Functions" (coreAttributes.commandType.Assembly.GetName().Name.Replace("-", "_")))
+            
+        let nullableInt (value:int option) = match value with | Some v -> System.Nullable<int>(v) | None -> System.Nullable<int>()
+        
+        let nullableString (value:string option) = match value with | Some s -> s | None -> null
+            
+        let createCosmosDbFunctionDefinition (configuration:FunctionAppConfiguration) (cosmosFunction:CosmosDbFunction) =
+            CosmosDbFunctionDefinition(
+                cosmosFunction.coreAttributes.commandType,
+                cosmosFunction.coreAttributes.resultType,
+                DatabaseName = cosmosFunction.databaseName,
+                CollectionName = cosmosFunction.collectionName,
+                ConnectionStringName=(match cosmosFunction.connectionStringSettingName with
+                                      | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.storage
+                                      | ConnectionStringSettingName s -> s),
+                LeaseConnectionStringName = "",
+                IsDocumentCommand = true,
+                IsDocumentBatchCommand = false,
+                LeaseCollectionName = cosmosFunction.leaseCollectionName,
+                LeaseDatabaseName = cosmosFunction.leaseCollectionName,
+                ConvertToPascalCase = cosmosFunction.convertToPascalCase,
+                CreateLeaseCollectionIfNotExists = cosmosFunction.createLeaseCollectionIfNotExists,
+                StartFromBeginning = cosmosFunction.startFromBeginning,
+                LeaseCollectionPrefix = (cosmosFunction.leaseCollectionPrefix |> nullableString),
+                TrackRemainingWork = cosmosFunction.trackRemainingWork,
+                MaxItemsPerInvocation = (cosmosFunction.maxItemsPerInvocation |> nullableInt),
+                FeedPollDelay = (cosmosFunction.feedPollDelay |> nullableInt),
+                LeaseAcquireInterval = (cosmosFunction.leaseAcquireInterval |> nullableInt),
+                LeaseExpirationInterval = (cosmosFunction.leaseExpirationInterval |> nullableInt),
+                LeaseRenewInterval = (cosmosFunction.leaseRenewInterval |> nullableInt),
+                CheckpointFrequency = (cosmosFunction.checkpointFrequency |> nullableInt),
+                LeasesCollectionThroughput = (cosmosFunction.leasesCollectionThroughput |> nullableInt)
+            )
+        
+            
+        let createStorageQueueFunctionDefinition (configuration:FunctionAppConfiguration) (storageFunction:StorageQueueFunction) =
+            StorageQueueFunctionDefinition(
+                storageFunction.coreAttributes.commandType,
+                storageFunction.coreAttributes.resultType,
+                QueueName = storageFunction.queueName,
+                ConnectionStringName=(match storageFunction.connectionStringSettingName with
+                                      | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.storage
+                                      | ConnectionStringSettingName s -> s),
+                // common settings
+                ImmutableTypeConstructorParameters = extractConstructorParameters storageFunction.coreAttributes,
+                CommandDeserializerType = typeof<CamelCaseJsonSerializer>,
+                IsUsingValidator = not (storageFunction.coreAttributes.validator = null),
+                UsesImmutableTypes = true,
+                FunctionHandler = storageFunction.coreAttributes.handler,
+                ValidatorFunction = storageFunction.coreAttributes.validator,                
+                IsValidFunction = configuration.isValidHandler,
+                Namespace = (storageFunction.coreAttributes |> getNamespace) + "2",
+                SerializeFunction = (match storageFunction.coreAttributes.serializer with | null -> configuration.defaultSerializer | _ -> storageFunction.coreAttributes.serializer),
+                DeserializeFunction = (match storageFunction.coreAttributes.deserializer with | null -> configuration.defaultDeserializer | _ -> storageFunction.coreAttributes.deserializer),
+                OutputBinding = (match storageFunction.coreAttributes.outputBinding with
+                                  | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
+                                  | None -> null)
+            )
+            
+        let createStorageBlobFunctionDefinition (configuration:FunctionAppConfiguration) (storageFunction:StorageBlobFunction) =
+            BlobFunctionDefinition(
+                storageFunction.coreAttributes.commandType,
+                storageFunction.coreAttributes.resultType,
+                BlobPath = storageFunction.blobPath,
+                ConnectionStringName=(match storageFunction.connectionStringSettingName with
+                                      | DefaultConnectionStringSettingName -> configuration.defaultConnectionSettingNames.storage
+                                      | ConnectionStringSettingName s -> s),
+                // common settings
+                ImmutableTypeConstructorParameters = extractConstructorParameters storageFunction.coreAttributes,
+                CommandDeserializerType = typeof<CamelCaseJsonSerializer>,
+                IsUsingValidator = not (storageFunction.coreAttributes.validator = null),
+                UsesImmutableTypes = true,
+                FunctionHandler = storageFunction.coreAttributes.handler,
+                ValidatorFunction = storageFunction.coreAttributes.validator,                
+                IsValidFunction = configuration.isValidHandler,
+                Namespace = (storageFunction.coreAttributes |> getNamespace) + "2",
+                SerializeFunction = (match storageFunction.coreAttributes.serializer with | null -> configuration.defaultSerializer | _ -> storageFunction.coreAttributes.serializer),
+                DeserializeFunction = (match storageFunction.coreAttributes.deserializer with | null -> configuration.defaultDeserializer | _ -> storageFunction.coreAttributes.deserializer),
+                OutputBinding = (match storageFunction.coreAttributes.outputBinding with
+                                  | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
+                                  | None -> null)
+            )
         
         let createTimerFunctionDefinition (configuration:FunctionAppConfiguration) (timerFunction:TimerFunction) =
             TimerFunctionDefinition(
@@ -84,7 +162,7 @@ module internal FunctionCompilerMetadata =
                 OutputBinding = (match timerFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
                                   | None -> null)
-            ) :> AbstractFunctionDefinition
+            )
         
         let createServiceBusQueueFunctionDefinition (configuration:FunctionAppConfiguration) (sbqFunction:ServiceBusQueueFunction) =
             ServiceBusQueueFunctionDefinition(
@@ -109,7 +187,7 @@ module internal FunctionCompilerMetadata =
                 OutputBinding = (match sbqFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
                                   | None -> null)
-            ) :> AbstractFunctionDefinition
+            )
             
         let createServiceBusSubscriptionFunctionDefinition  (configuration:FunctionAppConfiguration) (sbsFunction:ServiceBusSubscriptionFunction) =
             ServiceBusSubscriptionFunctionDefinition(
@@ -135,7 +213,7 @@ module internal FunctionCompilerMetadata =
                 OutputBinding = (match sbsFunction.coreAttributes.outputBinding with
                                   | Some s -> ((s :?> AbstractOutputBinding) |> patchOutputBindingConnectionString)
                                   | None -> null)
-            ) :> AbstractFunctionDefinition
+            )
         
         let createHttpFunctionDefinition (configuration:FunctionAppConfiguration) (httpFunction:HttpFunction) =
             let convertVerb verb =
@@ -279,17 +357,24 @@ module internal FunctionCompilerMetadata =
             functionDefinitions =
                 [] 
                 |> Seq.append (configuration.functions.httpFunctions
-                               |> Seq.map (fun f -> createHttpFunctionDefinition configuration f))
+                               |> Seq.map (fun f -> createHttpFunctionDefinition configuration f)
+                               |> Seq.cast<AbstractFunctionDefinition>)
                 |> Seq.append (configuration.functions.serviceBusFunctions
                                |> Seq.map (function
-                                   | Queue q -> q |> createServiceBusQueueFunctionDefinition configuration
-                                   | Subscription s -> s |> createServiceBusSubscriptionFunctionDefinition configuration))
+                                   | Queue q ->
+                                       q |> createServiceBusQueueFunctionDefinition configuration :> AbstractFunctionDefinition
+                                   | Subscription s ->
+                                       s |> createServiceBusSubscriptionFunctionDefinition configuration :>AbstractFunctionDefinition))
                 |> Seq.append (configuration.functions.storageFunctions
                                |> Seq.map (function
-                                   | StorageQueue q -> q |> createStorageQueueFunctionDefinition configuration
-                                   | Blob s -> s |> createStorageBlobFunctionDefinition configuration))
+                                   | StorageQueue q ->
+                                       q |> createStorageQueueFunctionDefinition configuration :> AbstractFunctionDefinition 
+                                   | Blob s ->
+                                       s |> createStorageBlobFunctionDefinition configuration :> AbstractFunctionDefinition))
                 |> Seq.append (configuration.functions.timerFunctions
-                               |> Seq.map (fun f -> f |> createTimerFunctionDefinition configuration))
+                               |> Seq.map (fun f -> f |> createTimerFunctionDefinition configuration) |> Seq.cast<AbstractFunctionDefinition>)
+                |> Seq.append(configuration.functions.cosmosDbFunctions
+                              |> Seq.map (fun f -> f |> createCosmosDbFunctionDefinition configuration) |> Seq.cast<AbstractFunctionDefinition>)
                 |> Seq.toList
             backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
             backlinkPropertyInfo = configuration.backlinkPropertyInfo

@@ -141,6 +141,34 @@ module Models =
             cronExpression: string
         }
         
+    type CosmosDbFunction =
+        {
+            coreAttributes: CoreFunctionAttributes
+            databaseName: string
+            collectionName: string
+            leaseCollectionName: string
+            leaseDatabaseName: string
+            connectionStringSettingName: ConnectionString
+            trackRemainingWork: bool
+            remainingWorkCronExpression: string
+            createLeaseCollectionIfNotExists: bool
+            startFromBeginning: bool
+            convertToPascalCase: bool
+            leaseCollectionPrefix: string option
+            maxItemsPerInvocation: int option
+            feedPollDelay: int option
+            leaseAcquireInterval: int option
+            leaseExpirationInterval: int option
+            leaseRenewInterval: int option
+            checkpointFrequency: int option
+            leasesCollectionThroughput: int option
+        }
+        interface IOutputBindingTarget<CosmosDbFunction> with
+            member this.setOutputBinding(binding: obj) = { this with coreAttributes= { this.coreAttributes with outputBinding = Some binding } }
+            member this.getOutputBinding() = this.coreAttributes.outputBinding
+            member this.getFunction() = this
+            member this.resultType = this.coreAttributes.resultType
+        
     type StorageQueueFunction =
         {
             coreAttributes: CoreFunctionAttributes
@@ -231,6 +259,7 @@ module Models =
         serviceBusFunctions: ServiceBusFunction list
         timerFunctions: TimerFunction list
         storageFunctions: StorageFunction list
+        cosmosDbFunctions: CosmosDbFunction list
     }   
     
     type Diagnostics = {
@@ -270,6 +299,7 @@ module Models =
         serviceBusFunctions = []
         timerFunctions = []
         storageFunctions = []
+        cosmosDbFunctions = []
     }
     
     let private defaultDiagnostics = {

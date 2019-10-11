@@ -28,6 +28,12 @@ module internal InternalHelpers =
             timerFunctions = functionsListA |> Seq.collect(fun f -> f.timerFunctions)
                             |> Seq.append (functionsListB |> Seq.collect(fun f -> f.timerFunctions))
                             |> Seq.toList
+            storageFunctions = functionsListA |> Seq.collect(fun f -> f.storageFunctions)
+                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.storageFunctions))
+                            |> Seq.toList
+            cosmosDbFunctions = functionsListA |> Seq.collect(fun f -> f.cosmosDbFunctions)
+                            |> Seq.append (functionsListB |> Seq.collect(fun f -> f.cosmosDbFunctions))
+                            |> Seq.toList
         }
         
     let getPropertyInfo (expression:Expression<Func<'commandType, 'propertyType>>) =

@@ -26,6 +26,13 @@ module Configuration =
         
     let private connectionStringSettingNameFromString value =
         match value with | Some s -> ConnectionStringSettingName(s) | None -> DefaultConnectionStringSettingName
+        
+    let private defaultValue defaultValue optionalBool =
+        match optionalBool with | Some s -> s | None -> defaultValue
+        
+    let private defaultFalse = defaultValue false
+    
+    let private defaultTrue = defaultValue true
     
     type azureFunction private() =
         static member http
@@ -73,7 +80,6 @@ module Configuration =
                 (handler:FunctionHandler<'a,'b>),
                 queueName,
                 (?validator:'a -> 'validationResult),
-                ?connectionStringSettingName,
                 ?serializer,
                 ?deserializer
             ) : StorageFunction =
@@ -94,7 +100,7 @@ module Configuration =
                         deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                      }
                      queueName = queueName
-                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                     connectionStringSettingName = DefaultConnectionStringSettingName
                   }
              )
              
@@ -103,7 +109,6 @@ module Configuration =
                 (handler:FunctionHandler<'a,'b>),
                 blobPath,
                 (?validator:'a -> 'validationResult),
-                ?connectionStringSettingName,
                 ?serializer,
                 ?deserializer
             ) : StorageFunction =
@@ -124,7 +129,7 @@ module Configuration =
                         deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                      }
                      blobPath = blobPath
-                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                     connectionStringSettingName = DefaultConnectionStringSettingName
                   }
              )
              
@@ -133,7 +138,6 @@ module Configuration =
                 (handler:FunctionHandler<'a,'b>),
                 queueName,
                 (?validator:'a -> 'validationResult),
-                ?connectionStringSettingName,
                 ?sessionIdEnabled,
                 ?serializer,
                 ?deserializer
@@ -155,7 +159,7 @@ module Configuration =
                         deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                      }
                      queueName = queueName
-                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                     connectionStringSettingName = DefaultConnectionStringSettingName
                      sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
                   }
              )
@@ -166,7 +170,6 @@ module Configuration =
                 topicName,
                 (subscriptionName:string),
                 (?validator:'a -> 'validationResult),
-                ?connectionStringSettingName,
                 ?sessionIdEnabled,
                 ?serializer,
                 ?deserializer
@@ -189,7 +192,7 @@ module Configuration =
                      }
                      topicName = topicName
                      subscriptionName = subscriptionName
-                     connectionStringSettingName = connectionStringSettingNameFromString connectionStringSettingName
+                     connectionStringSettingName = DefaultConnectionStringSettingName
                      sessionIdEnabled = match sessionIdEnabled with | Some v -> v | None -> false
                  }
              )
@@ -217,6 +220,65 @@ module Configuration =
                         deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
                     }
                     cronExpression = cronExpression
+                }
+                
+        static member cosmosDb
+            (
+                (handler:FunctionHandler<'a,'b>),
+                databaseName: string,
+                collectionName: string,
+                (?validator:'a -> 'validationResult),
+                ?serializer,
+                ?deserializer,
+                ?leaseDatabaseName,
+                ?leaseConnectionName,
+                ?trackRemainingWork,
+                ?createLeaseCollectionIfNotExists,
+                ?startFromBeginning,
+                ?convertToPascalCase,
+                ?leaseCollectionPrefix,
+                ?maxItemsPerInvocation,
+                ?feedPollDelay,
+                ?leaseAcquireInterval,
+                ?leaseExpirationInterval,
+                ?leaseRenewInterval,
+                ?checkpointFrequency,
+                ?leasesCollectionThroughput,
+                ?remainingWorkCronExpression
+            ) : CosmosDbFunction =
+                {
+                    databaseName = databaseName
+                    collectionName = collectionName
+                    coreAttributes = {
+                        commandType = typeof<'a>
+                        resultType = typeof<'b>
+                        validator = validator |> bridgeWith createBridgedFunc
+                        outputBinding = None
+                        handler = new System.Func<'a, Task<'b>>(
+                                    fun (cmd) -> match handler with
+                                                 | AsyncHandler h -> h(cmd) |> Async.StartAsTask
+                                                 | Handler h -> Task.FromResult(h(cmd))
+                                                 | NoHandler ->Task.FromResult((cmd :> obj) :?> 'b)
+                                    )
+                        serializer = match serializer with Some s -> s |> bridgeWith createBridgedSerializer | None -> null
+                        deserializer = match deserializer with Some s -> s |> bridgeWith createBridgedDeserializer | None -> null
+                    }
+                    leaseCollectionName = leaseConnectionName |> defaultValue "leases"
+                    leaseDatabaseName =  leaseDatabaseName |> defaultValue databaseName
+                    connectionStringSettingName = DefaultConnectionStringSettingName
+                    trackRemainingWork = trackRemainingWork |> defaultFalse
+                    createLeaseCollectionIfNotExists = createLeaseCollectionIfNotExists |> defaultFalse
+                    startFromBeginning = startFromBeginning |> defaultFalse
+                    convertToPascalCase = convertToPascalCase |> defaultFalse
+                    leaseCollectionPrefix = leaseCollectionPrefix
+                    maxItemsPerInvocation = maxItemsPerInvocation
+                    feedPollDelay = feedPollDelay
+                    leaseAcquireInterval = leaseAcquireInterval
+                    leaseExpirationInterval = leaseExpirationInterval
+                    leaseRenewInterval = leaseRenewInterval
+                    checkpointFrequency = checkpointFrequency
+                    leasesCollectionThroughput = leasesCollectionThroughput
+                    remainingWorkCronExpression = remainingWorkCronExpression |> defaultValue "*/5 * * * * *"
                 }
             
                         
@@ -350,9 +412,8 @@ module Configuration =
                 with functions = {
                     configuration.functions
                         with httpFunctions = httpFunctions
-                            |> Seq.map (fun f -> { f with route = prefix + f.route })
-                            |> Seq.append configuration.functions.httpFunctions
-                            |> Seq.toList
+                            |> List.map (fun f -> { f with route = prefix + f.route })
+                            |> List.append configuration.functions.httpFunctions
                 }
             }
         
@@ -362,12 +423,11 @@ module Configuration =
                 with functions = {
                     configuration.functions
                         with serviceBusFunctions = serviceBusFunctions
-                            |> Seq.map (fun f -> match f with
-                                                 | Queue q -> Queue({ q with connectionStringSettingName = connectionStringSettingName })
-                                                 | Subscription s -> Subscription({ s with connectionStringSettingName = connectionStringSettingName })
-                                       )
-                            |> Seq.append configuration.functions.serviceBusFunctions
-                            |> Seq.toList
+                            |> List.map (fun f -> match f with
+                                                  | Queue q -> Queue({ q with connectionStringSettingName = connectionStringSettingName })
+                                                  | Subscription s -> Subscription({ s with connectionStringSettingName = connectionStringSettingName })
+                                        )
+                            |> List.append configuration.functions.serviceBusFunctions
                 }
             }
             
@@ -377,12 +437,11 @@ module Configuration =
                 with functions = {
                     configuration.functions
                         with storageFunctions = storageFunctions
-                            |> Seq.map (fun f -> match f with
-                                                 | StorageQueue q -> StorageQueue({ q with connectionStringSettingName = connectionStringSettingName })
-                                                 | Blob b -> Blob({ b with connectionStringSettingName = connectionStringSettingName })
-                                       )
-                            |> Seq.append configuration.functions.storageFunctions
-                            |> Seq.toList
+                            |> List.map (fun f -> match f with
+                                                  | StorageQueue q -> StorageQueue({ q with connectionStringSettingName = connectionStringSettingName })
+                                                  | Blob b -> Blob({ b with connectionStringSettingName = connectionStringSettingName })
+                                        )
+                            |> List.append configuration.functions.storageFunctions
                 }
             }
             
@@ -393,6 +452,17 @@ module Configuration =
                     configuration.functions
                         with timerFunctions = timerFunctions
                             |> List.append configuration.functions.timerFunctions
+                }  
+            }
+        
+        [<CustomOperation("cosmosDb")>]    
+        member this.cosmosDb(configuration, connectionStringSettingName, cosmosDbFunctions) =
+            { configuration
+                with functions = {
+                    configuration.functions
+                        with cosmosDbFunctions = cosmosDbFunctions
+                            |> List.append configuration.functions.cosmosDbFunctions
+                            |> List.map(fun c -> { c with connectionStringSettingName = connectionStringSettingName })
                 }  
             }
         
