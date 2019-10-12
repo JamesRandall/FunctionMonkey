@@ -278,7 +278,7 @@ namespace {{Namespace}}
                 {{else if IsEnum}}
                     {
                         {{{RouteTypeName}}} result;
-                        if (System.Enum.TryParse<{{RouteTypeName}}>({{RouteName}}, out result))
+                        if (System.Enum.TryParse<{{{RouteTypeName}}}>({{RouteName}}, out result))
                         {
                             {{#if ../UsesImmutableTypes}}
                                 imtPropertyValues["{{Name}}"] = result;
@@ -298,7 +298,7 @@ namespace {{Namespace}}
                             {{{RouteTypeName}}} nullableValue;
                             if ({{RouteName}} != null)
                             {
-                                if(TryParseNullable({{RouteName}}, {{NullableType}}.TryParse, out nullableValue))
+                                if(TryParseNullable({{RouteName}}, {{{NullableType}}}.TryParse, out nullableValue))
                                 {
                                     {{#if ../UsesImmutableTypes}}
                                         imtPropertyValues["{{Name}}"] = nullableValue;
@@ -319,8 +319,21 @@ namespace {{Namespace}}
                         return CreateBadParameterResponse("Unions not yet supported for route parameters");
                         //{{{DiscriminatedUnionUnderlyingTypeName}}} discriminatedUnionValue = pluginFunctions.ParseFromString<{{{RouteTypeName}}}>({{RouteName}}));
                     }
+                {{else if IsFSharpOptionType}}
+                    {{#if FSharpOptionInnerTypeIsString}}
+                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>({{RouteName}});
+                    {{else}}
+                        if ({{{FSharpOptionInnerTypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
+                        {
+                            imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(rcandidate{{@index}});
+                        }
+                        else
+                        {
+                            return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                        }
+                    {{/if}}
                 {{else}}
-                    if ({{TypeName}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
+                    if ({{{TypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
                     {
                         {{#if ../UsesImmutableTypes}}
                             imtPropertyValues["{{Name}}"] = rcandidate{{@index}};
@@ -514,7 +527,12 @@ namespace {{Namespace}}
                 {{else}}    
                 return new {{{CommandTypeName}}}(
                     {{#each ImmutableTypeConstructorParameters}}
-                        default({{{TypeName}}}){{#unless @last}},{{/unless}}
+                        {{#if IsFSharpOptionType}}
+                            Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>.None
+                        {{else}}
+                            default({{{TypeName}}})
+                        {{/if}}
+                        {{#unless @last}},{{/unless}}
                     {{/each}}
                 );
                 {{/if}}    

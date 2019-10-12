@@ -48,7 +48,10 @@ module internal FunctionCompilerMetadata =
             let createParameter (cp:ParameterInfo) =
                 ImmutableTypeConstructorParameter(
                     Name = cp.Name,
-                    Type = cp.ParameterType
+                    Type = cp.ParameterType,
+                    IsFSharpOptionType = InternalHelpers.isFSharpOptionType cp.ParameterType,
+                    FSharpOptionInnerTypeName = InternalHelpers.optionTypeInnerName cp.ParameterType,
+                    FSharpOptionInnerTypeIsString = InternalHelpers.optionTypeInnerTypeIsString cp.ParameterType
                 )
             let constructors = aType.GetConstructors()
             match constructors.Length with
@@ -246,7 +249,10 @@ module internal FunctionCompilerMetadata =
                         |> Seq.filter propertyIsPossibleQueryParameter
                         |> Seq.map (fun q -> HttpParameter(Name=q.Name,
                                                            Type=q.PropertyType,
-                                                           IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null))
+                                                           IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null)),
+                                                           IsFSharpOptionType = InternalHelpers.isFSharpOptionType q.PropertyType,
+                                                           FSharpOptionInnerTypeName = InternalHelpers.optionTypeInnerName q.PropertyType,
+                                                           FSharpOptionInnerTypeIsString = InternalHelpers.optionTypeInnerTypeIsString q.PropertyType
                                                           )
                                    )
                         |> Seq.toList
@@ -271,13 +277,16 @@ module internal FunctionCompilerMetadata =
                                      Type = matchedProperty.PropertyType,
                                      IsOptional = isOptional,
                                      IsNullableType = not (Nullable.GetUnderlyingType(matchedProperty.PropertyType) = null),
+                                     IsFSharpOptionType = InternalHelpers.isFSharpOptionType matchedProperty.PropertyType,
+                                     FSharpOptionInnerTypeName = InternalHelpers.optionTypeInnerName matchedProperty.PropertyType,
+                                     FSharpOptionInnerTypeIsString = InternalHelpers.optionTypeInnerTypeIsString matchedProperty.PropertyType,
                                      RouteName = routeParameterName,
                                      RouteTypeName = routeTypeName
                                  )
-                    
-                match httpFunction.route with
-                | Match "{(.*?)}" routeParams -> routeParams |> Seq.map createRouteParameter |> Seq.toList
-                | _ -> []
+                
+                Regex.Matches(httpFunction.route, "{(.*?)}")
+                    |> Seq.map (fun m -> m.Groups.[1].Value |> createRouteParameter)
+                    |> Seq.toList
                 
             let resolvedAuthorizationMode = match httpFunction.authorizationMode with
                                             | Some a -> a

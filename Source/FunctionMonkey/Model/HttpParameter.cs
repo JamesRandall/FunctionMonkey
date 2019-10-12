@@ -81,5 +81,11 @@ namespace FunctionMonkey.Model
         public string RouteTypeName { get; set; }
         public bool IsNullableType { get; set; }
         public bool IsGuid => Type == typeof(Guid) || Type == typeof(Guid?);
+        
+        public bool IsFSharpOptionType { get; set; }
+        
+        public string FSharpOptionInnerTypeName { get; set; }
+        
+        public bool FSharpOptionInnerTypeIsString { get; set; }
     }
 }

@@ -4,8 +4,17 @@ open System
 open System.Linq.Expressions
 open System.Reflection
 open Models
+open FunctionMonkey.Abstractions.Extensions
 
 module internal InternalHelpers =
+    
+    let private fsharpOptionType = typedefof<Option<_>>
+    let isFSharpOptionType (tp:Type) = tp.IsGenericType && (tp.GetGenericTypeDefinition() = fsharpOptionType)
+    
+    let optionTypeInnerName (tp:Type) = if (isFSharpOptionType tp) then tp.GetGenericArguments().[0].EvaluateType() else ""
+                                        
+    let optionTypeInnerTypeIsString (tp:Type) = if (isFSharpOptionType tp) then tp.GetGenericArguments().[0] = typeof<string> else false
+    
     let gatherModuleFunctions (assembly:Assembly) =
         assembly.GetTypes()
         |> Seq.collect (

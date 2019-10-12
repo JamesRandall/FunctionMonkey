@@ -28,6 +28,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
+using Microsoft.FSharp.Core;
 using Newtonsoft.Json;
 using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
@@ -61,7 +62,9 @@ namespace FunctionMonkey.Compiler.Implementation
                 newAssemblyNamespace,
                 outputAuthoredSourceFolder);
 
-            CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace, target);
+            bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
+
+            CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace, target, isFSharpProject);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
@@ -172,9 +175,10 @@ namespace FunctionMonkey.Compiler.Implementation
             string outputBinaryFolder,
             string outputAssemblyName,
             string assemblyNamespace,
-            FunctionCompiler.TargetEnum target)
+            FunctionCompiler.TargetEnum target,
+            bool isFSharpProject)
         {
-            IReadOnlyCollection<string> locations = BuildCandidateReferenceList(externalAssemblyLocations, target);
+            IReadOnlyCollection<string> locations = BuildCandidateReferenceList(externalAssemblyLocations, target, isFSharpProject);
             const string manifestResourcePrefix = "FunctionMonkey.Compiler.references.netstandard2._0.";
             // For each assembly we've found we need to check and see if it is already included in the output binary folder
             // If it is then its referenced already by the function host and so we add a reference to that version.
@@ -283,7 +287,10 @@ namespace FunctionMonkey.Compiler.Implementation
             return references;
         }
 
-        private static IReadOnlyCollection<string> BuildCandidateReferenceList(IReadOnlyCollection<string> externalAssemblyLocations, FunctionCompiler.TargetEnum target)
+        private static IReadOnlyCollection<string> BuildCandidateReferenceList(
+            IReadOnlyCollection<string> externalAssemblyLocations,
+            FunctionCompiler.TargetEnum target,
+            bool isFSharpProject)
         {
             // These are assemblies that Roslyn requires from usage within the template
             HashSet<string> locations = new HashSet<string>
@@ -317,6 +324,11 @@ namespace FunctionMonkey.Compiler.Implementation
                 typeof(QueueAttribute).Assembly.Location,
                 typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location
             };
+
+            if (isFSharpProject)
+            {
+                locations.Add(typeof(FSharpOption<>).Assembly.Location);
+            }
 
             if (target == FunctionCompiler.TargetEnum.NETCore21)
             {

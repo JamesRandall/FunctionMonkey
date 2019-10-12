@@ -56,7 +56,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
                     // essentially pre-reqs for tracking things in the test suite
                     .HttpRoute("setup", route => route
-                        .HttpFunction<SetupTestResourcesCommand>()
+                        .HttpFunction<SetupTestResourcesCommand>(HttpMethod.Put)
                     )
                     .HttpRoute("verbs", route => route
                         .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)

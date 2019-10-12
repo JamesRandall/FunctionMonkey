@@ -1,14 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <AzureFunctionsVersion>v2</AzureFunctionsVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="AccidentalFish.FSharp.Validation" Version="0.10.1" />
-        <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.1.1" />
+        <PackageReference Include="FSharp.Control.AsyncSeq" Version="2.0.22" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.4" />
         <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.1" />
-        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.8" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     </ItemGroup>
     <ItemGroup>
         <None Update="host.json">
@@ -21,10 +21,13 @@
         <None Include="host.json">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <Compile Include="CosmosDb.fs" />
-        <Compile Include="Additional.fs" />
+        <Compile Include="Constants.fs" />
+        <Compile Include="CommonModel.fs" />
         <Compile Include="EntryPoint.fs" />
-        <None Include="ToDo.fs" />
+        <Compile Include="HttpVerbFunctions.fs" />
+        <Compile Include="HttpRouteParameterFunctions.fs" />
+        <Compile Include="HttpQueryParameterFunctions.fs" />
+        <Compile Include="HttpWithLoggerFunctions.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
           <CopyToPublishDirectory>Never</CopyToPublishDirectory>

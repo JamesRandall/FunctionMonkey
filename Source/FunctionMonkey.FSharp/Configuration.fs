@@ -283,7 +283,11 @@ module Configuration =
             
                         
     type FunctionAppConfigurationBuilder() =
-        member __.Yield (_: 'a) : FunctionAppConfiguration = defaultFunctionAppConfiguration
+        member __.Yield (_: 'a) : FunctionAppConfiguration =
+            {
+             defaultFunctionAppConfiguration with
+                defaultSerializer = Some Serialization.modelSerializer |> bridgeWith createBridgedSerializer
+            }
         member __.Run (configuration: FunctionAppConfiguration) =
             let configurationToCreate =
                 match configuration.enableFunctionModules with

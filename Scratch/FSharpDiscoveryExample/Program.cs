@@ -8,7 +8,8 @@ namespace FSharpDiscoveryExample
     {
         static void Main(string[] args)
         {
-
+            Microsoft.FSharp.Core.FSharpOption<string> some = new Microsoft.FSharp.Core.FSharpOption<string>("ss");
+            Microsoft.FSharp.Core.FSharpOption<string> option = Microsoft.FSharp.Core.FSharpOption<string>.None;
             //Microsoft.FSharp.Core.Unit
             /*Assembly assembly = typeof(FmFsharpDemo.EntryPoint.Order).Assembly;
             foreach (Type type in assembly.ExportedTypes)
