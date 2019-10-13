@@ -82,7 +82,7 @@ namespace FunctionMonkey.Abstractions.Extensions
             return retType.ToString();
         }
         
-        public static bool IsSupportedQueryParameterType(this Type type)
+        public static bool IsSupportedCSharpQueryParameterType(this Type type)
         {
             return type.IsSupportedQueryParameterDiscreteType() ||
                    type.IsSupportedQueryParameterCollectionType();

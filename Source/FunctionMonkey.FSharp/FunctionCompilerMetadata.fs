@@ -235,9 +235,13 @@ module internal FunctionCompilerMetadata =
                 | Function -> AuthorizationTypeEnum.Function
                 
             let extractQueryParameters (routeParameters:HttpParameter list) =
+                let isSupportedFSharpQueryParameterType pt =
+                    // TODO: In here we need to look for the F# collection types
+                    pt |> InternalHelpers.isFSharpOptionType
+                
                 let propertyIsPossibleQueryParameter (x:PropertyInfo) =
                     x.GetCustomAttribute<SecurityPropertyAttribute>() = null
-                    && (x.PropertyType.IsSupportedQueryParameterType() || x.PropertyType |> InternalHelpers.isFSharpOptionType)
+                    && (x.PropertyType.IsSupportedCSharpQueryParameterType() || x.PropertyType |> isSupportedFSharpQueryParameterType)
                     && not(routeParameters |> Seq.exists (fun y -> y.Name = x.Name))
                 
                 let properties =

@@ -72,7 +72,7 @@ let httpVerbFunctions = functions {
         azureFunction.http (Handler(arrayQueryParam), Get, subRoute="/array")
         azureFunction.http (Handler(readonlyCollectionQueryParam), Get, subRoute="/readonlyCollection")
         azureFunction.http (Handler(listQueryParam), Get, subRoute="/list")
-        azureFunction.http (Handler(listQueryStringParam), Get, subRoute="stringList")
-        azureFunction.http (Handler(enumerableQueryParam), Get, subRoute="enumerable")
+        azureFunction.http (Handler(listQueryStringParam), Get, subRoute="/stringList")
+        azureFunction.http (Handler(enumerableQueryParam), Get, subRoute="/enumerable")
     ]
 }

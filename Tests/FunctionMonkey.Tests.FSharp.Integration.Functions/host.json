@@ -4,5 +4,10 @@
     "http": {
       "routePrefix": ""
     }
+  },
+  "logging": {
+    "logLevel": {
+      "default": "Information"
+    }
   }
 }

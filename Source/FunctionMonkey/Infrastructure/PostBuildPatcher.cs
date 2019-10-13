@@ -197,7 +197,7 @@ namespace FunctionMonkey.Infrastructure
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
                             && x.SetMethod != null
-                            && x.PropertyType.IsSupportedQueryParameterType()
+                            && x.PropertyType.IsSupportedCSharpQueryParameterType()
                             && httpFunctionDefinition.RouteParameters.All(y => y.Name != x.Name) // we can't be a query parameter and a route parameter
                             )
                 .Select(x => new HttpParameter
