@@ -97,7 +97,12 @@ namespace {{Namespace}}
             {{else}}
                 return new {{{CommandTypeName}}}(
                 {{#each ImmutableTypeConstructorParameters}}
-                    default({{{TypeName}}}){{#unless @last}},{{/unless}}
+                    {{#if IsFSharpOptionType}}
+                        Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>.None
+                    {{else}}
+                        default({{{TypeName}}})
+                    {{/if}}
+                    {{#unless @last}},{{/unless}}
                 {{/each}}
                 );
             {{/if}}

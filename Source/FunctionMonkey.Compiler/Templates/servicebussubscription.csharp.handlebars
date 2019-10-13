@@ -91,19 +91,24 @@ namespace {{Namespace}}
 
         private static {{{CommandTypeName}}} CreateNewCommand()
         {
-            {{#if UsesImmutableTypes}}
-                {{#if CommandTypeIsUnit}}
-                    return null;
-                {{else}}
-                    return new {{{CommandTypeName}}}(
-                    {{#each ImmutableTypeConstructorParameters}}
-                        default({{{TypeName}}}){{#unless @last}},{{/unless}}
-                    {{/each}}
-                    );
-                {{/if}}
+        {{#if UsesImmutableTypes}}
+            {{#if CommandTypeIsUnit}}
+                return null;
             {{else}}
-                return new {{{CommandTypeName}}}();
+                return new {{{CommandTypeName}}}(
+                {{#each ImmutableTypeConstructorParameters}}
+                    {{#if IsFSharpOptionType}}
+                        Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>.None
+                    {{else}}
+                        default({{{TypeName}}})
+                    {{/if}}
+                    {{#unless @last}},{{/unless}}
+                {{/each}}
+                );
             {{/if}}
+        {{else}}
+            return new {{{CommandTypeName}}}();
+        {{/if}}
         }
     }
 }

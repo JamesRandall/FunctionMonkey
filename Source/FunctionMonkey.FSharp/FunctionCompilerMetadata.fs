@@ -1,6 +1,7 @@
 namespace FunctionMonkey.FSharp
 open AzureFromTheTrenches.Commanding.Abstractions
 open System
+open System.Collections.Generic
 open System.Net.Http
 open System.Reflection
 open System.Text.RegularExpressions
@@ -236,7 +237,7 @@ module internal FunctionCompilerMetadata =
             let extractQueryParameters (routeParameters:HttpParameter list) =
                 let propertyIsPossibleQueryParameter (x:PropertyInfo) =
                     x.GetCustomAttribute<SecurityPropertyAttribute>() = null
-                    && x.PropertyType.IsSupportedQueryParameterType()
+                    && (x.PropertyType.IsSupportedQueryParameterType() || x.PropertyType |> InternalHelpers.isFSharpOptionType)
                     && not(routeParameters |> Seq.exists (fun y -> y.Name = x.Name))
                 
                 let properties =
@@ -304,7 +305,15 @@ module internal FunctionCompilerMetadata =
                  ValidatesToken = (resolvedAuthorizationMode = Token),
                  TokenHeader = configuration.authorization.defaultAuthorizationHeader,
                  ClaimsPrincipalAuthorizationType = null,
-                 HeaderBindingConfiguration = null,
+                 HeaderBindingConfiguration =
+                    (match httpFunction.headerMappings.Length > 0 with
+                     | true -> HeaderBindingConfiguration(
+                                PropertyFromHeaderMappings =
+                                    Dictionary<string,string>(
+                                        httpFunction.headerMappings |> Seq.map(fun h -> KeyValuePair(h.propertyName, h.headerName))                             
+                                    )     
+                                )
+                     | false -> null),
                  HttpResponseHandlerType = null,
                  IsValidationResult = (not (httpFunction.coreAttributes.resultType = typeof<unit>) && typeof<ValidationResult>.IsAssignableFrom(httpFunction.coreAttributes.resultType)),
                  IsStreamCommand = false,

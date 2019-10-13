@@ -15,9 +15,18 @@ module Configuration =
     type claimsMapper private () =
         static member inline shared (claimName, propertyName) =
             { claim = claimName ; mapper = Shared(propertyName) }
-        static member command<'commandType, 'propertyType> (claimName, (propertyExpression: Expression<Func<'commandType, 'propertyType>>)) =
+        static member command<'commandType, 'propertyType> (claimName, propertyExpression: Expression<Func<'commandType, 'propertyType>>) =
             let commandMapper = { commandType = typeof<'commandType> ; propertyInfo = (getPropertyInfo propertyExpression) }
             { claim = claimName ; mapper = Command (commandMapper) }
+    
+    type header private () =
+        static member mapping(expr: Expression<Func<'a, 'propertyType>>, headerName: string) =
+            let typedHeaderMapping : HeaderMapping<'a> =
+                {
+                    headerName = headerName
+                    propertyName = (getPropertyInfo expr).Name
+                }
+            typedHeaderMapping
             
     type FunctionHandler<'a, 'b> =
         | AsyncHandler of ('a -> Async<'b>)
@@ -45,6 +54,7 @@ module Configuration =
                 (?exceptionResponseHandlerAsync:'a -> Exception -> Async<IActionResult>),
                 (?asyncResponseHandler:'a -> 'b -> Async<IActionResult>),
                 (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>),
+                (?headerMappings:HeaderMapping<'a> list),
                 ?authorizationMode,
                 ?returnResponseBodyWithOutputBinding,
                 ?serializer,
@@ -68,6 +78,9 @@ module Configuration =
                  verbs = [verb]
                  route = (match subRoute with | Some r -> r | None -> "")
                  authorizationMode = authorizationMode
+                 headerMappings = match headerMappings with
+                                  | Some hm -> hm |> Seq.cast<IHeaderMapping> |> Seq.toList
+                                  | None -> []
                  // functions                 
                  exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync

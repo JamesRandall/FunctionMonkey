@@ -23,11 +23,13 @@
         </None>
         <Compile Include="Constants.fs" />
         <Compile Include="CommonModel.fs" />
-        <Compile Include="EntryPoint.fs" />
         <Compile Include="HttpVerbFunctions.fs" />
         <Compile Include="HttpRouteParameterFunctions.fs" />
         <Compile Include="HttpQueryParameterFunctions.fs" />
         <Compile Include="HttpWithLoggerFunctions.fs" />
+        <Compile Include="HttpHeaderFunctions.fs" />
+        <Compile Include="HttpNoResponseHandlerFunctions.fs" />
+        <Compile Include="EntryPoint.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
           <CopyToPublishDirectory>Never</CopyToPublishDirectory>

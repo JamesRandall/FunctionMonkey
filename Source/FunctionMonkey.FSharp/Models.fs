@@ -118,11 +118,25 @@ module Models =
             deserializer: BridgedFunction
         }
         
+    type IHeaderMapping =
+        abstract member headerName : string with get
+        abstract member propertyName : string with get
+        
+    type HeaderMapping<'commandType> =
+        {
+            headerName: string
+            propertyName: string
+        }
+        interface IHeaderMapping with
+            member this.headerName with get() = this.headerName
+            member this.propertyName with get() = this.propertyName
+        
     type HttpFunction =
         {
             coreAttributes: CoreFunctionAttributes
             verbs: HttpVerb list
             route: string
+            headerMappings: IHeaderMapping list
             exceptionResponseHandler: BridgedFunction
             responseHandler: BridgedFunction
             validationFailureResponseHandler: BridgedFunction

@@ -56,6 +56,7 @@ module EntryPoint =
         tokenValidator validateToken
         claimsMappings [
             claimsMapper.shared ("userId", "userId")
+            claimsMapper.command("", (fun p -> p.someValue))
         ]
         defaultSerializer (fun o _ -> JsonConvert.SerializeObject(o))
         // validation

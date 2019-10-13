@@ -15,12 +15,8 @@ let private withLogger (_ : HttpGetWithLoggerCommand) =
     System.Console.WriteLine("withLogger executed")
     ()
 
-(*
-
 let httpWithLoggerFunctions = functions {
     httpRoute "withLogger" [
         azureFunction.http (Handler(withLogger), Get)
     ]
 }
-
-*)

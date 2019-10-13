@@ -154,7 +154,11 @@ namespace {{Namespace}}
                         {{/if}}
                         foreach(string queryParameterValue in queryParameterValues)
                         {
-                            {{{DiscreteTypeName}}} parsedValue = default({{{DiscreteTypeName}}});
+                            {{#if IsFSharpOptionType}}
+                                {{{DiscreteTypeName}}} parsedValue = {{{DiscreteTypeName}}}.None;
+                            {{else}}
+                                {{{DiscreteTypeName}}} parsedValue = default({{{DiscreteTypeName}}});
+                            {{/if}}
                 
                             {{#if IsString}}
                             parsedValue = queryParameterValue;
@@ -177,8 +181,21 @@ namespace {{Namespace}}
                                     }
                                 {{/if}}
                             }
+                            {{else if IsFSharpOptionType}}
+                                {{#if FSharpOptionInnerTypeIsString}}
+                                    parsedValue = new Microsoft.FSharp.Core.FSharpOption<string>(queryParameterValue);
+                                {{else}}
+                                    if ({{{FSharpOptionInnerTypeName}}}.TryParse(queryParameterValue, out var qcandidate{{@index}}))
+                                    {
+                                        parsedValue = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(qcandidate{{@index}});
+                                    }
+                                    else
+                                    {
+                                        return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                    }
+                                {{/if}}
                             {{else}}
-                                if (!{{DiscreteTypeName}}.TryParse(queryParameterValue, out parsedValue))
+                                if (!{{{DiscreteTypeName}}}.TryParse(queryParameterValue, out parsedValue))
                                 {
                                     return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }
@@ -252,6 +269,19 @@ namespace {{Namespace}}
                                             command.{{Name}} = nullableValue;
                                         {{/if}}
                                     }
+                                }
+                            {{/if}}
+                        {{else if IsFSharpOptionType}}
+                            {{#if FSharpOptionInnerTypeIsString}}
+                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>(headerValue);
+                            {{else}}
+                                if ({{{FSharpOptionInnerTypeName}}}.TryParse(headerValue, out var hcandidate{{@index}}))
+                                {
+                                    imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(hcandidate{{@index}});
+                                }
+                                else
+                                {
+                                    return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
                                 }
                             {{/if}}
                         {{else}}

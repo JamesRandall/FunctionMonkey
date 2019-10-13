@@ -129,6 +129,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpCommandWithNoRoute>()
                     )                    
                     
+                    // Output bindings
                     .HttpRoute("outputBindings", route => route
                         // Service Bus
                         .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBusQueue")
