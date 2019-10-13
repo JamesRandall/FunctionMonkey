@@ -51,7 +51,7 @@ module Configuration =
                 ?subRoute,
                 // common
                 (?validator:'a -> 'validationResult),
-                (?exceptionResponseHandlerAsync:'a -> Exception -> Async<IActionResult>),
+                (?asyncExceptionResponseHandler:'a -> Exception -> Async<IActionResult>),
                 (?asyncResponseHandler:'a -> 'b -> Async<IActionResult>),
                 (?asyncValidationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>),
                 (?headerMappings:HeaderMapping<'a> list),
@@ -82,7 +82,7 @@ module Configuration =
                                   | Some hm -> hm |> Seq.cast<IHeaderMapping> |> Seq.toList
                                   | None -> []
                  // functions                 
-                 exceptionResponseHandler = exceptionResponseHandlerAsync |> bridgeWith createBridgedExceptionResponseHandlerAsync
+                 exceptionResponseHandler = asyncExceptionResponseHandler |> bridgeWith createBridgedExceptionResponseHandlerAsync
                  responseHandler = asyncResponseHandler |> bridgeWith createBridgedResponseHandlerAsync
                  validationFailureResponseHandler = asyncValidationFailureResponseHandler |> bridgeWith createBridgedValidationFailureResponseHandlerAsync
                  returnResponseBodyWithOutputBinding = match returnResponseBodyWithOutputBinding with | Some r -> r | _ -> false

@@ -29,6 +29,7 @@
         <Compile Include="HttpWithLoggerFunctions.fs" />
         <Compile Include="HttpHeaderFunctions.fs" />
         <Compile Include="HttpNoResponseHandlerFunctions.fs" />
+        <Compile Include="HttpResponseHandlerFunctions.fs" />
         <Compile Include="EntryPoint.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>

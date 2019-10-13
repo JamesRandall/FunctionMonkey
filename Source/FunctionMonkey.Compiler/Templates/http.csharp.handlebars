@@ -169,6 +169,22 @@ namespace {{Namespace}}
                                     return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }
                             }
+                            {{else if IsFSharpOptionType}}
+                                {{#if FSharpOptionInnerTypeIsString}}
+                                    parsedValue = new Microsoft.FSharp.Core.FSharpOption<string>(queryParameterValue);
+                                {{else}}
+                                    if (!String.IsNullOrEmpty(queryParameterValue))
+                                    {
+                                        if ({{{FSharpOptionInnerTypeName}}}.TryParse(queryParameterValue, out var qcandidate{{@index}}))
+                                        {
+                                           parsedValue = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(qcandidate{{@index}});
+                                        }
+                                        else
+                                        {
+                                            return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                        }
+                                    }
+                                {{/if}}
                             {{else if IsNullable}}
                             {
                                 {{#if IsNullableTypeHasTryParseMethod}}
@@ -181,19 +197,6 @@ namespace {{Namespace}}
                                     }
                                 {{/if}}
                             }
-                            {{else if IsFSharpOptionType}}
-                                {{#if FSharpOptionInnerTypeIsString}}
-                                    parsedValue = new Microsoft.FSharp.Core.FSharpOption<string>(queryParameterValue);
-                                {{else}}
-                                    if ({{{FSharpOptionInnerTypeName}}}.TryParse(queryParameterValue, out var qcandidate{{@index}}))
-                                    {
-                                        parsedValue = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(qcandidate{{@index}});
-                                    }
-                                    else
-                                    {
-                                        return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
-                                    }
-                                {{/if}}
                             {{else}}
                                 if (!{{{DiscreteTypeName}}}.TryParse(queryParameterValue, out parsedValue))
                                 {
@@ -257,6 +260,22 @@ namespace {{Namespace}}
                                     {{/if}}
                                 }
                             }
+                        {{else if IsFSharpOptionType}}
+                            {{#if FSharpOptionInnerTypeIsString}}
+                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>(headerValue);
+                            {{else}}
+                                if (!String.IsNullOrEmpty(headerValue))
+                                {
+                                    if ({{{FSharpOptionInnerTypeName}}}.TryParse(headerValue, out var hcandidate{{@index}}))
+                                    {
+                                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(hcandidate{{@index}});
+                                    }
+                                    else
+                                    {
+                                        return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
+                                    }
+                                }
+                            {{/if}}
                         {{else if IsNullable}}
                             {{#if IsNullableTypeHasTryParseMethod}}
                                 {
@@ -269,19 +288,6 @@ namespace {{Namespace}}
                                             command.{{Name}} = nullableValue;
                                         {{/if}}
                                     }
-                                }
-                            {{/if}}
-                        {{else if IsFSharpOptionType}}
-                            {{#if FSharpOptionInnerTypeIsString}}
-                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>(headerValue);
-                            {{else}}
-                                if ({{{FSharpOptionInnerTypeName}}}.TryParse(headerValue, out var hcandidate{{@index}}))
-                                {
-                                    imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(hcandidate{{@index}});
-                                }
-                                else
-                                {
-                                    return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
                                 }
                             {{/if}}
                         {{else}}
@@ -321,6 +327,22 @@ namespace {{Namespace}}
                             return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
                         }
                     }
+                {{else if IsFSharpOptionType}}
+                    {{#if FSharpOptionInnerTypeIsString}}
+                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>({{RouteName}});
+                    {{else}}
+                        if (!String.IsNullOrEmpty({{RouteName}}))
+                        {
+                            if ({{{FSharpOptionInnerTypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
+                            {
+                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(rcandidate{{@index}});
+                            }
+                            else
+                            {
+                                return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                            }
+                        }
+                    {{/if}}
                 {{else if IsNullable}}
                     {
                     {{#if IsNullableTypeHasTryParseMethod}}
@@ -349,19 +371,6 @@ namespace {{Namespace}}
                         return CreateBadParameterResponse("Unions not yet supported for route parameters");
                         //{{{DiscriminatedUnionUnderlyingTypeName}}} discriminatedUnionValue = pluginFunctions.ParseFromString<{{{RouteTypeName}}}>({{RouteName}}));
                     }
-                {{else if IsFSharpOptionType}}
-                    {{#if FSharpOptionInnerTypeIsString}}
-                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>({{RouteName}});
-                    {{else}}
-                        if ({{{FSharpOptionInnerTypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
-                        {
-                            imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(rcandidate{{@index}});
-                        }
-                        else
-                        {
-                            return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
-                        }
-                    {{/if}}
                 {{else}}
                     if ({{{TypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
                     {

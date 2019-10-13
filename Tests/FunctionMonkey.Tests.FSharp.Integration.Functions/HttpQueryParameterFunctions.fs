@@ -65,8 +65,6 @@ let private listQueryStringParam (command : HttpListQueryStringParamCommand) : i
 let private enumerableQueryParam (command : HttpIEnumerableQueryParamCommand) : int =
     command.value |> Seq.sum
 
-(*
-
 let httpVerbFunctions = functions {
     httpRoute "queryParameters" [
         azureFunction.http (Handler(queryParam), Get)
@@ -78,5 +76,3 @@ let httpVerbFunctions = functions {
         azureFunction.http (Handler(enumerableQueryParam), Get, subRoute="enumerable")
     ]
 }
-
-*)

@@ -7,6 +7,8 @@ open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Models
 open Microsoft.WindowsAzure.Storage
 
+type HttpCommandWithNoRoute = { nullParam : string option }
+
 let private createResources () =
     let storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("storageConnectionString"))
     let tableClient = storageAccount.CreateCloudTableClient()
@@ -50,5 +52,8 @@ let app = functionApp {
     isValid isValidCheck
     httpRoute "setup" [
         azureFunction.http (AsyncHandler(createResources), Put)
+    ]
+    httpRoute "" [
+        azureFunction.http (Handler(fun (_:HttpCommandWithNoRoute) -> ()), Get, subRoute="HttpCommandWithNoRoute")
     ]
 }

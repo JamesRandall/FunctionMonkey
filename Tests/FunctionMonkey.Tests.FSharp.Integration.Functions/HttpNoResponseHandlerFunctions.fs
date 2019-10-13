@@ -18,7 +18,7 @@ type HttpCommandWithNoResultAndValidatorThatPasses =
     {
         value: int
     }
-type HttpResponseHandlerCommandWithResultAndNoValidation =
+type HttpCommandWithResultAndNoValidation =
     {
         value: int
     }
@@ -26,7 +26,7 @@ type HttpCommandWithResultAndValidatorThatFails =
     {
         value: int
     }
-type HttpResponseHandlerCommandWithResultAndValidatorThatPasses =
+type HttpCommandWithResultAndValidatorThatPasses =
     {
         value: int
     }
@@ -57,13 +57,13 @@ let private noResultAndValidatorThatFails (_ : HttpCommandWithNoResultAndValidat
 let private noResultAndValidatorThatPasses (_ : HttpCommandWithNoResultAndValidatorThatPasses) =
     ()
     
-let private resultAndNoValidation (_ : HttpResponseHandlerCommandWithResultAndNoValidation) =
+let private resultAndNoValidation (_ : HttpCommandWithResultAndNoValidation) =
     successfulSimpleResponse
     
 let private resultAndValidatorThatFails (_ : HttpCommandWithResultAndValidatorThatFails) =
     raise ShouldNotBeCalledException
 
-let resultAndValidatorThatPasses (_ : HttpResponseHandlerCommandWithResultAndValidatorThatPasses) =
+let resultAndValidatorThatPasses (_ : HttpCommandWithResultAndValidatorThatPasses) =
     successfulSimpleResponse
 
 let httpNoResponseHandlerFunctions = functions {

@@ -63,8 +63,6 @@ let private patchRespond (command : HttpPatchCommand) : SimpleResponse =
         message = command.message
     }
 
-(*
-
 let httpVerbFunctions = functions {
     httpRoute "verbs" [
         azureFunction.http (Handler(getRespond), Get, subRoute = "/{value}")
@@ -75,4 +73,3 @@ let httpVerbFunctions = functions {
     ]
 }
 
-*)

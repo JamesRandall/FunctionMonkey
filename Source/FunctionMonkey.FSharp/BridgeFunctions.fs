@@ -29,10 +29,10 @@ module internal BridgeFunctions =
             new System.Func<obj, obj, Task<IActionResult>>(fun cmd res -> (responseHandler (cmd :?> 'a) (res :?> 'b) |> Async.StartAsTask))
         )
         
-    let createBridgedValidationFailureResponseHandlerAsync (validationFailureResponseHandler:'a -> ValidationResult -> Async<IActionResult>) =
+    let createBridgedValidationFailureResponseHandlerAsync (validationFailureResponseHandler:'a -> 'b -> Async<IActionResult>) =
         new BridgedFunction(
-            new System.Func<obj, ValidationResult, Task<IActionResult>>(
-               fun cmd vr -> (validationFailureResponseHandler (cmd :?> 'a) vr) |> Async.StartAsTask
+            new System.Func<obj, obj, Task<IActionResult>>(
+               fun cmd vr -> (validationFailureResponseHandler (cmd :?> 'a) (vr :?> 'b)) |> Async.StartAsTask
            )
         )
         
