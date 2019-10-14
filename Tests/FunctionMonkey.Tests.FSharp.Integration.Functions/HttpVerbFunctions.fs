@@ -33,6 +33,11 @@ type HttpPatchCommand =
         message: string
     }
     
+type HttpPostWithBytesCommand =
+    {
+        bytes: byte array
+    }
+    
 let private getRespond (command : HttpGetCommand) : SimpleResponse =
     {
         value = command.value
@@ -62,11 +67,15 @@ let private patchRespond (command : HttpPatchCommand) : SimpleResponse =
         value = command.value
         message = command.message
     }
+    
+let private postWithBytesRespond (command : HttpPostWithBytesCommand) =
+    command
 
 let httpVerbFunctions = functions {
     httpRoute "verbs" [
         azureFunction.http (Handler(getRespond), Get, subRoute = "/{value}")
         azureFunction.http (Handler(postRespond), Post)
+        azureFunction.http (Handler(postWithBytesRespond), Post, subRoute = "/bytes")
         azureFunction.http (Handler(putRespond), Put)
         azureFunction.http (Handler(deleteRespond), Delete, subRoute = "/{value}")
         azureFunction.http (Handler(patchRespond), Patch)

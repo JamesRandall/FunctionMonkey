@@ -4,6 +4,11 @@ open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.Tests.FSharp.Integration.Functions.CommonModel
 
+type HttpDefaultHeaderCommand =
+    {
+        defaultHeaderIntValue: int
+        defaultHeaderStringValue: string
+    }
 type HttpHeaderBindingCommand =
     {
         value: int
@@ -41,6 +46,12 @@ let private headerEnumTypeBinding (command : HttpHeaderEnumTypeBindingCommand) :
         value = int(command.value)
         message = ""
     }
+    
+let private defaultHeaderCommand (command : HttpDefaultHeaderCommand) : SimpleResponse =
+    {
+        value = command.defaultHeaderIntValue
+        message = command.defaultHeaderStringValue
+    }
 
 let httpWithLoggerFunctions = functions {
     httpRoute "headers" [
@@ -66,6 +77,18 @@ let httpWithLoggerFunctions = functions {
             headerMappings =
                 [
                     header.mapping((fun cmd -> cmd.value), "x-enum-value")
+                ]
+        )
+        azureFunction.http (
+            Handler(defaultHeaderCommand),
+            Get,
+            subRoute="/default",
+            headerMappings =
+                [
+                    // TODO: When we add default header mappings in we need to take these out
+                    // and move to the entry point
+                    header.mapping((fun cmd -> cmd.defaultHeaderIntValue), "x-default-int")
+                    header.mapping((fun cmd -> cmd.defaultHeaderStringValue), "x-default-string")
                 ]
         )
     ]

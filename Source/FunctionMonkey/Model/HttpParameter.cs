@@ -28,6 +28,8 @@ namespace FunctionMonkey.Model
         public bool IsCollection => Type.IsSupportedCSharpQueryParameterCollectionType() || IsFSharpList;
 
         public bool IsCollectionArray => Type.IsArray;
+        
+        public bool HasHeaderMapping { get; set; }
 
         public bool IsTryParse => !IsEnum && !IsCollection && !IsCollectionArray &&
                                   Type.GetMembers().Any(x => x.Name == "TryParse");

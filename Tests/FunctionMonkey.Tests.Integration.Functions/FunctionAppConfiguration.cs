@@ -1,6 +1,8 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.FluentValidation;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
 using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
@@ -52,6 +54,14 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         settingNames.ServiceBus = "serviceBusConnectionString";
                         settingNames.SignalR = "signalRConnectionString";
                     })
+                .DefaultHttpHeaderBindingConfiguration(new HeaderBindingConfiguration()
+                {
+                    PropertyFromHeaderMappings = new Dictionary<string, string>
+                    {
+                        { "DefaultHeaderIntValue", "x-default-int" },
+                        { "DefaultHeaderStringValue", "x-default-string" }
+                    }
+                })
                 .Functions(functions => functions
                     // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
                     // essentially pre-reqs for tracking things in the test suite
@@ -61,6 +71,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .HttpRoute("verbs", route => route
                         .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)
                         .HttpFunction<HttpPostCommand>(HttpMethod.Post)
+                        .HttpFunction<HttpPostWithBytesCommand>("/bytes", HttpMethod.Post)
                         .HttpFunction<HttpPutCommand>(HttpMethod.Put)
                         .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                         .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
@@ -104,6 +115,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .Options(options => options
                             .AddHeaderMapping(cmd => cmd.Value, "x-enum-value")
                         )
+                        .HttpFunction<HttpDefaultHeaderCommand>("/default")
                     )
                     .HttpRoute("responseHandler", route => route
                         .HttpFunction<HttpResponseHandlerCommandWithNoResultAndNoValidation>(

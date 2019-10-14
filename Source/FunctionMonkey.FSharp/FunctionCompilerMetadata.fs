@@ -238,7 +238,7 @@ module internal FunctionCompilerMetadata =
                 | Token -> AuthorizationTypeEnum.TokenValidation
                 | Function -> AuthorizationTypeEnum.Function
                 
-            let extractQueryParameters (routeParameters:HttpParameter list) =
+            let extractQueryParameters (routeParameters:HttpParameter list) (headerMappings:HeaderBindingConfiguration) =
                 let isSupportedFSharpQueryParameterType (pt:Type) =
                     // TODO: In here we need to look for the F# collection types
                     (pt |> InternalHelpers.isFSharpOptionType) || (pt |> isFSharpList)
@@ -259,6 +259,7 @@ module internal FunctionCompilerMetadata =
                         |> Seq.map (fun q -> HttpParameter(Name=q.Name,
                                                            Type=q.PropertyType,
                                                            IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null)),
+                                                           HasHeaderMapping=headerMappings.PropertyFromHeaderMappings.ContainsKey(q.Name),
                                                            IsFSharpList = isFSharpList q.PropertyType,
                                                            IsFSharpOptionType = InternalHelpers.isFSharpOptionType q.PropertyType,
                                                            FSharpOptionInnerTypeName = InternalHelpers.optionTypeInnerName q.PropertyType,
@@ -303,6 +304,15 @@ module internal FunctionCompilerMetadata =
                                             | Some a -> a
                                             | None -> configuration.authorization.defaultAuthorizationMode                
             let routeParameters = extractRouteParameters ()
+            let headerBindingConfiguration =
+                match httpFunction.headerMappings.Length > 0 with
+                | true -> HeaderBindingConfiguration(
+                           PropertyFromHeaderMappings =
+                               Dictionary<string,string>(
+                                   httpFunction.headerMappings |> Seq.map(fun h -> KeyValuePair(h.propertyName, h.headerName))                             
+                               )     
+                           )
+                | false -> HeaderBindingConfiguration(PropertyFromHeaderMappings=Dictionary<string,string>())
             HttpFunctionDefinition(
                  httpFunction.coreAttributes.commandType,
                  httpFunction.coreAttributes.resultType,
@@ -315,20 +325,12 @@ module internal FunctionCompilerMetadata =
                  ValidatesToken = (resolvedAuthorizationMode = Token),
                  TokenHeader = configuration.authorization.defaultAuthorizationHeader,
                  ClaimsPrincipalAuthorizationType = null,
-                 HeaderBindingConfiguration =
-                    (match httpFunction.headerMappings.Length > 0 with
-                     | true -> HeaderBindingConfiguration(
-                                PropertyFromHeaderMappings =
-                                    Dictionary<string,string>(
-                                        httpFunction.headerMappings |> Seq.map(fun h -> KeyValuePair(h.propertyName, h.headerName))                             
-                                    )     
-                                )
-                     | false -> null),
+                 HeaderBindingConfiguration = headerBindingConfiguration,
                  HttpResponseHandlerType = null,
                  IsValidationResult = (not (httpFunction.coreAttributes.resultType = typeof<unit>) && typeof<ValidationResult>.IsAssignableFrom(httpFunction.coreAttributes.resultType)),
                  IsStreamCommand = false,
                  TokenValidatorType = null,
-                 QueryParameters = extractQueryParameters (routeParameters),
+                 QueryParameters = (extractQueryParameters routeParameters headerBindingConfiguration),
                  RouteParameters = routeParameters,
                  ImmutableTypeConstructorParameters = extractConstructorParameters httpFunction.coreAttributes,
                  Namespace = (httpFunction.coreAttributes |> getNamespace),                 

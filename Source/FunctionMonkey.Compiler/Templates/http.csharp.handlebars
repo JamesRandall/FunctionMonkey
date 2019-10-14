@@ -237,75 +237,73 @@ namespace {{Namespace}}
             {{/each}}
             
             {{#if HeaderBindingConfiguration}}
-                string headerName;
-                {{#each QueryParameters}}
-                    {{#unless IsFormCollection}}
-                        headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
-                        if (!string.IsNullOrWhiteSpace(headerName))
-                        {
-                        if (req.Headers.TryGetValue(headerName, out var stringValues))
-                        {
-                        string headerValue = stringValues.FirstOrDefault();
-                        {{#if IsString}}
-                            {{#if ../UsesImmutableTypes}}
-                                imtPropertyValues["{{Name}}"] = headerValue;
-                            {{else}}
-                                command.{{Name}} = headerValue;
-                            {{/if}}
-                        {{else if IsEnum}}
+                {{#unless IsFormCollection}}
+                    string headerName;
+                    {{#each QueryParameters}}
+                        {{#if HasHeaderMapping}}
+                            if (req.Headers.TryGetValue("{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}", out var stringValues{{@index}}))
                             {
-                                {{{TypeName}}} result;
-                                if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
-                                {
+                                string headerValue = stringValues{{@index}}.FirstOrDefault();
+                                {{#if IsString}}
                                     {{#if ../UsesImmutableTypes}}
-                                        imtPropertyValues["{{Name}}"] = result;
+                                        imtPropertyValues["{{Name}}"] = headerValue;
                                     {{else}}
-                                        command.{{Name}} = result;
+                                        command.{{Name}} = headerValue;
                                     {{/if}}
-                                }
+                                {{else if IsEnum}}
+                                    {
+                                        {{{TypeName}}} result;
+                                        if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
+                                        {
+                                            {{#if ../UsesImmutableTypes}}
+                                                imtPropertyValues["{{Name}}"] = result;
+                                            {{else}}
+                                                command.{{Name}} = result;
+                                            {{/if}}
+                                        }
+                                    }
+                                {{else if IsFSharpOptionType}}
+                                    {{#if FSharpOptionInnerTypeIsString}}
+                                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>(headerValue);
+                                    {{else}}
+                                        if (!String.IsNullOrEmpty(headerValue))
+                                        {
+                                            if ({{{FSharpOptionInnerTypeName}}}.TryParse(headerValue, out var hcandidate{{@index}}))
+                                            {
+                                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(hcandidate{{@index}});
+                                            }
+                                            else
+                                            {
+                                                return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
+                                            }
+                                        }
+                                    {{/if}}
+                                {{else if IsNullable}}
+                                    {{#if IsNullableTypeHasTryParseMethod}}
+                                        {
+                                            {{{TypeName}}} nullableValue;
+                                            if(TryParseNullable(headerValue, {{{NullableType}}}.TryParse, out nullableValue))
+                                            {
+                                                {{#if ../UsesImmutableTypes}}
+                                                    imtPropertyValues["{{Name}}"] = nullableValue;
+                                                {{else}}
+                                                    command.{{Name}} = nullableValue;
+                                                {{/if}}
+                                            }
+                                        }
+                                    {{/if}}
+                                {{else}}
+                                    {{{TypeName}}}.TryParse(headerValue, out var hcandidate{{@index}});
+                                    {{#if ../UsesImmutableTypes}}
+                                        imtPropertyValues["{{Name}}"] = hcandidate{{@index}};
+                                    {{else}}
+                                        command.{{Name}} = hcandidate{{@index}};
+                                    {{/if}}
+                                {{/if}}
                             }
-                        {{else if IsFSharpOptionType}}
-                            {{#if FSharpOptionInnerTypeIsString}}
-                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>(headerValue);
-                            {{else}}
-                                if (!String.IsNullOrEmpty(headerValue))
-                                {
-                                    if ({{{FSharpOptionInnerTypeName}}}.TryParse(headerValue, out var hcandidate{{@index}}))
-                                    {
-                                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(hcandidate{{@index}});
-                                    }
-                                    else
-                                    {
-                                        return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
-                                    }
-                                }
-                            {{/if}}
-                        {{else if IsNullable}}
-                            {{#if IsNullableTypeHasTryParseMethod}}
-                                {
-                                    {{{TypeName}}} nullableValue;
-                                    if(TryParseNullable(headerValue, {{NullableType}}.TryParse, out nullableValue))
-                                    {
-                                        {{#if ../UsesImmutableTypes}}
-                                            imtPropertyValues["{{Name}}"] = nullableValue;
-                                        {{else}}
-                                            command.{{Name}} = nullableValue;
-                                        {{/if}}
-                                    }
-                                }
-                            {{/if}}
-                        {{else}}
-                            {{TypeName}}.TryParse(headerValue, out var hcandidate{{@index}});
-                            {{#if ../UsesImmutableTypes}}
-                                imtPropertyValues["{{Name}}"] = hcandidate{{@index}};
-                            {{else}}
-                                command.{{Name}} = hcandidate{{@index}};
-                            {{/if}}
                         {{/if}}
-                        }
-                        }
-                    {{/unless}}
-                {{/each}}
+                    {{/each}}
+                {{/unless}}
             {{/if}}
 
             {{#each RouteParameters}}
