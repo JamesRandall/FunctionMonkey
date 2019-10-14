@@ -20,10 +20,12 @@ namespace FunctionMonkey.Model
         public Type Type { get; set; }
 
         public bool IsFormCollection => Type == typeof(IFormCollection);
+        
+        public bool IsFSharpList { get; set; }
 
         public bool IsEnum => DiscreteType.IsEnum;
 
-        public bool IsCollection => Type.IsSupportedQueryParameterCollectionType();
+        public bool IsCollection => Type.IsSupportedCSharpQueryParameterCollectionType() || IsFSharpList;
 
         public bool IsCollectionArray => Type.IsArray;
 
@@ -60,7 +62,7 @@ namespace FunctionMonkey.Model
         }
 
         public Type DiscreteType =>
-	        (Type.IsSupportedQueryParameterCollectionType() ? Type.SupportedCollectionValueType() : Type);
+	        (IsCollection ? Type.SupportedCollectionValueType() : Type);
 
         public string DiscreteTypeName => DiscreteType.EvaluateType();
 

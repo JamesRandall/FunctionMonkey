@@ -85,7 +85,7 @@ namespace FunctionMonkey.Abstractions.Extensions
         public static bool IsSupportedCSharpQueryParameterType(this Type type)
         {
             return type.IsSupportedQueryParameterDiscreteType() ||
-                   type.IsSupportedQueryParameterCollectionType();
+                   type.IsSupportedCSharpQueryParameterCollectionType();
         }
 
         private static bool IsSupportedQueryParameterDiscreteType(this Type type)
@@ -96,7 +96,7 @@ namespace FunctionMonkey.Abstractions.Extensions
                    || type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
         
-        public static bool IsSupportedQueryParameterCollectionType(this Type type)
+        public static bool IsSupportedCSharpQueryParameterCollectionType(this Type type)
         {
             if (type == typeof(string))
             {

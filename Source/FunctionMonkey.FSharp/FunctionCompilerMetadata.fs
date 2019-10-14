@@ -69,6 +69,10 @@ module internal FunctionCompilerMetadata =
         let nullableInt (value:int option) = match value with | Some v -> System.Nullable<int>(v) | None -> System.Nullable<int>()
         
         let nullableString (value:string option) = match value with | Some s -> s | None -> null
+        
+        let isFSharpList (pt:Type) =
+            let result = pt.IsGenericType && pt.GetGenericTypeDefinition() = typedefof<_ list>
+            result
             
         let createCosmosDbFunctionDefinition (configuration:FunctionAppConfiguration) (cosmosFunction:CosmosDbFunction) =
             CosmosDbFunctionDefinition(
@@ -235,9 +239,9 @@ module internal FunctionCompilerMetadata =
                 | Function -> AuthorizationTypeEnum.Function
                 
             let extractQueryParameters (routeParameters:HttpParameter list) =
-                let isSupportedFSharpQueryParameterType pt =
+                let isSupportedFSharpQueryParameterType (pt:Type) =
                     // TODO: In here we need to look for the F# collection types
-                    pt |> InternalHelpers.isFSharpOptionType
+                    (pt |> InternalHelpers.isFSharpOptionType) || (pt |> isFSharpList)
                 
                 let propertyIsPossibleQueryParameter (x:PropertyInfo) =
                     x.GetCustomAttribute<SecurityPropertyAttribute>() = null
@@ -255,6 +259,7 @@ module internal FunctionCompilerMetadata =
                         |> Seq.map (fun q -> HttpParameter(Name=q.Name,
                                                            Type=q.PropertyType,
                                                            IsOptional=(q.PropertyType.IsValueType || not(Nullable.GetUnderlyingType(q.PropertyType) = null)),
+                                                           IsFSharpList = isFSharpList q.PropertyType,
                                                            IsFSharpOptionType = InternalHelpers.isFSharpOptionType q.PropertyType,
                                                            FSharpOptionInnerTypeName = InternalHelpers.optionTypeInnerName q.PropertyType,
                                                            FSharpOptionInnerTypeIsString = InternalHelpers.optionTypeInnerTypeIsString q.PropertyType
@@ -282,6 +287,7 @@ module internal FunctionCompilerMetadata =
                                      Type = matchedProperty.PropertyType,
                                      IsOptional = isOptional,
                                      IsNullableType = not (Nullable.GetUnderlyingType(matchedProperty.PropertyType) = null),
+                                     IsFSharpList = isFSharpList matchedProperty.PropertyType,
                                      IsFSharpOptionType = InternalHelpers.isFSharpOptionType matchedProperty.PropertyType,
                                      FSharpOptionInnerTypeName = InternalHelpers.optionTypeInnerName matchedProperty.PropertyType,
                                      FSharpOptionInnerTypeIsString = InternalHelpers.optionTypeInnerTypeIsString matchedProperty.PropertyType,
