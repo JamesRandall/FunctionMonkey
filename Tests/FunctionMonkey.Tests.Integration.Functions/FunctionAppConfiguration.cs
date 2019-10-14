@@ -71,6 +71,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .HttpRoute("verbs", route => route
                         .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)
                         .HttpFunction<HttpPostCommand>(HttpMethod.Post)
+                        .HttpFunction<HttpPostWithBytesCommand>("/bytes", HttpMethod.Post)
                         .HttpFunction<HttpPutCommand>(HttpMethod.Put)
                         .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                         .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
