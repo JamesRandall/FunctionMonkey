@@ -177,7 +177,7 @@ namespace {{Namespace}}
                         {{#if IsString}}
                             command.{{Name}} = headerValue;
                         {{else}}
-                            {{TypeName}}.TryParse(headerValue, out var candidate);
+                            {{{TypeName}}}.TryParse(headerValue, out var candidate);
                             command.{{Name}} = candidate;
                         {{/if}}
                         }

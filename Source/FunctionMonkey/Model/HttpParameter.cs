@@ -26,6 +26,8 @@ namespace FunctionMonkey.Model
         public bool IsCollection => Type.IsSupportedQueryParameterCollectionType();
 
         public bool IsCollectionArray => Type.IsArray;
+        
+        public bool HasHeaderMapping { get; set; }
 
         public Type CollectionInstanceType
         {

@@ -208,43 +208,40 @@ namespace {{Namespace}}
             {{/each}}
             
             {{#if HeaderBindingConfiguration}}
-                string headerName;
-                {{#each PossibleBindingProperties}}
-                    {{#unless IsFormCollection}}
-                        headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
-                        if (!string.IsNullOrWhiteSpace(headerName))
-                        {
-                        if (req.Headers.TryGetValue(headerName, out var stringValues))
-                        {
-                        string headerValue = stringValues.FirstOrDefault();
-                        {{#if IsString}}
-                            command.{{Name}} = headerValue;
-                        {{else if IsEnum}}
+                {{#unless IsFormCollection}}
+                    {{#each PossibleBindingProperties}}
+                        {{#if HasHeaderMapping}}
+                            if (req.Headers.TryGetValue("{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}", out var headerStringValues{{@index}}))
                             {
-                                {{{TypeName}}} result;
-                                if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
+                                string headerValue = headerStringValues{{@index}}.FirstOrDefault();
+                                {{#if IsString}}
+                                command.{{Name}} = headerValue;
+                                {{else if IsEnum}}
                                 {
-                                    command.{{Name}} = result;
-                                }
-                            }
-                        {{else if IsNullable}}
-                            {{#if IsNullableTypeHasTryParseMethod}}
-                                {
-                                    {{{TypeName}}} nullableValue;
-                                    if(TryParseNullable(headerValue, {{NullableType}}.TryParse, out nullableValue))
+                                    {{{TypeName}}} result;
+                                    if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
                                     {
-                                        command.{{Name}} = nullableValue;
+                                        command.{{Name}} = result;
                                     }
                                 }
-                            {{/if}}
-                        {{else}}
-                            {{TypeName}}.TryParse(headerValue, out var hcandidate{{@index}});
-                            command.{{Name}} = hcandidate{{@index}};
+                                {{else if IsNullable}}
+                                    {{#if IsNullableTypeHasTryParseMethod}}
+                                        {
+                                            {{{TypeName}}} nullableValue;
+                                            if(TryParseNullable(headerValue, {{{NullableType}}}.TryParse, out nullableValue))
+                                            {
+                                                command.{{Name}} = nullableValue;
+                                            }
+                                        }
+                                    {{/if}}
+                                {{else}}
+                                    {{{TypeName}}}.TryParse(headerValue, out var hcandidate{{@index}});
+                                    command.{{Name}} = hcandidate{{@index}};
+                                {{/if}}
+                            }
                         {{/if}}
-                        }
-                        }
-                    {{/unless}}
-                {{/each}}
+                    {{/each}}
+                {{/unless}}
             {{/if}}
 
             {{#each RouteParameters}}

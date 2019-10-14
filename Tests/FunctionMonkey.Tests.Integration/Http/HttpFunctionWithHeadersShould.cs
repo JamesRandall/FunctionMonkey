@@ -34,6 +34,19 @@ namespace FunctionMonkey.Tests.Integration.Http
         }
         
         [Fact]
+        public async Task BindHeaderToCommandWithDefaultMapping()
+        {
+            SimpleResponse response = await Settings.Host
+                .AppendPathSegment("headers")
+                .AppendPathSegment("default")
+                .WithHeader("x-default-int", Value)
+                .WithHeader("x-default-string", Message)
+                .GetJsonAsync<SimpleResponse>();
+
+            ValidateEchoedResponse(response);
+        }
+        
+        [Fact]
         public async Task BindHeaderToNullableValueType()
         {
             SimpleResponse response = await Settings.Host

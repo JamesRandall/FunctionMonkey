@@ -96,6 +96,8 @@ namespace FunctionMonkey.Infrastructure
                 httpFunctionDefinition.RouteConfiguration.ClaimsPrincipalAuthorizationType ??
                 authorizationBuilder.DefaultClaimsPrincipalAuthorizationType;
 
+            PatchHeaderBindings(builder, httpFunctionDefinition);
+            
             httpFunctionDefinition.HeaderBindingConfiguration =
                 httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;
 
@@ -127,6 +129,30 @@ namespace FunctionMonkey.Infrastructure
             ExtractPossibleFormParameters(httpFunctionDefinition);
 
             EnsureOpenApiDescription(httpFunctionDefinition);
+        }
+
+        private static void PatchHeaderBindings(FunctionHostBuilder builder, HttpFunctionDefinition httpFunctionDefinition)
+        {
+            if (httpFunctionDefinition.HeaderBindingConfiguration == null)
+            {
+                httpFunctionDefinition.HeaderBindingConfiguration = builder.DefaultHeaderBindingConfiguration;
+            }
+            else
+            {
+                if (builder.DefaultHeaderBindingConfiguration != null)
+                {
+                    foreach (KeyValuePair<string, string> kvp in builder.DefaultHeaderBindingConfiguration
+                        .PropertyFromHeaderMappings)
+                    {
+                        if (!httpFunctionDefinition.HeaderBindingConfiguration.PropertyFromHeaderMappings.ContainsKey(
+                            kvp.Key))
+                        {
+                            httpFunctionDefinition.HeaderBindingConfiguration.PropertyFromHeaderMappings
+                                .Add(kvp.Key, kvp.Value);
+                        }
+                    }
+                }
+            }
         }
 
         private static void EnsureOpenApiDescription(HttpFunctionDefinition httpFunctionDefinition)
@@ -204,7 +230,8 @@ namespace FunctionMonkey.Infrastructure
                 {
                     Name = x.Name,
                     Type = x.PropertyType,
-                    IsOptional = !x.PropertyType.IsValueType || Nullable.GetUnderlyingType(x.PropertyType) != null
+                    IsOptional = !x.PropertyType.IsValueType || Nullable.GetUnderlyingType(x.PropertyType) != null,
+                    HasHeaderMapping = httpFunctionDefinition.HeaderBindingConfiguration.PropertyFromHeaderMappings.ContainsKey(x.Name)
                 })
                 .ToArray();
         }
