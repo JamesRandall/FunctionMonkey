@@ -98,9 +98,6 @@ namespace FunctionMonkey.Infrastructure
 
             PatchHeaderBindings(builder, httpFunctionDefinition);
             
-            httpFunctionDefinition.HeaderBindingConfiguration =
-                httpFunctionDefinition.HeaderBindingConfiguration ?? builder.DefaultHeaderBindingConfiguration;
-
             httpFunctionDefinition.HttpResponseHandlerType =
                 httpFunctionDefinition.HttpResponseHandlerType ?? builder.DefaultHttpResponseHandlerType;
 
@@ -153,6 +150,20 @@ namespace FunctionMonkey.Infrastructure
                     }
                 }
             }
+
+            if (httpFunctionDefinition.HeaderBindingConfiguration == null)
+            {
+                httpFunctionDefinition.HeaderBindingConfiguration = new HeaderBindingConfiguration()
+                {
+                    PropertyFromHeaderMappings = new Dictionary<string, string>()
+                };
+            }
+
+            if (httpFunctionDefinition.HeaderBindingConfiguration.PropertyFromHeaderMappings == null)
+            {
+                httpFunctionDefinition.HeaderBindingConfiguration.PropertyFromHeaderMappings = new Dictionary<string, string>();
+            }
+            
         }
 
         private static void EnsureOpenApiDescription(HttpFunctionDefinition httpFunctionDefinition)
