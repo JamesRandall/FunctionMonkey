@@ -513,7 +513,7 @@ module Configuration =
             }
             
         [<CustomOperation("storage")>]    
-        member this.serviceBus(functions:Functions, connectionStringSettingName, storageFunctions) =
+        member this.storage(functions:Functions, connectionStringSettingName, storageFunctions) =
             { functions
                 with storageFunctions = storageFunctions
                     |> Seq.map (function

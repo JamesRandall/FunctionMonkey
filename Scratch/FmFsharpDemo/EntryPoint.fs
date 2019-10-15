@@ -71,7 +71,7 @@ module EntryPoint =
                                authorizationMode=Anonymous,
                                serializer=(fun o _ -> JsonConvert.SerializeObject(o)))
                 |> serviceBusQueue ("sbQueueCommand")
-                |> withServiceBusConnectionStringSettingName ""
+                |> withConnectionStringSettingName ""
         ]
         timers [
             azureFunction.timer(Handler(fun () -> System.Console.WriteLine("Timer func")), "*/5 * * * * *")

@@ -3,6 +3,7 @@ namespace FunctionMonkey.FSharp
 open System
 open System.Linq.Expressions
 open FunctionMonkey.Model.OutputBindings
+open FunctionMonkey.Model.OutputBindings
 open Models
 
 module OutputBindings =
@@ -43,11 +44,22 @@ module OutputBindings =
         ) outputBinding |> ignore
         outputBindingTarget.getFunction()
         
-    let withServiceBusConnectionStringSettingName connectionStringSettingName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+    let storageTable tableName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+        outputBindingTarget.setOutputBinding(
+            new StorageTableOutputBinding(
+                 FunctionMonkey.Extensions.Utils.EvaluateType(outputBindingTarget.resultType),
+                 String.Empty,
+                 TableName = tableName
+            )
+        )
+    
+    // The below apply to all bindings    
+    let withConnectionStringSettingName connectionStringSettingName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
         let outputBinding = outputBindingTarget.getOutputBinding()
         Option.bind (fun (binding:obj) ->
-            let serviceBusBinding = binding :?> ServiceBusQueueOutputBinding
-            serviceBusBinding.ConnectionStringSettingName <- connectionStringSettingName
+            let connectionStringBinding = binding :?> AbstractConnectionStringOutputBinding
+            connectionStringBinding.ConnectionStringSettingName <- connectionStringSettingName
             Some binding
         ) outputBinding |> ignore
         outputBindingTarget.getFunction()
+        

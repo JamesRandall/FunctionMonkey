@@ -24,6 +24,7 @@
         </None>
         <Compile Include="Constants.fs" />
         <Compile Include="CommonModel.fs" />
+        <Compile Include="Helpers.fs" />
         <Compile Include="HttpVerbFunctions.fs" />
         <Compile Include="HttpRouteParameterFunctions.fs" />
         <Compile Include="HttpQueryParameterFunctions.fs" />
@@ -31,6 +32,7 @@
         <Compile Include="HttpHeaderFunctions.fs" />
         <Compile Include="HttpNoResponseHandlerFunctions.fs" />
         <Compile Include="HttpResponseHandlerFunctions.fs" />
+        <Compile Include="ServiceBusFunctions.fs" />
         <Compile Include="EntryPoint.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
