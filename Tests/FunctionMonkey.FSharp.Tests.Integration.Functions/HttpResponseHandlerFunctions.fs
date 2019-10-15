@@ -1,8 +1,8 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.HttpResponseHandlerFunctions
+module FunctionMonkey.FSharp.Tests.Integration.Functions.HttpResponseHandlerFunctions
 open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
-open FunctionMonkey.Tests.FSharp.Integration.Functions.CommonModel
+open FunctionMonkey.FSharp.Tests.Integration.Functions.CommonModel
 open Microsoft.AspNetCore.Mvc
 
 // Function monkey currently uses type names to generate the names of the compiled functions hence this duplication

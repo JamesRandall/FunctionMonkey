@@ -16,7 +16,7 @@ let routeParameterExtractionTests =
             let app = functionApp {
                 disableFunctionModules
                 httpRoute "/api/v1/test" [
-                    azureFunction.http (simpleCommandHandler, HttpVerb.Get, "/{value}") 
+                    azureFunction.http (Handler(simpleCommandHandler), HttpVerb.Get, "/{value}") 
                 ]
             }
             
@@ -34,7 +34,7 @@ let routeParameterExtractionTests =
             let app = functionApp {
                 disableFunctionModules
                 httpRoute "/api/v1/test" [
-                    azureFunction.http (simpleCommandHandler, HttpVerb.Get, "/{value}") 
+                    azureFunction.http (Handler(simpleCommandHandler), HttpVerb.Get, "/{value}") 
                 ]
             }
             

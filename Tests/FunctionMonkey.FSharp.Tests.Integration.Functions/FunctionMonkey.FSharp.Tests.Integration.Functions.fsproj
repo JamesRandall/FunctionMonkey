@@ -2,6 +2,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <AzureFunctionsVersion>v2</AzureFunctionsVersion>
+        <RootNamespace>FunctionMonkey.Tests.FSharp.Integration.Functions</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="FSharp.Control.AsyncSeq" Version="2.0.22" />

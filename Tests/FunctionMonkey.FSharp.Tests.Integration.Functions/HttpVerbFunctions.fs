@@ -1,7 +1,7 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.HttpVerbFunctions
+module FunctionMonkey.FSharp.Tests.Integration.Functions.HttpVerbFunctions
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
-open FunctionMonkey.Tests.FSharp.Integration.Functions.CommonModel
+open FunctionMonkey.FSharp.Tests.Integration.Functions.CommonModel
 
 type HttpGetCommand =
     {

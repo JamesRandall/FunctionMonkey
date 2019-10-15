@@ -1,8 +1,8 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.HttpHeaderFunctions
+module FunctionMonkey.FSharp.Tests.Integration.Functions.HttpHeaderFunctions
 open System
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
-open FunctionMonkey.Tests.FSharp.Integration.Functions.CommonModel
+open FunctionMonkey.FSharp.Tests.Integration.Functions.CommonModel
 
 type HttpDefaultHeaderCommand =
     {

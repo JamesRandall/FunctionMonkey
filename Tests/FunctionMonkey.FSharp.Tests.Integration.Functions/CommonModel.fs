@@ -1,4 +1,4 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.CommonModel
+module FunctionMonkey.FSharp.Tests.Integration.Functions.CommonModel
 
 exception ShouldNotBeCalledException
 

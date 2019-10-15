@@ -1,8 +1,8 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.HttpNoResponseHandlerFunctions
+module FunctionMonkey.FSharp.Tests.Integration.Functions.HttpNoResponseHandlerFunctions
 open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration
-open FunctionMonkey.Tests.FSharp.Integration.Functions.CommonModel
+open FunctionMonkey.FSharp.Tests.Integration.Functions.CommonModel
 
 // Function monkey currently uses type names to generate the names of the compiled functions hence this duplication
 // A planned improvement is to allow names to be specified and types to be reused.

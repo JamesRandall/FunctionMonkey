@@ -1,4 +1,4 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.HttpRouteParameterFunctions
+module FunctionMonkey.FSharp.Tests.Integration.Functions.HttpRouteParameterFunctions
 open System
 open FunctionMonkey.FSharp.Models
 open FunctionMonkey.FSharp.Configuration

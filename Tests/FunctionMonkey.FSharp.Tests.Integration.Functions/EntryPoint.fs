@@ -1,4 +1,4 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.EntryPoint
+module FunctionMonkey.FSharp.Tests.Integration.Functions.EntryPoint
 open FSharp.Control
 open FunctionMonkey.Commanding.Abstractions.Validation
 open System

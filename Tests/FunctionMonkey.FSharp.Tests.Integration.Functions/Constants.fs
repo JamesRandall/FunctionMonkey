@@ -1,4 +1,4 @@
-module FunctionMonkey.Tests.FSharp.Integration.Functions.Constants
+module FunctionMonkey.FSharp.Tests.Integration.Functions.Constants
 
 module SignalR =
     let hubName = "simplehub"
