@@ -1,0 +1,31 @@
+framework: auto-detect
+
+source https://nuget.org/api/v2
+
+nuget FSharp.Core
+nuget Argu
+
+clitool dotnet-fake
+
+group Formatting
+source https://nuget.org/api/v2
+
+nuget FSharp.Formatting
+nuget FSharp.Formatting.CommandTool
+
+group FakeBuild
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+nuget Fake.Core.Target
+nuget Fake.IO.FileSystem
+nuget Fake.DotNet.Cli
+nuget Fake.Tools.Git
+nuget Fake.DotNet.MSBuild
+nuget Fake.Core.ReleaseNotes 
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.Testing.Expecto 
+nuget Fake.DotNet.FSFormatting 
+nuget Fake.Api.GitHub
