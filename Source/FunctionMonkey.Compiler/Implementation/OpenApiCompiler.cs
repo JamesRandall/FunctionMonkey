@@ -209,11 +209,12 @@ namespace FunctionMonkey.Compiler.Implementation
                         {
                             operation.Responses.Add(kvp.Key.ToString(), new OpenApiResponse
                             {
-                                Description = kvp.Value
+                                Description = kvp.Value,
                             });
                         }
 
-                        if (!operation.Responses.ContainsKey("200"))
+                        // Does any HTTP success response (2xx) exist
+                        if (operation.Responses.Keys.FirstOrDefault(x => x.StartsWith("2")) == null)
                         {
                             OpenApiResponse response = new OpenApiResponse
                             {
