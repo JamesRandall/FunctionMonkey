@@ -10,6 +10,8 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Compiler.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -143,58 +145,40 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 foreach (var propertyInfo in input.GetProperties())
                 {
-                    var ignoreProperty = false;
+                    // Ignore Property ?
+                    var ignoreProperty = propertyInfo.GetAttributeValue((JsonIgnoreAttribute attribute) => attribute) != null;
+                    if(!ignoreProperty)
+                    {
+                        ignoreProperty = propertyInfo.GetAttributeValue((SecurityPropertyAttribute attribute) => attribute) != null;
+                    }
+                    if(ignoreProperty)
+                    {
+                        continue;
+                    }
 
-                    var propertyName = propertyInfo.Name.ToCamelCase();
+                    // Property Name
+                    var propertyName = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.PropertyName);
+                    if(string.IsNullOrWhiteSpace(propertyName))
+                    {
+                        propertyName = propertyInfo.GetAttributeValue((DataMemberAttribute attribute) => attribute.Name);
+                    }
+                    if (string.IsNullOrWhiteSpace(propertyName))
+                    {
+                        propertyName = propertyInfo.Name.ToCamelCase();
+                    }
+
+                    // Property Required
+                    var propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required);
+                    if(propertyRequired == Required.Always)
+                    {
+                        schema.Required.Add(propertyName);
+                    }
+
+
+                    // Inner Schema
                     var innerSchema = FindOrAddReference(propertyInfo.PropertyType);
-
-                    // Check if the property is read-only.
                     innerSchema.ReadOnly = !propertyInfo.CanWrite;
-
-                    var attributes = propertyInfo.GetCustomAttributes(false);
-
-                    foreach (var attribute in attributes)
-                    {
-                        if (attribute.GetType().FullName == "Newtonsoft.Json.JsonPropertyAttribute")
-                        {
-                            var type = attribute.GetType();
-                            var propertyNameInfo = type.GetProperty("PropertyName");
-
-                            if (propertyNameInfo != null)
-                            {
-                                var jsonPropertyName = (string)propertyNameInfo.GetValue(attribute, null);
-
-                                if (!string.IsNullOrWhiteSpace(jsonPropertyName))
-                                {
-                                    propertyName = jsonPropertyName;
-                                }
-                            }
-
-                            var requiredPropertyInfo = type.GetProperty("Required");
-
-                            if (requiredPropertyInfo != null)
-                            {
-                                var requiredValue = Enum.GetName(
-                                    requiredPropertyInfo.PropertyType,
-                                    requiredPropertyInfo.GetValue(attribute, null));
-
-                                if (requiredValue == "Always")
-                                {
-                                    schema.Required.Add(propertyName);
-                                }
-                            }
-                        }
-
-                        if (attribute.GetType().FullName == "Newtonsoft.Json.JsonIgnoreAttribute" || attribute.GetType() == typeof(SecurityPropertyAttribute))
-                        {
-                            ignoreProperty = true;
-                        }                        
-                    }
-
-                    if (!ignoreProperty)
-                    {
-                        schema.Properties[propertyName] = innerSchema;
-                    }
+                    schema.Properties[propertyName] = innerSchema;
                 }
 
                 _references[key] = schema;
@@ -231,9 +215,13 @@ namespace FunctionMonkey.Compiler.Implementation
         /// </remarks>
         private string GetKey(Type input)
         {
-            // Type.ToString() returns full name for non-generic types and
-            // returns a full name without unnecessary assembly information for generic types.
-            var typeName = input.ToString();
+            var typeName = input.GetAttributeValue((DataContractAttribute attribute) => attribute.Name);
+            if (typeName == null)
+            {
+                // Type.ToString() returns full name for non-generic types and
+                // returns a full name without unnecessary assembly information for generic types.
+                typeName = input.ToString();
+            }
 
             return typeName.SanitizeClassName();
         }
