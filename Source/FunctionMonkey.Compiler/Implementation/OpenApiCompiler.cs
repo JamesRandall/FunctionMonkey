@@ -1,19 +1,15 @@
-﻿using System;
+using FunctionMonkey.Model;
+using Microsoft.OpenApi;
+using Microsoft.OpenApi.Extensions;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Abstractions.Builders;
-using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Compiler.Extensions;
-using FunctionMonkey.Model;
-using Microsoft.OpenApi;
-using Microsoft.OpenApi.Extensions;
-using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Linq;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -55,7 +51,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     Version = configuration.Version,
                     Title = configuration.Title
                 },
-                Servers = configuration.Servers?.Select(x => new OpenApiServer { Url = x}).ToArray(),
+                Servers = configuration.Servers?.Select(x => new OpenApiServer { Url = x }).ToArray(),
                 Paths = new OpenApiPaths(),
                 Components = new OpenApiComponents
                 {
@@ -85,7 +81,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     Filename = "openapi.yaml"
                 }
             };
-            
+
             if (!string.IsNullOrWhiteSpace(configuration.UserInterfaceRoute))
             {
                 result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder();
@@ -102,13 +98,13 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 string hostJson = File.ReadAllText(hostJsonPath);
                 JObject host = JObject.Parse(hostJson);
-                JObject extensions = (JObject) host["extensions"];
+                JObject extensions = (JObject)host["extensions"];
                 if (extensions != null)
                 {
-                    JObject http = (JObject) extensions["http"];
+                    JObject http = (JObject)extensions["http"];
                     if (http != null)
                     {
-                        string hostApiPrefix = (string) http["routePrefix"];
+                        string hostApiPrefix = (string)http["routePrefix"];
                         if (hostApiPrefix != null)
                         {
                             apiPrefix = hostApiPrefix;
@@ -132,12 +128,15 @@ namespace FunctionMonkey.Compiler.Implementation
             int index = 0;
             foreach (string swaggerFile in files)
             {
-                byte[] input;
-                
+                byte[] input = new byte[0];
+
                 using (Stream inputStream = sourceAssembly.GetManifestResourceStream(swaggerFile))
                 {
-                    input = new byte[inputStream.Length];
-                    inputStream.Read(input, 0, input.Length);
+                    if (inputStream != null)
+                    {
+                        input = new byte[inputStream.Length];
+                        inputStream.Read(input, 0, input.Length);
+                    }
                 }
 
                 string content = Encoding.UTF8.GetString(input);
@@ -165,11 +164,12 @@ namespace FunctionMonkey.Compiler.Implementation
         {
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
-                if (functionDefinition.Verbs.Contains(HttpMethod.Post) ||
+                if (functionDefinition.Verbs.Contains(HttpMethod.Patch) ||
+                    functionDefinition.Verbs.Contains(HttpMethod.Post) ||
                     functionDefinition.Verbs.Contains(HttpMethod.Put))
                 {
                     registry.FindOrAddReference(functionDefinition.CommandType);
-                }                
+                }
                 if (functionDefinition.CommandResultType != null)
                 {
                     registry.FindOrAddReference(functionDefinition.CommandResultType);
@@ -203,7 +203,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         {
                             Description = functionByRoute.OpenApiDescription,
                             Responses = new OpenApiResponses(),
-                            Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() {  new OpenApiTag {  Name = functionByRoute.RouteConfiguration.OpenApiName} }
+                            Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() { new OpenApiTag { Name = functionByRoute.RouteConfiguration.OpenApiName } }
                         };
                         foreach (KeyValuePair<int, string> kvp in functionByRoute.OpenApiResponseDescriptions)
                         {
@@ -230,7 +230,6 @@ namespace FunctionMonkey.Compiler.Implementation
                             operation.Responses.Add("200", response);
                         }
 
-                        string lowerCaseRoute = functionByRoute.Route;
                         foreach (HttpParameter property in functionByRoute.PossibleBindingProperties)
                         {
                             if (method == HttpMethod.Get || method == HttpMethod.Delete)
@@ -275,14 +274,14 @@ namespace FunctionMonkey.Compiler.Implementation
                         if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                         {
                             OpenApiRequestBody requestBody = new OpenApiRequestBody();
-                            OpenApiSchema schema =  registry.FindReference(commandType);
+                            OpenApiSchema schema = registry.FindReference(commandType);
                             requestBody.Content = new Dictionary<string, OpenApiMediaType>
                             {
                                 { "application/json", new OpenApiMediaType { Schema = schema}}
                             };
                             operation.RequestBody = requestBody;
                         }
-                        
+
 
                         pathItem.Operations.Add(MethodToOperationMap[method], operation);
                     }
