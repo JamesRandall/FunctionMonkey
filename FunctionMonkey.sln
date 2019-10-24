@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28711.60
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Abstractions", "Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj", "{964DB972-B1A6-4434-AB1C-ED716B8987B1}"
 EndProject
@@ -47,7 +47,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.Testing.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutputTriggerSample", "Samples\OutputTriggerSample\OutputTriggerSample.csproj", "{2768AE8A-32AA-4B79-8E77-D47FA1931F2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.SignalR", "Source\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj", "{30B41F72-840D-4C42-891D-46484836F13A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionMonkey.SignalR", "Source\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj", "{30B41F72-840D-4C42-891D-46484836F13A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApi", "Samples\Scratch\OpenApi\OpenApi.csproj", "{CFB6BBCC-D645-4E62-97D2-68C63669F07A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4ECCEA2B-AC04-42F9-882E-E615641D3418} = {4ECCEA2B-AC04-42F9-882E-E615641D3418}
+		{F7D7FC60-F231-4091-8790-90C4CF5DBE58} = {F7D7FC60-F231-4091-8790-90C4CF5DBE58}
+		{964DB972-B1A6-4434-AB1C-ED716B8987B1} = {964DB972-B1A6-4434-AB1C-ED716B8987B1}
+		{00C320CE-2748-45CC-BF49-448A8A5B7985} = {00C320CE-2748-45CC-BF49-448A8A5B7985}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Integration", "Tests\FunctionMonkey.Tests.Integration\FunctionMonkey.Tests.Integration.csproj", "{00E4E907-FEF9-4124-A5AA-02E9078D2EF9}"
 EndProject
@@ -143,6 +151,9 @@ Global
 		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F86226B-3E2B-4ED1-B05C-E698728B7638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB6BBCC-D645-4E62-97D2-68C63669F07A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB6BBCC-D645-4E62-97D2-68C63669F07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB6BBCC-D645-4E62-97D2-68C63669F07A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +172,7 @@ Global
 		{2768AE8A-32AA-4B79-8E77-D47FA1931F2E} = {CB492EF3-6255-4528-8978-0D0974B7F081}
 		{00E4E907-FEF9-4124-A5AA-02E9078D2EF9} = {68C555D0-6537-4D5B-B36C-E62F34F5E890}
 		{95B5D5E2-3713-42A2-8AB9-689F9E06BE62} = {68C555D0-6537-4D5B-B36C-E62F34F5E890}
+		{CFB6BBCC-D645-4E62-97D2-68C63669F07A} = {4C5AD0FE-C42D-46CD-ADF3-D51356E04F6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9ABA812-671D-4486-B9D8-4F16D4BE11BD}
