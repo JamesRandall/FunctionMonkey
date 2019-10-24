@@ -66,6 +66,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> OpenApiSummary(string summary)
+        {
+            _definition.OpenApiSummary = summary;
+            return this;
+        }
+
         public IHttpFunctionConfigurationBuilder<TCommandOuter> OpenApiResponse(int httpStatusCode, string description)
         {
             _definition.OpenApiResponseDescriptions.Add(httpStatusCode, description);

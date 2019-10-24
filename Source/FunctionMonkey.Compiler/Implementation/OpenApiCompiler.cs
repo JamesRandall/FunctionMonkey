@@ -202,6 +202,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         OpenApiOperation operation = new OpenApiOperation
                         {
                             Description = functionByRoute.OpenApiDescription,
+                            Summary = functionByRoute.OpenApiSummary,
                             Responses = new OpenApiResponses(),
                             Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() { new OpenApiTag { Name = functionByRoute.RouteConfiguration.OpenApiName } }
                         };

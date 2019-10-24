@@ -21,6 +21,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IHttpFunctionConfigurationBuilder<TCommand> OpenApiDescription(string description);
 
         /// <summary>
+        /// The Open API / Swagger summary for the endpoint
+        /// </summary>
+        /// <param name="summary">The summary</param>
+        /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
+        IHttpFunctionConfigurationBuilder<TCommand> OpenApiSummary(string summary);
+
+        /// <summary>
         /// The Open API / Swagger description for the endpoint and specific response code
         /// </summary>
         /// <param name="httpStatusCode">The HTTP status code</param>
