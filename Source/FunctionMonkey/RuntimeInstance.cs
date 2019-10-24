@@ -18,7 +18,11 @@ namespace FunctionMonkey
 {
     public class RuntimeInstance
     {
-        public IServiceProvider ServiceProvider { get; }
+        public IServiceProvider ServiceProvider => ScopedServiceProvider.Value ?? RootServiceProvider;
+
+        public IServiceProvider RootServiceProvider { get; }
+
+        public AsyncLocal<IServiceProvider> ScopedServiceProvider { get; } = new AsyncLocal<IServiceProvider>(null);
 
         private IServiceCollection ServiceCollection { get; }
 
@@ -28,7 +32,7 @@ namespace FunctionMonkey
 
         public RuntimeInstance() : this(null, null, null)
         {
-            
+
         }
 
         public RuntimeInstance(Assembly functionAppConfigurationAssembly,
@@ -47,7 +51,7 @@ namespace FunctionMonkey
                 (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
                 (resolveType) => ServiceProvider.GetService(resolveType)
             );
-            
+
             ICommandRegistry commandRegistry;
             // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
             if (configuration is ICommandingConfigurator commandingConfigurator)
@@ -79,11 +83,10 @@ namespace FunctionMonkey
             RegisterCosmosDependencies(builder.FunctionDefinitions);
 
             beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
-            ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
+            RootServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
             builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
-            
         }
 
         private void RegisterCosmosDependencies(
@@ -196,7 +199,7 @@ namespace FunctionMonkey
             // If the handler is not already registered in the command registry then this registers it.
             IRegistrationCatalogue registrationCatalogue = (IRegistrationCatalogue) commandRegistry;
             HashSet<Type> registeredCommandTypes = new HashSet<Type>(registrationCatalogue.GetRegisteredCommands());
-            
+
             Dictionary<Type, List<Type>> commandTypesToHandlerTypes = null;
 
             foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
