@@ -174,7 +174,6 @@ namespace FunctionMonkey.Compiler.Implementation
                         schema.Required.Add(propertyName);
                     }
 
-
                     // Inner Schema
                     var innerSchema = FindOrAddReference(propertyInfo.PropertyType);
                     innerSchema.ReadOnly = !propertyInfo.CanWrite;
