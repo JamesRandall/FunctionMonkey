@@ -6,10 +6,15 @@ using Microsoft.Extensions.Logging;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task Run(
+        public async Task Run(
             [ServiceBusTrigger("{{QueueName}}", Connection="{{ConnectionStringName}}"{{#if IsSessionEnabled}}, IsSessionsEnabled=true{{/if}})]
             Message queueItem,
             int deliveryCount,

@@ -17,14 +17,19 @@ using System.Security.Claims;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}},
-                Route = "{{Route}}")                
+                Route = "{{Route}}")
             ]
             HttpRequest req,
             ILogger log,
@@ -73,7 +78,7 @@ namespace {{Namespace}}
             if (principal == null)
             {
                 return new UnauthorizedResult();
-            }            
+            }
             {{/if}}
 
             {{#if AuthorizesClaims}}
@@ -105,7 +110,7 @@ namespace {{Namespace}}
             if (contentType.Split(';').Any(x => x.Trim().Equals("application/json", System.StringComparison.InvariantCultureIgnoreCase)))
             {
                 string requestBody = new StreamReader(req.Body).ReadToEnd();
-                
+
                 if (!System.String.IsNullOrWhiteSpace(requestBody))
                 {
                     command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
@@ -231,7 +236,7 @@ namespace {{Namespace}}
                         }
                 {{/if}}
             {{/each}}
-    
+
             {{#if ValidatesToken}}
             var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
@@ -269,7 +274,7 @@ namespace {{Namespace}}
             try
             {
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-                
+
                 {{#if HasHttpResponseHandler}}
                     {{#if IsValidationResult}}
                         FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
@@ -289,7 +294,7 @@ namespace {{Namespace}}
                         var responseTask = responseHandler.CreateResponse(command, result.Result);
                         var handledResponse = responseTask != null ? (await responseTask) : null;
                         return handledResponse ?? CreateSignalRResponse(result.Result);
-                    {{/if}}                        
+                    {{/if}}
                 {{else}}
                     {{#if IsValidationResult}}
                         FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
@@ -345,7 +350,7 @@ namespace {{Namespace}}
           string str4 = request.QueryString.Value;
           return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
-    
+
         public delegate System.Boolean TryDelegate<T>(System.String input, out T result);
 
         private static System.Boolean TryParseNullable<T>(
@@ -359,5 +364,5 @@ namespace {{Namespace}}
 
           return success;
         }
-    }    
+    }
 }

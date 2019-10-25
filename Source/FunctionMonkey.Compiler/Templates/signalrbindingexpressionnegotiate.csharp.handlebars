@@ -16,14 +16,19 @@ using System.Security.Claims;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}},
-                Route = "{{Route}}")                
+                Route = "{{Route}}")
             ]
             HttpRequest req,
             ILogger log,
@@ -69,7 +74,7 @@ namespace {{Namespace}}
             if (principal == null)
             {
                 return new UnauthorizedResult();
-            }            
+            }
             {{/if}}
 
             {{#if AuthorizesClaims}}
@@ -93,5 +98,5 @@ namespace {{Namespace}}
           string str4 = request.QueryString.Value;
           return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
-    }    
+    }
 }
