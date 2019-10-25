@@ -15,10 +15,17 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            EnvironmentServiceProvider = serviceProvider;
+        }
+
+        private IServiceProvider EnvironmentServiceProvider { get;}
+
         [FunctionName("{{Name}}")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}}
@@ -36,9 +43,9 @@ namespace {{Namespace}}
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
 
-            using (var scope = FunctionMonkey.Runtime.RootServiceProvider.CreateScope())
+            try
             {
-                FunctionMonkey.Runtime.ScopedServiceProvider.Value = scope.ServiceProvider;
+                FunctionMonkey.Runtime.ScopedServiceProvider.Value = EnvironmentServiceProvider;
                 FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
                 string requestUrl = GetRequestUrl(req);
@@ -394,6 +401,11 @@ namespace {{Namespace}}
                     {{/if}}
                 }
                 {{/if}}
+            }
+            finally
+            {
+                FunctionMonkey.Runtime.ScopedServiceProvider.Value = null;
+                FunctionMonkey.Runtime.FunctionProvidedLogger.Value = null;
             }
         }
 

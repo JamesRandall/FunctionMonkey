@@ -35,7 +35,7 @@ namespace FunctionMonkey.Compiler.Implementation
     internal class AssemblyCompiler : IAssemblyCompiler
     {
         private readonly ITemplateProvider _templateProvider;
-        
+
         public AssemblyCompiler(ITemplateProvider templateProvider = null)
         {
             _templateProvider = templateProvider ?? new TemplateProvider();
@@ -83,6 +83,14 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 string templateSource = _templateProvider.GetTemplate("swaggerui","csharp");
                 AddSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
+                {
+                    Namespace = newAssemblyNamespace
+                }, directoryInfo, syntaxTrees);
+            }
+
+            {
+                string templateSource = _templateProvider.GetTemplate("startup", "csharp");
+                AddSyntaxTreeFromHandlebarsTemplate(templateSource, "Startup", new
                 {
                     Namespace = newAssemblyNamespace
                 }, directoryInfo, syntaxTrees);
@@ -174,7 +182,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     }
                 }
             }
-            
+
             using (Stream stream = new FileStream(Path.Combine(outputBinaryFolder, outputAssemblyName), FileMode.Create))
             {
                 EmitResult result = compilation.Emit(stream, manifestResources: resources);
@@ -244,8 +252,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 {
                     references.Add(MetadataReference.CreateFromStream(systemIo));
                 }
-            }            
-            
+            }
+
             return references;
         }
 

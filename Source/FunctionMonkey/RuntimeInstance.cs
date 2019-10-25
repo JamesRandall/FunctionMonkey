@@ -18,38 +18,28 @@ namespace FunctionMonkey
 {
     public class RuntimeInstance
     {
-        public IServiceProvider ServiceProvider => ScopedServiceProvider.Value ?? RootServiceProvider;
-
-        public IServiceProvider RootServiceProvider { get; }
+        public IServiceProvider ServiceProvider => ScopedServiceProvider.Value ?? BuiltServiceProvider;
 
         public AsyncLocal<IServiceProvider> ScopedServiceProvider { get; } = new AsyncLocal<IServiceProvider>(null);
 
-        private IServiceCollection ServiceCollection { get; }
-
         public AsyncLocal<ILogger> FunctionProvidedLogger { get;  }= new AsyncLocal<ILogger>(null);
 
-        public IFunctionHostBuilder Builder { get; }
+        public IFunctionHostBuilder Builder { get; private set; }
 
-        public RuntimeInstance() : this(null, null, null)
-        {
+        public IServiceProvider BuiltServiceProvider { get; private set; }
 
-        }
-
-        public RuntimeInstance(Assembly functionAppConfigurationAssembly,
+        public void Initialize(Assembly functionAppConfigurationAssembly,
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild,
-            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild)
+            IServiceCollection rootServiceCollection)
         {
             // Find the configuration implementation and service collection
             IFunctionAppConfiguration configuration = LocateConfiguration(functionAppConfigurationAssembly);
-            IContainerProvider containerProvider =
-                // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
-                (configuration as IContainerProvider) ?? new DefaultContainerProvider();
 
-            ServiceCollection = containerProvider.CreateServiceCollection();
+            var serviceCollection = rootServiceCollection ?? new ServiceCollection();
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
-                (fromType, toInstance) => ServiceCollection.AddSingleton(fromType, toInstance),
-                (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
-                (resolveType) => ServiceProvider.GetService(resolveType)
+                (fromType, toInstance) => serviceCollection.AddSingleton(fromType, toInstance),
+                (fromType, toType) => serviceCollection.AddTransient(fromType, toType),
+                resolveType => ServiceProvider.GetService(resolveType)
             );
 
             ICommandRegistry commandRegistry;
@@ -65,31 +55,33 @@ namespace FunctionMonkey
             }
 
             // Register internal implementations
-            RegisterInternalImplementations();
+            RegisterInternalImplementations(serviceCollection);
 
             // Invoke the builder process
-            FunctionHostBuilder builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
+            FunctionHostBuilder builder = CreateBuilderFromConfiguration(serviceCollection, commandRegistry, configuration);
             Builder = builder;
             FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
 
-            SetupAuthorization(builder, functionBuilder);
+            SetupAuthorization(serviceCollection, builder, functionBuilder);
 
-            RegisterCoreDependencies(builder.FunctionDefinitions);
+            RegisterCoreDependencies(serviceCollection, builder.FunctionDefinitions);
 
-            RegisterTimerCommandFactories(builder.FunctionDefinitions);
+            RegisterTimerCommandFactories(serviceCollection, builder.FunctionDefinitions);
 
-            RegisterHttpDependencies(builder.FunctionDefinitions);
+            RegisterHttpDependencies(serviceCollection, builder.FunctionDefinitions);
 
-            RegisterCosmosDependencies(builder.FunctionDefinitions);
+            RegisterCosmosDependencies(serviceCollection, builder.FunctionDefinitions);
 
-            beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
-            RootServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
-            afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
+            beforeServiceProviderBuild?.Invoke(serviceCollection, commandRegistry);
 
-            builder.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            if (rootServiceCollection == null)
+            {
+                BuiltServiceProvider = serviceCollection.BuildServiceProvider();
+            }
         }
 
         private void RegisterCosmosDependencies(
+            IServiceCollection serviceCollection,
             IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
@@ -106,11 +98,12 @@ namespace FunctionMonkey
 
             foreach (Type claimsPrincipalAuthorizationType in types)
             {
-                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+                serviceCollection.AddTransient(claimsPrincipalAuthorizationType);
             }
         }
 
         private void RegisterCoreDependencies(
+            IServiceCollection serviceCollection,
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
@@ -120,14 +113,16 @@ namespace FunctionMonkey
             }
             foreach (Type claimsPrincipalAuthorizationType in types)
             {
-                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+                serviceCollection.AddTransient(claimsPrincipalAuthorizationType);
             }
 
             // Inject an ILogger that picks up the runtime provided logger
-            ServiceCollection.AddTransient<ILogger>(sp => new FunctionLogger(this));
+            serviceCollection.AddTransient<ILogger>(sp => new FunctionLogger(this));
         }
 
-        private void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
+        private void RegisterHttpDependencies(
+            IServiceCollection serviceCollection,
+            IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in builderFunctionDefinitions)
@@ -153,11 +148,14 @@ namespace FunctionMonkey
 
             foreach (Type claimsPrincipalAuthorizationType in types)
             {
-                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+                serviceCollection.AddTransient(claimsPrincipalAuthorizationType);
             }
         }
 
-        private void SetupAuthorization(FunctionHostBuilder builder, FunctionBuilder functionBuilder)
+        private void SetupAuthorization(
+            IServiceCollection serviceCollection,
+            FunctionHostBuilder builder,
+            FunctionBuilder functionBuilder)
         {
             AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder)builder.AuthorizationBuilder;
 
@@ -167,11 +165,11 @@ namespace FunctionMonkey
             {
                 ICommandClaimsBinder commandClaimsBinder = authorizationBuilder.ClaimsMappingBuilder.Build(
                     functionBuilder.GetHttpFunctionDefinitions().Select(x => x.CommandType).ToArray());
-                ServiceCollection.AddSingleton(commandClaimsBinder);
+                serviceCollection.AddSingleton(commandClaimsBinder);
             }
             else
             {
-                ServiceCollection.AddTransient(typeof(ICommandClaimsBinder),
+                serviceCollection.AddTransient(typeof(ICommandClaimsBinder),
                     authorizationBuilder.CustomClaimsBinderType);
             }
         }
@@ -183,10 +181,12 @@ namespace FunctionMonkey
             return configuration;
         }
 
-        private FunctionHostBuilder CreateBuilderFromConfiguration(ICommandRegistry commandRegistry,
+        private FunctionHostBuilder CreateBuilderFromConfiguration(
+            IServiceCollection serviceCollection,
+            ICommandRegistry commandRegistry,
             IFunctionAppConfiguration configuration)
         {
-            FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
+            FunctionHostBuilder builder = new FunctionHostBuilder(serviceCollection, commandRegistry, true);
             configuration.Build(builder);
             RegisterCommandHandlersForCommandsWithNoAssociatedHandler(builder, commandRegistry);
             new PostBuildPatcher().Patch(builder, "");
@@ -261,14 +261,16 @@ namespace FunctionMonkey
             return commandTypesToHandlerTypes;
         }
 
-        private void RegisterInternalImplementations()
+        private void RegisterInternalImplementations(IServiceCollection serviceCollection)
         {
-            ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
-            ServiceCollection.AddTransient<IContextSetter, ContextManager>();
-            ServiceCollection.AddTransient<IContextProvider, ContextManager>();
+            serviceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
+            serviceCollection.AddTransient<IContextSetter, ContextManager>();
+            serviceCollection.AddTransient<IContextProvider, ContextManager>();
         }
 
-        private void RegisterTimerCommandFactories(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        private void RegisterTimerCommandFactories(
+            IServiceCollection serviceCollection,
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
             IReadOnlyCollection<TimerFunctionDefinition> timerFunctionDefinitions = functionDefinitions
                 .Where(x => x is TimerFunctionDefinition)
@@ -279,7 +281,7 @@ namespace FunctionMonkey
             {
                 Type interfaceType =
                     typeof(ITimerCommandFactory<>).MakeGenericType(timerFunctionDefinition.CommandType);
-                ServiceCollection.AddTransient(interfaceType, timerFunctionDefinition.TimerCommandFactoryType);
+                serviceCollection.AddTransient(interfaceType, timerFunctionDefinition.TimerCommandFactoryType);
             }
         }
     }

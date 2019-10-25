@@ -23,8 +23,6 @@ namespace FunctionMonkey
 
         public static AsyncLocal<ILogger> FunctionProvidedLogger => RuntimeInstance.FunctionProvidedLogger;
 
-        public static IServiceProvider RootServiceProvider => RuntimeInstance.RootServiceProvider;
-
         public static AsyncLocal<IServiceProvider> ScopedServiceProvider => RuntimeInstance.ScopedServiceProvider;
 
         private static readonly RuntimeInstance RuntimeInstance;
@@ -34,6 +32,10 @@ namespace FunctionMonkey
             RuntimeInstance = new RuntimeInstance();
         }
 
+        public static void Initialize(IServiceCollection rootServiceCollection)
+        {
+            RuntimeInstance.Initialize(null, null, rootServiceCollection);
+        }
 
         /// <summary>
         /// Retrieves the command dispatcher from the dependency resolver

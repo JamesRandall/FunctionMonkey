@@ -31,7 +31,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 functionDefinition.AssemblyName = $"{outputNamespaceName}.dll";
                 functionDefinition.FunctionClassTypeName = $"{functionDefinition.Namespace}.{functionDefinition.Name}";
-                
+
                 string json = template(functionDefinition);
                 WriteFunctionTemplate(outputBinaryFolder, functionDefinition.Name, json);
 
@@ -68,6 +68,18 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 WriteFunctionTemplate(outputBinaryFolder, "OpenApiProvider", json);
             }
+
+            {
+                string templateSource = _templateProvider.GetTemplate("extensions", "json");
+                Func<object, string> template = Handlebars.Compile(templateSource);
+                string json = template(new
+                {
+                    AssemblyName = $"{outputNamespaceName}",
+                    Namespace = outputNamespaceName
+                });
+
+                WriteExtensionsTemplate(outputBinaryFolder, json);
+            }
         }
 
         private static void WriteFunctionTemplate(string outputBinaryFolder, string name,
@@ -76,6 +88,17 @@ namespace FunctionMonkey.Compiler.Implementation
             DirectoryInfo folder =
                 Directory.CreateDirectory(Path.Combine(outputBinaryFolder, "..", name));
             string filename = Path.Combine(folder.FullName, "function.json");
+            using (Stream stream = new FileStream(filename, FileMode.Create))
+            using (StreamWriter writer = new StreamWriter(stream))
+            {
+                writer.Write(json);
+            }
+        }
+
+        private static void WriteExtensionsTemplate(string outputBinaryFolder,
+           string json)
+        {
+            string filename = Path.Combine(outputBinaryFolder, "extensions.json");
             using (Stream stream = new FileStream(filename, FileMode.Create))
             using (StreamWriter writer = new StreamWriter(stream))
             {
