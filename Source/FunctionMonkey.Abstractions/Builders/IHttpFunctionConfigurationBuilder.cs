@@ -1,6 +1,5 @@
-﻿using System;
-using System.Linq.Expressions;
-using AzureFromTheTrenches.Commanding.Abstractions;
+﻿using AzureFromTheTrenches.Commanding.Abstractions;
+using System;
 
 namespace FunctionMonkey.Abstractions.Builders
 {
@@ -32,7 +31,8 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="httpStatusCode">The HTTP status code</param>
         /// <param name="description">The description</param>
+        /// <param name="responseType">The type of the response object. Optional</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> OpenApiResponse(int httpStatusCode, string description);
+        IHttpFunctionConfigurationBuilder<TCommand> OpenApiResponse(int httpStatusCode, string description, Type responseType = null);
     }
 }

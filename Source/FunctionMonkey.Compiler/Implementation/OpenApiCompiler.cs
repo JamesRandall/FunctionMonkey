@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -170,7 +171,8 @@ namespace FunctionMonkey.Compiler.Implementation
                 {
                     registry.FindOrAddReference(functionDefinition.CommandType);
                 }
-                if (functionDefinition.CommandResultType != null)
+                if (functionDefinition.CommandResultType != null &&
+                    functionDefinition.CommandResultType != typeof(IActionResult))
                 {
                     registry.FindOrAddReference(functionDefinition.CommandResultType);
                 }
@@ -206,11 +208,18 @@ namespace FunctionMonkey.Compiler.Implementation
                             Responses = new OpenApiResponses(),
                             Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() { new OpenApiTag { Name = functionByRoute.RouteConfiguration.OpenApiName } }
                         };
-                        foreach (KeyValuePair<int, string> kvp in functionByRoute.OpenApiResponseDescriptions)
+                        foreach (KeyValuePair<int, OpenApiResponseConfiguration> kvp in functionByRoute.OpenApiResponseConfigurations)
                         {
                             operation.Responses.Add(kvp.Key.ToString(), new OpenApiResponse
                             {
-                                Description = kvp.Value,
+                                Description = kvp.Value.Description,
+                                Content =
+                                {
+                                    ["application/json"] = new OpenApiMediaType()
+                                    {
+                                        Schema = kvp.Value.ResponseType == null ? null : registry.FindOrAddReference(kvp.Value.ResponseType)
+                                    }
+                                }
                             });
                         }
 

@@ -72,9 +72,14 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommandOuter> OpenApiResponse(int httpStatusCode, string description)
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> OpenApiResponse(int httpStatusCode, string description, Type responseType = null)
         {
-            _definition.OpenApiResponseDescriptions.Add(httpStatusCode, description);
+            var configuration = new OpenApiResponseConfiguration
+            {
+                Description = description,
+                ResponseType = responseType
+            };
+            _definition.OpenApiResponseConfigurations.Add(httpStatusCode, configuration);
             return this;
         }
 

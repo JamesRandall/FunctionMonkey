@@ -37,7 +37,7 @@ namespace FunctionMonkey.Model
 
         public string OpenApiSummary { get; set; }
 
-        public Dictionary<int, string> OpenApiResponseDescriptions { get; set; } = new Dictionary<int, string>();
+        public Dictionary<int, OpenApiResponseConfiguration> OpenApiResponseConfigurations { get; set; } = new Dictionary<int, OpenApiResponseConfiguration>();
 
         public string SubRoute { get; set; }
 
