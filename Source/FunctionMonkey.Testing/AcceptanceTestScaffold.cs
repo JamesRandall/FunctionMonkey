@@ -42,8 +42,7 @@ namespace FunctionMonkey.Testing
             ILogger mockLogger = null
         )
         {
-            _runtimeInstance = new RuntimeInstance();
-            _runtimeInstance.Initialize(functionAppConfigurationAssembly, beforeServiceProviderBuild, null);
+            _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeServiceProviderBuild, null);
 
             _runtimeInstance.FunctionProvidedLogger.Value = mockLogger ?? new LoggerMock();
         }

@@ -144,7 +144,7 @@ namespace FunctionMonkey.Compiler.Implementation
             IReadOnlyCollection<string> externalAssemblyLocations,
             OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder,
-            string outputAssemblyName,
+            string assemblyName,
             string assemblyNamespace,
             FunctionCompiler.TargetEnum target)
         {
@@ -160,7 +160,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 .ToArray();
 
             List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations, manifestResoureNames, manifestResourcePrefix, target);
-            CSharpCompilation compilation = CSharpCompilation.Create(outputAssemblyName,
+            CSharpCompilation compilation = CSharpCompilation.Create(assemblyName,
                 syntaxTrees,
                 references,
                 new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
@@ -183,7 +183,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
             }
 
-            using (Stream stream = new FileStream(Path.Combine(outputBinaryFolder, outputAssemblyName), FileMode.Create))
+            using (Stream stream = new FileStream(Path.Combine(outputBinaryFolder, $"{assemblyName}.dll"), FileMode.Create))
             {
                 EmitResult result = compilation.Emit(stream, manifestResources: resources);
                 if (!result.Success)
