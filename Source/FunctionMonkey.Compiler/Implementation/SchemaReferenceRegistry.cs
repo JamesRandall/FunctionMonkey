@@ -4,14 +4,15 @@
 // ------------------------------------------------------------
 // modified from https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations
 
-using System;
-using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Compiler.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -147,18 +148,18 @@ namespace FunctionMonkey.Compiler.Implementation
                 {
                     // Ignore Property ?
                     var ignoreProperty = propertyInfo.GetAttributeValue((JsonIgnoreAttribute attribute) => attribute) != null;
-                    if(!ignoreProperty)
+                    if (!ignoreProperty)
                     {
                         ignoreProperty = propertyInfo.GetAttributeValue((SecurityPropertyAttribute attribute) => attribute) != null;
                     }
-                    if(ignoreProperty)
+                    if (ignoreProperty)
                     {
                         continue;
                     }
 
                     // Property Name
                     var propertyName = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.PropertyName);
-                    if(string.IsNullOrWhiteSpace(propertyName))
+                    if (string.IsNullOrWhiteSpace(propertyName))
                     {
                         propertyName = propertyInfo.GetAttributeValue((DataMemberAttribute attribute) => attribute.Name);
                     }
@@ -168,15 +169,37 @@ namespace FunctionMonkey.Compiler.Implementation
                     }
 
                     // Property Required
-                    var propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required);
-                    if(propertyRequired == Required.Always)
+                    var propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required) == Required.Always;
+                    if (!propertyRequired)
+                    {
+                        propertyRequired = propertyInfo.GetAttributeValue((RequiredAttribute attribute) => attribute) != null;
+                    }
+                    if (propertyRequired)
                     {
                         schema.Required.Add(propertyName);
                     }
 
+                    // Min and max length
+                    int? minLength = propertyInfo.GetAttributeValue((MinLengthAttribute attribute) => attribute)?.Length;
+                    if (minLength == null)
+                    {
+                        minLength = propertyInfo.GetAttributeValue((StringLengthAttribute attribute) => attribute)?.MinimumLength;
+                    }
+                    int? maxLength = propertyInfo.GetAttributeValue((MaxLengthAttribute attribute) => attribute)?.Length;
+                    if (maxLength == null)
+                    {
+                        maxLength = propertyInfo.GetAttributeValue((StringLengthAttribute attribute) => attribute)?.MaximumLength;
+                    }
+
+                    // Regex pattern
+                    var pattern = propertyInfo.GetAttributeValue((RegularExpressionAttribute attribute) => attribute.Pattern);
+
                     // Inner Schema
                     var innerSchema = FindOrAddReference(propertyInfo.PropertyType);
                     innerSchema.ReadOnly = !propertyInfo.CanWrite;
+                    innerSchema.MinLength = minLength;
+                    innerSchema.MaxLength = maxLength;
+                    innerSchema.Pattern = pattern;
                     schema.Properties[propertyName] = innerSchema;
                 }
 

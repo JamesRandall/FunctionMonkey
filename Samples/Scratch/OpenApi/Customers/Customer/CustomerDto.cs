@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace OpenApi.Customers
@@ -51,5 +52,17 @@ namespace OpenApi.Customers
         /// </summary>
         [DataMember(Name = "companyName")]
         public string CompanyName { get; set; }
+
+        /// <summary>
+        /// ISO 639-1 code. Used as the language for notification emails sent by SEPAexpress if 
+        /// your organisation does not send its own (see compliance requirements). Currently 
+        /// only “en”, “fr”, “de” are supported.
+        /// Defaults to the country code of the address or "en" if not supported
+        /// </summary>
+        [MinLength(2)]
+        [MaxLength(2)]
+        [RegularExpression(@"(?i)^(en|de|fr)$")]
+        [DataMember(Name = "languageCode", EmitDefaultValue = false)]
+        public string LanguageCode { get; set; }
     }
 }
