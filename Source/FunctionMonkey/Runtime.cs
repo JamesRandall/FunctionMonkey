@@ -19,22 +19,20 @@ namespace FunctionMonkey
         /// <summary>
         /// The dependency resolver
         /// </summary>
-        public static IServiceProvider ServiceProvider => RuntimeInstance.ServiceProvider;
+        public static IServiceProvider ServiceProvider => RuntimeInstance.Value.ServiceProvider;
 
-        public static AsyncLocal<ILogger> FunctionProvidedLogger => RuntimeInstance.FunctionProvidedLogger;
+        public static AsyncLocal<ILogger> FunctionProvidedLogger => RuntimeInstance.Value.FunctionProvidedLogger;
 
-        public static AsyncLocal<IServiceProvider> ScopedServiceProvider => RuntimeInstance.ScopedServiceProvider;
+        public static AsyncLocal<IServiceProvider> FunctionServiceProvider => RuntimeInstance.Value.FunctionServiceProvider;
 
-        private static readonly RuntimeInstance RuntimeInstance;
+        private static readonly Lazy<RuntimeInstance> RuntimeInstance = new Lazy<RuntimeInstance>(() => new RuntimeInstance(null, null, ServiceCollection));
 
-        static Runtime()
+        private static IServiceCollection ServiceCollection { get; set; }
+
+        public static void InitializeFromStartup(IServiceCollection serviceCollection)
         {
-            RuntimeInstance = new RuntimeInstance();
-        }
-
-        public static void Initialize(IServiceCollection rootServiceCollection)
-        {
-            RuntimeInstance.Initialize(null, null, rootServiceCollection);
+            ServiceCollection = serviceCollection;
+            var _ = RuntimeInstance.Value;
         }
 
         /// <summary>

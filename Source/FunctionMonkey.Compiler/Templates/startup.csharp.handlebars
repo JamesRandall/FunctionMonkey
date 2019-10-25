@@ -10,7 +10,7 @@ namespace {{Namespace}}
 	{
 		public void Configure(IWebJobsBuilder builder)
 		{
-			FunctionMonkey.Runtime.Initialize(builder.Services);
+			FunctionMonkey.Runtime.InitializeFromStartup(builder.Services);
 		}
 	}
 }
