@@ -3,6 +3,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.1\bin\OpenApi.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="9.0.1" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />

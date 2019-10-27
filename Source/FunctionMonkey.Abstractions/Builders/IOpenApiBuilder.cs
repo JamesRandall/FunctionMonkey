@@ -1,4 +1,8 @@
-﻿namespace FunctionMonkey.Abstractions.Builders
+﻿using FunctionMonkey.Abstractions.OpenApi;
+using System;
+using System.Xml.XPath;
+
+namespace FunctionMonkey.Abstractions.Builders
 {
     /// <summary>
     /// An interface that allows an Open API document to be built.
@@ -28,5 +32,41 @@
         /// </summary>
         /// <param name="route">The route to host on - defaults to /swagger</param>
         IOpenApiBuilder UserInterface(string route = "/openapi");
+
+        /// <summary>
+        /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files
+        /// </summary>
+        /// <param name="xmlDocFactory">A factory method that returns XML Comments as an XPathDocument</param>
+        IOpenApiBuilder IncludeXmlComments(Func<XPathDocument> xmlDocFactory);
+
+        /// <summary>
+        /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files
+        /// </summary>
+        /// <param name="filePath">An abolsute path to the file that contains XML Comments</param>
+        IOpenApiBuilder IncludeXmlComments(string filePath);
+        
+        /// <summary>
+        /// Add a custom document filter to the filter chain.
+        /// </summary>
+        /// <param name="documentFilterFactory">The filter to add</param>
+        IOpenApiBuilder AddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory);
+
+        /// <summary>
+        /// Add a custom operation filter to the filter chain.
+        /// </summary>
+        /// <param name="operationFilterFactory">The filter to add</param>
+        IOpenApiBuilder AddOperationFilter(Func<IOpenApiOperationFilter> operationFilterFactory);
+
+        /// <summary>
+        /// Add a custom parameter filter to the filter chain.
+        /// </summary>
+        /// <param name="parameterFilterFactory">The filter to add</param>
+        IOpenApiBuilder AddParameterFilter(Func<IOpenApiParameterFilter> parameterFilterFactory);
+
+        /// <summary>
+        /// Add a custom schema filter to the filter chain.
+        /// </summary>
+        /// <param name="schemaFilterFactory">The filter to add</param>
+        IOpenApiBuilder AddSchemaFilter(Func<IOpenApiSchemaFilter> schemaFilterFactory);
     }
 }

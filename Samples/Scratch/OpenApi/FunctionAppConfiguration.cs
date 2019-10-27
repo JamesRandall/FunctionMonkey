@@ -1,6 +1,7 @@
 ﻿using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using OpenApi.Customers;
+using System.IO;
 
 namespace OpenApi
 {
@@ -15,8 +16,9 @@ namespace OpenApi
                 })
                 .OpenApiEndpoint(openApi => openApi
                     .Title("My API Title")
-                    .Version("1.2.3")
+                    .Version("v2")
                     .UserInterface()
+                    .IncludeXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
                 )
                 .Functions(functions =>
                 {

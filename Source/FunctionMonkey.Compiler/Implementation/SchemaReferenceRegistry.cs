@@ -5,6 +5,7 @@
 // modified from https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations
 
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions.OpenApi;
 using FunctionMonkey.Compiler.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -12,6 +13,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 
 namespace FunctionMonkey.Compiler.Implementation
@@ -22,6 +25,13 @@ namespace FunctionMonkey.Compiler.Implementation
         /// The dictionary containing all references of the given type.
         /// </summary>
         private readonly Dictionary<string, OpenApiSchema> _references = new Dictionary<string, OpenApiSchema>();
+
+        private readonly IList<IOpenApiSchemaFilter> _schemaFilters;
+
+        public SchemaReferenceRegistry(IList<IOpenApiSchemaFilter> schemaFilter)
+        {
+            _schemaFilters = schemaFilter;
+        }
 
         public OpenApiSchema FindReference(Type input)
         {
@@ -91,6 +101,12 @@ namespace FunctionMonkey.Compiler.Implementation
                 // 5. Object Type
                 var schema = new OpenApiSchema();
 
+                // Filter schema
+                var schemaFilterContext = new OpenApiSchemaFilterContext
+                {
+                    Type = input
+                };
+
                 if (input.IsSimple())
                 {
                     schema = input.MapToOpenApiSchema();
@@ -106,6 +122,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         schema.Example = new OpenApiString(Guid.Empty.ToString());
                     }
 
+                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
                     return schema;
                 }
 
@@ -117,6 +134,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         schema.Enum.Add(new OpenApiString(name));
                     }
 
+                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
                     return schema;
                 }
 
@@ -125,6 +143,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     schema.Type = "object";
                     schema.AdditionalProperties = FindOrAddReference(input.GetGenericArguments()[1]);
 
+                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
                     return schema;
                 }
 
@@ -134,6 +153,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                     schema.Items = FindOrAddReference(input.GetEnumerableItemType());
 
+                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
                     return schema;
                 }
 
@@ -144,6 +164,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 // We can also assume that the schema is an object type at this point.
                 _references[key] = schema;
 
+                schemaFilterContext.PropertyNames = new Dictionary<string, string>();
                 foreach (var propertyInfo in input.GetProperties())
                 {
                     // Ignore Property ?
@@ -201,7 +222,9 @@ namespace FunctionMonkey.Compiler.Implementation
                     innerSchema.MaxLength = maxLength;
                     innerSchema.Pattern = pattern;
                     schema.Properties[propertyName] = innerSchema;
+                    schemaFilterContext.PropertyNames[propertyName] = propertyInfo.Name;
                 }
+                FilterSchema(schema, _schemaFilters, schemaFilterContext);
 
                 _references[key] = schema;
 
@@ -224,6 +247,14 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 throw;
                 //throw new AddingSchemaReferenceFailedException(key, e.Message);
+            }
+        }
+
+        private void FilterSchema(OpenApiSchema schema, IList<IOpenApiSchemaFilter> schemaFilters, OpenApiSchemaFilterContext schemaFilterContext)
+        {
+            foreach (var schemaFilter in _schemaFilters)
+            {
+                schemaFilter.Apply(schema, schemaFilterContext);
             }
         }
 

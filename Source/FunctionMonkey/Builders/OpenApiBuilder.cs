@@ -1,5 +1,8 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.OpenApi;
 using FunctionMonkey.Model;
+using System;
+using System.Xml.XPath;
 
 namespace FunctionMonkey.Builders
 {
@@ -34,6 +37,42 @@ namespace FunctionMonkey.Builders
         public IOpenApiBuilder UserInterface(string route = "/swagger")
         {
             _openApiConfiguration.UserInterfaceRoute = route;
+            return this;
+        }
+
+        public IOpenApiBuilder IncludeXmlComments(Func<XPathDocument> xmlDocFactory)
+        {
+            _openApiConfiguration.IncludeXmlComments = xmlDocFactory;
+            return this;
+        }
+
+        public IOpenApiBuilder IncludeXmlComments(string filePath)
+        {
+            _openApiConfiguration.IncludeXmlComments = () => new XPathDocument(filePath);
+            return this;
+        }
+
+        public IOpenApiBuilder AddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory)
+        {
+            _openApiConfiguration.DocumentFilterFactories.Add(documentFilterFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder AddOperationFilter(Func<IOpenApiOperationFilter> operationFilterFactory)
+        {
+            _openApiConfiguration.OperationFilterFactories.Add(operationFilterFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder AddParameterFilter(Func<IOpenApiParameterFilter> parameterFilterFactory)
+        {
+            _openApiConfiguration.ParameterFilterFactories.Add(parameterFilterFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder AddSchemaFilter(Func<IOpenApiSchemaFilter> schemaFilterFactory)
+        {
+            _openApiConfiguration.SchemaFilterFactories.Add(schemaFilterFactory);
             return this;
         }
     }

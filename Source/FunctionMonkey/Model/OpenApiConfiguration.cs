@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using FunctionMonkey.Abstractions.OpenApi;
+using System;
+using System.Collections.Generic;
+using System.Xml.XPath;
 
 namespace FunctionMonkey.Model
 {
@@ -21,8 +24,18 @@ namespace FunctionMonkey.Model
                 if (!string.IsNullOrWhiteSpace(Title)) requiredSettingCount++;
                 return requiredSettingCount == 0 || requiredSettingCount == 2;
             }
-        }        
+        }
 
         public string UserInterfaceRoute { get; set; }
+
+        public Func<XPathDocument> IncludeXmlComments { get; set; }
+
+        public IList<Func<IOpenApiDocumentFilter>> DocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
+
+        public IList<Func<IOpenApiOperationFilter>> OperationFilterFactories { get; } = new List<Func<IOpenApiOperationFilter>>();
+
+        public IList<Func<IOpenApiParameterFilter>> ParameterFilterFactories { get; } = new List<Func<IOpenApiParameterFilter>>();
+
+        public IList<Func<IOpenApiSchemaFilter>> SchemaFilterFactories { get; } = new List<Func<IOpenApiSchemaFilter>>();
     }
 }
