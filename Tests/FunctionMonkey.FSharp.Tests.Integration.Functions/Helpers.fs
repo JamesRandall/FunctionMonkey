@@ -11,10 +11,12 @@ let private table =
         .GetTableReference(Constants.Storage.Table.markers)
 
 let createMarker (markerId:Guid) =
-    TableEntity(PartitionKey=markerId.ToString(), RowKey=markerId.ToString())
+    TableEntity(PartitionKey=markerId.ToString(), RowKey=String.Empty)
 
 let recordMarker marker = async {
-    do! table.ExecuteAsync(TableOperation.InsertOrReplace(marker)) |> Async.AwaitTask |> Async.Ignore
+    let! result = table.ExecuteAsync(TableOperation.InsertOrReplace(marker)) |> Async.AwaitTask
+    System.Console.WriteLine(result.HttpStatusCode.ToString())
+    ()
 }
 
 let recordMarkerFromGuid = createMarker >> recordMarker

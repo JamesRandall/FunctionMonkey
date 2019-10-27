@@ -33,6 +33,7 @@
         <Compile Include="HttpNoResponseHandlerFunctions.fs" />
         <Compile Include="HttpResponseHandlerFunctions.fs" />
         <Compile Include="ServiceBusFunctions.fs" />
+        <Compile Include="OutputBindingFunctions.fs" />
         <Compile Include="EntryPoint.fs" />
         <None Include="local.settings.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>

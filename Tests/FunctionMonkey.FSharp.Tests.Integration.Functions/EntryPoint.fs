@@ -31,7 +31,7 @@ let private createResources () =
                         )
                 |> Async.AwaitTask |> Async.Ignore
         do! Task.WhenAll(containers
-                         |> Seq.map (fun queueName -> blobClient.GetContainerReference(queueName).CreateIfNotExistsAsync())
+                         |> Seq.map (fun containerName -> blobClient.GetContainerReference(containerName).CreateIfNotExistsAsync())
                         )
                 |> Async.AwaitTask |> Async.Ignore
     }
