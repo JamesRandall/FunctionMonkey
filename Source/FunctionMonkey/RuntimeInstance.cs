@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Threading;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
@@ -23,6 +24,8 @@ namespace FunctionMonkey
         public AsyncLocal<IServiceProvider> FunctionServiceProvider { get; } = new AsyncLocal<IServiceProvider>(null);
 
         public AsyncLocal<ILogger> FunctionProvidedLogger { get;  }= new AsyncLocal<ILogger>(null);
+
+        public AsyncLocal<ClaimsPrincipal> FunctionClaimsPrincipal { get; } = new AsyncLocal<ClaimsPrincipal>(null);
 
         public IFunctionHostBuilder Builder { get; private set; }
 

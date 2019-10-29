@@ -75,6 +75,7 @@ namespace {{Namespace}}
             {
                 return new UnauthorizedResult();
             }
+            FunctionMonkey.Runtime.FunctionClaimsPrincipal.Value = principal;
             {{/if}}
 
             {{#if AuthorizesClaims}}
