@@ -56,7 +56,7 @@ namespace FunctionMonkey
                 }
 
                 string assemblyName = assembly.GetName().Name;
-                if (assemblyName.EndsWith(".Functions.dll"))
+                if (assemblyName.EndsWith(".Functions"))
                 {
                     Type[] candidateReferenceLinkBackTypes = assembly.GetTypes()
                         .Where(x => x.Name == "ReferenceLinkBack" && x.IsAbstract && x.IsSealed).ToArray();
@@ -116,10 +116,10 @@ namespace FunctionMonkey
                             : "    null LoadedException in ReflectionTypeLoadException");
                     }
                 }
-                
+
                 throw new TypeLoadingException(sb.ToString());
             }
-            
+
         }
     }
 }

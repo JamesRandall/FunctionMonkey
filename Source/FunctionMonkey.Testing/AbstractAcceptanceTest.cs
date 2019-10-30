@@ -10,8 +10,8 @@ namespace FunctionMonkey.Testing
 {
     /// <summary>
     /// A class that can be used as a basis for running acceptance tests with Function Monkey at the command dispatch level
-    /// designed for use with test frameworks that take a constructor approach to 
-    /// 
+    /// designed for use with test frameworks that take a constructor approach to
+    ///
     /// One of the advantages of the pattern used by Function Monkey is that the host function triggers are separated cleanly
     /// from business logic and compiled with pre-tested templates allowing for comprehensive acceptance tests to be run
     /// just below this level which can often provide a high level of value with a lower level of complexity than also testing
@@ -29,7 +29,7 @@ namespace FunctionMonkey.Testing
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             BeforeSetup();
-            _scaffold.Setup(null, BeforeServiceProviderBuild, AfterServiceProviderBuild);
+            _scaffold.Setup(null, BeforeServiceProviderBuild);
         }
 
         /// <summary>
@@ -61,23 +61,11 @@ namespace FunctionMonkey.Testing
         /// <summary>
         /// This method can be used to modify dependency and command setup before the service provider has been built
         /// from the service collection.
-        /// 
+        ///
         /// This must not access members (and should not need to) as it is invoked from the constructor to
         /// support test frameworks such as XUnit that construct test cases this way.
         /// </summary>
         public virtual void BeforeServiceProviderBuild(IServiceCollection serviceCollection, ICommandRegistry commandRegistry)
-        {
-
-        }
-
-        /// <summary>
-        /// This method can be used to modify dependency and command setup before the service provider has been built
-        /// from the service collection.
-        /// 
-        /// This must not access members (and should not need to) as it is invoked from the constructor to
-        /// support test frameworks such as XUnit that construct test cases this way.
-        /// </summary>
-        public virtual void AfterServiceProviderBuild(IServiceProvider serviceProvider, ICommandRegistry commandRegistry)
         {
 
         }
@@ -100,7 +88,7 @@ namespace FunctionMonkey.Testing
         /// This is useful for testing end to end HTTP triggered functions without having to actually host the
         /// function app.
         /// A method only needs specifying in the function supports multiple methods.
-        /// </summary>        
+        /// </summary>
         public Task<HttpResponse> ExecuteHttpAsync<TResult>(ICommand<TResult> command, HttpMethod method = null) => _scaffold.ExecuteHttpAsync(command, method);
 
         /// <summary>

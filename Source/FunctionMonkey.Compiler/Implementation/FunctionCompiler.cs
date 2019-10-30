@@ -69,18 +69,18 @@ namespace FunctionMonkey.Compiler.Implementation
             new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
 
             VerifyCommandAndResponseTypes(builder);
-            
+
             IReadOnlyCollection<string> externalAssemblies = GetExternalAssemblyLocations(builder.FunctionDefinitions);
             OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
 
             _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
-            
+
             _assemblyCompiler.Compile(builder.FunctionDefinitions,
                 configuration.GetType(),
                 newAssemblyNamespace,
-                externalAssemblies, 
-                _outputBinaryFolder, 
-                $"{newAssemblyNamespace}.dll",
+                externalAssemblies,
+                _outputBinaryFolder,
+                newAssemblyNamespace,
                 openApi,
                 _target, builder.OutputAuthoredSourceFolder);
         }
@@ -111,7 +111,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
                 throw new ConfigurationException(sb.ToString());
             }
-        }        
+        }
 
         private IReadOnlyCollection<string> GetExternalAssemblyLocations(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
@@ -167,7 +167,7 @@ namespace FunctionMonkey.Compiler.Implementation
             assemblies.Add(_configurationSourceAssembly);
 
             // we have to add directly referenced assemblies in case the commands and result types make use of external types
-            // TODO: their is an argument to restricting this 
+            // TODO: their is an argument to restricting this
             foreach (Assembly assembly in assemblies.ToArray())
             {
                 AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();

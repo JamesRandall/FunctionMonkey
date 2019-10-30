@@ -22,7 +22,6 @@ namespace FunctionMonkey.Builders
         public Type ValidatorType { get; set; }
         public OpenApiConfiguration OpenApiConfiguration { get; } = new OpenApiConfiguration();
         public string OutputAuthoredSourceFolder { get; private set; }
-        public Action<IServiceProvider> ServiceProviderCreatedAction { get; private set; }
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
@@ -42,7 +41,7 @@ namespace FunctionMonkey.Builders
             if (_isRuntime)
             {
                 services(ServiceCollection, CommandRegistry);
-            }            
+            }
             return this;
         }
 
@@ -92,12 +91,6 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder OutputAuthoredSource(string folder)
         {
             OutputAuthoredSourceFolder = folder;
-            return this;
-        }
-
-        public IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action)
-        {
-            ServiceProviderCreatedAction = action;
             return this;
         }
 

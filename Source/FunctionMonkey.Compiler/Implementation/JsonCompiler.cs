@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Compiler.HandlebarsHelpers;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
+using Newtonsoft.Json;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -31,7 +33,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 functionDefinition.AssemblyName = $"{outputNamespaceName}.dll";
                 functionDefinition.FunctionClassTypeName = $"{functionDefinition.Namespace}.{functionDefinition.Name}";
-                
+
                 string json = template(functionDefinition);
                 WriteFunctionTemplate(outputBinaryFolder, functionDefinition.Name, json);
 
@@ -68,6 +70,18 @@ namespace FunctionMonkey.Compiler.Implementation
 
                 WriteFunctionTemplate(outputBinaryFolder, "OpenApiProvider", json);
             }
+
+            {
+                string templateSource = _templateProvider.GetTemplate("extensions", "json");
+                Func<object, string> template = Handlebars.Compile(templateSource);
+                string json = template(new
+                {
+                    AssemblyName = $"{outputNamespaceName}",
+                    Namespace = outputNamespaceName
+                });
+
+                WriteExtensionsTemplate(outputBinaryFolder, json);
+            }
         }
 
         private static void WriteFunctionTemplate(string outputBinaryFolder, string name,
@@ -81,6 +95,63 @@ namespace FunctionMonkey.Compiler.Implementation
             {
                 writer.Write(json);
             }
+        }
+
+        private static void WriteExtensionsTemplate(string outputBinaryFolder,
+           string json)
+        {
+            var functionsEntry = JsonConvert.DeserializeObject<ExtensionsJsonEntry>(json);
+
+            string filename = Path.Combine(outputBinaryFolder, "extensions.json");
+
+            ExtensionsJson extensions = null;
+            try
+            {
+                using (Stream stream = new FileStream(filename, FileMode.Open))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    extensions = JsonConvert.DeserializeObject<ExtensionsJson>(reader.ReadToEnd());
+                }
+            }
+            catch (FileNotFoundException)
+            {
+            }
+
+            if (extensions?.Extensions?.Any(x => x.Name == functionsEntry.Name && x.Typename == functionsEntry.Typename) ?? false)
+            {
+                return;
+            }
+
+            extensions = ExtensionsJson.Build(extensions?.Extensions?.Append(functionsEntry)?.ToArray() ?? new[] { functionsEntry });
+
+            using (Stream stream = new FileStream(filename, FileMode.Create))
+            using (StreamWriter writer = new StreamWriter(stream))
+            {
+                writer.Write(JsonConvert.SerializeObject(extensions));
+            }
+        }
+
+        private class ExtensionsJson
+        {
+            [JsonProperty("extensions")]
+            public ExtensionsJsonEntry[] Extensions { get; set; }
+
+            public static ExtensionsJson Build(ExtensionsJsonEntry[] extensions)
+            {
+                return new ExtensionsJson
+                {
+                    Extensions = extensions
+                };
+            }
+        }
+
+        private class ExtensionsJsonEntry
+        {
+            [JsonProperty("name")]
+            public string Name { get; set; }
+
+            [JsonProperty("typename")]
+            public string Typename { get; set; }
         }
     }
 }

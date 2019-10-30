@@ -6,10 +6,15 @@ using Microsoft.Extensions.Logging;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task Run(
+        public async Task Run(
             [EventHubTrigger("samples-workitems", Connection = "eventHubConnectionString")]string eventHubMessage,
             DateTime enqueuedTimeUtc,
             Int64 sequenceNumber,
@@ -21,7 +26,7 @@ namespace {{Namespace}}
         {
             log.LogInformation("Event hub trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
-            
+
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(eventHubMessage))
             {
@@ -51,7 +56,7 @@ namespace {{Namespace}}
                 throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException("{{Name}}", validationResult);
             }
             {{/if}}
-            
+
             {{#if OutputBinding}}
                 {{#if NoCommandHandler}}
                     {{{CommandType}}} result = command;
@@ -59,9 +64,9 @@ namespace {{Namespace}}
                     {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
                 {{/if}}
                 {{{collectorOutputBinding}}}
-            {{else}} 
+            {{else}}
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-            {{/if}}            
+            {{/if}}
         }
     }
 }

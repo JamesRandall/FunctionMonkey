@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -14,10 +15,15 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}}
@@ -71,7 +77,8 @@ namespace {{Namespace}}
             if (principal == null)
             {
                 return new UnauthorizedResult();
-            }            
+            }
+            FunctionMonkey.Runtime.FunctionClaimsPrincipal.Value = principal;
             {{/if}}
 
             {{#if AuthorizesClaims}}
@@ -103,7 +110,7 @@ namespace {{Namespace}}
             if (contentType.Split(';').Any(x => x.Trim().Equals("application/json", System.StringComparison.InvariantCultureIgnoreCase)))
             {
                 string requestBody = new StreamReader(req.Body).ReadToEnd();
-                
+
                 if (!System.String.IsNullOrWhiteSpace(requestBody))
                 {
                     try
@@ -158,7 +165,7 @@ namespace {{Namespace}}
                         foreach(string queryParameterValue in queryParameterValues)
                         {
                             {{{DiscreteTypeName}}} parsedValue = default({{{DiscreteTypeName}}});
-                
+
                             {{#if IsString}}
                             parsedValue = queryParameterValue;
                             {{else if IsEnum}}
@@ -186,7 +193,7 @@ namespace {{Namespace}}
                                     return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }
                             {{/if}}
-                
+
                             {{#if IsCollection}}
                                 {{#if IsCollectionArray}}
                                     collection[queryParameterArrayIndex] = parsedValue;
@@ -199,14 +206,14 @@ namespace {{Namespace}}
                                 break;
                             {{/if}}
                         }
-                
+
                         {{#if IsCollection}}
                             command.{{Name}} = collection;
                         {{/if}}
                     }
                 {{/unless}}
             {{/each}}
-            
+
             {{#if HeaderBindingConfiguration}}
                 {{#unless IsFormCollection}}
                     {{#each PossibleBindingProperties}}
@@ -289,7 +296,7 @@ namespace {{Namespace}}
                     }
                 {{/if}}
             {{/each}}
-    
+
             {{#if ValidatesToken}}
             var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
@@ -330,10 +337,10 @@ namespace {{Namespace}}
                 {{else}}
                     {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
                 {{/if}}
-                
+
                 {{{collectorOutputBinding}}}
                 return new NoContentResult();
-            {{else}}            
+            {{else}}
             try
             {
                 var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
@@ -357,7 +364,7 @@ namespace {{Namespace}}
                             var responseTask = responseHandler.CreateResponse(command, result.Result);
                             var handledResponse = responseTask != null ? (await responseTask) : null;
                             return handledResponse ?? CreateResponse(200, result.Result, serializer);
-                        {{/if}}                        
+                        {{/if}}
                     {{else}}
                         {{#if IsValidationResult}}
                             FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
@@ -371,7 +378,7 @@ namespace {{Namespace}}
                 {{else}}
                     {{#if HasHttpResponseHandler}}
                         var responseTask = responseHandler.CreateResponse(command);
-                        var handledResponse = responseTask != null ? (await responseTask) : null; 
+                        var handledResponse = responseTask != null ? (await responseTask) : null;
                         return handledResponse ?? new OkResult();
                     {{else}}
                         return new OkResult();
@@ -418,7 +425,7 @@ namespace {{Namespace}}
           string str4 = request.QueryString.Value;
           return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
-    
+
         public delegate System.Boolean TryDelegate<T>(System.String input, out T result);
 
         private static System.Boolean TryParseNullable<T>(
@@ -432,5 +439,5 @@ namespace {{Namespace}}
 
           return success;
         }
-    }    
+    }
 }

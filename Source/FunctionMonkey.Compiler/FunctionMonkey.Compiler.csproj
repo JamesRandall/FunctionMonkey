@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>    
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <Version>2.4.0-beta000</Version>
     <AssemblyName>FunctionMonkey.Compiler</AssemblyName>
     <PackageId>FunctionMonkey.Compiler</PackageId>
@@ -150,6 +150,7 @@
     <None Remove="Templates\default.outputcollector.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.json.handlebars" />
+    <None Remove="Templates\extensions.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
     <None Remove="Templates\http.csharp.handlebars" />
     <None Remove="Templates\servicebusqueue.csharp.handlebars" />
@@ -165,6 +166,7 @@
     <None Remove="Templates\signalrbindingexpressionnegotiate.json.handlebars" />
     <None Remove="Templates\signalrcommandnegotiate.csharp.handlebars" />
     <None Remove="Templates\signalrcommandnegotiate.json.handlebars" />
+    <None Remove="Templates\startup.csharp.handlebars" />
     <None Remove="Templates\storageblob.csharp.handlebars" />
     <None Remove="Templates\storageblob.json.handlebars" />
     <None Remove="Templates\storageblobstream.csharp.handlebars" />
@@ -177,6 +179,10 @@
     <None Remove="Templates\swaggerui.json.handlebars" />
     <None Remove="Templates\timer.csharp.handlebars" />
     <None Remove="Templates\timer.json.handlebars" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\startup.csharp.handlebars" />
   </ItemGroup>
 
   <ItemGroup>
@@ -327,6 +333,7 @@
     <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\cosmosdb.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\signalr.outputparameter.csharp.handlebars" />
+    <EmbeddedResource Include="Templates\extensions.json.handlebars" />
     <EmbeddedResource Include="Templates\storagetable.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\storagequeue.outputparameter.csharp.handlebars" />
     <EmbeddedResource Include="Templates\timer.json.handlebars" />
