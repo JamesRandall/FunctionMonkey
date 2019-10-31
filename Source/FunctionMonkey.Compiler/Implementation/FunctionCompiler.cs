@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using AzureFromTheTrenches.Commanding;
+﻿using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FluentValidation;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Infrastructure;
-using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -69,17 +69,17 @@ namespace FunctionMonkey.Compiler.Implementation
             new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
 
             VerifyCommandAndResponseTypes(builder);
-            
+
             IReadOnlyCollection<string> externalAssemblies = GetExternalAssemblyLocations(builder.FunctionDefinitions);
             OpenApiOutputModel openApi = _openApiCompiler.Compile(builder.OpenApiConfiguration, builder.FunctionDefinitions, _outputBinaryFolder);
 
             _jsonCompiler.Compile(builder.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
-            
+
             _assemblyCompiler.Compile(builder.FunctionDefinitions,
                 configuration.GetType(),
                 newAssemblyNamespace,
-                externalAssemblies, 
-                _outputBinaryFolder, 
+                externalAssemblies,
+                _outputBinaryFolder,
                 $"{newAssemblyNamespace}.dll",
                 openApi,
                 _target, builder.OutputAuthoredSourceFolder);
@@ -111,7 +111,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
                 throw new ConfigurationException(sb.ToString());
             }
-        }        
+        }
 
         private IReadOnlyCollection<string> GetExternalAssemblyLocations(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)

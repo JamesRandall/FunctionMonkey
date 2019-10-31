@@ -124,12 +124,15 @@ namespace FunctionMonkey.Compiler.Implementation
                 schemaFilters.Add(schemaFilterFactory());
             }
 
-            if (configuration.IncludeXmlComments != null)
+            foreach (var xmlDocFactory in configuration.XmlDocFactories)
             {
-                var xmlDoc = configuration.IncludeXmlComments();
-                schemaFilters.Add(new OpenApiXmlCommentsSchemaFilter(xmlDoc));
+                schemaFilters.Add(new OpenApiXmlCommentsSchemaFilter(xmlDocFactory()));
             }
 
+            foreach(var assembly in configuration.ValidatorAssemblies)
+            {
+                schemaFilters.Add(new OpenApiFluentValidationSchemaFilter());
+            }
         }
 
         private static string GetApiPrefix(string outputBinaryFolder)

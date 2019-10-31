@@ -1,6 +1,7 @@
 ﻿using FunctionMonkey.Abstractions.OpenApi;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Model
@@ -28,7 +29,9 @@ namespace FunctionMonkey.Model
 
         public string UserInterfaceRoute { get; set; }
 
-        public Func<XPathDocument> IncludeXmlComments { get; set; }
+        public IList<Assembly> ValidatorAssemblies { get; } = new List<Assembly>();
+
+        public IList<Func<XPathDocument>> XmlDocFactories { get; } = new List<Func<XPathDocument>>();
 
         public IList<Func<IOpenApiDocumentFilter>> DocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
 

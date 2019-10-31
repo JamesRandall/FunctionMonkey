@@ -1,5 +1,6 @@
 ﻿using FunctionMonkey.Abstractions.OpenApi;
 using System;
+using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Abstractions.Builders
@@ -34,16 +35,22 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder UserInterface(string route = "/openapi");
 
         /// <summary>
+        /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on FluentValidation. 
+        /// </summary>
+        /// <param name="assembly">The assembly to search for FluentValidators</param>
+        IOpenApiBuilder AddValidatorsFromAssembly(Assembly assembly);
+
+        /// <summary>
         /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files
         /// </summary>
         /// <param name="xmlDocFactory">A factory method that returns XML Comments as an XPathDocument</param>
-        IOpenApiBuilder IncludeXmlComments(Func<XPathDocument> xmlDocFactory);
+        IOpenApiBuilder AddXmlComments(Func<XPathDocument> xmlDocFactory);
 
         /// <summary>
         /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files
         /// </summary>
         /// <param name="filePath">An abolsute path to the file that contains XML Comments</param>
-        IOpenApiBuilder IncludeXmlComments(string filePath);
+        IOpenApiBuilder AddXmlComments(string filePath);
         
         /// <summary>
         /// Add a custom document filter to the filter chain.

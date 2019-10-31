@@ -1,5 +1,6 @@
 ﻿using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.FluentValidation;
 using OpenApi.Customers;
 using System.IO;
 
@@ -12,14 +13,17 @@ namespace OpenApi
             builder
                 .Setup((serviceCollection, commandRegistry) =>
                 {
+                    serviceCollection.AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly);
                     commandRegistry.Discover(typeof(FunctionAppConfiguration).Assembly);
                 })
                 .OpenApiEndpoint(openApi => openApi
-                    .Title("My API Title")
+                    .Title("My API Title 2.0.0-beta-113")
                     .Version("v2")
                     .UserInterface()
-                    .IncludeXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
+                    .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
+                    .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
                 )
+                .AddFluentValidation()
                 .Functions(functions =>
                 {
                     functions.RegisterCustomers();

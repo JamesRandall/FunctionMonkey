@@ -2,6 +2,7 @@
 using FunctionMonkey.Abstractions.OpenApi;
 using FunctionMonkey.Model;
 using System;
+using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Builders
@@ -40,15 +41,21 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder IncludeXmlComments(Func<XPathDocument> xmlDocFactory)
+        public IOpenApiBuilder AddValidatorsFromAssembly(Assembly assembly)
         {
-            _openApiConfiguration.IncludeXmlComments = xmlDocFactory;
+            _openApiConfiguration.ValidatorAssemblies.Add(assembly);
             return this;
         }
 
-        public IOpenApiBuilder IncludeXmlComments(string filePath)
+        public IOpenApiBuilder AddXmlComments(Func<XPathDocument> xmlDocFactory)
         {
-            _openApiConfiguration.IncludeXmlComments = () => new XPathDocument(filePath);
+            _openApiConfiguration.XmlDocFactories.Add(xmlDocFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder AddXmlComments(string filePath)
+        {
+            _openApiConfiguration.XmlDocFactories.Add(() => new XPathDocument(filePath));
             return this;
         }
 
