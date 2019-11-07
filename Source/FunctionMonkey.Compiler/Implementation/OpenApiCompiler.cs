@@ -246,7 +246,7 @@ namespace FunctionMonkey.Compiler.Implementation
                             }
                         }
 
-                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function  && method == HttpMethod.Get || method == HttpMethod.Delete)
+                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function  && (method == HttpMethod.Get || method == HttpMethod.Delete))
                         {
                             operation.Parameters.Add(new OpenApiParameter
                             {
