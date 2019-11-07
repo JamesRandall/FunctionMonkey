@@ -20,6 +20,9 @@ namespace OpenApi.Customers.Customer
             RuleFor(dto => dto.CreatedAt)
                 .NotEmpty();
 
+            RuleFor(dto => dto.State)
+                .NotEmpty();
+
             GivenNamePropertyValidator.Rule(RuleFor(dto => dto.GivenName));
 
             FamilyNamePropertyValidator.Rule(RuleFor(dto => dto.FamilyName));

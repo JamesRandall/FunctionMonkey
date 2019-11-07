@@ -1,7 +1,6 @@
-﻿using FunctionMonkey.Abstractions.OpenApi;
+﻿using FunctionMonkey.Abstractions.Builders;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Model
@@ -29,8 +28,6 @@ namespace FunctionMonkey.Model
 
         public string UserInterfaceRoute { get; set; }
 
-        public IList<Assembly> ValidatorAssemblies { get; } = new List<Assembly>();
-
         public IList<Func<XPathDocument>> XmlDocFactories { get; } = new List<Func<XPathDocument>>();
 
         public IList<Func<IOpenApiDocumentFilter>> DocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
@@ -40,5 +37,7 @@ namespace FunctionMonkey.Model
         public IList<Func<IOpenApiParameterFilter>> ParameterFilterFactories { get; } = new List<Func<IOpenApiParameterFilter>>();
 
         public IList<Func<IOpenApiSchemaFilter>> SchemaFilterFactories { get; } = new List<Func<IOpenApiSchemaFilter>>();
+
+        public Func<Type, string> SchemaIdSelector { get; set; }
     }
 }

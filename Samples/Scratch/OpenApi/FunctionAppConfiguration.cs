@@ -22,6 +22,7 @@ namespace OpenApi
                     .UserInterface()
                     .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
+                    .CustomSchemaIds()
                 )
                 .AddFluentValidation()
                 .Functions(functions =>

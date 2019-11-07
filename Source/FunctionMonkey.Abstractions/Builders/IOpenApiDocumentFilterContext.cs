@@ -1,4 +1,4 @@
-﻿namespace FunctionMonkey.Abstractions.OpenApi
+﻿namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IOpenApiDocumentFilterContext
     {

@@ -1,6 +1,4 @@
-﻿using FunctionMonkey.Abstractions.OpenApi;
-using System;
-using System.Reflection;
+﻿using System;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Abstractions.Builders
@@ -35,12 +33,6 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder UserInterface(string route = "/openapi");
 
         /// <summary>
-        /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on FluentValidation. 
-        /// </summary>
-        /// <param name="assembly">The assembly to search for FluentValidators</param>
-        IOpenApiBuilder AddValidatorsFromAssembly(Assembly assembly);
-
-        /// <summary>
         /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files
         /// </summary>
         /// <param name="xmlDocFactory">A factory method that returns XML Comments as an XPathDocument</param>
@@ -51,7 +43,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="filePath">An abolsute path to the file that contains XML Comments</param>
         IOpenApiBuilder AddXmlComments(string filePath);
-        
+
         /// <summary>
         /// Add a custom document filter to the filter chain.
         /// </summary>
@@ -75,5 +67,13 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="schemaFilterFactory">The filter to add</param>
         IOpenApiBuilder AddSchemaFilter(Func<IOpenApiSchemaFilter> schemaFilterFactory);
+
+        /// <summary>
+        /// Provide a custom strategy for generating the unique Id's that are used to reference object Schemas.
+        /// </summary>
+        /// <param name="schemaIdSelector">
+        /// A lambda that returns a unique identifier for the provided system type
+        /// </param>
+        IOpenApiBuilder CustomSchemaIds(Func<Type, string> schemaIdSelector);
     }
 }

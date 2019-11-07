@@ -1,5 +1,3 @@
-using Microsoft.OpenApi;
-using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Linq;
 using System;
@@ -58,22 +56,17 @@ namespace FunctionMonkey.Compiler.Implementation
                 }
             };
 
-            IList<IOpenApiDocumentFilter> documentFilters = new List<IOpenApiDocumentFilter>();
-            IList< IOpenApiOperationFilter > operationFilters = new List<IOpenApiOperationFilter>();
-            IList<IOpenApiParameterFilter> parameterFilters = new List<IOpenApiParameterFilter>();
-            IList<IOpenApiSchemaFilter> schemaFilters = new List<IOpenApiSchemaFilter>();
+            var compilerConfiguration = new OpenApiCompilerConfiguration(configuration);
 
-            CreateFilters(configuration, documentFilters, operationFilters, parameterFilters, schemaFilters);
-
-            SchemaReferenceRegistry registry = new SchemaReferenceRegistry(schemaFilters);
+            SchemaReferenceRegistry registry = new SchemaReferenceRegistry(compilerConfiguration);
 
             CreateTags(functionDefinitions, openApiDocument);
 
             CreateSchemas(functionDefinitions, openApiDocument, registry);
 
-            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix, operationFilters, parameterFilters);
+            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix, compilerConfiguration);
 
-            FilterDocument(openApiDocument, documentFilters);
+            FilterDocument(compilerConfiguration, openApiDocument);
 
             if (openApiDocument.Paths.Count == 0)
             {
@@ -96,43 +89,6 @@ namespace FunctionMonkey.Compiler.Implementation
             }
 
             return result;
-        }
-
-        private static void CreateFilters(OpenApiConfiguration configuration,
-            IList<IOpenApiDocumentFilter> documentFilters,
-            IList<IOpenApiOperationFilter> operationFilters,
-            IList<IOpenApiParameterFilter> parameterFilters,
-            IList<IOpenApiSchemaFilter> schemaFilters)
-        {
-            foreach (var documentFilterFactory in configuration.DocumentFilterFactories)
-            {
-                documentFilters.Add(documentFilterFactory());
-            }
-
-            foreach (var operationFilterFactory in configuration.OperationFilterFactories)
-            {
-                operationFilters.Add(operationFilterFactory());
-            }
-
-            foreach (var parameterFilterFactory in configuration.ParameterFilterFactories)
-            {
-                parameterFilters.Add(parameterFilterFactory());
-            }
-
-            foreach (var schemaFilterFactory in configuration.SchemaFilterFactories)
-            {
-                schemaFilters.Add(schemaFilterFactory());
-            }
-
-            foreach (var xmlDocFactory in configuration.XmlDocFactories)
-            {
-                schemaFilters.Add(new OpenApiXmlCommentsSchemaFilter(xmlDocFactory()));
-            }
-
-            foreach(var assembly in configuration.ValidatorAssemblies)
-            {
-                schemaFilters.Add(new OpenApiFluentValidationSchemaFilter());
-            }
         }
 
         private static string GetApiPrefix(string outputBinaryFolder)
@@ -229,7 +185,7 @@ namespace FunctionMonkey.Compiler.Implementation
         }
 
         private static void CreateOperationsFromRoutes(HttpFunctionDefinition[] functionDefinitions,
-            OpenApiDocument openApiDocument, SchemaReferenceRegistry registry, string apiPrefix, IList<IOpenApiOperationFilter> operationFilters, IList<IOpenApiParameterFilter> parameterFilters)
+            OpenApiDocument openApiDocument, SchemaReferenceRegistry registry, string apiPrefix, OpenApiCompilerConfiguration compilerConfiguration)
         {
             string prependedApiPrefix = string.IsNullOrEmpty(apiPrefix) ? $"" : $"/{apiPrefix}";
             var operationsByRoute = functionDefinitions.Where(x => x.Route != null).GroupBy(x => $"{prependedApiPrefix}/{x.Route}");
@@ -298,7 +254,7 @@ namespace FunctionMonkey.Compiler.Implementation
                                     Description = ""
                                 };
 
-                                FilterParameter(parameter, parameterFilters);
+                                FilterParameter(compilerConfiguration.ParameterFilters, parameter);
 
                                 operation.Parameters.Add(parameter);
                             }
@@ -327,7 +283,7 @@ namespace FunctionMonkey.Compiler.Implementation
                                 Description = ""
                             };
 
-                            FilterParameter(parameter, parameterFilters);
+                            FilterParameter(compilerConfiguration.ParameterFilters, parameter);
 
                             operation.Parameters.Add(parameter);
                             // TODO: We need to consider what to do with the payload model here - if its a route parameter
@@ -345,7 +301,7 @@ namespace FunctionMonkey.Compiler.Implementation
                             operation.RequestBody = requestBody;
                         }
 
-                        FilterOperation(operation, operationFilters);
+                        FilterOperation(compilerConfiguration.OperationFilters, operation, commandType);
 
                         pathItem.Operations.Add(MethodToOperationMap[method], operation);
                     }
@@ -378,25 +334,28 @@ namespace FunctionMonkey.Compiler.Implementation
             }).ToArray();
         }
 
-        private static void FilterDocument(OpenApiDocument document, IList<IOpenApiDocumentFilter> documentFilters)
+        private static void FilterDocument(OpenApiCompilerConfiguration documentFilters, OpenApiDocument document)
         {
             var documentFilterContext = new OpenApiDocumentFilterContext();
-            foreach (var documentFilter in documentFilters)
+            foreach (var documentFilter in documentFilters.DocumentFilters)
             {
                 documentFilter.Apply(document, documentFilterContext);
             }
         }
 
-        private static void FilterOperation(OpenApiOperation operation, IList<IOpenApiOperationFilter> operationFilters)
+        private static void FilterOperation(IList<IOpenApiOperationFilter> operationFilters, OpenApiOperation operation, Type commandType)
         {
-            var operationFilterContext = new OpenApiOperationFilterContext();
+            var operationFilterContext = new OpenApiOperationFilterContext
+            {
+                CommandType = commandType
+            };
             foreach (var operationFilter in operationFilters)
             {
                 operationFilter.Apply(operation, operationFilterContext);
             }
         }
 
-        private static void FilterParameter(OpenApiParameter parameter, IList<IOpenApiParameterFilter> parameterFilters)
+        private static void FilterParameter(IList<IOpenApiParameterFilter> parameterFilters, OpenApiParameter parameter)
         {
             var parameterFilterContext = new OpenApiParameterFilterContext();
             foreach (var parameterFilter in parameterFilters)

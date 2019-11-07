@@ -5,7 +5,6 @@
 // modified from https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations
 
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Abstractions.OpenApi;
 using FunctionMonkey.Compiler.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -13,8 +12,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
 
 namespace FunctionMonkey.Compiler.Implementation
@@ -26,11 +23,13 @@ namespace FunctionMonkey.Compiler.Implementation
         /// </summary>
         private readonly Dictionary<string, OpenApiSchema> _references = new Dictionary<string, OpenApiSchema>();
 
-        private readonly IList<IOpenApiSchemaFilter> _schemaFilters;
+        private readonly OpenApiCompilerConfiguration _compilerConfiguration;
 
-        public SchemaReferenceRegistry(IList<IOpenApiSchemaFilter> schemaFilter)
+        public Dictionary<string, OpenApiSchema> References => _references;
+
+        public SchemaReferenceRegistry(OpenApiCompilerConfiguration compilerConfiguration)
         {
-            _schemaFilters = schemaFilter;
+            _compilerConfiguration = compilerConfiguration;
         }
 
         public OpenApiSchema FindReference(Type input)
@@ -43,7 +42,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 return new OpenApiSchema();
             }
 
-            var key = GetKey(input);
+            var key = _compilerConfiguration.SchemaIdSelector(input);
 
             // If the schema already exists in the References, simply return.
             if (_references.ContainsKey(key))
@@ -75,7 +74,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 return new OpenApiSchema();
             }
 
-            var key = GetKey(input);
+            var key = _compilerConfiguration.SchemaIdSelector(input);
 
             // If the schema already exists in the References, simply return.
             if (_references.ContainsKey(key))
@@ -122,7 +121,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         schema.Example = new OpenApiString(Guid.Empty.ToString());
                     }
 
-                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -134,7 +133,7 @@ namespace FunctionMonkey.Compiler.Implementation
                         schema.Enum.Add(new OpenApiString(name));
                     }
 
-                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -143,7 +142,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     schema.Type = "object";
                     schema.AdditionalProperties = FindOrAddReference(input.GetGenericArguments()[1]);
 
-                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -153,7 +152,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
                     schema.Items = FindOrAddReference(input.GetEnumerableItemType());
 
-                    FilterSchema(schema, _schemaFilters, schemaFilterContext);
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -224,7 +223,7 @@ namespace FunctionMonkey.Compiler.Implementation
                     schema.Properties[propertyName] = innerSchema;
                     schemaFilterContext.PropertyNames[propertyName] = propertyInfo.Name;
                 }
-                FilterSchema(schema, _schemaFilters, schemaFilterContext);
+                FilterSchema(schema, schemaFilterContext);
 
                 _references[key] = schema;
 
@@ -250,34 +249,12 @@ namespace FunctionMonkey.Compiler.Implementation
             }
         }
 
-        private void FilterSchema(OpenApiSchema schema, IList<IOpenApiSchemaFilter> schemaFilters, OpenApiSchemaFilterContext schemaFilterContext)
+        private void FilterSchema(OpenApiSchema schema, OpenApiSchemaFilterContext schemaFilterContext)
         {
-            foreach (var schemaFilter in _schemaFilters)
+            foreach (var schemaFilter in _compilerConfiguration.SchemaFilters)
             {
                 schemaFilter.Apply(schema, schemaFilterContext);
             }
         }
-
-        public Dictionary<string, OpenApiSchema> References => _references;
-
-        /// <summary>
-        /// Gets the key from the input object to use as reference string.
-        /// </summary>
-        /// <remarks>
-        /// This must match the regular expression ^[a-zA-Z0-9\.\-_]+$ due to OpenAPI V3 spec.
-        /// </remarks>
-        private string GetKey(Type input)
-        {
-            var typeName = input.GetAttributeValue((DataContractAttribute attribute) => attribute.Name);
-            if (typeName == null)
-            {
-                // Type.ToString() returns full name for non-generic types and
-                // returns a full name without unnecessary assembly information for generic types.
-                typeName = input.ToString();
-            }
-
-            return typeName.SanitizeClassName();
-        }
     }
-
 }

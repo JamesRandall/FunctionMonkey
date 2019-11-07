@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace FunctionMonkey.Abstractions.OpenApi
+namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IOpenApiSchemaFilterContext
     {

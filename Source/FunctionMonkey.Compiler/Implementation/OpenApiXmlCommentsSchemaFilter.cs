@@ -1,4 +1,4 @@
-﻿using FunctionMonkey.Abstractions.OpenApi;
+﻿using FunctionMonkey.Abstractions.Builders;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using System;
@@ -26,7 +26,7 @@ namespace FunctionMonkey.Compiler.Implementation
         {
             TryApplyTypeComments(schema, context.Type);
 
-            if(context.PropertyNames == null)
+            if (context.PropertyNames == null)
             {
                 return;
             }

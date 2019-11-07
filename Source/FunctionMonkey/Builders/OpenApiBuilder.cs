@@ -1,8 +1,6 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
-using FunctionMonkey.Abstractions.OpenApi;
 using FunctionMonkey.Model;
 using System;
-using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Builders
@@ -15,7 +13,6 @@ namespace FunctionMonkey.Builders
         {
             _openApiConfiguration = openApiConfiguration;
         }
-
 
         public IOpenApiBuilder Version(string version)
         {
@@ -38,12 +35,6 @@ namespace FunctionMonkey.Builders
         public IOpenApiBuilder UserInterface(string route = "/swagger")
         {
             _openApiConfiguration.UserInterfaceRoute = route;
-            return this;
-        }
-
-        public IOpenApiBuilder AddValidatorsFromAssembly(Assembly assembly)
-        {
-            _openApiConfiguration.ValidatorAssemblies.Add(assembly);
             return this;
         }
 
@@ -80,6 +71,12 @@ namespace FunctionMonkey.Builders
         public IOpenApiBuilder AddSchemaFilter(Func<IOpenApiSchemaFilter> schemaFilterFactory)
         {
             _openApiConfiguration.SchemaFilterFactories.Add(schemaFilterFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder CustomSchemaIds(Func<Type, string> schemaIdSelector)
+        {
+            _openApiConfiguration.SchemaIdSelector = schemaIdSelector;
             return this;
         }
     }

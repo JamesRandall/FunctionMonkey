@@ -5,7 +5,10 @@
 // comes from https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations
 
 using System;
+using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace FunctionMonkey.Compiler.Extensions
@@ -98,7 +101,7 @@ namespace FunctionMonkey.Compiler.Extensions
         {
             if (value == null)
             {
-                return value;
+                return null;
             }
 
             value = value.Trim();
@@ -173,6 +176,27 @@ namespace FunctionMonkey.Compiler.Extensions
             return c;
         }
 
+        public static string FriendlyId(this Type type, bool fullyQualified = false)
+        {
+            var str = fullyQualified ? type.FullNameSansTypeArguments().Replace("+", ".") : type.Name;
+            if (!type.GetTypeInfo().IsGenericType)
+            {
+                return str;
+            }
+            var array = type.GetGenericArguments().Select(t => t.FriendlyId(fullyQualified)).ToArray();
+            return new StringBuilder(str).Replace($"`{array.Count()}", string.Empty).Append(
+                $"[{string.Join(",", array).TrimEnd(',')}]").ToString();
+        }
 
+        private static string FullNameSansTypeArguments(this Type type)
+        {
+            if (string.IsNullOrEmpty(type.FullName))
+            {
+                return string.Empty;
+            }
+            var fullName = type.FullName;
+            var length = fullName.IndexOf("[[", StringComparison.Ordinal);
+            return length != -1 ? fullName.Substring(0, length) : fullName;
+        }
     }
 }

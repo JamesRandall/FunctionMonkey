@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace FunctionMonkey.Abstractions.OpenApi
+namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IOpenApiSchemaFilter
     {
