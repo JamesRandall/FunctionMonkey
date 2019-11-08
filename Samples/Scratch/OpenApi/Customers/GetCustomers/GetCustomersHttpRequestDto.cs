@@ -27,7 +27,7 @@ namespace OpenApi.Customers.GetCustomers
         ///     Upper bound for the number of objects to be returned. Defaults to 50. Maximum of 500. Optional
         /// </summary>
         [DataMember(Name = "limit")]
-        public int Limit { get; set; } = 50;
+        public int? Limit { get; set; } = 50;
 
         /// <summary>
         ///     Return only objects which were created from this timestamp on. Optional. Remark: Do not use timestamps for the

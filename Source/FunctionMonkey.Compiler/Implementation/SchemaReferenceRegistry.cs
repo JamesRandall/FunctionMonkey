@@ -60,6 +60,29 @@ namespace FunctionMonkey.Compiler.Implementation
             return null;
         }
 
+        public OpenApiSchema GetOrCreateSchema(Type input)
+        {
+            if (input == null || input.FullName == null)
+            {
+                return null;
+            }
+
+            var key = _compilerConfiguration.SchemaIdSelector(input);
+
+            // If the schema already exists in the References, simply return.
+            if (_references.TryGetValue(key, out var schema))
+            {
+                return schema;
+            }
+
+            // Schema does not exist. Add and immediately delete
+            FindOrAddReference(input);
+            _references.TryGetValue(key, out schema);
+            _references.Remove(key);
+            return schema;
+        }
+
+
         /// <summary>
         /// Finds the existing reference object based on the key from the input or creates a new one.
         /// </summary>

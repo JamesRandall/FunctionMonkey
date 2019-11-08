@@ -1,11 +1,14 @@
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace FunctionMonkey.Compiler.Implementation
@@ -208,6 +211,13 @@ namespace FunctionMonkey.Compiler.Implementation
                             Responses = new OpenApiResponses(),
                             Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() { new OpenApiTag { Name = functionByRoute.RouteConfiguration.OpenApiName } }
                         };
+
+                        var operationFilterContext = new OpenApiOperationFilterContext
+                        {
+                            CommandType = commandType,
+                            PropertyNames = new Dictionary<string, string>()
+                        };
+
                         foreach (KeyValuePair<int, OpenApiResponseConfiguration> kvp in functionByRoute.OpenApiResponseConfigurations)
                         {
                             operation.Responses.Add(kvp.Key.ToString(), new OpenApiResponse
@@ -241,22 +251,50 @@ namespace FunctionMonkey.Compiler.Implementation
                             operation.Responses.Add("200", response);
                         }
 
-                        foreach (HttpParameter property in functionByRoute.PossibleBindingProperties)
+                        if (method == HttpMethod.Get || method == HttpMethod.Delete)
                         {
-                            if (method == HttpMethod.Get || method == HttpMethod.Delete)
+                            var schema = registry.GetOrCreateSchema(commandType);
+                            foreach (HttpParameter property in functionByRoute.PossibleBindingProperties)
                             {
+                                var propertyInfo = commandType.GetProperty(property.Name);
+
+                                // Property Name
+                                var propertyName = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.PropertyName);
+                                if (string.IsNullOrWhiteSpace(propertyName))
+                                {
+                                    propertyName = propertyInfo.GetAttributeValue((DataMemberAttribute attribute) => attribute.Name);
+                                }
+                                if (string.IsNullOrWhiteSpace(propertyName))
+                                {
+                                    propertyName = propertyInfo.Name.ToCamelCase();
+                                }
+
+                                // Property Required
+                                var propertyRequired = !property.IsOptional;
+                                if (!propertyRequired)
+                                {
+                                    propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required) == Required.Always;
+                                }
+                                if (!propertyRequired)
+                                {
+                                    propertyRequired = propertyInfo.GetAttributeValue((RequiredAttribute attribute) => attribute) != null;
+                                }
+
+                                var propertySchema = schema.Properties[propertyName];
+
                                 var parameter = new OpenApiParameter
                                 {
-                                    Name = property.Name.ToCamelCase(),
+                                    Name = propertyName,
                                     In = ParameterLocation.Query,
-                                    Required = !property.IsOptional,
-                                    Schema = property.Type.MapToOpenApiSchema(),
-                                    Description = ""
+                                    Required = propertyRequired,
+                                    Schema = propertySchema, // property.Type.MapToOpenApiSchema(),
+                                    Description = propertySchema.Description
                                 };
 
                                 FilterParameter(compilerConfiguration.ParameterFilters, parameter);
 
                                 operation.Parameters.Add(parameter);
+                                operationFilterContext.PropertyNames[parameter.Name] = propertyInfo.Name;
                             }
                         }
 
@@ -296,12 +334,12 @@ namespace FunctionMonkey.Compiler.Implementation
                             OpenApiSchema schema = registry.FindReference(commandType);
                             requestBody.Content = new Dictionary<string, OpenApiMediaType>
                             {
-                                { "application/json", new OpenApiMediaType { Schema = schema}}
+                                { "application/json", new OpenApiMediaType { Schema = schema }}
                             };
                             operation.RequestBody = requestBody;
                         }
 
-                        FilterOperation(compilerConfiguration.OperationFilters, operation, commandType);
+                        FilterOperation(compilerConfiguration.OperationFilters, operation, operationFilterContext);
 
                         pathItem.Operations.Add(MethodToOperationMap[method], operation);
                     }
@@ -343,12 +381,8 @@ namespace FunctionMonkey.Compiler.Implementation
             }
         }
 
-        private static void FilterOperation(IList<IOpenApiOperationFilter> operationFilters, OpenApiOperation operation, Type commandType)
+        private static void FilterOperation(IList<IOpenApiOperationFilter> operationFilters, OpenApiOperation operation, OpenApiOperationFilterContext operationFilterContext)
         {
-            var operationFilterContext = new OpenApiOperationFilterContext
-            {
-                CommandType = commandType
-            };
             foreach (var operationFilter in operationFilters)
             {
                 operationFilter.Apply(operation, operationFilterContext);

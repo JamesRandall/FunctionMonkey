@@ -46,17 +46,17 @@ namespace FunctionMonkey.FluentValidation.OpenApi
         }
 
         /// <summary>
-        /// Returns validators by property name ignoring name case.
+        /// Returns validators by property name.
         /// </summary>
         /// <param name="validator">Validator</param>
         /// <param name="name">Property name.</param>
         /// <returns>enumeration or null.</returns>
-        public static IEnumerable<IPropertyValidator> GetValidatorsForMemberIgnoreCase(this IValidator validator, string name)
+        public static IEnumerable<IPropertyValidator> GetValidatorsForMember(this IValidator validator, string name)
         {
             return (validator as IEnumerable<IValidationRule>)
                 .NotNull()
                 .OfType<PropertyRule>()
-                .Where(propertyRule => propertyRule.Condition == null && propertyRule.AsyncCondition == null && propertyRule.PropertyName?.Equals(name, StringComparison.InvariantCultureIgnoreCase) == true)
+                .Where(propertyRule => propertyRule.Condition == null && propertyRule.AsyncCondition == null && propertyRule.PropertyName?.Equals(name, StringComparison.InvariantCulture) == true)
                 .SelectMany(propertyRule => propertyRule.Validators);
         }
     }

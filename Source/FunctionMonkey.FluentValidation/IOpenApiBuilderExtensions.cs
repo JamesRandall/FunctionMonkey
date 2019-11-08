@@ -18,7 +18,6 @@ namespace FunctionMonkey.FluentValidation
             IEnumerable<OpenApiFluentValidationRule> customRules = null)
         {
             openApiBuilder.AddSchemaFilter(() => new OpenApiFluentValidationSchemaFilter(assembly, customRules));
-            openApiBuilder.AddOperationFilter(() => new OpenApiFluentValidationOperationFilter(assembly, customRules));
             return openApiBuilder;
         }
     }

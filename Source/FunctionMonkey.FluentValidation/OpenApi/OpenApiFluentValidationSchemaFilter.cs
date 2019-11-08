@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
+using FluentValidation.Internal;
+using FluentValidation.Validators;
 using FunctionMonkey.Abstractions.Builders;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FluentValidation.Internal;
-using FluentValidation.Validators;
 
 namespace FunctionMonkey.FluentValidation.OpenApi
 {
@@ -14,7 +14,7 @@ namespace FunctionMonkey.FluentValidation.OpenApi
     {
         private readonly IDictionary<Type, Type> _validatorTypes = new Dictionary<Type, Type>();
 
-        private readonly IReadOnlyList< OpenApiFluentValidationRule> _rules;
+        private readonly IReadOnlyList<OpenApiFluentValidationRule> _rules;
 
         public OpenApiFluentValidationSchemaFilter(Assembly assembly, IEnumerable<OpenApiFluentValidationRule> customRules)
         {
@@ -49,16 +49,17 @@ namespace FunctionMonkey.FluentValidation.OpenApi
                 return;
             }
 
-            var validator = (IValidator) Activator.CreateInstance(validatorType);
-            ApplyRulesToSchema(schema, validator);
-            AddRulesFromIncludedValidators(schema, validator);
+            var validator = (IValidator)Activator.CreateInstance(validatorType);
+            ApplyRulesToSchema(schema, schemaFilterContext, validator);
+            AddRulesFromIncludedValidators(schema, schemaFilterContext, validator);
         }
 
-        private void ApplyRulesToSchema(OpenApiSchema schema, IValidator validator)
+        private void ApplyRulesToSchema(OpenApiSchema schema, IOpenApiSchemaFilterContext schemaFilterContext, IValidator validator)
         {
             foreach (var key in schema?.Properties?.Keys ?? Array.Empty<string>())
             {
-                var validators = validator.GetValidatorsForMemberIgnoreCase(key);
+                var propertyName = schemaFilterContext.PropertyNames[key];
+                var validators = validator.GetValidatorsForMember(propertyName);
 
                 foreach (var propertyValidator in validators)
                 {
@@ -73,7 +74,7 @@ namespace FunctionMonkey.FluentValidation.OpenApi
             }
         }
 
-        private void AddRulesFromIncludedValidators(OpenApiSchema schema, IValidator validator)
+        private void AddRulesFromIncludedValidators(OpenApiSchema schema, IOpenApiSchemaFilterContext schemaFilterContext, IValidator validator)
         {
             var childAdapters = (validator as IEnumerable<IValidationRule>)
                 .NotNull()
@@ -86,8 +87,8 @@ namespace FunctionMonkey.FluentValidation.OpenApi
             {
                 var propertyValidatorContext = new PropertyValidatorContext(new ValidationContext(null), null, string.Empty);
                 var includeValidator = adapter.GetValidator(propertyValidatorContext);
-                ApplyRulesToSchema(schema, includeValidator);
-                AddRulesFromIncludedValidators(schema, includeValidator);
+                ApplyRulesToSchema(schema, schemaFilterContext, includeValidator);
+                AddRulesFromIncludedValidators(schema, schemaFilterContext, includeValidator);
             }
         }
     }
