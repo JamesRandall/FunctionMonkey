@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace FunctionMonkey.Infrastructure
 {
     class FunctionLoggerFactory : ILoggerFactory
     {
+        private readonly RuntimeInstance _runtimeInstance;
+
+        public FunctionLoggerFactory(RuntimeInstance runtimeInstance)
+        {
+            _runtimeInstance = runtimeInstance;
+        }
+
         public ILogger CreateLogger(string categoryName)
         {
-            return new FunctionLogger();
+            return new FunctionLogger(_runtimeInstance);
         }
 
         public void AddProvider(ILoggerProvider provider)

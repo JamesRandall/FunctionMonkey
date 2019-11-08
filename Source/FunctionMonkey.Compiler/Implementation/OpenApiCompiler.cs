@@ -10,6 +10,13 @@ using System.Net.Http;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
+using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Compiler.Extensions;
+using FunctionMonkey.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi;
+using Microsoft.OpenApi.Extensions;
 
 namespace FunctionMonkey.Compiler.Implementation
 {
@@ -298,7 +305,7 @@ namespace FunctionMonkey.Compiler.Implementation
                             }
                         }
 
-                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function  && method == HttpMethod.Get || method == HttpMethod.Delete)
+                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function && (method == HttpMethod.Get || method == HttpMethod.Delete))
                         {
                             operation.Parameters.Add(new OpenApiParameter
                             {
