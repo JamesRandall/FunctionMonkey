@@ -1,0 +1,20 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions-1.0.22",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "cosmosDBTrigger",
+      "connectionStringSetting": "{{ConnectionStringName}}",
+      "collectionName": "{{CollectionName}}",
+      "databaseName": "{{DatabaseName}}",
+      "leaseCollectionName": "{{LeaseCollectionName}}",
+      "leaseDatabaseName": "{{LeaseDatabaseName}}",
+      "createLeaseCollectionIfNotExists": {{#if CreateLeaseCollectionIfNotExists}}true{{else}}false{{/if}},
+      "startFromBeginning": {{#if StartFromBeginning}}true{{else}}false{{/if}},
+      "name": "input"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/{{AssemblyName}}",
+  "entryPoint": "{{FunctionClassTypeName}}.Run"
+}

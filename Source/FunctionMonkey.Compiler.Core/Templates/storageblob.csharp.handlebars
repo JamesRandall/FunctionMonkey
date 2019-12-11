@@ -1,0 +1,76 @@
+using System.IO;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Logging;
+
+namespace {{Namespace}}
+{
+    public static class {{Name}}
+    {
+        [FunctionName("{{Name}}")]
+        public static async Task Run(
+            [BlobTrigger("{{BlobPath}}", Connection = "{{ConnectionStringName}}")]Stream stream,
+            string name,
+            string blobTrigger,
+            Uri uri,
+            IDictionary<string, string> metadata,
+            ILogger log,
+            ExecutionContext executionContext
+            {{{parameterOutputBinding}}}
+        )
+        {
+            log.LogInformation("Storage blob trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+
+            string json;
+            using(StreamReader reader = new StreamReader(stream))
+            {
+                json = reader.ReadToEnd();
+            }            
+            
+            {{CommandTypeName}} command;
+            if (!System.String.IsNullOrWhiteSpace(json))
+            {
+                var serializer = (FunctionMonkey.Abstractions.ISerializer)
+                    FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
+                command = serializer.Deserialize<{{CommandTypeName}}>(json, false); // we don't enforce security properties from message buses
+            }
+            else
+            {
+                command = new {{CommandTypeName}}();
+            }
+
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetBlobContext(blobTrigger, uri, metadata);
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
+
+            {{#if IsUsingValidator}}
+            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
+            var validationResult = validator.Validate(command);
+            if (!validationResult.IsValid)
+            {
+                throw new FunctionMonkey.Commanding.Abstractions.Validation.ValidationException("{{Name}}", validationResult, name);
+            }
+            {{/if}}
+            
+            {{#if OutputBinding}}
+                {{#if NoCommandHandler}}
+                    {{{CommandType}}} result = command;
+                {{else}}
+                    {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                {{/if}}
+                {{{collectorOutputBinding}}}
+            {{else}} 
+                await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+            {{/if}}
+            // The result will be useful when we want to include outputs too
+        }
+    }
+}

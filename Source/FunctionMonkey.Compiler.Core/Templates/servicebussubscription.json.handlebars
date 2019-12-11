@@ -1,0 +1,16 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions-1.0.19",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "serviceBusTrigger",
+      "connection": "{{ConnectionStringName}}",
+      "topicName": "{{TopicName}}",
+      "subscriptionName": "{{SubscriptionName}}",
+      "name": "queueItem"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/{{AssemblyName}}",
+  "entryPoint": "{{FunctionClassTypeName}}.Run"
+}

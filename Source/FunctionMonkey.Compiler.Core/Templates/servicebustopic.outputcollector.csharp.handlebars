@@ -1,0 +1,17 @@
+{{#if CommandResultIsCollection}}
+foreach (var commandResultItem in result)
+{
+    string resultJson = pluginFunctions.Serialize(commandResultItem, false);
+    byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
+    Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
+    await collector.AddAsync(serviceBusMessage);
+}
+{{else}}
+string resultJson = pluginFunctions.Serialize(result, false);
+byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
+Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
+{{#if OutputBinding.HasSessionId}}
+    serviceBusMessage.SessionId = result.{{OutputBinding.SessionIdPropertyName}}.ToString();
+{{/if}}
+await collector.AddAsync(serviceBusMessage);
+{{/if}}

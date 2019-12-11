@@ -1,0 +1,194 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents.ChangeFeedProcessor.PartitionManagement;
+using Microsoft.Azure.Documents.ChangeFeedProcessor;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.Documents;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Data.Common;
+using System.Threading;
+
+namespace {{Namespace}}
+{
+    public static class {{Name}}
+    {
+        [FunctionName("{{Name}}")]
+        public static async Task Run(
+            [CosmosDBTrigger(databaseName: "{{DatabaseName}}"
+                             ,collectionName: "{{CollectionName}}"
+                             ,ConnectionStringSetting = "{{ConnectionStringName}}"
+                             ,LeaseCollectionName="{{LeaseCollectionName}}"
+                             ,LeaseConnectionStringSetting="{{LeaseConnectionStringName}}"
+                             {{#if LeaseCollectionPrefix}},LeaseCollectionPrefix="{{LeaseCollectionPrefix}}"{{/if}}
+                             {{#if MaxItemsPerInvocation}},MaxItemsPerInvocation={{MaxItemsPerInvocation}}{{/if}}
+                             {{#if FeedPollDelay}},FeedPollDelay={{FeedPollDelay}}{{/if}}
+                             {{#if LeaseAcquireInterval}},LeaseAcquireInterval={{LeaseAcquireInterval}}{{/if}}
+                             {{#if LeaseExpirationInterval}},LeaseExpirationInterval={{LeaseExpirationInterval}}{{/if}}
+                             {{#if LeaseRenewInterval}},LeaseRenewInterval={{LeaseRenewInterval}}{{/if}}
+                             {{#if CheckpointFrequency}},CheckpointFrequency={{CheckpointFrequency}}{{/if}}
+                             {{#if LeasesCollectionThroughput}},LeasesCollectionThroughput={{LeasesCollectionThroughput}}{{/if}}
+            )]
+            IReadOnlyList<Document> input,
+            ILogger log,
+            Microsoft.Azure.WebJobs.ExecutionContext executionContext
+            {{{parameterOutputBinding}}}
+    )
+        {
+            log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            
+            {{#if IsDocumentBatchCommand}}
+                {{CommandTypeName}} command = new {{CommandTypeName}}();
+                command.Documents = input;
+                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                // The result will be useful when we want to include outputs too
+            {{else}}
+                {{#if ErrorHandlerTypeName}}
+                Lazy<{{ErrorHandlerTypeName}}> errorHandler = new Lazy<{{ErrorHandlerTypeName}}>(
+                    () => ({{ErrorHandlerTypeName}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ErrorHandlerTypeName}}))                                                                               
+                );
+                {{/if}}
+                foreach(Document document in input)
+                {
+                    try
+                    {
+                        {{CommandTypeName}} command = null;
+                        {{#if IsDocumentCommand}}
+                            command = new {{CommandTypeName}}();
+                            command.Document = document;
+                        {{else}}
+                            {{#if ConvertToPascalCase}}
+                                string json = document.ToString();
+                                command = JsonConvert.DeserializeObject<{{CommandTypeName}}>(json);  
+                            {{else}}
+                                command = new {{CommandTypeName}}();
+                                {{#each CommandProperties}}
+                                    command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{CosmosPropertyName}}");
+                                {{/each}}
+                            {{/if}}
+                        {{/if}}
+
+                        {{#if OutputBinding}}
+                            {{#if NoCommandHandler}}
+                                {{{CommandType}}} result = command;
+                            {{else}}
+                                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                            {{/if}}
+                            
+                            {{{collectorOutputBinding}}}
+                        {{else}}    
+                            await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                        {{/if}}                        
+                    }
+                    catch(Exception ex)
+                    {
+                        {{#if ErrorHandlerTypeName}}
+                            bool shouldContinue = await errorHandler.Value.HandleError(ex, document);
+                            if (!shouldContinue)
+                            {
+                                break;
+                            }
+                        {{else}}
+                            log.LogError(ex, "Error occurred processing document with id {Id}", document.Id);
+                        {{/if}}
+                    }
+                }
+            {{/if}}
+        }
+    }
+
+{{#if TrackRemainingWork}}
+    public static class Monitor{{Name}}
+    {
+        [FunctionName("Monitor{{Name}}")]
+        public static async Task Run(
+            [TimerTrigger("{{RemainingWorkCronExpression}}", RunOnStartup = true)] TimerInfo myTimer,
+            [CosmosDB("{{DatabaseName}}", "{{CollectionName}}", ConnectionStringSetting = "{{ConnectionStringName}}")] DocumentClient monitoredCollectionClient, 
+            [CosmosDB("{{DatabaseName}}", "{{LeaseCollectionName}}", ConnectionStringSetting = "{{ConnectionStringName}}")] DocumentClient leaseCollectionClient,
+            ILogger log)
+        {
+            var estimator = GetRemainingWorkEstimator(monitoredCollectionClient, leaseCollectionClient);
+            var remainingWork = await estimator.GetEstimatedRemainingWork();
+            // Send custom metric to App Insight
+            log.LogInformation(remainingWork.ToString());
+            log.LogMetric("{{Name}}:RemainingWork", remainingWork);
+        }
+
+        private static Lazy<IRemainingWorkEstimator> _remainingWorkEstimator;
+
+        private static IRemainingWorkEstimator GetRemainingWorkEstimator(
+            DocumentClient monitoredCollectionClient,
+            DocumentClient leaseCollectionClient)
+        {
+            if (_remainingWorkEstimator == null)
+            {
+                // Pull the Connection string from the environment, Environment.GetEnvironmentVariable will read the local.settings.json file or the deployed Function App configuration
+                CosmosDBConnectionString cosmosDBConnectionString = new CosmosDBConnectionString(Environment.GetEnvironmentVariable("{{ConnectionStringName}}"));
+                CosmosDBConnectionString leaseConnectionString = new CosmosDBConnectionString(Environment.GetEnvironmentVariable("{{LeaseConnectionStringName}}"));
+                _remainingWorkEstimator = new Lazy<IRemainingWorkEstimator>(() =>
+                {
+                    var builder = new ChangeFeedProcessorBuilder()
+                        .WithHostName("Monitor{{Name}}") // Can be a random name
+                        .WithProcessorOptions(new ChangeFeedProcessorOptions()
+                        {
+                            LeasePrefix = "{{LeaseCollectionPrefix}}"
+                        })
+                        .WithFeedCollection(new DocumentCollectionInfo()
+                        {
+                            Uri = cosmosDBConnectionString.ServiceEndpoint,
+                                MasterKey = cosmosDBConnectionString.AuthKey,
+                                CollectionName = "{{CollectionName}}",
+                                DatabaseName = "{{DatabaseName}}"
+                        })
+                        .WithLeaseCollection(new DocumentCollectionInfo()
+                        {
+                            Uri = leaseConnectionString.ServiceEndpoint,
+                                MasterKey = leaseConnectionString.AuthKey,
+                                CollectionName = "{{LeaseCollectionName}}",
+                                DatabaseName = "{{DatabaseName}}"
+                        })
+                        .WithFeedDocumentClient(monitoredCollectionClient)
+                        .WithLeaseDocumentClient(leaseCollectionClient);
+
+                    return builder.BuildEstimatorAsync().Result;
+
+                });
+            }
+
+            return _remainingWorkEstimator.Value;
+        }
+
+        private class CosmosDBConnectionString
+        {
+            public CosmosDBConnectionString(string connectionString)
+            {
+                // Use this generic builder to parse the connection string
+                DbConnectionStringBuilder builder = new DbConnectionStringBuilder
+                {
+                    ConnectionString = connectionString
+                };
+
+                if (builder.TryGetValue("AccountKey", out object key))
+                {
+                    AuthKey = key.ToString();
+                }
+
+                if (builder.TryGetValue("AccountEndpoint", out object uri))
+                {
+                    ServiceEndpoint = new Uri(uri.ToString());
+                }
+            }
+
+            public Uri ServiceEndpoint { get; set; }
+
+            public string AuthKey { get; set; }
+        }
+    }
+{{/if}}
+}
