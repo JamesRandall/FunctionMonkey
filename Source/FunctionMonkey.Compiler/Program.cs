@@ -18,12 +18,14 @@ namespace FunctionMonkey.Compiler
         static void Main(string[] args)
         {
             CompilerLog compilerLog = new CompilerLog();
+            compilerLog.Message("Compiler starting");
             LogOutputType outputType = args.Any(x => x.ToLower() == "--jsonoutput")
                 ? LogOutputType.Json
                 : LogOutputType.Console;
             
-            CompileTargetEnum target = args.Any(x => x.ToLower() == "--netcore21") ? CompileTargetEnum.NETCore21 : FunctionMonkey.Compiler.Core.CompileTargetEnum.NETStandard20;
+            CompileTargetEnum target = args.Any(x => x.ToLower() == "--netcore21") ? CompileTargetEnum.NETCore21 : CompileTargetEnum.NETStandard20;
             string outputBinaryDirectory = String.Empty;
+            compilerLog.Message($"Targeting {target}");
             
             if (args.Length == 0)
             {
@@ -34,7 +36,7 @@ namespace FunctionMonkey.Compiler
                 try
                 {
                     string inputAssemblyFile = args[0];
-            
+                    compilerLog.Message($"Loading assembly {inputAssemblyFile}");
                     // TODO: convert the input to an absolute path if necessary
                     Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(inputAssemblyFile);
                     outputBinaryDirectory = Path.GetDirectoryName(assembly.Location);
@@ -61,6 +63,7 @@ namespace FunctionMonkey.Compiler
                     compilerLog.Error($"Unexpected error: {e.Message}");
                 }
             }
+            compilerLog.Message("Compilation complete");
 
             if (compilerLog.HasItems)
             {
@@ -77,6 +80,7 @@ namespace FunctionMonkey.Compiler
                 else
                 {
                     string outputPath = Path.Combine(outputBinaryDirectory, "__fm__errors.json");
+                    File.WriteAllText(outputPath, compilerLog.ToJson());
                 }
             }
         }
