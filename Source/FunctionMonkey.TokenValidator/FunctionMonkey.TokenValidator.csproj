@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageVersion>4.0.12-alpha5</PackageVersion>
+        <PackageVersion>$(CommonPackageVersion)</PackageVersion>
         <Authors>James Randall</Authors>
         <Description>Token validator for Function Monkey</Description>
         <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com</PackageProjectUrl>

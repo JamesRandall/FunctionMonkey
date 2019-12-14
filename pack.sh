@@ -1,3 +1,5 @@
+dotnet tool install -g dotnet-script
+dotnet script setNuspecVersion.csx
 dotnet pack ./Source/FunctionMonkey/FunctionMonkey.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.Abstractions/FunctionMonkey.Abstractions.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.Commanding.Abstractions/FunctionMonkey.Commanding.Abstractions.csproj --output ./ --configuration Release

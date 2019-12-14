@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>FunctionMonkey.Compiler</id>
-    <version>4.0.12-alpha5</version>
+    <version>4.0.13-alpha6</version>
     <authors>James Randall</authors>
     <description>Generates Azure Functions from command registrations</description>
     <licenseUrl>https://raw.githubusercontent.com/JamesRandall/FunctionMonkey/master/LICENSE</licenseUrl>
