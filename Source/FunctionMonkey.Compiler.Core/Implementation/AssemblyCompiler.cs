@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
+using System.Threading.Tasks;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Commanding.Abstractions;
@@ -294,6 +295,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             // These are assemblies that Roslyn requires from usage within the template
             HashSet<string> locations = new HashSet<string>
             {
+                typeof(Task).GetTypeInfo().Assembly.Location,
                 typeof(Runtime).GetTypeInfo().Assembly.Location,
                 typeof(IStreamCommand).Assembly.Location,
                 typeof(AzureFromTheTrenches.Commanding.Abstractions.ICommand).GetTypeInfo().Assembly.Location,

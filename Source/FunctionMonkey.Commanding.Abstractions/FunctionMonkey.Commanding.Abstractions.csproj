@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.1" />
+    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.2" />
   </ItemGroup>
 
 </Project>

@@ -95,7 +95,11 @@ namespace {{Namespace}}
             {{else}}
             if (contentType.Split(';').Any(x => x.Trim().Equals("application/json", System.StringComparison.InvariantCultureIgnoreCase)))
             {
-                string requestBody = new StreamReader(req.Body).ReadToEnd();
+                string requestBody = String.Empty;
+                using (StreamReader reader = new StreamReader(req.Body))
+                {
+                    requestBody = await reader.ReadToEndAsync();
+                }
                 
                 if (!System.String.IsNullOrWhiteSpace(requestBody))
                 {

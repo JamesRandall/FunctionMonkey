@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <OutputType>Exe</OutputType>
     </PropertyGroup>
 
@@ -16,10 +16,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Expecto" Version="8.11.0" />
-      <PackageReference Include="Expecto.BenchmarkDotNet" Version="8.11.0" />
-      <PackageReference Include="Expecto.FsCheck" Version="8.11.0" />
-      <PackageReference Include="Expecto.Hopac" Version="8.11.0" />
+      <PackageReference Include="Expecto" Version="8.13.1" />
+      <PackageReference Include="Expecto.BenchmarkDotNet" Version="8.13.1" />
+      <PackageReference Include="Expecto.FsCheck" Version="8.13.1" />
+      <PackageReference Include="Expecto.Hopac" Version="8.13.1" />
     </ItemGroup>
 
 </Project>

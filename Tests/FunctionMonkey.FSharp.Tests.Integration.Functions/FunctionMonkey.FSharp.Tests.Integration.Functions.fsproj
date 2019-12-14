@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <AzureFunctionsVersion>v2</AzureFunctionsVersion>
         <RootNamespace>FunctionMonkey.Tests.FSharp.Integration.Functions</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="FSharp.Control.AsyncSeq" Version="2.0.22" />
-        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.4" />
-        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.1" />
-        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.8" />
-        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.0.0" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
     </ItemGroup>
     <ItemGroup>
         <None Update="host.json">
