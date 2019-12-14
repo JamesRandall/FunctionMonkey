@@ -32,14 +32,16 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class AssemblyCompiler : IAssemblyCompiler
     {
+        private readonly ICompilerLog _compilerLog;
         private readonly ITemplateProvider _templateProvider;
         
-        public AssemblyCompiler(ITemplateProvider templateProvider = null)
+        public AssemblyCompiler(ICompilerLog compilerLog, ITemplateProvider templateProvider = null)
         {
+            _compilerLog = compilerLog;
             _templateProvider = templateProvider ?? new TemplateProvider();
         }
 
-        public void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+        public bool Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
@@ -60,7 +62,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
             bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
 
-            CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace, compileTarget, isFSharpProject);
+            return CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace, compileTarget, isFSharpProject);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
@@ -165,7 +167,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             }
         }
 
-        private void CompileAssembly(IReadOnlyCollection<SyntaxTree> syntaxTrees,
+        private bool CompileAssembly(IReadOnlyCollection<SyntaxTree> syntaxTrees,
             IReadOnlyCollection<string> externalAssemblyLocations,
             OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder,
@@ -217,16 +219,17 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                     IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic =>
                         diagnostic.IsWarningAsError ||
                         diagnostic.Severity == DiagnosticSeverity.Error);
-                    StringBuilder messageBuilder = new StringBuilder();
-
+                    
                     foreach (Diagnostic diagnostic in failures)
                     {
-                        messageBuilder.AppendLine(diagnostic.ToString());
+                        _compilerLog.Error($"Error compiling function: {diagnostic.ToString()}");
                     }
 
-                    throw new ConfigurationException(messageBuilder.ToString());
+                    return false;
                 }
             }
+
+            return true;
         }
 
         private List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations,

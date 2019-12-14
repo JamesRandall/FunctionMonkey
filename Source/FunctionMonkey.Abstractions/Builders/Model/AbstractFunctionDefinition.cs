@@ -28,10 +28,10 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         
         protected AbstractFunctionDefinition(string namePrefix, Type commandType)
         {
-            if (!commandType.IsPublic && !commandType.IsNested)
+            /*if (!commandType.IsPublic && !commandType.IsNested)
             {
                 throw new ConfigurationException($"Command of type {commandType} is not public. All command types must be public.");
-            }
+            }*/
 
             Name = string.Concat(namePrefix,commandType.GetFunctionName());
             CommandType = commandType;
@@ -40,10 +40,10 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         
         protected AbstractFunctionDefinition(string namePrefix, Type commandType, Type explicitCommandResultType)
         {
-            if (!commandType.IsPublic && !commandType.IsNested)
+            /*if (!commandType.IsPublic && !commandType.IsNested)
             {
                 throw new ConfigurationException($"Command of type {commandType} is not public. All command types must be public.");
-            }
+            }*/
 
             Name = string.Concat(namePrefix,commandType.GetFunctionName());
             CommandType = commandType;

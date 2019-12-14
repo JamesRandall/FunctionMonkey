@@ -44,13 +44,13 @@ namespace FunctionMonkey.Compiler.Core
                 (resolveType) => null // we never resolve during compilation
             );
             _commandRegistry = adapter.AddCommanding();
-            _assemblyCompiler = new AssemblyCompiler();
+            _assemblyCompiler = new AssemblyCompiler(compilerLog);
             _triggerReferenceProvider = new TriggerReferenceProvider();
             _jsonCompiler = new JsonCompiler();
             _openApiCompiler = new OpenApiCompiler();
         }
 
-        public void Compile()
+        public bool Compile()
         {
             string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name.Replace("-", "_")}.Functions";
             IFunctionCompilerMetadata functionCompilerMetadata = null;
@@ -60,7 +60,8 @@ namespace FunctionMonkey.Compiler.Core
                 functionCompilerMetadata = ConfigurationLocator.FindCompilerMetadata(_configurationSourceAssembly);
                 if (functionCompilerMetadata == null)
                 {
-                    throw new ConfigurationException($"The assembly {_configurationSourceAssembly.GetName().Name} does not contain a public class implementing the IFunctionAppConfiguration interface");
+                    _compilerLog.Error($"The assembly {_configurationSourceAssembly.GetName().Name} does not contain a public class implementing the IFunctionAppConfiguration interface");
+                    return false;
                 }
             }
             else
@@ -68,7 +69,10 @@ namespace FunctionMonkey.Compiler.Core
                 FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
                 configuration.Build(builder);
                 new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
-                VerifyCommandAndResponseTypes(builder);
+                if (!VerifyCommandAndResponseTypes(builder))
+                {
+                    return false;
+                }
 
                 functionCompilerMetadata = new FunctionCompilerMetadata
                 {
@@ -83,7 +87,7 @@ namespace FunctionMonkey.Compiler.Core
 
             _jsonCompiler.Compile(functionCompilerMetadata.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
             
-            _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
+            return _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
                 configuration?.GetType() ?? functionCompilerMetadata.BacklinkReferenceType,
                 configuration != null ? null : functionCompilerMetadata.BacklinkPropertyInfo,
                 newAssemblyNamespace,
@@ -94,32 +98,25 @@ namespace FunctionMonkey.Compiler.Core
                 _compileTarget, functionCompilerMetadata.OutputAuthoredSourceFolder);
         }
 
-        private void VerifyCommandAndResponseTypes(FunctionHostBuilder builder)
+        private bool VerifyCommandAndResponseTypes(FunctionHostBuilder builder)
         {
-            List<string> invalidTypes = new List<string>();
+            bool hasErrors = false;
             foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
             {
                 if (!functionDefinition.CommandType.IsPublic)
                 {
-                    invalidTypes.Add(functionDefinition.CommandType.Name);
+                    _compilerLog.Error($"Command {functionDefinition.CommandType.FullName} must be public");
+                    hasErrors = true;
                 }
 
                 if (functionDefinition.CommandResultType != null && !functionDefinition.CommandResultType.IsPublic)
                 {
-                    invalidTypes.Add(functionDefinition.CommandResultType.FullName);
+                    _compilerLog.Error($"Command result type {functionDefinition.CommandResultType.FullName} must be public");
+                    hasErrors = true;
                 }
             }
 
-            if (invalidTypes.Count > 0)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("Commands and responses must be public. The following types are not:");
-                foreach (string invalidType in invalidTypes)
-                {
-                    sb.AppendLine(invalidType);
-                }
-                throw new ConfigurationException(sb.ToString());
-            }
+            return !hasErrors;
         }        
 
         private IReadOnlyCollection<string> GetExternalAssemblyLocations(

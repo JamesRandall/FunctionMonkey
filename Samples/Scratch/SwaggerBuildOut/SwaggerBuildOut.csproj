@@ -13,7 +13,7 @@
 
   <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
     <Exec Command="$(FunctionCompilerExe) $(FunctionCompilerParams)" />
-    <ConvertErrors InputAssemblyPath="$(FunctionPublishParams)" />
+    <ConvertErrors InputPath="$(TargetDir)bin" />
   </Target>
   
   <PropertyGroup>

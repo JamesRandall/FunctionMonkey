@@ -7,7 +7,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal interface IAssemblyCompiler
     {
-        void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+        bool Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
