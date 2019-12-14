@@ -201,6 +201,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
     <ProjectReference Include="..\FunctionMonkey.Compiler.Core\FunctionMonkey.Compiler.Core.csproj" />
+    <ProjectReference Include="..\FunctionMonkey.Compiler.MSBuild\FunctionMonkey.Compiler.MSBuild.csproj" />
     <ProjectReference Include="..\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj" />
     <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
   </ItemGroup>

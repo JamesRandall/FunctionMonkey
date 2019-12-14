@@ -8,20 +8,6 @@ namespace FunctionMonkey.Compiler.MSBuild
 {
     public class ConvertErrors : Task
     {
-        private class Item
-        {
-            public enum SeverityEnum
-            {
-                Error,
-                Warning,
-                Message
-            }
-
-            public SeverityEnum Severity { get; set; }
-            
-            public string Message { get; set; }
-        }
-        
         public string InputAssemblyPath { get; set; }
         
         public override bool Execute()
@@ -39,16 +25,16 @@ namespace FunctionMonkey.Compiler.MSBuild
                 Log.LogWarning("FUNCTION MONKEY: Missing error file");
             }
             string json = File.ReadAllText(file);
-            List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
+            List<MSBuildErrorItem> items = JsonConvert.DeserializeObject<List<MSBuildErrorItem>>(json);
             bool hasError = false;
-            foreach(Item item in items)
+            foreach(MSBuildErrorItem item in items)
             {
-                if (item.Severity == Item.SeverityEnum.Error)
+                if (item.Severity == MSBuildErrorItem.SeverityEnum.Error)
                 {
                     Log.LogError($"FUNCTION MONKEY: {item.Message}");
                     hasError = true;
                 }
-                else if (item.Severity == Item.SeverityEnum.Warning)
+                else if (item.Severity == MSBuildErrorItem.SeverityEnum.Warning)
                 {
                     Log.LogWarning($"FUNCTION MONKEY: {item.Message}");
                 }

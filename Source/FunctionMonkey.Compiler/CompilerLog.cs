@@ -2,51 +2,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FunctionMonkey.Compiler.Core;
+using FunctionMonkey.Compiler.MSBuild;
 using Newtonsoft.Json;
 
 namespace FunctionMonkey.Compiler
 {
     internal class CompilerLog : ICompilerLog
     {
-        private class Item
-        {
-            public enum SeverityEnum
-            {
-                Error,
-                Warning,
-                Message
-            }
-
-            public SeverityEnum Severity { get; set; }
-            
-            public string Message { get; set; }
-        }
-        
-        private readonly List<Item> _items = new List<Item>();
+        private readonly List<MSBuildErrorItem> _items = new List<MSBuildErrorItem>();
         
         public void Error(string message, params object[] args)
         {
-            _items.Add(new Item()
+            _items.Add(new MSBuildErrorItem()
             {
-                Severity = Item.SeverityEnum.Error,
+                Severity = MSBuildErrorItem.SeverityEnum.Error,
                 Message = message
             });
         }
 
         public void Warning(string message, params object[] args)
         {
-            _items.Add(new Item()
+            _items.Add(new MSBuildErrorItem()
             {
-                Severity = Item.SeverityEnum.Warning,
+                Severity = MSBuildErrorItem.SeverityEnum.Warning,
                 Message = message
             });
         }
 
         public void Message(string message, params object[] args)
         {
-            _items.Add(new Item()
+            _items.Add(new MSBuildErrorItem()
             {
-                Severity = Item.SeverityEnum.Message,
+                Severity = MSBuildErrorItem.SeverityEnum.Message,
                 Message = message
             });
         }
@@ -59,7 +46,7 @@ namespace FunctionMonkey.Compiler
         public string ToConsole()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (Item item in _items)
+            foreach (MSBuildErrorItem item in _items)
             {
                 sb.AppendLine($"{item.Severity.ToString().ToUpper()}: {item.Message}");
             }
