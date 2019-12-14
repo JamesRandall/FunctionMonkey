@@ -1,4 +1,4 @@
-namespace FunctionMonkey.Compiler
+namespace FunctionMonkey.Compiler.Core
 {
     public enum CompileTargetEnum
     {

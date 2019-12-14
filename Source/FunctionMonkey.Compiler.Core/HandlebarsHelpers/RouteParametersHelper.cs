@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using FunctionMonkey.Compiler.Extensions;
+using FunctionMonkey.Compiler.Core.Extensions;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace FunctionMonkey.Compiler.HandlebarsHelpers
+namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
 {
     internal static class RouteParametersHelper
     {

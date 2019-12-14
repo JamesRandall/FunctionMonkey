@@ -7,11 +7,11 @@
 using System;
 using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Compiler.Extensions;
+using FunctionMonkey.Compiler.Core.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class SchemaReferenceRegistry
     {

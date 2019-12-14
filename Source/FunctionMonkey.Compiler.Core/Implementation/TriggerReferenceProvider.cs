@@ -4,10 +4,9 @@ using System.Reflection;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Model;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions;
 using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal interface ITriggerReferenceProvider
     {

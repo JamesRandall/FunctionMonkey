@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Compiler.Implementation;
+using FunctionMonkey.Compiler.Core.Implementation;
 using HandlebarsDotNet;
 
-namespace FunctionMonkey.Compiler.HandlebarsHelpers
+namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
 {
     internal static class CollectorOutputBindingHelper
     {

@@ -5,7 +5,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Model;
 using FunctionMonkey.Model.OutputBindings;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class TemplateProvider : ITemplateProvider
     {
@@ -39,7 +39,7 @@ namespace FunctionMonkey.Compiler.Implementation
         public string GetTemplate(string name, string type)
         {
             using (Stream stream = GetType().Assembly
-                .GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.{name}.{type}.handlebars"))
+                .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{name}.{type}.handlebars"))
             {
                 if (stream != null)
                 {
@@ -87,7 +87,7 @@ namespace FunctionMonkey.Compiler.Implementation
             if (TypeToTemplatePrefixMap.TryGetValue(functionDefinition.GetType(), out string prefix))
             {
                 using (Stream stream = GetType().Assembly
-                    .GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.{prefix}.{type}.handlebars"))
+                    .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{prefix}.{type}.handlebars"))
                 {
                     if (stream != null)
                     {
@@ -99,7 +99,7 @@ namespace FunctionMonkey.Compiler.Implementation
                 if (string.IsNullOrWhiteSpace(template) && fallbackToDefault)
                 {
                     using (Stream stream = GetType().Assembly
-                        .GetManifestResourceStream($"FunctionMonkey.Compiler.Templates.default.{type}.handlebars"))
+                        .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.default.{type}.handlebars"))
                     {
                         if (stream != null)
                         {
@@ -119,7 +119,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
         public string GetCSharpLinkBackTemplate()
         {
-            using (Stream stream = GetType().Assembly.GetManifestResourceStream("FunctionMonkey.Compiler.Templates.forcereference.csharp.handlebars"))
+            using (Stream stream = GetType().Assembly.GetManifestResourceStream("FunctionMonkey.Compiler.Core.Templates.forcereference.csharp.handlebars"))
             using (StreamReader reader = new StreamReader(stream))
                 return reader.ReadToEnd();
         }

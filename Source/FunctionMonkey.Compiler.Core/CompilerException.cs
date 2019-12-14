@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FunctionMonkey.Compiler
+namespace FunctionMonkey.Compiler.Core
 {
     public class CompilerException : Exception
     {

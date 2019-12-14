@@ -7,14 +7,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
-using System.Threading;
-using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Commanding.Abstractions;
-using FunctionMonkey.Compiler.HandlebarsHelpers;
-using FunctionMonkey.Extensions;
-using FunctionMonkey.Model;
+using FunctionMonkey.Compiler.Core.HandlebarsHelpers;
 using FunctionMonkey.SignalR;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
@@ -32,7 +28,7 @@ using Microsoft.FSharp.Core;
 using Newtonsoft.Json;
 using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class AssemblyCompiler : IAssemblyCompiler
     {
@@ -266,13 +262,13 @@ namespace FunctionMonkey.Compiler.Implementation
             if (compileTarget == CompileTargetEnum.NETStandard20)
             {
                 using (Stream netStandard = GetType().Assembly
-                    .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.netstandard.dll"))
+                    .GetManifestResourceStream("FunctionMonkey.Compiler.Core.references.netstandard2._0.netstandard.dll"))
                 {
                     references.Add(MetadataReference.CreateFromStream(netStandard));
                 }
 
                 using (Stream netStandard = GetType().Assembly
-                    .GetManifestResourceStream("FunctionMonkey.Compiler.references.netstandard2._0.System.Runtime.dll"))
+                    .GetManifestResourceStream("FunctionMonkey.Compiler.Core.references.netstandard2._0.System.Runtime.dll"))
                 {
                     references.Add(MetadataReference.CreateFromStream(netStandard));
                 }

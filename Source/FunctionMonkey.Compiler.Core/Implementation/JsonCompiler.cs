@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Compiler.HandlebarsHelpers;
+using FunctionMonkey.Compiler.Core.HandlebarsHelpers;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class JsonCompiler
     {

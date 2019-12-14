@@ -1,4 +1,4 @@
-﻿namespace FunctionMonkey.Compiler.HandlebarsHelpers
+﻿namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
 {
     internal static class HandlebarsHelperRegistration
     {

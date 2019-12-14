@@ -5,18 +5,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
-using FunctionMonkey.Compiler.Extensions;
+using FunctionMonkey.Compiler.Core.Extensions;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Linq;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class OpenApiCompiler
     {
@@ -136,7 +135,7 @@ namespace FunctionMonkey.Compiler.Implementation
 
         private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder()
         {
-            const string prefix = "FunctionMonkey.Compiler.node_modules.swagger_ui_dist.";
+            const string prefix = "FunctionMonkey.Compiler.Core.node_modules.swagger_ui_dist.";
             Assembly sourceAssembly = GetType().Assembly;
             string[] files = sourceAssembly
                 .GetManifestResourceNames()

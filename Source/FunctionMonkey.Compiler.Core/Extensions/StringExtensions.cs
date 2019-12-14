@@ -8,7 +8,7 @@ using System;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace FunctionMonkey.Compiler.Extensions
+namespace FunctionMonkey.Compiler.Core.Extensions
 {
     /// <summary>
     /// Extension methods for <see cref="string"/>.

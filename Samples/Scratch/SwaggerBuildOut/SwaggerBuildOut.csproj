@@ -1,6 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <UsingTask TaskName="FunctionMonkey.Compiler.MSBuild.ConvertErrors" AssemblyFile="/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Source/FunctionMonkey.Compiler.MSBuild/bin/Debug/netcoreapp2.1/FunctionMonkey.Compiler.MSBuild.dll" />
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <FunctionCompilerExe>dotnet "/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Source/FunctionMonkey.Compiler/bin/Debug/netcoreapp2.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerParams>"/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Samples/Scratch/SwaggerBuildOut/bin/Debug/netcoreapp2.1/bin/SwaggerBuildOut.dll" --netcore21</FunctionCompilerParams>
+    <FunctionPublishParams Condition="'$(OS)' == 'Windows_NT'">bin\$(TargetName).dll</FunctionPublishParams>
+    <FunctionPublishParams>/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Samples/Scratch/SwaggerBuildOut/bin/Debug/netcoreapp2.1/bin/SwaggerBuildOut.dll</FunctionPublishParams>
+    <FunctionPublishPostfix Condition="('$(TargetFrameworkIdentifier)' == '.NETCoreApp')">--netcore21</FunctionPublishPostfix>
+    <FunctionPublishPostfix Condition="('$(TargetFrameworkIdentifier)' != '.NETCoreApp')"></FunctionPublishPostfix>
+  </PropertyGroup>
+
+  <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
+    <Exec Command="$(FunctionCompilerExe) $(FunctionCompilerParams)" />
+    <ConvertErrors />
+  </Target>
+  
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>

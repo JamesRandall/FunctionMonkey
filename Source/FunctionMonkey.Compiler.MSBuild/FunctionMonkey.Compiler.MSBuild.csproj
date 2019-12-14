@@ -8,8 +8,4 @@
       <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.4.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\FunctionMonkey.Compiler.Core\FunctionMonkey.Compiler.Core.csproj" />
-    </ItemGroup>
-
 </Project>

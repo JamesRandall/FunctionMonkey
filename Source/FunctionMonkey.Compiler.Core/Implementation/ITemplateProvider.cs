@@ -1,7 +1,6 @@
 ﻿using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Model;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal interface ITemplateProvider
     {

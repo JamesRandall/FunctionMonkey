@@ -8,11 +8,11 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Compiler.Core.Implementation;
 using FunctionMonkey.Infrastructure;
-using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FunctionMonkey.Compiler.Implementation
+namespace FunctionMonkey.Compiler.Core
 {
     public class FunctionCompiler
     {

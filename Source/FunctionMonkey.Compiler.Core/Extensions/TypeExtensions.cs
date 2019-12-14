@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OpenApi.Models;
 
-namespace FunctionMonkey.Compiler.Extensions
+namespace FunctionMonkey.Compiler.Core.Extensions
 {
     /// <summary>
     /// Extension methods for <see cref="Type"/>.

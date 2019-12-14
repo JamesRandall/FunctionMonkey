@@ -1,4 +1,4 @@
-﻿namespace FunctionMonkey.Compiler.Implementation
+﻿namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class FunctionJsonModel
     {
