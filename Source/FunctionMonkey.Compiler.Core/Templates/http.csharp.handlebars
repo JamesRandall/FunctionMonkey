@@ -14,10 +14,15 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(
                 {{{azureAuthenticationType}}},
                 {{{httpVerbs}}}

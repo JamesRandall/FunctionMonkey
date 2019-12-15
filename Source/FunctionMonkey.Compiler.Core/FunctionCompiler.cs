@@ -173,7 +173,7 @@ namespace FunctionMonkey.Compiler.Core
             assemblies.Add(_configurationSourceAssembly);
 
             // we have to add directly referenced assemblies in case the commands and result types make use of external types
-            // TODO: their is an argument to restricting this 
+            // TODO: their is an argument to restricting this
             foreach (Assembly assembly in assemblies.ToArray())
             {
                 AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();

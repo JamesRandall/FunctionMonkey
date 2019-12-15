@@ -16,10 +16,15 @@ using System.Threading;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task Run(
+        public async Task Run(
             [CosmosDBTrigger(databaseName: "{{DatabaseName}}"
                              ,collectionName: "{{CollectionName}}"
                              ,ConnectionStringSetting = "{{ConnectionStringName}}"
@@ -42,7 +47,7 @@ namespace {{Namespace}}
         {
             log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
-            
+
             {{#if IsDocumentBatchCommand}}
                 {{CommandTypeName}} command = new {{CommandTypeName}}();
                 command.Documents = input;
@@ -51,7 +56,7 @@ namespace {{Namespace}}
             {{else}}
                 {{#if ErrorHandlerTypeName}}
                 Lazy<{{ErrorHandlerTypeName}}> errorHandler = new Lazy<{{ErrorHandlerTypeName}}>(
-                    () => ({{ErrorHandlerTypeName}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ErrorHandlerTypeName}}))                                                                               
+                    () => ({{ErrorHandlerTypeName}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ErrorHandlerTypeName}}))
                 );
                 {{/if}}
                 foreach(Document document in input)
@@ -65,7 +70,7 @@ namespace {{Namespace}}
                         {{else}}
                             {{#if ConvertToPascalCase}}
                                 string json = document.ToString();
-                                command = JsonConvert.DeserializeObject<{{CommandTypeName}}>(json);  
+                                command = JsonConvert.DeserializeObject<{{CommandTypeName}}>(json);
                             {{else}}
                                 command = new {{CommandTypeName}}();
                                 {{#each CommandProperties}}
@@ -80,11 +85,11 @@ namespace {{Namespace}}
                             {{else}}
                                 {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
                             {{/if}}
-                            
+
                             {{{collectorOutputBinding}}}
-                        {{else}}    
+                        {{else}}
                             await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-                        {{/if}}                        
+                        {{/if}}
                     }
                     catch(Exception ex)
                     {
@@ -109,7 +114,7 @@ namespace {{Namespace}}
         [FunctionName("Monitor{{Name}}")]
         public static async Task Run(
             [TimerTrigger("{{RemainingWorkCronExpression}}", RunOnStartup = true)] TimerInfo myTimer,
-            [CosmosDB("{{DatabaseName}}", "{{CollectionName}}", ConnectionStringSetting = "{{ConnectionStringName}}")] DocumentClient monitoredCollectionClient, 
+            [CosmosDB("{{DatabaseName}}", "{{CollectionName}}", ConnectionStringSetting = "{{ConnectionStringName}}")] DocumentClient monitoredCollectionClient,
             [CosmosDB("{{DatabaseName}}", "{{LeaseCollectionName}}", ConnectionStringSetting = "{{ConnectionStringName}}")] DocumentClient leaseCollectionClient,
             ILogger log)
         {

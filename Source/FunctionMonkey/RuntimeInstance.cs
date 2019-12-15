@@ -33,9 +33,9 @@ namespace FunctionMonkey
 
     public class RuntimeInstance
     {
-        public IServiceProvider ServiceProvider { get; }
+        public IServiceProvider ServiceProvider => FunctionServiceProvider.Value ?? BuiltServiceProvider.Value;
 
-        private IServiceCollection ServiceCollection { get; }
+        public AsyncLocal<IServiceProvider> FunctionServiceProvider { get; } = new AsyncLocal<IServiceProvider>(null);
 
         public AsyncLocal<ILogger> FunctionProvidedLogger { get;  }= new AsyncLocal<ILogger>(null);
 
@@ -44,40 +44,28 @@ namespace FunctionMonkey
         //public IFunctionHostBuilder Builder { get; }
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }
 
-        public RuntimeInstance() : this(null, null, null)
-        {
-            
-        }
+        public IFunctionHostBuilder Builder { get; private set; }
+
+        public Lazy<IServiceProvider> BuiltServiceProvider { get; }
+
+        private IServiceCollection ServiceCollection { get; }
 
         public RuntimeInstance(Assembly functionAppConfigurationAssembly,
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild,
-            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild)
+            IServiceCollection serviceCollection)
         {
+            ServiceCollection = serviceCollection ?? new ServiceCollection();
+            BuiltServiceProvider = new Lazy<IServiceProvider>(() => ServiceCollection.BuildServiceProvider());
 
-            IContainerProvider containerProvider;
-            
             // Find the configuration implementation and service collection
             IFunctionAppConfiguration configuration = LocateConfiguration(functionAppConfigurationAssembly);
-            if (configuration != null)
-            {
-                containerProvider =
-                    // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
-                    (configuration as IContainerProvider) ?? new DefaultContainerProvider();
 
-                ServiceCollection = containerProvider.CreateServiceCollection();
-            }
-            else
-            {
-                containerProvider = new DefaultContainerProvider();
-            }
-            ServiceCollection = containerProvider.CreateServiceCollection();
-            
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
                 (fromType, toInstance) => ServiceCollection.AddSingleton(fromType, toInstance),
                 (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
-                (resolveType) => ServiceProvider.GetService(resolveType)
+                resolveType => ServiceProvider.GetService(resolveType)
             );
-            
+
             ICommandRegistry commandRegistry;
             // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
             if (configuration != null && configuration is ICommandingConfigurator commandingConfigurator)
@@ -120,11 +108,11 @@ namespace FunctionMonkey
 
             CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
-            beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
-            ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
-            afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
+            //beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
+            //ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
+            //afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
-            builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            //builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
         }
 
         private ISerializer CreateSerializer(AbstractFunctionDefinition functionDefinition)
@@ -413,7 +401,8 @@ namespace FunctionMonkey
             ServiceCollection.AddTransient<ILoggerFactory>(sp => new FunctionLoggerFactory(this));
         }
 
-        private void RegisterHttpDependencies(IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
+        private void RegisterHttpDependencies(
+            IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in builderFunctionDefinitions)
@@ -443,7 +432,9 @@ namespace FunctionMonkey
             }
         }
 
-        private void SetupAuthorization(FunctionHostBuilder builder, FunctionBuilder functionBuilder)
+        private void SetupAuthorization(
+            FunctionHostBuilder builder,
+            FunctionBuilder functionBuilder)
         {
             AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder)builder.AuthorizationBuilder;
 
@@ -475,7 +466,8 @@ namespace FunctionMonkey
             return metadata;
         }
 
-        private FunctionHostBuilder CreateBuilderFromConfiguration(ICommandRegistry commandRegistry,
+        private FunctionHostBuilder CreateBuilderFromConfiguration(
+            ICommandRegistry commandRegistry,
             IFunctionAppConfiguration configuration)
         {
             FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
@@ -491,7 +483,7 @@ namespace FunctionMonkey
             // If the handler is not already registered in the command registry then this registers it.
             IRegistrationCatalogue registrationCatalogue = (IRegistrationCatalogue) commandRegistry;
             HashSet<Type> registeredCommandTypes = new HashSet<Type>(registrationCatalogue.GetRegisteredCommands());
-            
+
             Dictionary<Type, List<Type>> commandTypesToHandlerTypes = null;
 
             foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
@@ -560,7 +552,8 @@ namespace FunctionMonkey
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
         }
 
-        private void RegisterTimerCommandFactories(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        private void RegisterTimerCommandFactories(
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
             IReadOnlyCollection<TimerFunctionDefinition> timerFunctionDefinitions = functionDefinitions
                 .Where(x => x is TimerFunctionDefinition)

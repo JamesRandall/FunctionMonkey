@@ -150,6 +150,7 @@
     <None Remove="Templates\default.outputcollector.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.csharp.handlebars" />
     <None Remove="Templates\eventhubqueue.json.handlebars" />
+    <None Remove="Templates\extensions.json.handlebars" />
     <None Remove="Templates\forcereference.csharp.handlebars" />
     <None Remove="Templates\http.csharp.handlebars" />
     <None Remove="Templates\servicebusqueue.csharp.handlebars" />
@@ -165,6 +166,7 @@
     <None Remove="Templates\signalrbindingexpressionnegotiate.json.handlebars" />
     <None Remove="Templates\signalrcommandnegotiate.csharp.handlebars" />
     <None Remove="Templates\signalrcommandnegotiate.json.handlebars" />
+    <None Remove="Templates\startup.csharp.handlebars" />
     <None Remove="Templates\storageblob.csharp.handlebars" />
     <None Remove="Templates\storageblob.json.handlebars" />
     <None Remove="Templates\storageblobstream.csharp.handlebars" />

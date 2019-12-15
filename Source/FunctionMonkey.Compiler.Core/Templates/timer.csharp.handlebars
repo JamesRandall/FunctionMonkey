@@ -5,10 +5,15 @@ using Microsoft.Extensions.Logging;
 
 namespace {{Namespace}}
 {
-    public static class {{Name}}
+    public class {{Name}}
     {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
         [FunctionName("{{Name}}")]
-        public static async Task Run(
+        public async Task Run(
             [TimerTrigger("{{CronExpression}}")]TimerInfo myTimer,
             ILogger log,
             ExecutionContext executionContext
