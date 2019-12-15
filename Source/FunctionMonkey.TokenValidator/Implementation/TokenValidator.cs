@@ -25,15 +25,23 @@ namespace FunctionMonkey.TokenValidator.Implementation
                 return null;
             string bearerToken = authorizationHeader.Substring("Bearer ".Length);
 
-            var config = await Configuration.ConfigurationManager.GetConfigurationAsync(CancellationToken.None);
-
-            var validationParameter = Configuration.TokenValidationParameterFunc(config, Configuration.Audience);
-
             ClaimsPrincipal result = null;
             var tries = 0;
 
             while (result == null && tries <= 1)
             {
+                OpenIdConnectConfiguration config;
+                try
+                {
+                    config = await Configuration.ConfigurationManager.GetConfigurationAsync(CancellationToken.None);
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+
+                var validationParameter = Configuration.TokenValidationParameterFunc(config, Configuration.Audience);
+
                 try
                 {
                     var handler = new JwtSecurityTokenHandler();
@@ -42,12 +50,16 @@ namespace FunctionMonkey.TokenValidator.Implementation
                 catch (SecurityTokenSignatureKeyNotFoundException)
                 {
                     // This exception is thrown if the signature key of the JWT could not be found.
-                    // This could be the case when the issuer changed its signing keys, so we trigger a 
+                    // This could be the case when the issuer changed its signing keys, so we trigger a
                     // refresh and retry validation.
                     Configuration.ConfigurationManager.RequestRefresh();
                     tries++;
                 }
                 catch (SecurityTokenException)
+                {
+                    return null;
+                }
+                catch (ArgumentException)
                 {
                     return null;
                 }
