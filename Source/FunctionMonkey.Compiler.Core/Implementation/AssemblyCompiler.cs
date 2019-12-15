@@ -23,6 +23,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Microsoft.FSharp.Core;
@@ -337,7 +338,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 typeof(HttpTriggerAttribute).Assembly.Location,
                 typeof(ServiceBusAttribute).Assembly.Location,
                 typeof(QueueAttribute).Assembly.Location,
-                typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location
+                typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location,
+                typeof(IServiceCollection).Assembly.Location
             };
 
             if (isFSharpProject)
