@@ -133,7 +133,7 @@ Install-Package FunctionMonkey.Compiler
                 commandRegistry.Register&lt;CleanupCommandHandler&gt;()
             )
             .Functions(functions =&gt; functions
-                .Timer&lt;CleanUpCommand, CleanupCommandTimerCommandFactory&gt;(&quot;0 */5 * * * *)
+                .Timer&lt;CleanUpCommand, CleanupCommandTimerCommandFactory&gt;(&quot;0 */5 * * * *&quot;)
                 )
             );
     }
