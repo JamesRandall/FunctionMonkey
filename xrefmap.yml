@@ -1495,6 +1495,12 @@ references:
   commentId: M:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor(System.String,Type)
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AbstractFunctionDefinition(System.String, Type)
   nameWithType: AbstractFunctionDefinition.AbstractFunctionDefinition(String, Type)
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor(System.String,Type,Type)
+  name: AbstractFunctionDefinition(String, Type, Type)
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition__ctor_System_String_Type_Type_
+  commentId: M:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor(System.String,Type,Type)
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.AbstractFunctionDefinition(System.String, Type, Type)
+  nameWithType: AbstractFunctionDefinition.AbstractFunctionDefinition(String, Type, Type)
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.#ctor*
   name: AbstractFunctionDefinition
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition__ctor_
@@ -1606,6 +1612,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultType
   nameWithType: AbstractFunctionDefinition.CommandResultType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeIsUnit
+  name: CommandResultTypeIsUnit
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultTypeIsUnit
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeIsUnit
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeIsUnit
+  nameWithType: AbstractFunctionDefinition.CommandResultTypeIsUnit
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeIsUnit*
+  name: CommandResultTypeIsUnit
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultTypeIsUnit_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeIsUnit
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeIsUnit
+  nameWithType: AbstractFunctionDefinition.CommandResultTypeIsUnit
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandResultTypeName
   name: CommandResultTypeName
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandResultTypeName
@@ -1632,6 +1651,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandType
   nameWithType: AbstractFunctionDefinition.CommandType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeIsUnit
+  name: CommandTypeIsUnit
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandTypeIsUnit
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeIsUnit
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeIsUnit
+  nameWithType: AbstractFunctionDefinition.CommandTypeIsUnit
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeIsUnit*
+  name: CommandTypeIsUnit
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandTypeIsUnit_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeIsUnit
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeIsUnit
+  nameWithType: AbstractFunctionDefinition.CommandTypeIsUnit
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
   name: CommandTypeName
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_CommandTypeName
@@ -1645,6 +1677,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.CommandTypeName
   nameWithType: AbstractFunctionDefinition.CommandTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializeFunction
+  name: DeserializeFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializeFunction
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializeFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializeFunction
+  nameWithType: AbstractFunctionDefinition.DeserializeFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializeFunction*
+  name: DeserializeFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializeFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializeFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializeFunction
+  nameWithType: AbstractFunctionDefinition.DeserializeFunction
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyType
   name: DeserializerNamingStrategyType
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_DeserializerNamingStrategyType
@@ -1684,6 +1729,58 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
   nameWithType: AbstractFunctionDefinition.FunctionClassTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandler
+  name: FunctionHandler
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionHandler
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandler
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandler
+  nameWithType: AbstractFunctionDefinition.FunctionHandler
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandler*
+  name: FunctionHandler
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionHandler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandler
+  nameWithType: AbstractFunctionDefinition.FunctionHandler
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync
+  name: FunctionHandlerIsAsync
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionHandlerIsAsync
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync
+  nameWithType: AbstractFunctionDefinition.FunctionHandlerIsAsync
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync*
+  name: FunctionHandlerIsAsync
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionHandlerIsAsync_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync
+  nameWithType: AbstractFunctionDefinition.FunctionHandlerIsAsync
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+  name: ImmutableTypeConstructorParameters
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ImmutableTypeConstructorParameters
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+  nameWithType: AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ImmutableTypeConstructorParameters*
+  name: ImmutableTypeConstructorParameters
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ImmutableTypeConstructorParameters_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+  nameWithType: AbstractFunctionDefinition.ImmutableTypeConstructorParameters
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsFunctionalFunction
+  name: IsFunctionalFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsFunctionalFunction
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsFunctionalFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsFunctionalFunction
+  nameWithType: AbstractFunctionDefinition.IsFunctionalFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsFunctionalFunction*
+  name: IsFunctionalFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsFunctionalFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsFunctionalFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsFunctionalFunction
+  nameWithType: AbstractFunctionDefinition.IsFunctionalFunction
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
   name: IsUsingValidator
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsUsingValidator
@@ -1697,6 +1794,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsUsingValidator
   nameWithType: AbstractFunctionDefinition.IsUsingValidator
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsValidFunction
+  name: IsValidFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsValidFunction
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsValidFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsValidFunction
+  nameWithType: AbstractFunctionDefinition.IsValidFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsValidFunction*
+  name: IsValidFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_IsValidFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsValidFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.IsValidFunction
+  nameWithType: AbstractFunctionDefinition.IsValidFunction
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.Name
   name: Name
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_Name
@@ -1749,6 +1859,32 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.OutputBinding
   nameWithType: AbstractFunctionDefinition.OutputBinding
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ResultIsFSharpUnit
+  name: ResultIsFSharpUnit
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ResultIsFSharpUnit
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ResultIsFSharpUnit
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ResultIsFSharpUnit
+  nameWithType: AbstractFunctionDefinition.ResultIsFSharpUnit
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ResultIsFSharpUnit*
+  name: ResultIsFSharpUnit
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ResultIsFSharpUnit_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ResultIsFSharpUnit
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ResultIsFSharpUnit
+  nameWithType: AbstractFunctionDefinition.ResultIsFSharpUnit
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializeFunction
+  name: SerializeFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializeFunction
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializeFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializeFunction
+  nameWithType: AbstractFunctionDefinition.SerializeFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializeFunction*
+  name: SerializeFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializeFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializeFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializeFunction
+  nameWithType: AbstractFunctionDefinition.SerializeFunction
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyType
   name: SerializerNamingStrategyType
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_SerializerNamingStrategyType
@@ -1775,6 +1911,32 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.SerializerNamingStrategyTypeName
   nameWithType: AbstractFunctionDefinition.SerializerNamingStrategyTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.UsesImmutableTypes
+  name: UsesImmutableTypes
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_UsesImmutableTypes
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.UsesImmutableTypes
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.UsesImmutableTypes
+  nameWithType: AbstractFunctionDefinition.UsesImmutableTypes
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.UsesImmutableTypes*
+  name: UsesImmutableTypes
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_UsesImmutableTypes_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.UsesImmutableTypes
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.UsesImmutableTypes
+  nameWithType: AbstractFunctionDefinition.UsesImmutableTypes
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ValidatorFunction
+  name: ValidatorFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ValidatorFunction
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ValidatorFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ValidatorFunction
+  nameWithType: AbstractFunctionDefinition.ValidatorFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ValidatorFunction*
+  name: ValidatorFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ValidatorFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ValidatorFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ValidatorFunction
+  nameWithType: AbstractFunctionDefinition.ValidatorFunction
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding
   name: AbstractOutputBinding
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html
@@ -1807,6 +1969,51 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.CommandResultItemTypeName
   nameWithType: AbstractOutputBinding.CommandResultItemTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction
+  name: BridgedFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction
+  nameWithType: BridgedFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.#ctor(System.Object)
+  name: BridgedFunction(Object)
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html#FunctionMonkey_Abstractions_Builders_Model_BridgedFunction__ctor_System_Object_
+  commentId: M:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.#ctor(System.Object)
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.BridgedFunction(System.Object)
+  nameWithType: BridgedFunction.BridgedFunction(Object)
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.#ctor*
+  name: BridgedFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html#FunctionMonkey_Abstractions_Builders_Model_BridgedFunction__ctor_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.BridgedFunction
+  nameWithType: BridgedFunction.BridgedFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.Handler
+  name: Handler
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html#FunctionMonkey_Abstractions_Builders_Model_BridgedFunction_Handler
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.Handler
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.Handler
+  nameWithType: BridgedFunction.Handler
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.Handler*
+  name: Handler
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html#FunctionMonkey_Abstractions_Builders_Model_BridgedFunction_Handler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.Handler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.Handler
+  nameWithType: BridgedFunction.Handler
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.IsAsync
+  name: IsAsync
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html#FunctionMonkey_Abstractions_Builders_Model_BridgedFunction_IsAsync
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.IsAsync
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.IsAsync
+  nameWithType: BridgedFunction.IsAsync
+- uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.IsAsync*
+  name: IsAsync
+  href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html#FunctionMonkey_Abstractions_Builders_Model_BridgedFunction_IsAsync_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.IsAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.IsAsync
+  nameWithType: BridgedFunction.IsAsync
 - uid: FunctionMonkey.Abstractions.Builders.Model.ConnectionStringSettingNames
   name: ConnectionStringSettingNames
   href: api/FunctionMonkey.Abstractions.Builders.Model.ConnectionStringSettingNames.html
@@ -2044,6 +2251,19 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Contexts.HttpContext
   fullName: FunctionMonkey.Abstractions.Contexts.HttpContext
   nameWithType: HttpContext
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext.ClaimsPrincipal
+  name: ClaimsPrincipal
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_ClaimsPrincipal
+  commentId: P:FunctionMonkey.Abstractions.Contexts.HttpContext.ClaimsPrincipal
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext.ClaimsPrincipal
+  nameWithType: HttpContext.ClaimsPrincipal
+- uid: FunctionMonkey.Abstractions.Contexts.HttpContext.ClaimsPrincipal*
+  name: ClaimsPrincipal
+  href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_ClaimsPrincipal_
+  commentId: Overload:FunctionMonkey.Abstractions.Contexts.HttpContext.ClaimsPrincipal
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Contexts.HttpContext.ClaimsPrincipal
+  nameWithType: HttpContext.ClaimsPrincipal
 - uid: FunctionMonkey.Abstractions.Contexts.HttpContext.Headers
   name: Headers
   href: api/FunctionMonkey.Abstractions.Contexts.HttpContext.html#FunctionMonkey_Abstractions_Contexts_HttpContext_Headers
@@ -2263,12 +2483,102 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.GetFunctionName
   nameWithType: TypeExtensions.GetFunctionName
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterCollectionType(Type)
+  name: IsSupportedCSharpQueryParameterCollectionType(Type)
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_IsSupportedCSharpQueryParameterCollectionType_Type_
+  commentId: M:FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterCollectionType(Type)
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterCollectionType(Type)
+  nameWithType: TypeExtensions.IsSupportedCSharpQueryParameterCollectionType(Type)
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterCollectionType*
+  name: IsSupportedCSharpQueryParameterCollectionType
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_IsSupportedCSharpQueryParameterCollectionType_
+  commentId: Overload:FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterCollectionType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterCollectionType
+  nameWithType: TypeExtensions.IsSupportedCSharpQueryParameterCollectionType
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterType(Type)
+  name: IsSupportedCSharpQueryParameterType(Type)
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_IsSupportedCSharpQueryParameterType_Type_
+  commentId: M:FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterType(Type)
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterType(Type)
+  nameWithType: TypeExtensions.IsSupportedCSharpQueryParameterType(Type)
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterType*
+  name: IsSupportedCSharpQueryParameterType
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_IsSupportedCSharpQueryParameterType_
+  commentId: Overload:FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.IsSupportedCSharpQueryParameterType
+  nameWithType: TypeExtensions.IsSupportedCSharpQueryParameterType
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.SupportedCollectionValueType(Type)
+  name: SupportedCollectionValueType(Type)
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_SupportedCollectionValueType_Type_
+  commentId: M:FunctionMonkey.Abstractions.Extensions.TypeExtensions.SupportedCollectionValueType(Type)
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.SupportedCollectionValueType(Type)
+  nameWithType: TypeExtensions.SupportedCollectionValueType(Type)
+- uid: FunctionMonkey.Abstractions.Extensions.TypeExtensions.SupportedCollectionValueType*
+  name: SupportedCollectionValueType
+  href: api/FunctionMonkey.Abstractions.Extensions.TypeExtensions.html#FunctionMonkey_Abstractions_Extensions_TypeExtensions_SupportedCollectionValueType_
+  commentId: Overload:FunctionMonkey.Abstractions.Extensions.TypeExtensions.SupportedCollectionValueType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Extensions.TypeExtensions.SupportedCollectionValueType
+  nameWithType: TypeExtensions.SupportedCollectionValueType
 - uid: FunctionMonkey.Abstractions.Http
   name: FunctionMonkey.Abstractions.Http
   href: api/FunctionMonkey.Abstractions.Http.html
   commentId: N:FunctionMonkey.Abstractions.Http
   fullName: FunctionMonkey.Abstractions.Http
   nameWithType: FunctionMonkey.Abstractions.Http
+- uid: FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition
+  name: AbstractClaimsMappingDefinition
+  href: api/FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.html
+  commentId: T:FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition
+  fullName: FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition
+  nameWithType: AbstractClaimsMappingDefinition
+- uid: FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.ClaimName
+  name: ClaimName
+  href: api/FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_AbstractClaimsMappingDefinition_ClaimName
+  commentId: P:FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.ClaimName
+  fullName: FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.ClaimName
+  nameWithType: AbstractClaimsMappingDefinition.ClaimName
+- uid: FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.ClaimName*
+  name: ClaimName
+  href: api/FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_AbstractClaimsMappingDefinition_ClaimName_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.ClaimName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.AbstractClaimsMappingDefinition.ClaimName
+  nameWithType: AbstractClaimsMappingDefinition.ClaimName
+- uid: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition
+  name: CommandPropertyClaimsMappingDefinition
+  href: api/FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.html
+  commentId: T:FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition
+  fullName: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition
+  nameWithType: CommandPropertyClaimsMappingDefinition
+- uid: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.CommandType
+  name: CommandType
+  href: api/FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_CommandPropertyClaimsMappingDefinition_CommandType
+  commentId: P:FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.CommandType
+  fullName: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.CommandType
+  nameWithType: CommandPropertyClaimsMappingDefinition.CommandType
+- uid: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.CommandType*
+  name: CommandType
+  href: api/FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_CommandPropertyClaimsMappingDefinition_CommandType_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.CommandType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.CommandType
+  nameWithType: CommandPropertyClaimsMappingDefinition.CommandType
+- uid: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.PropertyInfo
+  name: PropertyInfo
+  href: api/FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_CommandPropertyClaimsMappingDefinition_PropertyInfo
+  commentId: P:FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.PropertyInfo
+  fullName: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.PropertyInfo
+  nameWithType: CommandPropertyClaimsMappingDefinition.PropertyInfo
+- uid: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.PropertyInfo*
+  name: PropertyInfo
+  href: api/FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_CommandPropertyClaimsMappingDefinition_PropertyInfo_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.PropertyInfo
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.CommandPropertyClaimsMappingDefinition.PropertyInfo
+  nameWithType: CommandPropertyClaimsMappingDefinition.PropertyInfo
 - uid: FunctionMonkey.Abstractions.Http.IHttpResponseHandler
   name: IHttpResponseHandler
   href: api/FunctionMonkey.Abstractions.Http.IHttpResponseHandler.html
@@ -2332,6 +2642,122 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Http.IHttpResponseHandler.CreateValidationFailureResponse(Of TCommand)(TCommand, FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)
   nameWithType: IHttpResponseHandler.CreateValidationFailureResponse<TCommand>(TCommand, ValidationResult)
   nameWithType.vb: IHttpResponseHandler.CreateValidationFailureResponse(Of TCommand)(TCommand, ValidationResult)
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration
+  name: OpenApiConfiguration
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html
+  commentId: T:FunctionMonkey.Abstractions.Http.OpenApiConfiguration
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration
+  nameWithType: OpenApiConfiguration
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled
+  name: IsOpenApiOutputEnabled
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_IsOpenApiOutputEnabled
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled
+  nameWithType: OpenApiConfiguration.IsOpenApiOutputEnabled
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled*
+  name: IsOpenApiOutputEnabled
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_IsOpenApiOutputEnabled_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled
+  nameWithType: OpenApiConfiguration.IsOpenApiOutputEnabled
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid
+  name: IsValid
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_IsValid
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid
+  nameWithType: OpenApiConfiguration.IsValid
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid*
+  name: IsValid
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_IsValid_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid
+  nameWithType: OpenApiConfiguration.IsValid
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
+  name: OutputPath
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_OutputPath
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
+  nameWithType: OpenApiConfiguration.OutputPath
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath*
+  name: OutputPath
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_OutputPath_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
+  nameWithType: OpenApiConfiguration.OutputPath
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers
+  name: Servers
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Servers
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers
+  nameWithType: OpenApiConfiguration.Servers
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers*
+  name: Servers
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Servers_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers
+  nameWithType: OpenApiConfiguration.Servers
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Title
+  name: Title
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Title
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Title
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Title
+  nameWithType: OpenApiConfiguration.Title
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Title*
+  name: Title
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Title_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Title
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Title
+  nameWithType: OpenApiConfiguration.Title
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.UserInterfaceRoute
+  name: UserInterfaceRoute
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_UserInterfaceRoute
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.UserInterfaceRoute
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.UserInterfaceRoute
+  nameWithType: OpenApiConfiguration.UserInterfaceRoute
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.UserInterfaceRoute*
+  name: UserInterfaceRoute
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_UserInterfaceRoute_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.UserInterfaceRoute
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.UserInterfaceRoute
+  nameWithType: OpenApiConfiguration.UserInterfaceRoute
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version
+  name: Version
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Version
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version
+  nameWithType: OpenApiConfiguration.Version
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version*
+  name: Version
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Version_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version
+  nameWithType: OpenApiConfiguration.Version
+- uid: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition
+  name: SharedClaimsMappingDefinition
+  href: api/FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.html
+  commentId: T:FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition
+  fullName: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition
+  nameWithType: SharedClaimsMappingDefinition
+- uid: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.PropertyPath
+  name: PropertyPath
+  href: api/FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_SharedClaimsMappingDefinition_PropertyPath
+  commentId: P:FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.PropertyPath
+  fullName: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.PropertyPath
+  nameWithType: SharedClaimsMappingDefinition.PropertyPath
+- uid: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.PropertyPath*
+  name: PropertyPath
+  href: api/FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.html#FunctionMonkey_Abstractions_Http_SharedClaimsMappingDefinition_PropertyPath_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.PropertyPath
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.PropertyPath
+  nameWithType: SharedClaimsMappingDefinition.PropertyPath
 - uid: FunctionMonkey.Abstractions.HttpResponse
   name: HttpResponse
   href: api/FunctionMonkey.Abstractions.HttpResponse.html
@@ -2389,12 +2815,12 @@ references:
   commentId: T:FunctionMonkey.Abstractions.ICommandClaimsBinder
   fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder
   nameWithType: ICommandClaimsBinder
-- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,ICommand)
-  name: Bind(ClaimsPrincipal, ICommand)
-  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_ClaimsPrincipal_ICommand_
-  commentId: M:FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,ICommand)
-  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal, ICommand)
-  nameWithType: ICommandClaimsBinder.Bind(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,System.Object)
+  name: Bind(ClaimsPrincipal, Object)
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_ClaimsPrincipal_System_Object_
+  commentId: M:FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal,System.Object)
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind(ClaimsPrincipal, System.Object)
+  nameWithType: ICommandClaimsBinder.Bind(ClaimsPrincipal, Object)
 - uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind*
   name: Bind
   href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_Bind_
@@ -2402,12 +2828,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.Bind
   nameWithType: ICommandClaimsBinder.Bind
-- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,ICommand)
-  name: BindAsync(ClaimsPrincipal, ICommand)
-  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_ClaimsPrincipal_ICommand_
-  commentId: M:FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,ICommand)
-  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal, ICommand)
-  nameWithType: ICommandClaimsBinder.BindAsync(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,System.Object)
+  name: BindAsync(ClaimsPrincipal, Object)
+  href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_ClaimsPrincipal_System_Object_
+  commentId: M:FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal,System.Object)
+  fullName: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync(ClaimsPrincipal, System.Object)
+  nameWithType: ICommandClaimsBinder.BindAsync(ClaimsPrincipal, Object)
 - uid: FunctionMonkey.Abstractions.ICommandClaimsBinder.BindAsync*
   name: BindAsync
   href: api/FunctionMonkey.Abstractions.ICommandClaimsBinder.html#FunctionMonkey_Abstractions_ICommandClaimsBinder_BindAsync_
@@ -2598,15 +3024,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextSetter.SetExecutionContext
   nameWithType: IContextSetter.SetExecutionContext
-- uid: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
-  name: SetHttpContext(String, Dictionary<String, IReadOnlyCollection<String>>)
-  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___
-  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
-  name.vb: SetHttpContext(String, Dictionary(Of String, IReadOnlyCollection(Of String)))
-  fullName: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String, Dictionary<System.String, IReadOnlyCollection<System.String>>)
-  fullName.vb: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(System.String, Dictionary(Of System.String, IReadOnlyCollection(Of System.String)))
-  nameWithType: IContextSetter.SetHttpContext(String, Dictionary<String, IReadOnlyCollection<String>>)
-  nameWithType.vb: IContextSetter.SetHttpContext(String, Dictionary(Of String, IReadOnlyCollection(Of String)))
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(ClaimsPrincipal,System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
+  name: SetHttpContext(ClaimsPrincipal, String, Dictionary<String, IReadOnlyCollection<String>>)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_ClaimsPrincipal_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(ClaimsPrincipal,System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
+  name.vb: SetHttpContext(ClaimsPrincipal, String, Dictionary(Of String, IReadOnlyCollection(Of String)))
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(ClaimsPrincipal, System.String, Dictionary<System.String, IReadOnlyCollection<System.String>>)
+  fullName.vb: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext(ClaimsPrincipal, System.String, Dictionary(Of System.String, IReadOnlyCollection(Of System.String)))
+  nameWithType: IContextSetter.SetHttpContext(ClaimsPrincipal, String, Dictionary<String, IReadOnlyCollection<String>>)
+  nameWithType.vb: IContextSetter.SetHttpContext(ClaimsPrincipal, String, Dictionary(Of String, IReadOnlyCollection(Of String)))
 - uid: FunctionMonkey.Abstractions.IContextSetter.SetHttpContext*
   name: SetHttpContext
   href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetHttpContext_
@@ -2659,12 +3085,102 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build
   nameWithType: IFunctionAppConfiguration.Build
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata
+  name: IFunctionCompilerMetadata
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html
+  commentId: T:FunctionMonkey.Abstractions.IFunctionCompilerMetadata
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata
+  nameWithType: IFunctionCompilerMetadata
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkPropertyInfo
+  name: BacklinkPropertyInfo
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_BacklinkPropertyInfo
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkPropertyInfo
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkPropertyInfo
+  nameWithType: IFunctionCompilerMetadata.BacklinkPropertyInfo
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkPropertyInfo*
+  name: BacklinkPropertyInfo
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_BacklinkPropertyInfo_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkPropertyInfo
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkPropertyInfo
+  nameWithType: IFunctionCompilerMetadata.BacklinkPropertyInfo
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkReferenceType
+  name: BacklinkReferenceType
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_BacklinkReferenceType
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkReferenceType
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkReferenceType
+  nameWithType: IFunctionCompilerMetadata.BacklinkReferenceType
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkReferenceType*
+  name: BacklinkReferenceType
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_BacklinkReferenceType_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkReferenceType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.BacklinkReferenceType
+  nameWithType: IFunctionCompilerMetadata.BacklinkReferenceType
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
+  name: ClaimsMappings
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_ClaimsMappings
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
+  nameWithType: IFunctionCompilerMetadata.ClaimsMappings
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings*
+  name: ClaimsMappings
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_ClaimsMappings_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
+  nameWithType: IFunctionCompilerMetadata.ClaimsMappings
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
+  name: FunctionDefinitions
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_FunctionDefinitions
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
+  nameWithType: IFunctionCompilerMetadata.FunctionDefinitions
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions*
+  name: FunctionDefinitions
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_FunctionDefinitions_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
+  nameWithType: IFunctionCompilerMetadata.FunctionDefinitions
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OpenApiConfiguration
+  name: OpenApiConfiguration
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_OpenApiConfiguration
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OpenApiConfiguration
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OpenApiConfiguration
+  nameWithType: IFunctionCompilerMetadata.OpenApiConfiguration
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OpenApiConfiguration*
+  name: OpenApiConfiguration
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_OpenApiConfiguration_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OpenApiConfiguration
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OpenApiConfiguration
+  nameWithType: IFunctionCompilerMetadata.OpenApiConfiguration
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+  name: OutputAuthoredSourceFolder
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_OutputAuthoredSourceFolder
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+  nameWithType: IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder*
+  name: OutputAuthoredSourceFolder
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_OutputAuthoredSourceFolder_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+  nameWithType: IFunctionCompilerMetadata.OutputAuthoredSourceFolder
 - uid: FunctionMonkey.Abstractions.ISerializer
   name: ISerializer
   href: api/FunctionMonkey.Abstractions.ISerializer.html
   commentId: T:FunctionMonkey.Abstractions.ISerializer
   fullName: FunctionMonkey.Abstractions.ISerializer
   nameWithType: ISerializer
+- uid: FunctionMonkey.Abstractions.ISerializer.Deserialize(Type,System.String,System.Boolean)
+  name: Deserialize(Type, String, Boolean)
+  href: api/FunctionMonkey.Abstractions.ISerializer.html#FunctionMonkey_Abstractions_ISerializer_Deserialize_Type_System_String_System_Boolean_
+  commentId: M:FunctionMonkey.Abstractions.ISerializer.Deserialize(Type,System.String,System.Boolean)
+  fullName: FunctionMonkey.Abstractions.ISerializer.Deserialize(Type, System.String, System.Boolean)
+  nameWithType: ISerializer.Deserialize(Type, String, Boolean)
 - uid: FunctionMonkey.Abstractions.ISerializer.Deserialize*
   name: Deserialize
   href: api/FunctionMonkey.Abstractions.ISerializer.html#FunctionMonkey_Abstractions_ISerializer_Deserialize_
@@ -2907,6 +3423,12 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Validation.IValidator
   fullName: FunctionMonkey.Abstractions.Validation.IValidator
   nameWithType: IValidator
+- uid: FunctionMonkey.Abstractions.Validation.IValidator.Validate(System.Object)
+  name: Validate(Object)
+  href: api/FunctionMonkey.Abstractions.Validation.IValidator.html#FunctionMonkey_Abstractions_Validation_IValidator_Validate_System_Object_
+  commentId: M:FunctionMonkey.Abstractions.Validation.IValidator.Validate(System.Object)
+  fullName: FunctionMonkey.Abstractions.Validation.IValidator.Validate(System.Object)
+  nameWithType: IValidator.Validate(Object)
 - uid: FunctionMonkey.Abstractions.Validation.IValidator.Validate*
   name: Validate
   href: api/FunctionMonkey.Abstractions.Validation.IValidator.html#FunctionMonkey_Abstractions_Validation_IValidator_Validate_
@@ -2914,15 +3436,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Validation.IValidator.Validate
   nameWithType: IValidator.Validate
-- uid: FunctionMonkey.Abstractions.Validation.IValidator.Validate``1(``0)
-  name: Validate<TCommand>(TCommand)
-  href: api/FunctionMonkey.Abstractions.Validation.IValidator.html#FunctionMonkey_Abstractions_Validation_IValidator_Validate__1___0_
-  commentId: M:FunctionMonkey.Abstractions.Validation.IValidator.Validate``1(``0)
-  name.vb: Validate(Of TCommand)(TCommand)
-  fullName: FunctionMonkey.Abstractions.Validation.IValidator.Validate<TCommand>(TCommand)
-  fullName.vb: FunctionMonkey.Abstractions.Validation.IValidator.Validate(Of TCommand)(TCommand)
-  nameWithType: IValidator.Validate<TCommand>(TCommand)
-  nameWithType.vb: IValidator.Validate(Of TCommand)(TCommand)
+- uid: FunctionMonkey.AbstractPluginFunctions
+  name: AbstractPluginFunctions
+  href: api/FunctionMonkey.AbstractPluginFunctions.html
+  commentId: T:FunctionMonkey.AbstractPluginFunctions
+  fullName: FunctionMonkey.AbstractPluginFunctions
+  nameWithType: AbstractPluginFunctions
 - uid: FunctionMonkey.Builders
   name: FunctionMonkey.Builders
   href: api/FunctionMonkey.Builders.html
@@ -3914,6 +4433,64 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.ValidationResult
   nameWithType: ValidationException.ValidationResult
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException
+  name: ValidationObjectException
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html
+  commentId: T:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException
+  nameWithType: ValidationObjectException
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.#ctor(System.String,System.Object,System.String)
+  name: ValidationObjectException(String, Object, String)
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException__ctor_System_String_System_Object_System_String_
+  commentId: M:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.#ctor(System.String,System.Object,System.String)
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationObjectException(System.String, System.Object, System.String)
+  nameWithType: ValidationObjectException.ValidationObjectException(String, Object, String)
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.#ctor*
+  name: ValidationObjectException
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException__ctor_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationObjectException
+  nameWithType: ValidationObjectException.ValidationObjectException
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.AssociatedId
+  name: AssociatedId
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException_AssociatedId
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.AssociatedId
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.AssociatedId
+  nameWithType: ValidationObjectException.AssociatedId
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.AssociatedId*
+  name: AssociatedId
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException_AssociatedId_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.AssociatedId
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.AssociatedId
+  nameWithType: ValidationObjectException.AssociatedId
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.FunctionName
+  name: FunctionName
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException_FunctionName
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.FunctionName
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.FunctionName
+  nameWithType: ValidationObjectException.FunctionName
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.FunctionName*
+  name: FunctionName
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException_FunctionName_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.FunctionName
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.FunctionName
+  nameWithType: ValidationObjectException.FunctionName
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationResult
+  name: ValidationResult
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException_ValidationResult
+  commentId: P:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationResult
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationResult
+  nameWithType: ValidationObjectException.ValidationResult
+- uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationResult*
+  name: ValidationResult
+  href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html#FunctionMonkey_Commanding_Abstractions_Validation_ValidationObjectException_ValidationResult_
+  commentId: Overload:FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationResult
+  isSpec: "True"
+  fullName: FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.ValidationResult
+  nameWithType: ValidationObjectException.ValidationResult
 - uid: FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult
   name: ValidationResult
   href: api/FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult.html
@@ -4118,6 +4695,31 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.DeserializationException.Path
   nameWithType: DeserializationException.Path
+- uid: FunctionMonkey.Extensions
+  name: FunctionMonkey.Extensions
+  href: api/FunctionMonkey.Extensions.html
+  commentId: N:FunctionMonkey.Extensions
+  fullName: FunctionMonkey.Extensions
+  nameWithType: FunctionMonkey.Extensions
+- uid: FunctionMonkey.Extensions.Utils
+  name: Utils
+  href: api/FunctionMonkey.Extensions.Utils.html
+  commentId: T:FunctionMonkey.Extensions.Utils
+  fullName: FunctionMonkey.Extensions.Utils
+  nameWithType: Utils
+- uid: FunctionMonkey.Extensions.Utils.EvaluateType(Type)
+  name: EvaluateType(Type)
+  href: api/FunctionMonkey.Extensions.Utils.html#FunctionMonkey_Extensions_Utils_EvaluateType_Type_
+  commentId: M:FunctionMonkey.Extensions.Utils.EvaluateType(Type)
+  fullName: FunctionMonkey.Extensions.Utils.EvaluateType(Type)
+  nameWithType: Utils.EvaluateType(Type)
+- uid: FunctionMonkey.Extensions.Utils.EvaluateType*
+  name: EvaluateType
+  href: api/FunctionMonkey.Extensions.Utils.html#FunctionMonkey_Extensions_Utils_EvaluateType_
+  commentId: Overload:FunctionMonkey.Extensions.Utils.EvaluateType
+  isSpec: "True"
+  fullName: FunctionMonkey.Extensions.Utils.EvaluateType
+  nameWithType: Utils.EvaluateType
 - uid: FunctionMonkey.FluentValidation
   name: FunctionMonkey.FluentValidation
   href: api/FunctionMonkey.FluentValidation.html
@@ -4200,6 +4802,168 @@ references:
   fullName.vb: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
   nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining<T>(IServiceCollection, ServiceLifetime)
   nameWithType.vb: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
+- uid: FunctionMonkey.PluginFunctions
+  name: PluginFunctions
+  href: api/FunctionMonkey.PluginFunctions.html
+  commentId: T:FunctionMonkey.PluginFunctions
+  fullName: FunctionMonkey.PluginFunctions
+  nameWithType: PluginFunctions
+- uid: FunctionMonkey.PluginFunctions.BindClaims
+  name: BindClaims
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_BindClaims
+  commentId: P:FunctionMonkey.PluginFunctions.BindClaims
+  fullName: FunctionMonkey.PluginFunctions.BindClaims
+  nameWithType: PluginFunctions.BindClaims
+- uid: FunctionMonkey.PluginFunctions.BindClaims*
+  name: BindClaims
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_BindClaims_
+  commentId: Overload:FunctionMonkey.PluginFunctions.BindClaims
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.BindClaims
+  nameWithType: PluginFunctions.BindClaims
+- uid: FunctionMonkey.PluginFunctions.CreateResponse
+  name: CreateResponse
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateResponse
+  commentId: P:FunctionMonkey.PluginFunctions.CreateResponse
+  fullName: FunctionMonkey.PluginFunctions.CreateResponse
+  nameWithType: PluginFunctions.CreateResponse
+- uid: FunctionMonkey.PluginFunctions.CreateResponse*
+  name: CreateResponse
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateResponse_
+  commentId: Overload:FunctionMonkey.PluginFunctions.CreateResponse
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.CreateResponse
+  nameWithType: PluginFunctions.CreateResponse
+- uid: FunctionMonkey.PluginFunctions.CreateResponseForResult
+  name: CreateResponseForResult
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateResponseForResult
+  commentId: P:FunctionMonkey.PluginFunctions.CreateResponseForResult
+  fullName: FunctionMonkey.PluginFunctions.CreateResponseForResult
+  nameWithType: PluginFunctions.CreateResponseForResult
+- uid: FunctionMonkey.PluginFunctions.CreateResponseForResult*
+  name: CreateResponseForResult
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateResponseForResult_
+  commentId: Overload:FunctionMonkey.PluginFunctions.CreateResponseForResult
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.CreateResponseForResult
+  nameWithType: PluginFunctions.CreateResponseForResult
+- uid: FunctionMonkey.PluginFunctions.CreateResponseFromException
+  name: CreateResponseFromException
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateResponseFromException
+  commentId: P:FunctionMonkey.PluginFunctions.CreateResponseFromException
+  fullName: FunctionMonkey.PluginFunctions.CreateResponseFromException
+  nameWithType: PluginFunctions.CreateResponseFromException
+- uid: FunctionMonkey.PluginFunctions.CreateResponseFromException*
+  name: CreateResponseFromException
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateResponseFromException_
+  commentId: Overload:FunctionMonkey.PluginFunctions.CreateResponseFromException
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.CreateResponseFromException
+  nameWithType: PluginFunctions.CreateResponseFromException
+- uid: FunctionMonkey.PluginFunctions.CreateValidationFailureResponse
+  name: CreateValidationFailureResponse
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateValidationFailureResponse
+  commentId: P:FunctionMonkey.PluginFunctions.CreateValidationFailureResponse
+  fullName: FunctionMonkey.PluginFunctions.CreateValidationFailureResponse
+  nameWithType: PluginFunctions.CreateValidationFailureResponse
+- uid: FunctionMonkey.PluginFunctions.CreateValidationFailureResponse*
+  name: CreateValidationFailureResponse
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_CreateValidationFailureResponse_
+  commentId: Overload:FunctionMonkey.PluginFunctions.CreateValidationFailureResponse
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.CreateValidationFailureResponse
+  nameWithType: PluginFunctions.CreateValidationFailureResponse
+- uid: FunctionMonkey.PluginFunctions.Deserialize
+  name: Deserialize
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Deserialize
+  commentId: P:FunctionMonkey.PluginFunctions.Deserialize
+  fullName: FunctionMonkey.PluginFunctions.Deserialize
+  nameWithType: PluginFunctions.Deserialize
+- uid: FunctionMonkey.PluginFunctions.Deserialize*
+  name: Deserialize
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Deserialize_
+  commentId: Overload:FunctionMonkey.PluginFunctions.Deserialize
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.Deserialize
+  nameWithType: PluginFunctions.Deserialize
+- uid: FunctionMonkey.PluginFunctions.Handler
+  name: Handler
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Handler
+  commentId: P:FunctionMonkey.PluginFunctions.Handler
+  fullName: FunctionMonkey.PluginFunctions.Handler
+  nameWithType: PluginFunctions.Handler
+- uid: FunctionMonkey.PluginFunctions.Handler*
+  name: Handler
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Handler_
+  commentId: Overload:FunctionMonkey.PluginFunctions.Handler
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.Handler
+  nameWithType: PluginFunctions.Handler
+- uid: FunctionMonkey.PluginFunctions.IsAuthorized
+  name: IsAuthorized
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_IsAuthorized
+  commentId: P:FunctionMonkey.PluginFunctions.IsAuthorized
+  fullName: FunctionMonkey.PluginFunctions.IsAuthorized
+  nameWithType: PluginFunctions.IsAuthorized
+- uid: FunctionMonkey.PluginFunctions.IsAuthorized*
+  name: IsAuthorized
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_IsAuthorized_
+  commentId: Overload:FunctionMonkey.PluginFunctions.IsAuthorized
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.IsAuthorized
+  nameWithType: PluginFunctions.IsAuthorized
+- uid: FunctionMonkey.PluginFunctions.IsValid
+  name: IsValid
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_IsValid
+  commentId: P:FunctionMonkey.PluginFunctions.IsValid
+  fullName: FunctionMonkey.PluginFunctions.IsValid
+  nameWithType: PluginFunctions.IsValid
+- uid: FunctionMonkey.PluginFunctions.IsValid*
+  name: IsValid
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_IsValid_
+  commentId: Overload:FunctionMonkey.PluginFunctions.IsValid
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.IsValid
+  nameWithType: PluginFunctions.IsValid
+- uid: FunctionMonkey.PluginFunctions.Serialize
+  name: Serialize
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Serialize
+  commentId: P:FunctionMonkey.PluginFunctions.Serialize
+  fullName: FunctionMonkey.PluginFunctions.Serialize
+  nameWithType: PluginFunctions.Serialize
+- uid: FunctionMonkey.PluginFunctions.Serialize*
+  name: Serialize
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Serialize_
+  commentId: Overload:FunctionMonkey.PluginFunctions.Serialize
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.Serialize
+  nameWithType: PluginFunctions.Serialize
+- uid: FunctionMonkey.PluginFunctions.Validate
+  name: Validate
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Validate
+  commentId: P:FunctionMonkey.PluginFunctions.Validate
+  fullName: FunctionMonkey.PluginFunctions.Validate
+  nameWithType: PluginFunctions.Validate
+- uid: FunctionMonkey.PluginFunctions.Validate*
+  name: Validate
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Validate_
+  commentId: Overload:FunctionMonkey.PluginFunctions.Validate
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.Validate
+  nameWithType: PluginFunctions.Validate
+- uid: FunctionMonkey.PluginFunctions.ValidateToken
+  name: ValidateToken
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_ValidateToken
+  commentId: P:FunctionMonkey.PluginFunctions.ValidateToken
+  fullName: FunctionMonkey.PluginFunctions.ValidateToken
+  nameWithType: PluginFunctions.ValidateToken
+- uid: FunctionMonkey.PluginFunctions.ValidateToken*
+  name: ValidateToken
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_ValidateToken_
+  commentId: Overload:FunctionMonkey.PluginFunctions.ValidateToken
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.ValidateToken
+  nameWithType: PluginFunctions.ValidateToken
 - uid: FunctionMonkey.Runtime
   name: Runtime
   href: api/FunctionMonkey.Runtime.html
@@ -4232,6 +4996,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Runtime.FunctionProvidedLogger
   nameWithType: Runtime.FunctionProvidedLogger
+- uid: FunctionMonkey.Runtime.PluginFunctions
+  name: PluginFunctions
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_PluginFunctions
+  commentId: P:FunctionMonkey.Runtime.PluginFunctions
+  fullName: FunctionMonkey.Runtime.PluginFunctions
+  nameWithType: Runtime.PluginFunctions
+- uid: FunctionMonkey.Runtime.PluginFunctions*
+  name: PluginFunctions
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_PluginFunctions_
+  commentId: Overload:FunctionMonkey.Runtime.PluginFunctions
+  isSpec: "True"
+  fullName: FunctionMonkey.Runtime.PluginFunctions
+  nameWithType: Runtime.PluginFunctions
 - uid: FunctionMonkey.Runtime.ServiceProvider
   name: ServiceProvider
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_ServiceProvider
@@ -4273,19 +5050,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance
   nameWithType: RuntimeInstance.RuntimeInstance
-- uid: FunctionMonkey.RuntimeInstance.Builder
-  name: Builder
-  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_Builder
-  commentId: P:FunctionMonkey.RuntimeInstance.Builder
-  fullName: FunctionMonkey.RuntimeInstance.Builder
-  nameWithType: RuntimeInstance.Builder
-- uid: FunctionMonkey.RuntimeInstance.Builder*
-  name: Builder
-  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_Builder_
-  commentId: Overload:FunctionMonkey.RuntimeInstance.Builder
+- uid: FunctionMonkey.RuntimeInstance.FunctionDefinitions
+  name: FunctionDefinitions
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionDefinitions
+  commentId: P:FunctionMonkey.RuntimeInstance.FunctionDefinitions
+  fullName: FunctionMonkey.RuntimeInstance.FunctionDefinitions
+  nameWithType: RuntimeInstance.FunctionDefinitions
+- uid: FunctionMonkey.RuntimeInstance.FunctionDefinitions*
+  name: FunctionDefinitions
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionDefinitions_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.FunctionDefinitions
   isSpec: "True"
-  fullName: FunctionMonkey.RuntimeInstance.Builder
-  nameWithType: RuntimeInstance.Builder
+  fullName: FunctionMonkey.RuntimeInstance.FunctionDefinitions
+  nameWithType: RuntimeInstance.FunctionDefinitions
 - uid: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
   name: FunctionProvidedLogger
   href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionProvidedLogger
@@ -4299,6 +5076,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
   nameWithType: RuntimeInstance.FunctionProvidedLogger
+- uid: FunctionMonkey.RuntimeInstance.PluginFunctions
+  name: PluginFunctions
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_PluginFunctions
+  commentId: P:FunctionMonkey.RuntimeInstance.PluginFunctions
+  fullName: FunctionMonkey.RuntimeInstance.PluginFunctions
+  nameWithType: RuntimeInstance.PluginFunctions
+- uid: FunctionMonkey.RuntimeInstance.PluginFunctions*
+  name: PluginFunctions
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_PluginFunctions_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.PluginFunctions
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.PluginFunctions
+  nameWithType: RuntimeInstance.PluginFunctions
 - uid: FunctionMonkey.RuntimeInstance.ServiceProvider
   name: ServiceProvider
   href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_ServiceProvider
@@ -4387,6 +5177,15 @@ references:
   commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy)
   fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy)
   nameWithType: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy)
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy,IEnumerable{JsonConverter})
+  name: NamingStrategyJsonSerializer(NamingStrategy, IEnumerable<JsonConverter>)
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer__ctor_NamingStrategy_IEnumerable_JsonConverter__
+  commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy,IEnumerable{JsonConverter})
+  name.vb: NamingStrategyJsonSerializer(NamingStrategy, IEnumerable(Of JsonConverter))
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy, IEnumerable<JsonConverter>)
+  fullName.vb: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy, IEnumerable(Of JsonConverter))
+  nameWithType: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy, IEnumerable<JsonConverter>)
+  nameWithType.vb: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer(NamingStrategy, IEnumerable(Of JsonConverter))
 - uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.#ctor(NamingStrategy,NamingStrategy)
   name: NamingStrategyJsonSerializer(NamingStrategy, NamingStrategy)
   href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer__ctor_NamingStrategy_NamingStrategy_
@@ -4400,6 +5199,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.NamingStrategyJsonSerializer
   nameWithType: NamingStrategyJsonSerializer.NamingStrategyJsonSerializer
+- uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize(Type,System.String,System.Boolean)
+  name: Deserialize(Type, String, Boolean)
+  href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer_Deserialize_Type_System_String_System_Boolean_
+  commentId: M:FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize(Type,System.String,System.Boolean)
+  fullName: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize(Type, System.String, System.Boolean)
+  nameWithType: NamingStrategyJsonSerializer.Deserialize(Type, String, Boolean)
 - uid: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Deserialize*
   name: Deserialize
   href: api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html#FunctionMonkey_Serialization_NamingStrategyJsonSerializer_Deserialize_
@@ -4777,12 +5582,12 @@ references:
   commentId: T:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock
   fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock
   nameWithType: CommandClaimsBinderMock
-- uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind(ClaimsPrincipal,ICommand)
-  name: Bind(ClaimsPrincipal, ICommand)
-  href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_Bind_ClaimsPrincipal_ICommand_
-  commentId: M:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind(ClaimsPrincipal,ICommand)
-  fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind(ClaimsPrincipal, ICommand)
-  nameWithType: CommandClaimsBinderMock.Bind(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind(ClaimsPrincipal,System.Object)
+  name: Bind(ClaimsPrincipal, Object)
+  href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_Bind_ClaimsPrincipal_System_Object_
+  commentId: M:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind(ClaimsPrincipal,System.Object)
+  fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind(ClaimsPrincipal, System.Object)
+  nameWithType: CommandClaimsBinderMock.Bind(ClaimsPrincipal, Object)
 - uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind*
   name: Bind
   href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_Bind_
@@ -4790,12 +5595,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.Bind
   nameWithType: CommandClaimsBinderMock.Bind
-- uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal,ICommand)
-  name: BindAsync(ClaimsPrincipal, ICommand)
-  href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_BindAsync_ClaimsPrincipal_ICommand_
-  commentId: M:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal,ICommand)
-  fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal, ICommand)
-  nameWithType: CommandClaimsBinderMock.BindAsync(ClaimsPrincipal, ICommand)
+- uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal,System.Object)
+  name: BindAsync(ClaimsPrincipal, Object)
+  href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_BindAsync_ClaimsPrincipal_System_Object_
+  commentId: M:FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal,System.Object)
+  fullName: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync(ClaimsPrincipal, System.Object)
+  nameWithType: CommandClaimsBinderMock.BindAsync(ClaimsPrincipal, Object)
 - uid: FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.BindAsync*
   name: BindAsync
   href: api/FunctionMonkey.Testing.Mocks.CommandClaimsBinderMock.html#FunctionMonkey_Testing_Mocks_CommandClaimsBinderMock_BindAsync_
@@ -4874,15 +5679,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.Mocks.ContextManagerMock.ServiceBusContext
   nameWithType: ContextManagerMock.ServiceBusContext
-- uid: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
-  name: SetHttpContext(String, Dictionary<String, IReadOnlyCollection<String>>)
-  href: api/FunctionMonkey.Testing.Mocks.ContextManagerMock.html#FunctionMonkey_Testing_Mocks_ContextManagerMock_SetHttpContext_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___
-  commentId: M:FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
-  name.vb: SetHttpContext(String, Dictionary(Of String, IReadOnlyCollection(Of String)))
-  fullName: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(System.String, Dictionary<System.String, IReadOnlyCollection<System.String>>)
-  fullName.vb: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(System.String, Dictionary(Of System.String, IReadOnlyCollection(Of System.String)))
-  nameWithType: ContextManagerMock.SetHttpContext(String, Dictionary<String, IReadOnlyCollection<String>>)
-  nameWithType.vb: ContextManagerMock.SetHttpContext(String, Dictionary(Of String, IReadOnlyCollection(Of String)))
+- uid: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(ClaimsPrincipal,System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
+  name: SetHttpContext(ClaimsPrincipal, String, Dictionary<String, IReadOnlyCollection<String>>)
+  href: api/FunctionMonkey.Testing.Mocks.ContextManagerMock.html#FunctionMonkey_Testing_Mocks_ContextManagerMock_SetHttpContext_ClaimsPrincipal_System_String_Dictionary_System_String_IReadOnlyCollection_System_String___
+  commentId: M:FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(ClaimsPrincipal,System.String,Dictionary{System.String,IReadOnlyCollection{System.String}})
+  name.vb: SetHttpContext(ClaimsPrincipal, String, Dictionary(Of String, IReadOnlyCollection(Of String)))
+  fullName: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(ClaimsPrincipal, System.String, Dictionary<System.String, IReadOnlyCollection<System.String>>)
+  fullName.vb: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext(ClaimsPrincipal, System.String, Dictionary(Of System.String, IReadOnlyCollection(Of System.String)))
+  nameWithType: ContextManagerMock.SetHttpContext(ClaimsPrincipal, String, Dictionary<String, IReadOnlyCollection<String>>)
+  nameWithType.vb: ContextManagerMock.SetHttpContext(ClaimsPrincipal, String, Dictionary(Of String, IReadOnlyCollection(Of String)))
 - uid: FunctionMonkey.Testing.Mocks.ContextManagerMock.SetHttpContext*
   name: SetHttpContext
   href: api/FunctionMonkey.Testing.Mocks.ContextManagerMock.html#FunctionMonkey_Testing_Mocks_ContextManagerMock_SetHttpContext_

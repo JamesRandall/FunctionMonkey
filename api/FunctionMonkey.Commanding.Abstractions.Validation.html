@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace FunctionMonkey.Commanding.Abstractions.Validation
    ">
-    <meta name="generator" content="docfx 2.46.0.0">
+    <meta name="generator" content="docfx 2.48.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -81,6 +81,11 @@
       <section><p>Represents a validation error</p>
 </section>
       <h4><a class="xref" href="FunctionMonkey.Commanding.Abstractions.Validation.ValidationException.html">ValidationException</a></h4>
+      <section><p>An exception that is thrown out of functions that have no realtime return to another system, for example if a queue function is triggered
+by a queue item and that item does not conform to the expected validation rules this exception will be thrown so it can at least be logged.
+In contrast HTTP triggers will return a BadRequest with the ValidationResult serialized in the response.</p>
+</section>
+      <h4><a class="xref" href="FunctionMonkey.Commanding.Abstractions.Validation.ValidationObjectException.html">ValidationObjectException</a></h4>
       <section><p>An exception that is thrown out of functions that have no realtime return to another system, for example if a queue function is triggered
 by a queue item and that item does not conform to the expected validation rules this exception will be thrown so it can at least be logged.
 In contrast HTTP triggers will return a BadRequest with the ValidationResult serialized in the response.</p>
