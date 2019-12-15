@@ -195,6 +195,9 @@
       <EmbeddedResource Include="Templates\swaggerui.json.handlebars" />
       <EmbeddedResource Include="Templates\timer.csharp.handlebars" />
       <EmbeddedResource Include="Templates\timer.json.handlebars" />
+      <EmbeddedResource Include="Templates\startup.csharp.handlebars" />
+      <None Remove="Templates\extensions.json.handlebars" />
+      <EmbeddedResource Include="Templates\extensions.json.handlebars" />
     </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="yarn" />

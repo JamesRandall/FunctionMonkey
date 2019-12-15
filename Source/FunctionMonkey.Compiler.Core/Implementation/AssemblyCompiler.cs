@@ -63,7 +63,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
             bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
 
-            return CompileAssembly(syntaxTrees, externalAssemblyLocations, openApiOutputModel, outputBinaryFolder, assemblyName, newAssemblyNamespace, compileTarget, isFSharpProject);
+            return CompileAssembly(
+                syntaxTrees,
+                externalAssemblyLocations,
+                openApiOutputModel,
+                outputBinaryFolder,
+                assemblyName,
+                newAssemblyNamespace,
+                compileTarget,
+                isFSharpProject);
         }
 
         private List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
@@ -94,6 +102,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 }, directoryInfo, syntaxTrees);
             }
 
+            {
+                string templateSource = _templateProvider.GetTemplate("startup", "csharp");
+                AddSyntaxTreeFromHandlebarsTemplate(templateSource, "Startup", new
+                {
+                    Namespace = newAssemblyNamespace
+                }, directoryInfo, syntaxTrees);
+            }
+
             CreateLinkBack(functionDefinitions, backlinkType, backlinkPropertyInfo, newAssemblyNamespace, directoryInfo, syntaxTrees);
 
             return syntaxTrees;
@@ -109,7 +125,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         {
             if (backlinkType == null) return; // back link referencing has been disabled
             
-// Now we need to create a class that references the assembly with the configuration builder
+            // Now we need to create a class that references the assembly with the configuration builder
             // otherwise the reference will be optimised away by Roslyn and it will then never get loaded
             // by the function host - and so at runtime the builder with the runtime info in won't be located
             string linkBackTemplateSource = _templateProvider.GetCSharpLinkBackTemplate();
@@ -195,11 +211,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                     .AddReferences(references)
                     .AddSyntaxTrees(syntaxTrees)
                 ;
-            
-            /*CSharpCompilation compilation = CSharpCompilation.Create(outputAssemblyName,
-                syntaxTrees,
-                references,
-                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));*/
 
             List<ResourceDescription> resources = null;
             if (openApiOutputModel != null)
@@ -234,26 +245,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             }
 
             return compilationResult.Success;
-            
-            /*using (Stream stream = new FileStream(Path.Combine(outputBinaryFolder, outputAssemblyName), FileMode.Create))
-            {
-                EmitResult result = compilation.Emit(stream, manifestResources: resources);
-                if (!result.Success)
-                {
-                    IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic =>
-                        diagnostic.IsWarningAsError ||
-                        diagnostic.Severity == DiagnosticSeverity.Error);
-                    
-                    foreach (Diagnostic diagnostic in failures)
-                    {
-                        _compilerLog.Error($"Error compiling function: {diagnostic.ToString()}");
-                    }
-
-                    return false;
-                }
-            }
-
-            return true;*/
         }
 
         private List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations,
@@ -305,8 +296,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 {
                     references.Add(MetadataReference.CreateFromStream(systemIo));
                 }
-            }            
-            
+            }
+
             return references;
         }
 

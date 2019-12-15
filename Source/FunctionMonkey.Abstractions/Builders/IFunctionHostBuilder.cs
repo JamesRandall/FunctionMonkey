@@ -78,12 +78,6 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder OutputAuthoredSource(string folder);
 
         /// <summary>
-        /// When a service provider is created the action supplied here will be invoked
-        /// </summary>
-        /// <param name="action">An action to invoke when a service provider is created</param>
-        IFunctionHostBuilder ActionOnServiceProviderCreated(Action<IServiceProvider> action);
-        
-        /// <summary>
         /// Allows default for serialization to be configured
         /// </summary>
         /// <param name="serialization">A serialization builder</param>
@@ -92,6 +86,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <summary>
         /// Access to the registered function definitions
         /// </summary>
-        IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }        
+        IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }
     }
 }

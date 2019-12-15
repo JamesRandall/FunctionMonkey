@@ -1,0 +1,17 @@
+﻿using Microsoft.Azure.WebJobs.Hosting;
+
+[assembly: WebJobsStartup(typeof({{Namespace}}.Startup))]
+
+namespace {{Namespace}}
+{
+	using Microsoft.Azure.WebJobs;
+
+	public class Startup : IWebJobsStartup
+	{
+		public void Configure(IWebJobsBuilder builder)
+		{
+            {{Namespace}}.ReferenceLinkBack.ForceLinkBack();
+			FunctionMonkey.Runtime.InitializeFromStartup(builder.Services);
+		}
+	}
+}
