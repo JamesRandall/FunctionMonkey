@@ -72,7 +72,33 @@
 <p>Function Monkey wires up the Azure Functions provided ILogger in the dependency injector.</p>
 <p>To use it simply inject an <em>ILogger</em> into your handlers or services.</p>
 <p>If you add logging into your application via the <em>AddLogging</em> extension method for <em>IServiceCollection</em> that will replace the Azure Functions logger and you will need to ensure it outputs to targets as you require.</p>
-<div id="disqus_thread"></div>
+<p>Handler using an injected logger:</p>
+<pre><code>public class GetEchoQueryHandler : ICommandHandler&lt;GetEchoQuery&gt;
+    {
+        private readonly ILogger&lt;GetEchoQueryHandler&gt; logger;
+
+        public GetEchoQueryHandler(ILogger&lt;GetEchoQueryHandler&gt; logger)
+        {
+            this.logger = logger;
+        }
+
+        public Task ExecuteAsync(GetEchoQuery command)
+        {
+            this.logger.Log(LogLevel.Information, &quot;echo&quot;);
+            return Task.CompletedTask;
+        }
+     }
+</code></pre><p>FunctionAppConfiguration logging setup:</p>
+<pre><code> builder
+                .Setup((serviceCollection, commandRegistry) =&gt;
+                {
+                    ....
+                    serviceCollection.AddLogging(c =&gt;
+                    {
+                        c.AddConsole();
+                        c.AddDebug();
+                    });
+</code></pre><div id="disqus_thread"></div>
             </article>
           </div>
           
