@@ -131,7 +131,7 @@
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.OpenApiDescription(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L21">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L20">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription*"></a>
   <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiDescription_System_String_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiDescription(System.String)">OpenApiDescription(String)</h4>
@@ -178,19 +178,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.OpenApiResponse(System.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_Type_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.OpenApiResponse(System.Int32%2CSystem.String%2CType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L29">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L36">View Source</a>
   </span>
   <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String)">OpenApiResponse(Int32, String)</h4>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_Type_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String,Type)">OpenApiResponse(Int32, String, Type)</h4>
   <div class="markdown level1 summary"><p>The Open API / Swagger description for the endpoint and specific response code</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; OpenApiResponse(int httpStatusCode, string description)</code></pre>
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; OpenApiResponse(int httpStatusCode, string description, Type responseType = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -214,6 +214,12 @@
         <td><p>The description</p>
 </td>
       </tr>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td><span class="parametername">responseType</span></td>
+        <td><p>The type of the response object. Optional</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -232,6 +238,69 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiSummary_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601.OpenApiSummary(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L27">View Source</a>
+  </span>
+  <a id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiSummary_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiSummary*"></a>
+  <h4 id="FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiSummary_System_String_" data-uid="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiSummary(System.String)">OpenApiSummary(String)</h4>
+  <div class="markdown level1 summary"><p>The Open API / Swagger summary for the endpoint</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IHttpFunctionConfigurationBuilder&lt;TCommand&gt; OpenApiSummary(string summary)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">summary</span></td>
+        <td><p>The summary</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html">IHttpFunctionConfigurationBuilder</a>&lt;TCommand&gt;</td>
+        <td><p>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_IsNumeric_System_Object_">OpenApiFluentValidationHelper.IsNumeric(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToInt_System_Object_">OpenApiFluentValidationHelper.NumericToInt(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToDouble_System_Object_">OpenApiFluentValidationHelper.NumericToDouble(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToDecimal_System_Object_">OpenApiFluentValidationHelper.NumericToDecimal(Object)</a>
+  </div>
 <div id="disqus_thread"></div>
             </article>
           </div>
@@ -244,7 +313,7 @@
                     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/IHttpFunctionConfigurationBuilder.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

@@ -754,14 +754,14 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiDescription
   nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiDescription
   nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiDescription
-- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String)
-  name: OpenApiResponse(Int32, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse(System.Int32, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse(System.Int32, System.String)
-  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse(Int32, String)
-  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse(Int32, String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String,Type)
+  name: OpenApiResponse(Int32, String, Type)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_System_Int32_System_String_Type_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse(System.Int32,System.String,Type)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse(System.Int32, System.String, Type)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse(System.Int32, System.String, Type)
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse(Int32, String, Type)
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse(Int32, String, Type)
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiResponse*
   name: OpenApiResponse
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiResponse_
@@ -771,6 +771,23 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse
   nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiResponse
   nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiResponse
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiSummary(System.String)
+  name: OpenApiSummary(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiSummary_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiSummary(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiSummary(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiSummary(System.String)
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiSummary(String)
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiSummary(String)
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiSummary*
+  name: OpenApiSummary
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionConfigurationBuilder_1_OpenApiSummary_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder`1.OpenApiSummary
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder<TCommand>.OpenApiSummary
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiSummary
+  nameWithType: IHttpFunctionConfigurationBuilder<TCommand>.OpenApiSummary
+  nameWithType.vb: IHttpFunctionConfigurationBuilder(Of TCommand).OpenApiSummary
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1
   name: IHttpFunctionOptionsBuilder<TCommand>
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html
@@ -981,6 +998,108 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
   fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder
   nameWithType: IOpenApiBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter})
+  name: AddDocumentFilter(Func<IOpenApiDocumentFilter>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddDocumentFilter_Func_FunctionMonkey_Abstractions_Builders_IOpenApiDocumentFilter__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter})
+  name.vb: AddDocumentFilter(Func(Of IOpenApiDocumentFilter))
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter(Func<FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter(Func(Of FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter))
+  nameWithType: IOpenApiBuilder.AddDocumentFilter(Func<IOpenApiDocumentFilter>)
+  nameWithType.vb: IOpenApiBuilder.AddDocumentFilter(Func(Of IOpenApiDocumentFilter))
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter*
+  name: AddDocumentFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddDocumentFilter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddDocumentFilter
+  nameWithType: IOpenApiBuilder.AddDocumentFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter})
+  name: AddOperationFilter(Func<IOpenApiOperationFilter>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddOperationFilter_Func_FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilter__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter})
+  name.vb: AddOperationFilter(Func(Of IOpenApiOperationFilter))
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter(Func<FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter(Func(Of FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter))
+  nameWithType: IOpenApiBuilder.AddOperationFilter(Func<IOpenApiOperationFilter>)
+  nameWithType.vb: IOpenApiBuilder.AddOperationFilter(Func(Of IOpenApiOperationFilter))
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter*
+  name: AddOperationFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddOperationFilter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddOperationFilter
+  nameWithType: IOpenApiBuilder.AddOperationFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter})
+  name: AddParameterFilter(Func<IOpenApiParameterFilter>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddParameterFilter_Func_FunctionMonkey_Abstractions_Builders_IOpenApiParameterFilter__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter})
+  name.vb: AddParameterFilter(Func(Of IOpenApiParameterFilter))
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter(Func<FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter(Func(Of FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter))
+  nameWithType: IOpenApiBuilder.AddParameterFilter(Func<IOpenApiParameterFilter>)
+  nameWithType.vb: IOpenApiBuilder.AddParameterFilter(Func(Of IOpenApiParameterFilter))
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter*
+  name: AddParameterFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddParameterFilter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddParameterFilter
+  nameWithType: IOpenApiBuilder.AddParameterFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter})
+  name: AddSchemaFilter(Func<IOpenApiSchemaFilter>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddSchemaFilter_Func_FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilter__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter(Func{FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter})
+  name.vb: AddSchemaFilter(Func(Of IOpenApiSchemaFilter))
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter(Func<FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter(Func(Of FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter))
+  nameWithType: IOpenApiBuilder.AddSchemaFilter(Func<IOpenApiSchemaFilter>)
+  nameWithType.vb: IOpenApiBuilder.AddSchemaFilter(Func(Of IOpenApiSchemaFilter))
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter*
+  name: AddSchemaFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddSchemaFilter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddSchemaFilter
+  nameWithType: IOpenApiBuilder.AddSchemaFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(Func{XPathDocument})
+  name: AddXmlComments(Func<XPathDocument>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddXmlComments_Func_XPathDocument__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(Func{XPathDocument})
+  name.vb: AddXmlComments(Func(Of XPathDocument))
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(Func<XPathDocument>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(Func(Of XPathDocument))
+  nameWithType: IOpenApiBuilder.AddXmlComments(Func<XPathDocument>)
+  nameWithType.vb: IOpenApiBuilder.AddXmlComments(Func(Of XPathDocument))
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(System.String)
+  name: AddXmlComments(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddXmlComments_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments(System.String)
+  nameWithType: IOpenApiBuilder.AddXmlComments(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments*
+  name: AddXmlComments
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_AddXmlComments_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.AddXmlComments
+  nameWithType: IOpenApiBuilder.AddXmlComments
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds(Func{Type,System.String})
+  name: CustomSchemaIds(Func<Type, String>)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_CustomSchemaIds_Func_Type_System_String__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds(Func{Type,System.String})
+  name.vb: CustomSchemaIds(Func(Of Type, String))
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds(Func<Type, System.String>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds(Func(Of Type, System.String))
+  nameWithType: IOpenApiBuilder.CustomSchemaIds(Func<Type, String>)
+  nameWithType.vb: IOpenApiBuilder.CustomSchemaIds(Func(Of Type, String))
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds*
+  name: CustomSchemaIds
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_CustomSchemaIds_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.CustomSchemaIds
+  nameWithType: IOpenApiBuilder.CustomSchemaIds
 - uid: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Servers(System.String[])
   name: Servers(String[])
   href: api/FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.html#FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Servers_System_String___
@@ -1036,6 +1155,158 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IOpenApiBuilder.Version
   nameWithType: IOpenApiBuilder.Version
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter
+  name: IOpenApiDocumentFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter
+  nameWithType: IOpenApiDocumentFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.Apply(OpenApiDocument,FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext)
+  name: Apply(OpenApiDocument, IOpenApiDocumentFilterContext)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiDocumentFilter_Apply_OpenApiDocument_FunctionMonkey_Abstractions_Builders_IOpenApiDocumentFilterContext_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.Apply(OpenApiDocument,FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.Apply(OpenApiDocument, FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext)
+  nameWithType: IOpenApiDocumentFilter.Apply(OpenApiDocument, IOpenApiDocumentFilterContext)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.Apply*
+  name: Apply
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiDocumentFilter_Apply_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.Apply
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilter.Apply
+  nameWithType: IOpenApiDocumentFilter.Apply
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext
+  name: IOpenApiDocumentFilterContext
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiDocumentFilterContext
+  nameWithType: IOpenApiDocumentFilterContext
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter
+  name: IOpenApiOperationFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter
+  nameWithType: IOpenApiOperationFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.Apply(OpenApiOperation,FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext)
+  name: Apply(OpenApiOperation, IOpenApiOperationFilterContext)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilter_Apply_OpenApiOperation_FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilterContext_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.Apply(OpenApiOperation,FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.Apply(OpenApiOperation, FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext)
+  nameWithType: IOpenApiOperationFilter.Apply(OpenApiOperation, IOpenApiOperationFilterContext)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.Apply*
+  name: Apply
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilter_Apply_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.Apply
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilter.Apply
+  nameWithType: IOpenApiOperationFilter.Apply
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext
+  name: IOpenApiOperationFilterContext
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext
+  nameWithType: IOpenApiOperationFilterContext
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.CommandType
+  name: CommandType
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilterContext_CommandType
+  commentId: P:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.CommandType
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.CommandType
+  nameWithType: IOpenApiOperationFilterContext.CommandType
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.CommandType*
+  name: CommandType
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilterContext_CommandType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.CommandType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.CommandType
+  nameWithType: IOpenApiOperationFilterContext.CommandType
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.PropertyNames
+  name: PropertyNames
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilterContext_PropertyNames
+  commentId: P:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.PropertyNames
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.PropertyNames
+  nameWithType: IOpenApiOperationFilterContext.PropertyNames
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.PropertyNames*
+  name: PropertyNames
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiOperationFilterContext_PropertyNames_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.PropertyNames
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiOperationFilterContext.PropertyNames
+  nameWithType: IOpenApiOperationFilterContext.PropertyNames
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter
+  name: IOpenApiParameterFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter
+  nameWithType: IOpenApiParameterFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.Apply(OpenApiParameter,FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext)
+  name: Apply(OpenApiParameter, IOpenApiParameterFilterContext)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiParameterFilter_Apply_OpenApiParameter_FunctionMonkey_Abstractions_Builders_IOpenApiParameterFilterContext_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.Apply(OpenApiParameter,FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.Apply(OpenApiParameter, FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext)
+  nameWithType: IOpenApiParameterFilter.Apply(OpenApiParameter, IOpenApiParameterFilterContext)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.Apply*
+  name: Apply
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiParameterFilter_Apply_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.Apply
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilter.Apply
+  nameWithType: IOpenApiParameterFilter.Apply
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext
+  name: IOpenApiParameterFilterContext
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiParameterFilterContext
+  nameWithType: IOpenApiParameterFilterContext
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter
+  name: IOpenApiSchemaFilter
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter
+  nameWithType: IOpenApiSchemaFilter
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.Apply(OpenApiSchema,FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext)
+  name: Apply(OpenApiSchema, IOpenApiSchemaFilterContext)
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilter_Apply_OpenApiSchema_FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilterContext_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.Apply(OpenApiSchema,FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext)
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.Apply(OpenApiSchema, FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext)
+  nameWithType: IOpenApiSchemaFilter.Apply(OpenApiSchema, IOpenApiSchemaFilterContext)
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.Apply*
+  name: Apply
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.html#FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilter_Apply_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.Apply
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilter.Apply
+  nameWithType: IOpenApiSchemaFilter.Apply
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext
+  name: IOpenApiSchemaFilterContext
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext
+  nameWithType: IOpenApiSchemaFilterContext
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.PropertyNames
+  name: PropertyNames
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilterContext_PropertyNames
+  commentId: P:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.PropertyNames
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.PropertyNames
+  nameWithType: IOpenApiSchemaFilterContext.PropertyNames
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.PropertyNames*
+  name: PropertyNames
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilterContext_PropertyNames_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.PropertyNames
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.PropertyNames
+  nameWithType: IOpenApiSchemaFilterContext.PropertyNames
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type
+  name: Type
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilterContext_Type
+  commentId: P:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type
+  nameWithType: IOpenApiSchemaFilterContext.Type
+- uid: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type*
+  name: Type
+  href: api/FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.html#FunctionMonkey_Abstractions_Builders_IOpenApiSchemaFilterContext_Type_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type
+  nameWithType: IOpenApiSchemaFilterContext.Type
 - uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2
   name: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>
   href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html
@@ -2648,6 +2919,19 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Http.OpenApiConfiguration
   fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration
   nameWithType: OpenApiConfiguration
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.DocumentFilterFactories
+  name: DocumentFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_DocumentFilterFactories
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.DocumentFilterFactories
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.DocumentFilterFactories
+  nameWithType: OpenApiConfiguration.DocumentFilterFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.DocumentFilterFactories*
+  name: DocumentFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_DocumentFilterFactories_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.DocumentFilterFactories
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.DocumentFilterFactories
+  nameWithType: OpenApiConfiguration.DocumentFilterFactories
 - uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsOpenApiOutputEnabled
   name: IsOpenApiOutputEnabled
   href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_IsOpenApiOutputEnabled
@@ -2674,6 +2958,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.IsValid
   nameWithType: OpenApiConfiguration.IsValid
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OperationFilterFactories
+  name: OperationFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_OperationFilterFactories
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OperationFilterFactories
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OperationFilterFactories
+  nameWithType: OpenApiConfiguration.OperationFilterFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OperationFilterFactories*
+  name: OperationFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_OperationFilterFactories_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OperationFilterFactories
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OperationFilterFactories
+  nameWithType: OpenApiConfiguration.OperationFilterFactories
 - uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
   name: OutputPath
   href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_OutputPath
@@ -2687,6 +2984,45 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.OutputPath
   nameWithType: OpenApiConfiguration.OutputPath
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.ParameterFilterFactories
+  name: ParameterFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_ParameterFilterFactories
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.ParameterFilterFactories
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.ParameterFilterFactories
+  nameWithType: OpenApiConfiguration.ParameterFilterFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.ParameterFilterFactories*
+  name: ParameterFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_ParameterFilterFactories_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.ParameterFilterFactories
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.ParameterFilterFactories
+  nameWithType: OpenApiConfiguration.ParameterFilterFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaFilterFactories
+  name: SchemaFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_SchemaFilterFactories
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaFilterFactories
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaFilterFactories
+  nameWithType: OpenApiConfiguration.SchemaFilterFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaFilterFactories*
+  name: SchemaFilterFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_SchemaFilterFactories_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaFilterFactories
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaFilterFactories
+  nameWithType: OpenApiConfiguration.SchemaFilterFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaIdSelector
+  name: SchemaIdSelector
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_SchemaIdSelector
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaIdSelector
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaIdSelector
+  nameWithType: OpenApiConfiguration.SchemaIdSelector
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaIdSelector*
+  name: SchemaIdSelector
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_SchemaIdSelector_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaIdSelector
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.SchemaIdSelector
+  nameWithType: OpenApiConfiguration.SchemaIdSelector
 - uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Servers
   name: Servers
   href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_Servers
@@ -2739,6 +3075,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.Version
   nameWithType: OpenApiConfiguration.Version
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.XmlDocFactories
+  name: XmlDocFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_XmlDocFactories
+  commentId: P:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.XmlDocFactories
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.XmlDocFactories
+  nameWithType: OpenApiConfiguration.XmlDocFactories
+- uid: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.XmlDocFactories*
+  name: XmlDocFactories
+  href: api/FunctionMonkey.Abstractions.Http.OpenApiConfiguration.html#FunctionMonkey_Abstractions_Http_OpenApiConfiguration_XmlDocFactories_
+  commentId: Overload:FunctionMonkey.Abstractions.Http.OpenApiConfiguration.XmlDocFactories
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Http.OpenApiConfiguration.XmlDocFactories
+  nameWithType: OpenApiConfiguration.XmlDocFactories
 - uid: FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition
   name: SharedClaimsMappingDefinition
   href: api/FunctionMonkey.Abstractions.Http.SharedClaimsMappingDefinition.html
@@ -4745,6 +5094,28 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.FluentValidation.IFunctionHostBuilderExtensions.AddFluentValidation
   nameWithType: IFunctionHostBuilderExtensions.AddFluentValidation
+- uid: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions
+  name: IOpenApiBuilderExtensions
+  href: api/FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.html
+  commentId: T:FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions
+  fullName: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions
+  nameWithType: IOpenApiBuilderExtensions
+- uid: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly(FunctionMonkey.Abstractions.Builders.IOpenApiBuilder,Assembly,IEnumerable{FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule})
+  name: AddValidatorsFromAssembly(IOpenApiBuilder, Assembly, IEnumerable<OpenApiFluentValidationRule>)
+  href: api/FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.html#FunctionMonkey_FluentValidation_IOpenApiBuilderExtensions_AddValidatorsFromAssembly_FunctionMonkey_Abstractions_Builders_IOpenApiBuilder_Assembly_IEnumerable_FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule__
+  commentId: M:FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly(FunctionMonkey.Abstractions.Builders.IOpenApiBuilder,Assembly,IEnumerable{FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule})
+  name.vb: AddValidatorsFromAssembly(IOpenApiBuilder, Assembly, IEnumerable(Of OpenApiFluentValidationRule))
+  fullName: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly(FunctionMonkey.Abstractions.Builders.IOpenApiBuilder, Assembly, IEnumerable<FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule>)
+  fullName.vb: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly(FunctionMonkey.Abstractions.Builders.IOpenApiBuilder, Assembly, IEnumerable(Of FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule))
+  nameWithType: IOpenApiBuilderExtensions.AddValidatorsFromAssembly(IOpenApiBuilder, Assembly, IEnumerable<OpenApiFluentValidationRule>)
+  nameWithType.vb: IOpenApiBuilderExtensions.AddValidatorsFromAssembly(IOpenApiBuilder, Assembly, IEnumerable(Of OpenApiFluentValidationRule))
+- uid: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly*
+  name: AddValidatorsFromAssembly
+  href: api/FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.html#FunctionMonkey_FluentValidation_IOpenApiBuilderExtensions_AddValidatorsFromAssembly_
+  commentId: Overload:FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.IOpenApiBuilderExtensions.AddValidatorsFromAssembly
+  nameWithType: IOpenApiBuilderExtensions.AddValidatorsFromAssembly
 - uid: FunctionMonkey.FluentValidation.IServiceCollectionExtensions
   name: IServiceCollectionExtensions
   href: api/FunctionMonkey.FluentValidation.IServiceCollectionExtensions.html
@@ -4802,6 +5173,224 @@ references:
   fullName.vb: FunctionMonkey.FluentValidation.IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
   nameWithType: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining<T>(IServiceCollection, ServiceLifetime)
   nameWithType.vb: IServiceCollectionExtensions.AddValidatorsFromAssemblyContaining(Of T)(IServiceCollection, ServiceLifetime)
+- uid: FunctionMonkey.FluentValidation.OpenApi
+  name: FunctionMonkey.FluentValidation.OpenApi
+  href: api/FunctionMonkey.FluentValidation.OpenApi.html
+  commentId: N:FunctionMonkey.FluentValidation.OpenApi
+  fullName: FunctionMonkey.FluentValidation.OpenApi
+  nameWithType: FunctionMonkey.FluentValidation.OpenApi
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper
+  name: OpenApiFluentValidationHelper
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html
+  commentId: T:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper
+  nameWithType: OpenApiFluentValidationHelper
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.GetValidatorsForMember(IValidator,System.String)
+  name: GetValidatorsForMember(IValidator, String)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_GetValidatorsForMember_IValidator_System_String_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.GetValidatorsForMember(IValidator,System.String)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.GetValidatorsForMember(IValidator, System.String)
+  nameWithType: OpenApiFluentValidationHelper.GetValidatorsForMember(IValidator, String)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.GetValidatorsForMember*
+  name: GetValidatorsForMember
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_GetValidatorsForMember_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.GetValidatorsForMember
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.GetValidatorsForMember
+  nameWithType: OpenApiFluentValidationHelper.GetValidatorsForMember
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.IsNumeric(System.Object)
+  name: IsNumeric(Object)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_IsNumeric_System_Object_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.IsNumeric(System.Object)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.IsNumeric(System.Object)
+  nameWithType: OpenApiFluentValidationHelper.IsNumeric(Object)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.IsNumeric*
+  name: IsNumeric
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_IsNumeric_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.IsNumeric
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.IsNumeric
+  nameWithType: OpenApiFluentValidationHelper.IsNumeric
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull*
+  name: NotNull
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NotNull_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull
+  nameWithType: OpenApiFluentValidationHelper.NotNull
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull``1(IEnumerable{``0})
+  name: NotNull<TValue>(IEnumerable<TValue>)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NotNull__1_IEnumerable___0__
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull``1(IEnumerable{``0})
+  name.vb: NotNull(Of TValue)(IEnumerable(Of TValue))
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull<TValue>(IEnumerable<TValue>)
+  fullName.vb: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull(Of TValue)(IEnumerable(Of TValue))
+  nameWithType: OpenApiFluentValidationHelper.NotNull<TValue>(IEnumerable<TValue>)
+  nameWithType.vb: OpenApiFluentValidationHelper.NotNull(Of TValue)(IEnumerable(Of TValue))
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull``2(Dictionary{``0,``1})
+  name: NotNull<TKey, TValue>(Dictionary<TKey, TValue>)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NotNull__2_Dictionary___0___1__
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull``2(Dictionary{``0,``1})
+  name.vb: NotNull(Of TKey, TValue)(Dictionary(Of TKey, TValue))
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull<TKey, TValue>(Dictionary<TKey, TValue>)
+  fullName.vb: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NotNull(Of TKey, TValue)(Dictionary(Of TKey, TValue))
+  nameWithType: OpenApiFluentValidationHelper.NotNull<TKey, TValue>(Dictionary<TKey, TValue>)
+  nameWithType.vb: OpenApiFluentValidationHelper.NotNull(Of TKey, TValue)(Dictionary(Of TKey, TValue))
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDecimal(System.Object)
+  name: NumericToDecimal(Object)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToDecimal_System_Object_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDecimal(System.Object)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDecimal(System.Object)
+  nameWithType: OpenApiFluentValidationHelper.NumericToDecimal(Object)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDecimal*
+  name: NumericToDecimal
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToDecimal_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDecimal
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDecimal
+  nameWithType: OpenApiFluentValidationHelper.NumericToDecimal
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDouble(System.Object)
+  name: NumericToDouble(Object)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToDouble_System_Object_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDouble(System.Object)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDouble(System.Object)
+  nameWithType: OpenApiFluentValidationHelper.NumericToDouble(Object)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDouble*
+  name: NumericToDouble
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToDouble_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDouble
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToDouble
+  nameWithType: OpenApiFluentValidationHelper.NumericToDouble
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToInt(System.Object)
+  name: NumericToInt(Object)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToInt_System_Object_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToInt(System.Object)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToInt(System.Object)
+  nameWithType: OpenApiFluentValidationHelper.NumericToInt(Object)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToInt*
+  name: NumericToInt
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationHelper_NumericToInt_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToInt
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationHelper.NumericToInt
+  nameWithType: OpenApiFluentValidationHelper.NumericToInt
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule
+  name: OpenApiFluentValidationRule
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html
+  commentId: T:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule
+  nameWithType: OpenApiFluentValidationRule
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.#ctor(System.String)
+  name: OpenApiFluentValidationRule(String)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule__ctor_System_String_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.#ctor(System.String)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.OpenApiFluentValidationRule(System.String)
+  nameWithType: OpenApiFluentValidationRule.OpenApiFluentValidationRule(String)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.#ctor*
+  name: OpenApiFluentValidationRule
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule__ctor_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.OpenApiFluentValidationRule
+  nameWithType: OpenApiFluentValidationRule.OpenApiFluentValidationRule
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Apply
+  name: Apply
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule_Apply
+  commentId: P:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Apply
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Apply
+  nameWithType: OpenApiFluentValidationRule.Apply
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Apply*
+  name: Apply
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule_Apply_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Apply
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Apply
+  nameWithType: OpenApiFluentValidationRule.Apply
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Matches
+  name: Matches
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule_Matches
+  commentId: P:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Matches
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Matches
+  nameWithType: OpenApiFluentValidationRule.Matches
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Matches*
+  name: Matches
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule_Matches_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Matches
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Matches
+  nameWithType: OpenApiFluentValidationRule.Matches
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Name
+  name: Name
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule_Name
+  commentId: P:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Name
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Name
+  nameWithType: OpenApiFluentValidationRule.Name
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Name*
+  name: Name
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRule_Name_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Name
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRule.Name
+  nameWithType: OpenApiFluentValidationRule.Name
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext
+  name: OpenApiFluentValidationRuleContext
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html
+  commentId: T:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext
+  nameWithType: OpenApiFluentValidationRuleContext
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.#ctor(OpenApiSchema,System.String,IPropertyValidator)
+  name: OpenApiFluentValidationRuleContext(OpenApiSchema, String, IPropertyValidator)
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext__ctor_OpenApiSchema_System_String_IPropertyValidator_
+  commentId: M:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.#ctor(OpenApiSchema,System.String,IPropertyValidator)
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.OpenApiFluentValidationRuleContext(OpenApiSchema, System.String, IPropertyValidator)
+  nameWithType: OpenApiFluentValidationRuleContext.OpenApiFluentValidationRuleContext(OpenApiSchema, String, IPropertyValidator)
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.#ctor*
+  name: OpenApiFluentValidationRuleContext
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext__ctor_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.OpenApiFluentValidationRuleContext
+  nameWithType: OpenApiFluentValidationRuleContext.OpenApiFluentValidationRuleContext
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyKey
+  name: PropertyKey
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext_PropertyKey
+  commentId: P:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyKey
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyKey
+  nameWithType: OpenApiFluentValidationRuleContext.PropertyKey
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyKey*
+  name: PropertyKey
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext_PropertyKey_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyKey
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyKey
+  nameWithType: OpenApiFluentValidationRuleContext.PropertyKey
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyValidator
+  name: PropertyValidator
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext_PropertyValidator
+  commentId: P:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyValidator
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyValidator
+  nameWithType: OpenApiFluentValidationRuleContext.PropertyValidator
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyValidator*
+  name: PropertyValidator
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext_PropertyValidator_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyValidator
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.PropertyValidator
+  nameWithType: OpenApiFluentValidationRuleContext.PropertyValidator
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema
+  name: Schema
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext_Schema
+  commentId: P:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema
+  nameWithType: OpenApiFluentValidationRuleContext.Schema
+- uid: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema*
+  name: Schema
+  href: api/FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.html#FunctionMonkey_FluentValidation_OpenApi_OpenApiFluentValidationRuleContext_Schema_
+  commentId: Overload:FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema
+  isSpec: "True"
+  fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema
+  nameWithType: OpenApiFluentValidationRuleContext.Schema
 - uid: FunctionMonkey.PluginFunctions
   name: PluginFunctions
   href: api/FunctionMonkey.PluginFunctions.html
