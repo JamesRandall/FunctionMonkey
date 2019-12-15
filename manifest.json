@@ -1817,6 +1817,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/crosscutting/settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/crosscutting/settings.html",
+          "hash": "g865QD+v8f6E/fLL0ZgmiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/crosscutting/solutionstructure.md",
       "output": {
         ".html": {
@@ -2232,16 +2244,10 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 140,
-          "skipped_file_count": 0
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 37,
+          "total_file_count": 38,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
@@ -2249,6 +2255,12 @@
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 140,
           "skipped_file_count": 0
         }
       }
