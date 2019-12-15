@@ -1,19 +1,23 @@
-﻿using System;
+﻿using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Compiler.Core.Extensions;
 using FunctionMonkey.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Extensions;
-using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Linq;
 
 namespace FunctionMonkey.Compiler.Core.Implementation
 {
@@ -55,7 +59,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                     Version = configuration.Version,
                     Title = configuration.Title
                 },
-                Servers = configuration.Servers?.Select(x => new OpenApiServer { Url = x}).ToArray(),
+                Servers = configuration.Servers?.Select(x => new OpenApiServer { Url = x }).ToArray(),
                 Paths = new OpenApiPaths(),
                 Components = new OpenApiComponents
                 {
@@ -63,13 +67,17 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 }
             };
 
-            SchemaReferenceRegistry registry = new SchemaReferenceRegistry();
+            var compilerConfiguration = new OpenApiCompilerConfiguration(configuration);
+
+            SchemaReferenceRegistry registry = new SchemaReferenceRegistry(compilerConfiguration);
 
             CreateTags(functionDefinitions, openApiDocument);
 
             CreateSchemas(functionDefinitions, openApiDocument, registry);
 
-            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix);
+            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix, compilerConfiguration);
+
+            FilterDocument(compilerConfiguration, openApiDocument);
 
             if (openApiDocument.Paths.Count == 0)
             {
@@ -85,7 +93,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                     Filename = "openapi.yaml"
                 }
             };
-            
+
             if (!string.IsNullOrWhiteSpace(configuration.UserInterfaceRoute))
             {
                 result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder();
@@ -115,13 +123,13 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             {
                 string hostJson = File.ReadAllText(hostJsonPath);
                 JObject host = JObject.Parse(hostJson);
-                JObject extensions = (JObject) host["extensions"];
+                JObject extensions = (JObject)host["extensions"];
                 if (extensions != null)
                 {
-                    JObject http = (JObject) extensions["http"];
+                    JObject http = (JObject)extensions["http"];
                     if (http != null)
                     {
-                        string hostApiPrefix = (string) http["routePrefix"];
+                        string hostApiPrefix = (string)http["routePrefix"];
                         if (hostApiPrefix != null)
                         {
                             apiPrefix = hostApiPrefix;
@@ -145,12 +153,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             int index = 0;
             foreach (string swaggerFile in files)
             {
-                byte[] input;
-                
+                byte[] input = new byte[0];
+
                 using (Stream inputStream = sourceAssembly.GetManifestResourceStream(swaggerFile))
                 {
-                    input = new byte[inputStream.Length];
-                    inputStream.Read(input, 0, input.Length);
+                    if (inputStream != null)
+                    {
+                        input = new byte[inputStream.Length];
+                        inputStream.Read(input, 0, input.Length);
+                    }
                 }
 
                 string content = Encoding.UTF8.GetString(input);
@@ -178,12 +189,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         {
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
-                if (functionDefinition.Verbs.Contains(HttpMethod.Post) ||
+                if (functionDefinition.Verbs.Contains(HttpMethod.Patch) ||
+                    functionDefinition.Verbs.Contains(HttpMethod.Post) ||
                     functionDefinition.Verbs.Contains(HttpMethod.Put))
                 {
                     registry.FindOrAddReference(functionDefinition.CommandType);
-                }                
-                if (functionDefinition.CommandResultType != null)
+                }
+                if (functionDefinition.CommandResultType != null &&
+                    functionDefinition.CommandResultType != typeof(IActionResult))
                 {
                     registry.FindOrAddReference(functionDefinition.CommandResultType);
                 }
@@ -195,8 +208,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             }
         }
 
-        private static void CreateOperationsFromRoutes(HttpFunctionDefinition[] functionDefinitions,
-            OpenApiDocument openApiDocument, SchemaReferenceRegistry registry, string apiPrefix)
+        private static void CreateOperationsFromRoutes(
+            HttpFunctionDefinition[] functionDefinitions,
+            OpenApiDocument openApiDocument,
+            SchemaReferenceRegistry registry,
+            string apiPrefix,
+            OpenApiCompilerConfiguration compilerConfiguration)
         {
             string prependedApiPrefix = string.IsNullOrEmpty(apiPrefix) ? $"" : $"/{apiPrefix}";
             var operationsByRoute = functionDefinitions.Where(x => x.Route != null).GroupBy(x => $"{prependedApiPrefix}/{x.Route}");
@@ -215,18 +232,34 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                         OpenApiOperation operation = new OpenApiOperation
                         {
                             Description = functionByRoute.OpenApiDescription,
+                            Summary = functionByRoute.OpenApiSummary,
                             Responses = new OpenApiResponses(),
-                            Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() {  new OpenApiTag {  Name = functionByRoute.RouteConfiguration.OpenApiName} }
+                            Tags = string.IsNullOrWhiteSpace(functionByRoute.RouteConfiguration.OpenApiName) ? null : new List<OpenApiTag>() { new OpenApiTag { Name = functionByRoute.RouteConfiguration.OpenApiName } }
                         };
-                        foreach (KeyValuePair<int, string> kvp in functionByRoute.OpenApiResponseDescriptions)
+
+                        var operationFilterContext = new OpenApiOperationFilterContext
+                        {
+                            CommandType = commandType,
+                            PropertyNames = new Dictionary<string, string>()
+                        };
+
+                        foreach (KeyValuePair<int, OpenApiResponseConfiguration> kvp in functionByRoute.OpenApiResponseConfigurations)
                         {
                             operation.Responses.Add(kvp.Key.ToString(), new OpenApiResponse
                             {
-                                Description = kvp.Value
+                                Description = kvp.Value.Description,
+                                Content =
+                                {
+                                    ["application/json"] = new OpenApiMediaType()
+                                    {
+                                        Schema = kvp.Value.ResponseType == null ? null : registry.FindOrAddReference(kvp.Value.ResponseType)
+                                    }
+                                }
                             });
                         }
 
-                        if (!operation.Responses.ContainsKey("200"))
+                        // Does any HTTP success response (2xx) exist
+                        if (operation.Responses.Keys.FirstOrDefault(x => x.StartsWith("2")) == null)
                         {
                             OpenApiResponse response = new OpenApiResponse
                             {
@@ -243,23 +276,54 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                             operation.Responses.Add("200", response);
                         }
 
-                        string lowerCaseRoute = functionByRoute.Route;
-                        foreach (HttpParameter property in functionByRoute.QueryParameters)
+                        if (method == HttpMethod.Get || method == HttpMethod.Delete)
                         {
-                            if (method == HttpMethod.Get || method == HttpMethod.Delete)
+                            var schema = registry.GetOrCreateSchema(commandType);
+                            foreach (HttpParameter property in functionByRoute.QueryParameters)
                             {
-                                operation.Parameters.Add(new OpenApiParameter
+                                var propertyInfo = commandType.GetProperty(property.Name);
+
+                                // Property Name
+                                var propertyName = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.PropertyName);
+                                if (string.IsNullOrWhiteSpace(propertyName))
                                 {
-                                    Name = property.Name.ToCamelCase(),
+                                    propertyName = propertyInfo.GetAttributeValue((DataMemberAttribute attribute) => attribute.Name);
+                                }
+                                if (string.IsNullOrWhiteSpace(propertyName))
+                                {
+                                    propertyName = propertyInfo.Name.ToCamelCase();
+                                }
+
+                                // Property Required
+                                var propertyRequired = !property.IsOptional;
+                                if (!propertyRequired)
+                                {
+                                    propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required) == Required.Always;
+                                }
+                                if (!propertyRequired)
+                                {
+                                    propertyRequired = propertyInfo.GetAttributeValue((RequiredAttribute attribute) => attribute) != null;
+                                }
+
+                                var propertySchema = schema.Properties[propertyName];
+
+                                var parameter = new OpenApiParameter
+                                {
+                                    Name = propertyName,
                                     In = ParameterLocation.Query,
-                                    Required = !property.IsOptional,
-                                    Schema = property.Type.MapToOpenApiSchema(),
-                                    Description = ""
-                                });
+                                    Required = propertyRequired,
+                                    Schema = propertySchema, // property.Type.MapToOpenApiSchema(),
+                                    Description = propertySchema.Description
+                                };
+
+                                FilterParameter(compilerConfiguration.ParameterFilters, parameter);
+
+                                operation.Parameters.Add(parameter);
+                                operationFilterContext.PropertyNames[parameter.Name] = propertyInfo.Name;
                             }
                         }
 
-                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function  && method == HttpMethod.Get || method == HttpMethod.Delete)
+                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Function && (method == HttpMethod.Get || method == HttpMethod.Delete))
                         {
                             operation.Parameters.Add(new OpenApiParameter
                             {
@@ -273,14 +337,18 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
                         foreach (HttpParameter property in functionByRoute.RouteParameters)
                         {
-                            operation.Parameters.Add(new OpenApiParameter
+                            var parameter = new OpenApiParameter
                             {
                                 Name = property.RouteName.ToCamelCase(),
                                 In = ParameterLocation.Path,
                                 Required = !property.IsOptional,
                                 Schema = property.Type.MapToOpenApiSchema(),
                                 Description = ""
-                            });
+                            };
+
+                            FilterParameter(compilerConfiguration.ParameterFilters, parameter);
+
+                            operation.Parameters.Add(parameter);
                             // TODO: We need to consider what to do with the payload model here - if its a route parameter
                             // we need to ignore it in the payload model                            
                         }
@@ -288,14 +356,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                         if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
                         {
                             OpenApiRequestBody requestBody = new OpenApiRequestBody();
-                            OpenApiSchema schema =  registry.FindReference(commandType);
+                            OpenApiSchema schema = registry.FindReference(commandType);
                             requestBody.Content = new Dictionary<string, OpenApiMediaType>
                             {
-                                { "application/json", new OpenApiMediaType { Schema = schema}}
+                                { "application/json", new OpenApiMediaType { Schema = schema }}
                             };
                             operation.RequestBody = requestBody;
                         }
-                        
+
+                        FilterOperation(compilerConfiguration.OperationFilters, operation, operationFilterContext);
 
                         pathItem.Operations.Add(MethodToOperationMap[method], operation);
                     }
@@ -326,6 +395,32 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 Description = x.OpenApiDescription,
                 Name = x.OpenApiName
             }).ToArray();
+        }
+
+        private static void FilterDocument(OpenApiCompilerConfiguration documentFilters, OpenApiDocument document)
+        {
+            var documentFilterContext = new OpenApiDocumentFilterContext();
+            foreach (var documentFilter in documentFilters.DocumentFilters)
+            {
+                documentFilter.Apply(document, documentFilterContext);
+            }
+        }
+
+        private static void FilterOperation(IList<IOpenApiOperationFilter> operationFilters, OpenApiOperation operation, OpenApiOperationFilterContext operationFilterContext)
+        {
+            foreach (var operationFilter in operationFilters)
+            {
+                operationFilter.Apply(operation, operationFilterContext);
+            }
+        }
+
+        private static void FilterParameter(IList<IOpenApiParameterFilter> parameterFilters, OpenApiParameter parameter)
+        {
+            var parameterFilterContext = new OpenApiParameterFilterContext();
+            foreach (var parameterFilter in parameterFilters)
+            {
+                parameterFilter.Apply(parameter, parameterFilterContext);
+            }
         }
     }
 }

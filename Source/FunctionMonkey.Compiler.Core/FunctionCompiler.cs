@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using AzureFromTheTrenches.Commanding;
+﻿using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
@@ -11,6 +6,11 @@ using FunctionMonkey.Builders;
 using FunctionMonkey.Compiler.Core.Implementation;
 using FunctionMonkey.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 
 namespace FunctionMonkey.Compiler.Core
 {
@@ -91,8 +91,8 @@ namespace FunctionMonkey.Compiler.Core
                 configuration?.GetType() ?? functionCompilerMetadata.BacklinkReferenceType,
                 configuration != null ? null : functionCompilerMetadata.BacklinkPropertyInfo,
                 newAssemblyNamespace,
-                externalAssemblies, 
-                _outputBinaryFolder, 
+                externalAssemblies,
+                _outputBinaryFolder,
                 $"{newAssemblyNamespace}.dll",
                 openApi,
                 _compileTarget, functionCompilerMetadata.OutputAuthoredSourceFolder);
