@@ -99,9 +99,8 @@ Install-Package FunctionMonkey.Compiler
                 commandRegistry.Register&lt;CleanupCommandHandler&gt;()
             )
             .Functions(functions =&gt; functions
-                .Timer&lt;CleanUpCommand&gt;(&quot;0 */5 * * * *)
-                )
-            );
+                .Timer&lt;CleanUpCommand&gt;(&quot;0 */5 * * * *&quot;)
+                );
     }
 }
 </code></pre><p>And thats it! If you run this project you should find that the <em>CleanUpCommandHandler</em> runs every 5 minutes.</p>
@@ -134,8 +133,8 @@ Install-Package FunctionMonkey.Compiler
             )
             .Functions(functions =&gt; functions
                 .Timer&lt;CleanUpCommand, CleanupCommandTimerCommandFactory&gt;(&quot;0 */5 * * * *&quot;)
-                )
-            );
+            )
+        );
     }
 }
 </code></pre><p>And if you run this you should find your command handler is called with the IsItUrgent flag set to true. Timer command factories are created by the IoC container and so can have additional interfaces injected into them to source any relavant information.</p>
