@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="TestHelpers.fs" />
+        <Compile Include="HttpFunctionTests.fs" />
+        <Compile Include="EntryPoint.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Source\FunctionMonkey.FSharp\FunctionMonkey.FSharp.fsproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Expecto" Version="8.13.1" />
+      <PackageReference Include="Expecto.BenchmarkDotNet" Version="8.13.1" />
+      <PackageReference Include="Expecto.FsCheck" Version="8.13.1" />
+      <PackageReference Include="Expecto.Hopac" Version="8.13.1" />
+    </ItemGroup>
+
+</Project>

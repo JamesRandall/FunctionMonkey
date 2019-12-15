@@ -8,6 +8,10 @@ namespace FunctionMonkey.Model
         public ServiceBusQueueFunctionDefinition(Type commandType) : base("SbqFn",commandType)
         {
         }
+        
+        public ServiceBusQueueFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("SbqFn", commandType, explicitCommandResultType)
+        {
+        }
 
         public string ConnectionStringName { get; set; }
 

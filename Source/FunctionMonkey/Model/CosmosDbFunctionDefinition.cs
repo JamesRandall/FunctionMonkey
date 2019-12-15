@@ -11,6 +11,10 @@ namespace FunctionMonkey.Model
         {
             TrackRemainingWork = true;
         }
+        
+        public CosmosDbFunctionDefinition(Type commandType, Type resultType) : base("CosmosFn", commandType, resultType)
+        {
+        }
 
         public string DatabaseName { get; set; }
 

@@ -8,6 +8,8 @@ namespace FunctionMonkey.Abstractions.Validation
     /// </summary>
     public interface IValidator
     {
-        ValidationResult Validate<TCommand>(TCommand command) where TCommand : ICommand;
+        // This no longer uses a constrained generic type as it can result in confusing implementations - the <TCommand>
+        // may not be the type of the command that requires validation (it could, for example, be an ICommand type itself)
+        ValidationResult Validate(object command);
     }
 }

@@ -1,0 +1,205 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+  
+    <ItemGroup>
+      <PackageReference Include="AzureFromTheTrenches.Commanding" Version="9.0.1" />
+      <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.2" />
+      <PackageReference Include="FSharp.Core" Version="4.7.0" />
+      <PackageReference Include="Handlebars.Net" Version="1.10.1" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.5" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="4.1.0" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.0.0" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.2" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="3.4.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
+      <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.6.0" />
+      <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
+      <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
+      <ProjectReference Include="..\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj" />
+      <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\absolute-path.js" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\favicon-16x16.png" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\favicon-32x32.png" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\index.html" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\index.js" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\oauth2-redirect.html" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\package.json" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\README.md" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-bundle.js" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-bundle.js.map" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui-standalone-preset.js.map" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.css.map" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js" />
+      <EmbeddedResource Include="node_modules\swagger-ui-dist\swagger-ui.js.map" />
+      <EmbeddedResource Include="references\netstandard2.0\Microsoft.Win32.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\mscorlib.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\netstandard.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.AppContext.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Collections.Concurrent.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Collections.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Collections.NonGeneric.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Collections.Specialized.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ComponentModel.Composition.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ComponentModel.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ComponentModel.EventBasedAsync.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ComponentModel.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ComponentModel.TypeConverter.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Console.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Core.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Data.Common.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Data.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.Contracts.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.Debug.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.FileVersionInfo.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.Process.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.StackTrace.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.TextWriterTraceListener.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.Tools.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.TraceSource.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Diagnostics.Tracing.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Drawing.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Drawing.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Dynamic.Runtime.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Globalization.Calendars.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Globalization.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Globalization.Extensions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.Compression.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.Compression.FileSystem.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.Compression.ZipFile.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.FileSystem.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.FileSystem.DriveInfo.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.FileSystem.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.FileSystem.Watcher.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.IsolatedStorage.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.MemoryMappedFiles.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.Pipes.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.IO.UnmanagedMemoryStream.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Linq.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Linq.Expressions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Linq.Parallel.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Linq.Queryable.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.Http.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.NameResolution.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.NetworkInformation.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.Ping.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.Requests.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.Security.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.Sockets.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.WebHeaderCollection.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.WebSockets.Client.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Net.WebSockets.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Numerics.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ObjectModel.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Reflection.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Reflection.Extensions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Reflection.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Resources.Reader.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Resources.ResourceManager.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Resources.Writer.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.CompilerServices.VisualC.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Extensions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Handles.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.InteropServices.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.InteropServices.RuntimeInformation.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Numerics.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Serialization.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Serialization.Formatters.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Serialization.Json.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Serialization.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Runtime.Serialization.Xml.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Claims.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Cryptography.Algorithms.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Cryptography.Csp.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Cryptography.Encoding.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Cryptography.Primitives.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Cryptography.X509Certificates.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.Principal.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Security.SecureString.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ServiceModel.Web.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Text.Encoding.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Text.Encoding.Extensions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Text.RegularExpressions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.Overlapped.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.Tasks.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.Tasks.Parallel.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.Thread.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.ThreadPool.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Threading.Timer.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Transactions.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.ValueTuple.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Web.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Windows.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.Linq.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.ReaderWriter.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.Serialization.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.XDocument.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlDocument.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.dll" />
+      <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+      <EmbeddedResource Include="Templates\cosmosdb.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\cosmosdb.json.handlebars" />
+      <EmbeddedResource Include="Templates\cosmosdb.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\cosmosdbMonitor.json.handlebars" />
+      <EmbeddedResource Include="Templates\default.outputcollector.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\eventhubqueue.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\eventhubqueue.json.handlebars" />
+      <EmbeddedResource Include="Templates\forcereference.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\http.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\http.json.handlebars" />
+      <EmbeddedResource Include="Templates\servicebusqueue.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\servicebusqueue.json.handlebars" />
+      <EmbeddedResource Include="Templates\servicebusqueue.outputcollector.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\servicebusqueue.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\servicebussubscription.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\servicebussubscription.json.handlebars" />
+      <EmbeddedResource Include="Templates\servicebustopic.outputcollector.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\servicebustopic.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\signalr.outputcollector.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\signalr.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\signalrbindingexpressionnegotiate.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\signalrbindingexpressionnegotiate.json.handlebars" />
+      <EmbeddedResource Include="Templates\signalrcommandnegotiate.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\signalrcommandnegotiate.json.handlebars" />
+      <EmbeddedResource Include="Templates\storageblob.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\storageblob.json.handlebars" />
+      <EmbeddedResource Include="Templates\storageblobstream.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\storageblobstream.json.handlebars" />
+      <EmbeddedResource Include="Templates\storagequeue.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\storagequeue.json.handlebars" />
+      <EmbeddedResource Include="Templates\storagequeue.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\storagetable.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\swaggerui.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\swaggerui.json.handlebars" />
+      <EmbeddedResource Include="Templates\timer.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\timer.json.handlebars" />
+      <EmbeddedResource Include="Templates\startup.csharp.handlebars" />
+      <None Remove="Templates\extensions.json.handlebars" />
+      <EmbeddedResource Include="Templates\extensions.json.handlebars" />
+    </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="yarn" />
+  </Target>
+</Project>

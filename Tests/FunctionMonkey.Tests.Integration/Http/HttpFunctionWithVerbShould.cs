@@ -63,6 +63,22 @@ namespace FunctionMonkey.Tests.Integration.Http
 
             ValidateEchoedResponse(response);
         }
+        
+        [Fact]
+        public async Task ReturnEchoedPayloadForByteArrayPOST()
+        {
+            ByteResponse response = await Settings.Host
+                .AppendPathSegment("verbs")
+                .AppendPathSegment("bytes")
+                .PostJsonAsync(new
+                {
+                    Bytes = Encoding.UTF8.GetBytes(Message)
+                })
+                .ReceiveJson<ByteResponse>();
+
+            string message = Encoding.UTF8.GetString(response.Bytes);
+            Assert.Equal(message, Message);
+        }
 
         [Fact]
         public async Task ReturnEchoedPayloadForPUT()

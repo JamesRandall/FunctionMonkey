@@ -16,7 +16,7 @@ namespace FunctionMonkey.Tests.Integration.Common
 
             Settings.Host
                 .AppendPathSegment("setup")
-                .GetAsync()
+                .PutAsync(null)
                 .Wait();
         }
     }

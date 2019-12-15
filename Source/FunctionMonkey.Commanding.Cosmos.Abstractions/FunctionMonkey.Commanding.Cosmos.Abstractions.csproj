@@ -10,12 +10,12 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
-    <PackageVersion>3.0.14</PackageVersion>
+    <PackageVersion>$(CommonPackageVersion)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.1" />
-    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.2.2" />
+    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.9.2" />
   </ItemGroup>
 
 </Project>

@@ -60,7 +60,7 @@ namespace FunctionMonkey.Builders
             MethodInfo findFirstClaim = claimsPrincipalType.GetMethod("FindFirst", new[] { typeof(string) });
             Type claimType = typeof(Claim);
             MethodInfo getClaimValue = claimType.GetProperty("Value").GetMethod;
-            Dictionary<Type, Action<object, ClaimsPrincipal>> compiledClaimMappers = new Dictionary<Type, Action<object, ClaimsPrincipal>>();
+            Dictionary<Type, Func<object, ClaimsPrincipal, object>> compiledClaimMappers = new Dictionary<Type, Func<object, ClaimsPrincipal, object>>();
 
             foreach (Type commandType in commandTypes)
             {
@@ -124,10 +124,11 @@ namespace FunctionMonkey.Builders
                     );
                     blocks.Add(block);
                 }
+                blocks.Add(Expression.Block(typeof(object),  Expression.Constant(commandParameter)));
 
-                var lambda = Expression.Lambda<Action<object, ClaimsPrincipal>>(Expression.Block(blocks), commandParameter,
+                var lambda = Expression.Lambda<Func<object, ClaimsPrincipal, object>>(Expression.Block(blocks), commandParameter,
                     claimsPrincipalParameter);
-                Action<object, ClaimsPrincipal> compiledMapper = lambda.Compile();
+                Func<object, ClaimsPrincipal, object> compiledMapper = lambda.Compile();
                 compiledClaimMappers[commandType] = compiledMapper;
             }
 

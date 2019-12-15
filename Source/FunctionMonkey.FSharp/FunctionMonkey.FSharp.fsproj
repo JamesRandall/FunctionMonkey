@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackageVersion>$(CommonPackageVersion)</PackageVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="BridgeFunctions.fs" />
+        <Compile Include="Models.fs" />
+        <Compile Include="InternalHelpers.fs" />
+        <Compile Include="Serialization.fs" />
+        <Compile Include="FunctionCompilerMetadata.fs" />
+        <Compile Include="Configuration.fs" />
+        <Compile Include="OutputBindings.fs" />
+        <Compile Include="Context.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+      <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />
+    </ItemGroup>
+
+</Project>

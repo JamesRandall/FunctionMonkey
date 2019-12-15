@@ -19,7 +19,7 @@ namespace SwaggerBuildOut
             throw new NotImplementedException();
         }
 
-        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand<TResult>
+        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand
         {
             if (result == null)
             {

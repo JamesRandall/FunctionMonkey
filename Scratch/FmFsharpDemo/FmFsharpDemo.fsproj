@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AzureFunctionsVersion>v2</AzureFunctionsVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="AccidentalFish.FSharp.Validation" Version="0.10.1" />
+        <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.5.1" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.0.0" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="host.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="local.settings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </None>
+        <None Include="host.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <Compile Include="CosmosDb.fs" />
+        <Compile Include="Additional.fs" />
+        <Compile Include="EntryPoint.fs" />
+        <None Include="ToDo.fs" />
+        <None Include="local.settings.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+          <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+      <ProjectReference Include="..\..\Source\FunctionMonkey.FSharp\FunctionMonkey.FSharp.fsproj" />
+      <ProjectReference Include="..\..\Source\FunctionMonkey\FunctionMonkey.csproj" />
+    </ItemGroup>
+</Project>

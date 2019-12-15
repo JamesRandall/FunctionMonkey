@@ -9,14 +9,15 @@
     <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
     <AssemblyVersion>2.4.0.0</AssemblyVersion>
     <FileVersion>2.4.0.0</FileVersion>
-    <PackageVersion>3.0.14</PackageVersion>
+    <PackageVersion>$(CommonPackageVersion)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.1" />
+    <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.2.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.9.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>

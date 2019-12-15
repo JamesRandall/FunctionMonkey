@@ -20,12 +20,30 @@ namespace FunctionMonkey.Model
         public Type Type { get; set; }
 
         public bool IsFormCollection => Type == typeof(IFormCollection);
+        
+        public bool IsFSharpList { get; set; }
 
         public bool IsEnum => DiscreteType.IsEnum;
 
-        public bool IsCollection => Type.IsSupportedQueryParameterCollectionType();
+        public bool IsCollection => Type.IsSupportedCSharpQueryParameterCollectionType() || IsFSharpList;
 
         public bool IsCollectionArray => Type.IsArray;
+        
+        public bool HasHeaderMapping { get; set; }
+
+        public bool IsTryParse => !IsEnum && !IsCollection && !IsCollectionArray &&
+                                  Type.GetMembers().Any(x => x.Name == "TryParse");
+
+        // We currently look to see if we are dealing with an F# discriminated union type by looking for an assignment
+        // pattern of a type having a constructor with one parameter that is of the same type of a readonly Item property
+        public bool IsDiscriminatedUnion => !IsTryParse &&
+                                            Type.GetProperty("Item") != null &&
+                                            !Type.GetProperty("Item").CanWrite &&
+                                            Type.GetConstructor(new [] { Type.GetProperty("Item").PropertyType }) != null;
+
+        public Type DiscriminatedUnionUnderlyingType => Type.GetProperty("Item")?.PropertyType;
+
+        public string DiscriminatedUnionUnderlyingTypeName => DiscriminatedUnionUnderlyingType?.EvaluateType();
 
         public Type CollectionInstanceType
         {
@@ -46,7 +64,7 @@ namespace FunctionMonkey.Model
         }
 
         public Type DiscreteType =>
-	        (Type.IsSupportedQueryParameterCollectionType() ? Type.SupportedCollectionValueType() : Type);
+	        (IsCollection ? Type.SupportedCollectionValueType() : Type);
 
         public string DiscreteTypeName => DiscreteType.EvaluateType();
 
@@ -67,5 +85,11 @@ namespace FunctionMonkey.Model
         public string RouteTypeName { get; set; }
         public bool IsNullableType { get; set; }
         public bool IsGuid => Type == typeof(Guid) || Type == typeof(Guid?);
+        
+        public bool IsFSharpOptionType { get; set; }
+        
+        public string FSharpOptionInnerTypeName { get; set; }
+        
+        public bool FSharpOptionInnerTypeIsString { get; set; }
     }
 }

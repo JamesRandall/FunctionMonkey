@@ -8,6 +8,10 @@ namespace FunctionMonkey.Model
         public StorageQueueFunctionDefinition(Type commandType) : base("StqFn", commandType)
         {
         }
+        
+        public StorageQueueFunctionDefinition(Type commandType, Type resultType) : base("StqFn", commandType, resultType)
+        {
+        }
 
         public string ConnectionStringName { get; set; }
 

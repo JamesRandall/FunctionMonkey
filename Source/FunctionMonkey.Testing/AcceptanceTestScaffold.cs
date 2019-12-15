@@ -39,11 +39,11 @@ namespace FunctionMonkey.Testing
         public void Setup(
             Assembly functionAppConfigurationAssembly = null,
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild = null,
-            Action<IServiceProvider, ICommandRegistry> afterServiceProviderBuild = null,
             ILogger mockLogger = null
         )
         {
-            _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeServiceProviderBuild, afterServiceProviderBuild);
+            _runtimeInstance = new RuntimeInstance(functionAppConfigurationAssembly, beforeServiceProviderBuild, null);
+
             _runtimeInstance.FunctionProvidedLogger.Value = mockLogger ?? new LoggerMock();
         }
 
@@ -62,7 +62,7 @@ namespace FunctionMonkey.Testing
         /// <param name="oneTimeOnly">Defaults to true, if true only set the variables one time</param>
         public void AddEnvironmentVariables(string appSettingsPath, bool oneTimeOnly = true) =>
             EnvironmentVariableManager.AddEnvironmentVariables(appSettingsPath, oneTimeOnly);
-        
+
 
         /// <summary>
         /// The constructed service provider
@@ -89,7 +89,7 @@ namespace FunctionMonkey.Testing
         /// This is useful for testing end to end HTTP triggered functions without having to actually host the
         /// function app.
         /// A method only needs specifying in the function supports multiple methods.
-        /// </summary>        
+        /// </summary>
         public async Task<HttpResponse> ExecuteHttpAsync<TResult>(ICommand<TResult> command, HttpMethod method = null)
         {
             HttpFunctionDefinition httpFunctionDefinition = FindHttpFunctionDefinition(command);
@@ -107,10 +107,10 @@ namespace FunctionMonkey.Testing
         /// This is useful for testing end to end HTTP triggered functions without having to actually host the
         /// function app.
         /// A method only needs specifying in the function supports multiple methods.
-        /// </summary>        
+        /// </summary>
         public async Task<HttpResponse> ExecuteHttpAsync(ICommand command, HttpMethod method = null)
         {
-            HttpFunctionDefinition httpFunctionDefinition = FindHttpFunctionDefinition(command);            
+            HttpFunctionDefinition httpFunctionDefinition = FindHttpFunctionDefinition(command);
             ActionContext actionContext = _aspNetRuntime.PrepareToExecuteHttp(command, httpFunctionDefinition, method);
             IHttpResponseHandler httpResponseHandler = GetHttpResponseHandler(httpFunctionDefinition);
             HttpDispatcher httpDispatcher = new HttpDispatcher(Dispatcher, ServiceProvider);
@@ -127,10 +127,10 @@ namespace FunctionMonkey.Testing
                 : new DefaultHttpResponseHandler();
             return httpResponseHandler;
         }
-        
+
         private HttpFunctionDefinition FindHttpFunctionDefinition(ICommand command)
         {
-            AbstractFunctionDefinition functionDefinition = _runtimeInstance.Builder.FunctionDefinitions.Single(x => x.CommandType == command.GetType());
+            AbstractFunctionDefinition functionDefinition = _runtimeInstance.FunctionDefinitions.Single(x => x.CommandType == command.GetType());
             if (!(functionDefinition is HttpFunctionDefinition httpFunctionDefinition))
             {
                 throw new TestException(
@@ -138,7 +138,7 @@ namespace FunctionMonkey.Testing
             }
 
             return httpFunctionDefinition;
-        }        
+        }
     }
 }
 
