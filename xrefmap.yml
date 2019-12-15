@@ -383,22 +383,6 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder
   nameWithType: IFunctionHostBuilder
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action{IServiceProvider})
-  name: ActionOnServiceProviderCreated(Action<IServiceProvider>)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ActionOnServiceProviderCreated_Action_IServiceProvider__
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action{IServiceProvider})
-  name.vb: ActionOnServiceProviderCreated(Action(Of IServiceProvider))
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action<IServiceProvider>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated(Action(Of IServiceProvider))
-  nameWithType: IFunctionHostBuilder.ActionOnServiceProviderCreated(Action<IServiceProvider>)
-  nameWithType.vb: IFunctionHostBuilder.ActionOnServiceProviderCreated(Action(Of IServiceProvider))
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated*
-  name: ActionOnServiceProviderCreated
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_ActionOnServiceProviderCreated_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.ActionOnServiceProviderCreated
-  nameWithType: IFunctionHostBuilder.ActionOnServiceProviderCreated
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.AddValidator*
   name: AddValidator
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_AddValidator_
@@ -3209,38 +3193,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.ICommandingConfigurator.AddCommanding
   nameWithType: ICommandingConfigurator.AddCommanding
-- uid: FunctionMonkey.Abstractions.IContainerProvider
-  name: IContainerProvider
-  href: api/FunctionMonkey.Abstractions.IContainerProvider.html
-  commentId: T:FunctionMonkey.Abstractions.IContainerProvider
-  fullName: FunctionMonkey.Abstractions.IContainerProvider
-  nameWithType: IContainerProvider
-- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
-  name: CreateServiceCollection()
-  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceCollection
-  commentId: M:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
-  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection()
-  nameWithType: IContainerProvider.CreateServiceCollection()
-- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection*
-  name: CreateServiceCollection
-  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceCollection_
-  commentId: Overload:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceCollection
-  nameWithType: IContainerProvider.CreateServiceCollection
-- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider(IServiceCollection)
-  name: CreateServiceProvider(IServiceCollection)
-  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceProvider_IServiceCollection_
-  commentId: M:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider(IServiceCollection)
-  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider(IServiceCollection)
-  nameWithType: IContainerProvider.CreateServiceProvider(IServiceCollection)
-- uid: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider*
-  name: CreateServiceProvider
-  href: api/FunctionMonkey.Abstractions.IContainerProvider.html#FunctionMonkey_Abstractions_IContainerProvider_CreateServiceProvider_
-  commentId: Overload:FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.IContainerProvider.CreateServiceProvider
-  nameWithType: IContainerProvider.CreateServiceProvider
 - uid: FunctionMonkey.Abstractions.IContextProvider
   name: IContextProvider
   href: api/FunctionMonkey.Abstractions.IContextProvider.html
@@ -5050,6 +5002,25 @@ references:
   commentId: N:FunctionMonkey.Extensions
   fullName: FunctionMonkey.Extensions
   nameWithType: FunctionMonkey.Extensions
+- uid: FunctionMonkey.Extensions.ServiceCollectionExtensions
+  name: ServiceCollectionExtensions
+  href: api/FunctionMonkey.Extensions.ServiceCollectionExtensions.html
+  commentId: T:FunctionMonkey.Extensions.ServiceCollectionExtensions
+  fullName: FunctionMonkey.Extensions.ServiceCollectionExtensions
+  nameWithType: ServiceCollectionExtensions
+- uid: FunctionMonkey.Extensions.ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal(IServiceCollection)
+  name: AddFunctionMonkeyClaimsPrincipal(IServiceCollection)
+  href: api/FunctionMonkey.Extensions.ServiceCollectionExtensions.html#FunctionMonkey_Extensions_ServiceCollectionExtensions_AddFunctionMonkeyClaimsPrincipal_IServiceCollection_
+  commentId: M:FunctionMonkey.Extensions.ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal(IServiceCollection)
+  fullName: FunctionMonkey.Extensions.ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal(IServiceCollection)
+  nameWithType: ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal(IServiceCollection)
+- uid: FunctionMonkey.Extensions.ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal*
+  name: AddFunctionMonkeyClaimsPrincipal
+  href: api/FunctionMonkey.Extensions.ServiceCollectionExtensions.html#FunctionMonkey_Extensions_ServiceCollectionExtensions_AddFunctionMonkeyClaimsPrincipal_
+  commentId: Overload:FunctionMonkey.Extensions.ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal
+  isSpec: "True"
+  fullName: FunctionMonkey.Extensions.ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal
+  nameWithType: ServiceCollectionExtensions.AddFunctionMonkeyClaimsPrincipal
 - uid: FunctionMonkey.Extensions.Utils
   name: Utils
   href: api/FunctionMonkey.Extensions.Utils.html
@@ -5585,6 +5556,32 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Runtime.FunctionProvidedLogger
   nameWithType: Runtime.FunctionProvidedLogger
+- uid: FunctionMonkey.Runtime.FunctionServiceProvider
+  name: FunctionServiceProvider
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_FunctionServiceProvider
+  commentId: P:FunctionMonkey.Runtime.FunctionServiceProvider
+  fullName: FunctionMonkey.Runtime.FunctionServiceProvider
+  nameWithType: Runtime.FunctionServiceProvider
+- uid: FunctionMonkey.Runtime.FunctionServiceProvider*
+  name: FunctionServiceProvider
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_FunctionServiceProvider_
+  commentId: Overload:FunctionMonkey.Runtime.FunctionServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.Runtime.FunctionServiceProvider
+  nameWithType: Runtime.FunctionServiceProvider
+- uid: FunctionMonkey.Runtime.InitializeFromStartup(IServiceCollection)
+  name: InitializeFromStartup(IServiceCollection)
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_InitializeFromStartup_IServiceCollection_
+  commentId: M:FunctionMonkey.Runtime.InitializeFromStartup(IServiceCollection)
+  fullName: FunctionMonkey.Runtime.InitializeFromStartup(IServiceCollection)
+  nameWithType: Runtime.InitializeFromStartup(IServiceCollection)
+- uid: FunctionMonkey.Runtime.InitializeFromStartup*
+  name: InitializeFromStartup
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_InitializeFromStartup_
+  commentId: Overload:FunctionMonkey.Runtime.InitializeFromStartup
+  isSpec: "True"
+  fullName: FunctionMonkey.Runtime.InitializeFromStartup
+  nameWithType: Runtime.InitializeFromStartup
 - uid: FunctionMonkey.Runtime.PluginFunctions
   name: PluginFunctions
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_PluginFunctions
@@ -5617,21 +5614,15 @@ references:
   commentId: T:FunctionMonkey.RuntimeInstance
   fullName: FunctionMonkey.RuntimeInstance
   nameWithType: RuntimeInstance
-- uid: FunctionMonkey.RuntimeInstance.#ctor
-  name: RuntimeInstance()
-  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor
-  commentId: M:FunctionMonkey.RuntimeInstance.#ctor
-  fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance()
-  nameWithType: RuntimeInstance.RuntimeInstance()
-- uid: FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})
-  name: RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
-  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceProvider_ICommandRegistry__
-  commentId: M:FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})
-  name.vb: RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
-  fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
-  fullName.vb: FunctionMonkey.RuntimeInstance.RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
-  nameWithType: RuntimeInstance.RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>)
-  nameWithType.vb: RuntimeInstance.RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry))
+- uid: FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},IServiceCollection)
+  name: RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, IServiceCollection)
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__IServiceCollection_
+  commentId: M:FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},IServiceCollection)
+  name.vb: RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), IServiceCollection)
+  fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, IServiceCollection)
+  fullName.vb: FunctionMonkey.RuntimeInstance.RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), IServiceCollection)
+  nameWithType: RuntimeInstance.RuntimeInstance(Assembly, Action<IServiceCollection, ICommandRegistry>, IServiceCollection)
+  nameWithType.vb: RuntimeInstance.RuntimeInstance(Assembly, Action(Of IServiceCollection, ICommandRegistry), IServiceCollection)
 - uid: FunctionMonkey.RuntimeInstance.#ctor*
   name: RuntimeInstance
   href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance__ctor_
@@ -5639,6 +5630,32 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.RuntimeInstance.RuntimeInstance
   nameWithType: RuntimeInstance.RuntimeInstance
+- uid: FunctionMonkey.RuntimeInstance.Builder
+  name: Builder
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_Builder
+  commentId: P:FunctionMonkey.RuntimeInstance.Builder
+  fullName: FunctionMonkey.RuntimeInstance.Builder
+  nameWithType: RuntimeInstance.Builder
+- uid: FunctionMonkey.RuntimeInstance.Builder*
+  name: Builder
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_Builder_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.Builder
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.Builder
+  nameWithType: RuntimeInstance.Builder
+- uid: FunctionMonkey.RuntimeInstance.BuiltServiceProvider
+  name: BuiltServiceProvider
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_BuiltServiceProvider
+  commentId: P:FunctionMonkey.RuntimeInstance.BuiltServiceProvider
+  fullName: FunctionMonkey.RuntimeInstance.BuiltServiceProvider
+  nameWithType: RuntimeInstance.BuiltServiceProvider
+- uid: FunctionMonkey.RuntimeInstance.BuiltServiceProvider*
+  name: BuiltServiceProvider
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_BuiltServiceProvider_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.BuiltServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.BuiltServiceProvider
+  nameWithType: RuntimeInstance.BuiltServiceProvider
 - uid: FunctionMonkey.RuntimeInstance.FunctionDefinitions
   name: FunctionDefinitions
   href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionDefinitions
@@ -5665,6 +5682,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.RuntimeInstance.FunctionProvidedLogger
   nameWithType: RuntimeInstance.FunctionProvidedLogger
+- uid: FunctionMonkey.RuntimeInstance.FunctionServiceProvider
+  name: FunctionServiceProvider
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionServiceProvider
+  commentId: P:FunctionMonkey.RuntimeInstance.FunctionServiceProvider
+  fullName: FunctionMonkey.RuntimeInstance.FunctionServiceProvider
+  nameWithType: RuntimeInstance.FunctionServiceProvider
+- uid: FunctionMonkey.RuntimeInstance.FunctionServiceProvider*
+  name: FunctionServiceProvider
+  href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_FunctionServiceProvider_
+  commentId: Overload:FunctionMonkey.RuntimeInstance.FunctionServiceProvider
+  isSpec: "True"
+  fullName: FunctionMonkey.RuntimeInstance.FunctionServiceProvider
+  nameWithType: RuntimeInstance.FunctionServiceProvider
 - uid: FunctionMonkey.RuntimeInstance.PluginFunctions
   name: PluginFunctions
   href: api/FunctionMonkey.RuntimeInstance.html#FunctionMonkey_RuntimeInstance_PluginFunctions
@@ -5961,19 +5991,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AddEnvironmentVariables
   nameWithType: AbstractAcceptanceTest.AddEnvironmentVariables
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider,ICommandRegistry)
-  name: AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_IServiceProvider_ICommandRegistry_
-  commentId: M:FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider,ICommandRegistry)
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)
-  nameWithType: AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)
-- uid: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild*
-  name: AfterServiceProviderBuild
-  href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_
-  commentId: Overload:FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild
-  isSpec: "True"
-  fullName: FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild
-  nameWithType: AbstractAcceptanceTest.AfterServiceProviderBuild
 - uid: FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection,ICommandRegistry)
   name: BeforeServiceProviderBuild(IServiceCollection, ICommandRegistry)
   href: api/FunctionMonkey.Testing.AbstractAcceptanceTest.html#FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_IServiceCollection_ICommandRegistry_
@@ -6121,15 +6138,15 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.ServiceProvider
   nameWithType: AcceptanceTestScaffold.ServiceProvider
-- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry},ILogger)
-  name: Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>, ILogger)
-  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceProvider_ICommandRegistry__ILogger_
-  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry},ILogger)
-  name.vb: Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry), ILogger)
-  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>, ILogger)
-  fullName.vb: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry), ILogger)
-  nameWithType: AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, Action<IServiceProvider, ICommandRegistry>, ILogger)
-  nameWithType.vb: AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), Action(Of IServiceProvider, ICommandRegistry), ILogger)
+- uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},ILogger)
+  name: Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, ILogger)
+  href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup_Assembly_Action_IServiceCollection_ICommandRegistry__ILogger_
+  commentId: M:FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly,Action{IServiceCollection,ICommandRegistry},ILogger)
+  name.vb: Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), ILogger)
+  fullName: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, ILogger)
+  fullName.vb: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), ILogger)
+  nameWithType: AcceptanceTestScaffold.Setup(Assembly, Action<IServiceCollection, ICommandRegistry>, ILogger)
+  nameWithType.vb: AcceptanceTestScaffold.Setup(Assembly, Action(Of IServiceCollection, ICommandRegistry), ILogger)
 - uid: FunctionMonkey.Testing.AcceptanceTestScaffold.Setup*
   name: Setup
   href: api/FunctionMonkey.Testing.AcceptanceTestScaffold.html#FunctionMonkey_Testing_AcceptanceTestScaffold_Setup_

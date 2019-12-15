@@ -90,33 +90,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance__ctor.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__IServiceCollection_.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.%23ctor(Assembly%2CAction%7BIServiceCollection%2CICommandRegistry%7D%2CIServiceCollection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey/RuntimeInstance.cs/#L47">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey/RuntimeInstance.cs/#L53">View Source</a>
   </span>
   <a id="FunctionMonkey_RuntimeInstance__ctor_" data-uid="FunctionMonkey.RuntimeInstance.#ctor*"></a>
-  <h4 id="FunctionMonkey_RuntimeInstance__ctor" data-uid="FunctionMonkey.RuntimeInstance.#ctor">RuntimeInstance()</h4>
+  <h4 id="FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__IServiceCollection_" data-uid="FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},IServiceCollection)">RuntimeInstance(Assembly, Action&lt;IServiceCollection, ICommandRegistry&gt;, IServiceCollection)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RuntimeInstance()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceProvider_ICommandRegistry__.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.%23ctor(Assembly%2CAction%7BIServiceCollection%2CICommandRegistry%7D%2CAction%7BIServiceProvider%2CICommandRegistry%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey/RuntimeInstance.cs/#L52">View Source</a>
-  </span>
-  <a id="FunctionMonkey_RuntimeInstance__ctor_" data-uid="FunctionMonkey.RuntimeInstance.#ctor*"></a>
-  <h4 id="FunctionMonkey_RuntimeInstance__ctor_Assembly_Action_IServiceCollection_ICommandRegistry__Action_IServiceProvider_ICommandRegistry__" data-uid="FunctionMonkey.RuntimeInstance.#ctor(Assembly,Action{IServiceCollection,ICommandRegistry},Action{IServiceProvider,ICommandRegistry})">RuntimeInstance(Assembly, Action&lt;IServiceCollection, ICommandRegistry&gt;, Action&lt;IServiceProvider, ICommandRegistry&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RuntimeInstance(Assembly functionAppConfigurationAssembly, Action&lt;IServiceCollection, ICommandRegistry&gt; beforeServiceProviderBuild, Action&lt;IServiceProvider, ICommandRegistry&gt; afterServiceProviderBuild)</code></pre>
+    <pre><code class="lang-csharp hljs">public RuntimeInstance(Assembly functionAppConfigurationAssembly, Action&lt;IServiceCollection, ICommandRegistry&gt; beforeServiceProviderBuild, IServiceCollection serviceCollection)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -139,14 +124,74 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">Action</span>&lt;<span class="xref">IServiceProvider</span>, <span class="xref">ICommandRegistry</span>&gt;</td>
-        <td><span class="parametername">afterServiceProviderBuild</span></td>
+        <td><span class="xref">IServiceCollection</span></td>
+        <td><span class="parametername">serviceCollection</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
   </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance_Builder.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.Builder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey/RuntimeInstance.cs/#L47">View Source</a>
+  </span>
+  <a id="FunctionMonkey_RuntimeInstance_Builder_" data-uid="FunctionMonkey.RuntimeInstance.Builder*"></a>
+  <h4 id="FunctionMonkey_RuntimeInstance_Builder" data-uid="FunctionMonkey.RuntimeInstance.Builder">Builder</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IFunctionHostBuilder Builder { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html">IFunctionHostBuilder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance_BuiltServiceProvider.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.BuiltServiceProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey/RuntimeInstance.cs/#L49">View Source</a>
+  </span>
+  <a id="FunctionMonkey_RuntimeInstance_BuiltServiceProvider_" data-uid="FunctionMonkey.RuntimeInstance.BuiltServiceProvider*"></a>
+  <h4 id="FunctionMonkey_RuntimeInstance_BuiltServiceProvider" data-uid="FunctionMonkey.RuntimeInstance.BuiltServiceProvider">BuiltServiceProvider</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Lazy&lt;IServiceProvider&gt; BuiltServiceProvider { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Lazy</span>&lt;<span class="xref">IServiceProvider</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance_FunctionDefinitions.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.FunctionDefinitions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -203,6 +248,36 @@
     <tbody>
       <tr>
         <td><span class="xref">AsyncLocal</span>&lt;<span class="xref">ILogger</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_RuntimeInstance_FunctionServiceProvider.md&amp;value=---%0Auid%3A%20FunctionMonkey.RuntimeInstance.FunctionServiceProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey/RuntimeInstance.cs/#L38">View Source</a>
+  </span>
+  <a id="FunctionMonkey_RuntimeInstance_FunctionServiceProvider_" data-uid="FunctionMonkey.RuntimeInstance.FunctionServiceProvider*"></a>
+  <h4 id="FunctionMonkey_RuntimeInstance_FunctionServiceProvider" data-uid="FunctionMonkey.RuntimeInstance.FunctionServiceProvider">FunctionServiceProvider</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AsyncLocal&lt;IServiceProvider&gt; FunctionServiceProvider { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AsyncLocal</span>&lt;<span class="xref">IServiceProvider</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>

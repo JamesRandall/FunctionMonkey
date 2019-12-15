@@ -74,7 +74,7 @@
   <h1 id="FunctionMonkey_Testing_AbstractAcceptanceTest" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest" class="text-break">Class AbstractAcceptanceTest
   </h1>
   <div class="markdown level0 summary"><p>A class that can be used as a basis for running acceptance tests with Function Monkey at the command dispatch level
-designed for use with test frameworks that take a constructor approach to </p>
+designed for use with test frameworks that take a constructor approach to</p>
 <p>One of the advantages of the pattern used by Function Monkey is that the host function triggers are separated cleanly
 from business logic and compiled with pre-tested templates allowing for comprehensive acceptance tests to be run
 just below this level which can often provide a high level of value with a lower level of complexity than also testing
@@ -119,7 +119,7 @@ solely handles command registration and dependency injection management.</p>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L96">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L84">View Source</a>
   </span>
   <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher*"></a>
   <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_Dispatcher" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.Dispatcher">Dispatcher</h4>
@@ -151,7 +151,7 @@ in a decorator that implements validation.</p>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L89">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L77">View Source</a>
   </span>
   <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider*"></a>
   <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_ServiceProvider" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ServiceProvider">ServiceProvider</h4>
@@ -257,47 +257,6 @@ in a decorator that implements validation.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_IServiceProvider_ICommandRegistry_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider%2CICommandRegistry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L80">View Source</a>
-  </span>
-  <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild*"></a>
-  <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_AfterServiceProviderBuild_IServiceProvider_ICommandRegistry_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.AfterServiceProviderBuild(IServiceProvider,ICommandRegistry)">AfterServiceProviderBuild(IServiceProvider, ICommandRegistry)</h4>
-  <div class="markdown level1 summary"><p>This method can be used to modify dependency and command setup before the service provider has been built
-from the service collection.</p>
-<p>This must not access members (and should not need to) as it is invoked from the constructor to
-support test frameworks such as XUnit that construct test cases this way.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void AfterServiceProviderBuild(IServiceProvider serviceProvider, ICommandRegistry commandRegistry)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IServiceProvider</span></td>
-        <td><span class="parametername">serviceProvider</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">ICommandRegistry</span></td>
-        <td><span class="parametername">commandRegistry</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_BeforeServiceProviderBuild_IServiceCollection_ICommandRegistry_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.BeforeServiceProviderBuild(IServiceCollection%2CICommandRegistry)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -358,7 +317,7 @@ support test frameworks such as XUnit that construct test cases this way.</p>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_ICommand_HttpMethod_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand%2CHttpMethod)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L112">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L100">View Source</a>
   </span>
   <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync*"></a>
   <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_ICommand_HttpMethod_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync(ICommand,HttpMethod)">ExecuteHttpAsync(ICommand, HttpMethod)</h4>
@@ -414,7 +373,7 @@ A method only needs specifying in the function supports multiple methods.</p>
     <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync__1_ICommand___0__HttpMethod_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync%60%601(ICommand%7B%60%600%7D%2CHttpMethod)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L104">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Testing/AbstractAcceptanceTest.cs/#L92">View Source</a>
   </span>
   <a id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync*"></a>
   <h4 id="FunctionMonkey_Testing_AbstractAcceptanceTest_ExecuteHttpAsync__1_ICommand___0__HttpMethod_" data-uid="FunctionMonkey.Testing.AbstractAcceptanceTest.ExecuteHttpAsync``1(ICommand{``0},HttpMethod)">ExecuteHttpAsync&lt;TResult&gt;(ICommand&lt;TResult&gt;, HttpMethod)</h4>
