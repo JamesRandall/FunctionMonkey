@@ -1,6 +1,6 @@
 # Introduction
 
-Function Monkey is an alternative API for creating Auzre Functions which by having a strong opinion over a core pattern, mediation, is able to achieve a number of key design goals:
+Function Monkey is an alternative API for creating Azure Functions which by having a strong opinion over a core pattern, mediation, is able to achieve a number of key design goals:
 
 * To allow functions to be created and configured with a clean fluent style API
 * To reduce the typical boilerplate associated with functions
