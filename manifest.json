@@ -1992,7 +1992,7 @@
       "output": {
         ".html": {
           "relative_path": "guides/introduction.html",
-          "hash": "P0DLhkJ9y7YTrwL1JGwz1A=="
+          "hash": "qkxpLO5Zd+aRjWLfhw3UpQ=="
         }
       },
       "is_incremental": false,
@@ -2244,10 +2244,10 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 38,
+          "total_file_count": 140,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
@@ -2257,10 +2257,10 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 140,
+          "total_file_count": 38,
           "skipped_file_count": 0
         }
       }
