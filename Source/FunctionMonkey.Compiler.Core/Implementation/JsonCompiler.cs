@@ -64,7 +64,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 Func<object, string> template = Handlebars.Compile(templateSource);
                 string json = template(new
                 {
-                    AssemblyName = $"{outputNamespaceName}.dll",
+                    AssemblyFilename = $"{outputNamespaceName}.dll",
                     Namespace = outputNamespaceName
                 });
 

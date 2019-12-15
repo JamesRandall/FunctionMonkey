@@ -54,6 +54,10 @@ namespace FunctionMonkey
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild,
             IServiceCollection serviceCollection)
         {
+            if (serviceCollection == null)
+            {
+                System.Console.WriteLine("No service collection supplied by runtime");
+            }
             ServiceCollection = serviceCollection ?? new ServiceCollection();
             BuiltServiceProvider = new Lazy<IServiceProvider>(() => ServiceCollection.BuildServiceProvider());
 

@@ -206,7 +206,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
             List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations, manifestResoureNames, manifestResourcePrefix, compileTarget);
             
-            CSharpCompilation compilation = CSharpCompilation.Create(outputAssemblyName)
+            CSharpCompilation compilation = CSharpCompilation.Create(assemblyNamespace) //(outputAssemblyName)
                     .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
                     .AddReferences(references)
                     .AddSyntaxTrees(syntaxTrees)

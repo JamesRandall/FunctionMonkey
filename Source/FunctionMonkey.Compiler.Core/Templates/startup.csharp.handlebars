@@ -10,6 +10,7 @@ namespace {{Namespace}}
 	{
 		public void Configure(IWebJobsBuilder builder)
 		{
+            //System.Console.WriteLine("RUNNING IN STARTUP");
             {{Namespace}}.ReferenceLinkBack.ForceLinkBack();
 			FunctionMonkey.Runtime.InitializeFromStartup(builder.Services);
 		}

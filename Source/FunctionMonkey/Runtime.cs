@@ -31,12 +31,14 @@ namespace FunctionMonkey
         //public static AsyncLocal<ClaimsPrincipal> FunctionClaimsPrincipal => RuntimeInstance.Value.FunctionClaimsPrincipal;
 
         private static readonly Lazy<RuntimeInstance> RuntimeInstance = new Lazy<RuntimeInstance>(() => new RuntimeInstance(null, null, ServiceCollection));
+        //private static RuntimeInstance RuntimeInstance = null; //new Lazy<RuntimeInstance>(() => new RuntimeInstance(null, null, ServiceCollection));
 
         private static IServiceCollection ServiceCollection { get; set; }
 
         public static void InitializeFromStartup(IServiceCollection serviceCollection)
         {
             ServiceCollection = serviceCollection;
+            //RuntimeInstance = new RuntimeInstance(null, null, ServiceCollection);
             var _ = RuntimeInstance.Value;
         }
 

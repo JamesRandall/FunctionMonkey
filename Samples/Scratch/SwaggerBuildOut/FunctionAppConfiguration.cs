@@ -12,7 +12,7 @@ using SwaggerBuildOut.Services;
 
 namespace SwaggerBuildOut
 {
-    public class FunctionAppConfiguration : IFunctionAppConfiguration, IContainerProvider
+    public class FunctionAppConfiguration : IFunctionAppConfiguration
     {
         public void Build(IFunctionHostBuilder builder)
         {
@@ -73,20 +73,6 @@ namespace SwaggerBuildOut
                     .SubscriptionFunction<HelloWorldCommand>("mytopic", "mysub")
                     )*/
                 );            
-        }
-
-        public IServiceCollection CreateServiceCollection()
-        {
-            return new ServiceCollection();
-        }
-
-        public IServiceProvider CreateServiceProvider(IServiceCollection serviceCollection)
-        {
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.Populate(serviceCollection);
-            IContainer autofacContainer = containerBuilder.Build();
-            IServiceProvider serviceProvider = new AutofacServiceProvider(autofacContainer);
-            return serviceProvider;
         }
     }
 }

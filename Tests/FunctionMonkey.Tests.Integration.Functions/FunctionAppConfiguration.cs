@@ -9,6 +9,8 @@ using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
 using FunctionMonkey.Tests.Integration.Functions.Commands.SignalR;
 using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
+using FunctionMonkey.Tests.Integration.Functions.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
@@ -34,6 +36,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     serviceCollection
+                        .AddTransient<IMarker, Marker>()
                         .AddValidatorsFromAssemblyContaining<FunctionAppConfiguration>()
                         ;
                 })
