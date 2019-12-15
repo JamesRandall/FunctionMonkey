@@ -33,7 +33,11 @@ namespace FunctionMonkey.Builders
 
         public ISignalRFunctionConfigurationBuilder<TCommandOuter> OpenApiResponse(int httpStatusCode, string description)
         {
-            _definition.OpenApiResponseDescriptions.Add(httpStatusCode, description);
+            var configuration = new OpenApiResponseConfiguration
+            {
+                Description = description
+            };
+            _definition.OpenApiResponseConfigurations.Add(httpStatusCode, configuration);
             return this;
         }
 

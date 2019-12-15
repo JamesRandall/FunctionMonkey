@@ -4,12 +4,15 @@
 // ------------------------------------------------------------
 // modified from https://github.com/Microsoft/OpenAPI.NET.CSharpAnnotations
 
-using System;
-using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Compiler.Core.Extensions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace FunctionMonkey.Compiler.Core.Implementation
 {
@@ -19,6 +22,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         /// The dictionary containing all references of the given type.
         /// </summary>
         private readonly Dictionary<string, OpenApiSchema> _references = new Dictionary<string, OpenApiSchema>();
+
+        private readonly OpenApiCompilerConfiguration _compilerConfiguration;
+
+        public Dictionary<string, OpenApiSchema> References => _references;
+
+        public SchemaReferenceRegistry(OpenApiCompilerConfiguration compilerConfiguration)
+        {
+            _compilerConfiguration = compilerConfiguration;
+        }
 
         public OpenApiSchema FindReference(Type input)
         {
@@ -30,7 +42,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 return new OpenApiSchema();
             }
 
-            var key = GetKey(input);
+            var key = _compilerConfiguration.SchemaIdSelector(input);
 
             // If the schema already exists in the References, simply return.
             if (_references.ContainsKey(key))
@@ -48,6 +60,29 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             return null;
         }
 
+        public OpenApiSchema GetOrCreateSchema(Type input)
+        {
+            if (input == null || input.FullName == null)
+            {
+                return null;
+            }
+
+            var key = _compilerConfiguration.SchemaIdSelector(input);
+
+            // If the schema already exists in the References, simply return.
+            if (_references.TryGetValue(key, out var schema))
+            {
+                return schema;
+            }
+
+            // Schema does not exist. Add and immediately delete
+            FindOrAddReference(input);
+            _references.TryGetValue(key, out schema);
+            _references.Remove(key);
+            return schema;
+        }
+
+
         /// <summary>
         /// Finds the existing reference object based on the key from the input or creates a new one.
         /// </summary>
@@ -62,7 +97,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 return new OpenApiSchema();
             }
 
-            var key = GetKey(input);
+            var key = _compilerConfiguration.SchemaIdSelector(input);
 
             // If the schema already exists in the References, simply return.
             if (_references.ContainsKey(key))
@@ -88,6 +123,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 // 5. Object Type
                 var schema = new OpenApiSchema();
 
+                // Filter schema
+                var schemaFilterContext = new OpenApiSchemaFilterContext
+                {
+                    Type = input
+                };
+
                 if (input.IsSimple())
                 {
                     schema = input.MapToOpenApiSchema();
@@ -103,6 +144,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                         schema.Example = new OpenApiString(Guid.Empty.ToString());
                     }
 
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -114,6 +156,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                         schema.Enum.Add(new OpenApiString(name));
                     }
 
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -122,6 +165,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                     schema.Type = "object";
                     schema.AdditionalProperties = FindOrAddReference(input.GetGenericArguments()[1]);
 
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -131,6 +175,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
                     schema.Items = FindOrAddReference(input.GetEnumerableItemType());
 
+                    FilterSchema(schema, schemaFilterContext);
                     return schema;
                 }
 
@@ -141,61 +186,67 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 // We can also assume that the schema is an object type at this point.
                 _references[key] = schema;
 
+                schemaFilterContext.PropertyNames = new Dictionary<string, string>();
                 foreach (var propertyInfo in input.GetProperties())
                 {
-                    var ignoreProperty = false;
-
-                    var propertyName = propertyInfo.Name.ToCamelCase();
-                    var innerSchema = FindOrAddReference(propertyInfo.PropertyType);
-
-                    // Check if the property is read-only.
-                    innerSchema.ReadOnly = !propertyInfo.CanWrite;
-
-                    var attributes = propertyInfo.GetCustomAttributes(false);
-
-                    foreach (var attribute in attributes)
-                    {
-                        if (attribute.GetType().FullName == "Newtonsoft.Json.JsonPropertyAttribute")
-                        {
-                            var type = attribute.GetType();
-                            var propertyNameInfo = type.GetProperty("PropertyName");
-
-                            if (propertyNameInfo != null)
-                            {
-                                var jsonPropertyName = (string)propertyNameInfo.GetValue(attribute, null);
-
-                                if (!string.IsNullOrWhiteSpace(jsonPropertyName))
-                                {
-                                    propertyName = jsonPropertyName;
-                                }
-                            }
-
-                            var requiredPropertyInfo = type.GetProperty("Required");
-
-                            if (requiredPropertyInfo != null)
-                            {
-                                var requiredValue = Enum.GetName(
-                                    requiredPropertyInfo.PropertyType,
-                                    requiredPropertyInfo.GetValue(attribute, null));
-
-                                if (requiredValue == "Always")
-                                {
-                                    schema.Required.Add(propertyName);
-                                }
-                            }
-                        }
-
-                        if (attribute.GetType().FullName == "Newtonsoft.Json.JsonIgnoreAttribute" || attribute.GetType() == typeof(SecurityPropertyAttribute))
-                        {
-                            ignoreProperty = true;
-                        }                        
-                    }
-
+                    // Ignore Property ?
+                    var ignoreProperty = propertyInfo.GetAttributeValue((JsonIgnoreAttribute attribute) => attribute) != null;
                     if (!ignoreProperty)
                     {
-                        schema.Properties[propertyName] = innerSchema;
+                        ignoreProperty = propertyInfo.GetAttributeValue((SecurityPropertyAttribute attribute) => attribute) != null;
                     }
+                    if (ignoreProperty)
+                    {
+                        continue;
+                    }
+
+                    // Property Name
+                    var propertyName = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.PropertyName);
+                    if (string.IsNullOrWhiteSpace(propertyName))
+                    {
+                        propertyName = propertyInfo.GetAttributeValue((DataMemberAttribute attribute) => attribute.Name);
+                    }
+                    if (string.IsNullOrWhiteSpace(propertyName))
+                    {
+                        propertyName = propertyInfo.Name.ToCamelCase();
+                    }
+
+                    // Property Required
+                    var propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required) == Required.Always;
+                    if (!propertyRequired)
+                    {
+                        propertyRequired = propertyInfo.GetAttributeValue((RequiredAttribute attribute) => attribute) != null;
+                    }
+                    if (propertyRequired)
+                    {
+                        schema.Required.Add(propertyName);
+                    }
+
+                    // Min and max length
+                    int? minLength = propertyInfo.GetAttributeValue((MinLengthAttribute attribute) => attribute)?.Length;
+                    if (minLength == null)
+                    {
+                        minLength = propertyInfo.GetAttributeValue((StringLengthAttribute attribute) => attribute)?.MinimumLength;
+                    }
+                    int? maxLength = propertyInfo.GetAttributeValue((MaxLengthAttribute attribute) => attribute)?.Length;
+                    if (maxLength == null)
+                    {
+                        maxLength = propertyInfo.GetAttributeValue((StringLengthAttribute attribute) => attribute)?.MaximumLength;
+                    }
+
+                    // Regex pattern
+                    var pattern = propertyInfo.GetAttributeValue((RegularExpressionAttribute attribute) => attribute.Pattern);
+
+                    // Inner Schema
+                    var innerSchema = FindOrAddReference(propertyInfo.PropertyType);
+                    innerSchema.ReadOnly = !propertyInfo.CanWrite;
+                    innerSchema.MinLength = minLength;
+                    innerSchema.MaxLength = maxLength;
+                    innerSchema.Pattern = pattern;
+                    schema.Properties[propertyName] = innerSchema;
+                    schemaFilterContext.PropertyNames[propertyName] = propertyInfo.Name;
                 }
+                FilterSchema(schema, schemaFilterContext);
 
                 _references[key] = schema;
 
@@ -221,22 +272,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             }
         }
 
-        public Dictionary<string, OpenApiSchema> References => _references;
-
-        /// <summary>
-        /// Gets the key from the input object to use as reference string.
-        /// </summary>
-        /// <remarks>
-        /// This must match the regular expression ^[a-zA-Z0-9\.\-_]+$ due to OpenAPI V3 spec.
-        /// </remarks>
-        private string GetKey(Type input)
+        private void FilterSchema(OpenApiSchema schema, OpenApiSchemaFilterContext schemaFilterContext)
         {
-            // Type.ToString() returns full name for non-generic types and
-            // returns a full name without unnecessary assembly information for generic types.
-            var typeName = input.ToString();
-
-            return typeName.SanitizeClassName();
+            foreach (var schemaFilter in _compilerConfiguration.SchemaFilters)
+            {
+                schemaFilter.Apply(schema, schemaFilterContext);
+            }
         }
     }
-
 }
