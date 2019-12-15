@@ -1829,6 +1829,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/crosscutting/testing.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/crosscutting/testing.html",
+          "hash": "M8VR4bOrzlLxh5QnhdP2aA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/crosscutting/triggercontexts.md",
       "output": {
         ".html": {
@@ -2222,7 +2234,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 36,
+          "total_file_count": 37,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
