@@ -1,0 +1,373 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Extensions.SignalRService;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.SignalR;
+using System.Security.Claims;
+
+namespace {{Namespace}}
+{
+    public class {{Name}}
+    {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
+        [FunctionName("{{Name}}")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(
+                {{{azureAuthenticationType}}},
+                {{{httpVerbs}}},
+                Route = "{{Route}}")
+            ]
+            HttpRequest req,
+            ILogger log,
+            ExecutionContext executionContext
+            {{#each RouteParameters}}
+            , string {{RouteName}}
+            {{/each}}
+            {{{parameterOutputBinding}}}
+        )
+        {
+            log.LogInformation("HTTP trigger function {{Name}} processed a request.");
+
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+
+            string requestUrl = GetRequestUrl(req);
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
+            var headerDictionary = new Dictionary<string, IReadOnlyCollection<string>>();
+            foreach (var headerKeyValuesPair in req.Headers)
+            {
+                string[] values = headerKeyValuesPair.Value.ToArray();
+                headerDictionary.Add(headerKeyValuesPair.Key, values);
+            }
+            contextSetter.SetHttpContext(null, requestUrl, headerDictionary);
+
+            System.Security.Claims.ClaimsPrincipal principal = null;
+            // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
+            // there are any issues
+            {{#if ValidatesToken}}
+            if (req.Headers["{{TokenHeader}}"].Count == 0)
+            {
+                return new UnauthorizedResult();
+            }
+            string authorizationHeader = req.Headers["{{TokenHeader}}"][0];
+            if (string.IsNullOrWhiteSpace(authorizationHeader))
+            {
+                return new UnauthorizedResult();
+            }
+            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{TokenValidatorTypeName}}));
+            principal = await tokenValidator.ValidateAsync(authorizationHeader);
+            if (principal == null)
+            {
+                return new UnauthorizedResult();
+            }
+            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);
+            {{/if}}
+
+            {{#if AuthorizesClaims}}
+            var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
+            var claimsPrincipalAuthorizationResult = await claimsPrincipalAuthorization.IsAuthorized(principal, req.Method, requestUrl);
+            if (!claimsPrincipalAuthorizationResult)
+            {
+                return new UnauthorizedResult();
+            }
+            {{/if}}
+
+            {{#if SerializerNamingStrategyTypeName}}
+                var serializerNamingStrategy = new {{SerializerNamingStrategyTypeName}}();
+                var deserializerNamingStrategy = new {{DeserializerNamingStrategyTypeName}}();
+                FunctionMonkey.Abstractions.ISerializer serializer = new FunctionMonkey.Serialization.NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
+            {{else}}
+                var serializer = (FunctionMonkey.Abstractions.ISerializer)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
+            {{/if}}
+
+            {{CommandTypeName}} command;
+            string contentType = req.ContentType?.ToLower() ?? "application/json";
+            {{#if IsStreamCommand}}
+                command = new {{CommandTypeName}}() {
+                    Stream = req.Body
+                };
+            {{else}}
+            if (contentType.Split(';').Any(x => x.Trim().Equals("application/json", System.StringComparison.InvariantCultureIgnoreCase)))
+            {
+                string requestBody = String.Empty;
+                using (StreamReader reader = new StreamReader(req.Body))
+                {
+                    requestBody = await reader.ReadToEndAsync();
+                }
+                
+                if (!System.String.IsNullOrWhiteSpace(requestBody))
+                {
+                    command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                }
+                else
+                {
+                    command = new {{CommandTypeName}}();
+                }
+            }
+            else
+            {
+                command = new {{CommandTypeName}}();
+            }
+            {{/if}}
+
+            {{#each PossibleFormProperties}}
+                command.{{Name}} = req.Form;
+            {{/each}}
+
+            Microsoft.Extensions.Primitives.StringValues queryParameterValues;
+            string method = req.Method.ToUpper();
+            if (method == "GET" || method=="DELETE")
+            {
+                {{#each QueryParameters}}
+                    {{#unless IsFormCollection}}
+                        if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+                        {
+                            {{#if IsString}}
+                            command.{{Name}} = queryParameterValues[0];
+                            {{else if IsEnum}}
+                            {
+                                {{{TypeName}}} result;
+                                if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
+                                {
+                                    command.{{Name}} = result;
+                                }
+                            }
+                            {{else if IsNullable}}
+                            {
+                                {{#if IsNullableTypeHasTryParseMethod}}
+                                {
+                                    {{{TypeName}}} nullableValue;
+                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
+                                    {
+                                        command.{{Name}} = nullableValue;
+                                    }
+                                }
+                                {{/if}}
+                            }
+                            {{else}}
+                            {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
+                            command.{{Name}} = candidate;
+                            {{/if}}
+                        }
+                    {{/unless}}
+                {{/each}}
+            }
+
+            {{#if HeaderBindingConfiguration}}
+                string headerName;
+                {{#each QueryParameters}}
+                    {{#unless IsFormCollection}}
+                        headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
+                        if (!string.IsNullOrWhiteSpace(headerName))
+                        {
+                        if (req.Headers.TryGetValue(headerName, out var stringValues))
+                        {
+                        string headerValue = stringValues.FirstOrDefault();
+                        {{#if IsString}}
+                            command.{{Name}} = headerValue;
+                        {{else}}
+                            {{{TypeName}}}.TryParse(headerValue, out var candidate);
+                            command.{{Name}} = candidate;
+                        {{/if}}
+                        }
+                        }
+                    {{/unless}}
+                {{/each}}
+            {{/if}}
+
+            {{#each RouteParameters}}
+                {{#if IsString}}
+                        command.{{Name}} = {{RouteName}};
+                {{else if IsEnum}}
+                        {
+                            {{{RouteTypeName}}} result;
+                            if (System.Enum.TryParse<{{RouteTypeName}}>({{RouteName}}, out result))
+                            {
+                                command.{{Name}} = result;
+                            }
+                            else
+                            {
+                                return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                            }
+                        }
+                {{else if IsNullable}}
+                        {
+                    {{#if IsNullableTypeHasTryParseMethod}}
+                            {
+                                {{{RouteTypeName}}} nullableValue;
+                                if ({{RouteName}} != null)
+                                {
+                                    if(TryParseNullable({{RouteName}}, {{NullableType}}.TryParse, out nullableValue))
+                                    {
+                                        command.{{Name}} = nullableValue;
+                                    }
+                                    else
+                                    {
+                                        return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                                    }
+                                }
+                            }
+                    {{/if}}
+                        }
+                {{else}}
+                        if ({{TypeName}}.TryParse({{RouteName}}, out var candidate))
+                        {
+                            command.{{Name}} = candidate;
+                        }
+                        else
+                        {
+                            return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                        }
+                {{/if}}
+            {{/each}}
+
+            {{#if ValidatesToken}}
+            var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
+            var claimsBinderTask = claimsBinder.BindAsync(principal, command);
+            if (claimsBinderTask == null)
+            {
+                claimsBinder.Bind(principal, command);
+            }
+            else
+            {
+                await claimsBinderTask;
+            }
+            {{/if}}
+
+            {{#if HasHttpResponseHandler}}
+            var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
+            {{/if}}
+
+            {{#if IsUsingValidator}}
+            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
+            var validationResult = validator.Validate(command);
+            if (!validationResult.IsValid)
+            {
+                {{#if HasHttpResponseHandler}}
+                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                    var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
+                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                {{else}}
+                    return CreateResponse(400, validationResult, serializer);
+                {{/if}}
+            }
+            {{/if}}
+
+            try
+            {
+                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+
+                {{#if HasHttpResponseHandler}}
+                    {{#if IsValidationResult}}
+                        FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
+                        if (!validationResult.IsValid)
+                        {
+                            var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                            var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
+                            return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                        }
+                        else
+                        {
+                            var responseTask = responseHandler.CreateResponse(command, result.Result);
+                            var handledResponse = responseTask != null ? (await responseTask) : null;
+                            return handledResponse ?? CreateSignalRResponse(result.Result);
+                        }
+                    {{else}}
+                        var responseTask = responseHandler.CreateResponse(command, result.Result);
+                        var handledResponse = responseTask != null ? (await responseTask) : null;
+                        return handledResponse ?? CreateSignalRResponse(result.Result);
+                    {{/if}}
+                {{else}}
+                    {{#if IsValidationResult}}
+                        FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
+                        if (!validationResult.IsValid)
+                        {
+                            return CreateResponse(400, validationResult, serializer);
+                        }
+                    {{/if}}
+                    return CreateSignalRResponse(result.Result);
+                {{/if}}
+            }
+            catch(System.Exception ex)
+            {
+                {{#if HasHttpResponseHandler}}
+                    var responseTask = responseHandler.CreateResponseFromException(command, ex);
+                    var handledResponse = responseTask != null ? (await responseTask) : null;
+                    return handledResponse ?? CreateResponse(500, "Unexpected error", serializer);
+                {{else}}
+                    log.LogError(ex, $"Error occurred executing command {command.GetType().Name}");
+                    return CreateResponse(500, "Unexpected error", serializer);
+                {{/if}}
+            }
+            {{/if}}
+        }
+
+        public static IActionResult CreateSignalRResponse(FunctionMonkey.Commanding.Abstractions.SignalRNegotiateResponse commandResponse)
+        {
+            List<Claim> claims = new List<Claim>();
+            if (!string.IsNullOrWhiteSpace(commandResponse.UserId))
+            {
+                claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", commandResponse.UserId));
+            }
+
+            AzureSignalRAuthClient client = new AzureSignalRAuthClient(System.Environment.GetEnvironmentVariable("{{ConnectionStringSettingName}}"));
+            SignalRConnectionInfo info = client.GetClientConnectionInfo(commandResponse.HubName, claims);
+            return new OkObjectResult(info);
+        }
+
+        public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)
+        {
+            ContentResult result = new ContentResult();
+            result.Content = serializer.Serialize(content, true);
+            result.ContentType = "application/json";
+            result.StatusCode = code;
+            return result;
+        }
+
+        private static string GetRequestUrl(HttpRequest request)
+        {
+          string str1 = request.Host.Value;
+          string str2 = request.PathBase.Value;
+          string str3 = request.Path.Value;
+          string str4 = request.QueryString.Value;
+          return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
+        }
+
+        public delegate System.Boolean TryDelegate<T>(System.String input, out T result);
+
+        private static System.Boolean TryParseNullable<T>(
+            System.String input,
+            TryDelegate<T> tryFunction,
+            out System.Nullable<T> result) where T : struct
+        {
+            T temp;
+            System.Boolean success = tryFunction(input, out temp);
+            result = temp;
+
+          return success;
+        }
+    }
+}

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using Newtonsoft.Json;
@@ -13,6 +15,7 @@ namespace FunctionMonkey.Serialization
     {
         private readonly NamingStrategy _deserializerNamingStrategy;
         private readonly NamingStrategy _serializerNamingStrategy;
+        private readonly IList<JsonConverter> _jsonConverters;
         
         /// <summary>
         /// Constructor
@@ -21,6 +24,16 @@ namespace FunctionMonkey.Serialization
         {
             _deserializerNamingStrategy = namingStrategy ?? throw new ArgumentNullException(nameof(namingStrategy));
             _serializerNamingStrategy = namingStrategy;
+        }
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public NamingStrategyJsonSerializer(NamingStrategy namingStrategy, IEnumerable<JsonConverter> converters)
+        {
+            _deserializerNamingStrategy = namingStrategy ?? throw new ArgumentNullException(nameof(namingStrategy));
+            _serializerNamingStrategy = namingStrategy;
+            _jsonConverters = converters.ToList();
         }
 
         /// <summary>
@@ -63,6 +76,28 @@ namespace FunctionMonkey.Serialization
             }
         }
 
+        public object Deserialize(Type type, string json, bool enforceSecurityProperties = true)
+        {
+            JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = enforceSecurityProperties
+                    ? new JsonSecurityPropertyContractResolver() {NamingStrategy = _deserializerNamingStrategy}
+                    : new DefaultContractResolver() {NamingStrategy = _deserializerNamingStrategy}
+            };
+            try
+            {
+                return JsonConvert.DeserializeObject(json, type, serializerSettings);
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new DeserializationException(ex.Path, ex.LineNumber, ex.LinePosition);
+            }
+            catch (JsonException ex)
+            {
+                throw new DeserializationException(ex.Message);
+            }
+        }
+
         /// <summary>
         /// Serialize the object
         /// </summary>
@@ -76,7 +111,8 @@ namespace FunctionMonkey.Serialization
             {
                 ContractResolver = enforceSecurityProperties
                     ? new JsonSecurityPropertyContractResolver() {NamingStrategy = _serializerNamingStrategy}
-                    : new DefaultContractResolver() {NamingStrategy = _serializerNamingStrategy}
+                    : new DefaultContractResolver() {NamingStrategy = _serializerNamingStrategy},
+                Converters = _jsonConverters
             };
             
             return JsonConvert.SerializeObject(value, Formatting.Indented, serializerSettings);

@@ -1,0 +1,18 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions.Generator-1.0.19",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "methods": [
+        "GET"
+      ],
+      "authLevel": "anonymous",
+      "name": "req",
+      "route": "openapi/{name?}"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/{{AssemblyFilename}}",
+  "entryPoint": "{{Namespace}}.OpenApiProvider.Run"
+}

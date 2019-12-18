@@ -9,6 +9,6 @@ namespace FunctionMonkey.Model.OutputBindings
             ConnectionStringSettingName = connectionStringSettingName;
         }
 
-        public string ConnectionStringSettingName { get; }
+        public string ConnectionStringSettingName { get; set; }
     }
 }

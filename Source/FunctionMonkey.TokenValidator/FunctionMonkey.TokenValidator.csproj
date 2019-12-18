@@ -2,16 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>1.0.0.1</Version>
+        <PackageVersion>$(CommonPackageVersion)</PackageVersion>
         <Authors>James Randall</Authors>
         <Description>Token validator for Function Monkey</Description>
         <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com</PackageProjectUrl>
         <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/FunctionMonkey/master/LICENSE</PackageLicenseUrl>
-        <PackageId>Contrib.FunctionMonkey.TokenValidator</PackageId>
-        <AssemblyVersion>1.0.0.1</AssemblyVersion>
-        <FileVersion>1.0.0.1</FileVersion>
-        <PackageVersion>3.0.17.1</PackageVersion>
-        <PackageId>Contrib.FunctionMonkey.TokenValidator</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
+      <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.6.0" />
     </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ namespace FunctionMonkey.Extensions
     {
         public static IServiceCollection AddFunctionMonkeyClaimsPrincipal(this IServiceCollection services)
         {
-            services.AddTransient(s => FunctionMonkey.Runtime.FunctionClaimsPrincipal.Value);
+            //services.AddTransient(s => FunctionMonkey.Runtime.FunctionClaimsPrincipal.Value);
             return services;
         }
     }

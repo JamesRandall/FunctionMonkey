@@ -13,12 +13,12 @@ namespace FunctionMonkey.Abstractions
         /// <summary>
         /// Binds the claims in the principal onto properties of the command
         /// </summary>
-        bool Bind(ClaimsPrincipal principal, ICommand command);        
+        object Bind(ClaimsPrincipal principal, object command);        
         
         /// <summary>
         /// Binds the claims in the principal onto properties of the command. If this returns null then
         /// the non-async binder will be called.
         /// </summary>
-        Task<bool> BindAsync(ClaimsPrincipal principal, ICommand command);
+        Task<object> BindAsync(ClaimsPrincipal principal, object command);
     }
 }

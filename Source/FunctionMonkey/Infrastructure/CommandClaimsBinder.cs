@@ -9,33 +9,31 @@ namespace FunctionMonkey.Infrastructure
 {
     internal class CommandClaimsBinder : ICommandClaimsBinder
     {
-        private readonly Dictionary<Type, Action<object, ClaimsPrincipal>> _mappers;
+        private readonly Dictionary<Type, Func<object, ClaimsPrincipal, object>> _mappers;
 
-        public CommandClaimsBinder(Dictionary<Type, Action<object, ClaimsPrincipal>> mappers)
+        public CommandClaimsBinder(Dictionary<Type, Func<object, ClaimsPrincipal, object>> mappers)
         {
             _mappers = mappers;
         }
 
-        public bool Bind(ClaimsPrincipal principal, ICommand command)
+        public object Bind(ClaimsPrincipal principal, object command)
         {
             if (_mappers.TryGetValue(command.GetType(), out var binder))
             {
-                binder(command, principal);
-                return true;
+                return binder(command, principal);
             }
 
-            return false;
+            return command;
         }
         
-        public Task<bool> BindAsync(ClaimsPrincipal principal, ICommand command)
+        public Task<object> BindAsync(ClaimsPrincipal principal, object command)
         {
             if (_mappers.TryGetValue(command.GetType(), out var binder))
             {
-                binder(command, principal);
-                return Task.FromResult(true);
+                return Task.FromResult(binder(command, principal));
             }
 
-            return Task.FromResult(false);
+            return Task.FromResult(command);
         }
     }
 }

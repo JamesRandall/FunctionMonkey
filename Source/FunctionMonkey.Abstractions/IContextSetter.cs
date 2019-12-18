@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace FunctionMonkey.Abstractions
 {
@@ -58,6 +59,6 @@ namespace FunctionMonkey.Abstractions
         /// </summary>
         /// <param name="requestUrl">The request URL</param>
         /// <param name="headers">The headers associated with the context</param>
-        void SetHttpContext(string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers);
+        void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers);
     }
 }

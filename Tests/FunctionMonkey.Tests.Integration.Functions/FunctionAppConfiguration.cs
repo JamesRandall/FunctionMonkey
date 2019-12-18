@@ -9,6 +9,8 @@ using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
 using FunctionMonkey.Tests.Integration.Functions.Commands.SignalR;
 using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
+using FunctionMonkey.Tests.Integration.Functions.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
@@ -34,6 +36,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     serviceCollection
+                        .AddTransient<IMarker, Marker>()
                         .AddValidatorsFromAssemblyContaining<FunctionAppConfiguration>()
                         ;
                 })
@@ -66,7 +69,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     // this is not really part of the test suite - but it needs to work - it sets up tables, containers, queues etc.
                     // essentially pre-reqs for tracking things in the test suite
                     .HttpRoute("setup", route => route
-                        .HttpFunction<SetupTestResourcesCommand>()
+                        .HttpFunction<SetupTestResourcesCommand>(HttpMethod.Put)
                     )
                     .HttpRoute("verbs", route => route
                         .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)
@@ -141,6 +144,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpCommandWithNoRoute>()
                     )                    
                     
+                    // Output bindings
                     .HttpRoute("outputBindings", route => route
                         // Service Bus
                         .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBusQueue")

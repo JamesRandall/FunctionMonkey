@@ -229,12 +229,12 @@ namespace FunctionMonkey.Infrastructure
         {
             Debug.Assert(httpFunctionDefinition.RouteParameters != null);
 
-            httpFunctionDefinition.PossibleBindingProperties = httpFunctionDefinition
+            httpFunctionDefinition.QueryParameters = httpFunctionDefinition
                 .CommandType
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(x => x.GetCustomAttribute<SecurityPropertyAttribute>() == null
                             && x.SetMethod != null
-                            && x.PropertyType.IsSupportedQueryParameterType()
+                            && x.PropertyType.IsSupportedCSharpQueryParameterType()
                             && httpFunctionDefinition.RouteParameters.All(y => y.Name != x.Name) // we can't be a query parameter and a route parameter
                             )
                 .Select(x => new HttpParameter
@@ -281,7 +281,7 @@ namespace FunctionMonkey.Infrastructure
                                 || x.PropertyType.GetMethods(BindingFlags.Public | BindingFlags.Static).Any(y => y.Name == "TryParse"))).ToArray();
             Regex regex = new Regex("{(.*?)}");
             MatchCollection matches = regex.Matches(httpFunctionDefinition1.Route);
-            foreach (Match match in matches) //you can loop through your matches like this
+            foreach (Match match in matches)
             {
                 string routeParameter = match.Groups[1].Value;
                 bool isOptional = routeParameter.EndsWith("?");

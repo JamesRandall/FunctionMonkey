@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Contexts;
@@ -82,10 +83,11 @@ namespace FunctionMonkey.Testing.Mocks
             };
         }
 
-        public void SetHttpContext(string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers)
+        public void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers)
         {
             HttpContextLocal.Value = new HttpContext
             {
+                ClaimsPrincipal = claimsPrincipal,
                 RequestUrl = requestUrl,
                 Headers = headers
             };
