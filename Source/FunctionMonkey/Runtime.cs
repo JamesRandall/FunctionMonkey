@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Security.Claims;
+using System.Collections.Generic;
 using System.Threading;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,12 +24,12 @@ namespace FunctionMonkey
 
         public static AsyncLocal<ILogger> FunctionProvidedLogger => RuntimeInstance.Value.FunctionProvidedLogger;
 
+        public static Dictionary<string, PluginFunctions> PluginFunctions => RuntimeInstance.Value.PluginFunctions;
+        
         public static AsyncLocal<IServiceProvider> FunctionServiceProvider => RuntimeInstance.Value.FunctionServiceProvider;
 
-        public static AsyncLocal<ClaimsPrincipal> FunctionClaimsPrincipal => RuntimeInstance.Value.FunctionClaimsPrincipal;
-
         private static readonly Lazy<RuntimeInstance> RuntimeInstance = new Lazy<RuntimeInstance>(() => new RuntimeInstance(null, null, ServiceCollection));
-
+        
         private static IServiceCollection ServiceCollection { get; set; }
 
         public static void InitializeFromStartup(IServiceCollection serviceCollection)

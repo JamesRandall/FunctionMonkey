@@ -1,6 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <UsingTask TaskName="FunctionMonkey.Compiler.MSBuild.ConvertErrors" AssemblyFile="/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Source/FunctionMonkey.Compiler.MSBuild/bin/Debug/netstandard2.0/FunctionMonkey.Compiler.MSBuild.dll" />
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <FunctionCompilerExe>dotnet "/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Source/FunctionMonkey.Compiler/bin/Debug/netcoreapp3.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerParams>"\Users\jamesrandall\Code\myOpenSource\functionMonkeyV4\Samples\Scratch\SwaggerBuildOut\bin\Debug\netcoreapp3.1\bin\SwaggerBuildOut.dll" --netcore21 --jsonoutput</FunctionCompilerParams>
+    <FunctionPublishParams>/Users/jamesrandall/Code/myOpenSource/functionMonkeyV4/Samples/Scratch/SwaggerBuildOut/bin/Debug/netcoreapp3.1/bin/SwaggerBuildOut.dll</FunctionPublishParams>
+    <FunctionPublishPostfix>--netcore21 --jsonoutput</FunctionPublishPostfix>
+  </PropertyGroup>
+
+  <Target Name="_FunctionMonkeyCompiler" AfterTargets="_GenerateFunctionsPostBuild">
+    <Exec Command="$(FunctionCompilerExe) $(FunctionCompilerParams)" />
+    <ConvertErrors InputPath="$(TargetDir)bin" />
+  </Target>
+  
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -11,12 +26,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="AzureFromTheTrenches.Commanding" Version="9.0.1" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.4" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="3.1.1" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.8" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />

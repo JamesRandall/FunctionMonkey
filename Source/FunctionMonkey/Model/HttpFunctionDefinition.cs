@@ -10,11 +10,14 @@ namespace FunctionMonkey.Model
 {
     public class HttpFunctionDefinition : AbstractFunctionDefinition
     {
-        // We want these to have nice routes so we don't apply the name prefix - every other type does
         public HttpFunctionDefinition(Type commandType) : base("", commandType)
         {
         }
-
+        
+        public HttpFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("", commandType, explicitCommandResultType)
+        {
+        }
+        
         public HashSet<HttpMethod> Verbs { get; set; } = new HashSet<HttpMethod>();
 
         public AuthorizationTypeEnum? Authorization { get; set; }
@@ -27,7 +30,7 @@ namespace FunctionMonkey.Model
 
         public bool HasRoute => Route != null;
 
-        public IReadOnlyCollection<HttpParameter> PossibleBindingProperties { get; set; }
+        public IReadOnlyCollection<HttpParameter> QueryParameters { get; set; }
         
         public IReadOnlyCollection<HttpParameter> PossibleFormProperties { get; set; }
 
@@ -35,7 +38,9 @@ namespace FunctionMonkey.Model
 
         public string OpenApiDescription { get; set; }
 
-        public Dictionary<int, string> OpenApiResponseDescriptions { get; set; } = new Dictionary<int, string>();
+        public string OpenApiSummary { get; set; }
+
+        public Dictionary<int, OpenApiResponseConfiguration> OpenApiResponseConfigurations { get; set; } = new Dictionary<int, OpenApiResponseConfiguration>();
 
         public string SubRoute { get; set; }
 
@@ -55,12 +60,30 @@ namespace FunctionMonkey.Model
 
         public HeaderBindingConfiguration HeaderBindingConfiguration { get; set; }
 
-        public bool HasHttpResponseHandler => HttpResponseHandlerType != null;
+        public bool HasHttpResponseHandler => 
+            HttpResponseHandlerType != null ||
+            CreateResponseFromExceptionFunction != null ||
+            CreateResponseFunction != null ||
+            CreateResponseForResultFunction != null ||
+            CreateValidationFailureResponseFunction != null;
 
         public Type HttpResponseHandlerType { get; set; }
 
         public string HttpResponseHandlerTypeName => HttpResponseHandlerType.EvaluateType();
 
         public bool IsStreamCommand { get; set; }
+        
+        public bool ReturnResponseBodyWithOutputBinding { get; set; }
+        
+        // F# Support
+        public BridgedFunction TokenValidatorFunction { get; set; }
+        
+        public BridgedFunction CreateResponseFromExceptionFunction { get; set; }
+        
+        public BridgedFunction CreateResponseFunction { get; set; }
+        
+        public BridgedFunction CreateResponseForResultFunction { get; set; }
+        
+        public BridgedFunction CreateValidationFailureResponseFunction { get; set; }
     }
 }

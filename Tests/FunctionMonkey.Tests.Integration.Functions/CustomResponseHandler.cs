@@ -14,7 +14,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
             return Task.FromResult((IActionResult)new OkObjectResult("CreateResponseFromException<TCommand>"));
         }
 
-        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand<TResult>
+        // We can't use where TCommand : ICommand<TResult> due to the function injection - we can't bind the generic return type
+        // (will revisit and check)
+        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand
         {
             return Task.FromResult((IActionResult)new OkObjectResult("CreateResponse<TCommand,TResult>"));
         }

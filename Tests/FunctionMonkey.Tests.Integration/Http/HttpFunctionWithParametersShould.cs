@@ -44,7 +44,9 @@ namespace FunctionMonkey.Tests.Integration.Http
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             string errorMessage = await response.Content.ReadAsStringAsync();
-            Assert.Equal("Invalid type for query parameter Value", errorMessage);
+            // we convert the case of the response because the idiomatic case of the properties is different
+            // in the C# and F# models
+            Assert.Equal("Invalid type for query parameter Value".ToLower(), errorMessage.ToLower());
         }
         
         [Fact]
@@ -73,7 +75,9 @@ namespace FunctionMonkey.Tests.Integration.Http
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             string errorMessage = await response.Content.ReadAsStringAsync();
-            Assert.Equal("Invalid type for query parameter Value", errorMessage);
+            // we convert the case of the response because the idiomatic case of the properties is different
+            // in the C# and F# models
+            Assert.Equal("Invalid type for query parameter Value".ToLower(), errorMessage.ToLower());
         }
         
         [Fact]
@@ -88,7 +92,9 @@ namespace FunctionMonkey.Tests.Integration.Http
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             string errorMessage = await response.Content.ReadAsStringAsync();
-            Assert.Equal("Invalid type for query parameter NullableGuid", errorMessage);
+            // we convert the case of the response because the idiomatic case of the properties is different
+            // in the C# and F# models
+            Assert.Equal("Invalid type for query parameter NullableGuid".ToLower(), errorMessage.ToLower());
         }
 
         [Fact]

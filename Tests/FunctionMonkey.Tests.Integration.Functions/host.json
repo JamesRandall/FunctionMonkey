@@ -1,5 +1,9 @@
 {
   "version": "2.0",
+  "tracing": 
+{
+  "consoleLevel": "verbose"
+},
   "extensions": {
     "http": {
       "routePrefix": ""

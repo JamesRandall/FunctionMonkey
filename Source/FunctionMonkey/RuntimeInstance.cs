@@ -1,22 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Commanding.Abstractions.Validation;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
+using FunctionMonkey.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey
 {
+
+    public abstract class AbstractPluginFunctions
+    {
+        
+    }
+
     public class RuntimeInstance
     {
         public IServiceProvider ServiceProvider => FunctionServiceProvider.Value ?? BuiltServiceProvider.Value;
@@ -25,7 +39,10 @@ namespace FunctionMonkey
 
         public AsyncLocal<ILogger> FunctionProvidedLogger { get;  }= new AsyncLocal<ILogger>(null);
 
-        public AsyncLocal<ClaimsPrincipal> FunctionClaimsPrincipal { get; } = new AsyncLocal<ClaimsPrincipal>(null);
+        public Dictionary<string, PluginFunctions> PluginFunctions { get; } = new Dictionary<string, PluginFunctions>();
+        
+        //public IFunctionHostBuilder Builder { get; }
+        public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }
 
         public IFunctionHostBuilder Builder { get; private set; }
 
@@ -37,6 +54,10 @@ namespace FunctionMonkey
             Action<IServiceCollection, ICommandRegistry> beforeServiceProviderBuild,
             IServiceCollection serviceCollection)
         {
+            if (serviceCollection == null)
+            {
+                System.Console.WriteLine("No service collection supplied by runtime");
+            }
             ServiceCollection = serviceCollection ?? new ServiceCollection();
             BuiltServiceProvider = new Lazy<IServiceProvider>(() => ServiceCollection.BuildServiceProvider());
 
@@ -51,7 +72,7 @@ namespace FunctionMonkey
 
             ICommandRegistry commandRegistry;
             // ReSharper disable once SuspiciousTypeConversion.Global - externally provided
-            if (configuration is ICommandingConfigurator commandingConfigurator)
+            if (configuration != null && configuration is ICommandingConfigurator commandingConfigurator)
             {
                 commandRegistry = commandingConfigurator.AddCommanding(adapter);
             }
@@ -63,23 +84,286 @@ namespace FunctionMonkey
 
             // Register internal implementations
             RegisterInternalImplementations();
+            
+            FunctionHostBuilder builder = null;
+            IFunctionCompilerMetadata functionCompilerMetadata = null;
+            if (configuration != null)
+            {
+                // Invoke the builder process
+                builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
+                FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
+                FunctionDefinitions = builder.FunctionDefinitions;
+                
+                SetupAuthorization(builder, functionBuilder);
+            }
+            else
+            {
+                functionCompilerMetadata = LocateFunctionCompilerMetadata(functionAppConfigurationAssembly);
+                FunctionDefinitions = functionCompilerMetadata.FunctionDefinitions;
+            }
 
-            // Invoke the builder process
-            FunctionHostBuilder builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
-            Builder = builder;
-            FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
+            RegisterCoreDependencies(FunctionDefinitions);
 
-            SetupAuthorization(builder, functionBuilder);
+            RegisterTimerCommandFactories(FunctionDefinitions);
 
-            RegisterCoreDependencies(builder.FunctionDefinitions);
+            RegisterHttpDependencies(FunctionDefinitions);
 
-            RegisterTimerCommandFactories(builder.FunctionDefinitions);
+            RegisterCosmosDependencies(FunctionDefinitions);
 
-            RegisterHttpDependencies(builder.FunctionDefinitions);
+            CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
-            RegisterCosmosDependencies(builder.FunctionDefinitions);
+            //beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
+            //ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
+            //afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
-            beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
+            //builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+        }
+
+        private ISerializer CreateSerializer(AbstractFunctionDefinition functionDefinition)
+        {
+            ISerializer serializer;
+            if (functionDefinition.SerializerNamingStrategyType != null)
+            {
+                var deserializerNamingStrategy = (NamingStrategy)
+                    Activator.CreateInstance(functionDefinition.DeserializerNamingStrategyType);
+                var serializerNamingStrategy = (NamingStrategy)
+                    Activator.CreateInstance(functionDefinition.SerializerNamingStrategyType);
+                serializer =
+                    new NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
+            }
+            else
+            {
+                serializer = (FunctionMonkey.Abstractions.ISerializer)
+                    ServiceProvider.GetService(functionDefinition.CommandDeserializerType);
+            }
+
+            return serializer;
+        }
+
+        private void CreatePluginFunctions(
+            IReadOnlyCollection<AbstractClaimsMappingDefinition> claimsMappings,
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
+            {
+                PluginFunctions pluginFunctions = new PluginFunctions();
+                
+                if (functionDefinition.DeserializeFunction != null)
+                {
+                    pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
+                        ((Func<string, bool, object>) functionDefinition.SerializeFunction.Handler)(body, enforceSecurityProperties);
+                }
+                else
+                {
+                    pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
+                        CreateSerializer(functionDefinition).Deserialize(functionDefinition.CommandType, body,
+                            enforceSecurityProperties);
+                }
+
+                if (functionDefinition.SerializeFunction != null)
+                {
+                    pluginFunctions.Serialize = (obj, enforceSecurityProperties) =>
+                        ((Func<object, bool, string>) functionDefinition.SerializeFunction.Handler)(obj,
+                            enforceSecurityProperties);
+                }
+                else
+                {
+                    pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
+                        CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties);
+                }
+                
+                pluginFunctions.Handler = functionDefinition.FunctionHandler;
+                
+                if (functionDefinition.ValidatorFunction != null)
+                {
+                    pluginFunctions.Validate = obj =>
+                        ((Func<object, object>) functionDefinition.ValidatorFunction.Handler)(obj);
+                }
+                else
+                {
+                    pluginFunctions.Validate = command =>
+                    {
+                        var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
+                            ServiceProvider.GetService(
+                                typeof(FunctionMonkey.Abstractions.Validation.IValidator));
+                        var validationResult = validator.Validate((ICommand) command);
+                        return validationResult;
+                    };
+                }
+                
+                if (functionDefinition.IsValidFunction != null)
+                {
+                    pluginFunctions.IsValid = (Func<object,bool>)functionDefinition.IsValidFunction.Handler;
+                }
+                else
+                {
+                    pluginFunctions.IsValid = validationResult =>
+                    {
+                        ValidationResult castValidationResult = (ValidationResult) validationResult;
+                        return castValidationResult.IsValid;
+                    };
+                }
+                
+                if (functionDefinition is HttpFunctionDefinition httpFunctionDefinition)
+                {
+                    if (httpFunctionDefinition.TokenValidatorFunction != null)
+                    {
+                        if (httpFunctionDefinition.TokenValidatorFunction.IsAsync)
+                        {
+                            pluginFunctions.ValidateToken =
+                                (Func<string, Task<ClaimsPrincipal>>) httpFunctionDefinition.TokenValidatorFunction
+                                    .Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.ValidateToken = authorizationHeader => Task.FromResult(
+                                ((Func<string, ClaimsPrincipal>) httpFunctionDefinition.TokenValidatorFunction
+                                    .Handler)(authorizationHeader)
+                            );
+                        }
+
+                        if (claimsMappings == null)
+                        {
+                            pluginFunctions.BindClaims = (principal, command) => Task.FromResult(command);
+                        }
+                        else
+                        {
+                            var mapperFunc = ImmutableCommandClaimsMapperBuilder.Build(httpFunctionDefinition, claimsMappings);
+                            pluginFunctions.BindClaims = (principal, command) => Task.FromResult(mapperFunc(command, principal));
+                        }
+                    }
+                    else
+                    {
+                        pluginFunctions.ValidateToken = async (authorizationHeader) =>
+                        {
+                            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
+                                ServiceProvider.GetService(httpFunctionDefinition
+                                    .TokenValidatorType);
+                            ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
+                            return principal;
+                        };
+                        
+                        pluginFunctions.BindClaims = async (principal, command) =>
+                        {
+                            var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
+                                ServiceProvider.GetService(
+                                    typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
+                            var claimsBinderTask = claimsBinder.BindAsync(principal, command);
+                            if (claimsBinderTask == null)
+                            {
+                                return claimsBinder.Bind(principal, command);
+                            }
+                            return await claimsBinderTask;
+                        };
+                    }
+
+                    pluginFunctions.IsAuthorized = async (principal, httpVerb, requestUrl) =>
+                    {
+                        var claimsPrincipalAuthorization = (IClaimsPrincipalAuthorization)
+                            ServiceProvider.GetService(httpFunctionDefinition.ClaimsPrincipalAuthorizationType);
+                        return await claimsPrincipalAuthorization.IsAuthorized(principal, httpVerb, requestUrl);
+                    };
+
+                    if (HasResponseFunctions(httpFunctionDefinition))
+                    {
+                        if (httpFunctionDefinition.CreateValidationFailureResponseFunction != null)
+                        {
+                            pluginFunctions.CreateValidationFailureResponse =
+                                (Func<object, object, Task<IActionResult>>)
+                                httpFunctionDefinition.CreateValidationFailureResponseFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateValidationFailureResponse = (cmd, vr) => null;
+                        }
+
+                        if (httpFunctionDefinition.CreateResponseForResultFunction != null)
+                        {
+                            pluginFunctions.CreateResponseForResult =
+                                (Func<object, object, Task<IActionResult>>) httpFunctionDefinition
+                                    .CreateResponseForResultFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateResponseForResult = (cmd, result) => null;
+                        }
+                    
+                        if (httpFunctionDefinition.CreateResponseFunction != null)
+                        {
+                            pluginFunctions.CreateResponse =
+                                (Func<object, Task<IActionResult>>) httpFunctionDefinition.CreateResponseFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateResponse = cmd => null;
+                        }
+                    
+                        if (httpFunctionDefinition.CreateResponseFromExceptionFunction != null)
+                        {
+                            pluginFunctions.CreateResponseFromException =
+                                (Func<object, Exception, Task<IActionResult>>)httpFunctionDefinition.CreateResponseFromExceptionFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateResponseFromException = (cmd, ex) => null;
+                        }
+                    }
+                    else if (httpFunctionDefinition.HttpResponseHandlerType != null)
+                    {
+                        pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateValidationFailureResponse((ICommand) command, (ValidationResult)validationResult);
+                        };
+                        
+                        pluginFunctions.CreateResponseForResult = (command, result) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateResponse((ICommand) command, result);
+                        };
+                        pluginFunctions.CreateResponse = command =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateResponse((ICommand) command);
+                        };
+                        pluginFunctions.CreateResponseFromException = (command, exception) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateResponseFromException((ICommand) command, exception);
+                        };
+                    }
+                    else
+                    {
+                        pluginFunctions.CreateValidationFailureResponse = (cmd, vr) => null;
+                        pluginFunctions.CreateResponseForResult = (cmd, result) => null;
+                        pluginFunctions.CreateResponse = cmd => null;
+                        pluginFunctions.CreateResponseFromException = (cmd, ex) => null;
+                    }
+
+                    
+                    
+                    
+                };
+                    
+                PluginFunctions.Add(functionDefinition.Name, pluginFunctions);
+                
+            }
+        }
+        
+        private static bool HasResponseFunctions(HttpFunctionDefinition httpFunctionDefinition)
+        {
+            return httpFunctionDefinition.CreateValidationFailureResponseFunction != null ||
+                   httpFunctionDefinition.CreateResponseForResultFunction != null ||
+                   httpFunctionDefinition.CreateResponseFunction != null ||
+                   httpFunctionDefinition.CreateResponseFromExceptionFunction != null;
         }
 
         private void RegisterCosmosDependencies(
@@ -118,6 +402,7 @@ namespace FunctionMonkey
 
             // Inject an ILogger that picks up the runtime provided logger
             ServiceCollection.AddTransient<ILogger>(sp => new FunctionLogger(this));
+            ServiceCollection.AddTransient<ILoggerFactory>(sp => new FunctionLoggerFactory(this));
         }
 
         private void RegisterHttpDependencies(
@@ -177,6 +462,12 @@ namespace FunctionMonkey
             IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration(functionAppConfigurationAssembly);
 
             return configuration;
+        }
+        
+        private IFunctionCompilerMetadata LocateFunctionCompilerMetadata(Assembly functionAppConfigurationAssembly)
+        {
+            IFunctionCompilerMetadata metadata = ConfigurationLocator.FindCompilerMetadata(functionAppConfigurationAssembly);
+            return metadata;
         }
 
         private FunctionHostBuilder CreateBuilderFromConfiguration(

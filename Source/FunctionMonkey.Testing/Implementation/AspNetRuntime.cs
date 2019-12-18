@@ -21,12 +21,14 @@ namespace FunctionMonkey.Testing.Implementation
 
         public AspNetRuntime()
         {
+            // TODO: Need to resolve namespace
+            /*
             IWebHost host =
                 Microsoft.AspNetCore.WebHost.CreateDefaultBuilder()
                     .ConfigureServices(sc => { sc.AddMvc(); })
                     .UseStartup<DummyStartup>()
                     .Build();
-            ServiceProvider = host.Services;
+            ServiceProvider = host.Services;*/
         }
 
         public async Task<HttpResponse> CreateHttpResponse(ActionContext actionContext, IActionResult actionResult)
