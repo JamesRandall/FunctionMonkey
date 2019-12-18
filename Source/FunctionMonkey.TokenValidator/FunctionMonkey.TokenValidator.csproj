@@ -2,11 +2,16 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageVersion>3.0.17</PackageVersion>
+        <Version>1.0.0.1</Version>
         <Authors>James Randall</Authors>
         <Description>Token validator for Function Monkey</Description>
         <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com</PackageProjectUrl>
         <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/FunctionMonkey/master/LICENSE</PackageLicenseUrl>
+        <PackageId>Contrib.FunctionMonkey.TokenValidator</PackageId>
+        <AssemblyVersion>1.0.0.1</AssemblyVersion>
+        <FileVersion>1.0.0.1</FileVersion>
+        <PackageVersion>3.0.17.1</PackageVersion>
+        <PackageId>Contrib.FunctionMonkey.TokenValidator</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
