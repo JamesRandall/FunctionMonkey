@@ -26,6 +26,7 @@ namespace FunctionMonkey.Builders
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
         public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
+        public bool CompileTargetAspNetCore { get; private set; } = false;
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -97,6 +98,12 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder Serialization(Action<ISerializationBuilder> serialization)
         {
             serialization(SerializationBuilder);
+            return this;
+        }
+
+        public IFunctionHostBuilder TargetAspNetCore()
+        {
+            CompileTargetAspNetCore = true;
             return this;
         }
 

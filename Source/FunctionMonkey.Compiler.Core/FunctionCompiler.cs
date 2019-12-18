@@ -44,7 +44,7 @@ namespace FunctionMonkey.Compiler.Core
                 (resolveType) => null // we never resolve during compilation
             );
             _commandRegistry = adapter.AddCommanding();
-            _assemblyCompiler = new AssemblyCompiler(compilerLog);
+            _assemblyCompiler = new AzureFunctionsAssemblyCompiler(compilerLog);
             _triggerReferenceProvider = new TriggerReferenceProvider();
             _jsonCompiler = new JsonCompiler();
             _openApiCompiler = new OpenApiCompiler();
