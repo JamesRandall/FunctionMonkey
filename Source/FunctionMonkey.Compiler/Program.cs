@@ -23,9 +23,7 @@ namespace FunctionMonkey.Compiler
                 ? LogOutputType.Json
                 : LogOutputType.Console;
             
-            CompileTargetEnum target = args.Any(x => x.ToLower() == "--netcore21") ? CompileTargetEnum.NETCore21 : CompileTargetEnum.NETStandard20;
             string outputBinaryDirectory = String.Empty;
-            compilerLog.Message($"Targeting {target}");
             
             if (args.Length == 0)
             {
@@ -55,7 +53,7 @@ namespace FunctionMonkey.Compiler
                         return null;
                     };
 
-                    FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, target, compilerLog);
+                    FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, compilerLog);
                     compiler.Compile();
                 }
                 catch (Exception e)

@@ -16,7 +16,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         public JsonCompiler(ITemplateProvider templateProvider = null)
         {
-            _templateProvider = templateProvider ?? new TemplateProvider();
+            _templateProvider = templateProvider ?? new TemplateProvider(CompileTargetEnum.AzureFunctions);
         }
 
         public void Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,

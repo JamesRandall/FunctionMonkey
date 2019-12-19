@@ -34,11 +34,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class AzureFunctionsAssemblyCompiler : AssemblyCompilerBase
     {
-        public AzureFunctionsAssemblyCompiler(ICompilerLog compilerLog, ITemplateProvider templateProvider = null) : base(compilerLog, templateProvider)
+        public AzureFunctionsAssemblyCompiler(ICompilerLog compilerLog, ITemplateProvider templateProvider) : base(compilerLog, templateProvider)
         {
             
         }
-        
 
         protected override List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             OpenApiOutputModel openApiOutputModel,

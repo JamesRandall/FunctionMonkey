@@ -14,15 +14,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         public OpenApiConfiguration OpenApiConfiguration { get; set; }
         public string OutputAuthoredSourceFolder { get; set; }
         public Type BacklinkReferenceType { get; set; }
-        public IReadOnlyCollection<ImmutableTypeConstructorParameter> BacklinkReferenceConstructorParameters
-        {
-            get;
-            set;
-        }
-
         public PropertyInfo BacklinkPropertyInfo { get; }
-
         public IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
-        
+        public CompileTargetEnum CompileTarget { get; set; } = CompileTargetEnum.AzureFunctions;
     }
 }

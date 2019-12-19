@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
+using FunctionMonkey.Compiler.Core;
 using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Abstractions
@@ -20,5 +21,6 @@ namespace FunctionMonkey.Abstractions
         Type BacklinkReferenceType { get; }
 
         PropertyInfo BacklinkPropertyInfo { get; }
+        CompileTargetEnum CompileTarget { get; }
     }
 }

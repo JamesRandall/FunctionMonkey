@@ -5,6 +5,7 @@ open System.Reflection
 open FunctionMonkey.Abstractions
 open FunctionMonkey.Abstractions.Builders.Model
 open FunctionMonkey.Abstractions.Http
+open FunctionMonkey.Compiler.Core
 open FunctionMonkey.Model
 
 module Models =
@@ -70,6 +71,7 @@ module Models =
              outputAuthoredSourceFolder: OutputAuthoredSource
              backlinkReferenceType: Type
              backlinkPropertyInfo: PropertyInfo
+             compileTarget: CompileTargetEnum
          }
          interface IFunctionCompilerMetadata with
             member i.ClaimsMappings = i.claimsMappings :> System.Collections.Generic.IReadOnlyCollection<AbstractClaimsMappingDefinition>
@@ -78,6 +80,7 @@ module Models =
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
             member i.BacklinkReferenceType = i.backlinkReferenceType
             member i.BacklinkPropertyInfo = i.backlinkPropertyInfo
+            member i.CompileTarget = i.compileTarget
     
     type ValidationErrorSeverity =
         | ValidationError

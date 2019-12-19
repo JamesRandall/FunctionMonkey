@@ -28,7 +28,7 @@ namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
 
         private static void WriteTemplate(TextWriter writer, AbstractFunctionDefinition functionDefinition)
         {
-            TemplateProvider templateProvider = new TemplateProvider();
+            TemplateProvider templateProvider = new TemplateProvider(CompileTargetEnum.AzureFunctions);
             string templateSource = templateProvider.GetJsonOutputParameterTemplate(functionDefinition.OutputBinding);
             if (templateSource != null)
             {

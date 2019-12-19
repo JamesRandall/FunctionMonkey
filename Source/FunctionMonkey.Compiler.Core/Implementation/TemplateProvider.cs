@@ -9,6 +9,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal class TemplateProvider : ITemplateProvider
     {
+        private readonly CompileTargetEnum _target;
+
         private static readonly Dictionary<Type, string> TypeToTemplatePrefixMap = new Dictionary<Type, string>
         {
             {typeof(HttpFunctionDefinition), "http"},
@@ -31,6 +33,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             {typeof(SignalROutputBinding), "signalr" }
         };
 
+        public TemplateProvider(CompileTargetEnum target)
+        {
+            _target = target;
+        }
+
         public string GetCSharpTemplate(AbstractFunctionDefinition functionDefinition)
         {
             return GetTemplate(functionDefinition, "csharp");
@@ -38,8 +45,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         public string GetTemplate(string name, string type)
         {
+            string targetPrefix = GetTargetPrefix();
             using (Stream stream = GetType().Assembly
-                .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{name}.{type}.handlebars"))
+                .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{targetPrefix}.{name}.{type}.handlebars"))
             {
                 if (stream != null)
                 {
@@ -86,8 +94,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string template = null;
             if (TypeToTemplatePrefixMap.TryGetValue(functionDefinition.GetType(), out string prefix))
             {
+                string targetPrefix = GetTargetPrefix();
                 using (Stream stream = GetType().Assembly
-                    .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{prefix}.{type}.handlebars"))
+                    .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{targetPrefix}.{prefix}.{type}.handlebars"))
                 {
                     if (stream != null)
                     {
@@ -99,7 +108,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 if (string.IsNullOrWhiteSpace(template) && fallbackToDefault)
                 {
                     using (Stream stream = GetType().Assembly
-                        .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.default.{type}.handlebars"))
+                        .GetManifestResourceStream($"FunctionMonkey.Compiler.Core.Templates.{targetPrefix}.default.{type}.handlebars"))
                     {
                         if (stream != null)
                         {
@@ -117,11 +126,23 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             throw new ConfigurationException($"No templates are configured for function definitions of type {functionDefinition.GetType().Name}");
         }
 
+        private string GetTargetPrefix()
+        {
+            return _target == CompileTargetEnum.AzureFunctions ? "AzureFunctions" : "AspNetCore";
+        }
+
         public string GetCSharpLinkBackTemplate()
         {
-            using (Stream stream = GetType().Assembly.GetManifestResourceStream("FunctionMonkey.Compiler.Core.Templates.forcereference.csharp.handlebars"))
-            using (StreamReader reader = new StreamReader(stream))
-                return reader.ReadToEnd();
+            string targetPrefix = GetTargetPrefix();
+            using (Stream stream = GetType().Assembly.GetManifestResourceStream(
+                $"FunctionMonkey.Compiler.Core.Templates.{targetPrefix}.forcereference.csharp.handlebars"))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            
         }
     }
 }

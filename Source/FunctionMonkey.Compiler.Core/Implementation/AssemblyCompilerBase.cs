@@ -18,10 +18,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 {
     internal abstract class AssemblyCompilerBase : IAssemblyCompiler
     {
-        protected AssemblyCompilerBase(ICompilerLog compilerLog, ITemplateProvider templateProvider = null)
+        protected AssemblyCompilerBase(ICompilerLog compilerLog, ITemplateProvider templateProvider)
         {
             CompilerLog = compilerLog;
-            TemplateProvider = templateProvider ?? new TemplateProvider();
+            TemplateProvider = templateProvider;
         }
 
         public ICompilerLog CompilerLog { get; }
@@ -107,10 +107,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string manifestResourcePrefix,
             CompileTargetEnum compileTarget)
         {
+            List<PortableExecutableReference> references =
+                resolvedLocations.Select(x => MetadataReference.CreateFromFile(x)).ToList();
             // Add our references - if the reference is to a library that forms part of NET Standard 2.0 then make sure we add
             // the reference from the embedded NET Standard reference set - although our target is NET Standard the assemblies
             // in the output folder of the Function App may be NET Core assemblies.
-            List<PortableExecutableReference> references = resolvedLocations.Select(x =>
+            /*List<PortableExecutableReference> references = resolvedLocations.Select(x =>
             {
                 if (compileTarget == CompileTargetEnum.NETStandard20)
                 {
@@ -130,9 +132,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
                 return MetadataReference.CreateFromFile(x);
 
-            }).ToList();
+            }).ToList();*/
 
-            if (compileTarget == CompileTargetEnum.NETStandard20)
+            /*if (compileTarget == CompileTargetEnum.NETStandard20)
             {
                 using (Stream netStandard = GetType().Assembly
                     .GetManifestResourceStream("FunctionMonkey.Compiler.Core.references.netstandard2._0.netstandard.dll"))
@@ -151,7 +153,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 {
                     references.Add(MetadataReference.CreateFromStream(systemIo));
                 }
-            }
+            }*/
 
             return references;
         }
@@ -214,8 +216,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 locations.Add(typeof(FSharpOption<>).Assembly.Location);
             }
 
-            if (compileTarget == CompileTargetEnum.NETCore21)
-            {
+            //if (compileTarget == CompileTargetEnum.NETCore21)
+            //{
                 // we're a 3.x assembly so we can use our assemblies
                 Assembly[] currentAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -228,7 +230,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
                 locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading").Location);
                 locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading.Tasks").Location);
-            }
+            //}
             
             foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {

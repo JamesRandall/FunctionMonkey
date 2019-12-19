@@ -20,7 +20,6 @@ namespace FunctionMonkey.Compiler.Core
 
         private readonly Assembly _configurationSourceAssembly;
         private readonly string _outputBinaryFolder;
-        private readonly CompileTargetEnum _compileTarget;
         private readonly ICompilerLog _compilerLog;
         private readonly ICommandRegistry _commandRegistry;
         private readonly IAssemblyCompiler _assemblyCompiler;
@@ -30,12 +29,10 @@ namespace FunctionMonkey.Compiler.Core
 
         public FunctionCompiler(Assembly configurationSourceAssembly,
             string outputBinaryFolder,
-            CompileTargetEnum compileTarget,
             ICompilerLog compilerLog)
         {
             _configurationSourceAssembly = configurationSourceAssembly;
             _outputBinaryFolder = outputBinaryFolder;
-            _compileTarget = compileTarget;
             _compilerLog = compilerLog;
             _serviceCollection = new ServiceCollection();
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
@@ -44,7 +41,7 @@ namespace FunctionMonkey.Compiler.Core
                 (resolveType) => null // we never resolve during compilation
             );
             _commandRegistry = adapter.AddCommanding();
-            _assemblyCompiler = new AzureFunctionsAssemblyCompiler(compilerLog);
+            _assemblyCompiler = new AzureFunctionsAssemblyCompiler(compilerLog, new TemplateProvider(CompileTargetEnum.AzureFunctions));
             _triggerReferenceProvider = new TriggerReferenceProvider();
             _jsonCompiler = new JsonCompiler();
             _openApiCompiler = new OpenApiCompiler();
@@ -78,7 +75,8 @@ namespace FunctionMonkey.Compiler.Core
                 {
                     FunctionDefinitions = builder.FunctionDefinitions,
                     OpenApiConfiguration = builder.OpenApiConfiguration,
-                    OutputAuthoredSourceFolder = builder.OutputAuthoredSourceFolder
+                    OutputAuthoredSourceFolder = builder.OutputAuthoredSourceFolder,
+                    CompileTarget = builder.CompileTargetAspNetCore ? CompileTargetEnum.AspNetCore : CompileTargetEnum.AzureFunctions
                 };
             }
 
@@ -95,7 +93,8 @@ namespace FunctionMonkey.Compiler.Core
                 _outputBinaryFolder,
                 $"{newAssemblyNamespace}.dll",
                 openApi,
-                _compileTarget, functionCompilerMetadata.OutputAuthoredSourceFolder);
+                functionCompilerMetadata.CompileTarget,
+                functionCompilerMetadata.OutputAuthoredSourceFolder);
         }
 
         private bool VerifyCommandAndResponseTypes(FunctionHostBuilder builder)
