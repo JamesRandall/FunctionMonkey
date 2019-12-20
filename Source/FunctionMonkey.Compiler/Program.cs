@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
-using FunctionMonkey.Compiler.Core;
 
 namespace FunctionMonkey.Compiler
 {
@@ -53,7 +52,7 @@ namespace FunctionMonkey.Compiler
                         return null;
                     };
 
-                    FunctionCompiler compiler = new FunctionCompiler(assembly, outputBinaryDirectory, compilerLog);
+                    Core.Compiler compiler = new Core.Compiler(assembly, outputBinaryDirectory, compilerLog);
                     compiler.Compile();
                 }
                 catch (Exception e)

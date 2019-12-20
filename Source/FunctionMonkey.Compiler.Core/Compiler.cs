@@ -1,4 +1,8 @@
-﻿using AzureFromTheTrenches.Commanding;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
@@ -6,28 +10,20 @@ using FunctionMonkey.Builders;
 using FunctionMonkey.Compiler.Core.Implementation;
 using FunctionMonkey.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace FunctionMonkey.Compiler.Core
 {
-    public class FunctionCompiler
+    public class Compiler
     {
         private readonly IServiceCollection _serviceCollection;
 
         private readonly Assembly _configurationSourceAssembly;
-        private readonly string _outputBinaryFolder;
         private readonly ICompilerLog _compilerLog;
         private readonly ICommandRegistry _commandRegistry;
-        private readonly IAssemblyCompiler _assemblyCompiler;
         private readonly ITriggerReferenceProvider _triggerReferenceProvider;
-        private readonly JsonCompiler _jsonCompiler;
-        private readonly OpenApiCompiler _openApiCompiler;
-
-        public FunctionCompiler(Assembly configurationSourceAssembly,
+        private readonly string _outputBinaryFolder;
+        
+        public Compiler(Assembly configurationSourceAssembly,
             string outputBinaryFolder,
             ICompilerLog compilerLog)
         {
@@ -41,10 +37,7 @@ namespace FunctionMonkey.Compiler.Core
                 (resolveType) => null // we never resolve during compilation
             );
             _commandRegistry = adapter.AddCommanding();
-            _assemblyCompiler = new AzureFunctionsAssemblyCompiler(compilerLog, new TemplateProvider(CompileTargetEnum.AzureFunctions));
             _triggerReferenceProvider = new TriggerReferenceProvider();
-            _jsonCompiler = new JsonCompiler();
-            _openApiCompiler = new OpenApiCompiler();
         }
 
         public bool Compile()
@@ -79,22 +72,19 @@ namespace FunctionMonkey.Compiler.Core
                     CompileTarget = builder.CompileTargetAspNetCore ? CompileTargetEnum.AspNetCore : CompileTargetEnum.AzureFunctions
                 };
             }
-
-            IReadOnlyCollection<string> externalAssemblies = GetExternalAssemblyLocations(functionCompilerMetadata.FunctionDefinitions);
-            OpenApiOutputModel openApi = _openApiCompiler.Compile(functionCompilerMetadata.OpenApiConfiguration, functionCompilerMetadata.FunctionDefinitions, _outputBinaryFolder);
-
-            _jsonCompiler.Compile(functionCompilerMetadata.FunctionDefinitions, openApi, _outputBinaryFolder, newAssemblyNamespace);
             
-            return _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
-                configuration?.GetType() ?? functionCompilerMetadata.BacklinkReferenceType,
-                configuration != null ? null : functionCompilerMetadata.BacklinkPropertyInfo,
+            IReadOnlyCollection<string> externalAssemblies =
+                GetExternalAssemblyLocations(functionCompilerMetadata.FunctionDefinitions);
+
+            ITargetCompiler targetCompiler = functionCompilerMetadata.CompileTarget == CompileTargetEnum.AzureFunctions
+                ? (ITargetCompiler)new AzureFunctionsCompiler(_compilerLog)
+                : new AspNetCoreCompiler(_compilerLog); 
+
+            return targetCompiler.CompileAssets(functionCompilerMetadata,
                 newAssemblyNamespace,
+                configuration,
                 externalAssemblies,
-                _outputBinaryFolder,
-                $"{newAssemblyNamespace}.dll",
-                openApi,
-                functionCompilerMetadata.CompileTarget,
-                functionCompilerMetadata.OutputAuthoredSourceFolder);
+                _outputBinaryFolder);
         }
 
         private bool VerifyCommandAndResponseTypes(FunctionHostBuilder builder)
