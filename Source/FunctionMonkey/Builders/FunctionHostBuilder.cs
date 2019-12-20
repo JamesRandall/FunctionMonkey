@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
-using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
@@ -26,7 +25,7 @@ namespace FunctionMonkey.Builders
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
         public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
-        public bool CompileTargetAspNetCore { get; private set; } = false;
+        public CompilerOptions Options { get; } = new CompilerOptions();
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -101,12 +100,11 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IFunctionHostBuilder TargetAspNetCore()
+        public IFunctionHostBuilder CompilerOptions(Action<ICompilerOptionsBuilder> options)
         {
-            CompileTargetAspNetCore = true;
+            options(new CompilerOptionsBuilder(Options));
             return this;
         }
-
 
         public IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions => ((FunctionBuilder)FunctionBuilder).Definitions;
     }

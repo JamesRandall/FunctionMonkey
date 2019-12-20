@@ -8,7 +8,7 @@ namespace FunctionMonkey.Compiler.Core
     {
         private readonly JsonCompiler _jsonCompiler;
         private readonly OpenApiCompiler _openApiCompiler;
-        private readonly IAssemblyCompiler _assemblyCompiler;
+        private readonly AzureFunctionsAssemblyCompiler _assemblyCompiler;
         
         public AzureFunctionsCompiler(ICompilerLog compilerLog)
         {
@@ -25,6 +25,7 @@ namespace FunctionMonkey.Compiler.Core
         {
             OpenApiOutputModel openApi = _openApiCompiler.Compile(functionCompilerMetadata.OpenApiConfiguration,
                 functionCompilerMetadata.FunctionDefinitions, outputBinaryFolder);
+            _assemblyCompiler.OpenApiOutputModel = openApi;
 
             _jsonCompiler.Compile(functionCompilerMetadata.FunctionDefinitions, openApi, outputBinaryFolder,
                 newAssemblyNamespace);
@@ -36,7 +37,6 @@ namespace FunctionMonkey.Compiler.Core
                 externalAssemblies,
                 outputBinaryFolder,
                 $"{newAssemblyNamespace}.dll",
-                openApi,
                 functionCompilerMetadata.CompileTarget,
                 functionCompilerMetadata.OutputAuthoredSourceFolder);
         }

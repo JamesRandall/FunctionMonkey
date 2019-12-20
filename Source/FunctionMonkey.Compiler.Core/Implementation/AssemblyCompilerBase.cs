@@ -30,14 +30,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         protected abstract List<SyntaxTree> CompileSource(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            OpenApiOutputModel openApiOutputModel,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
             string outputAuthoredSourceFolder);
 
-        protected abstract List<ResourceDescription> CreateResources(OpenApiOutputModel openApiOutputModel,
-            string assemblyNamespace);
+        protected abstract List<ResourceDescription> CreateResources(string assemblyNamespace);
 
         protected abstract IReadOnlyCollection<string> BuildCandidateReferenceList(
             CompileTargetEnum compileTarget,
@@ -50,13 +48,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,
             string assemblyName,
-            OpenApiOutputModel openApiOutputModel,
             CompileTargetEnum compileTarget,
             string outputAuthoredSourceFolder = null)
         {
             HandlebarsHelperRegistration.RegisterHelpers();
             IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
-                openApiOutputModel,
                 backlinkType,
                 backlinkPropertyInfo,
                 newAssemblyNamespace,
@@ -67,7 +63,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             return CompileAssembly(
                 syntaxTrees,
                 externalAssemblyLocations,
-                openApiOutputModel,
                 outputBinaryFolder,
                 assemblyName,
                 newAssemblyNamespace,
@@ -242,7 +237,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         
         private bool CompileAssembly(IReadOnlyCollection<SyntaxTree> syntaxTrees,
             IReadOnlyCollection<string> externalAssemblyLocations,
-            OpenApiOutputModel openApiOutputModel,
             string outputBinaryFolder,
             string outputAssemblyName,
             string assemblyNamespace,
@@ -268,7 +262,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                     .AddSyntaxTrees(syntaxTrees)
                 ;
 
-            List<ResourceDescription> resources = CreateResources(openApiOutputModel, assemblyNamespace);
+            List<ResourceDescription> resources = CreateResources(assemblyNamespace);
 
             string outputFilename = Path.Combine(outputBinaryFolder, outputAssemblyName);
             EmitResult compilationResult = compilation.Emit(outputFilename, manifestResources: resources);

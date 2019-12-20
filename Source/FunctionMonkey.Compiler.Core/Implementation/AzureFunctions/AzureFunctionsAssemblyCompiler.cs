@@ -38,9 +38,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         {
             
         }
+        
+        public OpenApiOutputModel OpenApiOutputModel { get; set; }
 
         protected override List<SyntaxTree> CompileSource(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            OpenApiOutputModel openApiOutputModel,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
@@ -58,7 +59,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 AddSyntaxTreeFromHandlebarsTemplate(templateSource, functionDefinition.Name, functionDefinition, directoryInfo, syntaxTrees);
             }
 
-            if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface)
+            if (OpenApiOutputModel != null && OpenApiOutputModel.IsConfiguredForUserInterface)
             {
                 string templateSource = TemplateProvider.GetTemplate("swaggerui","csharp");
                 AddSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
@@ -94,19 +95,19 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             syntaxTrees.Add(syntaxTree);
         }
         
-        protected override List<ResourceDescription> CreateResources(OpenApiOutputModel openApiOutputModel, string assemblyNamespace)
+        protected override List<ResourceDescription> CreateResources(string assemblyNamespace)
         {
             List<ResourceDescription> resources = null;
-            if (openApiOutputModel != null)
+            if (OpenApiOutputModel != null)
             {
                 resources = new List<ResourceDescription>();
-                Debug.Assert(openApiOutputModel.OpenApiSpecification != null);
+                Debug.Assert(OpenApiOutputModel.OpenApiSpecification != null);
                 resources.Add(new ResourceDescription(
-                    $"{assemblyNamespace}.OpenApi.{openApiOutputModel.OpenApiSpecification.Filename}",
-                    () => new MemoryStream(Encoding.UTF8.GetBytes(openApiOutputModel.OpenApiSpecification.Content)), true));
-                if (openApiOutputModel.SwaggerUserInterface != null)
+                    $"{assemblyNamespace}.OpenApi.{OpenApiOutputModel.OpenApiSpecification.Filename}",
+                    () => new MemoryStream(Encoding.UTF8.GetBytes(OpenApiOutputModel.OpenApiSpecification.Content)), true));
+                if (OpenApiOutputModel.SwaggerUserInterface != null)
                 {
-                    foreach (OpenApiFileReference fileReference in openApiOutputModel.SwaggerUserInterface)
+                    foreach (OpenApiFileReference fileReference in OpenApiOutputModel.SwaggerUserInterface)
                     {
                         OpenApiFileReference closureCapturedFileReference = fileReference;
                         resources.Add(new ResourceDescription(

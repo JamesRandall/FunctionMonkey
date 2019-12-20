@@ -69,7 +69,7 @@ namespace FunctionMonkey.Compiler.Core
                     FunctionDefinitions = builder.FunctionDefinitions,
                     OpenApiConfiguration = builder.OpenApiConfiguration,
                     OutputAuthoredSourceFolder = builder.OutputAuthoredSourceFolder,
-                    CompileTarget = builder.CompileTargetAspNetCore ? CompileTargetEnum.AspNetCore : CompileTargetEnum.AzureFunctions
+                    CompileTarget = builder.Options.HttpTarget
                 };
             }
             

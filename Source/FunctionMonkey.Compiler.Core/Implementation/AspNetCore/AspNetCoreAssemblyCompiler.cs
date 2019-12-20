@@ -17,7 +17,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         protected override List<SyntaxTree> CompileSource(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            OpenApiOutputModel openApiOutputModel,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
@@ -35,7 +34,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             return syntaxTrees;
         }
 
-        protected override List<ResourceDescription> CreateResources(OpenApiOutputModel openApiOutputModel, string assemblyNamespace)
+        protected override List<ResourceDescription> CreateResources(string assemblyNamespace)
         {
             return null;
         }

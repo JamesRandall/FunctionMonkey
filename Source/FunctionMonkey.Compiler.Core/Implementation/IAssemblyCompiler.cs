@@ -14,7 +14,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,
             string assemblyName,
-            OpenApiOutputModel openApiOutputModel,
             CompileTargetEnum compileTarget,
             string outputAuthoredSourceFolder = null);
     }

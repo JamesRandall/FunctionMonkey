@@ -17,6 +17,7 @@ namespace RestAspNetCoreExample
         }
         
         [Route("todo")]
+        [HttpPost]
         public async Task<ActionResult<TodoItem>> Handler(CreateTodoItemCommand command)
         {
             TodoItem result = await _dispatcher.DispatchAsync(command);

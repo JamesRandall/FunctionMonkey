@@ -84,9 +84,9 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder Serialization(Action<ISerializationBuilder> serialization);
 
         /// <summary>
-        /// Will cause the Function Monkey compiler to generate an ASP.Net Core application
+        /// Compiler options such as output target
         /// </summary>
-        IFunctionHostBuilder TargetAspNetCore();
+        IFunctionHostBuilder CompilerOptions(Action<ICompilerOptionsBuilder> options);
 
         /// <summary>
         /// Access to the registered function definitions
