@@ -550,6 +550,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup
   nameWithType: IFunctionHostBuilder.Setup
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
+  name: TargetAspNetCore()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_TargetAspNetCore
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore()
+  nameWithType: IFunctionHostBuilder.TargetAspNetCore()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore*
+  name: TargetAspNetCore
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_TargetAspNetCore_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
+  nameWithType: IFunctionHostBuilder.TargetAspNetCore
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3
   name: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html
@@ -3431,6 +3444,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
   nameWithType: IFunctionCompilerMetadata.ClaimsMappings
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
+  name: CompileTarget
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_CompileTarget
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
+  nameWithType: IFunctionCompilerMetadata.CompileTarget
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget*
+  name: CompileTarget
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_CompileTarget_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
+  nameWithType: IFunctionCompilerMetadata.CompileTarget
 - uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
   name: FunctionDefinitions
   href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_FunctionDefinitions
