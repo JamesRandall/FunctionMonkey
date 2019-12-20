@@ -198,6 +198,10 @@
       <EmbeddedResource Include="Templates\AzureFunctions\timer.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\timer.json.handlebars" />
       <None Remove="Templates\extensions.json.handlebars" />
+      <None Remove="Templates\AspNetCore\startup.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AspNetCore\startup.csharp.handlebars" />
+      <None Remove="Templates\AspNetCore\controller.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AspNetCore\controller.csharp.handlebars" />
     </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="yarn" />

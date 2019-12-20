@@ -17,6 +17,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         public bool CompileAssets(IFunctionCompilerMetadata functionCompilerMetadata, string newAssemblyNamespace,
             IFunctionAppConfiguration configuration, IReadOnlyCollection<string> externalAssemblies, string outputBinaryFolder)
         {
+            _compilerLog.Warning("ASP.Net Core output is currently experimental");
+            
             return _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
                 configuration?.GetType() ?? functionCompilerMetadata.BacklinkReferenceType,
                 configuration != null ? null : functionCompilerMetadata.BacklinkPropertyInfo,

@@ -6,6 +6,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using HandlebarsDotNet;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Compiler.Core.Implementation
 {
@@ -41,12 +42,21 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         protected override IReadOnlyCollection<string> BuildCandidateReferenceList(CompileTargetEnum compileTarget, bool isFSharpProject)
         {
-            throw new NotImplementedException();
+            HashSet<string> locations = new HashSet<string>
+            {
+                typeof(Microsoft.AspNetCore.Builder.IApplicationBuilder).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Hosting.IWebHostBuilder).Assembly.Location,
+                //typeof(Microsoft.AspNetCore.Hosting.IWebHostEnvironment).Assembly.Location,
+                typeof(IServiceCollection).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions).Assembly.Location,
+            };
+
+            return locations;
         }
 
         private SyntaxTree CreateStartup(string namespaceName, DirectoryInfo directoryInfo)
         {
-            string startupTemplateSource = TemplateProvider.GetTemplate("AspNetCore.startup","csharp");
+            string startupTemplateSource = TemplateProvider.GetTemplate("startup","csharp");
             Func<object, string> template = Handlebars.Compile(startupTemplateSource);
 
             string outputCode = template(new

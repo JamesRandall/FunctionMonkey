@@ -1,17 +1,20 @@
 ﻿using FunctionMonkey.Abstractions;
 using FunctionMonkey.Compiler.Core.Implementation;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FunctionMonkey.Compiler.Core
 {
     internal class AzureFunctionsCompiler : ITargetCompiler
     {
+        private readonly ICompilerLog _compilerLog;
         private readonly JsonCompiler _jsonCompiler;
         private readonly OpenApiCompiler _openApiCompiler;
         private readonly AzureFunctionsAssemblyCompiler _assemblyCompiler;
         
         public AzureFunctionsCompiler(ICompilerLog compilerLog)
         {
+            _compilerLog = compilerLog;
             _jsonCompiler = new JsonCompiler();
             _openApiCompiler = new OpenApiCompiler();
             _assemblyCompiler = new AzureFunctionsAssemblyCompiler(compilerLog, new TemplateProvider(CompileTargetEnum.AzureFunctions));
@@ -23,6 +26,12 @@ namespace FunctionMonkey.Compiler.Core
             IReadOnlyCollection<string> externalAssemblies,
             string outputBinaryFolder)
         {
+            bool isFSharpProject = functionCompilerMetadata.FunctionDefinitions.Any(x => x.IsFunctionalFunction);
+            if (isFSharpProject)
+            {
+                _compilerLog.Warning("FSharp output is currently experimental");
+            }
+
             OpenApiOutputModel openApi = _openApiCompiler.Compile(functionCompilerMetadata.OpenApiConfiguration,
                 functionCompilerMetadata.FunctionDefinitions, outputBinaryFolder);
             _assemblyCompiler.OpenApiOutputModel = openApi;
