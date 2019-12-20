@@ -52,11 +52,16 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string outputAuthoredSourceFolder = null)
         {
             HandlebarsHelperRegistration.RegisterHelpers();
-            IReadOnlyCollection<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
+            List<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
                 backlinkType,
                 backlinkPropertyInfo,
                 newAssemblyNamespace,
-                outputAuthoredSourceFolder);
+                outputAuthoredSourceFolder).ToList();
+            SyntaxTree linkBackTree = CreateLinkBack(functionDefinitions, backlinkType, backlinkPropertyInfo, newAssemblyNamespace, outputAuthoredSourceFolder);
+            if (linkBackTree != null)
+            {
+                syntaxTrees.Add(linkBackTree);
+            }
 
             bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
 
@@ -153,15 +158,19 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             return references;
         }
         
-        protected void CreateLinkBack(
+        protected SyntaxTree CreateLinkBack(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
-            DirectoryInfo directoryInfo,
-            List<SyntaxTree> syntaxTrees)
+            string outputAuthoredSourceFolder)
         {
-            if (backlinkType == null) return; // back link referencing has been disabled
+            if (backlinkType == null) return null; // back link referencing has been disabled
+            DirectoryInfo directoryInfo =  outputAuthoredSourceFolder != null ? new DirectoryInfo(outputAuthoredSourceFolder) : null;
+            if (directoryInfo != null && !directoryInfo.Exists)
+            {
+                directoryInfo = null;
+            }
             
             // Now we need to create a class that references the assembly with the configuration builder
             // otherwise the reference will be optimised away by Roslyn and it will then never get loaded
@@ -193,7 +202,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string outputLinkBackCode = linkBackTemplate(linkBackModel);
             OutputDiagnosticCode(directoryInfo, "ReferenceLinkBack", outputLinkBackCode);
             SyntaxTree linkBackSyntaxTree = CSharpSyntaxTree.ParseText(outputLinkBackCode);
-            syntaxTrees.Add(linkBackSyntaxTree);
+            return linkBackSyntaxTree;
         }
 
         private IReadOnlyCollection<string> GetReferenceLocations(

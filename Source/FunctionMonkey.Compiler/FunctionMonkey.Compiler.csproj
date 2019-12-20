@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="node_modules\swagger-ui-dist\absolute-path.js" />
     <None Remove="node_modules\swagger-ui-dist\favicon-16x16.png" />
     <None Remove="node_modules\swagger-ui-dist\favicon-32x32.png" />

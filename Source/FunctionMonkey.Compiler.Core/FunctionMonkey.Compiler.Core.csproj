@@ -4,6 +4,10 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
   
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
     <ItemGroup>
       <PackageReference Include="AzureFromTheTrenches.Commanding" Version="9.0.1" />
       <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.2" />
@@ -159,6 +163,7 @@
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+      <EmbeddedResource Include="Templates\AspNetCore\forcereference.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.outputparameter.csharp.handlebars" />

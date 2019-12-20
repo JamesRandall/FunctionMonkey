@@ -76,8 +76,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 }, directoryInfo, syntaxTrees);
             }
 
-            CreateLinkBack(functionDefinitions, backlinkType, backlinkPropertyInfo, newAssemblyNamespace, directoryInfo, syntaxTrees);
-
             return syntaxTrees;
         }
         

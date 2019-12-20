@@ -1,0 +1,28 @@
+﻿using System.Runtime;
+using System.Runtime.Versioning;
+using System.Runtime.CompilerServices;
+using System.Reflection;
+
+[assembly: TargetFramework(".NETCore,Version=v3.1", FrameworkDisplayName = "")]
+[assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]
+[assembly: CompilationRelaxations(8)]
+
+namespace {{Namespace}}
+{
+    [FunctionMonkey.ReferenceLinkBack]
+    public static class ReferenceLinkBack
+    {
+        {{#if IsPropertyReference}}
+        public static {{PropertyTypeName}} Value;
+        {{/if}}
+
+        public static void ForceLinkBack()
+        {
+            {{#if IsPropertyReference}}
+                ReferenceLinkBack.Value = {{TypeName}}.{{PropertyName}};
+            {{else}}
+                new {{TypeName}}();
+            {{/if}} 
+        }
+    }
+}

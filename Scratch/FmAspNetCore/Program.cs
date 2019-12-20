@@ -20,6 +20,10 @@ namespace FmAspNetCore
     {
         public static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
+            {
+                Console.WriteLine(eventArgs.ExceptionObject.ToString());
+            };
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -27,8 +31,23 @@ namespace FmAspNetCore
         {
             string path = System.IO.Path.GetDirectoryName(typeof(Program).Assembly.Location);
             string assemblyFilename = Path.Combine(path, "FmAspNetCore.Functions.dll");
-            Assembly assembly = Assembly.LoadFile(assemblyFilename);
+            byte[] assemblyBytes = File.ReadAllBytes(assemblyFilename);
+            Assembly assembly = Assembly.Load(assemblyBytes);
+            AppDomain.CurrentDomain.AssemblyResolve += (sender, eventArgs) =>
+            {
+                string requestedShortName = eventArgs.Name.Split(',')[0]?.Trim();
+                string compiledAssemblyName = assembly.GetName().Name;
+                
+                if (requestedShortName == compiledAssemblyName)
+                {
+                    return assembly;
+                }
+                return null;
+            };
+            //Assembly assembly = AppDomain.CurrentDomain.Load(assemblyBytes);
+            //Assembly assembly = Assembly.LoadFile(assemblyFilename);
             Type startupType = assembly.GetTypes().Single(x => x.Name == "Startup");
+            object created = Activator.CreateInstance(startupType);
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup(startupType); });
         }

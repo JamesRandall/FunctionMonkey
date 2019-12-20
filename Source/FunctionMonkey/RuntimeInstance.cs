@@ -15,6 +15,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Commanding.Abstractions.Validation;
+using FunctionMonkey.Compiler.Core;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
 using FunctionMonkey.Serialization;
@@ -87,22 +88,24 @@ namespace FunctionMonkey
             
             FunctionHostBuilder builder = null;
             IFunctionCompilerMetadata functionCompilerMetadata = null;
+            CompileTargetEnum compileTarget;
             if (configuration != null)
             {
                 // Invoke the builder process
                 builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
                 FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
                 FunctionDefinitions = builder.FunctionDefinitions;
-                
+                compileTarget = builder.Options.HttpTarget;
                 SetupAuthorization(builder, functionBuilder);
             }
             else
             {
                 functionCompilerMetadata = LocateFunctionCompilerMetadata(functionAppConfigurationAssembly);
                 FunctionDefinitions = functionCompilerMetadata.FunctionDefinitions;
+                compileTarget = functionCompilerMetadata.CompileTarget;
             }
 
-            RegisterCoreDependencies(FunctionDefinitions);
+            RegisterCoreDependencies(FunctionDefinitions, compileTarget);
 
             RegisterTimerCommandFactories(FunctionDefinitions);
 
@@ -388,7 +391,8 @@ namespace FunctionMonkey
         }
 
         private void RegisterCoreDependencies(
-            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+            IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
+            CompileTargetEnum target)
         {
             HashSet<Type> types = new HashSet<Type>();
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
@@ -400,9 +404,12 @@ namespace FunctionMonkey
                 ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
             }
 
-            // Inject an ILogger that picks up the runtime provided logger
-            ServiceCollection.AddTransient<ILogger>(sp => new FunctionLogger(this));
-            ServiceCollection.AddTransient<ILoggerFactory>(sp => new FunctionLoggerFactory(this));
+            if (target == CompileTargetEnum.AzureFunctions)
+            {
+                // Inject an ILogger that picks up the runtime provided logger
+                ServiceCollection.AddTransient<ILogger>(sp => new FunctionLogger(this));
+                ServiceCollection.AddTransient<ILoggerFactory>(sp => new FunctionLoggerFactory(this));
+            }
         }
 
         private void RegisterHttpDependencies(
@@ -551,7 +558,8 @@ namespace FunctionMonkey
 
         private void RegisterInternalImplementations()
         {
-            ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
+            // The below has been superceded by the singleton / dictionary registration
+            //ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
             ServiceCollection.AddTransient<IContextSetter, ContextManager>();
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
         }
