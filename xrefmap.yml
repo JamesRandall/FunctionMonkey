@@ -161,6 +161,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName
   nameWithType: IClaimsMappingBuilder.MapClaimToPropertyName
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder
+  name: ICompilerOptionsBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder
+  nameWithType: ICompilerOptionsBuilder
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget(FunctionMonkey.Compiler.Core.CompileTargetEnum)
+  name: HttpTarget(CompileTargetEnum)
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_HttpTarget_FunctionMonkey_Compiler_Core_CompileTargetEnum_
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget(FunctionMonkey.Compiler.Core.CompileTargetEnum)
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget(FunctionMonkey.Compiler.Core.CompileTargetEnum)
+  nameWithType: ICompilerOptionsBuilder.HttpTarget(CompileTargetEnum)
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget*
+  name: HttpTarget
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_HttpTarget_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget
+  nameWithType: ICompilerOptionsBuilder.HttpTarget
 - uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder
   name: ICosmosDbFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html
@@ -415,6 +434,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Authorization
   nameWithType: IFunctionHostBuilder.Authorization
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions(Action{FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder})
+  name: CompilerOptions(Action<ICompilerOptionsBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_CompilerOptions_Action_FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions(Action{FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder})
+  name.vb: CompilerOptions(Action(Of ICompilerOptionsBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions(Action<FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions(Action(Of FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder))
+  nameWithType: IFunctionHostBuilder.CompilerOptions(Action<ICompilerOptionsBuilder>)
+  nameWithType.vb: IFunctionHostBuilder.CompilerOptions(Action(Of ICompilerOptionsBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions*
+  name: CompilerOptions
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_CompilerOptions_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.CompilerOptions
+  nameWithType: IFunctionHostBuilder.CompilerOptions
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultConnectionStringSettingNames(Action{FunctionMonkey.Abstractions.Builders.Model.ConnectionStringSettingNames})
   name: DefaultConnectionStringSettingNames(Action<ConnectionStringSettingNames>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultConnectionStringSettingNames_Action_FunctionMonkey_Abstractions_Builders_Model_ConnectionStringSettingNames__
@@ -550,19 +585,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup
   nameWithType: IFunctionHostBuilder.Setup
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
-  name: TargetAspNetCore()
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_TargetAspNetCore
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore()
-  nameWithType: IFunctionHostBuilder.TargetAspNetCore()
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore*
-  name: TargetAspNetCore
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_TargetAspNetCore_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.TargetAspNetCore
-  nameWithType: IFunctionHostBuilder.TargetAspNetCore
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3
   name: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html
