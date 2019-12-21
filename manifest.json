@@ -917,6 +917,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.html",
+          "hash": "KeuhI/pRMb1BaFcQ2JEKNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.html",
+          "hash": "GCardS1eI/OsRgADMtPK9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.yml",
       "output": {
         ".html": {
@@ -1713,7 +1737,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "GHfP0FsXSqXchtw4BNJVhg=="
+          "hash": "GYHP1MYK90Hz+wPe5V2KIg=="
         }
       },
       "is_incremental": false,
@@ -2258,7 +2282,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 141,
+          "total_file_count": 143,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

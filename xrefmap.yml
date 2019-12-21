@@ -3791,6 +3791,31 @@ references:
   commentId: T:FunctionMonkey.AbstractPluginFunctions
   fullName: FunctionMonkey.AbstractPluginFunctions
   nameWithType: AbstractPluginFunctions
+- uid: FunctionMonkey.AspNetCore
+  name: FunctionMonkey.AspNetCore
+  href: api/FunctionMonkey.AspNetCore.html
+  commentId: N:FunctionMonkey.AspNetCore
+  fullName: FunctionMonkey.AspNetCore
+  nameWithType: FunctionMonkey.AspNetCore
+- uid: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions
+  name: IWebHostBuilderExtensions
+  href: api/FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.html
+  commentId: T:FunctionMonkey.AspNetCore.IWebHostBuilderExtensions
+  fullName: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions
+  nameWithType: IWebHostBuilderExtensions
+- uid: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey(IWebHostBuilder)
+  name: UseFunctionMonkey(IWebHostBuilder)
+  href: api/FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.html#FunctionMonkey_AspNetCore_IWebHostBuilderExtensions_UseFunctionMonkey_IWebHostBuilder_
+  commentId: M:FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey(IWebHostBuilder)
+  fullName: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey(IWebHostBuilder)
+  nameWithType: IWebHostBuilderExtensions.UseFunctionMonkey(IWebHostBuilder)
+- uid: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey*
+  name: UseFunctionMonkey
+  href: api/FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.html#FunctionMonkey_AspNetCore_IWebHostBuilderExtensions_UseFunctionMonkey_
+  commentId: Overload:FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey
+  nameWithType: IWebHostBuilderExtensions.UseFunctionMonkey
 - uid: FunctionMonkey.Builders
   name: FunctionMonkey.Builders
   href: api/FunctionMonkey.Builders.html
