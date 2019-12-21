@@ -47,7 +47,14 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     .Title("Integration Test Functions")
                     .Version("1.0.0")
                 )
-                .Authorization(authorization => authorization.AuthorizationDefault(AuthorizationTypeEnum.Anonymous))
+                .Authorization(authorization => authorization
+                    .AuthorizationDefault(AuthorizationTypeEnum.Anonymous)
+                    .TokenValidator<MockTokenValidator>()
+                    .Claims(claims => claims
+                        .MapClaimToPropertyName("claima", "StringClaim")
+                        .MapClaimToCommandProperty<HttpIntClaimCommand>("claimb", cmd => cmd.MappedValue)
+                    )
+                )
                 .DefaultConnectionStringSettingNames(settingNames =>
                     {
                         // These are the default values - you don't have to set them
@@ -70,6 +77,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     // essentially pre-reqs for tracking things in the test suite
                     .HttpRoute("setup", route => route
                         .HttpFunction<SetupTestResourcesCommand>(HttpMethod.Put)
+                    )
+                    .HttpRoute("claims", route => route
+                        .HttpFunction<HttpStringClaimCommand>("/string", AuthorizationTypeEnum.TokenValidation, HttpMethod.Get)
+                        .HttpFunction<HttpIntClaimCommand>("/int", AuthorizationTypeEnum.TokenValidation, HttpMethod.Get)
                     )
                     .HttpRoute("verbs", route => route
                         .HttpFunction<HttpGetCommand>("/{value}", HttpMethod.Get)

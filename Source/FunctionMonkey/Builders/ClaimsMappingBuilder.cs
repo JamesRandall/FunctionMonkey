@@ -124,7 +124,9 @@ namespace FunctionMonkey.Builders
                     );
                     blocks.Add(block);
                 }
-                blocks.Add(Expression.Block(typeof(object),  Expression.Constant(commandParameter)));
+                //blocks.Add(Expression.Block(typeof(object),  Expression.Constant(commandParameter)));
+                blocks.Add(Expression.Block(typeof(object), commandParameter));
+                
 
                 var lambda = Expression.Lambda<Func<object, ClaimsPrincipal, object>>(Expression.Block(blocks), commandParameter,
                     claimsPrincipalParameter);
