@@ -81,6 +81,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAspNetCoreExample", "Sc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmAspNetCore", "Scratch\FmAspNetCore\FmAspNetCore.csproj", "{FFC8BE94-890B-422D-BB64-6CCCAD515B0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.AspNetCore", "Source\FunctionMonkey.AspNetCore\FunctionMonkey.AspNetCore.csproj", "{123012ED-015C-4CBF-AA4D-FDA28CB9ECFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -208,6 +210,10 @@ Global
 		{FFC8BE94-890B-422D-BB64-6CCCAD515B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFC8BE94-890B-422D-BB64-6CCCAD515B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFC8BE94-890B-422D-BB64-6CCCAD515B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{123012ED-015C-4CBF-AA4D-FDA28CB9ECFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{123012ED-015C-4CBF-AA4D-FDA28CB9ECFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{123012ED-015C-4CBF-AA4D-FDA28CB9ECFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{123012ED-015C-4CBF-AA4D-FDA28CB9ECFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
