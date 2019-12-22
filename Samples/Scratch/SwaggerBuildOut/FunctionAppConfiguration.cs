@@ -18,6 +18,9 @@ namespace SwaggerBuildOut
         {
             
             builder
+                .CompilerOptions(options => options
+                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
+                )
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     commandRegistry.Register<HelloWorldCommandHandler>();
@@ -35,7 +38,6 @@ namespace SwaggerBuildOut
                     .Version("0.0.0")
                     .UserInterface()
                 )
-                .OutputAuthoredSource(@"d:\wip\scratch\outputSource")
                 .Functions(functions => functions
                     .HttpRoute("/HelloWorld", route => route
                         .HttpFunction<HelloWorldCommand>(AuthorizationTypeEnum.Anonymous, HttpMethod.Post)    

@@ -11,6 +11,9 @@ namespace OpenApi
         public void Build(IFunctionHostBuilder builder)
         {
             builder
+                .CompilerOptions(options => options
+                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
+                )
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     serviceCollection.AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly);
@@ -23,7 +26,6 @@ namespace OpenApi
                     .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
                 )
-                .OutputAuthoredSource("/Users/jamesrandall/Code/authoredSource")
                 .AddFluentValidation()
                 .Functions(functions =>
                 {
