@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
 using FmAspNetCore.Commands;
+using FmAspNetCore.Services;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.AspNetCore;
 using FunctionMonkey.Compiler.Core;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace FmAspNetCore
@@ -24,22 +26,5 @@ namespace FmAspNetCore
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseFunctionMonkey(); });
-    }
-
-    public class FunctionAppConfiguration : IFunctionAppConfiguration
-    {
-        public void Build(IFunctionHostBuilder builder)
-        {
-            builder
-                .CompilerOptions(options => options
-                    .HttpTarget(CompileTargetEnum.AspNetCore)
-                )
-                .Setup((sc, r) => { r.Discover<FunctionAppConfiguration>(); })
-                .Functions(functions => functions
-                    .HttpRoute("todo", route => route
-                        .HttpFunction<CreateTodoItemCommand>(HttpMethod.Post)
-                    )
-                );
-        }
     }
 }

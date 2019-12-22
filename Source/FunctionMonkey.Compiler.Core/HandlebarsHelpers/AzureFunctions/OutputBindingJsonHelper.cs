@@ -4,7 +4,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Compiler.Core.Implementation;
 using HandlebarsDotNet;
 
-namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
+namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions
 {
     internal static class OutputBindingJsonHelper
     {

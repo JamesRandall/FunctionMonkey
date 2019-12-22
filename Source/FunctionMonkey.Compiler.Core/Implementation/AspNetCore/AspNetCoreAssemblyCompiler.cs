@@ -17,7 +17,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
 {
     internal class AspNetCoreAssemblyCompiler : AssemblyCompilerBase
     {
@@ -74,12 +74,13 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 typeof(IEndpointRouteBuilder).Assembly.Location,
                 typeof(ICommandDispatcher).Assembly.Location,
                 typeof(ActionResult).Assembly.Location,
+                typeof(IActionResult).Assembly.Location,
                 typeof(Task).Assembly.Location
             };
 
             return locations;
         }
-
+        
         private SyntaxTree CreateStartup(string namespaceName, DirectoryInfo directoryInfo)
         {
             string startupTemplateSource = TemplateProvider.GetTemplate("startup","csharp");

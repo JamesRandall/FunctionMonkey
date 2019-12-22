@@ -5,7 +5,7 @@ using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Compiler.Core.Extensions;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
 {
     public class OpenApiCompilerConfiguration
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FunctionMonkey.Abstractions.Builders;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
 {
     class OpenApiSchemaFilterContext : IOpenApiSchemaFilterContext
     {

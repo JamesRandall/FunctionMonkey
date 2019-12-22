@@ -7,7 +7,7 @@ using FunctionMonkey.Abstractions.Builders;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
 {
     class OpenApiXmlCommentsSchemaFilter : IOpenApiSchemaFilter
     {

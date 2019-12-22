@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.Versioning;
 using System.Text;
-using System.Threading.Tasks;
 using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Commanding.Abstractions;
-using FunctionMonkey.Compiler.Core.HandlebarsHelpers;
+using FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions;
 using FunctionMonkey.SignalR;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
@@ -23,15 +19,13 @@ using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Emit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
-using Microsoft.FSharp.Core;
 using Newtonsoft.Json;
 using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
 {
     internal class AzureFunctionsAssemblyCompiler : AssemblyCompilerBase
     {

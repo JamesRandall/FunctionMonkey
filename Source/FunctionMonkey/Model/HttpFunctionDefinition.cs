@@ -50,6 +50,9 @@ namespace FunctionMonkey.Model
         
         public Type TokenValidatorType { get; set; }
 
+        public bool IsBodyBased =>
+            !(Verbs.Contains(HttpMethod.Get) || Verbs.Contains(HttpMethod.Delete) || Verbs.Count == 0);
+
         public string TokenValidatorTypeName => TokenValidatorType?.EvaluateType();
 
         public bool AuthorizesClaims => !string.IsNullOrWhiteSpace(ClaimsPrincipalAuthorizationTypeName);

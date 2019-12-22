@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.Compiler.Core.HandlebarsHelpers;
+using FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Newtonsoft.Json;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
 {
     internal class JsonCompiler
     {
@@ -24,8 +24,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string outputBinaryFolder,
             string outputNamespaceName)
         {
-            HandlebarsHelperRegistration.RegisterHelpers();
-
             foreach (AbstractFunctionDefinition functionDefinition in functionDefinitions)
             {
                 string templateSource = _templateProvider.GetJsonTemplate(functionDefinition);

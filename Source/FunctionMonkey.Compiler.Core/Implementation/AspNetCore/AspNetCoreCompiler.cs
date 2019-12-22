@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using FunctionMonkey.Abstractions;
 
-namespace FunctionMonkey.Compiler.Core.Implementation
+namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
 {
     internal class AspNetCoreCompiler : ITargetCompiler
     {
@@ -18,6 +18,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             IFunctionAppConfiguration configuration, IReadOnlyCollection<string> externalAssemblies, string outputBinaryFolder)
         {
             _compilerLog.Warning("ASP.Net Core output is currently experimental");
+            
+            FunctionMonkey.Compiler.Core.HandlebarsHelpers.AspNetCore.HandlebarsHelperRegistration.RegisterHelpers();
             
             return _assemblyCompiler.Compile(functionCompilerMetadata.FunctionDefinitions,
                 configuration?.GetType() ?? functionCompilerMetadata.BacklinkReferenceType,

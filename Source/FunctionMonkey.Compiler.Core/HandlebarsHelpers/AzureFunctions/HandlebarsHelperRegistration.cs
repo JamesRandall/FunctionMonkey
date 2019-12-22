@@ -1,4 +1,4 @@
-﻿namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
+﻿namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions
 {
     internal static class HandlebarsHelperRegistration
     {

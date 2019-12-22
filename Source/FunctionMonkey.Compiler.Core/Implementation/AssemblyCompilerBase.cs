@@ -40,7 +40,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         protected abstract IReadOnlyCollection<string> BuildCandidateReferenceList(
             CompileTargetEnum compileTarget,
             bool isFSharpProject);
-        
+
         public bool Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
@@ -51,7 +51,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             CompileTargetEnum compileTarget,
             string outputAuthoredSourceFolder = null)
         {
-            HandlebarsHelperRegistration.RegisterHelpers();
             List<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
                 backlinkType,
                 backlinkPropertyInfo,

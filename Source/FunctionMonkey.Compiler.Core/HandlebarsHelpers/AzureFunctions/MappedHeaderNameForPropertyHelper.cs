@@ -2,7 +2,7 @@
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 
-namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers
+namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions
 {
     internal static class MappedHeaderNameForPropertyHelper
     {

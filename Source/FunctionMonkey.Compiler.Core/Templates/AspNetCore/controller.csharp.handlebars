@@ -13,19 +13,56 @@ namespace {{{Namespace}}}
         {
             _dispatcher = dispatcher;
         }
-        
-        [Route("todo")]
-        [HttpPost]
+
+        [Route("{{#if HasRoute}}{{Route}}{{/if}}")]
+        {{{httpVerbs}}}
         {{#if CommandHasResult}}
         public async Task<ActionResult<{{{CommandResultTypeName}}}>> Handler(
         {{else}}
         public async Task<ActionResult> Handler(
         {{/if}}
+        {{#if IsBodyBased}}
             {{{CommandTypeName}}} command
+        {{else}}
+            // need to get query parameters
+            {{#each QueryParameters}}
+                {{#if @index}},{{/if}} {{{TypeName}}} param{{@index}}
+            {{/each}}
+        {{/if}}
         )
         {
-            {{{CommandResultTypeName}}} result = await _dispatcher.DispatchAsync(command);
-            return result;
+            {{#unless IsBodyBased}}
+            {{{CommandTypeName}}} command = CreateNewCommand();
+            {{/unless}}
+            {{#if CommandHasResult}}
+            {{{CommandResultTypeName}}} result = (await _dispatcher.DispatchAsync(command)).Result;
+            return new OkObjectResult(result);
+            {{else}}
+            await _dispatcher.DispatchAsync(command);
+            return new OkResult();
+            {{/if}}
+        }
+
+        private static {{{CommandTypeName}}} CreateNewCommand()
+        {
+            {{#if UsesImmutableTypes}}
+                {{#if CommandTypeIsUnit}}
+                    return null;
+                {{else}}    
+                return new {{{CommandTypeName}}}(
+                    {{#each ImmutableTypeConstructorParameters}}
+                        {{#if IsFSharpOptionType}}
+                            Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>.None
+                        {{else}}
+                            default({{{TypeName}}})
+                        {{/if}}
+                        {{#unless @last}},{{/unless}}
+                    {{/each}}
+                );
+                {{/if}}    
+            {{else}}
+                return new {{{CommandTypeName}}}();
+            {{/if}}
         }
     }
 }

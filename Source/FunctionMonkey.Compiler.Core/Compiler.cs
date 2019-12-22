@@ -8,6 +8,8 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Compiler.Core.Implementation;
+using FunctionMonkey.Compiler.Core.Implementation.AspNetCore;
+using FunctionMonkey.Compiler.Core.Implementation.AzureFunctions;
 using FunctionMonkey.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
