@@ -16,6 +16,7 @@ namespace {{Namespace}}
         public async Task Run(
             [TimerTrigger("{{CronExpression}}")]TimerInfo myTimer,
             ILogger log,
+            System.Threading.CancellationToken cancellationToken,
             ExecutionContext executionContext
             {{{parameterOutputBinding}}}
         )
@@ -67,7 +68,7 @@ namespace {{Namespace}}
                             var result = handler(command);
                         {{/if}}
                     {{else}}
-                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, cancellationToken)).Result;
                     {{/if}}
                 {{/if}}
                 {{{collectorOutputBinding}}}
@@ -80,7 +81,7 @@ namespace {{Namespace}}
                         handler(command);
                     {{/if}}
                 {{else}}
-                    await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                    await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, cancellationToken);
                 {{/if}}
             {{/if}}
         }

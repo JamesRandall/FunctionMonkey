@@ -30,6 +30,7 @@ namespace {{Namespace}}
                 )
             ]
             HttpRequest req,
+            System.Threading.CancellationToken cancellationToken,
             ILogger log,
             ExecutionContext executionContext
             {{#each RouteParameters}}
@@ -436,7 +437,8 @@ namespace {{Namespace}}
                             var result = handler(command);
                         {{/if}}
                     {{else}}
-                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                        System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
+                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token)).Result;
                     {{/if}}
                 {{/if}}
                 
@@ -466,10 +468,11 @@ namespace {{Namespace}}
                         var result = handler(command);
                     {{/if}}
                 {{else}}
+                    System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
                     {{#if CommandHasResult}}
-                        var result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                        var result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token)).Result;
                     {{else}}
-                        await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                        await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token);
                     {{/if}}
                 {{/if}}             
                 {{#if CommandHasResult}}

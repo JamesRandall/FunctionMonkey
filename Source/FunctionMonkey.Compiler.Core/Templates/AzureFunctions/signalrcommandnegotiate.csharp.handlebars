@@ -32,6 +32,7 @@ namespace {{Namespace}}
                 Route = "{{Route}}")
             ]
             HttpRequest req,
+            System.Threading.CancellationToken cancellationToken,
             ILogger log,
             ExecutionContext executionContext
             {{#each RouteParameters}}
@@ -278,7 +279,8 @@ namespace {{Namespace}}
 
             try
             {
-                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
+                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token);
 
                 {{#if HasHttpResponseHandler}}
                     {{#if IsValidationResult}}

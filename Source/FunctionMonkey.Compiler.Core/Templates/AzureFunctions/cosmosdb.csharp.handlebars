@@ -41,6 +41,7 @@ namespace {{Namespace}}
             )]
             IReadOnlyList<Document> input,
             ILogger log,
+            System.Threading.CancellationToken cancellationToken,
             Microsoft.Azure.WebJobs.ExecutionContext executionContext
             {{{parameterOutputBinding}}}
     )
@@ -83,7 +84,7 @@ namespace {{Namespace}}
                             {{#if NoCommandHandler}}
                                 {{{CommandType}}} result = command;
                             {{else}}
-                                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command)).Result;
+                                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, cancellationToken)).Result;
                             {{/if}}
 
                             {{{collectorOutputBinding}}}

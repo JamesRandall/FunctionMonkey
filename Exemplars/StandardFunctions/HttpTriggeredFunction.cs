@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -15,6 +16,7 @@ using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
 namespace StandardFunctions
 {
@@ -29,7 +31,8 @@ namespace StandardFunctions
         public static void Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
             ILogger log,
             ExecutionContext executionContext,
-            [ServiceBus("testqueue", Connection = "serviceBusConnectionString")] ICollector<Message> collector
+            [ServiceBus("testqueue", Connection = "serviceBusConnectionString")] ICollector<Message> collector,
+            CancellationToken cancellationToken
             //[Queue("markerqueue", Connection = "storageConnectionString")]ICollector<SomeResult> collector
             )
         {
@@ -44,6 +47,9 @@ namespace StandardFunctions
             }*/
 
             //return $"{Guid.NewGuid()}.json";
+
+            CancellationTokenSource tokenSource = CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
+            tokenSource.Token
 
             string json = JsonConvert.SerializeObject(new SomeResult
             {
