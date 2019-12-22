@@ -1389,6 +1389,31 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb
   nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb
   nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String)
+  name: EventHub(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_EventHub_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(System.String)
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String,System.String)
+  name: EventHub(String, String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_EventHub_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub*
+  name: EventHub
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_EventHub_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub
+  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub
+  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub
 - uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String)
   name: ServiceBusQueue(String)
   href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_
