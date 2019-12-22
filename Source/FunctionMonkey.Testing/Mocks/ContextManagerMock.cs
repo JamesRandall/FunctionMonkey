@@ -62,13 +62,24 @@ namespace FunctionMonkey.Testing.Mocks
             };
         }
 
-        void IContextSetter.SetEventHubContext(DateTime enqueuedTimeUtc, long sequenceNumber, string offset)
+        void IContextSetter.SetEventHubContext(
+            DateTime enqueuedTimeUtc,
+            long sequenceNumber,
+            long serializedSizeInBytes,
+            string offset,
+            string partitionKey,
+            IDictionary<string,object> properties,
+            IDictionary<string,object> systemProperties)
         {
             EventHubContextLocal.Value = new EventHubContext
             {
                 EnqueuedTimeUtc = enqueuedTimeUtc,
                 Offset = offset,
-                SequenceNumber = sequenceNumber
+                SequenceNumber = sequenceNumber,
+                PartitionKey = partitionKey,
+                Properties = properties,
+                SerializedSizeInBytes = serializedSizeInBytes,
+                SystemProperties = systemProperties
             };
         }
 

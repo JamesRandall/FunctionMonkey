@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class ServiceBusFunctionOptionBuilder<TCommandOuter> : IServiceBusFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
+    internal class ServiceBusFunctionOptionBuilder<TCommandOuter> : IServiceBusFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IServiceBusFunctionBuilder _underlyingBuilder;

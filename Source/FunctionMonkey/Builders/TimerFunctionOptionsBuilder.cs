@@ -51,6 +51,16 @@ namespace FunctionMonkey.Builders
             return _functionBuilder.ServiceBus(serviceBusFunctionBuilder);
         }
 
+        public IFunctionBuilder EventHub(string connectionName, Action<IEventHubFunctionBuilder> eventHubFunctionBuilder)
+        {
+            return _functionBuilder.EventHub(connectionName, eventHubFunctionBuilder);
+        }
+
+        public IFunctionBuilder EventHub(Action<IEventHubFunctionBuilder> eventHubFunctionBuilder)
+        {
+            return _functionBuilder.EventHub(eventHubFunctionBuilder);
+        }
+
         public IFunctionBuilder Storage(string connectionName, Action<IStorageFunctionBuilder> storageFunctionBuilder)
         {
             return _functionBuilder.Storage(connectionName, storageFunctionBuilder);

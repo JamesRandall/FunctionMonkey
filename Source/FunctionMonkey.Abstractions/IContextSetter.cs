@@ -38,9 +38,15 @@ namespace FunctionMonkey.Abstractions
         /// <summary>
         /// Sets the event hub context
         /// </summary>
-        void SetEventHubContext(DateTime enqueuedTimeUtc,
-            Int64 sequenceNumber,
-            string offset);
+        void SetEventHubContext(
+            DateTime enqueuedTimeUtc,
+            long sequenceNumber,
+            long serializedSizeInBytes,
+            string offset,
+            string partitionKey,
+            IDictionary<string,object> properties,
+            IDictionary<string,object> systemProperties
+            );
 
         /// <summary>
         /// Sets the execution context

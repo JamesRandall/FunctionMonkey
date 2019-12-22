@@ -36,6 +36,21 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="serviceBusFunctionBuilder">A builder that allows one or more functions to be created that are associated with this connection</param>
         /// <returns>The function builder for a fluent API</returns>
         IFunctionBuilder ServiceBus(Action<IServiceBusFunctionBuilder> serviceBusFunctionBuilder);
+        
+        /// <summary>
+        /// Allows Event Hub functions to be configured based on a connection name
+        /// </summary>
+        /// <param name="connectionName">The name of the connection in the environment settings</param>
+        /// <param name="serviceBusFunctionBuilder">A builder that allows one or more functions to be created that are associated with this connection</param>
+        /// <returns>The function builder for a fluent API</returns>
+        IFunctionBuilder EventHub(string connectionName, Action<IEventHubFunctionBuilder> eventHubFunctionBuilder);
+
+        /// <summary>
+        /// Allows Event Hub functions to be configured based on the default connection name of eventHubConnectionString 
+        /// </summary>
+        /// <param name="serviceBusFunctionBuilder">A builder that allows one or more functions to be created that are associated with this connection</param>
+        /// <returns>The function builder for a fluent API</returns>
+        IFunctionBuilder EventHub(Action<IEventHubFunctionBuilder> eventHubFunctionBuilder);
 
         /// <summary>
         /// Allows Azure Storage functions to be configured based on a connection name

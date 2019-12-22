@@ -169,8 +169,8 @@
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.outputparameter.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdbMonitor.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\default.outputcollector.csharp.handlebars" />
-      <EmbeddedResource Include="Templates\AzureFunctions\eventhubqueue.csharp.handlebars" />
-      <EmbeddedResource Include="Templates\AzureFunctions\eventhubqueue.json.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\eventhub.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\eventhub.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\extensions.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\forcereference.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\http.csharp.handlebars" />

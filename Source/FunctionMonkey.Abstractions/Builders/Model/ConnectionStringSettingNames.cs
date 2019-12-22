@@ -9,5 +9,7 @@
         public string CosmosDb { get; set; } = "cosmosConnectionString";
 
         public string SignalR { get; set; } = "signalRConnectionString";
+
+        public string EventHub { get; set; } = "eventHubConnectionString";
     }
 }

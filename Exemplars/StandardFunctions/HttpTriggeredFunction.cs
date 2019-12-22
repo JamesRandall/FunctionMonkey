@@ -49,8 +49,7 @@ namespace StandardFunctions
             //return $"{Guid.NewGuid()}.json";
 
             CancellationTokenSource tokenSource = CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
-            tokenSource.Token
-
+            
             string json = JsonConvert.SerializeObject(new SomeResult
             {
                 Message = "Hello world"
