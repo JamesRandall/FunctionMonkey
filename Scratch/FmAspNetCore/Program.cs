@@ -15,11 +15,6 @@ namespace FmAspNetCore
     {
         public static void Main(string[] args)
         {
-            AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
-            {
-                Console.WriteLine(eventArgs.ExceptionObject.ToString());
-            };
-            
             CreateHostBuilder(args).Build().Run();
         }
         
@@ -28,3 +23,4 @@ namespace FmAspNetCore
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseFunctionMonkey(); });
     }
 }
+
