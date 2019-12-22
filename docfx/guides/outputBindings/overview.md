@@ -38,6 +38,7 @@ All the output bindings are available through the .OutputTo property on each Fun
 * Storage Table
 * Cosmos
 * SignalR (both message and action)
+* Event Hubs
 
 An example of each in use is shown below:
 
@@ -66,6 +67,11 @@ An example of each in use is shown below:
                     .HttpRoute("addUserToGroup", route => route
                         .HttpFunction<AddUserToSignalRGroupCommand>(HttpMethod.Put)
                         .OutputTo.SignalRGroup("myHub")
+                    )
+
+                    .HttpRoute("recordMetric", route => route
+                        .HttpFunction<RecordMetricCommand>(HttpMethod.Put)
+                        .OutputTo.EventHub("myEventHub")
                     )
 
                     .CosmosDb(cosmos => cosmos

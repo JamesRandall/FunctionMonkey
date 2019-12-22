@@ -9,4 +9,5 @@ dotnet pack ./Source/FunctionMonkey.FluentValidation/FunctionMonkey.FluentValida
 dotnet pack ./Source/FunctionMonkey.SignalR/FunctionMonkey.SignalR.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.Testing/FunctionMonkey.Testing.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.TokenValidator/FunctionMonkey.TokenValidator.csproj --output ./ --configuration Release
+dotnet pack ./Source/FunctionMonkey.AspNetCore/FunctionMonkey.AspNetCore.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.FSharp/FunctionMonkey.FSharp.fsproj --output ./ --configuration Release
