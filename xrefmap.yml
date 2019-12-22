@@ -2519,19 +2519,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.PartitionKey
   nameWithType: EventHubContext.PartitionKey
-- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.Properties
-  name: Properties
-  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_Properties
-  commentId: P:FunctionMonkey.Abstractions.Contexts.EventHubContext.Properties
-  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.Properties
-  nameWithType: EventHubContext.Properties
-- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.Properties*
-  name: Properties
-  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_Properties_
-  commentId: Overload:FunctionMonkey.Abstractions.Contexts.EventHubContext.Properties
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.Properties
-  nameWithType: EventHubContext.Properties
 - uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
   name: SequenceNumber
   href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SequenceNumber
@@ -2545,32 +2532,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SequenceNumber
   nameWithType: EventHubContext.SequenceNumber
-- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SerializedSizeInBytes
-  name: SerializedSizeInBytes
-  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SerializedSizeInBytes
-  commentId: P:FunctionMonkey.Abstractions.Contexts.EventHubContext.SerializedSizeInBytes
-  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SerializedSizeInBytes
-  nameWithType: EventHubContext.SerializedSizeInBytes
-- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SerializedSizeInBytes*
-  name: SerializedSizeInBytes
-  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SerializedSizeInBytes_
-  commentId: Overload:FunctionMonkey.Abstractions.Contexts.EventHubContext.SerializedSizeInBytes
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SerializedSizeInBytes
-  nameWithType: EventHubContext.SerializedSizeInBytes
-- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SystemProperties
-  name: SystemProperties
-  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SystemProperties
-  commentId: P:FunctionMonkey.Abstractions.Contexts.EventHubContext.SystemProperties
-  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SystemProperties
-  nameWithType: EventHubContext.SystemProperties
-- uid: FunctionMonkey.Abstractions.Contexts.EventHubContext.SystemProperties*
-  name: SystemProperties
-  href: api/FunctionMonkey.Abstractions.Contexts.EventHubContext.html#FunctionMonkey_Abstractions_Contexts_EventHubContext_SystemProperties_
-  commentId: Overload:FunctionMonkey.Abstractions.Contexts.EventHubContext.SystemProperties
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Contexts.EventHubContext.SystemProperties
-  nameWithType: EventHubContext.SystemProperties
 - uid: FunctionMonkey.Abstractions.Contexts.ExecutionContext
   name: ExecutionContext
   href: api/FunctionMonkey.Abstractions.Contexts.ExecutionContext.html
@@ -3428,15 +3389,12 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IContextSetter.SetBlobContext
   nameWithType: IContextSetter.SetBlobContext
-- uid: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime,System.Int64,System.Int64,System.String,System.String,IDictionary{System.String,System.Object},IDictionary{System.String,System.Object})
-  name: SetEventHubContext(DateTime, Int64, Int64, String, String, IDictionary<String, Object>, IDictionary<String, Object>)
-  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetEventHubContext_DateTime_System_Int64_System_Int64_System_String_System_String_IDictionary_System_String_System_Object__IDictionary_System_String_System_Object__
-  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime,System.Int64,System.Int64,System.String,System.String,IDictionary{System.String,System.Object},IDictionary{System.String,System.Object})
-  name.vb: SetEventHubContext(DateTime, Int64, Int64, String, String, IDictionary(Of String, Object), IDictionary(Of String, Object))
-  fullName: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime, System.Int64, System.Int64, System.String, System.String, IDictionary<System.String, System.Object>, IDictionary<System.String, System.Object>)
-  fullName.vb: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime, System.Int64, System.Int64, System.String, System.String, IDictionary(Of System.String, System.Object), IDictionary(Of System.String, System.Object))
-  nameWithType: IContextSetter.SetEventHubContext(DateTime, Int64, Int64, String, String, IDictionary<String, Object>, IDictionary<String, Object>)
-  nameWithType.vb: IContextSetter.SetEventHubContext(DateTime, Int64, Int64, String, String, IDictionary(Of String, Object), IDictionary(Of String, Object))
+- uid: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime,System.Int64,System.String,System.String)
+  name: SetEventHubContext(DateTime, Int64, String, String)
+  href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetEventHubContext_DateTime_System_Int64_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime,System.Int64,System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext(DateTime, System.Int64, System.String, System.String)
+  nameWithType: IContextSetter.SetEventHubContext(DateTime, Int64, String, String)
 - uid: FunctionMonkey.Abstractions.IContextSetter.SetEventHubContext*
   name: SetEventHubContext
   href: api/FunctionMonkey.Abstractions.IContextSetter.html#FunctionMonkey_Abstractions_IContextSetter_SetEventHubContext_
