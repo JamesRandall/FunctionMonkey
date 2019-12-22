@@ -1,0 +1,10 @@
+{{#if CommandResultIsCollection}}
+foreach (var commandResultItem in result)
+{
+    string resultJson = pluginFunctions.Serialize(commandResultItem, false);
+    await collector.AddAsync(resultJson);
+}
+{{else}}
+string resultJson = pluginFunctions.Serialize(result, false);
+await collector.AddAsync(resultJson);
+{{/if}}

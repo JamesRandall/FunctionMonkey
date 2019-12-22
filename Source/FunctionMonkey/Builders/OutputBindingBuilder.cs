@@ -226,6 +226,22 @@ namespace FunctionMonkey.Builders
             return CosmosDb(_connectionStringSettingNames.CosmosDb, collectionName, databaseName);
         }
 
+        public TParentBuilder EventHub(string connectionStringSettingName, string hubName)
+        {
+            VerifyOutputBinding();
+            _functionDefinition.OutputBinding = new EventHubOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            {
+                EventHub = hubName
+            };
+
+            return _parentBuilder;
+        }
+
+        public TParentBuilder EventHub(string hubName)
+        {
+            return EventHub(_connectionStringSettingNames.EventHub, hubName);
+        }
+
         private void VerifyOutputBinding()
         {
             if (_functionDefinition.OutputBinding != null)

@@ -186,7 +186,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .OutputTo.ServiceBusQueue<ModelWithSessionId>(
                             Constants.ServiceBus.MarkerQueueWithSessionId, 
                             result => result.SessionId)
-
+                        
+                        // Event hubs
+                        .HttpFunction<HttpTriggerEventHubOutputCommand>("/toEventHub")
+                        .OutputTo.EventHub(Constants.EventHub.OutputHub)
 
                         // Storage
 
@@ -278,6 +281,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
                     
                     .EventHub(eventHub => eventHub
                         .EventHubFunction<EventHubCommand>(Constants.EventHub.HubName)
+                        // These commands aren't a direct test subject but read from a service bus queue and sub and places
+                        // the IDs into the marker table so that tests can find them during async output trigger testing
+                        .EventHubFunction<EventHubQueuedMarkerIdCommand>(Constants.EventHub.OutputHub)
                     )
 
                     .Timer<TimerCommand>("*/5 * * * * *")

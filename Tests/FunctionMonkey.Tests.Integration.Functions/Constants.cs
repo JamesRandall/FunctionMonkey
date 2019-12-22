@@ -36,6 +36,7 @@
         public static class EventHub
         {
             public const string HubName = "maintesthub";
+            public const string OutputHub = "outputhub";
         }
 
         public static class ServiceBus

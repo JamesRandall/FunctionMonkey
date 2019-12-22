@@ -31,7 +31,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             {typeof(StorageBlobOutputBinding), "storageblob"},
             {typeof(StorageQueueOutputBinding), "storagequeue"},
             {typeof(StorageTableOutputBinding), "storagetable"},
-            {typeof(SignalROutputBinding), "signalr" }
+            {typeof(SignalROutputBinding), "signalr" },
+            {typeof(EventHubOutputBinding), "eventhub"}
         };
 
         public TemplateProvider(CompileTargetEnum target)

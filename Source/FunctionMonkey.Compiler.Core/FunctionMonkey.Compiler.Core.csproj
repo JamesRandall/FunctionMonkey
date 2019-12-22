@@ -171,6 +171,8 @@
       <EmbeddedResource Include="Templates\AzureFunctions\default.outputcollector.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\eventhub.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\eventhub.json.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\eventhub.outputcollector.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\eventhub.outputparameter.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\extensions.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\forcereference.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\http.csharp.handlebars" />

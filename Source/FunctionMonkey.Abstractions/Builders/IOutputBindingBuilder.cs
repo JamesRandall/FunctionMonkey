@@ -27,5 +27,7 @@ namespace FunctionMonkey.Abstractions.Builders
         TFunctionTypeBuilder StorageTable(string tableName);
         TFunctionTypeBuilder CosmosDb(string connectionStringSettingName, string collectionName, string databaseName);
         TFunctionTypeBuilder CosmosDb(string collectionName, string databaseName);
+        TFunctionTypeBuilder EventHub(string connectionStringSettingName, string hubName);
+        TFunctionTypeBuilder EventHub(string hubName);
     }
 }
