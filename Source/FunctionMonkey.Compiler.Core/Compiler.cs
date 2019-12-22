@@ -70,7 +70,7 @@ namespace FunctionMonkey.Compiler.Core
                 {
                     FunctionDefinitions = builder.FunctionDefinitions,
                     OpenApiConfiguration = builder.OpenApiConfiguration,
-                    OutputAuthoredSourceFolder = builder.OutputAuthoredSourceFolder,
+                    OutputAuthoredSourceFolder = builder.Options.OutputSourceTo,
                     CompileTarget = builder.Options.HttpTarget
                 };
             }

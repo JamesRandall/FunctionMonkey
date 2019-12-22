@@ -5,5 +5,6 @@ namespace FunctionMonkey.Abstractions.Builders
     public interface ICompilerOptionsBuilder
     {
         ICompilerOptionsBuilder HttpTarget(CompileTargetEnum target);
+        ICompilerOptionsBuilder OutputSourceTo(string folder);
     }
 }

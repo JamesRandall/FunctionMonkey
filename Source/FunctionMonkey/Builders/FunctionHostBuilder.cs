@@ -20,7 +20,6 @@ namespace FunctionMonkey.Builders
         public IAuthorizationBuilder AuthorizationBuilder { get; } = new AuthorizationBuilder();
         public Type ValidatorType { get; set; }
         public OpenApiConfiguration OpenApiConfiguration { get; } = new OpenApiConfiguration();
-        public string OutputAuthoredSourceFolder { get; private set; }
         public HeaderBindingConfiguration DefaultHeaderBindingConfiguration { get; private set; }
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
@@ -85,12 +84,6 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder OpenApiEndpoint(Action<IOpenApiBuilder> openApi)
         {
             openApi(new OpenApiBuilder(OpenApiConfiguration));
-            return this;
-        }
-
-        public IFunctionHostBuilder OutputAuthoredSource(string folder)
-        {
-            OutputAuthoredSourceFolder = folder;
             return this;
         }
 

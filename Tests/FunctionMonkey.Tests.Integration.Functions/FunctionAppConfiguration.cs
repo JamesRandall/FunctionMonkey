@@ -34,6 +34,9 @@ namespace FunctionMonkey.Tests.Integration.Functions
         public void Build(IFunctionHostBuilder builder)
         {
             builder
+                .CompilerOptions(options => options
+                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
+                )
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     serviceCollection
@@ -42,7 +45,6 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         ;
                 })
                 .AddFluentValidation()
-                .OutputAuthoredSource(@"/Users/jamesrandall/code/authoredSource")
                 .OpenApiEndpoint(openApi => openApi
                     .UserInterface()
                     .Title("Integration Test Functions")

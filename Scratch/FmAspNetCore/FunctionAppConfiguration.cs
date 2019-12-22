@@ -15,8 +15,8 @@ namespace FmAspNetCore
             builder
                 .CompilerOptions(options => options
                     .HttpTarget(CompileTargetEnum.AspNetCore) // the magic!
+                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
                 )
-                .OutputAuthoredSource(@"/Users/jamesrandall/code/authoredSource")
                 .Setup((sc, r) =>
                 {
                     sc.AddSingleton<IRepository, Repository>();

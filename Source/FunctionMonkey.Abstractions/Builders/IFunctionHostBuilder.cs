@@ -72,12 +72,6 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder OpenApiEndpoint(Action<IOpenApiBuilder> openApi);
 
         /// <summary>
-        /// A diagnostic option to output the source that has been authored for the Function triggers
-        /// </summary>
-        /// <param name="folder">The folder to output to</param>
-        IFunctionHostBuilder OutputAuthoredSource(string folder);
-
-        /// <summary>
         /// Allows default for serialization to be configured
         /// </summary>
         /// <param name="serialization">A serialization builder</param>

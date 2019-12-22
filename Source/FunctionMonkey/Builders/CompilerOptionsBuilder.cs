@@ -18,5 +18,11 @@ namespace FunctionMonkey.Builders
             _options.HttpTarget = target;
             return this;
         }
+
+        public ICompilerOptionsBuilder OutputSourceTo(string folder)
+        {
+            _options.OutputSourceTo = folder;
+            return this;
+        }
     }
 }
