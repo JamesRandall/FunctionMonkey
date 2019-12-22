@@ -69,7 +69,59 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="event-hubs">Event Hubs</h1>
 
-<p>Docs coming soon</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>First begin by creating an empty Azure Functions v2 project and then install the core nuget packages for Function Monkey:</p>
+<pre><code>Install-Package FunctionMonkey
+Install-Package FunctionMonkey.Compiler
+</code></pre><p>You will also need to add the Service Bus trigger bindings:</p>
+<pre><code>Install-Package Microsoft.Azure.WebJobs.Extensions.EventHubs
+</code></pre><p>Now create a folder in the solution called commands and create a class called Analytic:</p>
+<pre><code>public class Analytic : ICommand
+{
+    public string Fqn { get; set; }
+
+    public int Value { get; set; }
+}
+</code></pre><p>Next create a folder in the solution called Handlers and create a class called AnalyticHandler:</p>
+<pre><code>internal class AnalyticHandler : ICommandHandler&lt;Analytic&gt;
+{
+    public Task ExecuteAsync(Analytic analytic)
+    {
+        // We won&#39;t really send an email from this sample
+        return Task.CompletedTask;
+    }
+}
+</code></pre><p>And now we&#39;ll create our function app configuration in the root of the project that registers the command handler and registers the command with a service bus queue:</p>
+<pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
+{
+    private const string EventHubName = &quot;analyticHub&quot;;
+
+    public void Build(IFunctionHostBuilder builder)
+    {
+        builder
+            .Setup((serviceCollection, commandRegistry) =&gt;
+                commandRegistry.Register&lt;Analytic&gt;()
+            )
+            .Functions(functions =&gt; functions
+                .EventHub(eventHub =&gt; eventHub
+                    .EventHubFunction&lt;Analytic&gt;(EventHubName)
+                )
+            );
+    }
+}
+</code></pre><p>Finally we need to create an entry in local.settings.json for the Service Bus connection string:</p>
+<pre><code>{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;UseDevelopmentStorage=true&quot;,
+    &quot;eventHubConnectionString&quot;: &quot;&lt;connection string&gt;&quot; 
+  }
+}
+</code></pre><p>And that&#39;s it! If you run this project having created a queue called sendEmailQueue and use a real connection string you&#39;ll find that the <em>AnalyticHandler_</em> is invoked for each item you place on the event hub.</p>
+<p>Note that it is possible to omit the connection setting name - see <a href="/crosscutting/connectionStrings.md">default connection settings</a> for more details.</p>
+<h2 id="validation">Validation</h2>
+<p>If you want to validate the queue messages as you recieve them then validation is supported and is <a href="/crosscutting/validation.html">documented here</a>.</p>
 <div id="disqus_thread"></div>
             </article>
           </div>

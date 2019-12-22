@@ -103,6 +103,7 @@ public class ExampleOutputCommand : ICommand&lt;OutputDocument&gt;
 <li>Storage Table</li>
 <li>Cosmos</li>
 <li>SignalR (both message and action)</li>
+<li>Event Hubs</li>
 </ul>
 <p>An example of each in use is shown below:</p>
 <pre><code>public class FunctionAppConfiguration : IFunctionAppConfiguration
@@ -130,6 +131,11 @@ public class ExampleOutputCommand : ICommand&lt;OutputDocument&gt;
                 .HttpRoute(&quot;addUserToGroup&quot;, route =&gt; route
                     .HttpFunction&lt;AddUserToSignalRGroupCommand&gt;(HttpMethod.Put)
                     .OutputTo.SignalRGroup(&quot;myHub&quot;)
+                )
+
+                .HttpRoute(&quot;recordMetric&quot;, route =&gt; route
+                    .HttpFunction&lt;RecordMetricCommand&gt;(HttpMethod.Put)
+                    .OutputTo.EventHub(&quot;myEventHub&quot;)
                 )
 
                 .CosmosDb(cosmos =&gt; cosmos
