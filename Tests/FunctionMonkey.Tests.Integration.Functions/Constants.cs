@@ -33,6 +33,11 @@
             }
         }
 
+        public static class EventHub
+        {
+            public const string HubName = "maintesthub";
+        }
+
         public static class ServiceBus
         {
             public const string MarkerQueue = "markerqueue";

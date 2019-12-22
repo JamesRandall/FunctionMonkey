@@ -9,5 +9,7 @@
         public string ServiceBusConnectionString { get; set; }
 
         public string CosmosConnectionString { get; set; }
+        
+        public string EventHubConnectionString { get; set; }
     }
 }

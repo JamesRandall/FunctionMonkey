@@ -16,8 +16,11 @@ namespace {{Namespace}}
 
         [FunctionName("{{Name}}")]
         public async Task Run(
-            [EventHubTrigger("samples-workitems", Connection = "eventHubConnectionString")]string eventHubMessage,
-            EventData eventData,
+            [EventHubTrigger("{{EventHubName}}", Connection = "{{ConnectionStringName}}")]string eventHubMessage,
+            DateTime enqueuedTimeUtc,
+            Int64 sequenceNumber,
+            string offset,
+            string partitionKey,
             ILogger log,
             System.Threading.CancellationToken cancellationToken,
             ExecutionContext executionContext
@@ -26,6 +29,7 @@ namespace {{Namespace}}
         {
             log.LogInformation("Event hub trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             {{CommandTypeName}} command;
             if (!System.String.IsNullOrWhiteSpace(eventHubMessage))
@@ -40,13 +44,10 @@ namespace {{Namespace}}
             var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
             contextSetter.SetEventHubContext(
-                eventData.EnqueuedTimeUtc,
-                eventData.SequenceNumber,
-                eventData.SerializedSizeInBytes,
-                eventData.Offset,
-                eventData.PartitionKey,
-                eventData.Properties,
-                eventData.SystemProperties
+                enqueuedTimeUtc,
+                sequenceNumber,
+                offset,
+                partitionKey
             );
             contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
                 executionContext.FunctionAppDirectory,

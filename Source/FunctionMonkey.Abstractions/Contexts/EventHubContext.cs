@@ -17,10 +17,6 @@ namespace FunctionMonkey.Abstractions.Contexts
         /// </summary>
         public long SequenceNumber { get; set; }
         /// <summary>
-        /// The serialized size of the event
-        /// </summary>
-        public long SerializedSizeInBytes { get; set; }
-        /// <summary>
         /// The offset of the event
         /// </summary>
         public string Offset { get; set; }
@@ -28,13 +24,5 @@ namespace FunctionMonkey.Abstractions.Contexts
         /// The partition key of the event
         /// </summary>
         public string PartitionKey { get; set; }
-        /// <summary>
-        /// The properties of the event
-        /// </summary>
-        public IDictionary<string,object> Properties { get; set; }
-        /// <summary>
-        /// The system properties of the event
-        /// </summary>
-        public IDictionary<string,object> SystemProperties { get; set; }
     }
 }

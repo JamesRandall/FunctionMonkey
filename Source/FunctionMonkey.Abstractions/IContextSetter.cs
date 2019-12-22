@@ -41,11 +41,8 @@ namespace FunctionMonkey.Abstractions
         void SetEventHubContext(
             DateTime enqueuedTimeUtc,
             long sequenceNumber,
-            long serializedSizeInBytes,
             string offset,
-            string partitionKey,
-            IDictionary<string,object> properties,
-            IDictionary<string,object> systemProperties
+            string partitionKey
             );
 
         /// <summary>

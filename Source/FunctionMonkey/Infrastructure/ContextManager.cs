@@ -64,21 +64,15 @@ namespace FunctionMonkey.Infrastructure
         void IContextSetter.SetEventHubContext(
             DateTime enqueuedTimeUtc,
             long sequenceNumber,
-            long serializedSizeInBytes,
             string offset,
-            string partitionKey,
-            IDictionary<string,object> properties,
-            IDictionary<string,object> systemProperties)
+            string partitionKey)
         {
             EventHubContextLocal.Value = new EventHubContext
             {
                 EnqueuedTimeUtc = enqueuedTimeUtc,
                 Offset = offset,
                 SequenceNumber = sequenceNumber,
-                SerializedSizeInBytes = serializedSizeInBytes,
                 PartitionKey = partitionKey,
-                Properties = properties,
-                SystemProperties = systemProperties
             };
         }
 

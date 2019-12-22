@@ -5,6 +5,7 @@ using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.FluentValidation;
 using FunctionMonkey.Tests.Integration.Functions.Commands;
+using FunctionMonkey.Tests.Integration.Functions.Commands.EventHubs;
 using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
 using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
 using FunctionMonkey.Tests.Integration.Functions.Commands.SignalR;
@@ -273,6 +274,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .ChangeFeedFunction<CosmosChangeFeedCommand>(Constants.Cosmos.Collection, Constants.Cosmos.Database)
                         .ChangeFeedFunction<CosmosTriggerTableOutputCommand>(Constants.Cosmos.OutputTableCollection, Constants.Cosmos.Database, leaseCollectionName: Constants.Cosmos.OutputTableLeases)
                         .OutputTo.StorageTable(Constants.Storage.Table.Markers)
+                    )
+                    
+                    .EventHub(eventHub => eventHub
+                        .EventHubFunction<EventHubCommand>(Constants.EventHub.HubName)
                     )
 
                     .Timer<TimerCommand>("*/5 * * * * *")

@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.ChangeFeedProcessor;
+using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.CodeAnalysis;
@@ -152,7 +153,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 typeof(ServiceBusAttribute).Assembly.Location,
                 typeof(QueueAttribute).Assembly.Location,
                 typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location,
-                typeof(IServiceCollection).Assembly.Location
+                typeof(IServiceCollection).Assembly.Location,
+                typeof(EventData).Assembly.Location
             };
             return locations;
         }
