@@ -2,10 +2,15 @@ module FunctionMonkey.FSharp.Tests.Integration.Functions.EntryPoint
 open FSharp.Control
 open FunctionMonkey.Commanding.Abstractions.Validation
 open System
+open System.Security.Claims
 open System.Threading.Tasks
 open FunctionMonkey.FSharp.Configuration
+open FunctionMonkey.FSharp.Configuration
 open FunctionMonkey.FSharp.Models
+open FunctionMonkey.FSharp.Tests.Integration.Functions.HttpClaimFunctions
 open Microsoft.WindowsAzure.Storage
+
+exception InvalidTokenException
 
 type HttpCommandWithNoRoute = { nullParam : string option }
 
@@ -43,6 +48,14 @@ let private isValidCheck validationResult =
     match castToObjResult with
     | :? ValidationResult as v -> v.IsValid
     | _ -> true
+    
+let validateToken (bearerToken:string) =
+    match bearerToken.Length with
+    | 0 -> raise InvalidTokenException
+    | _ -> new ClaimsPrincipal(new ClaimsIdentity([
+        Claim("claima", "a message")
+        Claim("claimb", "42")
+    ]))
 
 let app = functionApp {
     outputSourcePath "/Users/jamesrandall/code/authoredSource"
@@ -50,6 +63,11 @@ let app = functionApp {
     openApi "F# Integration Test Functions" "1.0.0"
     openApiUserInterface "/openapi"
     isValid isValidCheck
+    tokenValidator validateToken
+    claimsMappings [
+        claimsMapper.shared("claima", "stringClaim")
+        claimsMapper.command("claimb", (fun cmd -> cmd.mappedValue))
+    ]
     httpRoute "setup" [
         azureFunction.http (AsyncHandler(createResources), Put)
     ]

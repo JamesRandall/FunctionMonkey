@@ -26,6 +26,7 @@
         <Compile Include="CommonModel.fs" />
         <Compile Include="Helpers.fs" />
         <Compile Include="HttpVerbFunctions.fs" />
+        <Compile Include="HttpClaimFunctions.fs" />
         <Compile Include="HttpRouteParameterFunctions.fs" />
         <Compile Include="HttpQueryParameterFunctions.fs" />
         <Compile Include="HttpWithLoggerFunctions.fs" />
