@@ -1,9 +1,15 @@
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+{{#if ValidatesToken}}
+using Microsoft.AspNetCore.Authorization;
+{{/if}}
 
 namespace {{{Namespace}}}
 {
+{{#if ValidatesToken}}
+    [Authorize]
+{{/if}}
     [ApiController]
     public class {{{Name}}}Controller : ControllerBase
     {

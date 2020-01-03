@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using FunctionMonkey.AspNetCore;
 
 namespace {{{Namespace}}}
 {
@@ -19,19 +20,22 @@ namespace {{{Namespace}}}
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            /*CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
-                (fromType, toInstance) => services.AddSingleton(fromType, toInstance),
-                (fromType, toType) => services.AddTransient(fromType, toType),
-                resolveType => _serviceProvider.GetService(resolveType)
-            );
-
-            ICommandRegistry registry = adapter.AddCommanding();
-            registry.Discover<Startup>();*/
-
             {{Namespace}}.ReferenceLinkBack.ForceLinkBack();
             FunctionMonkey.Runtime.InitializeFromStartup(services);
 
             services.AddControllers();
+
+            {{#if UsesTokenValidation}}
+            services
+                .AddAuthentication(x =>
+                    {
+                        x.DefaultAuthenticateScheme = TokenValidationDefaults.AuthenticationScheme;
+                        x.DefaultChallengeScheme = TokenValidationDefaults.AuthenticationScheme;
+                    }
+                )
+                .AddTokenValidation();
+            {{/if}}
+            services.AddAuthorization();
     
             {{#if OpenApiEnabled}}
             services.AddSwaggerGen(c => {
@@ -54,6 +58,10 @@ namespace {{{Namespace}}}
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             {{/if}}
             app.UseRouting();
+            {{#if UsesTokenValidation}}
+            app.UseAuthentication();
+            app.UseAuthorization();
+            {{/if}}
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
@@ -39,13 +40,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
                 directoryInfo = null;
             }
 
-            syntaxTrees.Add(CreateStartup(newAssemblyNamespace, directoryInfo));
-            foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
+            HttpFunctionDefinition[] httpFunctions = functionDefinitions
+                .Where(x => x is HttpFunctionDefinition)
+                .Cast<HttpFunctionDefinition>()
+                .ToArray();
+            
+            syntaxTrees.Add(CreateStartup(newAssemblyNamespace, directoryInfo, httpFunctions));
+            foreach (HttpFunctionDefinition httpFunctionDefinition in httpFunctions)
             {
-                if (abstractFunctionDefinition is HttpFunctionDefinition httpFunctionDefinition)
-                {
-                    syntaxTrees.Add(CreateController(newAssemblyNamespace, directoryInfo, httpFunctionDefinition));
-                }
+                syntaxTrees.Add(CreateController(newAssemblyNamespace, directoryInfo, httpFunctionDefinition));
             }
 
             return syntaxTrees;
@@ -75,13 +78,20 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
                 typeof(ICommandDispatcher).Assembly.Location,
                 typeof(ActionResult).Assembly.Location,
                 typeof(IActionResult).Assembly.Location,
-                typeof(Task).Assembly.Location
+                typeof(Task).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Authentication.AuthenticationBuilder).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Authorization.AuthorizeAttribute).Assembly.Location,
+                typeof(FunctionMonkey.AspNetCore.AuthenticationOptions).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Authentication.IAuthenticationHandler).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions).Assembly.Location
             };
 
             return locations;
         }
         
-        private SyntaxTree CreateStartup(string namespaceName, DirectoryInfo directoryInfo)
+        private SyntaxTree CreateStartup(string namespaceName,
+            DirectoryInfo directoryInfo,
+            IReadOnlyCollection<HttpFunctionDefinition> functions)
         {
             string startupTemplateSource = TemplateProvider.GetTemplate("startup","csharp");
             Func<object, string> template = Handlebars.Compile(startupTemplateSource);
@@ -89,7 +99,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
             string outputCode = template(new
             {
                 Namespace = namespaceName,
-                OpenApiEnabled = false
+                OpenApiEnabled = false,
+                UsesTokenValidation = functions.Any(x => x.ValidatesToken)
             });
             OutputDiagnosticCode(directoryInfo, "Startup", outputCode);
             

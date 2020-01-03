@@ -1,24 +1,28 @@
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using FunctionMonkey.Abstractions;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-using HttpResponse = Microsoft.AspNetCore.Http.HttpResponse;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FunctionMonkey.AspNetCore
 {
-    public class FunctionMonkeyAuthHandler : IAuthenticationHandler
+    public class FunctionMonkeyAuthHandler : AuthenticationHandler<AuthenticationOptions>
     {
         private readonly ITokenValidator _tokenValidator;
 
-        public FunctionMonkeyAuthHandler(ITokenValidator tokenValidator)
+        public FunctionMonkeyAuthHandler(ITokenValidator tokenValidator,
+            IOptionsMonitor<AuthenticationOptions> options,
+            ILoggerFactory logger,
+            UrlEncoder encoder,
+            ISystemClock clock) : base(options, logger, encoder, clock)
         {
             _tokenValidator = tokenValidator;
         }
         
-        protected HttpContext Context { get; private set; }
+        /*protected HttpContext Context { get; private set; }
 
         protected HttpRequest Request
         {
@@ -63,6 +67,51 @@ namespace FunctionMonkey.AspNetCore
                 throw new NotSupportedException();
             }
             Context = context;
+            return Task.CompletedTask;
+        }*/
+        
+        protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+        {
+            string header = Request.Headers["Authorization"];
+            if (string.IsNullOrWhiteSpace(header))
+            {
+                return AuthenticateResult.NoResult();
+            }
+            //TokenValidationResult tokenValidationResult = await _tokenValidator.ValidateAsync(Request.Headers["Authorization"]);
+            ClaimsPrincipal principal = await _tokenValidator.ValidateAsync(Request.Headers["Authorization"]);
+            if (principal == null)
+            {
+                return AuthenticateResult.Fail("Invalid token");
+            }
+
+            /*var tokenValidatedContext = new TokenValidatedContext(Context, Scheme, Options)
+            {
+                Principal = tokenValidationResult.Principal,
+                SecurityToken = tokenValidationResult.ValidatedToken
+            };
+            
+            tokenValidatedContext.Success();
+            return tokenValidatedContext.Result;*/
+
+            return AuthenticateResult.Success(
+                new AuthenticationTicket(
+                    principal,
+                    new AuthenticationProperties(),
+                    TokenValidationDefaults.AuthenticationScheme));
+        }
+
+        protected override async Task HandleChallengeAsync(AuthenticationProperties properties)
+        {
+            var authResult = await HandleAuthenticateOnceSafeAsync();
+            if (!authResult.Succeeded)
+            {
+                Response.StatusCode = 401;
+            }
+        }
+        
+        protected override Task HandleForbiddenAsync(AuthenticationProperties properties)
+        {
+            Response.StatusCode = 403;
             return Task.CompletedTask;
         }
     }

@@ -20,4 +20,8 @@
       <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+    </ItemGroup>
+
 </Project>

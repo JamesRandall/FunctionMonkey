@@ -13,6 +13,7 @@
       <PackageReference Include="AzureFromTheTrenches.Commanding.Abstractions" Version="9.0.2" />
       <PackageReference Include="FSharp.Core" Version="4.7.0" />
       <PackageReference Include="Handlebars.Net" Version="1.10.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.5" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="4.1.0" />
@@ -28,6 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\FunctionMonkey.AspNetCore\FunctionMonkey.AspNetCore.csproj" />
       <ProjectReference Include="..\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
       <ProjectReference Include="..\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj" />
       <ProjectReference Include="..\FunctionMonkey\FunctionMonkey.csproj" />

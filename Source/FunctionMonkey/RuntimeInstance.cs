@@ -239,10 +239,12 @@ namespace FunctionMonkey
                     {
                         pluginFunctions.ValidateToken = async (authorizationHeader) =>
                         {
-                            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
+                            /*var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
                                 ServiceProvider.GetService(httpFunctionDefinition
-                                    .TokenValidatorType);
+                                    .TokenValidatorType);*/
+                            ITokenValidator tokenValidator = ServiceProvider.GetService<ITokenValidator>();
                             ClaimsPrincipal principal = await tokenValidator.ValidateAsync(authorizationHeader);
+                            
                             return principal;
                         };
                         
@@ -416,6 +418,7 @@ namespace FunctionMonkey
             IReadOnlyCollection<AbstractFunctionDefinition> builderFunctionDefinitions)
         {
             HashSet<Type> types = new HashSet<Type>();
+            Type tokenValidatorType = null;
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in builderFunctionDefinitions)
             {
                 if (abstractFunctionDefinition is HttpFunctionDefinition httpFunctionDefinition)
@@ -432,11 +435,24 @@ namespace FunctionMonkey
 
                     if (httpFunctionDefinition.TokenValidatorType != null)
                     {
-                        types.Add(httpFunctionDefinition.TokenValidatorType);
+                        if (tokenValidatorType != null &&
+                            httpFunctionDefinition.TokenValidatorType != tokenValidatorType)
+                        {
+                            // this shouldn't happen as the builder interface doesn't allow it
+                            // TODO: Remove TokenValidatorType from the HttpFunctionDefinition once we've completed
+                            // the registration against ITokenValidator
+                            throw new ConfigurationException("Only one token validator type can be set");
+                        }
+                        tokenValidatorType = httpFunctionDefinition.TokenValidatorType;
                     }
                 }
             }
 
+            if (tokenValidatorType != null)
+            {
+                ServiceCollection.AddTransient(typeof(ITokenValidator), tokenValidatorType);
+            }
+            
             foreach (Type claimsPrincipalAuthorizationType in types)
             {
                 ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
@@ -562,6 +578,7 @@ namespace FunctionMonkey
             //ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
             ServiceCollection.AddTransient<IContextSetter, ContextManager>();
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
+            
         }
 
         private void RegisterTimerCommandFactories(

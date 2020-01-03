@@ -4,6 +4,7 @@ using FmAspNetCore.Services;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Compiler.Core;
+using FunctionMonkey.TokenValidator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FmAspNetCore
@@ -16,6 +17,10 @@ namespace FmAspNetCore
                 .CompilerOptions(options => options
                     .HttpTarget(CompileTargetEnum.AspNetCore) // the magic!
                     .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
+                )
+                .Authorization(auth => auth
+                    .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
+                    .AddOpenIdConnectTokenValidator("https://accidentalfish.eu.auth0.com/.well-known/openid-configuration")
                 )
                 .Setup((sc, r) =>
                 {
