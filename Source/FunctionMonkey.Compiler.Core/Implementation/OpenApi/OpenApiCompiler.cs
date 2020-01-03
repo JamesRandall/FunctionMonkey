@@ -11,6 +11,7 @@ using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Compiler.Core.Extensions;
+using FunctionMonkey.Compiler.Core.Implementation.AzureFunctions;
 using FunctionMonkey.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi;
@@ -19,7 +20,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
+namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 {
     internal class OpenApiCompiler
     {

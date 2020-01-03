@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
+namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 {
     public static class OpenApiXmlCommentsHelper
     {

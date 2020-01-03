@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Compiler.Core.Implementation.OpenApi;
 
 namespace FunctionMonkey.Compiler.Core.Implementation
 {
@@ -16,5 +17,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string assemblyName,
             CompileTargetEnum compileTarget,
             string outputAuthoredSourceFolder = null);
+        
+        OpenApiOutputModel OpenApiOutputModel { get; set; }
     }
 }

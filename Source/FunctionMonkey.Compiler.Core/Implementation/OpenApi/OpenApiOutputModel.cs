@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
+namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 {
     internal class OpenApiFileReference
     {

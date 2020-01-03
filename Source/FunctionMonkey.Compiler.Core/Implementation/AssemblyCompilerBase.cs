@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
+using System.Text;
 using System.Threading.Tasks;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
-using FunctionMonkey.Compiler.Core.HandlebarsHelpers;
+using FunctionMonkey.Compiler.Core.Implementation.OpenApi;
 using HandlebarsDotNet;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -27,15 +29,38 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         public ICompilerLog CompilerLog { get; }
 
         public ITemplateProvider TemplateProvider { get; }
+        
+        public OpenApiOutputModel OpenApiOutputModel { get; set; }
 
         protected abstract List<SyntaxTree> CompileSource(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            Type backlinkType,
-            PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
-            string outputAuthoredSourceFolder);
+            DirectoryInfo outputAuthoredSourceFolder);
 
-        protected abstract List<ResourceDescription> CreateResources(string assemblyNamespace);
+        protected List<ResourceDescription> CreateResources(string assemblyNamespace)
+        {
+            List<ResourceDescription> resources = null;
+            if (OpenApiOutputModel != null)
+            {
+                resources = new List<ResourceDescription>();
+                Debug.Assert(OpenApiOutputModel.OpenApiSpecification != null);
+                resources.Add(new ResourceDescription(
+                    $"{assemblyNamespace}.OpenApi.{OpenApiOutputModel.OpenApiSpecification.Filename}",
+                    () => new MemoryStream(Encoding.UTF8.GetBytes(OpenApiOutputModel.OpenApiSpecification.Content)), true));
+                if (OpenApiOutputModel.SwaggerUserInterface != null)
+                {
+                    foreach (OpenApiFileReference fileReference in OpenApiOutputModel.SwaggerUserInterface)
+                    {
+                        OpenApiFileReference closureCapturedFileReference = fileReference;
+                        resources.Add(new ResourceDescription(
+                            $"{assemblyNamespace}.OpenApi.{closureCapturedFileReference.Filename}",
+                            () => new MemoryStream(Encoding.UTF8.GetBytes(closureCapturedFileReference.Content)), true));
+                    }
+                }
+            }
+
+            return resources;
+        }
 
         protected abstract IReadOnlyCollection<string> BuildCandidateReferenceList(
             CompileTargetEnum compileTarget,
@@ -51,15 +76,25 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             CompileTargetEnum compileTarget,
             string outputAuthoredSourceFolder = null)
         {
+            DirectoryInfo directoryInfo =  outputAuthoredSourceFolder != null ? new DirectoryInfo(outputAuthoredSourceFolder) : null;
+            if (directoryInfo != null && !directoryInfo.Exists)
+            {
+                directoryInfo = null;
+            }
+            
             List<SyntaxTree> syntaxTrees = CompileSource(functionDefinitions,
-                backlinkType,
-                backlinkPropertyInfo,
                 newAssemblyNamespace,
-                outputAuthoredSourceFolder).ToList();
-            SyntaxTree linkBackTree = CreateLinkBack(functionDefinitions, backlinkType, backlinkPropertyInfo, newAssemblyNamespace, outputAuthoredSourceFolder);
+                directoryInfo).ToList();
+            SyntaxTree linkBackTree = CreateLinkBack(functionDefinitions, backlinkType, backlinkPropertyInfo, newAssemblyNamespace, directoryInfo);
             if (linkBackTree != null)
             {
                 syntaxTrees.Add(linkBackTree);
+            }
+
+            SyntaxTree openApiTree = CreateOpenApiTree(newAssemblyNamespace, directoryInfo);
+            if (openApiTree != null)
+            {
+                syntaxTrees.Add(openApiTree);
             }
 
             bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
@@ -72,6 +107,32 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 newAssemblyNamespace,
                 compileTarget,
                 isFSharpProject);
+        }
+
+        private SyntaxTree CreateOpenApiTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
+        {
+            if (OpenApiOutputModel != null && OpenApiOutputModel.IsConfiguredForUserInterface)
+            {
+                string templateSource = TemplateProvider.GetTemplate("swaggerui","csharp");
+                return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
+                {
+                    Namespace = newAssemblyNamespace
+                }, directoryInfo);
+            }
+
+            return null;
+        }
+        
+        protected static SyntaxTree CreateSyntaxTreeFromHandlebarsTemplate(string templateSource, string name,
+            object functionDefinition, DirectoryInfo directoryInfo)
+        {
+            Func<object, string> template = Handlebars.Compile(templateSource);
+
+            string outputCode = template(functionDefinition);
+            OutputDiagnosticCode(directoryInfo, name, outputCode);
+
+            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode, path:$"{name}.cs");
+            return syntaxTree;
         }
         
         protected static List<string> ResolveLocationsWithExistingReferences(string outputBinaryFolder, IReadOnlyCollection<string> locations)
@@ -162,14 +223,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             Type backlinkType,
             PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
-            string outputAuthoredSourceFolder)
+            DirectoryInfo outputAuthoredSourceFolder)
         {
             if (backlinkType == null) return null; // back link referencing has been disabled
-            DirectoryInfo directoryInfo =  outputAuthoredSourceFolder != null ? new DirectoryInfo(outputAuthoredSourceFolder) : null;
-            if (directoryInfo != null && !directoryInfo.Exists)
-            {
-                directoryInfo = null;
-            }
             
             // Now we need to create a class that references the assembly with the configuration builder
             // otherwise the reference will be optimised away by Roslyn and it will then never get loaded
@@ -199,7 +255,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             }
             
             string outputLinkBackCode = linkBackTemplate(linkBackModel);
-            OutputDiagnosticCode(directoryInfo, "ReferenceLinkBack", outputLinkBackCode);
+            OutputDiagnosticCode(outputAuthoredSourceFolder, "ReferenceLinkBack", outputLinkBackCode);
             SyntaxTree linkBackSyntaxTree = CSharpSyntaxTree.ParseText(outputLinkBackCode);
             return linkBackSyntaxTree;
         }

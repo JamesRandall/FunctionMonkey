@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Compiler.Core.Implementation.OpenApi;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Builder;
@@ -25,40 +26,28 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
         public AspNetCoreAssemblyCompiler(ICompilerLog compilerLog, ITemplateProvider templateProvider = null) : base(compilerLog, templateProvider)
         {
         }
-
+        
         protected override List<SyntaxTree> CompileSource(
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
-            Type backlinkType,
-            PropertyInfo backlinkPropertyInfo,
             string newAssemblyNamespace,
-            string outputAuthoredSourceFolder)
+            DirectoryInfo outputAuthoredSourceFolder)
         {
             List<SyntaxTree> syntaxTrees = new List<SyntaxTree>();
-            DirectoryInfo directoryInfo =  outputAuthoredSourceFolder != null ? new DirectoryInfo(outputAuthoredSourceFolder) : null;
-            if (directoryInfo != null && !directoryInfo.Exists)
-            {
-                directoryInfo = null;
-            }
-
+            
             HttpFunctionDefinition[] httpFunctions = functionDefinitions
                 .Where(x => x is HttpFunctionDefinition)
                 .Cast<HttpFunctionDefinition>()
                 .ToArray();
             
-            syntaxTrees.Add(CreateStartup(newAssemblyNamespace, directoryInfo, httpFunctions));
+            syntaxTrees.Add(CreateStartup(newAssemblyNamespace, outputAuthoredSourceFolder, httpFunctions));
             foreach (HttpFunctionDefinition httpFunctionDefinition in httpFunctions)
             {
-                syntaxTrees.Add(CreateController(newAssemblyNamespace, directoryInfo, httpFunctionDefinition));
+                syntaxTrees.Add(CreateController(newAssemblyNamespace, outputAuthoredSourceFolder, httpFunctionDefinition));
             }
 
             return syntaxTrees;
         }
-
-        protected override List<ResourceDescription> CreateResources(string assemblyNamespace)
-        {
-            return null;
-        }
-
+        
         protected override IReadOnlyCollection<string> BuildCandidateReferenceList(CompileTargetEnum compileTarget, bool isFSharpProject)
         {
             HashSet<string> locations = new HashSet<string>
@@ -83,7 +72,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
                 typeof(Microsoft.AspNetCore.Authorization.AuthorizeAttribute).Assembly.Location,
                 typeof(FunctionMonkey.AspNetCore.AuthenticationOptions).Assembly.Location,
                 typeof(Microsoft.AspNetCore.Authentication.IAuthenticationHandler).Assembly.Location,
-                typeof(Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions).Assembly.Location
+                typeof(Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions).Assembly.Location,
+                typeof(Microsoft.Extensions.Logging.ILogger).Assembly.Location
             };
 
             return locations;

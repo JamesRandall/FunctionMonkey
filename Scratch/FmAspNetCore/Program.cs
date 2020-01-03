@@ -8,6 +8,7 @@ using FunctionMonkey.AspNetCore;
 using FunctionMonkey.Compiler.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace FmAspNetCore
 {
@@ -20,6 +21,12 @@ namespace FmAspNetCore
         
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                // TODO: Need to find a way to make logging optional - inject a null logger if none registered
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseFunctionMonkey(); });
     }
 }

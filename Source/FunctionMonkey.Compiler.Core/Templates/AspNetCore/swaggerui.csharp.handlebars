@@ -1,0 +1,64 @@
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using AzureFromTheTrenches.Commanding.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.Extensions.Logging;
+
+namespace {{{Namespace}}}
+{
+    [ApiController]
+    public class SwaggerUiController : ControllerBase
+    {
+        private static readonly Dictionary<string, string> SwaggerContentTypes = new Dictionary<string, string>
+        {
+            { ".html", "text/html" },
+            {".png", "image/png" },
+            {".map", "application/json" },
+            {".css", "text/css"},
+            {".js","application/javascript" }
+        };
+
+        private readonly ILogger _logger;
+
+        public SwaggerUiController(ILogger logger=null)
+        {
+            _logger = logger;
+        }
+
+        [Route("openapi/{name?}")]
+        [HttpGet]
+        public async Task<ActionResult> Handler(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                name = "index.html";
+            }
+            
+            using (Stream stream = typeof(SwaggerUiController).Assembly.GetManifestResourceStream($"{{Namespace}}.OpenApi.{name}"))
+            {
+                if (stream != null)
+                {
+                    ContentResult result = new ContentResult();
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        result.Content = await reader.ReadToEndAsync();
+                    }
+
+                    if (!SwaggerContentTypes.TryGetValue(Path.GetExtension(name).ToLower(), out var contentType))
+                    {
+                        contentType = "text/plain";
+                    }
+
+                    result.ContentType = contentType;
+
+                    return result;
+                }
+                else {
+                    _logger?.LogWarning($"Unable to find resource for {name}");
+                }
+            }
+            return new NotFoundResult();
+        }
+    }
+}

@@ -22,6 +22,11 @@ namespace FmAspNetCore
                     .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
                     .AddOpenIdConnectTokenValidator("https://accidentalfish.eu.auth0.com/.well-known/openid-configuration")
                 )
+                .OpenApiEndpoint(openApi => openApi
+                    .Title("My API")
+                    .Version("0.0.0")
+                    .UserInterface()
+                )
                 .Setup((sc, r) =>
                 {
                     sc.AddSingleton<IRepository, Repository>();

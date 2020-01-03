@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions;
+using FunctionMonkey.Compiler.Core.Implementation.OpenApi;
 using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Newtonsoft.Json;
