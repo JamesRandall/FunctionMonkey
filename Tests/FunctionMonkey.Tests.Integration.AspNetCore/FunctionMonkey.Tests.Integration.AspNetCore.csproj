@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+      <ProjectReference Include="..\..\Source\FunctionMonkey.AspNetCore\FunctionMonkey.AspNetCore.csproj" />
+      <ProjectReference Include="..\..\Source\FunctionMonkey.Commanding.Abstractions\FunctionMonkey.Commanding.Abstractions.csproj" />
+      <ProjectReference Include="..\..\Source\FunctionMonkey.FluentValidation\FunctionMonkey.FluentValidation.csproj" />
+      <ProjectReference Include="..\..\Source\FunctionMonkey\FunctionMonkey.csproj" />
+      <ProjectReference Include="..\FunctionMonkey.Tests.Integration.Common\FunctionMonkey.Tests.Integration.Common.csproj" />
+    </ItemGroup>
+
+</Project>
