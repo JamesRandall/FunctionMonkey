@@ -17,6 +17,9 @@ namespace FunctionMonkey.Model
         public HttpFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("", commandType, explicitCommandResultType)
         {
         }
+
+        // This is used to determine if the command requires a body on an ASP.Net controller
+        public bool CommandRequiresBody => CommandType.GetProperties().Length > 0;
         
         public HashSet<HttpMethod> Verbs { get; set; } = new HashSet<HttpMethod>();
 

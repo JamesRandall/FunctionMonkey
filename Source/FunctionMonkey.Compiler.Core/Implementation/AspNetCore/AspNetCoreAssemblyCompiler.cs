@@ -73,7 +73,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
                 typeof(FunctionMonkey.AspNetCore.AuthenticationOptions).Assembly.Location,
                 typeof(Microsoft.AspNetCore.Authentication.IAuthenticationHandler).Assembly.Location,
                 typeof(Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions).Assembly.Location,
-                typeof(Microsoft.Extensions.Logging.ILogger).Assembly.Location
+                typeof(Microsoft.Extensions.Logging.ILogger).Assembly.Location,
+                typeof(Microsoft.Extensions.Configuration.IConfiguration).Assembly.Location,
+                typeof(Microsoft.Extensions.Configuration.ConfigurationBinder).Assembly.Location
             };
 
             return locations;
@@ -89,8 +91,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
             string outputCode = template(new
             {
                 Namespace = namespaceName,
-                OpenApiEnabled = false,
-                UsesTokenValidation = functions.Any(x => x.ValidatesToken)
+                UsesTokenValidation = functions.Any(x => x.ValidatesToken),
+                SetEnvironmentVariables = true // this causes app settings specified like Azure Functions to be set as environment variables
             });
             OutputDiagnosticCode(directoryInfo, "Startup", outputCode);
             

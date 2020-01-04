@@ -28,7 +28,9 @@ namespace FunctionMonkey
         
         public static AsyncLocal<IServiceProvider> FunctionServiceProvider => RuntimeInstance.Value.FunctionServiceProvider;
 
-        private static readonly Lazy<RuntimeInstance> RuntimeInstance = new Lazy<RuntimeInstance>(() => new RuntimeInstance(null, null, ServiceCollection));
+        private static readonly Lazy<RuntimeInstance> RuntimeInstance =
+            new Lazy<RuntimeInstance>(() =>
+                new RuntimeInstance(null, null, ServiceCollection));
         
         private static IServiceCollection ServiceCollection { get; set; }
 

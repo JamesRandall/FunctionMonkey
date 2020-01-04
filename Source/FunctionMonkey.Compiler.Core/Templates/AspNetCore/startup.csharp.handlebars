@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FunctionMonkey.AspNetCore;
+using Microsoft.Extensions.Configuration;
 
 namespace {{{Namespace}}}
 {
@@ -45,18 +46,24 @@ namespace {{{Namespace}}}
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
         {
+            {{#if SetEnvironmentVariables}}
+            var values = configuration.GetSection("Values")?.GetChildren();
+            if (values != null)
+            {
+                foreach (var value in values)
+                {
+                    Environment.SetEnvironmentVariable(value.Key, value.Value);
+                }
+            }
+            {{/if}}
             _serviceProvider = app.ApplicationServices;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            {{#if OpenApiEnabled}}
-            app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
-            {{/if}}
             app.UseRouting();
             {{#if UsesTokenValidation}}
             app.UseAuthentication();

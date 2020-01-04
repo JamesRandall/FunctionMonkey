@@ -115,11 +115,29 @@ namespace FunctionMonkey
 
             CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
+            RegisterLoggerIfRequired();
+
             //beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
             //ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
             //afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
 
             //builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+        }
+
+        private void RegisterLoggerIfRequired()
+        {
+            // Ensure we have an uncategorised ILogger registered, we may not in ASP.Net Core
+            if (ServiceCollection.All(x => x.ServiceType != typeof(ILogger)))
+            {
+                if (ServiceCollection.Any(x => x.ServiceType == typeof(ILoggerFactory)))
+                {
+                    ServiceCollection.AddTransient(typeof(ILogger), sp =>
+                    {
+                        ILoggerFactory loggerFactory = sp.GetService<ILoggerFactory>();
+                        return loggerFactory.CreateLogger("common");
+                    });
+                }
+            }
         }
 
         private ISerializer CreateSerializer(AbstractFunctionDefinition functionDefinition)
