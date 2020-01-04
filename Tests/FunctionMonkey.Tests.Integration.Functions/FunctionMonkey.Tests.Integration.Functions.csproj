@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Source\FunctionMonkey.FluentValidation\FunctionMonkey.FluentValidation.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey.SignalR\FunctionMonkey.SignalR.csproj" />
     <ProjectReference Include="..\..\Source\FunctionMonkey\FunctionMonkey.csproj" />
+    <ProjectReference Include="..\FunctionMonkey.Tests.Integration.Common\FunctionMonkey.Tests.Integration.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

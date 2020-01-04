@@ -18,10 +18,10 @@ namespace FmAspNetCore
                     .HttpTarget(CompileTargetEnum.AspNetCore) // the magic!
                     .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
                 )
-                .Authorization(auth => auth
+                /*.Authorization(auth => auth
                     .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
                     .AddOpenIdConnectTokenValidator("https://accidentalfish.eu.auth0.com/.well-known/openid-configuration")
-                )
+                )*/
                 .OpenApiEndpoint(openApi => openApi
                     .Title("My API")
                     .Version("0.0.0")
@@ -37,6 +37,9 @@ namespace FmAspNetCore
                         .HttpFunction<CreateTodoItemCommand>(HttpMethod.Post)
                         .HttpFunction<GetAllTodoItemsQuery>(HttpMethod.Get)
                         .HttpFunction<MarkCompleteCommand>(HttpMethod.Put)
+                    )
+                    .HttpRoute("loaderio-fa4864b7cff0c92b67ffdc6c1b85d9a5", route => route
+                        .HttpFunction<LoaderIoQuery>(HttpMethod.Get).Options(options => options.ResponseHandler<StringContentResponseHandler>())
                     )
                 );
         }

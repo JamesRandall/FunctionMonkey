@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FunctionMonkey.Testing.Tests.Helpers;
-using FunctionMonkey.Tests.Integration.Functions.Commands;
-using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
+using FunctionMonkey.Tests.Integration.Common.Commands.HttpResponseShaping;
 using Microsoft.AspNetCore.Http;
 using Xunit;
 

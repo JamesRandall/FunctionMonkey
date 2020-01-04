@@ -4,13 +4,14 @@ using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.FluentValidation;
-using FunctionMonkey.Tests.Integration.Functions.Commands;
-using FunctionMonkey.Tests.Integration.Functions.Commands.EventHubs;
-using FunctionMonkey.Tests.Integration.Functions.Commands.HttpResponseShaping;
-using FunctionMonkey.Tests.Integration.Functions.Commands.OutputBindings;
-using FunctionMonkey.Tests.Integration.Functions.Commands.SignalR;
-using FunctionMonkey.Tests.Integration.Functions.Commands.TestInfrastructure;
-using FunctionMonkey.Tests.Integration.Functions.Services;
+using FunctionMonkey.Tests.Integration.Common;
+using FunctionMonkey.Tests.Integration.Common.Commands;
+using FunctionMonkey.Tests.Integration.Common.Commands.EventHubs;
+using FunctionMonkey.Tests.Integration.Common.Commands.HttpResponseShaping;
+using FunctionMonkey.Tests.Integration.Common.Commands.OutputBindings;
+using FunctionMonkey.Tests.Integration.Common.Commands.SignalR;
+using FunctionMonkey.Tests.Integration.Common.Commands.TestInfrastructure;
+using FunctionMonkey.Tests.Integration.Common.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Tests.Integration.Functions
