@@ -20,7 +20,7 @@ namespace {{{Namespace}}}
             _dispatcher = dispatcher;
         }
 
-        [Route("{{#if HasRoute}}{{Route}}{{/if}}")]
+        [Route("{{#if HasRoute}}{{Route}}{{else}}{{Name}}{{/if}}")]
         {{{httpVerbs}}}
         {{#if CommandHasResult}}
         public async Task<ActionResult<{{{CommandResultTypeName}}}>> Handler(
@@ -37,12 +37,18 @@ namespace {{{Namespace}}}
             {{/each}}
         {{else}}
             // need to get query parameters
-            {{#each QueryParameters}}
+            {{#each QueryParametersWithoutHeaderMapping}}
                 {{#if @index}},{{/if}} {{{TypeName}}} {{{Name}}}
             {{/each}}
-            {{#if HasQueryParametersAndRouteParameters}},{{/if}}
+            {{#if HasQueryParametersWithoutHeaderMappingAndRouteParameters}},{{/if}}
             {{#each RouteParameters}}
                 {{#if @index}},{{/if}} [FromRoute]{{{TypeName}}} {{{Name}}}
+            {{/each}}
+        {{/if}}
+        {{#if HeaderBindingConfiguration}}
+            {{{optionalCommaBeforeHeaderMapping}}}
+            {{#each QueryParametersWithHeaderMapping}}
+                {{#if @index}},{{/if}}[FromHeader(Name="{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}")]{{{TypeName}}} header{{{@index}}}
             {{/each}}
         {{/if}}
         )
@@ -53,14 +59,20 @@ namespace {{{Namespace}}}
                 {{/unless}}
             {{else}}
             {{{CommandTypeName}}} command = CreateNewCommand();
-            {{#each QueryParameters}}
-                command.{{Name}} = {{{Name}}};
+            {{#each QueryParametersWithoutHeaderMapping}}
+                command.{{{Name}}} = {{{Name}}};
             {{/each}}
             {{/if}}
 
             {{#each RouteParameters}}
-                command.{{Name}} = {{Name}};
+                command.{{{Name}}} = {{{Name}}};
             {{/each}}
+
+            {{#if HeaderBindingConfiguration}}
+                {{#each QueryParametersWithHeaderMapping}}
+                    command.{{{Name}}} = header{{{@index}}};
+                {{/each}}
+            {{/if}}
 
             {{#if CommandHasResult}}
             {{{CommandResultTypeName}}} result = (await _dispatcher.DispatchAsync(command)).Result;

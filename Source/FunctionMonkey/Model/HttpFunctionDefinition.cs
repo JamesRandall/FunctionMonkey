@@ -22,7 +22,7 @@ namespace FunctionMonkey.Model
         // This is used to determine if the command requires a body on an ASP.Net controller
         public bool CommandRequiresBody => CommandType.GetProperties().Length > 0;
 
-        public bool HasQueryParametersAndRouteParameters => QueryParameters.Any() && RouteParameters.Any();
+        public bool HasQueryParametersWithoutHeaderMappingAndRouteParameters => QueryParametersWithoutHeaderMapping.Any() && RouteParameters.Any();
 
         public bool HasRouteParameters => RouteParameters.Any();
         
@@ -39,6 +39,12 @@ namespace FunctionMonkey.Model
         public bool HasRoute => Route != null;
 
         public IReadOnlyCollection<HttpParameter> QueryParameters { get; set; }
+
+        public IReadOnlyCollection<HttpParameter> QueryParametersWithHeaderMapping =>
+            QueryParameters.Where(x => x.HasHeaderMapping).ToArray();
+        
+        public IReadOnlyCollection<HttpParameter> QueryParametersWithoutHeaderMapping =>
+            QueryParameters.Where(x => !x.HasHeaderMapping).ToArray();
         
         public IReadOnlyCollection<HttpParameter> PossibleFormProperties { get; set; }
 

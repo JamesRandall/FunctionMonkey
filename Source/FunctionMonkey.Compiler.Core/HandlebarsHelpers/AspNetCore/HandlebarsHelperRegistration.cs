@@ -5,6 +5,8 @@ namespace FunctionMonkey.Compiler.Core.HandlebarsHelpers.AspNetCore
         public static void RegisterHelpers()
         {
             HttpVerbsHelper.Register();
+            OptionalCommaBeforeHeaderMapping.Register();
+            MappedHeaderNameForPropertyHelper.Register();
         }
     }
 }
