@@ -14,6 +14,7 @@ using FunctionMonkey.Tests.Integration.Common.Commands.OutputBindings;
 using FunctionMonkey.Tests.Integration.Common.Commands.SignalR;
 using FunctionMonkey.Tests.Integration.Common.Commands.TestInfrastructure;
 using FunctionMonkey.Tests.Integration.Common.Services;
+using FunctionMonkey.Tests.Integration.Common.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Tests.Integration.Functions
@@ -45,7 +46,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
                 {
                     serviceCollection
                         .AddTransient<IMarker, Marker>()
-                        .AddValidatorsFromAssemblyContaining<FunctionAppConfiguration>()
+                        .AddValidatorsFromAssemblyContaining<HttpCommandWithNoResultAndValidatorThatFailsValidator>()
                         ;
                 })
                 .AddFluentValidation()
