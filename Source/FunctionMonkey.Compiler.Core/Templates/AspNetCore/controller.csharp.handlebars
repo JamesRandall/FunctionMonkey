@@ -31,10 +31,18 @@ namespace {{{Namespace}}}
             {{#if CommandRequiresBody}}
             [FromBody]{{{CommandTypeName}}} command
             {{/if}}
+            {{#if HasRouteParameters}},{{/if}}
+            {{#each RouteParameters}}
+                {{#if @index}},{{/if}} [FromRoute]{{{TypeName}}} {{{Name}}}
+            {{/each}}
         {{else}}
             // need to get query parameters
             {{#each QueryParameters}}
-                {{#if @index}},{{/if}} {{{TypeName}}} param{{@index}}
+                {{#if @index}},{{/if}} {{{TypeName}}} {{{Name}}}
+            {{/each}}
+            {{#if HasQueryParametersAndRouteParameters}},{{/if}}
+            {{#each RouteParameters}}
+                {{#if @index}},{{/if}} [FromRoute]{{{TypeName}}} {{{Name}}}
             {{/each}}
         {{/if}}
         )
@@ -45,7 +53,15 @@ namespace {{{Namespace}}}
                 {{/unless}}
             {{else}}
             {{{CommandTypeName}}} command = CreateNewCommand();
+            {{#each QueryParameters}}
+                command.{{Name}} = {{{Name}}};
+            {{/each}}
             {{/if}}
+
+            {{#each RouteParameters}}
+                command.{{Name}} = {{Name}};
+            {{/each}}
+
             {{#if CommandHasResult}}
             {{{CommandResultTypeName}}} result = (await _dispatcher.DispatchAsync(command)).Result;
             return new OkObjectResult(result);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
@@ -20,6 +21,10 @@ namespace FunctionMonkey.Model
 
         // This is used to determine if the command requires a body on an ASP.Net controller
         public bool CommandRequiresBody => CommandType.GetProperties().Length > 0;
+
+        public bool HasQueryParametersAndRouteParameters => QueryParameters.Any() && RouteParameters.Any();
+
+        public bool HasRouteParameters => RouteParameters.Any();
         
         public HashSet<HttpMethod> Verbs { get; set; } = new HashSet<HttpMethod>();
 
