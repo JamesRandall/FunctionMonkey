@@ -18,10 +18,10 @@ namespace FmAspNetCore
                     .HttpTarget(CompileTargetEnum.AspNetCore) // the magic!
                     .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
                 )
-                /*.Authorization(auth => auth
+                .Authorization(auth => auth
                     .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)
                     .AddOpenIdConnectTokenValidator("https://accidentalfish.eu.auth0.com/.well-known/openid-configuration")
-                )*/
+                )
                 .OpenApiEndpoint(openApi => openApi
                     .Title("My API")
                     .Version("0.0.0")

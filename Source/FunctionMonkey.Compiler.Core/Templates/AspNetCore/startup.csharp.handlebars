@@ -24,7 +24,18 @@ namespace {{{Namespace}}}
             {{Namespace}}.ReferenceLinkBack.ForceLinkBack();
             FunctionMonkey.Runtime.InitializeFromStartup(services);
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                // Remove this when we've figured out how to ignore properties with System.Text.Json. Only two options I have are:
+                //   1. At the start of each action set any securityproperties to their default value overriding what the serializer did
+                //   2. Generate a custom serializer for each model type.
+                .AddNewtonsoftJson(options =>
+                {
+                    // Because the binding model metadata is ignored on bodyies we have to customize the
+                    // serializer and instruct it to ignore the SecurityProperty marked attributes
+                    options.SerializerSettings.ContractResolver = new JsonSecurityPropertyContractResolver();
+                });
+            ;
 
             {{#if UsesTokenValidation}}
             services
@@ -35,8 +46,8 @@ namespace {{{Namespace}}}
                     }
                 )
                 .AddTokenValidation();
-            {{/if}}
             services.AddAuthorization();
+            {{/if}}
     
             {{#if OpenApiEnabled}}
             services.AddSwaggerGen(c => {

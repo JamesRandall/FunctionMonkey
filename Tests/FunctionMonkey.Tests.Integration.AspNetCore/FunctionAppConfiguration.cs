@@ -15,6 +15,7 @@ using FunctionMonkey.Tests.Integration.Common.Commands.SignalR;
 using FunctionMonkey.Tests.Integration.Common.Commands.TestInfrastructure;
 using FunctionMonkey.Tests.Integration.Common.Services;
 using FunctionMonkey.Tests.Integration.Common.Validators;
+using FunctionMonkey.TokenValidator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Tests.Integration.Functions
@@ -98,6 +99,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                         .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
                     )
+                    .HttpRoute("securityProperty", route => route
+                        .HttpFunction<HttpPostCommandWithSecurityProperty>(HttpMethod.Post)
+                        .HttpFunction<HttpGetCommandWithSecurityProperty>(HttpMethod.Get)
+                    )
                     .HttpRoute("withLogger", route => route
                         .HttpFunction<HttpGetWithLoggerCommand>(HttpMethod.Get)
                     )
@@ -161,7 +166,7 @@ namespace FunctionMonkey.Tests.Integration.Functions
 
                     .HttpRoute(route => route
                         .HttpFunction<HttpCommandWithNoRoute>()
-                    )                    
+                    )
                     
                     /*
                     // Output bindings

@@ -8,15 +8,16 @@ namespace FunctionMonkey.Tests.Integration.Functions
     {
         public Task<ClaimsPrincipal> ValidateAsync(string authorizationHeader)
         {
-            return Task.FromResult(new ClaimsPrincipal(
+            ClaimsPrincipal result = new ClaimsPrincipal(
                 new ClaimsIdentity(
                     new[]
                     {
                         new Claim("claima", "a message"),
                         new Claim("claimb", "42"),
-                    }
+                    }, "Bearer"
                 )
-            ));
+            );
+            return Task.FromResult(result);
         }
     }
 }

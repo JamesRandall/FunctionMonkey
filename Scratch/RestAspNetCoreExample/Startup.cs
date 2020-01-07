@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,6 +14,20 @@ using Microsoft.OpenApi.Models;
 
 namespace RestAspNetCoreExample
 {
+    /*public class CustomJsonConverter<T> : JsonConverter<T>
+    {
+        public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            
+            //JsonSerializer.Deserialize(reader, typeToConvert, options);
+        }
+
+        public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+        {
+            throw new NotImplementedException();
+        }
+    }*/
+    
     public class Startup
     {
         private IServiceProvider _serviceProvider;

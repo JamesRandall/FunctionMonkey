@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FunctionMonkey.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -24,6 +25,7 @@ namespace FunctionMonkey.Tests.Integration.AspNetCore
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
+                    logging.SetMinimumLevel(LogLevel.Debug);
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseFunctionMonkey(); });
     }

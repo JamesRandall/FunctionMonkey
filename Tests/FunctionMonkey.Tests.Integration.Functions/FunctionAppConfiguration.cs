@@ -95,6 +95,10 @@ namespace FunctionMonkey.Tests.Integration.Functions
                         .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                         .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
                     )
+                    .HttpRoute("securityProperty", route => route
+                        .HttpFunction<HttpPostCommandWithSecurityProperty>(HttpMethod.Post)
+                        .HttpFunction<HttpGetCommandWithSecurityProperty>(HttpMethod.Get)
+                    )
                     .HttpRoute("withLogger", route => route
                         .HttpFunction<HttpGetWithLoggerCommand>(HttpMethod.Get)
                     )

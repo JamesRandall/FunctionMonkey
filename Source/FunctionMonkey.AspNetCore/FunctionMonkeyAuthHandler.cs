@@ -5,7 +5,6 @@ using FunctionMonkey.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 
 namespace FunctionMonkey.AspNetCore
 {
@@ -22,54 +21,6 @@ namespace FunctionMonkey.AspNetCore
             _tokenValidator = tokenValidator;
         }
         
-        /*protected HttpContext Context { get; private set; }
-
-        protected HttpRequest Request
-        {
-            get => Context.Request;
-        }
-
-        protected HttpResponse Response
-        {
-            get => Context.Response;
-        }
-        
-        public async Task<AuthenticateResult> AuthenticateAsync()
-        {
-            ClaimsPrincipal principal = await _tokenValidator.ValidateAsync(Request.Headers["Authorization"]);
-            if (principal == null)
-            {
-                return AuthenticateResult.Fail("Invalid token");
-            }
-
-            return AuthenticateResult.Success(
-                new AuthenticationTicket(
-                    principal,
-                    "Bearer"));
-        }
-
-        public Task ChallengeAsync(AuthenticationProperties properties)
-        {
-            Response.StatusCode = 401;
-            return Task.CompletedTask;
-        }
-
-        public Task ForbidAsync(AuthenticationProperties properties)
-        {
-            Response.StatusCode = 403;
-            return Task.CompletedTask;
-        }
-
-        public Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)
-        {
-            if (scheme.Name != "Bearer")
-            {
-                throw new NotSupportedException();
-            }
-            Context = context;
-            return Task.CompletedTask;
-        }*/
-        
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             string header = Request.Headers["Authorization"];
@@ -77,21 +28,12 @@ namespace FunctionMonkey.AspNetCore
             {
                 return AuthenticateResult.NoResult();
             }
-            //TokenValidationResult tokenValidationResult = await _tokenValidator.ValidateAsync(Request.Headers["Authorization"]);
+            
             ClaimsPrincipal principal = await _tokenValidator.ValidateAsync(Request.Headers["Authorization"]);
             if (principal == null)
             {
                 return AuthenticateResult.Fail("Invalid token");
             }
-
-            /*var tokenValidatedContext = new TokenValidatedContext(Context, Scheme, Options)
-            {
-                Principal = tokenValidationResult.Principal,
-                SecurityToken = tokenValidationResult.ValidatedToken
-            };
-            
-            tokenValidatedContext.Success();
-            return tokenValidatedContext.Result;*/
 
             return AuthenticateResult.Success(
                 new AuthenticationTicket(
@@ -109,10 +51,10 @@ namespace FunctionMonkey.AspNetCore
             }
         }
         
-        protected override Task HandleForbiddenAsync(AuthenticationProperties properties)
+        /*protected override Task HandleForbiddenAsync(AuthenticationProperties properties)
         {
             Response.StatusCode = 403;
             return Task.CompletedTask;
-        }
+        }*/
     }
 }

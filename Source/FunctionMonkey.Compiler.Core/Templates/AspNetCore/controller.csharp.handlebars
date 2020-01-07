@@ -1,6 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using FunctionMonkey.Abstractions;
+using System.Collections.Generic;
 {{#if ValidatesToken}}
 using Microsoft.AspNetCore.Authorization;
 {{/if}}
@@ -14,10 +18,12 @@ namespace {{{Namespace}}}
     public class {{{Name}}}Controller : ControllerBase
     {
         private readonly ICommandDispatcher _dispatcher;
+        private readonly IContextSetter _contextSetter;
 
-        public {{{Name}}}Controller(ICommandDispatcher dispatcher)
+        public {{{Name}}}Controller(ICommandDispatcher dispatcher, IContextSetter contextSetter)
         {
             _dispatcher = dispatcher;
+            _contextSetter = contextSetter;
         }
 
         [Route("{{#if HasRoute}}{{Route}}{{else}}{{Name}}{{/if}}")]
@@ -53,6 +59,32 @@ namespace {{{Namespace}}}
         {{/if}}
         )
         {
+            HttpRequest req = Request;
+            string requestUrl = GetRequestUrl(req);
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
+
+            // set the execution context
+            _contextSetter.SetExecutionContext(GetType().Assembly.Location,
+                GetType().Assembly.Location,
+                "{{{Name}}}",
+                Guid.NewGuid());
+            var headerDictionary = new Dictionary<string, IReadOnlyCollection<string>>();
+            foreach (var headerKeyValuesPair in req.Headers)
+            {
+                string[] values = headerKeyValuesPair.Value.ToArray();
+                headerDictionary.Add(headerKeyValuesPair.Key, values);
+            }
+            _contextSetter.SetHttpContext(User, requestUrl, headerDictionary);
+            
+            {{#if AuthorizesClaims}}
+                var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(User, req.Method, requestUrl);
+                if (!claimsPrincipalAuthorizationResult)
+                {
+                return new UnauthorizedResult();
+                }
+            {{/if}}
+
+            // complete model binding of the command
             {{#if IsBodyBased}}
                 {{#unless CommandRequiresBody}}
                     {{{CommandTypeName}}} command = CreateNewCommand();
@@ -73,9 +105,15 @@ namespace {{{Namespace}}}
                     command.{{{Name}}} = header{{{@index}}};
                 {{/each}}
             {{/if}}
-
-            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
-
+            
+            // Claims bindings
+            {{#if ValidatesToken}}
+                {{#unless CommandTypeIsUnit}}
+                    command = ({{{CommandTypeName}}})(await pluginFunctions.BindClaims(User, command));
+                {{/unless}}
+            {{/if}}
+            
+            // Validate
             {{#if IsUsingValidator}}
             {{#unless CommandTypeIsUnit}}
             var validationResult = pluginFunctions.Validate(command);
@@ -171,6 +209,15 @@ namespace {{{Namespace}}}
             result.ContentType = "application/json";
             result.StatusCode = code;
             return result;
+        }
+
+        private static string GetRequestUrl(HttpRequest request)
+        {
+            string str1 = request.Host.Value;
+            string str2 = request.PathBase.Value;
+            string str3 = request.Path.Value;
+            string str4 = request.QueryString.Value;
+            return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
     }
 }

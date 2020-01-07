@@ -75,7 +75,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
                 typeof(Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions).Assembly.Location,
                 typeof(Microsoft.Extensions.Logging.ILogger).Assembly.Location,
                 typeof(Microsoft.Extensions.Configuration.IConfiguration).Assembly.Location,
-                typeof(Microsoft.Extensions.Configuration.ConfigurationBinder).Assembly.Location
+                typeof(Microsoft.Extensions.Configuration.ConfigurationBinder).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Http.IHeaderDictionary).Assembly.Location,
+                typeof(Microsoft.AspNetCore.Http.HttpRequest).Assembly.Location,
+                typeof(Microsoft.Extensions.Primitives.StringValues).Assembly.Location,
+                // Remove the below two lines when we can drop Newtonsoft Json - that requires resolving how to ignore
+                // properties with 
+                typeof(Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions).Assembly.Location,
+                typeof(Newtonsoft.Json.JsonSerializerSettings).Assembly.Location
             };
 
             return locations;
@@ -88,12 +95,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
             string startupTemplateSource = TemplateProvider.GetTemplate("startup","csharp");
             Func<object, string> template = Handlebars.Compile(startupTemplateSource);
 
-            string outputCode = template(new
+            var startupOptions = new
             {
                 Namespace = namespaceName,
                 UsesTokenValidation = functions.Any(x => x.ValidatesToken),
-                SetEnvironmentVariables = true // this causes app settings specified like Azure Functions to be set as environment variables
-            });
+                SetEnvironmentVariables =
+                    true // this causes app settings specified like Azure Functions to be set as environment variables
+            };
+            string outputCode = template(startupOptions);
             OutputDiagnosticCode(directoryInfo, "Startup", outputCode);
             
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(outputCode, path:$"Startup.cs");
