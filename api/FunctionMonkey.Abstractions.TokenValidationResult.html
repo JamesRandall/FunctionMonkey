@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface ICompilerOptionsBuilder
+    <title>Class TokenValidationResult
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface ICompilerOptionsBuilder
+    <meta name="title" content="Class TokenValidationResult
    ">
     <meta name="generator" content="docfx 2.48.0.0">
     
@@ -68,54 +68,42 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder">
+            <article class="content wrap" id="_content" data-uid="FunctionMonkey.Abstractions.TokenValidationResult">
   
   
-  <h1 id="FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder" data-uid="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder" class="text-break">Interface ICompilerOptionsBuilder
+  <h1 id="FunctionMonkey_Abstractions_TokenValidationResult" data-uid="FunctionMonkey.Abstractions.TokenValidationResult" class="text-break">Class TokenValidationResult
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.Builders.html">FunctionMonkey.Abstractions.Builders</a></h6>
-  <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
-  <h5 id="FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ICompilerOptionsBuilder</code></pre>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">TokenValidationResult</span></div>
   </div>
-  <h3 id="methods">Methods
+  <h6><strong>Namespace</strong>: <a class="xref" href="FunctionMonkey.Abstractions.html">FunctionMonkey.Abstractions</a></h6>
+  <h6><strong>Assembly</strong>: FunctionMonkey.Abstractions.dll</h6>
+  <h5 id="FunctionMonkey_Abstractions_TokenValidationResult_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TokenValidationResult : object</code></pre>
+  </div>
+  <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_HttpTarget_FunctionMonkey_Compiler_Core_CompileTargetEnum_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget(FunctionMonkey.Compiler.Core.CompileTargetEnum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_TokenValidationResult_Principal.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.TokenValidationResult.Principal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/ICompilerOptionsBuilder.cs/#L7">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/TokenValidationResult.cs/#L8">View Source</a>
   </span>
-  <a id="FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_HttpTarget_" data-uid="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_HttpTarget_FunctionMonkey_Compiler_Core_CompileTargetEnum_" data-uid="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget(FunctionMonkey.Compiler.Core.CompileTargetEnum)">HttpTarget(CompileTargetEnum)</h4>
+  <a id="FunctionMonkey_Abstractions_TokenValidationResult_Principal_" data-uid="FunctionMonkey.Abstractions.TokenValidationResult.Principal*"></a>
+  <h4 id="FunctionMonkey_Abstractions_TokenValidationResult_Principal" data-uid="FunctionMonkey.Abstractions.TokenValidationResult.Principal">Principal</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICompilerOptionsBuilder HttpTarget(CompileTargetEnum target)</code></pre>
+    <pre><code class="lang-csharp hljs">public ClaimsPrincipal Principal { get; set; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">FunctionMonkey.Compiler.Core.CompileTargetEnum</span></td>
-        <td><span class="parametername">target</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -125,44 +113,27 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html">ICompilerOptionsBuilder</a></td>
+        <td><span class="xref">ClaimsPrincipal</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_OutputSourceTo_System_String_.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_TokenValidationResult_ValidatedToken.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/ICompilerOptionsBuilder.cs/#L8">View Source</a>
+    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/TokenValidationResult.cs/#L10">View Source</a>
   </span>
-  <a id="FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_OutputSourceTo_" data-uid="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo*"></a>
-  <h4 id="FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_OutputSourceTo_System_String_" data-uid="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo(System.String)">OutputSourceTo(String)</h4>
+  <a id="FunctionMonkey_Abstractions_TokenValidationResult_ValidatedToken_" data-uid="FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken*"></a>
+  <h4 id="FunctionMonkey_Abstractions_TokenValidationResult_ValidatedToken" data-uid="FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken">ValidatedToken</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICompilerOptionsBuilder OutputSourceTo(string folder)</code></pre>
+    <pre><code class="lang-csharp hljs">public SecurityToken ValidatedToken { get; set; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">folder</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -172,7 +143,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html">ICompilerOptionsBuilder</a></td>
+        <td><span class="xref">SecurityToken</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -199,10 +170,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/new/master/apiSpec/new?filename=FunctionMonkey_Abstractions_TokenValidationResult.md&amp;value=---%0Auid%3A%20FunctionMonkey.Abstractions.TokenValidationResult%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/Builders/ICompilerOptionsBuilder.cs/#L5" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JamesRandall/FunctionMonkey/blob/master/Source/FunctionMonkey.Abstractions/TokenValidationResult.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                   <li>
                     <a href="#disqus_thread" class="contribution-link">0 Comments</a>

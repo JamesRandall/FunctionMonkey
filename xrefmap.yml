@@ -180,6 +180,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget
   nameWithType: ICompilerOptionsBuilder.HttpTarget
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo(System.String)
+  name: OutputSourceTo(String)
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_OutputSourceTo_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo(System.String)
+  nameWithType: ICompilerOptionsBuilder.OutputSourceTo(String)
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo*
+  name: OutputSourceTo
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_OutputSourceTo_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo
+  nameWithType: ICompilerOptionsBuilder.OutputSourceTo
 - uid: FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder
   name: ICosmosDbFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html
@@ -569,19 +582,6 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint
   nameWithType: IFunctionHostBuilder.OpenApiEndpoint
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource(System.String)
-  name: OutputAuthoredSource(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OutputAuthoredSource_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource(System.String)
-  nameWithType: IFunctionHostBuilder.OutputAuthoredSource(String)
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource*
-  name: OutputAuthoredSource
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OutputAuthoredSource_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OutputAuthoredSource
-  nameWithType: IFunctionHostBuilder.OutputAuthoredSource
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Serialization(Action{FunctionMonkey.Abstractions.Builders.ISerializationBuilder})
   name: Serialization(Action<ISerializationBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Serialization_Action_FunctionMonkey_Abstractions_Builders_ISerializationBuilder__
@@ -3840,6 +3840,38 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.SignalR.SignalRMessage.UserId
   nameWithType: SignalRMessage.UserId
+- uid: FunctionMonkey.Abstractions.TokenValidationResult
+  name: TokenValidationResult
+  href: api/FunctionMonkey.Abstractions.TokenValidationResult.html
+  commentId: T:FunctionMonkey.Abstractions.TokenValidationResult
+  fullName: FunctionMonkey.Abstractions.TokenValidationResult
+  nameWithType: TokenValidationResult
+- uid: FunctionMonkey.Abstractions.TokenValidationResult.Principal
+  name: Principal
+  href: api/FunctionMonkey.Abstractions.TokenValidationResult.html#FunctionMonkey_Abstractions_TokenValidationResult_Principal
+  commentId: P:FunctionMonkey.Abstractions.TokenValidationResult.Principal
+  fullName: FunctionMonkey.Abstractions.TokenValidationResult.Principal
+  nameWithType: TokenValidationResult.Principal
+- uid: FunctionMonkey.Abstractions.TokenValidationResult.Principal*
+  name: Principal
+  href: api/FunctionMonkey.Abstractions.TokenValidationResult.html#FunctionMonkey_Abstractions_TokenValidationResult_Principal_
+  commentId: Overload:FunctionMonkey.Abstractions.TokenValidationResult.Principal
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.TokenValidationResult.Principal
+  nameWithType: TokenValidationResult.Principal
+- uid: FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken
+  name: ValidatedToken
+  href: api/FunctionMonkey.Abstractions.TokenValidationResult.html#FunctionMonkey_Abstractions_TokenValidationResult_ValidatedToken
+  commentId: P:FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken
+  fullName: FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken
+  nameWithType: TokenValidationResult.ValidatedToken
+- uid: FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken*
+  name: ValidatedToken
+  href: api/FunctionMonkey.Abstractions.TokenValidationResult.html#FunctionMonkey_Abstractions_TokenValidationResult_ValidatedToken_
+  commentId: Overload:FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.TokenValidationResult.ValidatedToken
+  nameWithType: TokenValidationResult.ValidatedToken
 - uid: FunctionMonkey.Abstractions.Validation
   name: FunctionMonkey.Abstractions.Validation
   href: api/FunctionMonkey.Abstractions.Validation.html
@@ -3877,6 +3909,79 @@ references:
   commentId: N:FunctionMonkey.AspNetCore
   fullName: FunctionMonkey.AspNetCore
   nameWithType: FunctionMonkey.AspNetCore
+- uid: FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions
+  name: AuthenticationBuilderExtensions
+  href: api/FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.html
+  commentId: T:FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions
+  fullName: FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions
+  nameWithType: AuthenticationBuilderExtensions
+- uid: FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.AddTokenValidation(AuthenticationBuilder)
+  name: AddTokenValidation(AuthenticationBuilder)
+  href: api/FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.html#FunctionMonkey_AspNetCore_AuthenticationBuilderExtensions_AddTokenValidation_AuthenticationBuilder_
+  commentId: M:FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.AddTokenValidation(AuthenticationBuilder)
+  fullName: FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.AddTokenValidation(AuthenticationBuilder)
+  nameWithType: AuthenticationBuilderExtensions.AddTokenValidation(AuthenticationBuilder)
+- uid: FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.AddTokenValidation*
+  name: AddTokenValidation
+  href: api/FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.html#FunctionMonkey_AspNetCore_AuthenticationBuilderExtensions_AddTokenValidation_
+  commentId: Overload:FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.AddTokenValidation
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.AddTokenValidation
+  nameWithType: AuthenticationBuilderExtensions.AddTokenValidation
+- uid: FunctionMonkey.AspNetCore.AuthenticationOptions
+  name: AuthenticationOptions
+  href: api/FunctionMonkey.AspNetCore.AuthenticationOptions.html
+  commentId: T:FunctionMonkey.AspNetCore.AuthenticationOptions
+  fullName: FunctionMonkey.AspNetCore.AuthenticationOptions
+  nameWithType: AuthenticationOptions
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler
+  name: FunctionMonkeyAuthHandler
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html
+  commentId: T:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler
+  nameWithType: FunctionMonkeyAuthHandler
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.#ctor(FunctionMonkey.Abstractions.ITokenValidator,IOptionsMonitor{FunctionMonkey.AspNetCore.AuthenticationOptions},ILoggerFactory,UrlEncoder,ISystemClock)
+  name: FunctionMonkeyAuthHandler(ITokenValidator, IOptionsMonitor<AuthenticationOptions>, ILoggerFactory, UrlEncoder, ISystemClock)
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html#FunctionMonkey_AspNetCore_FunctionMonkeyAuthHandler__ctor_FunctionMonkey_Abstractions_ITokenValidator_IOptionsMonitor_FunctionMonkey_AspNetCore_AuthenticationOptions__ILoggerFactory_UrlEncoder_ISystemClock_
+  commentId: M:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.#ctor(FunctionMonkey.Abstractions.ITokenValidator,IOptionsMonitor{FunctionMonkey.AspNetCore.AuthenticationOptions},ILoggerFactory,UrlEncoder,ISystemClock)
+  name.vb: FunctionMonkeyAuthHandler(ITokenValidator, IOptionsMonitor(Of AuthenticationOptions), ILoggerFactory, UrlEncoder, ISystemClock)
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.FunctionMonkeyAuthHandler(FunctionMonkey.Abstractions.ITokenValidator, IOptionsMonitor<FunctionMonkey.AspNetCore.AuthenticationOptions>, ILoggerFactory, UrlEncoder, ISystemClock)
+  fullName.vb: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.FunctionMonkeyAuthHandler(FunctionMonkey.Abstractions.ITokenValidator, IOptionsMonitor(Of FunctionMonkey.AspNetCore.AuthenticationOptions), ILoggerFactory, UrlEncoder, ISystemClock)
+  nameWithType: FunctionMonkeyAuthHandler.FunctionMonkeyAuthHandler(ITokenValidator, IOptionsMonitor<AuthenticationOptions>, ILoggerFactory, UrlEncoder, ISystemClock)
+  nameWithType.vb: FunctionMonkeyAuthHandler.FunctionMonkeyAuthHandler(ITokenValidator, IOptionsMonitor(Of AuthenticationOptions), ILoggerFactory, UrlEncoder, ISystemClock)
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.#ctor*
+  name: FunctionMonkeyAuthHandler
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html#FunctionMonkey_AspNetCore_FunctionMonkeyAuthHandler__ctor_
+  commentId: Overload:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.FunctionMonkeyAuthHandler
+  nameWithType: FunctionMonkeyAuthHandler.FunctionMonkeyAuthHandler
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleAuthenticateAsync
+  name: HandleAuthenticateAsync()
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html#FunctionMonkey_AspNetCore_FunctionMonkeyAuthHandler_HandleAuthenticateAsync
+  commentId: M:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleAuthenticateAsync
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleAuthenticateAsync()
+  nameWithType: FunctionMonkeyAuthHandler.HandleAuthenticateAsync()
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleAuthenticateAsync*
+  name: HandleAuthenticateAsync
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html#FunctionMonkey_AspNetCore_FunctionMonkeyAuthHandler_HandleAuthenticateAsync_
+  commentId: Overload:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleAuthenticateAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleAuthenticateAsync
+  nameWithType: FunctionMonkeyAuthHandler.HandleAuthenticateAsync
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleChallengeAsync(AuthenticationProperties)
+  name: HandleChallengeAsync(AuthenticationProperties)
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html#FunctionMonkey_AspNetCore_FunctionMonkeyAuthHandler_HandleChallengeAsync_AuthenticationProperties_
+  commentId: M:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleChallengeAsync(AuthenticationProperties)
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleChallengeAsync(AuthenticationProperties)
+  nameWithType: FunctionMonkeyAuthHandler.HandleChallengeAsync(AuthenticationProperties)
+- uid: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleChallengeAsync*
+  name: HandleChallengeAsync
+  href: api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html#FunctionMonkey_AspNetCore_FunctionMonkeyAuthHandler_HandleChallengeAsync_
+  commentId: Overload:FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleChallengeAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.HandleChallengeAsync
+  nameWithType: FunctionMonkeyAuthHandler.HandleChallengeAsync
 - uid: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions
   name: IWebHostBuilderExtensions
   href: api/FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.html
@@ -3896,6 +4001,69 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.AspNetCore.IWebHostBuilderExtensions.UseFunctionMonkey
   nameWithType: IWebHostBuilderExtensions.UseFunctionMonkey
+- uid: FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver
+  name: JsonSecurityPropertyContractResolver
+  href: api/FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.html
+  commentId: T:FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver
+  fullName: FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver
+  nameWithType: JsonSecurityPropertyContractResolver
+- uid: FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo,MemberSerialization)
+  name: CreateProperty(MemberInfo, MemberSerialization)
+  href: api/FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.html#FunctionMonkey_AspNetCore_JsonSecurityPropertyContractResolver_CreateProperty_MemberInfo_MemberSerialization_
+  commentId: M:FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo,MemberSerialization)
+  fullName: FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo, MemberSerialization)
+  nameWithType: JsonSecurityPropertyContractResolver.CreateProperty(MemberInfo, MemberSerialization)
+- uid: FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.CreateProperty*
+  name: CreateProperty
+  href: api/FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.html#FunctionMonkey_AspNetCore_JsonSecurityPropertyContractResolver_CreateProperty_
+  commentId: Overload:FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.CreateProperty
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.CreateProperty
+  nameWithType: JsonSecurityPropertyContractResolver.CreateProperty
+- uid: FunctionMonkey.AspNetCore.TokenValidatedContext
+  name: TokenValidatedContext
+  href: api/FunctionMonkey.AspNetCore.TokenValidatedContext.html
+  commentId: T:FunctionMonkey.AspNetCore.TokenValidatedContext
+  fullName: FunctionMonkey.AspNetCore.TokenValidatedContext
+  nameWithType: TokenValidatedContext
+- uid: FunctionMonkey.AspNetCore.TokenValidatedContext.#ctor(HttpContext,AuthenticationScheme,FunctionMonkey.AspNetCore.AuthenticationOptions)
+  name: TokenValidatedContext(HttpContext, AuthenticationScheme, AuthenticationOptions)
+  href: api/FunctionMonkey.AspNetCore.TokenValidatedContext.html#FunctionMonkey_AspNetCore_TokenValidatedContext__ctor_HttpContext_AuthenticationScheme_FunctionMonkey_AspNetCore_AuthenticationOptions_
+  commentId: M:FunctionMonkey.AspNetCore.TokenValidatedContext.#ctor(HttpContext,AuthenticationScheme,FunctionMonkey.AspNetCore.AuthenticationOptions)
+  fullName: FunctionMonkey.AspNetCore.TokenValidatedContext.TokenValidatedContext(HttpContext, AuthenticationScheme, FunctionMonkey.AspNetCore.AuthenticationOptions)
+  nameWithType: TokenValidatedContext.TokenValidatedContext(HttpContext, AuthenticationScheme, AuthenticationOptions)
+- uid: FunctionMonkey.AspNetCore.TokenValidatedContext.#ctor*
+  name: TokenValidatedContext
+  href: api/FunctionMonkey.AspNetCore.TokenValidatedContext.html#FunctionMonkey_AspNetCore_TokenValidatedContext__ctor_
+  commentId: Overload:FunctionMonkey.AspNetCore.TokenValidatedContext.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.TokenValidatedContext.TokenValidatedContext
+  nameWithType: TokenValidatedContext.TokenValidatedContext
+- uid: FunctionMonkey.AspNetCore.TokenValidatedContext.SecurityToken
+  name: SecurityToken
+  href: api/FunctionMonkey.AspNetCore.TokenValidatedContext.html#FunctionMonkey_AspNetCore_TokenValidatedContext_SecurityToken
+  commentId: P:FunctionMonkey.AspNetCore.TokenValidatedContext.SecurityToken
+  fullName: FunctionMonkey.AspNetCore.TokenValidatedContext.SecurityToken
+  nameWithType: TokenValidatedContext.SecurityToken
+- uid: FunctionMonkey.AspNetCore.TokenValidatedContext.SecurityToken*
+  name: SecurityToken
+  href: api/FunctionMonkey.AspNetCore.TokenValidatedContext.html#FunctionMonkey_AspNetCore_TokenValidatedContext_SecurityToken_
+  commentId: Overload:FunctionMonkey.AspNetCore.TokenValidatedContext.SecurityToken
+  isSpec: "True"
+  fullName: FunctionMonkey.AspNetCore.TokenValidatedContext.SecurityToken
+  nameWithType: TokenValidatedContext.SecurityToken
+- uid: FunctionMonkey.AspNetCore.TokenValidationDefaults
+  name: TokenValidationDefaults
+  href: api/FunctionMonkey.AspNetCore.TokenValidationDefaults.html
+  commentId: T:FunctionMonkey.AspNetCore.TokenValidationDefaults
+  fullName: FunctionMonkey.AspNetCore.TokenValidationDefaults
+  nameWithType: TokenValidationDefaults
+- uid: FunctionMonkey.AspNetCore.TokenValidationDefaults.AuthenticationScheme
+  name: AuthenticationScheme
+  href: api/FunctionMonkey.AspNetCore.TokenValidationDefaults.html#FunctionMonkey_AspNetCore_TokenValidationDefaults_AuthenticationScheme
+  commentId: F:FunctionMonkey.AspNetCore.TokenValidationDefaults.AuthenticationScheme
+  fullName: FunctionMonkey.AspNetCore.TokenValidationDefaults.AuthenticationScheme
+  nameWithType: TokenValidationDefaults.AuthenticationScheme
 - uid: FunctionMonkey.Builders
   name: FunctionMonkey.Builders
   href: api/FunctionMonkey.Builders.html

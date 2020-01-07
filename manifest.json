@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html",
-          "hash": "jEzTx/QdGLcN2phIaM7F7Q=="
+          "hash": "6oF6jkUb83OBMCijPr3PtQ=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html",
-          "hash": "X9ANl1gaoH0OmPtmZQdshw=="
+          "hash": "hbnkQR7CdZFMEgYJfoJsvQ=="
         }
       },
       "is_incremental": false,
@@ -893,6 +893,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.TokenValidationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.TokenValidationResult.html",
+          "hash": "FPkkcyAQxgd+aIdGGx53jw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.Validation.IValidator.yml",
       "output": {
         ".html": {
@@ -921,7 +933,43 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "8+CDVCvLWIcJfbTYeoLcrA=="
+          "hash": "7EjYQ1dOiJZkZT8GsPiRdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.AuthenticationBuilderExtensions.html",
+          "hash": "pquV9SdibA1rdkiVSPA6cQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.AuthenticationOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.AuthenticationOptions.html",
+          "hash": "rli/vo8iNzn5fRmSgmIkVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.FunctionMonkeyAuthHandler.html",
+          "hash": "u/ARJLV1nS6IVJ1/NsY3FA=="
         }
       },
       "is_incremental": false,
@@ -941,11 +989,47 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.JsonSecurityPropertyContractResolver.html",
+          "hash": "2SFEN+L3TTc8bCgxzoYixA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.TokenValidatedContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.TokenValidatedContext.html",
+          "hash": "HxVyyqhZlG6Xx9vpKlwT/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.AspNetCore.TokenValidationDefaults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.AspNetCore.TokenValidationDefaults.html",
+          "hash": "0kdPbEeI5YjA46L7oTmRIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.AspNetCore.yml",
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.AspNetCore.html",
-          "hash": "GCardS1eI/OsRgADMtPK9A=="
+          "hash": "k7TB0RP1pTBrk1RjUc2XKw=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1485,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Runtime.html",
-          "hash": "bFdgoZLL9Jl30pNf0iGJoQ=="
+          "hash": "yQFwxFcT4n1jjS4g+vlEjw=="
         }
       },
       "is_incremental": false,
@@ -1737,7 +1821,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "EqtnBIUOZpq0T7V8dDWy+A=="
+          "hash": "sZ8CSVDVXVFWvF6tf4MTWA=="
         }
       },
       "is_incremental": false,
@@ -2276,14 +2360,13 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 143,
+          "total_file_count": 150,
           "skipped_file_count": 0
         },
-        "ResourceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 0,
+          "total_file_count": 38,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
@@ -2293,10 +2376,11 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 38,
+          "total_file_count": 0,
           "skipped_file_count": 0
         }
       }
