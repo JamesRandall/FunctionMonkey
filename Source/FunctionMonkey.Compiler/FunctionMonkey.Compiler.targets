@@ -1,14 +1,21 @@
 <Project ToolsVersion="14.0"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="FunctionMonkey.Compiler.MSBuild.ConvertErrors" AssemblyFile="$(MSBuildThisFileDirectory)..\..\tools\netcoreapp3.1\FunctionMonkey.Compiler.MSBuild.dll" />
+  <PropertyGroup>
+    <ConvertErrorsToolPath Condition="'$(OS)' == 'Windows_NT'">$(MSBuildThisFileDirectory)..\..\tools\netcoreapp3.1\FunctionMonkey.Compiler.MSBuild.dll</ConvertErrorsToolPath>
+    <ConvertErrorsToolPath Condition="'$(OS)' == 'Unix'">$(MSBuildThisFileDirectory)../../tools/netcoreapp3.1/FunctionMonkey.Compiler.MSBuild.dll</ConvertErrorsToolPath>
+  </PropertyGroup>
+  <UsingTask TaskName="FunctionMonkey.Compiler.MSBuild.ConvertErrors" AssemblyFile="$(ConvertErrorsToolPath)" />
 
   <PropertyGroup>
-    <FunctionCompilerExe>dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp3.1\FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerExe Condition="'$(OS)' == 'Windows_NT'">dotnet "$(MSBuildThisFileDirectory)..\..\tools\netcoreapp3.1\FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+    <FunctionCompilerExe Condition="'$(OS)' == 'Unix'">dotnet "$(MSBuildThisFileDirectory)../../tools/netcoreapp3.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
     <!-- compiler params -->
-    <FunctionCompilerParams>&quot;$(TargetDir)bin\$(TargetName).dll&quot; --netcore21 --jsonoutput</FunctionCompilerParams>
+    <FunctionCompilerParams Condition="'$(OS)' == 'Windows_NT'">&quot;$(TargetDir)bin\$(TargetName).dll&quot; --netcore21 --jsonoutput</FunctionCompilerParams>
+    <FunctionCompilerParams Condition="'$(OS)' == 'Unix'">&quot;$(TargetDir)bin/$(TargetName).dll&quot; --netcore21 --jsonoutput</FunctionCompilerParams>
     <!-- publish params -->
-    <FunctionPublishParams>bin\$(TargetName).dll</FunctionPublishParams>
+    <FunctionPublishParams Condition="'$(OS)' == 'Windows_NT'">bin\$(TargetName).dll</FunctionPublishParams>
+    <FunctionPublishParams Condition="'$(OS)' == 'Unix'">bin/$(TargetName).dll</FunctionPublishParams>
     <FunctionPublishPostfix>--netcore21 --jsonoutput</FunctionPublishPostfix>
   </PropertyGroup>
 
