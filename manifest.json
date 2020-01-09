@@ -113,6 +113,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.html",
+          "hash": "2QYZTtts9OB8TEqsLBRJ9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.yml",
       "output": {
         ".html": {
@@ -513,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.html",
-          "hash": "+pKIqnk/MUbAt2ermDabVg=="
+          "hash": "655Ji5EwVAP9oHKolt5YrA=="
         }
       },
       "is_incremental": false,
@@ -785,6 +797,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.IFunctionAppHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.IFunctionAppHost.html",
+          "hash": "FSluA1OnbxZMKsZVijHK3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.yml",
       "output": {
         ".html": {
@@ -933,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "7EjYQ1dOiJZkZT8GsPiRdA=="
+          "hash": "E1zPIYEauT0BOxIDzOdJjA=="
         }
       },
       "is_incremental": false,
@@ -1821,7 +1845,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "sZ8CSVDVXVFWvF6tf4MTWA=="
+          "hash": "58HemASkvVkWkqU+0xwwDA=="
         }
       },
       "is_incremental": false,
@@ -2360,7 +2384,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 150,
+          "total_file_count": 152,
           "skipped_file_count": 0
         },
         "ConceptualDocumentProcessor": {

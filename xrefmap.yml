@@ -264,6 +264,44 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IEventHubFunctionOptionBuilder(Of TCommand)
   nameWithType: IEventHubFunctionOptionBuilder<TCommand>
   nameWithType.vb: IEventHubFunctionOptionBuilder(Of TCommand)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder
+  name: IFunctionAppHostBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder
+  nameWithType: IFunctionAppHostBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions(Action{FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder})
+  name: CompilerOptions(Action<ICompilerOptionsBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionAppHostBuilder_CompilerOptions_Action_FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions(Action{FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder})
+  name.vb: CompilerOptions(Action(Of ICompilerOptionsBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions(Action<FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions(Action(Of FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder))
+  nameWithType: IFunctionAppHostBuilder.CompilerOptions(Action<ICompilerOptionsBuilder>)
+  nameWithType.vb: IFunctionAppHostBuilder.CompilerOptions(Action(Of ICompilerOptionsBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions*
+  name: CompilerOptions
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionAppHostBuilder_CompilerOptions_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.CompilerOptions
+  nameWithType: IFunctionAppHostBuilder.CompilerOptions
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration*
+  name: UseFunctionAppConfiguration
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionAppHostBuilder_UseFunctionAppConfiguration_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration
+  nameWithType: IFunctionAppHostBuilder.UseFunctionAppConfiguration
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration``1
+  name: UseFunctionAppConfiguration<TConfiguration>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionAppHostBuilder_UseFunctionAppConfiguration__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration``1
+  name.vb: UseFunctionAppConfiguration(Of TConfiguration)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration<TConfiguration>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder.UseFunctionAppConfiguration(Of TConfiguration)()
+  nameWithType: IFunctionAppHostBuilder.UseFunctionAppConfiguration<TConfiguration>()
+  nameWithType.vb: IFunctionAppHostBuilder.UseFunctionAppConfiguration(Of TConfiguration)()
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionBuilder
   name: IFunctionBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionBuilder.html
@@ -3501,6 +3539,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionAppConfiguration.Build
   nameWithType: IFunctionAppConfiguration.Build
+- uid: FunctionMonkey.Abstractions.IFunctionAppHost
+  name: IFunctionAppHost
+  href: api/FunctionMonkey.Abstractions.IFunctionAppHost.html
+  commentId: T:FunctionMonkey.Abstractions.IFunctionAppHost
+  fullName: FunctionMonkey.Abstractions.IFunctionAppHost
+  nameWithType: IFunctionAppHost
+- uid: FunctionMonkey.Abstractions.IFunctionAppHost.Build(FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder)
+  name: Build(IFunctionAppHostBuilder)
+  href: api/FunctionMonkey.Abstractions.IFunctionAppHost.html#FunctionMonkey_Abstractions_IFunctionAppHost_Build_FunctionMonkey_Abstractions_Builders_IFunctionAppHostBuilder_
+  commentId: M:FunctionMonkey.Abstractions.IFunctionAppHost.Build(FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder)
+  fullName: FunctionMonkey.Abstractions.IFunctionAppHost.Build(FunctionMonkey.Abstractions.Builders.IFunctionAppHostBuilder)
+  nameWithType: IFunctionAppHost.Build(IFunctionAppHostBuilder)
+- uid: FunctionMonkey.Abstractions.IFunctionAppHost.Build*
+  name: Build
+  href: api/FunctionMonkey.Abstractions.IFunctionAppHost.html#FunctionMonkey_Abstractions_IFunctionAppHost_Build_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionAppHost.Build
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IFunctionAppHost.Build
+  nameWithType: IFunctionAppHost.Build
 - uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata
   name: IFunctionCompilerMetadata
   href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html
