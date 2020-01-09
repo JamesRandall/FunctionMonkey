@@ -21,7 +21,6 @@ namespace FmAspNetCore
         
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                // TODO: Need to find a way to make logging optional - inject a null logger if none registered
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();

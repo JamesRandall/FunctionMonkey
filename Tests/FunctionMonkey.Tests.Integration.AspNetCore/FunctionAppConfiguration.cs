@@ -20,7 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Tests.Integration.Functions
 {
-    public class FunctionAppConfiguration : IFunctionAppConfiguration
+    public class FunctionAppConfiguration2 : IFunctionAppConfiguration
     {
         // In the HTTP routes in addition to verbs we also need to cover the following variations of response
         // (it gets complicated due to permutations with the response handler and validation)
@@ -39,10 +39,6 @@ namespace FunctionMonkey.Tests.Integration.Functions
         public void Build(IFunctionHostBuilder builder)
         {
             builder
-                .CompilerOptions(options => options
-                    .HttpTarget(CompileTargetEnum.AspNetCore)
-                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
-                )
                 .Setup((serviceCollection, commandRegistry) =>
                 {
                     serviceCollection

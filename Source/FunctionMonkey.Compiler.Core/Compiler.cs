@@ -5,6 +5,7 @@ using System.Reflection;
 using AzureFromTheTrenches.Commanding;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
+using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Builders;
 using FunctionMonkey.Compiler.Core.Implementation;
@@ -46,7 +47,26 @@ namespace FunctionMonkey.Compiler.Core
         {
             string newAssemblyNamespace = $"{_configurationSourceAssembly.GetName().Name.Replace("-", "_")}.Functions";
             IFunctionCompilerMetadata functionCompilerMetadata = null;
-            IFunctionAppConfiguration configuration = ConfigurationLocator.FindConfiguration(_configurationSourceAssembly);
+
+            IFunctionAppConfiguration configuration = null;
+            FunctionAppHostBuilder appHostBuilder = null;
+            IFunctionAppHost appHost = ConfigurationLocator.FindFunctionAppHost(_configurationSourceAssembly);
+            
+            if (appHost != null)
+            {
+                appHostBuilder = new FunctionAppHostBuilder();
+                appHost.Build(appHostBuilder);
+                if (appHostBuilder.FunctionAppConfiguration != null)
+                {
+                    configuration = (IFunctionAppConfiguration)Activator.CreateInstance(appHostBuilder.FunctionAppConfiguration);
+                }
+            }
+
+            if (configuration == null)
+            {
+                configuration = ConfigurationLocator.FindConfiguration(_configurationSourceAssembly);
+            }
+
             if (configuration == null)
             {
                 functionCompilerMetadata = ConfigurationLocator.FindCompilerMetadata(_configurationSourceAssembly);
@@ -59,6 +79,10 @@ namespace FunctionMonkey.Compiler.Core
             else
             {
                 FunctionHostBuilder builder = new FunctionHostBuilder(_serviceCollection, _commandRegistry, false);
+                if (appHostBuilder != null)
+                {
+                    builder.Options = appHostBuilder.Options;
+                }
                 configuration.Build(builder);
                 new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
                 if (!VerifyCommandAndResponseTypes(builder))

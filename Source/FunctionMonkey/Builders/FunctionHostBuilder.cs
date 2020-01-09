@@ -24,7 +24,7 @@ namespace FunctionMonkey.Builders
         public Type DefaultHttpResponseHandlerType { get; private set; }
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
         public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
-        public CompilerOptions Options { get; } = new CompilerOptions();
+        public CompilerOptions Options { get; set; } = new CompilerOptions();
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)

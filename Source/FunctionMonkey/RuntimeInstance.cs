@@ -62,9 +62,24 @@ namespace FunctionMonkey
             ServiceCollection = serviceCollection ?? new ServiceCollection();
             BuiltServiceProvider = new Lazy<IServiceProvider>(() => ServiceCollection.BuildServiceProvider());
 
-            // Find the configuration implementation and service collection
-            IFunctionAppConfiguration configuration = LocateConfiguration(functionAppConfigurationAssembly);
+            FunctionAppHostBuilder appHostBuilder = null;
+            IFunctionAppConfiguration configuration = null;
+            IFunctionAppHost appHost = ConfigurationLocator.FindFunctionAppHost(functionAppConfigurationAssembly);
+            if (appHost != null)
+            {
+                appHostBuilder = new FunctionAppHostBuilder();
+                appHost.Build(appHostBuilder);
+                if (appHostBuilder.FunctionAppConfiguration != null)
+                {
+                    configuration = (IFunctionAppConfiguration)Activator.CreateInstance(appHostBuilder.FunctionAppConfiguration);
+                }
+            }
 
+            if (configuration == null)
+            {
+                configuration = ConfigurationLocator.FindConfiguration(functionAppConfigurationAssembly);
+            }
+            
             CommandingDependencyResolverAdapter adapter = new CommandingDependencyResolverAdapter(
                 (fromType, toInstance) => ServiceCollection.AddSingleton(fromType, toInstance),
                 (fromType, toType) => ServiceCollection.AddTransient(fromType, toType),
@@ -93,6 +108,10 @@ namespace FunctionMonkey
             {
                 // Invoke the builder process
                 builder = CreateBuilderFromConfiguration(commandRegistry, configuration);
+                if (appHostBuilder != null)
+                {
+                    builder.Options = appHostBuilder.Options;
+                }
                 FunctionBuilder functionBuilder = (FunctionBuilder)builder.FunctionBuilder;
                 FunctionDefinitions = builder.FunctionDefinitions;
                 compileTarget = builder.Options.HttpTarget;

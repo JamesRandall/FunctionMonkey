@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using FunctionMonkey.Abstractions;
+using FunctionMonkey.Builders;
 
 namespace FunctionMonkey
 {
@@ -12,6 +13,11 @@ namespace FunctionMonkey
     /// </summary>
     public static class ConfigurationLocator
     {
+        public static IFunctionAppHost FindFunctionAppHost(Assembly assembly)
+        {
+            return Find<IFunctionAppHost>();
+        }
+        
         public static IFunctionAppConfiguration FindConfiguration(Assembly assembly)
         {
             return Find<IFunctionAppConfiguration>(assembly);
