@@ -3741,6 +3741,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType
   nameWithType: IMediatorTypeSafetyEnforcer.IsValidType
+- uid: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements
+  name: Requirements
+  href: api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html#FunctionMonkey_Abstractions_IMediatorTypeSafetyEnforcer_Requirements
+  commentId: P:FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements
+  fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements
+  nameWithType: IMediatorTypeSafetyEnforcer.Requirements
+- uid: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements*
+  name: Requirements
+  href: api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html#FunctionMonkey_Abstractions_IMediatorTypeSafetyEnforcer_Requirements_
+  commentId: Overload:FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements
+  nameWithType: IMediatorTypeSafetyEnforcer.Requirements
 - uid: FunctionMonkey.Abstractions.ISerializer
   name: ISerializer
   href: api/FunctionMonkey.Abstractions.ISerializer.html
@@ -5761,6 +5774,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType
   nameWithType: DefaultMediatorTypeSafetyEnforcer.IsValidType
+- uid: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.Requirements
+  name: Requirements
+  href: api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.html#FunctionMonkey_Infrastructure_DefaultMediatorTypeSafetyEnforcer_Requirements
+  commentId: P:FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.Requirements
+  fullName: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.Requirements
+  nameWithType: DefaultMediatorTypeSafetyEnforcer.Requirements
+- uid: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.Requirements*
+  name: Requirements
+  href: api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.html#FunctionMonkey_Infrastructure_DefaultMediatorTypeSafetyEnforcer_Requirements_
+  commentId: Overload:FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.Requirements
+  isSpec: "True"
+  fullName: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.Requirements
+  nameWithType: DefaultMediatorTypeSafetyEnforcer.Requirements
 - uid: FunctionMonkey.MediatR
   name: FunctionMonkey.MediatR
   href: api/FunctionMonkey.MediatR.html
@@ -5805,6 +5831,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType
   nameWithType: MediatRTypeSafetyEnforcer.IsValidType
+- uid: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.Requirements
+  name: Requirements
+  href: api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html#FunctionMonkey_MediatR_MediatRTypeSafetyEnforcer_Requirements
+  commentId: P:FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.Requirements
+  fullName: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.Requirements
+  nameWithType: MediatRTypeSafetyEnforcer.Requirements
+- uid: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.Requirements*
+  name: Requirements
+  href: api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html#FunctionMonkey_MediatR_MediatRTypeSafetyEnforcer_Requirements_
+  commentId: Overload:FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.Requirements
+  isSpec: "True"
+  fullName: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.Requirements
+  nameWithType: MediatRTypeSafetyEnforcer.Requirements
 - uid: FunctionMonkey.PluginFunctions
   name: PluginFunctions
   href: api/FunctionMonkey.PluginFunctions.html
