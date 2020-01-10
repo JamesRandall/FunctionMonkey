@@ -40,23 +40,22 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <returns></returns>
         ICosmosDbFunctionOptionBuilder<TCommand> ChangeFeedFunction<TCommand>(string collectionName,
             string databaseName,
-            string leaseCollectionName="leases",
-            string leaseDatabaseName=null,
-            bool createLeaseCollectionIfNotExists=false,
-            bool startFromBeginning=false,
-            bool convertToPascalCase=false,
-            string leaseCollectionPrefix=null,
-            int? maxItemsPerInvocation=null,
-            int? feedPollDelay=null,
-            int? leaseAcquireInterval=null,
-            int? leaseExpirationInterval=null,
-            int? leaseRenewInterval=null,
-            int? checkpointFrequency=null,
-            int? leasesCollectionThroughput=null,
-            bool trackRemainingWork=false,
+            string leaseCollectionName = "leases",
+            string leaseDatabaseName = null,
+            bool createLeaseCollectionIfNotExists = false,
+            bool startFromBeginning = false,
+            bool convertToPascalCase = false,
+            string leaseCollectionPrefix = null,
+            int? maxItemsPerInvocation = null,
+            int? feedPollDelay = null,
+            int? leaseAcquireInterval = null,
+            int? leaseExpirationInterval = null,
+            int? leaseRenewInterval = null,
+            int? checkpointFrequency = null,
+            int? leasesCollectionThroughput = null,
+            bool trackRemainingWork = false,
             string remainingWorkCronExpression = "*/5 * * * * *"
-            )
-            where TCommand : ICommand;
+        );
 
         ///  <summary>
         ///  Associate a function with the specified collection and database
@@ -110,6 +109,6 @@ namespace FunctionMonkey.Abstractions.Builders
             bool trackRemainingWork = false,
             string remainingWorkCronExpression = "*/5 * * * * *"
         )
-            where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler;
+            where TCosmosDbErrorHandler : ICosmosDbErrorHandler;
     }
 }

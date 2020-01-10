@@ -10,7 +10,7 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionOptions<
             TCommand,
             IHttpFunctionConfigurationBuilder<TCommand>,
-            IHttpFunctionOptionsBuilder<TCommand>> where TCommand : ICommand
+            IHttpFunctionOptionsBuilder<TCommand>>
     {
         /// <summary>
         /// The Open API / Swagger description for the endpoint

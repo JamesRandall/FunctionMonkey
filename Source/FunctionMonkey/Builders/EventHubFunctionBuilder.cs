@@ -19,7 +19,7 @@ namespace FunctionMonkey.Builders
             _definitions = definitions;
         }
         
-        public IEventHubFunctionOptionBuilder<TCommand> EventHubFunction<TCommand>(string eventHubName) where TCommand : ICommand
+        public IEventHubFunctionOptionBuilder<TCommand> EventHubFunction<TCommand>(string eventHubName)
         {
             EventHubFunctionDefinition definition = new EventHubFunctionDefinition(typeof(TCommand))
             {

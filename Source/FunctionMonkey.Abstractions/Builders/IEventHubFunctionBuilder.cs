@@ -12,6 +12,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <typeparam name="TCommand">The type of the command</typeparam>
         /// <param name="eventHubName">The name of the event hub</param>
-        IEventHubFunctionOptionBuilder<TCommand> EventHubFunction<TCommand>(string eventHubName) where TCommand : ICommand;
+        IEventHubFunctionOptionBuilder<TCommand> EventHubFunction<TCommand>(string eventHubName);
     }
 }

@@ -19,7 +19,7 @@ namespace FunctionMonkey.Builders
             _definitions = definitions;
         }
 
-        public IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false)
         {
             ServiceBusQueueFunctionDefinition definition = new ServiceBusQueueFunctionDefinition(typeof(TCommand))
             {
@@ -31,7 +31,7 @@ namespace FunctionMonkey.Builders
             return new ServiceBusFunctionOptionBuilder<TCommand>(_connectionStringSettingNames, this, definition);
         }
 
-        public IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false)
         {
             ServiceBusSubscriptionFunctionDefinition definition =
                 new ServiceBusSubscriptionFunctionDefinition(typeof(TCommand))

@@ -8,7 +8,7 @@ namespace FunctionMonkey.Abstractions.Builders
     /// Allows additional function options and overrides for defaults to be configured 
     /// </summary>
     public interface IFunctionOptions<TCommand, out TParentBuilder, out TFunctionOptionsBuilder>
-        where TCommand : ICommand where TParentBuilder : class where TFunctionOptionsBuilder : class
+        where TParentBuilder : class where TFunctionOptionsBuilder : class
     {
         TParentBuilder Options(Action<TFunctionOptionsBuilder> options);
         IOutputBindingBuilder<TCommand, TParentBuilder> OutputTo { get; }

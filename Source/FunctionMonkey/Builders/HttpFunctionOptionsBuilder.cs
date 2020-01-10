@@ -12,7 +12,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class HttpFunctionOptionsBuilder<TCommand> : IHttpFunctionOptionsBuilder<TCommand> where TCommand : ICommand
+    public class HttpFunctionOptionsBuilder<TCommand> : IHttpFunctionOptionsBuilder<TCommand>
     {
         private readonly HttpFunctionDefinition _functionDefinition;
 

@@ -10,7 +10,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <typeparam name="TCommand">The type of command</typeparam>
         /// <param name="cronExpression">The periodicity of the function</param>
         /// <returns>A function builder</returns>
-        ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand>(string cronExpression) where TCommand : ICommand;
+        ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand>(string cronExpression);
 
         /// <summary>
         /// Creates a Timer function that fires each specified interval with a command created using the factory
@@ -20,7 +20,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="cronExpression">The periodicity of the function</param>
         /// <returns>A function builder</returns>
         ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand, TTimerCommandFactoryType>(string cronExpression)
-            where TCommand : ICommand
             where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>;
     }
 }

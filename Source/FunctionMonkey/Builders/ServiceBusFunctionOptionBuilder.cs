@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    internal class ServiceBusFunctionOptionBuilder<TCommandOuter> : IServiceBusFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
+    internal class ServiceBusFunctionOptionBuilder<TCommandOuter> : IServiceBusFunctionOptionBuilder<TCommandOuter>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IServiceBusFunctionBuilder _underlyingBuilder;
@@ -24,12 +24,12 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false)
         {
             return _underlyingBuilder.QueueFunction<TCommand>(queueName, isSessionEnabled);
         }
 
-        public IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand
+        public IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false)
         {
             return _underlyingBuilder.SubscriptionFunction<TCommand>(topicName, subscriptionName, isSessionEnabled);
         }

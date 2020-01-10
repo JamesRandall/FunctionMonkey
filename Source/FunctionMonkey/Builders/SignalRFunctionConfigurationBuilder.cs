@@ -8,7 +8,7 @@ using FunctionMonkey.Model;
 
 namespace FunctionMonkey.Builders
 {
-    internal class SignalRFunctionConfigurationBuilder<TCommandOuter> : ISignalRFunctionConfigurationBuilder<TCommandOuter> where TCommandOuter : ICommand
+    internal class SignalRFunctionConfigurationBuilder<TCommandOuter> : ISignalRFunctionConfigurationBuilder<TCommandOuter>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly ISignalRFunctionBuilder _httpFunctionBuilder;
@@ -52,7 +52,7 @@ namespace FunctionMonkey.Builders
             new OutputBindingBuilder<TCommandOuter, ISignalRFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
 
         public ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType = null,
-            params HttpMethod[] method) where TCommand : ICommand<SignalRNegotiateResponse>
+            params HttpMethod[] method)
         {
             return _httpFunctionBuilder.Negotiate<TCommand>(route, authorizationType, method);
         }

@@ -5,7 +5,7 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 
 namespace FunctionMonkey.Abstractions.Builders
 {
-    public interface IOutputBindingBuilder<TCommand, out TFunctionTypeBuilder> where TCommand : ICommand
+    public interface IOutputBindingBuilder<TCommand, out TFunctionTypeBuilder>
     {
         TFunctionTypeBuilder ServiceBusQueue(string connectionStringSettingName, string queueName);
         TFunctionTypeBuilder ServiceBusQueue<TResult>(string connectionStringSettingName, string queueName, Expression<Func<TResult,object>> sessionIdProperty=null);

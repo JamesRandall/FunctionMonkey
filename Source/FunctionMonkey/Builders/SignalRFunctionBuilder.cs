@@ -23,7 +23,7 @@ namespace FunctionMonkey.Builders
         }
 
         public ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType = null,
-            params HttpMethod[] method) where TCommand : ICommand<SignalRNegotiateResponse>
+            params HttpMethod[] method)
         {
             SignalRCommandNegotiateFunctionDefinition definition = new SignalRCommandNegotiateFunctionDefinition(typeof(TCommand))
             {

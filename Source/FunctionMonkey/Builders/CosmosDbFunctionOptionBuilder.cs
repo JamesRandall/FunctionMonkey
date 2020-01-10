@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class CosmosDbFunctionOptionBuilder<TCommandOuter> : ICosmosDbFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
+    public class CosmosDbFunctionOptionBuilder<TCommandOuter> : ICosmosDbFunctionOptionBuilder<TCommandOuter>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly ICosmosDbFunctionBuilder _underlyingBuilder;
@@ -32,7 +32,7 @@ namespace FunctionMonkey.Builders
             int? leaseAcquireInterval = null, int? leaseExpirationInterval = null, int? leaseRenewInterval = null,
             int? checkpointFrequency = null, int? leasesCollectionThroughput = null,
             bool trackRemainingWork = true,
-            string remainingWorkCronExpression = "*/1 * * * * *") where TCommand : ICommand
+            string remainingWorkCronExpression = "*/1 * * * * *")
         {
             return _underlyingBuilder.ChangeFeedFunction<TCommand>(collectionName, databaseName,
                 leaseCollectionName, leaseDatabaseName,
@@ -49,7 +49,7 @@ namespace FunctionMonkey.Builders
             int? leaseAcquireInterval = null, int? leaseExpirationInterval = null, int? leaseRenewInterval = null,
             int? checkpointFrequency = null, int? leasesCollectionThroughput = null,
             bool trackRemainingWork = true,
-            string remainingWorkCronExpression = "*/1 * * * * *") where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
+            string remainingWorkCronExpression = "*/1 * * * * *") where TCosmosDbErrorHandler : ICosmosDbErrorHandler
         {
             return _underlyingBuilder.ChangeFeedFunction<TCommand, TCosmosDbErrorHandler>(collectionName, databaseName,
                 leaseCollectionName, leaseDatabaseName,

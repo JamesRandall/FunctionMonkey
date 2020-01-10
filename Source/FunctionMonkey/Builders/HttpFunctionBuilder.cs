@@ -26,46 +26,46 @@ namespace FunctionMonkey.Builders
             _definitions = definitions;
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>() where TCommand : ICommand
+        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>()
         {
             return BuildHttpFunction<TCommand>(null, null, DefaultMethod);
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType) where TCommand : ICommand
+        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType)
         {
             return BuildHttpFunction<TCommand>(null, authorizationType, DefaultMethod);
         }
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType,
-            params HttpMethod[] method) where TCommand : ICommand
+            params HttpMethod[] method)
         {
             return BuildHttpFunction<TCommand>(null, authorizationType, method);
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(params HttpMethod[] method) where TCommand : ICommand
+        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(params HttpMethod[] method)
         {
             return BuildHttpFunction<TCommand>(null, null, method);
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route) where TCommand : ICommand
+        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route)
         {
             return BuildHttpFunction<TCommand>(route, null, DefaultMethod);
         }
 
-        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, params HttpMethod[] method) where TCommand : ICommand
+        public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, params HttpMethod[] method)
         {
             return BuildHttpFunction<TCommand>(route, null, method);
         }
 
         public IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route,
-            AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand
+            AuthorizationTypeEnum authorizationType, params HttpMethod[] method)
         {
             return BuildHttpFunction<TCommand>(route, authorizationType, method);
         }
 
         private IHttpFunctionConfigurationBuilder<TCommand> BuildHttpFunction<TCommand>(string route,
             AuthorizationTypeEnum? authorizationType,
-            params HttpMethod[] method) where TCommand : ICommand
+            params HttpMethod[] method)
         {
             HttpFunctionDefinition definition = new HttpFunctionDefinition(typeof(TCommand))
             {

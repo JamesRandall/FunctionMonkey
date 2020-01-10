@@ -14,7 +14,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="queueName">The name of the queue</param>
         /// <param name="isSessionEnabled">Should session IDs be used when processing the queue, requires a session ID enabled queue. Defaults to false.</param>
         /// <returns>A service bus function builder that allows more functions to be created</returns>
-        IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false) where TCommand : ICommand;
+        IServiceBusFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName, bool isSessionEnabled=false);
 
         /// <summary>
         /// Associate a function with the named topic and subscription and command type
@@ -24,6 +24,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="subscriptionName">The name of the subscription</param>
         /// /// <param name="isSessionEnabled">Should session IDs be used when processing the queue, requires a session ID enabled subscription. Defaults to false.</param>
         /// <returns>A service bus function builder that allows more functions to be created</returns>
-        IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false) where TCommand : ICommand;
+        IServiceBusFunctionOptionBuilder<TCommand> SubscriptionFunction<TCommand>(string topicName, string subscriptionName, bool isSessionEnabled=false);
     }
 }

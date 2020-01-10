@@ -26,7 +26,7 @@ namespace FunctionMonkey.Builders
         /// <typeparam name="TCommand">The type of command</typeparam>
         /// <param name="queueName">The name of the queue</param>
         /// <returns>Builder for use in a fluent API</returns>
-        public IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName) where TCommand : ICommand
+        public IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName)
         {
             StorageQueueFunctionDefinition definition = new StorageQueueFunctionDefinition(typeof(TCommand))
             {
@@ -45,7 +45,7 @@ namespace FunctionMonkey.Builders
         /// the command</typeparam>
         /// <param name="blobPath">Container and optional pattern for the blob</param>
         /// <returns>Builder for use in a fluent API</returns>
-        public IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath) where TCommand : ICommand
+        public IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath)
         {
             AbstractFunctionDefinition definition;
             if (typeof(IStreamCommand).IsAssignableFrom(typeof(TCommand)))

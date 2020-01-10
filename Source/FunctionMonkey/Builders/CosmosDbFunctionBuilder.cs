@@ -46,7 +46,7 @@ namespace FunctionMonkey.Builders
             int? leasesCollectionThroughput = null,
             bool trackRemainingWork = false,
             string remainingWorkCronExpression = "*/5 * * * * *"
-            ) where TCommand : ICommand
+            )
         {
             CosmosDbFunctionDefinition definition = new CosmosDbFunctionDefinition(typeof(TCommand))
             {
@@ -92,7 +92,7 @@ namespace FunctionMonkey.Builders
             int? leasesCollectionThroughput = null,
             bool trackRemainingWork = false,
             string remainingWorkCronExpression = "*/5 * * * * *"
-            ) where TCommand : ICommand where TCosmosDbErrorHandler : ICosmosDbErrorHandler
+            ) where TCosmosDbErrorHandler : ICosmosDbErrorHandler
         {
             CosmosDbFunctionDefinition definition = new CosmosDbFunctionDefinition(typeof(TCommand))
             {

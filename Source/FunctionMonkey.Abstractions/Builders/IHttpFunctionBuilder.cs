@@ -14,7 +14,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <typeparam name="TCommand">The command type</typeparam>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>() where TCommand : ICommand;
+        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>();
 
         /// <summary>
         /// Associate a GET verb function with the given command type and authorization type. Its endpoint will be that specified by the parent HTTP route.
@@ -22,7 +22,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <typeparam name="TCommand">The command type</typeparam>
         /// <param name="authorizationType">The authorization type of the function</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType) where TCommand : ICommand;
+        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType);
 
         /// <summary>
         /// Associate a function with the given command type, authorization type and HTTP verbs. Its endpoint will be that specified by the parent HTTP route.
@@ -31,14 +31,14 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="authorizationType">The authorization type of the function</param>
         /// <param name="method">One or more HTTP methods to support.</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand;
+        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(AuthorizationTypeEnum authorizationType, params HttpMethod[] method);
 
         /// <summary>
         /// Assocate a function with the given command type and associate it with the specified verbs. Its endpoint will be that specified by the parent HTTP route and with the default authorization type (see IAuthorizationBuilder)
         /// </summary>
         /// <param name="method">One or more HTTP methods to support.</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(params HttpMethod[] method) where TCommand : ICommand;
+        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(params HttpMethod[] method);
 
         /// <summary>
         /// Assocate a function with the given command type and associate it with the specified verbs. Its endpoint will be that specified by the parent HTTP route concatenated with the parent route 
@@ -48,7 +48,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="route">The route to concatenate with the parent route</param>
         /// <param name="method">One or more HTTP methods to support.</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, params HttpMethod[] method) where TCommand : ICommand;
+        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, params HttpMethod[] method);
 
         /// <summary>
         /// Assocate a function with the given command type and associate it with the specified verbs. Its endpoint will be that specified by the parent HTTP route concatenated with the parent route 
@@ -59,6 +59,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="authorizationType">The authorization type of the function</param>
         /// <param name="method">One or more HTTP methods to support.</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
-        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method) where TCommand : ICommand;
+        IHttpFunctionConfigurationBuilder<TCommand> HttpFunction<TCommand>(string route, AuthorizationTypeEnum authorizationType, params HttpMethod[] method);
     }
 }

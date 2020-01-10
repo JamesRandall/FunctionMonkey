@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Abstractions.Builders
 {
-    public interface IHttpFunctionOptionsBuilder<TCommand> where TCommand : ICommand
+    public interface IHttpFunctionOptionsBuilder<TCommand>
     {
         /// <summary>
         /// Allows an alternative serializer to be provided. If a naming strategy pair is supplied then this

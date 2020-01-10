@@ -4,7 +4,7 @@ namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IServiceBusFunctionOptionBuilder<TCommand> : 
         IServiceBusFunctionBuilder,
-        IFunctionOptions<TCommand, IServiceBusFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder> where TCommand : ICommand
+        IFunctionOptions<TCommand, IServiceBusFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder>
     {
         
     }

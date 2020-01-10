@@ -9,7 +9,7 @@ using IFunctionBuilder = FunctionMonkey.Abstractions.Builders.IFunctionBuilder;
 
 namespace FunctionMonkey.Builders
 {
-    class TimerFunctionBuilder<TCommandOuter> : ITimerFunctionBuilder where TCommandOuter : ICommand
+    class TimerFunctionBuilder<TCommandOuter> : ITimerFunctionBuilder
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IFunctionBuilder _functionBuilder;
@@ -26,7 +26,7 @@ namespace FunctionMonkey.Builders
         }
 
         
-        public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand>(string cronExpression) where TCommand : ICommand
+        public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand>(string cronExpression)
         {
             TimerFunctionDefinition timerFunctionDefinition = new TimerFunctionDefinition(typeof(TCommand))
             {
@@ -38,7 +38,6 @@ namespace FunctionMonkey.Builders
         }
 
         public ITimerFunctionOptionsBuilder<TCommand> Timer<TCommand, TTimerCommandFactoryType>(string cronExpression)
-            where TCommand : ICommand
             where TTimerCommandFactoryType : ITimerCommandFactory<TCommand>
         {
             TimerFunctionDefinition timerFunctionDefinition = new TimerFunctionDefinition(typeof(TCommand))

@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FunctionMonkey.Builders
 {
-    public class StorageFunctionOptionBuilder<TCommandOuter> : IStorageFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
+    public class StorageFunctionOptionBuilder<TCommandOuter> : IStorageFunctionOptionBuilder<TCommandOuter>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IStorageFunctionBuilder _underlyingBuilder;
@@ -24,12 +24,12 @@ namespace FunctionMonkey.Builders
             _definition = definition;
         }
         
-        public IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName) where TCommand : ICommand
+        public IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName)
         {
             return _underlyingBuilder.QueueFunction<TCommand>(queueName);
         }
 
-        public IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath) where TCommand : ICommand
+        public IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath)
         {
             return _underlyingBuilder.BlobFunction<TCommand>(blobPath);
         }

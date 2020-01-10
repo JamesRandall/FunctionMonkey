@@ -121,6 +121,9 @@ namespace FunctionMonkey.Compiler.Core
 
         private bool ValidateCommandTypes(FunctionHostBuilder builder)
         {
+            // TODO: Add a check in the assembvly compile type checker to make sure that Negotiate<TCommand> type commands have a return type of SignalRNegotiateResponse
+            
+            
             ConstructorInfo constructor = builder.Options.MediatorTypeSafetyEnforcer.GetConstructor(new Type[0]);
             if (constructor == null)
             {

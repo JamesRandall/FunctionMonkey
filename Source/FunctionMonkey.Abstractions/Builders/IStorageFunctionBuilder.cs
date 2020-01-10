@@ -13,7 +13,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <typeparam name="TCommand">The type of command</typeparam>
         /// <param name="queueName">The name of the queue</param>
         /// <returns>Builder for use in a fluent API</returns>
-        IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName) where TCommand : ICommand;
+        IStorageFunctionOptionBuilder<TCommand> QueueFunction<TCommand>(string queueName);
 
         /// <summary>
         /// Creates a function for a blob trigger
@@ -23,6 +23,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// the command</typeparam>
         /// <param name="blobPath">Container and optional pattern for the blob</param>
         /// <returns>Builder for use in a fluent API</returns>
-        IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath) where TCommand : ICommand;
+        IStorageFunctionOptionBuilder<TCommand> BlobFunction<TCommand>(string blobPath);
     }
 }

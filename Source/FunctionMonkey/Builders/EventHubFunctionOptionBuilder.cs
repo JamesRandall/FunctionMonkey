@@ -5,7 +5,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 
 namespace FunctionMonkey.Builders
 {
-    internal class EventHubFunctionOptionBuilder<TCommandOuter> : IEventHubFunctionOptionBuilder<TCommandOuter> where TCommandOuter : ICommand
+    internal class EventHubFunctionOptionBuilder<TCommandOuter> : IEventHubFunctionOptionBuilder<TCommandOuter>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly IEventHubFunctionBuilder _underlyingBuilder;
@@ -21,7 +21,7 @@ namespace FunctionMonkey.Builders
             _functionDefinition = functionDefinition;
         }
         
-        public IEventHubFunctionOptionBuilder<TCommand> EventHubFunction<TCommand>(string eventHubName) where TCommand : ICommand
+        public IEventHubFunctionOptionBuilder<TCommand> EventHubFunction<TCommand>(string eventHubName)
         {
             return _underlyingBuilder.EventHubFunction<TCommand>(eventHubName);
         }

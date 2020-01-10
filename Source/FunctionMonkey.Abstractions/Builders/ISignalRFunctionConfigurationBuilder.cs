@@ -10,7 +10,7 @@ namespace FunctionMonkey.Abstractions.Builders
     public interface ISignalRFunctionConfigurationBuilder<TCommand> : 
         ISignalRFunctionBuilder,
         IFunctionOptions<TCommand, ISignalRFunctionConfigurationBuilder<TCommand>,
-        IHttpFunctionOptionsBuilder<TCommand>> where TCommand : ICommand
+        IHttpFunctionOptionsBuilder<TCommand>>
     {
         /// <summary>
         /// The Open API / Swagger description for the endpoint

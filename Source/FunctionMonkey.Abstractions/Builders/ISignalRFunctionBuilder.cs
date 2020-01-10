@@ -9,8 +9,8 @@ namespace FunctionMonkey.Abstractions.Builders
 {
     public interface ISignalRFunctionBuilder
     {
-
-        ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType  = null, params HttpMethod[] method) where TCommand : ICommand<SignalRNegotiateResponse>;
+        // TODO: Add a check in the assembvly compile type checker to make sure that Negotiate<TCommand> type commands have a return type of SignalRNegotiateResponse
+        ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType  = null, params HttpMethod[] method);
 
         /// <summary>
         /// Creates a SignalR negotiator at the specified route attached to the given hub name and, optionally, with a user ID sourced using a binding expression e.g.
