@@ -90,7 +90,7 @@
   <h6><strong>Assembly</strong>: FunctionMonkey.dll</h6>
   <h5 id="FunctionMonkey_Builders_StorageFunctionOptionBuilder_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StorageFunctionOptionBuilder&lt;TCommandOuter&gt; : object, IStorageFunctionOptionBuilder&lt;TCommandOuter&gt;, IStorageFunctionBuilder, IFunctionOptions&lt;TCommandOuter, IStorageFunctionOptionBuilder&lt;TCommandOuter&gt;, IFunctionOptionsBuilder&gt; where TCommandOuter : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public class StorageFunctionOptionBuilder&lt;TCommandOuter&gt; : object, IStorageFunctionOptionBuilder&lt;TCommandOuter&gt;, IStorageFunctionBuilder, IFunctionOptions&lt;TCommandOuter, IStorageFunctionOptionBuilder&lt;TCommandOuter&gt;, IFunctionOptionsBuilder&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,8 +198,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IStorageFunctionOptionBuilder&lt;TCommand&gt; BlobFunction&lt;TCommand&gt;(string blobPath)
-    where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public IStorageFunctionOptionBuilder&lt;TCommand&gt; BlobFunction&lt;TCommand&gt;(string blobPath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -308,8 +307,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IStorageFunctionOptionBuilder&lt;TCommand&gt; QueueFunction&lt;TCommand&gt;(string queueName)
-    where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">public IStorageFunctionOptionBuilder&lt;TCommand&gt; QueueFunction&lt;TCommand&gt;(string queueName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionBuilder.html",
-          "hash": "xdor86BGPBRsYHP5AV3kPg=="
+          "hash": "4tINrd3XXmVU0jQdiIVHzQ=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder-1.html",
-          "hash": "ZXVXiF5Hy8bHuosgRocKWg=="
+          "hash": "ssJSCaShSWZue1hMmnUZUw=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionBuilder.html",
-          "hash": "d0EDkP6ee2v+Lz4Z+8KIdg=="
+          "hash": "MbIZ7/e/UTF3UHU0+XmLlA=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionOptionBuilder-1.html",
-          "hash": "bM+AdAL0eXnprw+oIgrZgw=="
+          "hash": "5K4nAAS1aC3spVb3P1rgJg=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html",
-          "hash": "F2pxyOXfBE/5Ttau2XAuSQ=="
+          "hash": "F8Nw3D0csnVgZ3s0tcnvRg=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionBuilder.html",
-          "hash": "07eVzUmf72xZ+KNk3dsbDw=="
+          "hash": "s/OhW7GlXDHhExIKpo+7lA=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html",
-          "hash": "VkzpU0JjQYWrU28+Y/fJag=="
+          "hash": "ga/ww18rFJpovwxdXkXkgA=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html",
-          "hash": "ZviJAOTNp8U8L4fGteLdpA=="
+          "hash": "aVL8b5L1d+1MpYwjd6ruRQ=="
         }
       },
       "is_incremental": false,
@@ -345,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html",
-          "hash": "Tp6R/ztfzTTKmpiuRLs8pA=="
+          "hash": "OWgJm4bV6XNnDN0ypCHLlQ=="
         }
       },
       "is_incremental": false,
@@ -369,7 +369,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionBuilder.html",
-          "hash": "r+NFYTelKD0ckPBFVBmSDQ=="
+          "hash": "1KFc94N16Lzoog6e7ayPfQ=="
         }
       },
       "is_incremental": false,
@@ -381,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder-1.html",
-          "hash": "F7YvZyRiQ9uoYxTaPGLArg=="
+          "hash": "D0fb5UonsctXog3Gi2z3Iw=="
         }
       },
       "is_incremental": false,
@@ -393,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.html",
-          "hash": "QWDiRC3cSC662DM+Z06IAA=="
+          "hash": "UhopoOFWpxnD/0BJCu8yyw=="
         }
       },
       "is_incremental": false,
@@ -405,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ISignalRFunctionConfigurationBuilder-1.html",
-          "hash": "9KpsIDfHtSKmw8QrA/KumQ=="
+          "hash": "/wev8BmVPihf4C4j3bIkUg=="
         }
       },
       "is_incremental": false,
@@ -417,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IStorageFunctionBuilder.html",
-          "hash": "wnSGp4XTszQ6JZSAkLUkDQ=="
+          "hash": "gld4MvynfpNOXnc7bLLiPw=="
         }
       },
       "is_incremental": false,
@@ -429,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder-1.html",
-          "hash": "a6xFWaf5PGAYtSaSptTMbg=="
+          "hash": "ftilSAeLAX41AegxqDWn5w=="
         }
       },
       "is_incremental": false,
@@ -441,7 +441,19 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.html",
-          "hash": "D+aJYJ06xJFvxeRPJ7wGcg=="
+          "hash": "fV6HZ0x+BL22YPYl1U1OVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder-1.html",
+          "hash": "ZknXH4tzYAQQjqrGX7VlAg=="
         }
       },
       "is_incremental": false,
@@ -525,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.html",
-          "hash": "655Ji5EwVAP9oHKolt5YrA=="
+          "hash": "zUnTj9i/mgf1izSUjc1zpg=="
         }
       },
       "is_incremental": false,
@@ -861,19 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.ITimerCommandFactory-1.html",
-          "hash": "Ky+/B6ShkK+E+7ZHq8YYpg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder-1.html",
-          "hash": "b7aYg7CryxrWpCKpGePZSQ=="
+          "hash": "RgBaw7uLOb0pFWLlLszOYQ=="
         }
       },
       "is_incremental": false,
@@ -981,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "Z0dFyfbNNii/URE2VGhV7w=="
+          "hash": "59DaY+rMR1p3quet/KrVxw=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.html",
-          "hash": "C/C9Zrhr+CVnKt/ddN9B2g=="
+          "hash": "yY6dfLSoFlSN8UOKV8xP2w=="
         }
       },
       "is_incremental": false,
@@ -1101,7 +1101,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Builders.FunctionBuilder.html",
-          "hash": "cBw3DGI7oRwEw0OM6RV7mA=="
+          "hash": "6D9+wUMht2SCF8PPEgirig=="
         }
       },
       "is_incremental": false,
@@ -1113,7 +1113,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html",
-          "hash": "CGFWoyAHDssUFJb22C4nkA=="
+          "hash": "HK+lNcCE8TZu+zL2UCnbBQ=="
         }
       },
       "is_incremental": false,
@@ -1137,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Builders.StorageFunctionOptionBuilder-1.html",
-          "hash": "6BIeZIHh6BGpvbJjjvmWsg=="
+          "hash": "baVob5n+YNWkD50I+ULrWw=="
         }
       },
       "is_incremental": false,
@@ -1929,7 +1929,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "hCDSFe5msWaoOGemAt5MdQ=="
+          "hash": "QIg8Wued2TKljmGD35hXug=="
         }
       },
       "is_incremental": false,

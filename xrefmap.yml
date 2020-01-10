@@ -1891,6 +1891,32 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(System.String)
   nameWithType: ITimerFunctionBuilder.Timer<TCommand, TTimerCommandFactoryType>(String)
   nameWithType.vb: ITimerFunctionBuilder.Timer(Of TCommand, TTimerCommandFactoryType)(String)
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder`1
+  name: ITimerFunctionOptionsBuilder<TCommand>
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder-1.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder`1
+  name.vb: ITimerFunctionOptionsBuilder(Of TCommand)
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder<TCommand>
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder(Of TCommand)
+  nameWithType: ITimerFunctionOptionsBuilder<TCommand>
+  nameWithType.vb: ITimerFunctionOptionsBuilder(Of TCommand)
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder`1.OutputTo
+  name: OutputTo
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_ITimerFunctionOptionsBuilder_1_OutputTo
+  commentId: P:FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder`1.OutputTo
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder<TCommand>.OutputTo
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
+  nameWithType: ITimerFunctionOptionsBuilder<TCommand>.OutputTo
+  nameWithType.vb: ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
+- uid: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder`1.OutputTo*
+  name: OutputTo
+  href: api/FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_ITimerFunctionOptionsBuilder_1_OutputTo_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder`1.OutputTo
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder<TCommand>.OutputTo
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
+  nameWithType: ITimerFunctionOptionsBuilder<TCommand>.OutputTo
+  nameWithType.vb: ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
 - uid: FunctionMonkey.Abstractions.Builders.Model
   name: FunctionMonkey.Abstractions.Builders.Model
   href: api/FunctionMonkey.Abstractions.Builders.Model.html
@@ -3824,32 +3850,6 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.ITimerCommandFactory(Of TCommand).Create
   nameWithType: ITimerCommandFactory<TCommand>.Create
   nameWithType.vb: ITimerCommandFactory(Of TCommand).Create
-- uid: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder`1
-  name: ITimerFunctionOptionsBuilder<TCommand>
-  href: api/FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder-1.html
-  commentId: T:FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder`1
-  name.vb: ITimerFunctionOptionsBuilder(Of TCommand)
-  fullName: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder<TCommand>
-  fullName.vb: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder(Of TCommand)
-  nameWithType: ITimerFunctionOptionsBuilder<TCommand>
-  nameWithType.vb: ITimerFunctionOptionsBuilder(Of TCommand)
-- uid: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder`1.OutputTo
-  name: OutputTo
-  href: api/FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_ITimerFunctionOptionsBuilder_1_OutputTo
-  commentId: P:FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder`1.OutputTo
-  fullName: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder<TCommand>.OutputTo
-  fullName.vb: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
-  nameWithType: ITimerFunctionOptionsBuilder<TCommand>.OutputTo
-  nameWithType.vb: ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
-- uid: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder`1.OutputTo*
-  name: OutputTo
-  href: api/FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_ITimerFunctionOptionsBuilder_1_OutputTo_
-  commentId: Overload:FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder`1.OutputTo
-  isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder<TCommand>.OutputTo
-  fullName.vb: FunctionMonkey.Abstractions.ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
-  nameWithType: ITimerFunctionOptionsBuilder<TCommand>.OutputTo
-  nameWithType.vb: ITimerFunctionOptionsBuilder(Of TCommand).OutputTo
 - uid: FunctionMonkey.Abstractions.ITokenValidator
   name: ITokenValidator
   href: api/FunctionMonkey.Abstractions.ITokenValidator.html
