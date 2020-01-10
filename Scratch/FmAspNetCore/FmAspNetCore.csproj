@@ -9,5 +9,4 @@
       <ProjectReference Include="..\..\Source\FunctionMonkey.TokenValidator\FunctionMonkey.TokenValidator.csproj" />
       <ProjectReference Include="..\..\Source\FunctionMonkey\FunctionMonkey.csproj" />
     </ItemGroup>
-
 </Project>

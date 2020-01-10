@@ -5,6 +5,11 @@
     <AssemblyName>FunctionMonkey.Tests.Integration.Functions</AssemblyName>
     <RootNamespace>FunctionMonkey.Tests.Integration.Functions</RootNamespace>
   </PropertyGroup>
+
+  <Target Name="OutputAMessage" AfterTargets="Build" Condition="'$(AzureFunctionsVersion)' == 'V3'">
+    <Message Text="******* Some Message $(AzureFunctionsVersion) dodo" Importance="high" />
+  </Target>
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="4.1.0" />
