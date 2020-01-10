@@ -14,5 +14,7 @@ namespace FunctionMonkey.Infrastructure
                 commandType.GetInterfaces().Any(x =>
                     x.IsGenericTypeDefinition && x.GetGenericTypeDefinition() == typeof(ICommand<>));
         }
+
+        public string Requirements => "Commands must implement ICommand or ICommand<T>";
     }
 }

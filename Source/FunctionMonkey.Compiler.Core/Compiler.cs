@@ -84,6 +84,12 @@ namespace FunctionMonkey.Compiler.Core
                     builder.Options = appHostBuilder.Options;
                 }
                 configuration.Build(builder);
+
+                if (!ValidateCommandTypes(builder))
+                {
+                    return false;
+                }
+                
                 new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
                 if (!VerifyCommandAndResponseTypes(builder))
                 {
@@ -111,6 +117,29 @@ namespace FunctionMonkey.Compiler.Core
                 configuration,
                 externalAssemblies,
                 _outputBinaryFolder);
+        }
+
+        private bool ValidateCommandTypes(FunctionHostBuilder builder)
+        {
+            ConstructorInfo constructor = builder.Options.MediatorTypeSafetyEnforcer.GetConstructor(new Type[0]);
+            if (constructor == null)
+            {
+                _compilerLog.Error($"{builder.Options.MediatorTypeSafetyEnforcer.Name} does not have a default constructor. Implementations of IMediatorTypeSafetyEnforcer must have a default (parameterless) constructor.");
+                return false;
+            }
+
+            IMediatorTypeSafetyEnforcer typeSafetyEnforcer = (IMediatorTypeSafetyEnforcer)Activator.CreateInstance(builder.Options.MediatorTypeSafetyEnforcer);
+            bool errorFound = false;
+            foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
+            {
+                if (!typeSafetyEnforcer.IsValidType(functionDefinition.CommandType))
+                {
+                    errorFound = true;
+                    _compilerLog.Error($"Command type {functionDefinition.CommandType.Name} does not conform to the requirements of the mediator. {typeSafetyEnforcer.Requirements}");
+                }
+            }
+
+            return !errorFound;
         }
 
         private bool VerifyCommandAndResponseTypes(FunctionHostBuilder builder)

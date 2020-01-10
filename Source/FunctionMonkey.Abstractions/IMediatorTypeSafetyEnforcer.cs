@@ -10,5 +10,7 @@ namespace FunctionMonkey.Abstractions
     public interface IMediatorTypeSafetyEnforcer
     {
         bool IsValidType(Type commandType); 
+        
+        string Requirements { get; }
     }
 }

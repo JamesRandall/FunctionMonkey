@@ -14,5 +14,7 @@ namespace FunctionMonkey.MediatR
                 commandType.GetInterfaces().Any(x =>
                     x.IsGenericTypeDefinition && x.GetGenericTypeDefinition() == typeof(IRequest<>));
         }
+        
+        public string Requirements => "MediatR commands must implement INotification or IRequest<T>";
     }
 }
