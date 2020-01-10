@@ -438,7 +438,7 @@ namespace {{Namespace}}
                         {{/if}}
                     {{else}}
                         System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
-                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token)).Result;
+                        {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, tokenSource.Token);
                     {{/if}}
                 {{/if}}
                 
@@ -470,9 +470,9 @@ namespace {{Namespace}}
                 {{else}}
                     System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
                     {{#if CommandHasResult}}
-                        var result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token)).Result;
+                        {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, tokenSource.Token);
                     {{else}}
-                        await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token);
+                        await FunctionMonkey.Runtime.Mediator.SendAsync(command, tokenSource.Token);
                     {{/if}}
                 {{/if}}             
                 {{#if CommandHasResult}}

@@ -52,8 +52,11 @@ namespace {{Namespace}}
             {{#if IsDocumentBatchCommand}}
                 {{CommandTypeName}} command = new {{CommandTypeName}}();
                 command.Documents = input;
-                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
-                // The result will be useful when we want to include outputs too
+                {{#if CommandHasResult}}
+                    {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, tokenSource.Token);
+                {{else}}
+                    await FunctionMonkey.Runtime.Mediator.SendAsync(command, cancellationToken);
+                {{/if}}
             {{else}}
                 {{#if ErrorHandlerTypeName}}
                 Lazy<{{ErrorHandlerTypeName}}> errorHandler = new Lazy<{{ErrorHandlerTypeName}}>(
@@ -84,12 +87,12 @@ namespace {{Namespace}}
                             {{#if NoCommandHandler}}
                                 {{{CommandType}}} result = command;
                             {{else}}
-                                {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, cancellationToken)).Result;
+                                {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, cancellationToken);
                             {{/if}}
 
                             {{{collectorOutputBinding}}}
                         {{else}}
-                            await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command);
+                            await FunctionMonkey.Runtime.Mediator.SendAsync(command, cancellationToken);
                         {{/if}}
                     }
                     catch(Exception ex)

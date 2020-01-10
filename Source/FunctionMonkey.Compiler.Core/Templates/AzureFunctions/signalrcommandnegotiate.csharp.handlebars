@@ -280,11 +280,11 @@ namespace {{Namespace}}
             try
             {
                 System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
-                var result = await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, tokenSource.Token);
+                {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, cancellationToken);
 
                 {{#if HasHttpResponseHandler}}
                     {{#if IsValidationResult}}
-                        FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
+                        FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result;
                         if (!validationResult.IsValid)
                         {
                             var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
@@ -293,14 +293,14 @@ namespace {{Namespace}}
                         }
                         else
                         {
-                            var responseTask = responseHandler.CreateResponse(command, result.Result);
+                            var responseTask = responseHandler.CreateResponse(command, result);
                             var handledResponse = responseTask != null ? (await responseTask) : null;
-                            return handledResponse ?? CreateSignalRResponse(result.Result);
+                            return handledResponse ?? CreateSignalRResponse(result);
                         }
                     {{else}}
-                        var responseTask = responseHandler.CreateResponse(command, result.Result);
+                        var responseTask = responseHandler.CreateResponse(command, result);
                         var handledResponse = responseTask != null ? (await responseTask) : null;
-                        return handledResponse ?? CreateSignalRResponse(result.Result);
+                        return handledResponse ?? CreateSignalRResponse(result);
                     {{/if}}
                 {{else}}
                     {{#if IsValidationResult}}
@@ -310,7 +310,7 @@ namespace {{Namespace}}
                             return CreateResponse(400, validationResult, serializer);
                         }
                     {{/if}}
-                    return CreateSignalRResponse(result.Result);
+                    return CreateSignalRResponse(result);
                 {{/if}}
             }
             catch(System.Exception ex)

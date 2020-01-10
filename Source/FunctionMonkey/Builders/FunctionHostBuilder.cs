@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Abstractions.Validation;
+using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +27,7 @@ namespace FunctionMonkey.Builders
         public ISerializationBuilder SerializationBuilder { get; } = new SerializationBuilder();
         public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
         public CompilerOptions Options { get; set; } = new CompilerOptions();
+        public Type MediatorType { get; set; } = typeof(DefaultMediatorDecorator);
 
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -41,6 +44,12 @@ namespace FunctionMonkey.Builders
             {
                 services(ServiceCollection, CommandRegistry);
             }
+            return this;
+        }
+
+        public IFunctionHostBuilder Mediator<TMediator>() where TMediator : IMediatorDecorator
+        {
+            MediatorType = typeof(TMediator);
             return this;
         }
 

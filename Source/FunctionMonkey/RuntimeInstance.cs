@@ -124,7 +124,7 @@ namespace FunctionMonkey
                 compileTarget = functionCompilerMetadata.CompileTarget;
             }
 
-            RegisterCoreDependencies(FunctionDefinitions, compileTarget);
+            RegisterCoreDependencies(builder.MediatorType, FunctionDefinitions, compileTarget);
 
             RegisterTimerCommandFactories(FunctionDefinitions);
 
@@ -188,6 +188,8 @@ namespace FunctionMonkey
             {
                 PluginFunctions pluginFunctions = new PluginFunctions();
                 
+                pluginFunctions.Handler = functionDefinition.FunctionHandler;
+                
                 if (functionDefinition.DeserializeFunction != null)
                 {
                     pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
@@ -211,9 +213,7 @@ namespace FunctionMonkey
                     pluginFunctions.Serialize = (content, enforceSecurityProperties) =>
                         CreateSerializer(functionDefinition).Serialize(content, enforceSecurityProperties);
                 }
-                
-                pluginFunctions.Handler = functionDefinition.FunctionHandler;
-                
+
                 if (functionDefinition.ValidatorFunction != null)
                 {
                     pluginFunctions.Validate = obj =>
@@ -430,9 +430,11 @@ namespace FunctionMonkey
         }
 
         private void RegisterCoreDependencies(
+            Type mediatorType,
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
             CompileTargetEnum target)
         {
+            ServiceCollection.AddTransient(typeof(IMediatorDecorator), mediatorType);
             HashSet<Type> types = new HashSet<Type>();
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
             {
@@ -615,7 +617,6 @@ namespace FunctionMonkey
             //ServiceCollection.AddTransient<ICommandClaimsBinder, CommandClaimsBinder>();
             ServiceCollection.AddTransient<IContextSetter, ContextManager>();
             ServiceCollection.AddTransient<IContextProvider, ContextManager>();
-            
         }
 
         private void RegisterTimerCommandFactories(

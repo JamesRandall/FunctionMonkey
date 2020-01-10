@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.Tests.Integration.AspNetCore", "Tests\FunctionMonkey.Tests.Integration.AspNetCore\FunctionMonkey.Tests.Integration.AspNetCore.csproj", "{B61847C6-76D3-43D9-B640-F62DD20905DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMonkey.MediatR", "Source\FunctionMonkey.MediatR\FunctionMonkey.MediatR.csproj", "{39738BA3-AA8F-4F6D-9864-2C0839584CC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -226,6 +228,10 @@ Global
 		{B61847C6-76D3-43D9-B640-F62DD20905DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61847C6-76D3-43D9-B640-F62DD20905DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61847C6-76D3-43D9-B640-F62DD20905DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39738BA3-AA8F-4F6D-9864-2C0839584CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39738BA3-AA8F-4F6D-9864-2C0839584CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39738BA3-AA8F-4F6D-9864-2C0839584CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39738BA3-AA8F-4F6D-9864-2C0839584CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -44,5 +45,7 @@ namespace FunctionMonkey
         /// Retrieves the command dispatcher from the dependency resolver
         /// </summary>
         public static ICommandDispatcher CommandDispatcher => ServiceProvider.GetService<ICommandDispatcher>();
+        
+        public static IMediatorDecorator Mediator => ServiceProvider.GetService<IMediatorDecorator>();
     }
 }

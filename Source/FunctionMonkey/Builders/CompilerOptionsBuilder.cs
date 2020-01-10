@@ -1,3 +1,5 @@
+using System;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Compiler.Core;
 using FunctionMonkey.Model;
@@ -11,6 +13,12 @@ namespace FunctionMonkey.Builders
         public CompilerOptionsBuilder(CompilerOptions options)
         {
             _options = options;
+        }
+
+        public ICompilerOptionsBuilder MediatorTypeSafetyEnforcer<TMediatorTypeSafetyEnforcer>() where TMediatorTypeSafetyEnforcer : IMediatorTypeSafetyEnforcer
+        {
+            _options.MediatorTypeSafetyEnforcer = typeof(TMediatorTypeSafetyEnforcer);
+            return this;
         }
 
         public ICompilerOptionsBuilder HttpTarget(CompileTargetEnum target)

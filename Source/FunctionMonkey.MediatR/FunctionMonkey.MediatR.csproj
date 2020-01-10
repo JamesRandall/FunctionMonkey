@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Version>2.4.0-beta000</Version>
+        <Authors>James Randall</Authors>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/JamesRandall/AzureFromTheTrenches.Commanding/master/LICENSE</PackageLicenseUrl>
+        <PackageProjectUrl>https://functionmonkey.azurefromthetrenches.com/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/JamesRandall/FunctionMonkey.git</RepositoryUrl>
+        <AssemblyVersion>2.4.0.0</AssemblyVersion>
+        <FileVersion>2.4.0.0</FileVersion>
+        <PackageVersion>$(CommonPackageVersion)</PackageVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="8.0.0" />
+    </ItemGroup>
+
+</Project>

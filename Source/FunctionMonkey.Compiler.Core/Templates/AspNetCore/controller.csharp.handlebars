@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +18,10 @@ namespace {{{Namespace}}}
     [ApiController]
     public class {{{Name}}}Controller : ControllerBase
     {
-        private readonly ICommandDispatcher _dispatcher;
+        private readonly IMediatorDecorator _dispatcher;
         private readonly IContextSetter _contextSetter;
 
-        public {{{Name}}}Controller(ICommandDispatcher dispatcher, IContextSetter contextSetter)
+        public {{{Name}}}Controller(IMediatorDecorator dispatcher, IContextSetter contextSetter)
         {
             _dispatcher = dispatcher;
             _contextSetter = contextSetter;
@@ -132,9 +133,9 @@ namespace {{{Namespace}}}
             
 
             {{#if CommandHasResult}}
-            {{{CommandResultTypeName}}} result = (await _dispatcher.DispatchAsync(command)).Result;
+            {{{CommandResultTypeName}}} result = (await _dispatcher.RequestAsync<{{{CommandResultTypeName}}}>(command, CancellationToken.None));
             {{else}}
-            await _dispatcher.DispatchAsync(command);
+            await _dispatcher.SendAsync(command, CancellationToken.None);
             {{/if}}
 
             {{#if CommandHasResult}}

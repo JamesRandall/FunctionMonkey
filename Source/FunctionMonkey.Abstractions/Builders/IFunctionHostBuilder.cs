@@ -18,6 +18,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder Setup(Action<IServiceCollection, ICommandRegistry> services);
 
         /// <summary>
+        /// Allows a mediator to be registered
+        /// </summary>
+        /// <typeparam name="TMediator">The concrete type of the mediator</typeparam>
+        /// <returns>The function host builder for use in a Fluent API</returns>
+        IFunctionHostBuilder Mediator<TMediator>() where TMediator : IMediatorDecorator;
+
+        /// <summary>
         /// Allows the default setting names to be specified - see ConnectionStringSettingNames for the defaults.
         /// Currently this must be called before Functions - a future API breaking change will not require this.
         /// </summary>

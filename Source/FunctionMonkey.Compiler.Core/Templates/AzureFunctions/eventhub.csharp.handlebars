@@ -82,7 +82,7 @@ namespace {{Namespace}}
                             var result = handler(command);
                         {{/if}}
                     {{else}}
-                        {{{CommandResultTypeName}}} result = (await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, cancellationToken)).Result;
+                        {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, cancellationToken);
                     {{/if}}
                 {{/if}}
                 {{{collectorOutputBinding}}}
@@ -95,7 +95,7 @@ namespace {{Namespace}}
                         handler(command);
                     {{/if}}
                 {{else}}
-                    await FunctionMonkey.Runtime.CommandDispatcher.DispatchAsync(command, cancellationToken);
+                    await FunctionMonkey.Runtime.Mediator.SendAsync(command, cancellationToken);
                 {{/if}}
             {{/if}}
         }
