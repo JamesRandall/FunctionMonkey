@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html",
-          "hash": "6oF6jkUb83OBMCijPr3PtQ=="
+          "hash": "8DnVIz14s3uUmEQAUgvP4Q=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html",
-          "hash": "hbnkQR7CdZFMEgYJfoJsvQ=="
+          "hash": "HWJ1vozU5KJSaL8QorhHew=="
         }
       },
       "is_incremental": false,
@@ -821,6 +821,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.IMediatorDecorator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.IMediatorDecorator.html",
+          "hash": "KerCnBuBZAFOYTxP2VItPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html",
+          "hash": "O6+QHYw7LUTNzDnkoSNglg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.ISerializer.yml",
       "output": {
         ".html": {
@@ -957,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "E1zPIYEauT0BOxIDzOdJjA=="
+          "hash": "Z0dFyfbNNii/URE2VGhV7w=="
         }
       },
       "is_incremental": false,
@@ -1493,11 +1517,71 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.html",
+          "hash": "cfUuNP5FZ9vbdP6z/8mfdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Infrastructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Infrastructure.html",
+          "hash": "7ZMTc96NPZ6y0JD1bwstww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.html",
+          "hash": "HumkjkyOU1AlVzAGWljryA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html",
+          "hash": "RNN9WLG9PurOcmohxbucBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.MediatR.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.MediatR.html",
+          "hash": "Mi/i1HLOpQhLXcJY5x0CbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.PluginFunctions.yml",
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.PluginFunctions.html",
-          "hash": "lsegv6xZo/MjUQRWFMhvnA=="
+          "hash": "HVp6X8fSUWjt5BNJW07r7w=="
         }
       },
       "is_incremental": false,
@@ -1509,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Runtime.html",
-          "hash": "yQFwxFcT4n1jjS4g+vlEjw=="
+          "hash": "J0qhJKr9XJ/YRQ3Yn29aBw=="
         }
       },
       "is_incremental": false,
@@ -1845,7 +1929,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "58HemASkvVkWkqU+0xwwDA=="
+          "hash": "hCDSFe5msWaoOGemAt5MdQ=="
         }
       },
       "is_incremental": false,
@@ -2384,7 +2468,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 152,
+          "total_file_count": 159,
           "skipped_file_count": 0
         },
         "ConceptualDocumentProcessor": {

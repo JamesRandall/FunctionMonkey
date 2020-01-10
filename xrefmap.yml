@@ -180,6 +180,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget
   nameWithType: ICompilerOptionsBuilder.HttpTarget
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer*
+  name: MediatorTypeSafetyEnforcer
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_MediatorTypeSafetyEnforcer_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer
+  nameWithType: ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer``1
+  name: MediatorTypeSafetyEnforcer<TMediatorTypeSafetyEnforcer>()
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_MediatorTypeSafetyEnforcer__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer``1
+  name.vb: MediatorTypeSafetyEnforcer(Of TMediatorTypeSafetyEnforcer)()
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer<TMediatorTypeSafetyEnforcer>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer(Of TMediatorTypeSafetyEnforcer)()
+  nameWithType: ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer<TMediatorTypeSafetyEnforcer>()
+  nameWithType.vb: ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer(Of TMediatorTypeSafetyEnforcer)()
 - uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.OutputSourceTo(System.String)
   name: OutputSourceTo(String)
   href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_OutputSourceTo_System_String_
@@ -604,6 +620,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Functions
   nameWithType: IFunctionHostBuilder.Functions
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator*
+  name: Mediator
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Mediator_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator
+  nameWithType: IFunctionHostBuilder.Mediator
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator``1
+  name: Mediator<TMediator>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Mediator__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator``1
+  name.vb: Mediator(Of TMediator)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator<TMediator>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Mediator(Of TMediator)()
+  nameWithType: IFunctionHostBuilder.Mediator<TMediator>()
+  nameWithType.vb: IFunctionHostBuilder.Mediator(Of TMediator)()
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.OpenApiEndpoint(Action{FunctionMonkey.Abstractions.Builders.IOpenApiBuilder})
   name: OpenApiEndpoint(Action<IOpenApiBuilder>)
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_OpenApiEndpoint_Action_FunctionMonkey_Abstractions_Builders_IOpenApiBuilder__
@@ -3655,6 +3687,60 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.OutputAuthoredSourceFolder
   nameWithType: IFunctionCompilerMetadata.OutputAuthoredSourceFolder
+- uid: FunctionMonkey.Abstractions.IMediatorDecorator
+  name: IMediatorDecorator
+  href: api/FunctionMonkey.Abstractions.IMediatorDecorator.html
+  commentId: T:FunctionMonkey.Abstractions.IMediatorDecorator
+  fullName: FunctionMonkey.Abstractions.IMediatorDecorator
+  nameWithType: IMediatorDecorator
+- uid: FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync*
+  name: RequestAsync
+  href: api/FunctionMonkey.Abstractions.IMediatorDecorator.html#FunctionMonkey_Abstractions_IMediatorDecorator_RequestAsync_
+  commentId: Overload:FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync
+  nameWithType: IMediatorDecorator.RequestAsync
+- uid: FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync``1(System.Object,CancellationToken)
+  name: RequestAsync<TResult>(Object, CancellationToken)
+  href: api/FunctionMonkey.Abstractions.IMediatorDecorator.html#FunctionMonkey_Abstractions_IMediatorDecorator_RequestAsync__1_System_Object_CancellationToken_
+  commentId: M:FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync``1(System.Object,CancellationToken)
+  name.vb: RequestAsync(Of TResult)(Object, CancellationToken)
+  fullName: FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync<TResult>(System.Object, CancellationToken)
+  fullName.vb: FunctionMonkey.Abstractions.IMediatorDecorator.RequestAsync(Of TResult)(System.Object, CancellationToken)
+  nameWithType: IMediatorDecorator.RequestAsync<TResult>(Object, CancellationToken)
+  nameWithType.vb: IMediatorDecorator.RequestAsync(Of TResult)(Object, CancellationToken)
+- uid: FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync(System.Object,CancellationToken)
+  name: SendAsync(Object, CancellationToken)
+  href: api/FunctionMonkey.Abstractions.IMediatorDecorator.html#FunctionMonkey_Abstractions_IMediatorDecorator_SendAsync_System_Object_CancellationToken_
+  commentId: M:FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync(System.Object,CancellationToken)
+  fullName: FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync(System.Object, CancellationToken)
+  nameWithType: IMediatorDecorator.SendAsync(Object, CancellationToken)
+- uid: FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync*
+  name: SendAsync
+  href: api/FunctionMonkey.Abstractions.IMediatorDecorator.html#FunctionMonkey_Abstractions_IMediatorDecorator_SendAsync_
+  commentId: Overload:FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync
+  nameWithType: IMediatorDecorator.SendAsync
+- uid: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer
+  name: IMediatorTypeSafetyEnforcer
+  href: api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html
+  commentId: T:FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer
+  fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer
+  nameWithType: IMediatorTypeSafetyEnforcer
+- uid: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType(Type)
+  name: IsValidType(Type)
+  href: api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html#FunctionMonkey_Abstractions_IMediatorTypeSafetyEnforcer_IsValidType_Type_
+  commentId: M:FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType(Type)
+  fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType(Type)
+  nameWithType: IMediatorTypeSafetyEnforcer.IsValidType(Type)
+- uid: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType*
+  name: IsValidType
+  href: api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html#FunctionMonkey_Abstractions_IMediatorTypeSafetyEnforcer_IsValidType_
+  commentId: Overload:FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.IsValidType
+  nameWithType: IMediatorTypeSafetyEnforcer.IsValidType
 - uid: FunctionMonkey.Abstractions.ISerializer
   name: ISerializer
   href: api/FunctionMonkey.Abstractions.ISerializer.html
@@ -5650,6 +5736,75 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.FluentValidation.OpenApi.OpenApiFluentValidationRuleContext.Schema
   nameWithType: OpenApiFluentValidationRuleContext.Schema
+- uid: FunctionMonkey.Infrastructure
+  name: FunctionMonkey.Infrastructure
+  href: api/FunctionMonkey.Infrastructure.html
+  commentId: N:FunctionMonkey.Infrastructure
+  fullName: FunctionMonkey.Infrastructure
+  nameWithType: FunctionMonkey.Infrastructure
+- uid: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer
+  name: DefaultMediatorTypeSafetyEnforcer
+  href: api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.html
+  commentId: T:FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer
+  fullName: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer
+  nameWithType: DefaultMediatorTypeSafetyEnforcer
+- uid: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType(Type)
+  name: IsValidType(Type)
+  href: api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.html#FunctionMonkey_Infrastructure_DefaultMediatorTypeSafetyEnforcer_IsValidType_Type_
+  commentId: M:FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType(Type)
+  fullName: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType(Type)
+  nameWithType: DefaultMediatorTypeSafetyEnforcer.IsValidType(Type)
+- uid: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType*
+  name: IsValidType
+  href: api/FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.html#FunctionMonkey_Infrastructure_DefaultMediatorTypeSafetyEnforcer_IsValidType_
+  commentId: Overload:FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType
+  isSpec: "True"
+  fullName: FunctionMonkey.Infrastructure.DefaultMediatorTypeSafetyEnforcer.IsValidType
+  nameWithType: DefaultMediatorTypeSafetyEnforcer.IsValidType
+- uid: FunctionMonkey.MediatR
+  name: FunctionMonkey.MediatR
+  href: api/FunctionMonkey.MediatR.html
+  commentId: N:FunctionMonkey.MediatR
+  fullName: FunctionMonkey.MediatR
+  nameWithType: FunctionMonkey.MediatR
+- uid: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions
+  name: IFunctionHostBuilderExtensions
+  href: api/FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.html
+  commentId: T:FunctionMonkey.MediatR.IFunctionHostBuilderExtensions
+  fullName: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions
+  nameWithType: IFunctionHostBuilderExtensions
+- uid: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  name: UseMediatR(IFunctionHostBuilder)
+  href: api/FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.html#FunctionMonkey_MediatR_IFunctionHostBuilderExtensions_UseMediatR_FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_
+  commentId: M:FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  fullName: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR(FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder)
+  nameWithType: IFunctionHostBuilderExtensions.UseMediatR(IFunctionHostBuilder)
+- uid: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR*
+  name: UseMediatR
+  href: api/FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.html#FunctionMonkey_MediatR_IFunctionHostBuilderExtensions_UseMediatR_
+  commentId: Overload:FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR
+  isSpec: "True"
+  fullName: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR
+  nameWithType: IFunctionHostBuilderExtensions.UseMediatR
+- uid: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer
+  name: MediatRTypeSafetyEnforcer
+  href: api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html
+  commentId: T:FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer
+  fullName: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer
+  nameWithType: MediatRTypeSafetyEnforcer
+- uid: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType(Type)
+  name: IsValidType(Type)
+  href: api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html#FunctionMonkey_MediatR_MediatRTypeSafetyEnforcer_IsValidType_Type_
+  commentId: M:FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType(Type)
+  fullName: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType(Type)
+  nameWithType: MediatRTypeSafetyEnforcer.IsValidType(Type)
+- uid: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType*
+  name: IsValidType
+  href: api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html#FunctionMonkey_MediatR_MediatRTypeSafetyEnforcer_IsValidType_
+  commentId: Overload:FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType
+  isSpec: "True"
+  fullName: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.IsValidType
+  nameWithType: MediatRTypeSafetyEnforcer.IsValidType
 - uid: FunctionMonkey.PluginFunctions
   name: PluginFunctions
   href: api/FunctionMonkey.PluginFunctions.html
@@ -5870,6 +6025,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Runtime.InitializeFromStartup
   nameWithType: Runtime.InitializeFromStartup
+- uid: FunctionMonkey.Runtime.Mediator
+  name: Mediator
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_Mediator
+  commentId: P:FunctionMonkey.Runtime.Mediator
+  fullName: FunctionMonkey.Runtime.Mediator
+  nameWithType: Runtime.Mediator
+- uid: FunctionMonkey.Runtime.Mediator*
+  name: Mediator
+  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_Mediator_
+  commentId: Overload:FunctionMonkey.Runtime.Mediator
+  isSpec: "True"
+  fullName: FunctionMonkey.Runtime.Mediator
+  nameWithType: Runtime.Mediator
 - uid: FunctionMonkey.Runtime.PluginFunctions
   name: PluginFunctions
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_PluginFunctions
