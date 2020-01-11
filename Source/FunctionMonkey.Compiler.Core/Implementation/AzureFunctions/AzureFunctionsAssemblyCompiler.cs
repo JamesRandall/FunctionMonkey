@@ -9,6 +9,7 @@ using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.Core.HandlebarsHelpers.AzureFunctions;
 using FunctionMonkey.Compiler.Core.Implementation.OpenApi;
+using FunctionMonkey.Model;
 using FunctionMonkey.SignalR;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
@@ -67,7 +68,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
         }
         
         protected override IReadOnlyCollection<string> BuildCandidateReferenceList(
-            CompileTargetEnum compileTarget,
+            CompilerOptions compilerOptions,
             bool isFSharpProject)
         {
             // These are assemblies that Roslyn requires from usage within the template

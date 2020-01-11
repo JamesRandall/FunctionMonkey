@@ -15,7 +15,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         public string OutputAuthoredSourceFolder { get; set; }
         public Type BacklinkReferenceType { get; set; }
         public PropertyInfo BacklinkPropertyInfo { get; }
+        public CompilerOptions CompilerOptions { get; set; }
         public IReadOnlyCollection<AbstractClaimsMappingDefinition> ClaimsMappings { get; }
-        public CompileTargetEnum CompileTarget { get; set; } = CompileTargetEnum.AzureFunctions;
     }
 }

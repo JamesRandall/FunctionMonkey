@@ -88,18 +88,16 @@ namespace FunctionMonkey.Compiler.Core
                     builder.Options = appHostBuilder.Options;
                 }
                 configuration.Build(builder);
-
+                DefaultMediatorSettings.SetDefaultsIfRequired(builder);
                 if (!ValidateCommandTypes(builder))
                 {
                     return false;
                 }
-
                 IMediatorResultTypeExtractor extractor = CreateMediatorResultTypeExtractor(builder.Options.MediatorResultTypeExtractor);
                 if (extractor == null)
                 {
                     return false;
                 }
-                
                 new PostBuildPatcher(extractor).Patch(builder, newAssemblyNamespace);
                 if (!VerifyCommandAndResponseTypes(builder))
                 {
@@ -116,14 +114,14 @@ namespace FunctionMonkey.Compiler.Core
                     FunctionDefinitions = builder.FunctionDefinitions,
                     OpenApiConfiguration = builder.OpenApiConfiguration,
                     OutputAuthoredSourceFolder = builder.Options.OutputSourceTo,
-                    CompileTarget = builder.Options.HttpTarget
+                    CompilerOptions = builder.Options
                 };
             }
             
             IReadOnlyCollection<string> externalAssemblies =
                 GetExternalAssemblyLocations(functionCompilerMetadata.FunctionDefinitions);
 
-            ITargetCompiler targetCompiler = functionCompilerMetadata.CompileTarget == CompileTargetEnum.AzureFunctions
+            ITargetCompiler targetCompiler = functionCompilerMetadata.CompilerOptions.HttpTarget == CompileTargetEnum.AzureFunctions
                 ? (ITargetCompiler)new AzureFunctionsCompiler(_compilerLog)
                 : new AspNetCoreCompiler(_compilerLog); 
 

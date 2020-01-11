@@ -1,3 +1,4 @@
+using System;
 using FunctionMonkey.Compiler.Core;
 
 namespace FunctionMonkey.Abstractions.Builders
@@ -10,5 +11,7 @@ namespace FunctionMonkey.Abstractions.Builders
             where TMediatorResultTypeExtractor : IMediatorResultTypeExtractor;
         ICompilerOptionsBuilder HttpTarget(CompileTargetEnum target);
         ICompilerOptionsBuilder OutputSourceTo(string folder);
+
+        ICompilerOptionsBuilder CreateClient(Action<IClientCompilerOptionsBuilder> builder);
     }
 }

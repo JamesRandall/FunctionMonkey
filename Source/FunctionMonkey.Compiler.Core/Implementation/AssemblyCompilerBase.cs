@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
 using FunctionMonkey.Compiler.Core.Implementation.OpenApi;
+using FunctionMonkey.Model;
 using HandlebarsDotNet;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -63,7 +64,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
         }
 
         protected abstract IReadOnlyCollection<string> BuildCandidateReferenceList(
-            CompileTargetEnum compileTarget,
+            CompilerOptions compilerOptions,
             bool isFSharpProject);
 
         public bool Compile(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions,
@@ -73,7 +74,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             IReadOnlyCollection<string> externalAssemblyLocations,
             string outputBinaryFolder,
             string assemblyName,
-            CompileTargetEnum compileTarget,
+            CompilerOptions compilerOptions,
             string outputAuthoredSourceFolder = null)
         {
             DirectoryInfo directoryInfo =  outputAuthoredSourceFolder != null ? new DirectoryInfo(outputAuthoredSourceFolder) : null;
@@ -105,7 +106,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 outputBinaryFolder,
                 assemblyName,
                 newAssemblyNamespace,
-                compileTarget,
+                compilerOptions,
                 isFSharpProject);
         }
 
@@ -162,59 +163,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             return resolvedLocations;
         }
         
-        protected List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations,
-            string[] manifestResoureNames,
-            string manifestResourcePrefix,
-            CompileTargetEnum compileTarget)
+        protected List<PortableExecutableReference> BuildReferenceSet(List<string> resolvedLocations)
         {
             List<PortableExecutableReference> references =
                 resolvedLocations.Select(x => MetadataReference.CreateFromFile(x)).ToList();
-            // Add our references - if the reference is to a library that forms part of NET Standard 2.0 then make sure we add
-            // the reference from the embedded NET Standard reference set - although our target is NET Standard the assemblies
-            // in the output folder of the Function App may be NET Core assemblies.
-            /*List<PortableExecutableReference> references = resolvedLocations.Select(x =>
-            {
-                if (compileTarget == CompileTargetEnum.NETStandard20)
-                {
-                    string assemblyFilename = Path.GetFileName(x);
-                    string manifestResourceName =
-                        manifestResoureNames.SingleOrDefault(m =>
-                            String.Equals(assemblyFilename, m, StringComparison.CurrentCultureIgnoreCase));
-                    if (manifestResourceName != null)
-                    {
-                        using (Stream lib = GetType().Assembly
-                            .GetManifestResourceStream(String.Concat(manifestResourcePrefix, manifestResourceName)))
-                        {
-                            return MetadataReference.CreateFromStream(lib);
-                        }
-                    }
-                }
-
-                return MetadataReference.CreateFromFile(x);
-
-            }).ToList();*/
-
-            /*if (compileTarget == CompileTargetEnum.NETStandard20)
-            {
-                using (Stream netStandard = GetType().Assembly
-                    .GetManifestResourceStream("FunctionMonkey.Compiler.Core.references.netstandard2._0.netstandard.dll"))
-                {
-                    references.Add(MetadataReference.CreateFromStream(netStandard));
-                }
-
-                using (Stream netStandard = GetType().Assembly
-                    .GetManifestResourceStream("FunctionMonkey.Compiler.Core.references.netstandard2._0.System.Runtime.dll"))
-                {
-                    references.Add(MetadataReference.CreateFromStream(netStandard));
-                }
-
-                using (Stream systemIo = GetType().Assembly
-                    .GetManifestResourceStream(String.Concat(manifestResourcePrefix, "System.IO.dll")))
-                {
-                    references.Add(MetadataReference.CreateFromStream(systemIo));
-                }
-            }*/
-
             return references;
         }
         
@@ -262,11 +214,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         private IReadOnlyCollection<string> GetReferenceLocations(
             IReadOnlyCollection<string> externalAssemblyLocations,
-            CompileTargetEnum compileTarget,
+            CompilerOptions compilerOptions,
             bool isFSharpProject
             )
         {
-            HashSet<string> locations =  new HashSet<string>(BuildCandidateReferenceList(compileTarget, isFSharpProject));
+            HashSet<string> locations =  new HashSet<string>(BuildCandidateReferenceList(compilerOptions, isFSharpProject));
             locations.Add(typeof(Task).GetTypeInfo().Assembly.Location);
             locations.Add(typeof(Runtime).GetTypeInfo().Assembly.Location);
             
@@ -275,23 +227,20 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 locations.Add(typeof(FSharpOption<>).Assembly.Location);
             }
 
-            //if (compileTarget == CompileTargetEnum.NETCore21)
-            //{
-                // we're a 3.x assembly so we can use our assemblies
-                Assembly[] currentAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "netstandard").Location);
-                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Runtime").Location); // System.Runtime
-                locations.Add(typeof(TargetFrameworkAttribute).Assembly.Location); // NetCoreLib
-                locations.Add(typeof(System.Linq.Enumerable).Assembly.Location); // System.Linq
-                locations.Add(typeof(System.Security.Claims.ClaimsPrincipal).Assembly.Location);
-                locations.Add(typeof(System.Uri).Assembly.Location);
-                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
-                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading").Location);
-                locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading.Tasks").Location);
-            //}
             
-            foreach (string externalAssemblyLocation in externalAssemblyLocations)
+            Assembly[] currentAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            locations.Add(currentAssemblies.Single(x => x.GetName().Name == "netstandard").Location);
+            locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Runtime").Location); // System.Runtime
+            locations.Add(typeof(TargetFrameworkAttribute).Assembly.Location); // NetCoreLib
+            locations.Add(typeof(System.Linq.Enumerable).Assembly.Location); // System.Linq
+            locations.Add(typeof(System.Security.Claims.ClaimsPrincipal).Assembly.Location);
+            locations.Add(typeof(System.Uri).Assembly.Location);
+            locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
+            locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading").Location);
+            locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading.Tasks").Location);
+
+                foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {
                 locations.Add(externalAssemblyLocation);
             }
@@ -304,10 +253,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             string outputBinaryFolder,
             string outputAssemblyName,
             string assemblyNamespace,
-            CompileTargetEnum compileTarget,
+            CompilerOptions compilerOptions,
             bool isFSharpProject)
         {
-            IReadOnlyCollection<string> locations = GetReferenceLocations(externalAssemblyLocations, compileTarget, isFSharpProject);
+            IReadOnlyCollection<string> locations = GetReferenceLocations(externalAssemblyLocations, compilerOptions, isFSharpProject);
             const string manifestResourcePrefix = "FunctionMonkey.Compiler.references.netstandard2._0.";
             // For each assembly we've found we need to check and see if it is already included in the output binary folder
             // If it is then its referenced already by the function host and so we add a reference to that version.
@@ -318,7 +267,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 .Select(x => x.Substring(manifestResourcePrefix.Length))
                 .ToArray();
 
-            List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations, manifestResoureNames, manifestResourcePrefix, compileTarget);
+            List<PortableExecutableReference> references = BuildReferenceSet(resolvedLocations);
             
             CSharpCompilation compilation = CSharpCompilation.Create(assemblyNamespace) //(outputAssemblyName)
                     .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))

@@ -48,7 +48,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
                 externalAssemblies,
                 outputBinaryFolder,
                 $"{newAssemblyNamespace}.dll",
-                functionCompilerMetadata.CompileTarget,
+                functionCompilerMetadata.CompilerOptions,
                 functionCompilerMetadata.OutputAuthoredSourceFolder);
         }
     }

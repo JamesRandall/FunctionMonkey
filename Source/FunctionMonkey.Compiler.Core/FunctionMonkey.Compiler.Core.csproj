@@ -214,6 +214,10 @@
       <None Remove="Templates\AspNetCore\controller.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AspNetCore\controller.csharp.handlebars" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Implementation\Client" />
+    </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="yarn" />
   </Target>

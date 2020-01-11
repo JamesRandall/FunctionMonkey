@@ -38,5 +38,16 @@ namespace FunctionMonkey.Builders
             _options.OutputSourceTo = folder;
             return this;
         }
+
+        public ICompilerOptionsBuilder CreateClient(Action<IClientCompilerOptionsBuilder> builder)
+        {
+            if (_options.Client == null)
+            {
+                _options.Client = new ClientCompilerOptions();
+            }
+
+            builder(new ClientCompilerOptionsBuilder(_options.Client));
+            return this;
+        }
     }
 }

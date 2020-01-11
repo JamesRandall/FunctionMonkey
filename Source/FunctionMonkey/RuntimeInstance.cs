@@ -121,7 +121,7 @@ namespace FunctionMonkey
             {
                 functionCompilerMetadata = LocateFunctionCompilerMetadata(functionAppConfigurationAssembly);
                 FunctionDefinitions = functionCompilerMetadata.FunctionDefinitions;
-                compileTarget = functionCompilerMetadata.CompileTarget;
+                compileTarget = functionCompilerMetadata.CompilerOptions.HttpTarget;
             }
 
             RegisterCoreDependencies(builder.MediatorType, FunctionDefinitions, compileTarget);
@@ -538,8 +538,10 @@ namespace FunctionMonkey
         {
             FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
             configuration.Build(builder);
+            DefaultMediatorSettings.SetDefaultsIfRequired(builder);
             RegisterCommandHandlersForCommandsWithNoAssociatedHandler(builder, commandRegistry);
             IMediatorResultTypeExtractor extractor = (IMediatorResultTypeExtractor)Activator.CreateInstance(builder.Options.MediatorResultTypeExtractor);
+            
             new PostBuildPatcher(extractor).Patch(builder, "");
             return builder;
         }

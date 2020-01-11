@@ -71,7 +71,7 @@ module Models =
              outputAuthoredSourceFolder: OutputAuthoredSource
              backlinkReferenceType: Type
              backlinkPropertyInfo: PropertyInfo
-             compileTarget: CompileTargetEnum
+             compilerOptions: CompilerOptions
          }
          interface IFunctionCompilerMetadata with
             member i.ClaimsMappings = i.claimsMappings :> System.Collections.Generic.IReadOnlyCollection<AbstractClaimsMappingDefinition>
@@ -80,7 +80,7 @@ module Models =
             member i.OutputAuthoredSourceFolder = match i.outputAuthoredSourceFolder with | Path p -> p | NoSourceOutput -> null
             member i.BacklinkReferenceType = i.backlinkReferenceType
             member i.BacklinkPropertyInfo = i.backlinkPropertyInfo
-            member i.CompileTarget = i.compileTarget
+            member i.CompilerOptions = i.compilerOptions
     
     type ValidationErrorSeverity =
         | ValidationError

@@ -21,6 +21,7 @@ namespace FunctionMonkey.Abstractions
         Type BacklinkReferenceType { get; }
 
         PropertyInfo BacklinkPropertyInfo { get; }
-        CompileTargetEnum CompileTarget { get; }
+        
+        CompilerOptions CompilerOptions { get; }
     }
 }

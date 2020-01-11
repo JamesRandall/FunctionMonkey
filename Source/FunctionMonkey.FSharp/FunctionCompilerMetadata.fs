@@ -12,6 +12,8 @@ open FunctionMonkey.Abstractions.Extensions
 open FunctionMonkey.Abstractions.Http
 open FunctionMonkey.Commanding.Abstractions.Validation
 open FunctionMonkey.Compiler.Core
+open FunctionMonkey.Compiler.Core
+open FunctionMonkey.Model
 open FunctionMonkey.Model
 open FunctionMonkey.Model.OutputBindings
 open FunctionMonkey.Serialization
@@ -409,5 +411,5 @@ module internal FunctionCompilerMetadata =
                 |> Seq.toList
             backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
             backlinkPropertyInfo = configuration.backlinkPropertyInfo
-            compileTarget = CompileTargetEnum.AzureFunctions
+            compilerOptions = CompilerOptions(HttpTarget = CompileTargetEnum.AzureFunctions)
         } :> IFunctionCompilerMetadata

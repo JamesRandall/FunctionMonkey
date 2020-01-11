@@ -48,7 +48,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
             return syntaxTrees;
         }
         
-        protected override IReadOnlyCollection<string> BuildCandidateReferenceList(CompileTargetEnum compileTarget, bool isFSharpProject)
+        protected override IReadOnlyCollection<string> BuildCandidateReferenceList(CompilerOptions compilerOptions, bool isFSharpProject)
         {
             HashSet<string> locations = new HashSet<string>
             {

@@ -35,7 +35,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AspNetCore
                 externalAssemblies,
                 outputBinaryFolder,
                 $"{newAssemblyNamespace}.dll",
-                functionCompilerMetadata.CompileTarget,
+                functionCompilerMetadata.CompilerOptions,
                 functionCompilerMetadata.OutputAuthoredSourceFolder);
         }
     }
