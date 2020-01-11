@@ -16,7 +16,7 @@ namespace FunctionMonkey.Abstractions.Http
         /// <param name="command">The command</param>
         /// <param name="ex">The exception that was thrown</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
-        Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex) where TCommand : ICommand;
+        Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex);
 
         /// <summary>
         /// Invoked when a command with an associated result is successfully invoked.
@@ -27,7 +27,7 @@ namespace FunctionMonkey.Abstractions.Http
         /// <param name="command">The command</param>
         /// <param name="result">The result</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
-        Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand;
+        Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result);
 
         /// <summary>
         /// Invoked when a command with no associated result is successfully invoked.
@@ -46,6 +46,6 @@ namespace FunctionMonkey.Abstractions.Http
         /// <param name="command">The command</param>
         /// <param name="validationResult">The validation result</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
-        Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand;        
+        Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult);        
     }
 }

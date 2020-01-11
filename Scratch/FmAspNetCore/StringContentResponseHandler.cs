@@ -9,12 +9,12 @@ namespace FmAspNetCore
 {
     public class StringContentResponseHandler : IHttpResponseHandler
     {
-        public Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex) where TCommand : ICommand
+        public Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand
+        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result)
         {
             string stringResult = result.ToString();
             IActionResult contentResult = new ContentResult()
@@ -31,7 +31,7 @@ namespace FmAspNetCore
             throw new NotImplementedException();
         }
 
-        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand
+        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult)
         {
             throw new NotImplementedException();
         }

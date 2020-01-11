@@ -226,7 +226,7 @@ namespace FunctionMonkey
                         var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
                             ServiceProvider.GetService(
                                 typeof(FunctionMonkey.Abstractions.Validation.IValidator));
-                        var validationResult = validator.Validate((ICommand) command);
+                        var validationResult = validator.Validate(command);
                         return validationResult;
                     };
                 }
@@ -357,7 +357,7 @@ namespace FunctionMonkey
                             var responseHandler =
                                 (IHttpResponseHandler) ServiceProvider.GetService(
                                     httpFunctionDefinition.HttpResponseHandlerType);
-                            return responseHandler.CreateValidationFailureResponse((ICommand) command, (ValidationResult)validationResult);
+                            return responseHandler.CreateValidationFailureResponse(command, (ValidationResult)validationResult);
                         };
                         
                         pluginFunctions.CreateResponseForResult = (command, result) =>
@@ -365,21 +365,21 @@ namespace FunctionMonkey
                             var responseHandler =
                                 (IHttpResponseHandler) ServiceProvider.GetService(
                                     httpFunctionDefinition.HttpResponseHandlerType);
-                            return responseHandler.CreateResponse((ICommand) command, result);
+                            return responseHandler.CreateResponse(command, result);
                         };
                         pluginFunctions.CreateResponse = command =>
                         {
                             var responseHandler =
                                 (IHttpResponseHandler) ServiceProvider.GetService(
                                     httpFunctionDefinition.HttpResponseHandlerType);
-                            return responseHandler.CreateResponse((ICommand) command);
+                            return responseHandler.CreateResponse(command);
                         };
                         pluginFunctions.CreateResponseFromException = (command, exception) =>
                         {
                             var responseHandler =
                                 (IHttpResponseHandler) ServiceProvider.GetService(
                                     httpFunctionDefinition.HttpResponseHandlerType);
-                            return responseHandler.CreateResponseFromException((ICommand) command, exception);
+                            return responseHandler.CreateResponseFromException(command, exception);
                         };
                     }
                     else
@@ -546,6 +546,10 @@ namespace FunctionMonkey
 
         private void RegisterCommandHandlersForCommandsWithNoAssociatedHandler(FunctionHostBuilder builder, ICommandRegistry commandRegistry)
         {
+            // TODO: We can improve this so that auto-registration is decoupled and can be provided by a mediator package
+            if (builder.MediatorType != typeof(DefaultMediatorDecorator))
+                return;
+            
             // IN PROGRESS: This looks from the loaded set of assemblies and looks for a command handler for each command associated with a function.
             // If the handler is not already registered in the command registry then this registers it.
             IRegistrationCatalogue registrationCatalogue = (IRegistrationCatalogue) commandRegistry;

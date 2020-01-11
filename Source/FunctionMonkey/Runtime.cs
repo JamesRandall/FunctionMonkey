@@ -41,11 +41,6 @@ namespace FunctionMonkey
             var _ = RuntimeInstance.Value;
         }
 
-        /// <summary>
-        /// Retrieves the command dispatcher from the dependency resolver
-        /// </summary>
-        public static ICommandDispatcher CommandDispatcher => ServiceProvider.GetService<ICommandDispatcher>();
-        
         public static IMediatorDecorator Mediator => ServiceProvider.GetService<IMediatorDecorator>();
     }
 }

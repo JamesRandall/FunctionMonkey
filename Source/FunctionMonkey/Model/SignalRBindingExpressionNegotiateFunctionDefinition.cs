@@ -3,7 +3,7 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 
 namespace FunctionMonkey.Model
 {
-    public class SignalRBindingExpressionNegotiateCommand : ICommand { }
+    public class SignalRBindingExpressionNegotiateCommand { }
 
     public class SignalRBindingExpressionNegotiateFunctionDefinition : HttpFunctionDefinition
     {

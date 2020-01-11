@@ -18,7 +18,7 @@ namespace FunctionMonkey.Abstractions
         /// <param name="value">The serialized representation</param>
         /// <param name="enforceSecurityProperties">True if SecurityPropertyAttribute behaviour should be applied, defaults to true</param>
         /// <returns>A deserialized command</returns>
-        TCommand Deserialize<TCommand>(string value, bool enforceSecurityProperties=true) where TCommand : ICommand;
+        TCommand Deserialize<TCommand>(string value, bool enforceSecurityProperties=true);
         
         /// <summary>
         /// Deserializes a command from the provided string

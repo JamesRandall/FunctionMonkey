@@ -9,7 +9,7 @@ namespace FunctionMonkey.Testing.Implementation
 {
     internal class DefaultHttpResponseHandler : IHttpResponseHandler
     {
-        public Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex) where TCommand : ICommand
+        public Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex)
         {
             return null;
         }
@@ -17,7 +17,7 @@ namespace FunctionMonkey.Testing.Implementation
         // We can't use where TCommand : ICommand<TResult> due to the function injection - we can't bind the generic return type
         // (will revisit and check)
 
-        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand
+        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result)
         {
             return null;
         }
@@ -27,7 +27,7 @@ namespace FunctionMonkey.Testing.Implementation
             return null;
         }
 
-        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand
+        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult)
         {
             return null;
         }

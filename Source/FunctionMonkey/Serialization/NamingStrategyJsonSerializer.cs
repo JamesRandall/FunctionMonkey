@@ -54,7 +54,7 @@ namespace FunctionMonkey.Serialization
         /// <param name="enforceSecurityProperties">True if [SecurityProperty] should be honoured (not used in deserializtion)</param>
         /// <typeparam name="TCommand">The type</typeparam>
         /// <returns>The deserialized object</returns>
-        public TCommand Deserialize<TCommand>(string json, bool enforceSecurityProperties) where TCommand : ICommand
+        public TCommand Deserialize<TCommand>(string json, bool enforceSecurityProperties)
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {

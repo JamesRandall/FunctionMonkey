@@ -9,17 +9,17 @@ namespace SwaggerBuildOut
 {
     public class CustomResponseHandler : IHttpResponseHandler
     {
-        public Task<IActionResult> CreateResponse<TCommand>(TCommand command, Exception ex) where TCommand : ICommand
+        public Task<IActionResult> CreateResponse<TCommand>(TCommand command, Exception ex)
         {
             return null;
         }
 
-        public Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex) where TCommand : ICommand
+        public Task<IActionResult> CreateResponseFromException<TCommand>(TCommand command, Exception ex)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result) where TCommand : ICommand
+        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, TResult result)
         {
             if (result == null)
             {
@@ -34,17 +34,17 @@ namespace SwaggerBuildOut
             return null;
         }
 
-        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand
+        public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult)
         {
             return null;
         }
 
-        public Task<IActionResult> CreateResponse<TCommand>(TCommand command, ValidationResult validationResult) where TCommand : ICommand
+        public Task<IActionResult> CreateResponse<TCommand>(TCommand command, ValidationResult validationResult)
         {
             return null;
         }
 
-        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, ValidationResult<TResult> validationResult) where TCommand : ICommand<TResult>
+        public Task<IActionResult> CreateResponse<TCommand, TResult>(TCommand command, ValidationResult<TResult> validationResult)
         {
             return null;
         }

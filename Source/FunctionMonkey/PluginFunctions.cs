@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey
 {
-    public class PluginFunctions : AbstractPluginFunctions // where TCommand : ICommand
+    public class PluginFunctions : AbstractPluginFunctions
     {
         public Func<string, Task<ClaimsPrincipal>> ValidateToken { get; set; }
 

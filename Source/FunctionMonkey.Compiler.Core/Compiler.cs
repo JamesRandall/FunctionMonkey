@@ -14,6 +14,7 @@ using FunctionMonkey.Compiler.Core.Implementation;
 using FunctionMonkey.Compiler.Core.Implementation.AspNetCore;
 using FunctionMonkey.Compiler.Core.Implementation.AzureFunctions;
 using FunctionMonkey.Infrastructure;
+using FunctionMonkey.Model;
 using FunctionMonkey.Model.OutputBindings;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -203,10 +204,16 @@ namespace FunctionMonkey.Compiler.Core
             bool errorFound = false;
             foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
             {
-                if (!typeSafetyEnforcer.IsValidType(functionDefinition.CommandType))
+                // SignalRBindingExpressionNegotiateCommand is a type used only to make a non dispatching HTTP function
+                // definition work, it doesn't get used with any mediator and is defined within Function Monkey. It is
+                // exempt from mediator type checking
+                if (functionDefinition.CommandType != typeof(SignalRBindingExpressionNegotiateCommand))
                 {
-                    errorFound = true;
-                    _compilerLog.Error($"Command type {functionDefinition.CommandType.Name} does not conform to the requirements of the mediator. {typeSafetyEnforcer.Requirements}");
+                    if (!typeSafetyEnforcer.IsValidType(functionDefinition.CommandType))
+                    {
+                        errorFound = true;
+                        _compilerLog.Error($"Command type {functionDefinition.CommandType.Name} does not conform to the requirements of the mediator. {typeSafetyEnforcer.Requirements}");
+                    }
                 }
             }
 
