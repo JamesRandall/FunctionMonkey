@@ -180,6 +180,22 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget
   nameWithType: ICompilerOptionsBuilder.HttpTarget
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor*
+  name: MediatorResultTypeExtractor
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_MediatorResultTypeExtractor_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor
+  nameWithType: ICompilerOptionsBuilder.MediatorResultTypeExtractor
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor``1
+  name: MediatorResultTypeExtractor<TMediatorResultTypeExtractor>()
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_MediatorResultTypeExtractor__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor``1
+  name.vb: MediatorResultTypeExtractor(Of TMediatorResultTypeExtractor)()
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor<TMediatorResultTypeExtractor>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorResultTypeExtractor(Of TMediatorResultTypeExtractor)()
+  nameWithType: ICompilerOptionsBuilder.MediatorResultTypeExtractor<TMediatorResultTypeExtractor>()
+  nameWithType.vb: ICompilerOptionsBuilder.MediatorResultTypeExtractor(Of TMediatorResultTypeExtractor)()
 - uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.MediatorTypeSafetyEnforcer*
   name: MediatorTypeSafetyEnforcer
   href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_MediatorTypeSafetyEnforcer_
@@ -677,6 +693,15 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action(Of IServiceCollection, ICommandRegistry))
   nameWithType: IFunctionHostBuilder.Setup(Action<IServiceCollection, ICommandRegistry>)
   nameWithType.vb: IFunctionHostBuilder.Setup(Action(Of IServiceCollection, ICommandRegistry))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action{IServiceCollection})
+  name: Setup(Action<IServiceCollection>)
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Setup_Action_IServiceCollection__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action{IServiceCollection})
+  name.vb: Setup(Action(Of IServiceCollection))
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action<IServiceCollection>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup(Action(Of IServiceCollection))
+  nameWithType: IFunctionHostBuilder.Setup(Action<IServiceCollection>)
+  nameWithType.vb: IFunctionHostBuilder.Setup(Action(Of IServiceCollection))
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup*
   name: Setup
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_Setup_
@@ -2156,6 +2181,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
   nameWithType: AbstractFunctionDefinition.DeserializerNamingStrategyTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ExplicitCommandResultType
+  name: ExplicitCommandResultType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ExplicitCommandResultType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ExplicitCommandResultType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ExplicitCommandResultType
+  nameWithType: AbstractFunctionDefinition.ExplicitCommandResultType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ExplicitCommandResultType*
+  name: ExplicitCommandResultType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_ExplicitCommandResultType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ExplicitCommandResultType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.ExplicitCommandResultType
+  nameWithType: AbstractFunctionDefinition.ExplicitCommandResultType
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionClassTypeName
   name: FunctionClassTypeName
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_FunctionClassTypeName
@@ -2383,6 +2421,12 @@ references:
   commentId: T:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding
   nameWithType: AbstractOutputBinding
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.#ctor(FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
+  name: AbstractOutputBinding(AbstractFunctionDefinition)
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding__ctor_FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_
+  commentId: M:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.#ctor(FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.AbstractOutputBinding(FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition)
+  nameWithType: AbstractOutputBinding.AbstractOutputBinding(AbstractFunctionDefinition)
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.#ctor(System.String)
   name: AbstractOutputBinding(String)
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding__ctor_System_String_
@@ -3748,6 +3792,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IMediatorDecorator.SendAsync
   nameWithType: IMediatorDecorator.SendAsync
+- uid: FunctionMonkey.Abstractions.IMediatorResultTypeExtractor
+  name: IMediatorResultTypeExtractor
+  href: api/FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.html
+  commentId: T:FunctionMonkey.Abstractions.IMediatorResultTypeExtractor
+  fullName: FunctionMonkey.Abstractions.IMediatorResultTypeExtractor
+  nameWithType: IMediatorResultTypeExtractor
+- uid: FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.CommandResultType(Type)
+  name: CommandResultType(Type)
+  href: api/FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.html#FunctionMonkey_Abstractions_IMediatorResultTypeExtractor_CommandResultType_Type_
+  commentId: M:FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.CommandResultType(Type)
+  fullName: FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.CommandResultType(Type)
+  nameWithType: IMediatorResultTypeExtractor.CommandResultType(Type)
+- uid: FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.CommandResultType*
+  name: CommandResultType
+  href: api/FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.html#FunctionMonkey_Abstractions_IMediatorResultTypeExtractor_CommandResultType_
+  commentId: Overload:FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.CommandResultType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IMediatorResultTypeExtractor.CommandResultType
+  nameWithType: IMediatorResultTypeExtractor.CommandResultType
 - uid: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer
   name: IMediatorTypeSafetyEnforcer
   href: api/FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.html
@@ -5812,6 +5875,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.MediatR.IFunctionHostBuilderExtensions.UseMediatR
   nameWithType: IFunctionHostBuilderExtensions.UseMediatR
+- uid: FunctionMonkey.MediatR.MediatRResultTypeExtractor
+  name: MediatRResultTypeExtractor
+  href: api/FunctionMonkey.MediatR.MediatRResultTypeExtractor.html
+  commentId: T:FunctionMonkey.MediatR.MediatRResultTypeExtractor
+  fullName: FunctionMonkey.MediatR.MediatRResultTypeExtractor
+  nameWithType: MediatRResultTypeExtractor
+- uid: FunctionMonkey.MediatR.MediatRResultTypeExtractor.CommandResultType(Type)
+  name: CommandResultType(Type)
+  href: api/FunctionMonkey.MediatR.MediatRResultTypeExtractor.html#FunctionMonkey_MediatR_MediatRResultTypeExtractor_CommandResultType_Type_
+  commentId: M:FunctionMonkey.MediatR.MediatRResultTypeExtractor.CommandResultType(Type)
+  fullName: FunctionMonkey.MediatR.MediatRResultTypeExtractor.CommandResultType(Type)
+  nameWithType: MediatRResultTypeExtractor.CommandResultType(Type)
+- uid: FunctionMonkey.MediatR.MediatRResultTypeExtractor.CommandResultType*
+  name: CommandResultType
+  href: api/FunctionMonkey.MediatR.MediatRResultTypeExtractor.html#FunctionMonkey_MediatR_MediatRResultTypeExtractor_CommandResultType_
+  commentId: Overload:FunctionMonkey.MediatR.MediatRResultTypeExtractor.CommandResultType
+  isSpec: "True"
+  fullName: FunctionMonkey.MediatR.MediatRResultTypeExtractor.CommandResultType
+  nameWithType: MediatRResultTypeExtractor.CommandResultType
 - uid: FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer
   name: MediatRTypeSafetyEnforcer
   href: api/FunctionMonkey.MediatR.MediatRTypeSafetyEnforcer.html
