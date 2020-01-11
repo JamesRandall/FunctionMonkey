@@ -9,11 +9,11 @@ namespace FunctionMonkey.MediatR
     {
         public Type CommandResultType(Type commandType)
         {
-            Type commandInterface = typeof(IRequest);
+            Type commandInterface = typeof(IRequest<>);
             Type[] interfaces = commandType.GetInterfaces();
             Type[] minimalInterfaces = interfaces.Except(interfaces.SelectMany(i => i.GetInterfaces())).ToArray();
             Type genericCommandInterface = minimalInterfaces
-                .SingleOrDefault(x => x.IsGenericType && commandInterface.IsAssignableFrom(x));
+                .SingleOrDefault(x => x.IsGenericType && commandInterface.IsAssignableFrom(x.GetGenericTypeDefinition()));
 
             if (genericCommandInterface != null)
             {
