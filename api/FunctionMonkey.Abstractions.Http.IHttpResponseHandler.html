@@ -165,8 +165,7 @@ Return an IActionResult for custom behaviour otherwise return null for the defau
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IActionResult&gt; CreateResponse&lt;TCommand, TResult&gt;(TCommand command, TResult result)
-    where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IActionResult&gt; CreateResponse&lt;TCommand, TResult&gt;(TCommand command, TResult result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -244,8 +243,7 @@ Return an IActionResult for custom behaviour otherwise return null for the defau
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IActionResult&gt; CreateResponseFromException&lt;TCommand&gt;(TCommand command, Exception ex)
-    where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IActionResult&gt; CreateResponseFromException&lt;TCommand&gt;(TCommand command, Exception ex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -318,8 +316,7 @@ Return an IActionResult for custom behaviour otherwise return null for the defau
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IActionResult&gt; CreateValidationFailureResponse&lt;TCommand&gt;(TCommand command, ValidationResult validationResult)
-    where TCommand : ICommand</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IActionResult&gt; CreateValidationFailureResponse&lt;TCommand&gt;(TCommand command, ValidationResult validationResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

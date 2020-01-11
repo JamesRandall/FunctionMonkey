@@ -6094,19 +6094,6 @@ references:
   commentId: T:FunctionMonkey.Runtime
   fullName: FunctionMonkey.Runtime
   nameWithType: Runtime
-- uid: FunctionMonkey.Runtime.CommandDispatcher
-  name: CommandDispatcher
-  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_CommandDispatcher
-  commentId: P:FunctionMonkey.Runtime.CommandDispatcher
-  fullName: FunctionMonkey.Runtime.CommandDispatcher
-  nameWithType: Runtime.CommandDispatcher
-- uid: FunctionMonkey.Runtime.CommandDispatcher*
-  name: CommandDispatcher
-  href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_CommandDispatcher_
-  commentId: Overload:FunctionMonkey.Runtime.CommandDispatcher
-  isSpec: "True"
-  fullName: FunctionMonkey.Runtime.CommandDispatcher
-  nameWithType: Runtime.CommandDispatcher
 - uid: FunctionMonkey.Runtime.FunctionProvidedLogger
   name: FunctionProvidedLogger
   href: api/FunctionMonkey.Runtime.html#FunctionMonkey_Runtime_FunctionProvidedLogger
