@@ -30,7 +30,7 @@ namespace FunctionMonkey.Builders
         {
             VerifyOutputBinding();
             
-            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
+            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition, connectionString)
             {
                 QueueName = queueName
             };
@@ -51,7 +51,7 @@ namespace FunctionMonkey.Builders
             {
                 sessionIdPropertyName = GetMemberName(sessionIdProperty.Body);
             }
-            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
+            _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition, connectionString)
             {
                 QueueName = queueName,
                 SessionIdPropertyName = sessionIdPropertyName
@@ -68,7 +68,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder ServiceBusTopic(string connectionString, string topicName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
+            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition, connectionString)
             {
                 TopicName = topicName
             };
@@ -89,7 +89,7 @@ namespace FunctionMonkey.Builders
             {
                 sessionIdPropertyName = GetMemberName(sessionIdProperty.Body);
             }
-            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionString)
+            _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition, connectionString)
             {
                 TopicName = topicName,
                 SessionIdPropertyName = sessionIdPropertyName
@@ -111,14 +111,10 @@ namespace FunctionMonkey.Builders
         public TParentBuilder SignalRMessage(string connectionStringSettingName, string hubName)
         {
             VerifyOutputBinding();
-            if (!typeof(SignalRMessage).IsAssignableFrom(_functionDefinition.CommandResultItemType))
-            {
-                throw new ConfigurationException("Commands that use SignalRMessage output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRMessage class or a derivative");
-            }
-            _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition, connectionStringSettingName)
             {
                 HubName = hubName,
-                SignalROutputTypeName = "Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage" // can't use typeof() here as we don't want to bring the SignalR package into here
+                SignalROutputTypeName = SignalROutputBinding.SignalROutputMessageType // can't use typeof() here as we don't want to bring the SignalR package into here
             };
             return _parentBuilder;
         }
@@ -126,16 +122,12 @@ namespace FunctionMonkey.Builders
         public TParentBuilder SignalRGroupAction(string connectionStringSettingName, string hubName)
         {
             VerifyOutputBinding();
-            if (!typeof(SignalRGroupAction).IsAssignableFrom(_functionDefinition.CommandResultItemType))
-            {
-                throw new ConfigurationException("Commands that use SignalRGroupAction output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRGroupAction class or a derivative");
-            }
-
-            _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition.CommandResultItemTypeName,
+            
+            _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition,
                 connectionStringSettingName)
             {
                 HubName = hubName,
-                SignalROutputTypeName = "Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction" // can't use typeof() here as we don't want to bring the SignalR package into here
+                SignalROutputTypeName = SignalROutputBinding.SignalROutputGroupActionType // can't use typeof() here as we don't want to bring the SignalR package into here
             };
             return _parentBuilder;
         }
@@ -149,12 +141,12 @@ namespace FunctionMonkey.Builders
         {
             if (_functionDefinition.OutputBinding is null)
             {
-                _functionDefinition.OutputBinding = new StorageBlobOutputBinding(_functionDefinition.CommandResultItemTypeName);
+                _functionDefinition.OutputBinding = new StorageBlobOutputBinding(_functionDefinition);
             }
 
             if (_functionDefinition.OutputBinding is StorageBlobOutputBinding blobBinding)
             {
-                blobBinding.Outputs.Add(new StorageBlobOutput(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+                blobBinding.Outputs.Add(new StorageBlobOutput(_functionDefinition, connectionStringSettingName)
                 {
                     FileAccess = fileAccess,
                     Name = name
@@ -176,7 +168,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder StorageQueue(string connectionStringSettingName, string queueName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new StorageQueueOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new StorageQueueOutputBinding(_functionDefinition, connectionStringSettingName)
             {
                 QueueName = queueName
             };
@@ -191,7 +183,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder StorageTable(string connectionStringSettingName, string tableName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new StorageTableOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new StorageTableOutputBinding(_functionDefinition, connectionStringSettingName)
             {
                 TableName = tableName
             };
@@ -211,7 +203,7 @@ namespace FunctionMonkey.Builders
             // if its based on IEnumerable we do the former, otherwise the latter
             bool isCollection = typeof(IEnumerable).IsAssignableFrom(_functionDefinition.CommandResultType);
             
-            _functionDefinition.OutputBinding = new CosmosOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new CosmosOutputBinding(_functionDefinition, connectionStringSettingName)
             {
                 CollectionName = collectionName,
                 DatabaseName = databaseName,
@@ -229,7 +221,7 @@ namespace FunctionMonkey.Builders
         public TParentBuilder EventHub(string connectionStringSettingName, string hubName)
         {
             VerifyOutputBinding();
-            _functionDefinition.OutputBinding = new EventHubOutputBinding(_functionDefinition.CommandResultItemTypeName, connectionStringSettingName)
+            _functionDefinition.OutputBinding = new EventHubOutputBinding(_functionDefinition, connectionStringSettingName)
             {
                 EventHub = hubName
             };
@@ -247,12 +239,6 @@ namespace FunctionMonkey.Builders
             if (_functionDefinition.OutputBinding != null)
             {
                 throw new ConfigurationException($"An output binding is already set for command {_functionDefinition.CommandType.Name}");
-            }
-
-            if (!_functionDefinition.CommandHasResult &&
-                !(_functionDefinition.NoCommandHandler || _functionDefinition.CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler))))
-            {
-                throw new ConfigurationException($"Command of type {_functionDefinition.CommandType.Name} requires a result to be used with an output binding");
             }
         }
         

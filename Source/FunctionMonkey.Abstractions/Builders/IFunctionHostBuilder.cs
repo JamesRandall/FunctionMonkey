@@ -11,6 +11,13 @@ namespace FunctionMonkey.Abstractions.Builders
     public interface IFunctionHostBuilder
     {
         /// <summary>
+        /// Surfaces an IServiceCollection into which dependencies (can be registered
+        /// </summary>
+        /// <param name="services">An action that will be given a service collection</param>
+        /// <returns>The function host builder for use in a Fluent API</returns>
+        IFunctionHostBuilder Setup(Action<IServiceCollection> services);
+        
+        /// <summary>
         /// Surfaces an IServiceCollection into which dependencies (for command handlers) can be registered
         /// </summary>
         /// <param name="services">An action that will be given a command registry and service collection</param>

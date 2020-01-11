@@ -7,7 +7,10 @@ namespace FunctionMonkey.MediatR
         public static IFunctionHostBuilder UseMediatR(this IFunctionHostBuilder builder)
         {
             builder
-                .CompilerOptions(options => options.MediatorTypeSafetyEnforcer<MediatRTypeSafetyEnforcer>())
+                .CompilerOptions(options =>options
+                    .MediatorTypeSafetyEnforcer<MediatRTypeSafetyEnforcer>()
+                    .MediatorResultTypeExtractor<MediatRResultTypeExtractor>()
+                )
                 .Mediator<MediatRDecorator>();
             return builder;
         }

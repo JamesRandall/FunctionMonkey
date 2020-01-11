@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Extensions;
@@ -22,6 +23,28 @@ namespace FunctionMonkey.Infrastructure
 {
     public class PostBuildPatcher
     {
+        private readonly IMediatorResultTypeExtractor _resultTypeExtractor;
+
+        public PostBuildPatcher(IMediatorResultTypeExtractor resultTypeExtractor)
+        {
+            _resultTypeExtractor = resultTypeExtractor;
+        }
+
+        public Type CalculateCommandResultType(AbstractFunctionDefinition definition)
+        {
+            if (definition.ExplicitCommandResultType != null)
+            {
+                return definition.ExplicitCommandResultType;
+            }
+                
+            if (definition.NoCommandHandler || definition.CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler)))
+            {
+                return definition.CommandType;
+            }
+
+            return _resultTypeExtractor.CommandResultType(definition.CommandType);
+        }
+        
         public void Patch(FunctionHostBuilder builder, string newAssemblyNamespace)
         {
             AuthorizationBuilder authorizationBuilder = (AuthorizationBuilder) builder.AuthorizationBuilder;
@@ -31,7 +54,7 @@ namespace FunctionMonkey.Infrastructure
             {
                 definition.Namespace = newAssemblyNamespace;
                 definition.IsUsingValidator = builder.ValidatorType != null;
-
+                definition.CommandResultType = CalculateCommandResultType(definition);
                 definition.CommandDeserializerType = definition.CommandDeserializerType ??
                                                      ((SerializationBuilder)(builder.SerializationBuilder)).DefaultCommandDeserializerType;
 

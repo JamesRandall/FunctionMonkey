@@ -52,6 +52,8 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
         public IReadOnlyCollection<ImmutableTypeConstructorParameter> ImmutableTypeConstructorParameters { get; set; }
 
+        public Type ExplicitCommandResultType => _explicitCommandResultType;
+
         public string Namespace { get; set; }
 
         public string Name { get; set; }
@@ -62,34 +64,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
 
         public string CommandTypeName => CommandType.EvaluateType();
 
-        public Type CommandResultType
-        {
-            get
-            {
-                if (_explicitCommandResultType != null)
-                {
-                    return _explicitCommandResultType;
-                }
-                
-                if (NoCommandHandler || CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler)))
-                {
-                    return CommandType;
-                }
-                
-                Type commandInterface = typeof(ICommand);
-                Type[] interfaces = CommandType.GetInterfaces();
-                Type[] minimalInterfaces = interfaces.Except(interfaces.SelectMany(i => i.GetInterfaces())).ToArray();
-                Type genericCommandInterface = minimalInterfaces
-                    .SingleOrDefault(x => x.IsGenericType && commandInterface.IsAssignableFrom(x));
-
-                if (genericCommandInterface != null)
-                {
-                    return genericCommandInterface.GenericTypeArguments[0];
-                }
-
-                return null;
-            }
-        }
+        public Type CommandResultType { get; set; }
 
         public bool CommandResultIsCollection =>
             CommandHasResult && typeof(IEnumerable).IsAssignableFrom(CommandResultType);

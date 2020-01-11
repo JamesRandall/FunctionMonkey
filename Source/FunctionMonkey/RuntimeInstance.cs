@@ -539,7 +539,8 @@ namespace FunctionMonkey
             FunctionHostBuilder builder = new FunctionHostBuilder(ServiceCollection, commandRegistry, true);
             configuration.Build(builder);
             RegisterCommandHandlersForCommandsWithNoAssociatedHandler(builder, commandRegistry);
-            new PostBuildPatcher().Patch(builder, "");
+            IMediatorResultTypeExtractor extractor = (IMediatorResultTypeExtractor)Activator.CreateInstance(builder.Options.MediatorResultTypeExtractor);
+            new PostBuildPatcher(extractor).Patch(builder, "");
             return builder;
         }
 

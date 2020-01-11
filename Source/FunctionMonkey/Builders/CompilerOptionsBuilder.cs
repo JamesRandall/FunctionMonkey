@@ -21,6 +21,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public ICompilerOptionsBuilder MediatorResultTypeExtractor<TMediatorResultTypeExtractor>() where TMediatorResultTypeExtractor : IMediatorResultTypeExtractor
+        {
+            _options.MediatorResultTypeExtractor = typeof(TMediatorResultTypeExtractor);
+            return this;
+        }
+
         public ICompilerOptionsBuilder HttpTarget(CompileTargetEnum target)
         {
             _options.HttpTarget = target;

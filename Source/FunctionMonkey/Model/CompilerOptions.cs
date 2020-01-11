@@ -9,5 +9,6 @@ namespace FunctionMonkey.Model
         public CompileTargetEnum HttpTarget { get; set; } = CompileTargetEnum.AzureFunctions;
         public string OutputSourceTo { get; set; } = null;
         public Type MediatorTypeSafetyEnforcer { get; set; } = typeof(DefaultMediatorTypeSafetyEnforcer);
+        public Type MediatorResultTypeExtractor { get; set; } = typeof(DefaultMediatorResultTypeExtractor);
     }
 }

@@ -9,7 +9,11 @@ namespace FunctionMonkey.Model.OutputBindings
 
         public bool HasSessionId => !string.IsNullOrWhiteSpace(SessionIdPropertyName);
 
-        public ServiceBusQueueOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
+        public ServiceBusQueueOutputBinding(AbstractFunctionDefinition associatedFunctionDefinition, string connectionStringSettingName) : base(associatedFunctionDefinition, connectionStringSettingName)
+        {
+        }
+        
+        public ServiceBusQueueOutputBinding(string commandResultType, string connectionStringSettingName) : base(commandResultType, connectionStringSettingName)
         {
         }
     }

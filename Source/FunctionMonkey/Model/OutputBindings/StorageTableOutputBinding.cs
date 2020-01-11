@@ -6,7 +6,11 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public string TableName { get; set; }
 
-        public StorageTableOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
+        public StorageTableOutputBinding(AbstractFunctionDefinition associatedFunctionDefinition, string connectionStringSettingName) : base(associatedFunctionDefinition, connectionStringSettingName)
+        {
+        }
+        
+        public StorageTableOutputBinding(string commandResultType, string connectionStringSettingName) : base(commandResultType, connectionStringSettingName)
         {
         }
     }

@@ -28,7 +28,7 @@ namespace FunctionMonkey.Builders
         public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
         public CompilerOptions Options { get; set; } = new CompilerOptions();
         public Type MediatorType { get; set; } = typeof(DefaultMediatorDecorator);
-
+        
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
         {
@@ -43,6 +43,15 @@ namespace FunctionMonkey.Builders
             if (_isRuntime)
             {
                 services(ServiceCollection, CommandRegistry);
+            }
+            return this;
+        }
+        
+        public IFunctionHostBuilder Setup(Action<IServiceCollection> services)
+        {
+            if (_isRuntime)
+            {
+                services(ServiceCollection);
             }
             return this;
         }

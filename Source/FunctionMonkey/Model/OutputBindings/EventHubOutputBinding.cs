@@ -6,7 +6,11 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public string EventHub { get; set; }
         
-        public EventHubOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
+        public EventHubOutputBinding(AbstractFunctionDefinition associatedFunctionDefinition, string connectionStringSettingName) : base(associatedFunctionDefinition, connectionStringSettingName)
+        {
+        }
+        
+        public EventHubOutputBinding(string commandResultType, string connectionStringSettingName) : base(commandResultType, connectionStringSettingName)
         {
         }
     }

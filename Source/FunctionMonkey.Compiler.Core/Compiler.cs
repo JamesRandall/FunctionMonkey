@@ -7,11 +7,14 @@ using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
+using FunctionMonkey.Abstractions.SignalR;
 using FunctionMonkey.Builders;
+using FunctionMonkey.Commanding.Abstractions;
 using FunctionMonkey.Compiler.Core.Implementation;
 using FunctionMonkey.Compiler.Core.Implementation.AspNetCore;
 using FunctionMonkey.Compiler.Core.Implementation.AzureFunctions;
 using FunctionMonkey.Infrastructure;
+using FunctionMonkey.Model.OutputBindings;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunctionMonkey.Compiler.Core
@@ -89,9 +92,20 @@ namespace FunctionMonkey.Compiler.Core
                 {
                     return false;
                 }
+
+                IMediatorResultTypeExtractor extractor = CreateMediatorResultTypeExtractor(builder.Options.MediatorResultTypeExtractor);
+                if (extractor == null)
+                {
+                    return false;
+                }
                 
-                new PostBuildPatcher().Patch(builder, newAssemblyNamespace);
+                new PostBuildPatcher(extractor).Patch(builder, newAssemblyNamespace);
                 if (!VerifyCommandAndResponseTypes(builder))
+                {
+                    return false;
+                }
+
+                if (!VerifyOutputBindings(builder))
                 {
                     return false;
                 }
@@ -117,6 +131,60 @@ namespace FunctionMonkey.Compiler.Core
                 configuration,
                 externalAssemblies,
                 _outputBinaryFolder);
+        }
+        
+        private bool VerifyOutputBindings(IFunctionHostBuilder builder)
+        {
+            bool foundErrors = false;
+            foreach (AbstractFunctionDefinition functionDefinition in builder.FunctionDefinitions)
+            {
+                if (functionDefinition.OutputBinding != null)
+                {
+                    if (!functionDefinition.CommandHasResult &&
+                        !(functionDefinition.NoCommandHandler || functionDefinition.CommandType.GetInterfaces().Any(x => x == typeof(ICommandWithNoHandler))))
+                    {
+                        _compilerLog.Error($"Command of type {functionDefinition.CommandType.Name} requires a result to be used with an output binding");
+                        foundErrors = true;
+                    }
+
+                    if (functionDefinition.OutputBinding is SignalROutputBinding signalROutputBinding)
+                    {
+                        if (signalROutputBinding.SignalROutputTypeName == SignalROutputBinding.SignalROutputMessageType)
+                        {
+                            if (!typeof(SignalRMessage).IsAssignableFrom(functionDefinition.CommandResultItemType))
+                            {
+                                _compilerLog.Error("Commands that use SignalRMessage output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRMessage class or a derivative");
+                                foundErrors = true;
+                            }
+                        }
+                        else if (signalROutputBinding.SignalROutputTypeName ==
+                                 SignalROutputBinding.SignalROutputGroupActionType)
+                        {
+                            if (!typeof(SignalRGroupAction).IsAssignableFrom(functionDefinition.CommandResultItemType))
+                            {
+                                _compilerLog.Error("Commands that use SignalRGroupAction output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRGroupAction class or a derivative");
+                                foundErrors = true;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+
+            return !foundErrors;
+        }
+
+        private IMediatorResultTypeExtractor CreateMediatorResultTypeExtractor(Type optionsMediatorResultTypeExtractor)
+        {
+            ConstructorInfo constructor = optionsMediatorResultTypeExtractor.GetConstructor(new Type[0]);
+            if (constructor == null)
+            {
+                _compilerLog.Error($"{optionsMediatorResultTypeExtractor.Name} does not have a default constructor. Implementations of IMediatorResultTypeExtractor must have a default (parameterless) constructor.");
+                return null;
+            }
+
+            return (IMediatorResultTypeExtractor)Activator.CreateInstance(optionsMediatorResultTypeExtractor);
         }
 
         private bool ValidateCommandTypes(FunctionHostBuilder builder)

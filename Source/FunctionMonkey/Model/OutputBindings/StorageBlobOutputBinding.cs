@@ -7,7 +7,11 @@ namespace FunctionMonkey.Model.OutputBindings
     {
         public List<StorageBlobOutput> Outputs { get; set; }
 
-        public StorageBlobOutputBinding(string commandResultItemTypeName) : base(commandResultItemTypeName)
+        public StorageBlobOutputBinding(AbstractFunctionDefinition associatedFunctionDefinition) : base(associatedFunctionDefinition)
+        {
+        }
+        
+        public StorageBlobOutputBinding(string commandResultType) : base(commandResultType)
         {
         }
     }

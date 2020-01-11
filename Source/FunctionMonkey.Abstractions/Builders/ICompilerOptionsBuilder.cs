@@ -6,6 +6,8 @@ namespace FunctionMonkey.Abstractions.Builders
     {
         ICompilerOptionsBuilder MediatorTypeSafetyEnforcer<TMediatorTypeSafetyEnforcer>()
             where TMediatorTypeSafetyEnforcer : IMediatorTypeSafetyEnforcer;
+        ICompilerOptionsBuilder MediatorResultTypeExtractor<TMediatorResultTypeExtractor>()
+            where TMediatorResultTypeExtractor : IMediatorResultTypeExtractor;
         ICompilerOptionsBuilder HttpTarget(CompileTargetEnum target);
         ICompilerOptionsBuilder OutputSourceTo(string folder);
     }

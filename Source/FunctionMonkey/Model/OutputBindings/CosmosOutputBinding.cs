@@ -1,3 +1,5 @@
+using FunctionMonkey.Abstractions.Builders.Model;
+
 namespace FunctionMonkey.Model.OutputBindings
 {
     public class CosmosOutputBinding : AbstractConnectionStringOutputBinding
@@ -8,7 +10,11 @@ namespace FunctionMonkey.Model.OutputBindings
         
         public string CollectionName { get; set; }
         
-        public CosmosOutputBinding(string commandResultItemTypeName, string connectionStringSettingName) : base(commandResultItemTypeName, connectionStringSettingName)
+        public CosmosOutputBinding(AbstractFunctionDefinition associatedFunctionDefinition, string connectionStringSettingName) : base(associatedFunctionDefinition, connectionStringSettingName)
+        {
+        }
+        
+        public CosmosOutputBinding(string commandResultType, string connectionStringSettingName) : base(commandResultType, connectionStringSettingName)
         {
         }
     }
