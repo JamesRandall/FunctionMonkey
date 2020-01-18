@@ -337,3 +337,4 @@ appsettings.json
 
 fsharpdocsrc/temp
 fsharpdocsrc/bin
+!.idea/

@@ -1,0 +1,20 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Compile Integration Test Functions" type="DotNetProject" factoryName=".NET Project">
+    <option name="EXE_PATH" value="$PROJECT_DIR$/Source/FunctionMonkey.Compiler/bin/Debug/netcoreapp3.1/FunctionMonkey.Compiler.dll" />
+    <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/Tests/FunctionMonkey.Tests.Integration.Functions/bin/Debug/netcoreapp3.1/bin/FunctionMonkey.Tests.Integration.Functions.dll --netcore21" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Source/FunctionMonkey.Compiler/bin/Debug/netcoreapp3.1" />
+    <option name="PASS_PARENT_ENVS" value="1" />
+    <option name="USE_EXTERNAL_CONSOLE" value="0" />
+    <option name="USE_MONO" value="0" />
+    <option name="RUNTIME_ARGUMENTS" value="" />
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/Source/FunctionMonkey.Compiler/FunctionMonkey.Compiler.csproj" />
+    <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+    <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+    <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+    <option name="PROJECT_KIND" value="DotNetCore" />
+    <option name="PROJECT_TFM" value=".NETCoreApp,Version=v3.1" />
+    <method v="2">
+      <option name="Build Solution" enabled="true" />
+    </method>
+  </configuration>
+</component>
