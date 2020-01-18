@@ -161,12 +161,102 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IClaimsMappingBuilder.MapClaimToPropertyName
   nameWithType: IClaimsMappingBuilder.MapClaimToPropertyName
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder
+  name: IClientCompilerOptionsBuilder
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder
+  nameWithType: IClientCompilerOptionsBuilder
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.AssemblyName(System.String)
+  name: AssemblyName(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_AssemblyName_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.AssemblyName(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.AssemblyName(System.String)
+  nameWithType: IClientCompilerOptionsBuilder.AssemblyName(String)
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.AssemblyName*
+  name: AssemblyName
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_AssemblyName_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.AssemblyName
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.AssemblyName
+  nameWithType: IClientCompilerOptionsBuilder.AssemblyName
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.Namespace(System.String)
+  name: Namespace(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_Namespace_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.Namespace(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.Namespace(System.String)
+  nameWithType: IClientCompilerOptionsBuilder.Namespace(String)
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.Namespace*
+  name: Namespace
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_Namespace_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.Namespace
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.Namespace
+  nameWithType: IClientCompilerOptionsBuilder.Namespace
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputFolder(System.String)
+  name: OutputFolder(String)
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_OutputFolder_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputFolder(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputFolder(System.String)
+  nameWithType: IClientCompilerOptionsBuilder.OutputFolder(String)
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputFolder*
+  name: OutputFolder
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_OutputFolder_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputFolder
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputFolder
+  nameWithType: IClientCompilerOptionsBuilder.OutputFolder
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputNuget
+  name: OutputNuget()
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_OutputNuget
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputNuget
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputNuget()
+  nameWithType: IClientCompilerOptionsBuilder.OutputNuget()
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputNuget*
+  name: OutputNuget
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_OutputNuget_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputNuget
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.OutputNuget
+  nameWithType: IClientCompilerOptionsBuilder.OutputNuget
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy*
+  name: VersioningStrategy
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_VersioningStrategy_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy
+  nameWithType: IClientCompilerOptionsBuilder.VersioningStrategy
+- uid: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy``1
+  name: VersioningStrategy<TVersioningStrategy>()
+  href: api/FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder_VersioningStrategy__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy``1
+  name.vb: VersioningStrategy(Of TVersioningStrategy)()
+  fullName: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy<TVersioningStrategy>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder.VersioningStrategy(Of TVersioningStrategy)()
+  nameWithType: IClientCompilerOptionsBuilder.VersioningStrategy<TVersioningStrategy>()
+  nameWithType.vb: IClientCompilerOptionsBuilder.VersioningStrategy(Of TVersioningStrategy)()
 - uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder
   name: ICompilerOptionsBuilder
   href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html
   commentId: T:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder
   fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder
   nameWithType: ICompilerOptionsBuilder
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient(Action{FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder})
+  name: CreateClient(Action<IClientCompilerOptionsBuilder>)
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_CreateClient_Action_FunctionMonkey_Abstractions_Builders_IClientCompilerOptionsBuilder__
+  commentId: M:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient(Action{FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder})
+  name.vb: CreateClient(Action(Of IClientCompilerOptionsBuilder))
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient(Action<FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient(Action(Of FunctionMonkey.Abstractions.Builders.IClientCompilerOptionsBuilder))
+  nameWithType: ICompilerOptionsBuilder.CreateClient(Action<IClientCompilerOptionsBuilder>)
+  nameWithType.vb: ICompilerOptionsBuilder.CreateClient(Action(Of IClientCompilerOptionsBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient*
+  name: CreateClient
+  href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_CreateClient_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.CreateClient
+  nameWithType: ICompilerOptionsBuilder.CreateClient
 - uid: FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.HttpTarget(FunctionMonkey.Compiler.Core.CompileTargetEnum)
   name: HttpTarget(CompileTargetEnum)
   href: api/FunctionMonkey.Abstractions.Builders.ICompilerOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_ICompilerOptionsBuilder_HttpTarget_FunctionMonkey_Compiler_Core_CompileTargetEnum_
@@ -3705,19 +3795,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.ClaimsMappings
   nameWithType: IFunctionCompilerMetadata.ClaimsMappings
-- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
-  name: CompileTarget
-  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_CompileTarget
-  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
-  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
-  nameWithType: IFunctionCompilerMetadata.CompileTarget
-- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget*
-  name: CompileTarget
-  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_CompileTarget_
-  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompilerOptions
+  name: CompilerOptions
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_CompilerOptions
+  commentId: P:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompilerOptions
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompilerOptions
+  nameWithType: IFunctionCompilerMetadata.CompilerOptions
+- uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompilerOptions*
+  name: CompilerOptions
+  href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_CompilerOptions_
+  commentId: Overload:FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompilerOptions
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompileTarget
-  nameWithType: IFunctionCompilerMetadata.CompileTarget
+  fullName: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.CompilerOptions
+  nameWithType: IFunctionCompilerMetadata.CompilerOptions
 - uid: FunctionMonkey.Abstractions.IFunctionCompilerMetadata.FunctionDefinitions
   name: FunctionDefinitions
   href: api/FunctionMonkey.Abstractions.IFunctionCompilerMetadata.html#FunctionMonkey_Abstractions_IFunctionCompilerMetadata_FunctionDefinitions
@@ -4289,6 +4379,93 @@ references:
   commentId: N:FunctionMonkey.Builders
   fullName: FunctionMonkey.Builders
   nameWithType: FunctionMonkey.Builders
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder
+  name: ClientCompilerOptionsBuilder
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html
+  commentId: T:FunctionMonkey.Builders.ClientCompilerOptionsBuilder
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder
+  nameWithType: ClientCompilerOptionsBuilder
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.#ctor(FunctionMonkey.Model.ClientCompilerOptions)
+  name: ClientCompilerOptionsBuilder(ClientCompilerOptions)
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder__ctor_FunctionMonkey_Model_ClientCompilerOptions_
+  commentId: M:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.#ctor(FunctionMonkey.Model.ClientCompilerOptions)
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.ClientCompilerOptionsBuilder(FunctionMonkey.Model.ClientCompilerOptions)
+  nameWithType: ClientCompilerOptionsBuilder.ClientCompilerOptionsBuilder(ClientCompilerOptions)
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.#ctor*
+  name: ClientCompilerOptionsBuilder
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder__ctor_
+  commentId: Overload:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.#ctor
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.ClientCompilerOptionsBuilder
+  nameWithType: ClientCompilerOptionsBuilder.ClientCompilerOptionsBuilder
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.AssemblyName(System.String)
+  name: AssemblyName(String)
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_AssemblyName_System_String_
+  commentId: M:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.AssemblyName(System.String)
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.AssemblyName(System.String)
+  nameWithType: ClientCompilerOptionsBuilder.AssemblyName(String)
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.AssemblyName*
+  name: AssemblyName
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_AssemblyName_
+  commentId: Overload:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.AssemblyName
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.AssemblyName
+  nameWithType: ClientCompilerOptionsBuilder.AssemblyName
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.Namespace(System.String)
+  name: Namespace(String)
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_Namespace_System_String_
+  commentId: M:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.Namespace(System.String)
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.Namespace(System.String)
+  nameWithType: ClientCompilerOptionsBuilder.Namespace(String)
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.Namespace*
+  name: Namespace
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_Namespace_
+  commentId: Overload:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.Namespace
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.Namespace
+  nameWithType: ClientCompilerOptionsBuilder.Namespace
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputFolder(System.String)
+  name: OutputFolder(String)
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_OutputFolder_System_String_
+  commentId: M:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputFolder(System.String)
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputFolder(System.String)
+  nameWithType: ClientCompilerOptionsBuilder.OutputFolder(String)
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputFolder*
+  name: OutputFolder
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_OutputFolder_
+  commentId: Overload:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputFolder
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputFolder
+  nameWithType: ClientCompilerOptionsBuilder.OutputFolder
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputNuget
+  name: OutputNuget()
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_OutputNuget
+  commentId: M:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputNuget
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputNuget()
+  nameWithType: ClientCompilerOptionsBuilder.OutputNuget()
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputNuget*
+  name: OutputNuget
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_OutputNuget_
+  commentId: Overload:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputNuget
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.OutputNuget
+  nameWithType: ClientCompilerOptionsBuilder.OutputNuget
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy*
+  name: VersioningStrategy
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_VersioningStrategy_
+  commentId: Overload:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy
+  nameWithType: ClientCompilerOptionsBuilder.VersioningStrategy
+- uid: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy``1
+  name: VersioningStrategy<TVersioningStrategy>()
+  href: api/FunctionMonkey.Builders.ClientCompilerOptionsBuilder.html#FunctionMonkey_Builders_ClientCompilerOptionsBuilder_VersioningStrategy__1
+  commentId: M:FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy``1
+  name.vb: VersioningStrategy(Of TVersioningStrategy)()
+  fullName: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy<TVersioningStrategy>()
+  fullName.vb: FunctionMonkey.Builders.ClientCompilerOptionsBuilder.VersioningStrategy(Of TVersioningStrategy)()
+  nameWithType: ClientCompilerOptionsBuilder.VersioningStrategy<TVersioningStrategy>()
+  nameWithType.vb: ClientCompilerOptionsBuilder.VersioningStrategy(Of TVersioningStrategy)()
 - uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder`1
   name: CosmosDbFunctionOptionBuilder<TCommandOuter>
   href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.html
