@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AzureFunctionsVersion>v2</AzureFunctionsVersion>
@@ -14,10 +14,6 @@
     <ItemGroup>
         <None Update="host.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="local.settings.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
         <None Include="host.json">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -35,11 +31,7 @@
         <Compile Include="HttpResponseHandlerFunctions.fs" />
         <Compile Include="ServiceBusFunctions.fs" />
         <Compile Include="OutputBindingFunctions.fs" />
-        <Compile Include="EntryPoint.fs" />
-        <None Include="local.settings.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-        </None>
+        <Compile Include="EntryPoint.fs" />      
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Source\FunctionMonkey.Abstractions\FunctionMonkey.Abstractions.csproj" />

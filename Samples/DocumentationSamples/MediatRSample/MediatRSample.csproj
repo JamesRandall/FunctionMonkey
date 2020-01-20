@@ -6,7 +6,7 @@
     <ItemGroup>
         <PackageReference Include="MediatR" Version="8.0.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
-        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.1" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
     </ItemGroup>
     <ItemGroup>
         <None Update="host.json">
