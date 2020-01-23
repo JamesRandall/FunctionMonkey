@@ -97,7 +97,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
             if (!string.IsNullOrWhiteSpace(configuration.UserInterfaceRoute))
             {
-                result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder();
+                result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder(configuration);
             }
 
             if (!string.IsNullOrWhiteSpace(configuration.OutputPath))
@@ -142,49 +142,69 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             return apiPrefix;
         }
 
-        private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder()
+        private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder(OpenApiConfiguration configuration)
         {
+            StringBuilder links = new StringBuilder("</title>");
+            IList<OpenApiFileReference> result = new List<OpenApiFileReference>();
+            foreach (var injectedStylesheet in configuration.InjectedStylesheets)
+            {
+                var resourceAssemblyName = injectedStylesheet.resourceAssembly.GetName().Name;
+                var styleSheetName = $"{resourceAssemblyName}.{injectedStylesheet.resourceName}";
+                var content = LoadResourceFromAssembly(injectedStylesheet.resourceAssembly, styleSheetName);
+                var filename = styleSheetName.Substring(resourceAssemblyName.Length + 1);
+
+                links.Append($"{Environment.NewLine}    <link rel='stylesheet' type='text/css' href='./openapi/{filename}' media='{injectedStylesheet.media}' />");
+
+                result.Add(new OpenApiFileReference
+                {
+                    Content = content,
+                    Filename = filename
+                });
+            }
+
             const string prefix = "FunctionMonkey.Compiler.Core.node_modules.swagger_ui_dist.";
             Assembly sourceAssembly = GetType().Assembly;
             string[] files = sourceAssembly
                 .GetManifestResourceNames()
                 .Where(x => x.StartsWith(prefix))
                 .ToArray();
-            OpenApiFileReference[] result = new OpenApiFileReference[files.Length];
-            int index = 0;
             foreach (string swaggerFile in files)
             {
-                byte[] input = new byte[0];
-
-                using (Stream inputStream = sourceAssembly.GetManifestResourceStream(swaggerFile))
-                {
-                    if (inputStream != null)
-                    {
-                        input = new byte[inputStream.Length];
-                        inputStream.Read(input, 0, input.Length);
-                    }
-                }
-
-                string content = Encoding.UTF8.GetString(input);
+                string content = LoadResourceFromAssembly(sourceAssembly, swaggerFile);
 
                 if (swaggerFile.EndsWith(".index.html"))
                 {
                     content = content.Replace("http://petstore.swagger.io/v2/swagger.json", "./openapi/openapi.yaml");
                     content = content.Replace("https://petstore.swagger.io/v2/swagger.json", "./openapi/openapi.yaml");
                     content = content.Replace("=\"./swagger", $"=\"./openapi/swagger");
+                    content = content.Replace("</title>", links.ToString());
                 }
 
-                result[index] = new OpenApiFileReference
+                result.Add(new OpenApiFileReference
                 {
                     Content = content,
                     Filename = swaggerFile.Substring(prefix.Length)
-                };
-                index++;
+                });
             }
 
-            return result;
+            return result.ToArray();
         }
 
+        private string LoadResourceFromAssembly(Assembly assembly, string resourceName)
+        {
+            byte[] input = new byte[0];
+
+            using (Stream inputStream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (inputStream != null)
+                {
+                    input = new byte[inputStream.Length];
+                    inputStream.Read(input, 0, input.Length);
+                }
+            }
+
+            return Encoding.UTF8.GetString(input);
+        }
 
         private void CreateSchemas(HttpFunctionDefinition[] functionDefinitions, OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
         {
@@ -227,6 +247,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
                 foreach (HttpFunctionDefinition functionByRoute in route)
                 {
+                    if (functionByRoute.OpenApiIgnore)
+                    {
+                        continue;
+                    }
+
                     Type commandType = functionByRoute.CommandType;
                     foreach (HttpMethod method in functionByRoute.Verbs)
                     {

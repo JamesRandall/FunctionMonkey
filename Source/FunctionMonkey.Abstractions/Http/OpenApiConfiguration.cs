@@ -1,6 +1,7 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Abstractions.Http
@@ -31,6 +32,8 @@ namespace FunctionMonkey.Abstractions.Http
         public string OutputPath { get; set; }
 
         public IList<Func<XPathDocument>> XmlDocFactories { get; } = new List<Func<XPathDocument>>();
+
+        public IList<(Assembly resourceAssembly, string resourceName, string media)> InjectedStylesheets { get; } = new List<(Assembly resourceAssembly, string resourceName, string media)>();
 
         public IList<Func<IOpenApiDocumentFilter>> DocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
 

@@ -8,6 +8,14 @@
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\OpenApi\custom.css" />
+    <None Remove="Resources\OpenApi\theme-material.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\OpenApi\custom.css" />
+    <EmbeddedResource Include="Resources\OpenApi\theme-material.css" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>

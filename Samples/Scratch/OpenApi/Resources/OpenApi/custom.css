@@ -1,0 +1,14 @@
+﻿/** Custom Modifications */
+
+.select-label {
+    color: #fff !important;
+}
+
+.topbar {
+    background-color: #198a83 !important;
+}
+
+.opblock-summary-description {
+    text-align: right !important;
+    font-weight: bold !important;
+}

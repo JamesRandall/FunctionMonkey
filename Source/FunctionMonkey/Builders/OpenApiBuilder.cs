@@ -2,6 +2,7 @@
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Model;
 using System;
+using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Builders
@@ -42,6 +43,12 @@ namespace FunctionMonkey.Builders
         public IOpenApiBuilder AddXmlComments(Func<XPathDocument> xmlDocFactory)
         {
             _openApiConfiguration.XmlDocFactories.Add(xmlDocFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder InjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen")
+        {
+            _openApiConfiguration.InjectedStylesheets.Add((resourceAssembly, resourceName, media));
             return this;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Xml.XPath;
 
 namespace FunctionMonkey.Abstractions.Builders
@@ -43,6 +44,15 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="filePath">An abolsute path to the file that contains XML Comments</param>
         IOpenApiBuilder AddXmlComments(string filePath);
+
+        /// <summary>
+        /// Inject the given stylesheet into the index.html
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
+        /// <param name="resourceName">Name of the stylesheet resource</param>
+        /// <param name="media">The media attribute specifies what media/device the target resource is optimized for</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen");
 
         /// <summary>
         /// Add a custom document filter to the filter chain.

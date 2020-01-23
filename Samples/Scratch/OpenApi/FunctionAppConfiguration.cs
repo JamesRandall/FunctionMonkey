@@ -3,6 +3,7 @@ using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
 using OpenApi.Customers;
 using System.IO;
+using System.Reflection;
 
 namespace OpenApi
 {
@@ -25,13 +26,14 @@ namespace OpenApi
                     .UserInterface()
                     .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
+                    .InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.theme-material.css")
+                    .InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.custom.css")
                 )
                 .AddFluentValidation()
                 .Functions(functions =>
                 {
                     functions.RegisterCustomers();
                 });
-
         }
     }
 }

@@ -34,5 +34,11 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="responseType">The type of the response object. Optional</param>
         /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
         IHttpFunctionConfigurationBuilder<TCommand> OpenApiResponse(int httpStatusCode, string description, Type responseType = null);
+
+        /// <summary>
+        /// Ignore this function for Open API / Swagger documentation
+        /// </summary>
+        /// <returns>A IHttpFunctionConfigurationBuilder that allows further HTTP functions to be created and this function to be further configured with Open API / Swagger metadata.</returns>
+        IHttpFunctionConfigurationBuilder<TCommand> OpenApiIgnore(bool ignore = true);
     }
 }

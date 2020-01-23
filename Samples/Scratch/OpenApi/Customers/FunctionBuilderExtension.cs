@@ -24,6 +24,7 @@ namespace OpenApi.Customers
                     .OpenApiResponse((int)HttpStatusCode.TooManyRequests, "Too Many Requests. A rate limit has been reached.", typeof(ErrorResponseDto))
                     ;
                 http.HttpFunction<GetCustomersHttpRequestDto>(HttpMethod.Get)
+                    //.OpenApiIgnore()
                     .OpenApiSummary("Returns a cursor paged list of customers.")
                     .OpenApiDescription("Returns a cursor paged list of customers.")
                     .OpenApiResponse((int)HttpStatusCode.OK, "Successful request.", typeof(GetCustomersHttpResponseDto))
