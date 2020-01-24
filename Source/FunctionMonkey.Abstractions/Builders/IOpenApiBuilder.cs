@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.OpenApi.Models;
+using System;
 using System.Reflection;
 using System.Xml.XPath;
 
@@ -53,6 +54,30 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="media">The media attribute specifies what media/device the target resource is optimized for</param>
         /// <returns></returns>
         IOpenApiBuilder InjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen");
+
+        /// <summary>
+        /// Inject the given JavaScript into the index.html
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
+        /// <param name="resourceName">Name of the JavaScript resource</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectJavaScript(Assembly resourceAssembly, string resourceName);
+
+        /// <summary>
+        /// Inject the given resource into the index.html
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
+        /// <param name="resourceName">Name of the resource</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectResource(Assembly resourceAssembly, string resourceName);
+
+        /// <summary>
+        /// Add a security scheme.
+        /// </summary>
+        /// <param name="id">The id of this security scheme</param>
+        /// <param name="securityScheme">The security scheme to add</param>
+        /// <returns></returns>
+        IOpenApiBuilder AddSecurityScheme(string id, OpenApiSecurityScheme securityScheme);
 
         /// <summary>
         /// Add a custom document filter to the filter chain.

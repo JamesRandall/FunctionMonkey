@@ -1,6 +1,7 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Model;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
 using System.Xml.XPath;
@@ -52,9 +53,27 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder InjectJavaScript(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.InjectedJavaScripts.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder InjectResource(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.InjectedResources.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
         public IOpenApiBuilder AddXmlComments(string filePath)
         {
             _openApiConfiguration.XmlDocFactories.Add(() => new XPathDocument(filePath));
+            return this;
+        }
+
+        public IOpenApiBuilder AddSecurityScheme(string id, OpenApiSecurityScheme securityScheme)
+        {
+            _openApiConfiguration.SecuritySchemes.Add(id, securityScheme);
             return this;
         }
 

@@ -1,6 +1,7 @@
 ﻿using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
+using Microsoft.OpenApi.Models;
 using OpenApi.Customers;
 using System.IO;
 using System.Reflection;
@@ -28,6 +29,15 @@ namespace OpenApi
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
                     .InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.theme-material.css")
                     .InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.custom.css")
+                    .InjectResource(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
+                    .InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.console-log.js")
+                    .AddSecurityScheme("Bearer", // Name the security scheme
+                        new OpenApiSecurityScheme
+                        {
+                            Description = "JWT Authorization header using the Bearer scheme.",
+                            Type = SecuritySchemeType.Http, // We set the scheme type to http since we're using bearer authentication
+                            Scheme = "bearer" // The name of the HTTP Authorization scheme to be used in the Authorization header. In this case "bearer".
+                        })
                 )
                 .AddFluentValidation()
                 .Functions(functions =>

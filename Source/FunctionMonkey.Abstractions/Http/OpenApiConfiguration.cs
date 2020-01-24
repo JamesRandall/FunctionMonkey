@@ -1,4 +1,5 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -34,6 +35,12 @@ namespace FunctionMonkey.Abstractions.Http
         public IList<Func<XPathDocument>> XmlDocFactories { get; } = new List<Func<XPathDocument>>();
 
         public IList<(Assembly resourceAssembly, string resourceName, string media)> InjectedStylesheets { get; } = new List<(Assembly resourceAssembly, string resourceName, string media)>();
+
+        public IList<(Assembly resourceAssembly, string resourceName)> InjectedResources { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+
+        public IList<(Assembly resourceAssembly, string resourceName)> InjectedJavaScripts { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+
+        public IDictionary<string, OpenApiSecurityScheme> SecuritySchemes = new Dictionary<string, OpenApiSecurityScheme>();
 
         public IList<Func<IOpenApiDocumentFilter>> DocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
 
