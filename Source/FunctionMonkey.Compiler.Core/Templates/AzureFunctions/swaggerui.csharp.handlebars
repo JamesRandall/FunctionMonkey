@@ -1,7 +1,7 @@
-
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
@@ -11,15 +11,6 @@ namespace {{Namespace}}
 {
     public static class OpenApiProvider
     {
-        private static readonly Dictionary<string, string> SwaggerContentTypes = new Dictionary<string, string>
-        {
-            { ".html", "text/html" },
-            {".png", "image/png" },
-            {".map", "application/json" },
-            {".css", "text/css"},
-            {".js","application/javascript" }
-        };
-
         [FunctionName("OpenApiProvider")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "openapi/{name?}")]HttpRequest req, ILogger logger, string name)
         {
@@ -27,7 +18,7 @@ namespace {{Namespace}}
             {
                 name = "index.html";
             }
-            
+
             using (Stream stream = typeof(OpenApiProvider).Assembly.GetManifestResourceStream($"{{Namespace}}.OpenApi.{name}"))
             {
                 if (stream != null)
@@ -38,9 +29,10 @@ namespace {{Namespace}}
                         result.Content = reader.ReadToEnd();
                     }
 
-                    if (!SwaggerContentTypes.TryGetValue(Path.GetExtension(name).ToLower(), out var contentType))
+                    var provider = new FileExtensionContentTypeProvider();
+                    if (!provider.TryGetContentType(Path.GetExtension(name).ToLower(), out var contentType))
                     {
-                        contentType = "text/plain";
+                        contentType = "application/octet-stream";
                     }
 
                     result.ContentType = contentType;

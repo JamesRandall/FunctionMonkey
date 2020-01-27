@@ -14,6 +14,7 @@ using FunctionMonkey.SignalR;
 using HandlebarsDotNet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.ChangeFeedProcessor;
 using Microsoft.Azure.EventHubs;
@@ -102,7 +103,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
                 typeof(QueueAttribute).Assembly.Location,
                 typeof(Microsoft.IdentityModel.Protocols.HttpDocumentRetriever).Assembly.Location,
                 typeof(IServiceCollection).Assembly.Location,
-                typeof(EventData).Assembly.Location
+                typeof(EventData).Assembly.Location,
+                typeof(FileExtensionContentTypeProvider).Assembly.Location
             };
             return locations;
         }
