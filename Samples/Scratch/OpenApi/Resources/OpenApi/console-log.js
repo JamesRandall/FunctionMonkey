@@ -1,1 +1,1 @@
-﻿console.log('JavaScript works!')
+﻿console.log('Injecting JavaScript works!')
