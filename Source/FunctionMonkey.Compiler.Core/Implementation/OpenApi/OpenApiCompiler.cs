@@ -53,69 +53,70 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 return null;
             }
 
-            OpenApiDocument openApiDocument = new OpenApiDocument
+            IDictionary<string, OpenApiDocumentsSpec> openApiDocumentsSpec = new Dictionary<string, OpenApiDocumentsSpec>();
+            OpenApiOutputModel outputModel = new OpenApiOutputModel();
+            foreach (var keyValuePair in configuration.OpenApiDocumentInfos)
             {
-                Info = new OpenApiInfo
+                OpenApiDocument openApiDocument = new OpenApiDocument
                 {
-                    Version = configuration.Version,
-                    Title = configuration.Title
-                },
-                Servers = configuration.Servers?.Select(x => new OpenApiServer { Url = x }).ToArray(),
-                Paths = new OpenApiPaths(),
-                Components = new OpenApiComponents
+                    Info = keyValuePair.Value.OpenApiInfo,
+                    Servers = configuration.Servers?.Select(x => new OpenApiServer { Url = x }).ToArray(),
+                    Paths = new OpenApiPaths(),
+                    Components = new OpenApiComponents
+                    {
+                        Schemas = new Dictionary<string, OpenApiSchema>(),
+                    }
+                };
+
+                var compilerConfiguration = new OpenApiCompilerConfiguration(configuration);
+
+                SchemaReferenceRegistry registry = new SchemaReferenceRegistry(compilerConfiguration);
+
+                CreateTags(functionDefinitions, openApiDocument);
+
+                CreateSchemas(functionDefinitions, openApiDocument, registry);
+
+                CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix, compilerConfiguration);
+
+                CreateSecuritySchemes(openApiDocument, configuration);
+
+                FilterDocument(compilerConfiguration, openApiDocument);
+
+                if (openApiDocument.Paths.Count == 0)
                 {
-                    Schemas = new Dictionary<string, OpenApiSchema>(),
+                    continue;
                 }
-            };
 
-            var compilerConfiguration = new OpenApiCompilerConfiguration(configuration);
+                outputModel.OpenApiFileReferences.Add(
+                    new OpenApiFileReference
+                    {
+                        Filename = keyValuePair.Value.DocumentRoute.Replace('/', '.'),
+                        Content = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml)
+                    }
+                );
 
-            SchemaReferenceRegistry registry = new SchemaReferenceRegistry(compilerConfiguration);
-
-            CreateTags(functionDefinitions, openApiDocument);
-
-            CreateSchemas(functionDefinitions, openApiDocument, registry);
-
-            CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix, compilerConfiguration);
-
-            CreateSecuritySchemes(openApiDocument, configuration);
-
-            FilterDocument(compilerConfiguration, openApiDocument);
-
-            if (openApiDocument.Paths.Count == 0)
-            {
-                return null;
+                openApiDocumentsSpec.Add(openApiDocument.Info.Title, new OpenApiDocumentsSpec {
+                    Title = keyValuePair.Value.OpenApiInfo.Title,
+                    Selected = keyValuePair.Value.Selected,
+                    Path = $"./{configuration.UserInterfaceRoute}/{keyValuePair.Value.DocumentRoute}"
+                });
             }
-
-            string yaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
-            OpenApiOutputModel result = new OpenApiOutputModel
-            {
-                OpenApiSpecification = new OpenApiFileReference
-                {
-                    Content = yaml,
-                    Filename = "openapi.yaml"
-                }
-            };
 
             if (!string.IsNullOrWhiteSpace(configuration.UserInterfaceRoute))
             {
-                result.SwaggerUserInterface = CopySwaggerUserInterfaceFilesToWebFolder(configuration);
-            }
-
-            if (!string.IsNullOrWhiteSpace(configuration.OutputPath))
-            {
-                if (Directory.Exists(configuration.OutputPath))
-                {
-                    string pathAndFilename = Path.Combine(configuration.OutputPath, "openapi.yaml");
-                    if (File.Exists(pathAndFilename))
+                outputModel.OpenApiFileReferences.Add(
+                    new OpenApiFileReference
                     {
-                        File.Delete(pathAndFilename);
+                        Filename = "openapi-documents-spec.json",
+                        Content = JsonConvert.SerializeObject(openApiDocumentsSpec.Values.ToArray())
                     }
-                    File.WriteAllText(pathAndFilename, yaml, Encoding.UTF8);
-                }
+                );
+
+                CopySwaggerUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
             }
 
-            return result;
+            outputModel.UserInterfaceRoute = configuration.UserInterfaceRoute;
+            return outputModel;
         }
 
         private void CreateSecuritySchemes(OpenApiDocument openApiDocument, OpenApiConfiguration configuration)
@@ -177,10 +178,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             return apiPrefix;
         }
 
-        private OpenApiFileReference[] CopySwaggerUserInterfaceFilesToWebFolder(OpenApiConfiguration configuration)
+        private void CopySwaggerUserInterfaceFilesToWebFolder(OpenApiConfiguration configuration, IList<OpenApiFileReference> openApiFileReferences)
         {
-            IList<OpenApiFileReference> result = new List<OpenApiFileReference>();
-
             // StyleSheets
             StringBuilder links = new StringBuilder("</title>");
             foreach (var injectedStylesheet in configuration.InjectedStylesheets)
@@ -190,9 +189,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 var content = LoadResourceFromAssembly(injectedStylesheet.resourceAssembly, styleSheetName);
                 var filename = styleSheetName.Substring(resourceAssemblyName.Length + 1);
 
-                links.Append($"{Environment.NewLine}    <link rel='stylesheet' type='text/css' href='./openapi/{filename}' media='{injectedStylesheet.media}' />");
+                links.Append($"{Environment.NewLine}    <link rel='stylesheet' type='text/css' href='./{configuration.UserInterfaceRoute}/{filename}' media='{injectedStylesheet.media}' />");
 
-                result.Add(new OpenApiFileReference
+                openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
                     Filename = filename
@@ -207,7 +206,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 var content = LoadResourceFromAssembly(injectedResource.resourceAssembly, resourceName);
                 var filename = resourceName.Substring(resourceAssemblyName.Length + 1);
 
-                result.Add(new OpenApiFileReference
+                openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
                     Filename = filename
@@ -223,9 +222,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 var content = LoadResourceFromAssembly(injectedJavaScript.resourceAssembly, javaScriptName);
                 var filename = javaScriptName.Substring(resourceAssemblyName.Length + 1);
 
-                scripts.Append($"    <script src=\"./openapi/{filename}\" > </script>{ Environment.NewLine}");
+                scripts.Append($"    <script src=\"./{configuration.UserInterfaceRoute}/{filename}\" > </script>{ Environment.NewLine}");
 
-                result.Add(new OpenApiFileReference
+                openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
                     Filename = filename
@@ -245,21 +244,19 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
                 if (swaggerFile.EndsWith(".index.html"))
                 {
-                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", "./openapi/openapi.yaml");
-                    content = content.Replace("https://petstore.swagger.io/v2/swagger.json", "./openapi/openapi.yaml");
-                    content = content.Replace("=\"./swagger", $"=\"./openapi/swagger");
+                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/openapi.yaml");
+                    content = content.Replace("https://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/openapi.yaml");
+                    content = content.Replace("=\"./swagger", $"=\"./{configuration.UserInterfaceRoute}/swagger");
                     content = content.Replace("</title>", links.ToString());
                     content = content.Replace("  </body>", scripts.ToString());
                 }
 
-                result.Add(new OpenApiFileReference
+                openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
                     Filename = swaggerFile.Substring(prefix.Length)
                 });
             }
-
-            return result.ToArray();
         }
 
         private string LoadResourceFromAssembly(Assembly assembly, string resourceName)

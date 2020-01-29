@@ -383,8 +383,7 @@ module internal FunctionCompilerMetadata =
                                                                      UserInterfaceRoute=(match o.userInterfaceEndpoint with
                                                                                          | Some e -> e
                                                                                          | None -> null),
-                                                                     Servers=o.servers,
-                                                                     OutputPath=(match o.outputPath with | Some p -> p | None -> null)
+                                                                     Servers=o.servers
                                                                     )
                                     | None -> null)
             functionDefinitions =

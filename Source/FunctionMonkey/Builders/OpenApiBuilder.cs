@@ -1,4 +1,5 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi.Models;
@@ -17,7 +18,7 @@ namespace FunctionMonkey.Builders
             _openApiConfiguration = openApiConfiguration;
         }
 
-        public IOpenApiBuilder Version(string version)
+        public IOpenApiBuilder Version(string version)            
         {
             _openApiConfiguration.Version = version;
             return this;
@@ -29,14 +30,29 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder AddOpenApiInfo(string name, string documentRoute, OpenApiInfo openApiInfo, bool selected = false)
+        {
+            _openApiConfiguration.OpenApiDocumentInfos.Add(name, new OpenApiDocumentInfo
+            {
+                DocumentRoute = documentRoute,
+                OpenApiInfo = openApiInfo,
+                Selected = selected
+            });
+            return this;
+        }
+
         public IOpenApiBuilder Servers(params string[] urls)
         {
             _openApiConfiguration.Servers = urls;
             return this;
         }
 
-        public IOpenApiBuilder UserInterface(string route = "/swagger")
+        public IOpenApiBuilder UserInterface(string route = "/openapi")
         {
+            if(route.StartsWith("/"))
+            {
+                route = route.Substring(1);
+            }
             _openApiConfiguration.UserInterfaceRoute = route;
             return this;
         }

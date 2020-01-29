@@ -64,7 +64,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
                 string json = template(new
                 {
                     AssemblyFilename = $"{outputNamespaceName}.dll",
-                    Namespace = outputNamespaceName
+                    Namespace = outputNamespaceName,
+                    OpenApiUserInterfaceRoute = openApiOutputModel.UserInterfaceRoute
                 });
 
                 WriteFunctionTemplate(outputBinaryFolder, "OpenApiProvider", json);

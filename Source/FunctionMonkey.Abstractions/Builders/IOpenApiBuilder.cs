@@ -23,6 +23,16 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder Title(string title);
 
         /// <summary>
+        /// Add a OpenApiInfo to the generation
+        /// </summary>
+        /// <param name="name">Name of the document</param>
+        /// <param name="openApiInfo">OpenApi document info</param>
+        /// <param name="documentRoute">Route to the generated YAML document. Relative to the UserInterfaceRoute</param>
+        /// <param name="selected">Set to true, when this document should be selected by default in the drop down box in the UI</param>
+        /// <returns></returns>
+        IOpenApiBuilder AddOpenApiInfo(string name, string documentRoute, OpenApiInfo openApiInfo, bool selected = false);
+
+        /// <summary>
         /// Sets the server block in the document
         /// </summary>
         /// <param name="urls">One or more URLs for servers</param>
@@ -31,7 +41,6 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <summary>
         /// If invoked will host a user interface for the Open API spec
         /// </summary>
-        /// <param name="route">The route to host on - defaults to /swagger</param>
         IOpenApiBuilder UserInterface(string route = "/openapi");
 
         /// <summary>

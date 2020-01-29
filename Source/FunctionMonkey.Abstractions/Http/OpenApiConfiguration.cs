@@ -1,4 +1,5 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
+using FunctionMonkey.Abstractions.Builders.Model;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,73 @@ namespace FunctionMonkey.Abstractions.Http
 {
     public class OpenApiConfiguration
     {
-        public string Version { get; set; }
+        public string Title
+        {
+            set
+            {
+                if (OpenApiDocumentInfos.TryGetValue("default", out var openApiDocumentInfo))
+                {
+                    openApiDocumentInfo.OpenApiInfo.Title = value;
+                }
+                else
+                {
+                    OpenApiDocumentInfos.Add("default", new OpenApiDocumentInfo
+                    {
+                        DocumentRoute = "openapi.yaml",
+                        OpenApiInfo = new OpenApiInfo
+                        {
+                            Title = value
+                        }
+                    });
+                }
+            }
+        }
 
-        public string Title { get; set; }
+        public string Version
+        {
+            set
+            {
+                if (OpenApiDocumentInfos.TryGetValue("default", out var openApiDocumentInfo))
+                {
+                    openApiDocumentInfo.OpenApiInfo.Version = value;
+                }
+                else
+                {
+                    OpenApiDocumentInfos.Add("default", new OpenApiDocumentInfo 
+                    {
+                        DocumentRoute = "openapi.yaml",
+                        OpenApiInfo = new OpenApiInfo
+                        {
+                            Version = value
+                        }
+                    });
+                }
+            }
+        }
+
+        public IDictionary<string, OpenApiDocumentInfo> OpenApiDocumentInfos = new Dictionary<string, OpenApiDocumentInfo>();
 
         public IReadOnlyCollection<string> Servers { get; set; }
 
-        public bool IsOpenApiOutputEnabled => !string.IsNullOrWhiteSpace(Version) && !string.IsNullOrWhiteSpace(Title);
+        public bool IsOpenApiOutputEnabled => OpenApiDocumentInfos.Count != 0;
 
         public bool IsValid
         {
             get
             {
-                int requiredSettingCount = 0;
-                if (!string.IsNullOrWhiteSpace(Version)) requiredSettingCount++;
-                if (!string.IsNullOrWhiteSpace(Title)) requiredSettingCount++;
-                return requiredSettingCount == 0 || requiredSettingCount == 2;
+                foreach(var keyValuePair in OpenApiDocumentInfos)
+                {
+                    if(string.IsNullOrWhiteSpace(keyValuePair.Value.OpenApiInfo.Version) || string.IsNullOrWhiteSpace(keyValuePair.Value.OpenApiInfo.Title))
+                    {
+                        return false;
+                    }
+                }                
+                return true;
             }
         }
 
         public string UserInterfaceRoute { get; set; }
         
-        public string OutputPath { get; set; }
-
         public IList<Func<XPathDocument>> XmlDocFactories { get; } = new List<Func<XPathDocument>>();
 
         public IList<(Assembly resourceAssembly, string resourceName, string media)> InjectedStylesheets { get; } = new List<(Assembly resourceAssembly, string resourceName, string media)>();

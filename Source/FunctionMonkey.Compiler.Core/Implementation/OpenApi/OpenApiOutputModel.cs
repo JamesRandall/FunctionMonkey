@@ -11,10 +11,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
     internal class OpenApiOutputModel
     {
-        public OpenApiFileReference OpenApiSpecification { get; set; }
+        public IList<OpenApiFileReference> OpenApiFileReferences { get; } = new List<OpenApiFileReference>();
 
-        public IReadOnlyCollection<OpenApiFileReference> SwaggerUserInterface { get; set; }
+        public bool IsConfiguredForUserInterface => OpenApiFileReferences.Count > 0;
 
-        public bool IsConfiguredForUserInterface => SwaggerUserInterface != null && SwaggerUserInterface.Count > 0;
+        public string UserInterfaceRoute { get; set; }
     }
 }

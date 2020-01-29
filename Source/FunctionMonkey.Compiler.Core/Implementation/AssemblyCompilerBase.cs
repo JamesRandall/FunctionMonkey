@@ -44,19 +44,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             if (OpenApiOutputModel != null)
             {
                 resources = new List<ResourceDescription>();
-                Debug.Assert(OpenApiOutputModel.OpenApiSpecification != null);
-                resources.Add(new ResourceDescription(
-                    $"{assemblyNamespace}.OpenApi.{OpenApiOutputModel.OpenApiSpecification.Filename}",
-                    () => new MemoryStream(Encoding.UTF8.GetBytes(OpenApiOutputModel.OpenApiSpecification.Content)), true));
-                if (OpenApiOutputModel.SwaggerUserInterface != null)
+                foreach (OpenApiFileReference openApiFileReference in OpenApiOutputModel.OpenApiFileReferences)
                 {
-                    foreach (OpenApiFileReference fileReference in OpenApiOutputModel.SwaggerUserInterface)
-                    {
-                        OpenApiFileReference closureCapturedFileReference = fileReference;
-                        resources.Add(new ResourceDescription(
-                            $"{assemblyNamespace}.OpenApi.{closureCapturedFileReference.Filename}",
-                            () => new MemoryStream(Encoding.UTF8.GetBytes(closureCapturedFileReference.Content)), true));
-                    }
+                    resources.Add(new ResourceDescription(
+                        $"{assemblyNamespace}.OpenApi.{openApiFileReference.Filename}",
+                        () => new MemoryStream(Encoding.UTF8.GetBytes(openApiFileReference.Content)), true));
                 }
             }
 
@@ -117,7 +109,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 string templateSource = TemplateProvider.GetTemplate("swaggerui","csharp");
                 return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
                 {
-                    Namespace = newAssemblyNamespace
+                    Namespace = newAssemblyNamespace,
+                    OpenApiUserInterfaceRoute = OpenApiOutputModel.UserInterfaceRoute
                 }, directoryInfo);
             }
 
