@@ -47,8 +47,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 return null;
             }
 
-            HttpFunctionDefinition[] functionDefinitions = abstractFunctionDefinitions.OfType<HttpFunctionDefinition>().ToArray();
-            if (functionDefinitions.Length == 0)
+            var functionDefinitions = abstractFunctionDefinitions.OfType<HttpFunctionDefinition>().ToList();
+            if (functionDefinitions.Count() == 0)
             {
                 return null;
             }
@@ -68,15 +68,21 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     }
                 };
 
+                var functionFilter = keyValuePair.Value.HttpFunctionFilter;
+                if(functionFilter == null)
+                {
+                    functionFilter = new OpenApiHttpFunctionFilterDummy();
+                }
+
                 var compilerConfiguration = new OpenApiCompilerConfiguration(configuration);
 
                 SchemaReferenceRegistry registry = new SchemaReferenceRegistry(compilerConfiguration);
 
-                CreateTags(functionDefinitions, openApiDocument);
+                CreateTags(functionDefinitions, functionFilter, openApiDocument);
 
-                CreateSchemas(functionDefinitions, openApiDocument, registry);
+                CreateSchemas(functionDefinitions, functionFilter, openApiDocument, registry);
 
-                CreateOperationsFromRoutes(functionDefinitions, openApiDocument, registry, apiPrefix, compilerConfiguration);
+                CreateOperationsFromRoutes(functionDefinitions, functionFilter, openApiDocument, registry, apiPrefix, compilerConfiguration);
 
                 CreateSecuritySchemes(openApiDocument, configuration);
 
@@ -275,13 +281,21 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             return Encoding.UTF8.GetString(input);
         }
 
-        private void CreateSchemas(HttpFunctionDefinition[] functionDefinitions, OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
+        private void CreateSchemas(IList<HttpFunctionDefinition> functionDefinitions, IOpenApiHttpFunctionFilter functionFilter, OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
         {
+            IOpenApiHttpFunctionFilterContext functionFilterContext = new OpenApiHttpFunctionFilterContext();
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
-                if (functionDefinition.Verbs.Contains(HttpMethod.Patch) ||
-                    functionDefinition.Verbs.Contains(HttpMethod.Post) ||
-                    functionDefinition.Verbs.Contains(HttpMethod.Put))
+                var filterdVerbs = new HashSet<HttpMethod>(functionDefinition.Verbs);
+                functionFilter.Apply(functionDefinition.RouteConfiguration.Route, filterdVerbs, functionFilterContext);
+                if (filterdVerbs.Count == 0)
+                {
+                    continue;
+                }
+
+                if (filterdVerbs.Contains(HttpMethod.Patch) ||
+                    filterdVerbs.Contains(HttpMethod.Post) ||
+                    filterdVerbs.Contains(HttpMethod.Put))
                 {
                     registry.FindOrAddReference(functionDefinition.CommandType);
                 }
@@ -292,19 +306,18 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 }
             }
 
-            if (registry.References.Any())
-            {
-                openApiDocument.Components.Schemas = registry.References;
-            }
+            openApiDocument.Components.Schemas = registry.References;
         }
 
         private static void CreateOperationsFromRoutes(
-            HttpFunctionDefinition[] functionDefinitions,
+            IList<HttpFunctionDefinition> functionDefinitions,
+            IOpenApiHttpFunctionFilter functionFilter,
             OpenApiDocument openApiDocument,
             SchemaReferenceRegistry registry,
             string apiPrefix,
             OpenApiCompilerConfiguration compilerConfiguration)
         {
+            IOpenApiHttpFunctionFilterContext functionFilterContext = new OpenApiHttpFunctionFilterContext();
             string prependedApiPrefix = string.IsNullOrEmpty(apiPrefix) ? $"" : $"/{apiPrefix}";
             var operationsByRoute = functionDefinitions.Where(x => x.Route != null).GroupBy(x => $"{prependedApiPrefix}/{x.Route}");
             foreach (IGrouping<string, HttpFunctionDefinition> route in operationsByRoute)
@@ -321,8 +334,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                         continue;
                     }
 
+                    var filterdVerbs = new HashSet<HttpMethod>(functionByRoute.Verbs);
+                    functionFilter.Apply(functionByRoute.RouteConfiguration.Route, filterdVerbs, functionFilterContext);
+                    if (filterdVerbs.Count == 0)
+                    {
+                        continue;
+                    }
+
                     Type commandType = functionByRoute.CommandType;
-                    foreach (HttpMethod method in functionByRoute.Verbs)
+                    foreach (HttpMethod method in filterdVerbs)
                     {
                         OpenApiOperation operation = new OpenApiOperation
                         {
@@ -469,14 +489,20 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }
         }
 
-        private static void CreateTags(HttpFunctionDefinition[] functionDefinitions, OpenApiDocument openApiDocument)
+        private static void CreateTags(IList<HttpFunctionDefinition> functionDefinitions, IOpenApiHttpFunctionFilter functionFilter, OpenApiDocument openApiDocument)
         {
+            IOpenApiHttpFunctionFilterContext functionFilterContext = new OpenApiHttpFunctionFilterContext();
             HashSet<HttpRouteConfiguration> routeConfigurations = new HashSet<HttpRouteConfiguration>();
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
-                if (functionDefinition.RouteConfiguration != null && !string.IsNullOrWhiteSpace(functionDefinition.RouteConfiguration.OpenApiName))
+                if (!string.IsNullOrWhiteSpace(functionDefinition.RouteConfiguration?.OpenApiName))
                 {
-                    routeConfigurations.Add(functionDefinition.RouteConfiguration);
+                    var filterdVerbs = new HashSet<HttpMethod>(functionDefinition.Verbs);
+                    functionFilter.Apply(functionDefinition.RouteConfiguration.Route, filterdVerbs,functionFilterContext);
+                    if(filterdVerbs.Count != 0)
+                    {
+                        routeConfigurations.Add(functionDefinition.RouteConfiguration);
+                    }
                 }
             }
 

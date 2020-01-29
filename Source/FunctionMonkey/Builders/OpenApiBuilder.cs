@@ -30,12 +30,13 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder AddOpenApiInfo(string name, string documentRoute, OpenApiInfo openApiInfo, bool selected = false)
+        public IOpenApiBuilder AddOpenApiInfo(string name, string documentRoute, OpenApiInfo openApiInfo, IOpenApiHttpFunctionFilter httpFunctionFilter = null, bool selected = false)
         {
             _openApiConfiguration.OpenApiDocumentInfos.Add(name, new OpenApiDocumentInfo
             {
                 DocumentRoute = documentRoute,
                 OpenApiInfo = openApiInfo,
+                HttpFunctionFilter = httpFunctionFilter,
                 Selected = selected
             });
             return this;

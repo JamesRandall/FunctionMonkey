@@ -22,18 +22,22 @@ namespace OpenApi
                     commandRegistry.Discover(typeof(FunctionAppConfiguration).Assembly);
                 })
                 .OpenApiEndpoint(openApi => openApi
-                    .AddOpenApiInfo("v1", "v1/openapi.yaml", new OpenApiInfo
-                    {
-                        Title = "API 1.4.15",
-                        Version = "v1",
-                        Description = "Current stable API"
-                    })
-                    .AddOpenApiInfo("v2", "v2/openapi.yaml", new OpenApiInfo
-                    {
-                        Title = "API 2.0.0-beta-113",
-                        Version = "v2",
-                        Description = "Upcoming API"
-                    }, true)
+                    .AddOpenApiInfo("v2-internal", "internal/openapi.yaml", new OpenApiInfo
+                        {
+                            Title = "API intern 2.0.0-beta-113",
+                            Version = "v2",
+                            Description = "Upcoming API"
+                        }
+                    )
+                    .AddOpenApiInfo("v2-external", "external/openapi.yaml", new OpenApiInfo
+                        {
+                            Title = "API 2.0.0-beta-113",
+                            Version = "v2",
+                            Description = "Upcoming API"
+                        },
+                        new CustomOpenApiHttpFunctionFilter(),
+                        true
+                    )
                     .UserInterface("apidoc")
                     .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))

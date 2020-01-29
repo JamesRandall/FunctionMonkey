@@ -9,5 +9,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         public string DocumentRoute { get; set; }
 
         public bool Selected { get; set; }
+
+        public IOpenApiHttpFunctionFilter HttpFunctionFilter { get; set; }
     }
 }

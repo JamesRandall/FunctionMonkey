@@ -28,9 +28,10 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="name">Name of the document</param>
         /// <param name="openApiInfo">OpenApi document info</param>
         /// <param name="documentRoute">Route to the generated YAML document. Relative to the UserInterfaceRoute</param>
+        /// <param name="httpFunctionFilter">Filter the HTTP functions for this OpenApi document</param>
         /// <param name="selected">Set to true, when this document should be selected by default in the drop down box in the UI</param>
         /// <returns></returns>
-        IOpenApiBuilder AddOpenApiInfo(string name, string documentRoute, OpenApiInfo openApiInfo, bool selected = false);
+        IOpenApiBuilder AddOpenApiInfo(string name, string documentRoute, OpenApiInfo openApiInfo, IOpenApiHttpFunctionFilter httpFunctionFilter = null, bool selected = false);
 
         /// <summary>
         /// Sets the server block in the document
