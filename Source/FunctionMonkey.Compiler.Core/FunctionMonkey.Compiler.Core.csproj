@@ -168,6 +168,7 @@
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+      <EmbeddedResource Include="Resources\OpenApi\topbar-multiple-specs.js" />
       <EmbeddedResource Include="Templates\AspNetCore\forcereference.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AspNetCore\swaggerui.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.csharp.handlebars" />

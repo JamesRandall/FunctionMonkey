@@ -23,7 +23,7 @@ namespace OpenApi.Customers
                     .OpenApiResponse((int)HttpStatusCode.Conflict, "Conflict. The resource to be created by your request already exists.", typeof(ErrorResponseDto))
                     .OpenApiResponse((int)HttpStatusCode.TooManyRequests, "Too Many Requests. A rate limit has been reached.", typeof(ErrorResponseDto))
                     ;
-                http.HttpFunction<GetCustomersHttpRequestDto>(AuthorizationTypeEnum.TokenValidation, HttpMethod.Get)
+                http.HttpFunction<GetCustomersHttpRequestDto>(AuthorizationTypeEnum.Anonymous, HttpMethod.Get)
                     //.OpenApiIgnore()
                     .OpenApiSummary("Returns a cursor paged list of customers.")
                     .OpenApiDescription("Returns a cursor paged list of customers.")

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Text.RegularExpressions;
-using FunctionMonkey.Abstractions.Builders;
+﻿using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Compiler.Core.Extensions;
@@ -20,6 +10,16 @@ using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 {
@@ -70,7 +70,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 };
 
                 var functionFilter = keyValuePair.Value.HttpFunctionFilter;
-                if(functionFilter == null)
+                if (functionFilter == null)
                 {
                     functionFilter = new OpenApiHttpFunctionFilterDummy();
                 }
@@ -98,8 +98,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 // Hack: Empty OpenApiSecurityRequirement lists are not serialized by the standard Microsoft
                 // implementation. Therefore we add a null object to the list and fix it here by hand.
                 var yaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
-                yaml = Regex.Replace(yaml,$"security:\n.*?- \n", "security: []\n");
-                
+                yaml = Regex.Replace(yaml, $"security:\n.*?- \n", "security: []\n");
+
                 outputModel.OpenApiFileReferences.Add(
                     new OpenApiFileReference
                     {
@@ -108,7 +108,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     }
                 );
 
-                openApiDocumentsSpec.Add(openApiDocument.Info.Title, new OpenApiDocumentsSpec {
+                openApiDocumentsSpec.Add(openApiDocument.Info.Title, new OpenApiDocumentsSpec
+                {
                     Title = keyValuePair.Value.OpenApiInfo.Title,
                     Selected = keyValuePair.Value.Selected,
                     Path = $"./{configuration.UserInterfaceRoute}/{keyValuePair.Value.DocumentRoute}"
@@ -134,7 +135,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
         private void CreateSecuritySchemes(OpenApiDocument openApiDocument, OpenApiConfiguration configuration)
         {
-            foreach(KeyValuePair<string, OpenApiSecurityScheme> keyValuePair in configuration.SecuritySchemes)
+            foreach (KeyValuePair<string, OpenApiSecurityScheme> keyValuePair in configuration.SecuritySchemes)
             {
                 // SecurityScheme
                 if (openApiDocument.Components.SecuritySchemes == null)
@@ -243,6 +244,26 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     Filename = filename
                 });
             }
+
+            // Additional necessary scripts
+            var necessaryScripts = new List<string>();
+            necessaryScripts.Add("Resources.OpenApi.topbar-multiple-specs.js");
+            foreach (var resourceName in necessaryScripts)
+            {
+                var resourceAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                var javaScriptName = $"{resourceAssemblyName}.{resourceName}";
+                var content = LoadResourceFromAssembly(Assembly.GetExecutingAssembly(), javaScriptName);
+                var filename = javaScriptName.Substring(resourceAssemblyName.Length + 1);
+
+                scripts.Append($"    <script src=\"./{configuration.UserInterfaceRoute}/{filename}\" > </script>{ Environment.NewLine}");
+
+                openApiFileReferences.Add(new OpenApiFileReference
+                {
+                    Content = content,
+                    Filename = filename
+                });
+            }
+
             scripts.Append("  </body>");
 
             const string prefix = "FunctionMonkey.Compiler.Core.node_modules.swagger_ui_dist.";
@@ -513,8 +534,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 if (!string.IsNullOrWhiteSpace(functionDefinition.RouteConfiguration?.OpenApiName))
                 {
                     var filterdVerbs = new HashSet<HttpMethod>(functionDefinition.Verbs);
-                    functionFilter.Apply(functionDefinition.RouteConfiguration.Route, filterdVerbs,functionFilterContext);
-                    if(filterdVerbs.Count != 0)
+                    functionFilter.Apply(functionDefinition.RouteConfiguration.Route, filterdVerbs, functionFilterContext);
+                    if (filterdVerbs.Count != 0)
                     {
                         routeConfigurations.Add(functionDefinition.RouteConfiguration);
                     }
