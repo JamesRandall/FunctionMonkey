@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Abstractions.Http;
@@ -93,11 +94,17 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     continue;
                 }
 
+                // TODO: FIXME:
+                // Hack: Empty OpenApiSecurityRequirement lists are not serialized by the standard Microsoft
+                // implementation. Therefore we add a null object to the list and fix it here by hand.
+                var yaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
+                yaml = Regex.Replace(yaml,$"security:\n.*?- \n", "security: []\n");
+                
                 outputModel.OpenApiFileReferences.Add(
                     new OpenApiFileReference
                     {
                         Filename = keyValuePair.Value.DocumentRoute.Replace('/', '.'),
-                        Content = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml)
+                        Content = yaml
                     }
                 );
 
@@ -448,6 +455,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                                 Schema = typeof(string).MapToOpenApiSchema(),
                                 Description = ""
                             });
+                        }
+
+                        // TODO: FIXME:
+                        // Empty OpenApiSecurityRequirement lists are not serialized by the standard Microsoft
+                        // implementation. Therefore we add a null object to the list here and fix it later by hand.
+                        if (functionByRoute.Authorization == AuthorizationTypeEnum.Anonymous)
+                        {
+                            operation.Security.Add(null);
                         }
 
                         foreach (HttpParameter property in functionByRoute.RouteParameters)
