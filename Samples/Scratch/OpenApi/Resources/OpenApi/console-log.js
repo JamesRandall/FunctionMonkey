@@ -1,1 +1,0 @@
-﻿console.log('Injecting JavaScript works!')

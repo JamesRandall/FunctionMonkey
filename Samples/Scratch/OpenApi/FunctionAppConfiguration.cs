@@ -44,7 +44,7 @@ namespace OpenApi
                     .InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.theme-material.css")
                     .InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.custom.css")
                     .InjectResource(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
-                    .InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.console-log.js")
+                    .InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.topbar-multiple-specs.js")
                     .AddSecurityScheme("Bearer", // Reference.Id of this security scheme
                         new OpenApiSecurityScheme
                         {
