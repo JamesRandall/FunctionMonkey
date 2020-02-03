@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Build.Utilities;
-using Newtonsoft.Json;
 
 namespace FunctionMonkey.Compiler.MSBuild
 {
@@ -24,7 +23,7 @@ namespace FunctionMonkey.Compiler.MSBuild
                 Log.LogWarning("Missing error file");
             }
             string json = File.ReadAllText(file);
-            List<MSBuildErrorItem> items = JsonConvert.DeserializeObject<List<MSBuildErrorItem>>(json);
+            MSBuildErrorItem[] items = SimpleJson.SimpleJson.DeserializeObject<MSBuildErrorItem[]>(json);
             bool hasError = false;
             foreach(MSBuildErrorItem item in items)
             {
