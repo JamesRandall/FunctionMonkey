@@ -7232,3 +7232,560 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.TypeLoadingException.TypeLoadingException
   nameWithType: TypeLoadingException.TypeLoadingException
+- uid: SimpleJson
+  name: SimpleJson
+  href: api/SimpleJson.html
+  commentId: N:SimpleJson
+  fullName: SimpleJson
+  nameWithType: SimpleJson
+- uid: SimpleJson.IJsonSerializerStrategy
+  name: IJsonSerializerStrategy
+  href: api/SimpleJson.IJsonSerializerStrategy.html
+  commentId: T:SimpleJson.IJsonSerializerStrategy
+  fullName: SimpleJson.IJsonSerializerStrategy
+  nameWithType: IJsonSerializerStrategy
+- uid: SimpleJson.IJsonSerializerStrategy.DeserializeObject(System.Object,Type)
+  name: DeserializeObject(Object, Type)
+  href: api/SimpleJson.IJsonSerializerStrategy.html#SimpleJson_IJsonSerializerStrategy_DeserializeObject_System_Object_Type_
+  commentId: M:SimpleJson.IJsonSerializerStrategy.DeserializeObject(System.Object,Type)
+  fullName: SimpleJson.IJsonSerializerStrategy.DeserializeObject(System.Object, Type)
+  nameWithType: IJsonSerializerStrategy.DeserializeObject(Object, Type)
+- uid: SimpleJson.IJsonSerializerStrategy.DeserializeObject*
+  name: DeserializeObject
+  href: api/SimpleJson.IJsonSerializerStrategy.html#SimpleJson_IJsonSerializerStrategy_DeserializeObject_
+  commentId: Overload:SimpleJson.IJsonSerializerStrategy.DeserializeObject
+  isSpec: "True"
+  fullName: SimpleJson.IJsonSerializerStrategy.DeserializeObject
+  nameWithType: IJsonSerializerStrategy.DeserializeObject
+- uid: SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object,System.Object@)
+  name: TrySerializeNonPrimitiveObject(Object, out Object)
+  href: api/SimpleJson.IJsonSerializerStrategy.html#SimpleJson_IJsonSerializerStrategy_TrySerializeNonPrimitiveObject_System_Object_System_Object__
+  commentId: M:SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object,System.Object@)
+  name.vb: TrySerializeNonPrimitiveObject(Object, ByRef Object)
+  fullName: SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object, out System.Object)
+  fullName.vb: SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object, ByRef System.Object)
+  nameWithType: IJsonSerializerStrategy.TrySerializeNonPrimitiveObject(Object, out Object)
+  nameWithType.vb: IJsonSerializerStrategy.TrySerializeNonPrimitiveObject(Object, ByRef Object)
+- uid: SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject*
+  name: TrySerializeNonPrimitiveObject
+  href: api/SimpleJson.IJsonSerializerStrategy.html#SimpleJson_IJsonSerializerStrategy_TrySerializeNonPrimitiveObject_
+  commentId: Overload:SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject
+  isSpec: "True"
+  fullName: SimpleJson.IJsonSerializerStrategy.TrySerializeNonPrimitiveObject
+  nameWithType: IJsonSerializerStrategy.TrySerializeNonPrimitiveObject
+- uid: SimpleJson.JsonArray
+  name: JsonArray
+  href: api/SimpleJson.JsonArray.html
+  commentId: T:SimpleJson.JsonArray
+  fullName: SimpleJson.JsonArray
+  nameWithType: JsonArray
+- uid: SimpleJson.JsonArray.#ctor
+  name: JsonArray()
+  href: api/SimpleJson.JsonArray.html#SimpleJson_JsonArray__ctor
+  commentId: M:SimpleJson.JsonArray.#ctor
+  fullName: SimpleJson.JsonArray.JsonArray()
+  nameWithType: JsonArray.JsonArray()
+- uid: SimpleJson.JsonArray.#ctor(System.Int32)
+  name: JsonArray(Int32)
+  href: api/SimpleJson.JsonArray.html#SimpleJson_JsonArray__ctor_System_Int32_
+  commentId: M:SimpleJson.JsonArray.#ctor(System.Int32)
+  fullName: SimpleJson.JsonArray.JsonArray(System.Int32)
+  nameWithType: JsonArray.JsonArray(Int32)
+- uid: SimpleJson.JsonArray.#ctor*
+  name: JsonArray
+  href: api/SimpleJson.JsonArray.html#SimpleJson_JsonArray__ctor_
+  commentId: Overload:SimpleJson.JsonArray.#ctor
+  isSpec: "True"
+  fullName: SimpleJson.JsonArray.JsonArray
+  nameWithType: JsonArray.JsonArray
+- uid: SimpleJson.JsonArray.ToString
+  name: ToString()
+  href: api/SimpleJson.JsonArray.html#SimpleJson_JsonArray_ToString
+  commentId: M:SimpleJson.JsonArray.ToString
+  fullName: SimpleJson.JsonArray.ToString()
+  nameWithType: JsonArray.ToString()
+- uid: SimpleJson.JsonArray.ToString*
+  name: ToString
+  href: api/SimpleJson.JsonArray.html#SimpleJson_JsonArray_ToString_
+  commentId: Overload:SimpleJson.JsonArray.ToString
+  isSpec: "True"
+  fullName: SimpleJson.JsonArray.ToString
+  nameWithType: JsonArray.ToString
+- uid: SimpleJson.JsonObject
+  name: JsonObject
+  href: api/SimpleJson.JsonObject.html
+  commentId: T:SimpleJson.JsonObject
+  fullName: SimpleJson.JsonObject
+  nameWithType: JsonObject
+- uid: SimpleJson.JsonObject.#ctor
+  name: JsonObject()
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject__ctor
+  commentId: M:SimpleJson.JsonObject.#ctor
+  fullName: SimpleJson.JsonObject.JsonObject()
+  nameWithType: JsonObject.JsonObject()
+- uid: SimpleJson.JsonObject.#ctor(IEqualityComparer{System.String})
+  name: JsonObject(IEqualityComparer<String>)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject__ctor_IEqualityComparer_System_String__
+  commentId: M:SimpleJson.JsonObject.#ctor(IEqualityComparer{System.String})
+  name.vb: JsonObject(IEqualityComparer(Of String))
+  fullName: SimpleJson.JsonObject.JsonObject(IEqualityComparer<System.String>)
+  fullName.vb: SimpleJson.JsonObject.JsonObject(IEqualityComparer(Of System.String))
+  nameWithType: JsonObject.JsonObject(IEqualityComparer<String>)
+  nameWithType.vb: JsonObject.JsonObject(IEqualityComparer(Of String))
+- uid: SimpleJson.JsonObject.#ctor*
+  name: JsonObject
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject__ctor_
+  commentId: Overload:SimpleJson.JsonObject.#ctor
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.JsonObject
+  nameWithType: JsonObject.JsonObject
+- uid: SimpleJson.JsonObject.Add(KeyValuePair{System.String,System.Object})
+  name: Add(KeyValuePair<String, Object>)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Add_KeyValuePair_System_String_System_Object__
+  commentId: M:SimpleJson.JsonObject.Add(KeyValuePair{System.String,System.Object})
+  name.vb: Add(KeyValuePair(Of String, Object))
+  fullName: SimpleJson.JsonObject.Add(KeyValuePair<System.String, System.Object>)
+  fullName.vb: SimpleJson.JsonObject.Add(KeyValuePair(Of System.String, System.Object))
+  nameWithType: JsonObject.Add(KeyValuePair<String, Object>)
+  nameWithType.vb: JsonObject.Add(KeyValuePair(Of String, Object))
+- uid: SimpleJson.JsonObject.Add(System.String,System.Object)
+  name: Add(String, Object)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Add_System_String_System_Object_
+  commentId: M:SimpleJson.JsonObject.Add(System.String,System.Object)
+  fullName: SimpleJson.JsonObject.Add(System.String, System.Object)
+  nameWithType: JsonObject.Add(String, Object)
+- uid: SimpleJson.JsonObject.Add*
+  name: Add
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Add_
+  commentId: Overload:SimpleJson.JsonObject.Add
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Add
+  nameWithType: JsonObject.Add
+- uid: SimpleJson.JsonObject.Clear
+  name: Clear()
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Clear
+  commentId: M:SimpleJson.JsonObject.Clear
+  fullName: SimpleJson.JsonObject.Clear()
+  nameWithType: JsonObject.Clear()
+- uid: SimpleJson.JsonObject.Clear*
+  name: Clear
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Clear_
+  commentId: Overload:SimpleJson.JsonObject.Clear
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Clear
+  nameWithType: JsonObject.Clear
+- uid: SimpleJson.JsonObject.Contains(KeyValuePair{System.String,System.Object})
+  name: Contains(KeyValuePair<String, Object>)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Contains_KeyValuePair_System_String_System_Object__
+  commentId: M:SimpleJson.JsonObject.Contains(KeyValuePair{System.String,System.Object})
+  name.vb: Contains(KeyValuePair(Of String, Object))
+  fullName: SimpleJson.JsonObject.Contains(KeyValuePair<System.String, System.Object>)
+  fullName.vb: SimpleJson.JsonObject.Contains(KeyValuePair(Of System.String, System.Object))
+  nameWithType: JsonObject.Contains(KeyValuePair<String, Object>)
+  nameWithType.vb: JsonObject.Contains(KeyValuePair(Of String, Object))
+- uid: SimpleJson.JsonObject.Contains*
+  name: Contains
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Contains_
+  commentId: Overload:SimpleJson.JsonObject.Contains
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Contains
+  nameWithType: JsonObject.Contains
+- uid: SimpleJson.JsonObject.ContainsKey(System.String)
+  name: ContainsKey(String)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_ContainsKey_System_String_
+  commentId: M:SimpleJson.JsonObject.ContainsKey(System.String)
+  fullName: SimpleJson.JsonObject.ContainsKey(System.String)
+  nameWithType: JsonObject.ContainsKey(String)
+- uid: SimpleJson.JsonObject.ContainsKey*
+  name: ContainsKey
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_ContainsKey_
+  commentId: Overload:SimpleJson.JsonObject.ContainsKey
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.ContainsKey
+  nameWithType: JsonObject.ContainsKey
+- uid: SimpleJson.JsonObject.CopyTo(KeyValuePair{System.String,System.Object}[],System.Int32)
+  name: CopyTo(KeyValuePair<String, Object>[], Int32)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_CopyTo_KeyValuePair_System_String_System_Object____System_Int32_
+  commentId: M:SimpleJson.JsonObject.CopyTo(KeyValuePair{System.String,System.Object}[],System.Int32)
+  name.vb: CopyTo(KeyValuePair(Of String, Object)(), Int32)
+  fullName: SimpleJson.JsonObject.CopyTo(KeyValuePair<System.String, System.Object>[], System.Int32)
+  fullName.vb: SimpleJson.JsonObject.CopyTo(KeyValuePair(Of System.String, System.Object)(), System.Int32)
+  nameWithType: JsonObject.CopyTo(KeyValuePair<String, Object>[], Int32)
+  nameWithType.vb: JsonObject.CopyTo(KeyValuePair(Of String, Object)(), Int32)
+- uid: SimpleJson.JsonObject.CopyTo*
+  name: CopyTo
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_CopyTo_
+  commentId: Overload:SimpleJson.JsonObject.CopyTo
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.CopyTo
+  nameWithType: JsonObject.CopyTo
+- uid: SimpleJson.JsonObject.Count
+  name: Count
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Count
+  commentId: P:SimpleJson.JsonObject.Count
+  fullName: SimpleJson.JsonObject.Count
+  nameWithType: JsonObject.Count
+- uid: SimpleJson.JsonObject.Count*
+  name: Count
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Count_
+  commentId: Overload:SimpleJson.JsonObject.Count
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Count
+  nameWithType: JsonObject.Count
+- uid: SimpleJson.JsonObject.GetEnumerator
+  name: GetEnumerator()
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_GetEnumerator
+  commentId: M:SimpleJson.JsonObject.GetEnumerator
+  fullName: SimpleJson.JsonObject.GetEnumerator()
+  nameWithType: JsonObject.GetEnumerator()
+- uid: SimpleJson.JsonObject.GetEnumerator*
+  name: GetEnumerator
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_GetEnumerator_
+  commentId: Overload:SimpleJson.JsonObject.GetEnumerator
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.GetEnumerator
+  nameWithType: JsonObject.GetEnumerator
+- uid: SimpleJson.JsonObject.IsReadOnly
+  name: IsReadOnly
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_IsReadOnly
+  commentId: P:SimpleJson.JsonObject.IsReadOnly
+  fullName: SimpleJson.JsonObject.IsReadOnly
+  nameWithType: JsonObject.IsReadOnly
+- uid: SimpleJson.JsonObject.IsReadOnly*
+  name: IsReadOnly
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_IsReadOnly_
+  commentId: Overload:SimpleJson.JsonObject.IsReadOnly
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.IsReadOnly
+  nameWithType: JsonObject.IsReadOnly
+- uid: SimpleJson.JsonObject.Item(System.Int32)
+  name: Item[Int32]
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Item_System_Int32_
+  commentId: P:SimpleJson.JsonObject.Item(System.Int32)
+  name.vb: Item(Int32)
+  fullName: SimpleJson.JsonObject.Item[System.Int32]
+  fullName.vb: SimpleJson.JsonObject.Item(System.Int32)
+  nameWithType: JsonObject.Item[Int32]
+  nameWithType.vb: JsonObject.Item(Int32)
+- uid: SimpleJson.JsonObject.Item(System.String)
+  name: Item[String]
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Item_System_String_
+  commentId: P:SimpleJson.JsonObject.Item(System.String)
+  name.vb: Item(String)
+  fullName: SimpleJson.JsonObject.Item[System.String]
+  fullName.vb: SimpleJson.JsonObject.Item(System.String)
+  nameWithType: JsonObject.Item[String]
+  nameWithType.vb: JsonObject.Item(String)
+- uid: SimpleJson.JsonObject.Item*
+  name: Item
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Item_
+  commentId: Overload:SimpleJson.JsonObject.Item
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Item
+  nameWithType: JsonObject.Item
+- uid: SimpleJson.JsonObject.Keys
+  name: Keys
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Keys
+  commentId: P:SimpleJson.JsonObject.Keys
+  fullName: SimpleJson.JsonObject.Keys
+  nameWithType: JsonObject.Keys
+- uid: SimpleJson.JsonObject.Keys*
+  name: Keys
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Keys_
+  commentId: Overload:SimpleJson.JsonObject.Keys
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Keys
+  nameWithType: JsonObject.Keys
+- uid: SimpleJson.JsonObject.Remove(KeyValuePair{System.String,System.Object})
+  name: Remove(KeyValuePair<String, Object>)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Remove_KeyValuePair_System_String_System_Object__
+  commentId: M:SimpleJson.JsonObject.Remove(KeyValuePair{System.String,System.Object})
+  name.vb: Remove(KeyValuePair(Of String, Object))
+  fullName: SimpleJson.JsonObject.Remove(KeyValuePair<System.String, System.Object>)
+  fullName.vb: SimpleJson.JsonObject.Remove(KeyValuePair(Of System.String, System.Object))
+  nameWithType: JsonObject.Remove(KeyValuePair<String, Object>)
+  nameWithType.vb: JsonObject.Remove(KeyValuePair(Of String, Object))
+- uid: SimpleJson.JsonObject.Remove(System.String)
+  name: Remove(String)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Remove_System_String_
+  commentId: M:SimpleJson.JsonObject.Remove(System.String)
+  fullName: SimpleJson.JsonObject.Remove(System.String)
+  nameWithType: JsonObject.Remove(String)
+- uid: SimpleJson.JsonObject.Remove*
+  name: Remove
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Remove_
+  commentId: Overload:SimpleJson.JsonObject.Remove
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Remove
+  nameWithType: JsonObject.Remove
+- uid: SimpleJson.JsonObject.ToString
+  name: ToString()
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_ToString
+  commentId: M:SimpleJson.JsonObject.ToString
+  fullName: SimpleJson.JsonObject.ToString()
+  nameWithType: JsonObject.ToString()
+- uid: SimpleJson.JsonObject.ToString*
+  name: ToString
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_ToString_
+  commentId: Overload:SimpleJson.JsonObject.ToString
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.ToString
+  nameWithType: JsonObject.ToString
+- uid: SimpleJson.JsonObject.TryGetValue(System.String,System.Object@)
+  name: TryGetValue(String, out Object)
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_TryGetValue_System_String_System_Object__
+  commentId: M:SimpleJson.JsonObject.TryGetValue(System.String,System.Object@)
+  name.vb: TryGetValue(String, ByRef Object)
+  fullName: SimpleJson.JsonObject.TryGetValue(System.String, out System.Object)
+  fullName.vb: SimpleJson.JsonObject.TryGetValue(System.String, ByRef System.Object)
+  nameWithType: JsonObject.TryGetValue(String, out Object)
+  nameWithType.vb: JsonObject.TryGetValue(String, ByRef Object)
+- uid: SimpleJson.JsonObject.TryGetValue*
+  name: TryGetValue
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_TryGetValue_
+  commentId: Overload:SimpleJson.JsonObject.TryGetValue
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.TryGetValue
+  nameWithType: JsonObject.TryGetValue
+- uid: SimpleJson.JsonObject.Values
+  name: Values
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Values
+  commentId: P:SimpleJson.JsonObject.Values
+  fullName: SimpleJson.JsonObject.Values
+  nameWithType: JsonObject.Values
+- uid: SimpleJson.JsonObject.Values*
+  name: Values
+  href: api/SimpleJson.JsonObject.html#SimpleJson_JsonObject_Values_
+  commentId: Overload:SimpleJson.JsonObject.Values
+  isSpec: "True"
+  fullName: SimpleJson.JsonObject.Values
+  nameWithType: JsonObject.Values
+- uid: SimpleJson.PocoJsonSerializerStrategy
+  name: PocoJsonSerializerStrategy
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html
+  commentId: T:SimpleJson.PocoJsonSerializerStrategy
+  fullName: SimpleJson.PocoJsonSerializerStrategy
+  nameWithType: PocoJsonSerializerStrategy
+- uid: SimpleJson.PocoJsonSerializerStrategy.#ctor
+  name: PocoJsonSerializerStrategy()
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy__ctor
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.#ctor
+  fullName: SimpleJson.PocoJsonSerializerStrategy.PocoJsonSerializerStrategy()
+  nameWithType: PocoJsonSerializerStrategy.PocoJsonSerializerStrategy()
+- uid: SimpleJson.PocoJsonSerializerStrategy.#ctor*
+  name: PocoJsonSerializerStrategy
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy__ctor_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.#ctor
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.PocoJsonSerializerStrategy
+  nameWithType: PocoJsonSerializerStrategy.PocoJsonSerializerStrategy
+- uid: SimpleJson.PocoJsonSerializerStrategy.DeserializeObject(System.Object,Type)
+  name: DeserializeObject(Object, Type)
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_DeserializeObject_System_Object_Type_
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.DeserializeObject(System.Object,Type)
+  fullName: SimpleJson.PocoJsonSerializerStrategy.DeserializeObject(System.Object, Type)
+  nameWithType: PocoJsonSerializerStrategy.DeserializeObject(Object, Type)
+- uid: SimpleJson.PocoJsonSerializerStrategy.DeserializeObject*
+  name: DeserializeObject
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_DeserializeObject_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.DeserializeObject
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.DeserializeObject
+  nameWithType: PocoJsonSerializerStrategy.DeserializeObject
+- uid: SimpleJson.PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName(System.String)
+  name: MapClrMemberNameToJsonFieldName(String)
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_MapClrMemberNameToJsonFieldName_System_String_
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName(System.String)
+  fullName: SimpleJson.PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName(System.String)
+  nameWithType: PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName(String)
+- uid: SimpleJson.PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName*
+  name: MapClrMemberNameToJsonFieldName
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_MapClrMemberNameToJsonFieldName_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName
+  nameWithType: PocoJsonSerializerStrategy.MapClrMemberNameToJsonFieldName
+- uid: SimpleJson.PocoJsonSerializerStrategy.SerializeEnum(Enum)
+  name: SerializeEnum(Enum)
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_SerializeEnum_Enum_
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.SerializeEnum(Enum)
+  fullName: SimpleJson.PocoJsonSerializerStrategy.SerializeEnum(Enum)
+  nameWithType: PocoJsonSerializerStrategy.SerializeEnum(Enum)
+- uid: SimpleJson.PocoJsonSerializerStrategy.SerializeEnum*
+  name: SerializeEnum
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_SerializeEnum_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.SerializeEnum
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.SerializeEnum
+  nameWithType: PocoJsonSerializerStrategy.SerializeEnum
+- uid: SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes(System.Object,System.Object@)
+  name: TrySerializeKnownTypes(Object, out Object)
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_TrySerializeKnownTypes_System_Object_System_Object__
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes(System.Object,System.Object@)
+  name.vb: TrySerializeKnownTypes(Object, ByRef Object)
+  fullName: SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes(System.Object, out System.Object)
+  fullName.vb: SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes(System.Object, ByRef System.Object)
+  nameWithType: PocoJsonSerializerStrategy.TrySerializeKnownTypes(Object, out Object)
+  nameWithType.vb: PocoJsonSerializerStrategy.TrySerializeKnownTypes(Object, ByRef Object)
+- uid: SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes*
+  name: TrySerializeKnownTypes
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_TrySerializeKnownTypes_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.TrySerializeKnownTypes
+  nameWithType: PocoJsonSerializerStrategy.TrySerializeKnownTypes
+- uid: SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object,System.Object@)
+  name: TrySerializeNonPrimitiveObject(Object, out Object)
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_TrySerializeNonPrimitiveObject_System_Object_System_Object__
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object,System.Object@)
+  name.vb: TrySerializeNonPrimitiveObject(Object, ByRef Object)
+  fullName: SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object, out System.Object)
+  fullName.vb: SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject(System.Object, ByRef System.Object)
+  nameWithType: PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject(Object, out Object)
+  nameWithType.vb: PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject(Object, ByRef Object)
+- uid: SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject*
+  name: TrySerializeNonPrimitiveObject
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_TrySerializeNonPrimitiveObject_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject
+  nameWithType: PocoJsonSerializerStrategy.TrySerializeNonPrimitiveObject
+- uid: SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes(System.Object,System.Object@)
+  name: TrySerializeUnknownTypes(Object, out Object)
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_TrySerializeUnknownTypes_System_Object_System_Object__
+  commentId: M:SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes(System.Object,System.Object@)
+  name.vb: TrySerializeUnknownTypes(Object, ByRef Object)
+  fullName: SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes(System.Object, out System.Object)
+  fullName.vb: SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes(System.Object, ByRef System.Object)
+  nameWithType: PocoJsonSerializerStrategy.TrySerializeUnknownTypes(Object, out Object)
+  nameWithType.vb: PocoJsonSerializerStrategy.TrySerializeUnknownTypes(Object, ByRef Object)
+- uid: SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes*
+  name: TrySerializeUnknownTypes
+  href: api/SimpleJson.PocoJsonSerializerStrategy.html#SimpleJson_PocoJsonSerializerStrategy_TrySerializeUnknownTypes_
+  commentId: Overload:SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes
+  isSpec: "True"
+  fullName: SimpleJson.PocoJsonSerializerStrategy.TrySerializeUnknownTypes
+  nameWithType: PocoJsonSerializerStrategy.TrySerializeUnknownTypes
+- uid: SimpleJson.SimpleJson
+  name: SimpleJson
+  href: api/SimpleJson.SimpleJson.html
+  commentId: T:SimpleJson.SimpleJson
+  fullName: SimpleJson.SimpleJson
+  nameWithType: SimpleJson
+- uid: SimpleJson.SimpleJson.CurrentJsonSerializerStrategy
+  name: CurrentJsonSerializerStrategy
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_CurrentJsonSerializerStrategy
+  commentId: P:SimpleJson.SimpleJson.CurrentJsonSerializerStrategy
+  fullName: SimpleJson.SimpleJson.CurrentJsonSerializerStrategy
+  nameWithType: SimpleJson.CurrentJsonSerializerStrategy
+- uid: SimpleJson.SimpleJson.CurrentJsonSerializerStrategy*
+  name: CurrentJsonSerializerStrategy
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_CurrentJsonSerializerStrategy_
+  commentId: Overload:SimpleJson.SimpleJson.CurrentJsonSerializerStrategy
+  isSpec: "True"
+  fullName: SimpleJson.SimpleJson.CurrentJsonSerializerStrategy
+  nameWithType: SimpleJson.CurrentJsonSerializerStrategy
+- uid: SimpleJson.SimpleJson.DeserializeObject(System.String)
+  name: DeserializeObject(String)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_DeserializeObject_System_String_
+  commentId: M:SimpleJson.SimpleJson.DeserializeObject(System.String)
+  fullName: SimpleJson.SimpleJson.DeserializeObject(System.String)
+  nameWithType: SimpleJson.DeserializeObject(String)
+- uid: SimpleJson.SimpleJson.DeserializeObject(System.String,Type)
+  name: DeserializeObject(String, Type)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_DeserializeObject_System_String_Type_
+  commentId: M:SimpleJson.SimpleJson.DeserializeObject(System.String,Type)
+  fullName: SimpleJson.SimpleJson.DeserializeObject(System.String, Type)
+  nameWithType: SimpleJson.DeserializeObject(String, Type)
+- uid: SimpleJson.SimpleJson.DeserializeObject(System.String,Type,SimpleJson.IJsonSerializerStrategy)
+  name: DeserializeObject(String, Type, IJsonSerializerStrategy)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_DeserializeObject_System_String_Type_SimpleJson_IJsonSerializerStrategy_
+  commentId: M:SimpleJson.SimpleJson.DeserializeObject(System.String,Type,SimpleJson.IJsonSerializerStrategy)
+  fullName: SimpleJson.SimpleJson.DeserializeObject(System.String, Type, SimpleJson.IJsonSerializerStrategy)
+  nameWithType: SimpleJson.DeserializeObject(String, Type, IJsonSerializerStrategy)
+- uid: SimpleJson.SimpleJson.DeserializeObject*
+  name: DeserializeObject
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_DeserializeObject_
+  commentId: Overload:SimpleJson.SimpleJson.DeserializeObject
+  isSpec: "True"
+  fullName: SimpleJson.SimpleJson.DeserializeObject
+  nameWithType: SimpleJson.DeserializeObject
+- uid: SimpleJson.SimpleJson.DeserializeObject``1(System.String)
+  name: DeserializeObject<T>(String)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_DeserializeObject__1_System_String_
+  commentId: M:SimpleJson.SimpleJson.DeserializeObject``1(System.String)
+  name.vb: DeserializeObject(Of T)(String)
+  fullName: SimpleJson.SimpleJson.DeserializeObject<T>(System.String)
+  fullName.vb: SimpleJson.SimpleJson.DeserializeObject(Of T)(System.String)
+  nameWithType: SimpleJson.DeserializeObject<T>(String)
+  nameWithType.vb: SimpleJson.DeserializeObject(Of T)(String)
+- uid: SimpleJson.SimpleJson.DeserializeObject``1(System.String,SimpleJson.IJsonSerializerStrategy)
+  name: DeserializeObject<T>(String, IJsonSerializerStrategy)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_DeserializeObject__1_System_String_SimpleJson_IJsonSerializerStrategy_
+  commentId: M:SimpleJson.SimpleJson.DeserializeObject``1(System.String,SimpleJson.IJsonSerializerStrategy)
+  name.vb: DeserializeObject(Of T)(String, IJsonSerializerStrategy)
+  fullName: SimpleJson.SimpleJson.DeserializeObject<T>(System.String, SimpleJson.IJsonSerializerStrategy)
+  fullName.vb: SimpleJson.SimpleJson.DeserializeObject(Of T)(System.String, SimpleJson.IJsonSerializerStrategy)
+  nameWithType: SimpleJson.DeserializeObject<T>(String, IJsonSerializerStrategy)
+  nameWithType.vb: SimpleJson.DeserializeObject(Of T)(String, IJsonSerializerStrategy)
+- uid: SimpleJson.SimpleJson.EscapeToJavascriptString(System.String)
+  name: EscapeToJavascriptString(String)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_EscapeToJavascriptString_System_String_
+  commentId: M:SimpleJson.SimpleJson.EscapeToJavascriptString(System.String)
+  fullName: SimpleJson.SimpleJson.EscapeToJavascriptString(System.String)
+  nameWithType: SimpleJson.EscapeToJavascriptString(String)
+- uid: SimpleJson.SimpleJson.EscapeToJavascriptString*
+  name: EscapeToJavascriptString
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_EscapeToJavascriptString_
+  commentId: Overload:SimpleJson.SimpleJson.EscapeToJavascriptString
+  isSpec: "True"
+  fullName: SimpleJson.SimpleJson.EscapeToJavascriptString
+  nameWithType: SimpleJson.EscapeToJavascriptString
+- uid: SimpleJson.SimpleJson.PocoJsonSerializerStrategy
+  name: PocoJsonSerializerStrategy
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_PocoJsonSerializerStrategy
+  commentId: P:SimpleJson.SimpleJson.PocoJsonSerializerStrategy
+  fullName: SimpleJson.SimpleJson.PocoJsonSerializerStrategy
+  nameWithType: SimpleJson.PocoJsonSerializerStrategy
+- uid: SimpleJson.SimpleJson.PocoJsonSerializerStrategy*
+  name: PocoJsonSerializerStrategy
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_PocoJsonSerializerStrategy_
+  commentId: Overload:SimpleJson.SimpleJson.PocoJsonSerializerStrategy
+  isSpec: "True"
+  fullName: SimpleJson.SimpleJson.PocoJsonSerializerStrategy
+  nameWithType: SimpleJson.PocoJsonSerializerStrategy
+- uid: SimpleJson.SimpleJson.SerializeObject(System.Object)
+  name: SerializeObject(Object)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_SerializeObject_System_Object_
+  commentId: M:SimpleJson.SimpleJson.SerializeObject(System.Object)
+  fullName: SimpleJson.SimpleJson.SerializeObject(System.Object)
+  nameWithType: SimpleJson.SerializeObject(Object)
+- uid: SimpleJson.SimpleJson.SerializeObject(System.Object,SimpleJson.IJsonSerializerStrategy)
+  name: SerializeObject(Object, IJsonSerializerStrategy)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_SerializeObject_System_Object_SimpleJson_IJsonSerializerStrategy_
+  commentId: M:SimpleJson.SimpleJson.SerializeObject(System.Object,SimpleJson.IJsonSerializerStrategy)
+  fullName: SimpleJson.SimpleJson.SerializeObject(System.Object, SimpleJson.IJsonSerializerStrategy)
+  nameWithType: SimpleJson.SerializeObject(Object, IJsonSerializerStrategy)
+- uid: SimpleJson.SimpleJson.SerializeObject*
+  name: SerializeObject
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_SerializeObject_
+  commentId: Overload:SimpleJson.SimpleJson.SerializeObject
+  isSpec: "True"
+  fullName: SimpleJson.SimpleJson.SerializeObject
+  nameWithType: SimpleJson.SerializeObject
+- uid: SimpleJson.SimpleJson.TryDeserializeObject(System.String,System.Object@)
+  name: TryDeserializeObject(String, out Object)
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_TryDeserializeObject_System_String_System_Object__
+  commentId: M:SimpleJson.SimpleJson.TryDeserializeObject(System.String,System.Object@)
+  name.vb: TryDeserializeObject(String, ByRef Object)
+  fullName: SimpleJson.SimpleJson.TryDeserializeObject(System.String, out System.Object)
+  fullName.vb: SimpleJson.SimpleJson.TryDeserializeObject(System.String, ByRef System.Object)
+  nameWithType: SimpleJson.TryDeserializeObject(String, out Object)
+  nameWithType.vb: SimpleJson.TryDeserializeObject(String, ByRef Object)
+- uid: SimpleJson.SimpleJson.TryDeserializeObject*
+  name: TryDeserializeObject
+  href: api/SimpleJson.SimpleJson.html#SimpleJson_SimpleJson_TryDeserializeObject_
+  commentId: Overload:SimpleJson.SimpleJson.TryDeserializeObject
+  isSpec: "True"
+  fullName: SimpleJson.SimpleJson.TryDeserializeObject
+  nameWithType: SimpleJson.TryDeserializeObject

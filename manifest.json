@@ -1960,6 +1960,78 @@
       "version": ""
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SimpleJson.IJsonSerializerStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimpleJson.IJsonSerializerStrategy.html",
+          "hash": "3lCdY4fiifoqF7R/zMuvhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SimpleJson.JsonArray.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimpleJson.JsonArray.html",
+          "hash": "BvwcRcT5Mo4TosMGnng5OA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SimpleJson.JsonObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimpleJson.JsonObject.html",
+          "hash": "5k81nECBmLb0yEuC4RQEbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SimpleJson.PocoJsonSerializerStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimpleJson.PocoJsonSerializerStrategy.html",
+          "hash": "jtKtSpPQf2Fn+cl+SFud4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SimpleJson.SimpleJson.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimpleJson.SimpleJson.html",
+          "hash": "/52P9E9K+ArF3Pz9gV1jtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SimpleJson.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SimpleJson.html",
+          "hash": "ZrQV3Lb+JpN3TQSeM+1xtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "api/index.md",
       "output": {
@@ -1977,7 +2049,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "TqnGbgLvpKWtBGcEnhiE+g=="
+          "hash": "aT0IdW9M5tdzYiJ+sSmbnw=="
         }
       },
       "is_incremental": false,
@@ -2536,7 +2608,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 163,
+          "total_file_count": 169,
           "skipped_file_count": 0
         }
       }
