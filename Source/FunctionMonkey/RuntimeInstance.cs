@@ -124,7 +124,7 @@ namespace FunctionMonkey
                 compileTarget = functionCompilerMetadata.CompilerOptions.HttpTarget;
             }
 
-            RegisterCoreDependencies(builder.MediatorType, FunctionDefinitions, compileTarget);
+            RegisterCoreDependencies(builder?.MediatorType ?? typeof(DefaultMediatorDecorator), FunctionDefinitions, compileTarget);
 
             RegisterTimerCommandFactories(FunctionDefinitions);
 

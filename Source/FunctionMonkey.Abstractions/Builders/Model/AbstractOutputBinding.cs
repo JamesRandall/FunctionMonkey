@@ -16,6 +16,6 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             _commandResultTypeItemName = commandResultTypeItemName;
         }
 
-        public string CommandResultItemTypeName => _associatedFunctionDefinition.CommandResultItemTypeName ?? _commandResultTypeItemName;
+        public string CommandResultItemTypeName => _associatedFunctionDefinition?.CommandResultItemTypeName ?? _commandResultTypeItemName;
     }
 }

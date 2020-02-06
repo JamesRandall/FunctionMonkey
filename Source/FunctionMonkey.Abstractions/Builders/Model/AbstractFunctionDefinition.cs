@@ -48,6 +48,7 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             Name = string.Concat(namePrefix,commandType.GetFunctionName());
             CommandType = commandType;
             _explicitCommandResultType = explicitCommandResultType;
+            CommandResultType = explicitCommandResultType;
         }
 
         public IReadOnlyCollection<ImmutableTypeConstructorParameter> ImmutableTypeConstructorParameters { get; set; }
