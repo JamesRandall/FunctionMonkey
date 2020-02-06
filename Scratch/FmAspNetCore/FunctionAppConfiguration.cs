@@ -16,7 +16,7 @@ namespace FmAspNetCore
             builder
                 .CompilerOptions(options => options
                     .HttpTarget(CompileTargetEnum.AspNetCore) // the magic!
-                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
+                    //.OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
                 )
                 .Authorization(auth => auth
                     .AuthorizationDefault(AuthorizationTypeEnum.TokenValidation)

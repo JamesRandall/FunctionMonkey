@@ -4,6 +4,37 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <ConvertErrorsToolPath Condition="'$(OS)' == 'Windows_NT'">$(MSBuildThisFileDirectory)..\..\Source\FunctionMonkey.Compiler.MSBuild\bin\debug\netstandard2.0\FunctionMonkey.Compiler.MSBuild.dll</ConvertErrorsToolPath>
+        <ConvertErrorsToolPath Condition="'$(OS)' == 'Unix'">$(MSBuildThisFileDirectory)../../Source/FunctionMonkey.Compiler.MSBuild/bin/debug/netstandard2.0/FunctionMonkey.Compiler.MSBuild.dll</ConvertErrorsToolPath>
+    </PropertyGroup>
+    <UsingTask TaskName="FunctionMonkey.Compiler.MSBuild.ConvertErrors" AssemblyFile="$(ConvertErrorsToolPath)" />
+
+    <PropertyGroup>
+        <FunctionPathSubFolder Condition="'$(AzureFunctionsVersion)' != '' AND '$(OS)' == 'Windows_NT'">bin\</FunctionPathSubFolder>
+        <FunctionPathSubFolder Condition="'$(AzureFunctionsVersion)' != '' AND '$(OS)' == 'Unix'">bin/</FunctionPathSubFolder>
+        <FunctionPathSubFolder Condition="'$(AzureFunctionsVersion)' == ''"></FunctionPathSubFolder>
+
+        <FunctionCompilerExe Condition="'$(OS)' == 'Windows_NT'">dotnet "$(MSBuildThisFileDirectory)..\..\Source\FunctionMonkey.Compiler\bin\debug\netcoreapp3.1\FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+        <FunctionCompilerExe Condition="'$(OS)' == 'Unix'">dotnet "$(MSBuildThisFileDirectory)../../Source/FunctionMonkey.Compiler/bin/debug/netcoreapp3.1/FunctionMonkey.Compiler.dll"</FunctionCompilerExe>
+        <!-- compiler params -->
+        <FunctionCompilerParams>"$(TargetDir)$(FunctionPathSubFolder)$(TargetName).dll" --netcore21 --jsonoutput</FunctionCompilerParams>
+        <!-- publish params -->
+        <FunctionPublishParams>$(FunctionPathSubFolder)$(TargetName).dll</FunctionPublishParams>
+        <FunctionPublishPostfix>--netcore21 --jsonoutput</FunctionPublishPostfix>
+    </PropertyGroup>
+
+    <Target Name="_FunctionMonkeyAspNetCompiler" AfterTargets="Build" Condition="'$(AzureFunctionsVersion)' == ''">
+        <Message Text="Running Function Monkey build for ASP.Net Core for &quot;$(TargetDir)$(FunctionPathSubFolder)$(TargetName).dll&quot;" />
+        <Exec Command="$(FunctionCompilerExe) &quot;$(TargetDir)$(FunctionPathSubFolder)$(TargetName).dll&quot; --netcore21 --jsonoutput" />
+        <ConvertErrors InputPath="$(TargetDir)" />
+    </Target>
+    <Target Name="_FunctionMonkeyAspNetPublishCompiler" AfterTargets="AfterPublish" Condition="'$(AzureFunctionsVersion)' == ''">
+        <Message Text="Running Function Monkey in Publish location $(PublishDir) for ASP.Net Core" />
+        <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)$(TargetName).dll&quot; --netcore21 --jsonoutput" />
+        <!--<ConvertErrors InputAssemblyPath="$(FunctionPublishParams)" />-->
+    </Target>
+
     <ItemGroup>
       <ProjectReference Include="..\..\Source\FunctionMonkey.AspNetCore\FunctionMonkey.AspNetCore.csproj" />
       <ProjectReference Include="..\..\Source\FunctionMonkey.TokenValidator\FunctionMonkey.TokenValidator.csproj" />

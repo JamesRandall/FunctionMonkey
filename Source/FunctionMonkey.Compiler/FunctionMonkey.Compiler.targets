@@ -29,8 +29,8 @@
     <ConvertErrors InputPath="$(TargetDir)bin" />
   </Target>
   <Target Name="_FunctionMonkeyAspNetCompiler" AfterTargets="Build" Condition="'$(AzureFunctionsVersion)' == ''">
-    <Message Text="Running Function Monkey build for ASP.Net Core" />
-    <Exec Command="$(FunctionCompilerExe) $(FunctionCompilerParams)" />
+    <Message Text="Running Function Monkey build for ASP.Net Core for &quot;$(TargetDir)$(FunctionPathSubFolder)$(TargetName).dll&quot;" />
+    <Exec Command="$(FunctionCompilerExe) &quot;$(TargetDir)$(FunctionPathSubFolder)$(TargetName).dll&quot; --netcore21 --jsonoutput" />
     <ConvertErrors InputPath="$(TargetDir)" />
   </Target>
 
@@ -46,7 +46,6 @@
   </Target>
   <Target Name="_FunctionMonkeyAspNetPublishCompiler" AfterTargets="AfterPublish" Condition="'$(AzureFunctionsVersion)' == ''">
     <Message Text="Running Function Monkey in Publish location $(PublishDir) for ASP.Net Core" />
-    <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)$(FunctionPublishParams)&quot; $(FunctionPublishPostfix)" />
-    <ConvertErrors InputAssemblyPath="$(FunctionPublishParams)" />
+    <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)$(TargetName).dll&quot; --netcore21 --jsonoutput" />
   </Target>
 </Project>
