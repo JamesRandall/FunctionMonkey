@@ -15,7 +15,7 @@ namespace FunctionMonkey.Compiler
         {
             _items.Add(new MSBuildErrorItem()
             {
-                Severity = MSBuildErrorItem.SeverityEnum.Error,
+                Severity = MSBuildErrorItem.SeverityLevel.Error,
                 Message = message
             });
         }
@@ -24,7 +24,7 @@ namespace FunctionMonkey.Compiler
         {
             _items.Add(new MSBuildErrorItem()
             {
-                Severity = MSBuildErrorItem.SeverityEnum.Warning,
+                Severity = MSBuildErrorItem.SeverityLevel.Warning,
                 Message = message
             });
         }
@@ -33,7 +33,7 @@ namespace FunctionMonkey.Compiler
         {
             _items.Add(new MSBuildErrorItem()
             {
-                Severity = MSBuildErrorItem.SeverityEnum.Message,
+                Severity = MSBuildErrorItem.SeverityLevel.Message,
                 Message = message
             });
         }

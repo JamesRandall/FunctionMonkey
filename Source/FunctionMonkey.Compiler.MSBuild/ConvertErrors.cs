@@ -27,12 +27,12 @@ namespace FunctionMonkey.Compiler.MSBuild
             bool hasError = false;
             foreach(MSBuildErrorItem item in items)
             {
-                if (item.Severity == MSBuildErrorItem.SeverityEnum.Error)
+                if (item.Severity == MSBuildErrorItem.SeverityLevel.Error)
                 {
                     Log.LogError(item.Message);
                     hasError = true;
                 }
-                else if (item.Severity == MSBuildErrorItem.SeverityEnum.Warning)
+                else if (item.Severity == MSBuildErrorItem.SeverityLevel.Warning)
                 {
                     Log.LogWarning(item.Message);
                 }

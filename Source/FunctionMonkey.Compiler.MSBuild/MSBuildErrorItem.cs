@@ -2,14 +2,14 @@ namespace FunctionMonkey.Compiler.MSBuild
 {
     public class MSBuildErrorItem
     {
-        public enum SeverityEnum
+        public static class SeverityLevel
         {
-            Error,
-            Warning,
-            Message
+            public const int Error = 0;
+            public const int Warning = 1;
+            public const int Message = 2;
         }
-
-        public SeverityEnum Severity { get; set; }
+        
+        public int Severity { get; set; }
             
         public string Message { get; set; }
     }
