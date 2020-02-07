@@ -86,7 +86,8 @@ namespace FunctionMonkey.Serialization
             };
             try
             {
-                return JsonConvert.DeserializeObject(json, type, serializerSettings);
+                object result = JsonConvert.DeserializeObject(json, type, serializerSettings);
+                return result;
             }
             catch (JsonReaderException ex)
             {
