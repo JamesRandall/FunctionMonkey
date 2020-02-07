@@ -6597,6 +6597,51 @@ references:
   fullName.vb: FunctionMonkey.Serialization.NamingStrategyJsonSerializer.Serialize(Of TModel)(TModel, System.Boolean)
   nameWithType: NamingStrategyJsonSerializer.Serialize<TModel>(TModel, Boolean)
   nameWithType.vb: NamingStrategyJsonSerializer.Serialize(Of TModel)(TModel, Boolean)
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter
+  name: SecurityPropertyDefaultValueConverter
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html
+  commentId: T:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter
+  nameWithType: SecurityPropertyDefaultValueConverter
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.CanConvert(Type)
+  name: CanConvert(Type)
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html#FunctionMonkey_Serialization_SecurityPropertyDefaultValueConverter_CanConvert_Type_
+  commentId: M:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.CanConvert(Type)
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.CanConvert(Type)
+  nameWithType: SecurityPropertyDefaultValueConverter.CanConvert(Type)
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.CanConvert*
+  name: CanConvert
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html#FunctionMonkey_Serialization_SecurityPropertyDefaultValueConverter_CanConvert_
+  commentId: Overload:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.CanConvert
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.CanConvert
+  nameWithType: SecurityPropertyDefaultValueConverter.CanConvert
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.ReadJson(JsonReader,Type,System.Object,JsonSerializer)
+  name: ReadJson(JsonReader, Type, Object, JsonSerializer)
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html#FunctionMonkey_Serialization_SecurityPropertyDefaultValueConverter_ReadJson_JsonReader_Type_System_Object_JsonSerializer_
+  commentId: M:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.ReadJson(JsonReader,Type,System.Object,JsonSerializer)
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.ReadJson(JsonReader, Type, System.Object, JsonSerializer)
+  nameWithType: SecurityPropertyDefaultValueConverter.ReadJson(JsonReader, Type, Object, JsonSerializer)
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.ReadJson*
+  name: ReadJson
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html#FunctionMonkey_Serialization_SecurityPropertyDefaultValueConverter_ReadJson_
+  commentId: Overload:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.ReadJson
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.ReadJson
+  nameWithType: SecurityPropertyDefaultValueConverter.ReadJson
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.WriteJson(JsonWriter,System.Object,JsonSerializer)
+  name: WriteJson(JsonWriter, Object, JsonSerializer)
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html#FunctionMonkey_Serialization_SecurityPropertyDefaultValueConverter_WriteJson_JsonWriter_System_Object_JsonSerializer_
+  commentId: M:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.WriteJson(JsonWriter,System.Object,JsonSerializer)
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.WriteJson(JsonWriter, System.Object, JsonSerializer)
+  nameWithType: SecurityPropertyDefaultValueConverter.WriteJson(JsonWriter, Object, JsonSerializer)
+- uid: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.WriteJson*
+  name: WriteJson
+  href: api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html#FunctionMonkey_Serialization_SecurityPropertyDefaultValueConverter_WriteJson_
+  commentId: Overload:FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.WriteJson
+  isSpec: "True"
+  fullName: FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.WriteJson
+  nameWithType: SecurityPropertyDefaultValueConverter.WriteJson
 - uid: FunctionMonkey.Serialization.SnakeCaseJsonSerializer
   name: SnakeCaseJsonSerializer
   href: api/FunctionMonkey.Serialization.SnakeCaseJsonSerializer.html

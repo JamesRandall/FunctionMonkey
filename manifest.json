@@ -1689,7 +1689,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Serialization.JsonSecurityPropertyContractResolver.html",
-          "hash": "AqFy/8PT6lVKocjNzwDiIg=="
+          "hash": "hsykqyDcRbg0vcFnvRLDeg=="
         }
       },
       "is_incremental": false,
@@ -1701,7 +1701,19 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Serialization.NamingStrategyJsonSerializer.html",
-          "hash": "BflRcH5bc7xIrFCDcIGVjw=="
+          "hash": "6+uL/IaFZteeIpg/izTPOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Serialization.SecurityPropertyDefaultValueConverter.html",
+          "hash": "5pqXEn+dyjn4S1toGfynUA=="
         }
       },
       "is_incremental": false,
@@ -1725,7 +1737,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Serialization.html",
-          "hash": "n1+iBmswtCbg/03eGYFubA=="
+          "hash": "iWaYD9Y4GZrdLI3Y5HvtGQ=="
         }
       },
       "is_incremental": false,
@@ -2049,7 +2061,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "aT0IdW9M5tdzYiJ+sSmbnw=="
+          "hash": "P1bq70Pd7YsUw7mkMFSSIw=="
         }
       },
       "is_incremental": false,
@@ -2595,7 +2607,13 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 169,
+          "total_file_count": 170,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 38,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
@@ -2603,12 +2621,6 @@
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 38,
           "skipped_file_count": 0
         }
       }
