@@ -5,7 +5,7 @@ draft: false
 weight: 3
 ---
 
-To demonstrate how to use Function Monkey we'll build a super simple ToDo application. The full source for this, along with a demonstration of how to validate inputs, [can be found on GitHub](https://wwww.github.com).
+To demonstrate how to use Function Monkey we'll build a super simple ToDo application. The full source for this, along with a demonstration of how to validate inputs, [can be found on GitHub](https://github.com/JamesRandall/FunctionMonkey-ToDo-FSharp).
 
 First create an empty Azure Functions project targetting .NET Core 3.1 and, of course, using F#.
 
