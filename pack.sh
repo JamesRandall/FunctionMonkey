@@ -11,4 +11,4 @@ dotnet pack ./Source/FunctionMonkey.Testing/FunctionMonkey.Testing.csproj --outp
 dotnet pack ./Source/FunctionMonkey.TokenValidator/FunctionMonkey.TokenValidator.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.AspNetCore/FunctionMonkey.AspNetCore.csproj --output ./ --configuration Release
 dotnet pack ./Source/FunctionMonkey.FSharp/FunctionMonkey.FSharp.fsproj --output ./ --configuration Release
-dotnet pack ./Source/FunctionMonkey.MediatR/FunctionMonkey.MediatR.fsproj --output ./ --configuration Release
+dotnet pack ./Source/FunctionMonkey.MediatR/FunctionMonkey.MediatR.csproj --output ./ --configuration Release

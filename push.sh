@@ -1,0 +1,12 @@
+dotnet nuget push FunctionMonkey.Abstractions.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.AspNetCore.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.Commanding.Abstractions.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.Commanding.Cosmos.Abstractions.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.Compiler.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.FSharp.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.FluentValidation.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.MediatR.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.SignalR.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.Testing.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.Testing.Tests --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push FunctionMonkey.TokenValidator.4.0.40-beta.4.nupkg --api-key $NUGETKEY --source https://api.nuget.org/v3/index.json
