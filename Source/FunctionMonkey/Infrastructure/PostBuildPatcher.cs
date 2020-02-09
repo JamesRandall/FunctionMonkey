@@ -29,6 +29,23 @@ namespace FunctionMonkey.Infrastructure
         {
             _resultTypeExtractor = resultTypeExtractor;
         }
+        
+        public static void EnsureFunctionsHaveUniqueNames(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            var groups = functionDefinitions.GroupBy(x => x.Name)
+                .Where(x => x.Count() > 1)
+                .Select(x => x.ToArray())
+                .ToArray();
+            foreach (var group in groups)
+            {
+                int index = 0;
+                foreach (AbstractFunctionDefinition functionDefinition in group)
+                {
+                    functionDefinition.Name = $"{functionDefinition.Name}{index}";
+                    index++;
+                }
+            }
+        }
 
         public Type CalculateCommandResultType(AbstractFunctionDefinition definition)
         {

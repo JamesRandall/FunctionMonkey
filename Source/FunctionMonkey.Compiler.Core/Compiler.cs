@@ -117,6 +117,8 @@ namespace FunctionMonkey.Compiler.Core
                     CompilerOptions = builder.Options
                 };
             }
+
+            PostBuildPatcher.EnsureFunctionsHaveUniqueNames(functionCompilerMetadata.FunctionDefinitions);
             
             IReadOnlyCollection<string> externalAssemblies =
                 GetExternalAssemblyLocations(functionCompilerMetadata.FunctionDefinitions);
@@ -131,7 +133,7 @@ namespace FunctionMonkey.Compiler.Core
                 externalAssemblies,
                 _outputBinaryFolder);
         }
-        
+
         private bool VerifyOutputBindings(IFunctionHostBuilder builder)
         {
             bool foundErrors = false;

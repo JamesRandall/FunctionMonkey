@@ -123,6 +123,8 @@ namespace FunctionMonkey
                 FunctionDefinitions = functionCompilerMetadata.FunctionDefinitions;
                 compileTarget = functionCompilerMetadata.CompilerOptions.HttpTarget;
             }
+            
+            PostBuildPatcher.EnsureFunctionsHaveUniqueNames(FunctionDefinitions);
 
             RegisterCoreDependencies(builder?.MediatorType ?? typeof(DefaultMediatorDecorator), FunctionDefinitions, compileTarget);
 

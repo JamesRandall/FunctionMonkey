@@ -13,7 +13,7 @@ namespace FunctionMonkey.Tests.Integration.Http
         public async Task Return200()
         {
             HttpResponseMessage response = await Settings.Host
-                .AppendPathSegment("HttpCommandWithNoRoute")
+                .AppendPathSegment("HttpHttpCommandWithNoRoute")
                 .GetAsync();
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
