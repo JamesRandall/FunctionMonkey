@@ -195,7 +195,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
         private void CopySwaggerUserInterfaceFilesToWebFolder(OpenApiConfiguration configuration, IList<OpenApiFileReference> openApiFileReferences)
         {
             // StyleSheets
-            StringBuilder links = new StringBuilder("</title>");
+            StringBuilder links = new StringBuilder("");
             foreach (var injectedStylesheet in configuration.InjectedStylesheets)
             {
                 var resourceAssemblyName = injectedStylesheet.resourceAssembly.GetName().Name;
@@ -211,6 +211,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     Filename = filename
                 });
             }
+            links.Append("</head>");
 
             // Resources
             foreach (var injectedResource in configuration.InjectedResources)
@@ -281,7 +282,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     content = content.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/openapi.yaml");
                     content = content.Replace("https://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/openapi.yaml");
                     content = content.Replace("=\"./swagger", $"=\"./{configuration.UserInterfaceRoute}/swagger");
-                    content = content.Replace("</title>", links.ToString());
+                    content = content.Replace("</head>", links.ToString());
                     content = content.Replace("  </body>", scripts.ToString());
                 }
 
