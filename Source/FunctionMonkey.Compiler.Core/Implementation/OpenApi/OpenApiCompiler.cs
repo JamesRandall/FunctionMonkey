@@ -228,12 +228,13 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 });
             }
 
+
             // Logos
-            foreach (var injectedResource in configuration.InjectedLogos)
+            if ((configuration.InjectedLogo) != default(ValueTuple<Assembly, string>))//foreach (var injectedResource in configuration.InjectedLogos)
             {
-                var resourceAssemblyName = injectedResource.resourceAssembly.GetName().Name;
-                var resourceName = $"{resourceAssemblyName}.{injectedResource.resourceName}";
-                var content = LoadResourceFromAssembly(injectedResource.resourceAssembly, resourceName);
+                var resourceAssemblyName = configuration.InjectedLogo.resourceAssembly.GetName().Name;
+                var resourceName = $"{resourceAssemblyName}.{configuration.InjectedLogo.resourceName}";
+                var content = LoadResourceFromAssembly(configuration.InjectedLogo.resourceAssembly, resourceName);
                 var filename = resourceName.Substring(resourceAssemblyName.Length + 1);
                 var extension = Path.GetExtension(filename);
 
@@ -293,10 +294,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             {
                 string content = LoadResourceFromAssembly(sourceAssembly, swaggerFile);
 
+                
+
                 if (swaggerFile.EndsWith(".index.html"))
                 {
-                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/openapi.yaml");
-                    content = content.Replace("https://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/openapi.yaml");
+                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
+                    content = content.Replace("https://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
                     content = content.Replace("=\"./swagger", $"=\"./{configuration.UserInterfaceRoute}/swagger");
                     content = content.Replace("</head>", links.ToString());
                     content = content.Replace("  </body>", scripts.ToString());

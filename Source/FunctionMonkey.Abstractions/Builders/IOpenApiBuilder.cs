@@ -83,6 +83,7 @@ namespace FunctionMonkey.Abstractions.Builders
 
         /// <summary>
         /// Inject the given logo into the topbar of the index.html
+        /// Only one Logo is supported
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
         /// <param name="resourceName">Name of the logo</param>

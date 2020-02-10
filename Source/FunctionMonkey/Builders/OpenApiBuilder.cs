@@ -84,7 +84,7 @@ namespace FunctionMonkey.Builders
 
         public IOpenApiBuilder InjectLogo(Assembly resourceAssembly, string resourceName)
         {
-            _openApiConfiguration.InjectedLogos.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.InjectedLogo = (resourceAssembly, resourceName);
             return this;
         }
 

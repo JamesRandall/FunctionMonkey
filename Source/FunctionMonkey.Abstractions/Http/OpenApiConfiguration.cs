@@ -83,7 +83,7 @@ namespace FunctionMonkey.Abstractions.Http
 
         public IList<(Assembly resourceAssembly, string resourceName)> InjectedResources { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
 
-        public IList<(Assembly resourceAssembly, string resourceName)> InjectedLogos { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+        public (Assembly resourceAssembly, string resourceName) InjectedLogo { get; set; } 
 
         public IList<(Assembly resourceAssembly, string resourceName)> InjectedJavaScripts { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
 
