@@ -16,7 +16,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\OpenApi\app-logo-small.svg" />
     <EmbeddedResource Include="Resources\OpenApi\console-log.js" />
-    <EmbeddedResource Include="Resources\OpenApi\custom.css" />
     <EmbeddedResource Include="Resources\OpenApi\theme-material.css" />
   </ItemGroup>
   <ItemGroup>

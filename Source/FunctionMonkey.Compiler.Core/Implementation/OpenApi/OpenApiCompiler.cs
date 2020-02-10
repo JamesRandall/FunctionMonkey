@@ -228,6 +228,22 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 });
             }
 
+            // Logos
+            foreach (var injectedResource in configuration.InjectedLogos)
+            {
+                var resourceAssemblyName = injectedResource.resourceAssembly.GetName().Name;
+                var resourceName = $"{resourceAssemblyName}.{injectedResource.resourceName}";
+                var content = LoadResourceFromAssembly(injectedResource.resourceAssembly, resourceName);
+                var filename = resourceName.Substring(resourceAssemblyName.Length + 1);
+                var extension = Path.GetExtension(filename);
+
+                openApiFileReferences.Add(new OpenApiFileReference
+                {
+                    Content = content,
+                    Filename = $"Resources.OpenApi.logo{extension}"
+                });
+            }
+
             // Scripts
             StringBuilder scripts = new StringBuilder();
             foreach (var injectedJavaScript in configuration.InjectedJavaScripts)

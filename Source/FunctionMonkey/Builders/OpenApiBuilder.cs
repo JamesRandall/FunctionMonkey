@@ -82,6 +82,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder InjectLogo(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.InjectedLogos.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
         public IOpenApiBuilder AddXmlComments(string filePath)
         {
             _openApiConfiguration.XmlDocFactories.Add(() => new XPathDocument(filePath));

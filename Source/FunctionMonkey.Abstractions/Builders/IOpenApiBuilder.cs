@@ -82,6 +82,14 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder InjectResource(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
+        /// Inject the given logo into the topbar of the index.html
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
+        /// <param name="resourceName">Name of the logo</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectLogo(Assembly resourceAssembly, string resourceName);
+
+        /// <summary>
         /// Add a security scheme.
         /// </summary>
         /// <param name="id">The id of this security scheme</param>
