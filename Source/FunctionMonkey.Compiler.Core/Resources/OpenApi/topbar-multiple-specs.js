@@ -3,7 +3,7 @@
 async function init() {
     var specInfo = await getSpecInfoAsync();
     // Replace default topbar if more than one spec is present
-    if (specInfo) {
+    if (specInfo && specInfo.length > 1) {
         addStyles();
         renderTopbar(specInfo);
         onApiVersionChanged();
