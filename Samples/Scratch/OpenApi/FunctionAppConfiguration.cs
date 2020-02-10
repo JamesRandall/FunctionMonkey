@@ -1,4 +1,5 @@
-﻿using FunctionMonkey.Abstractions;
+using System;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.FluentValidation;
 using Microsoft.OpenApi.Models;
@@ -14,7 +15,7 @@ namespace OpenApi
         {
             builder
                 .CompilerOptions(options => options
-                    .OutputSourceTo(@"/Users/jamesrandall/code/authoredSource")
+                    .OutputSourceTo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"authoredSource"))
                 )
                 .Setup((serviceCollection, commandRegistry) =>
                 {
@@ -29,23 +30,34 @@ namespace OpenApi
                             Description = "Upcoming API"
                         }
                     )
-                    //.AddOpenApiInfo("v2-external", "external/openapi.yaml", new OpenApiInfo
-                    //{
-                    //    Title = "API 2.0.0-beta-113",
-                    //    Version = "v2",
-                    //    Description = "Upcoming API"
-                    //},
-                    //    new CustomOpenApiHttpFunctionFilter(),
-                    //    true
-                    //)
-                    .UserInterface("apidoc")
+                    .AddOpenApiInfo("v2-external", "external/openapi.yaml", new OpenApiInfo
+                    {
+                        Title = "API 2.0.0-beta-113",
+                        Version = "v2",
+                        Description = "Upcoming API"
+                    },
+                        new CustomOpenApiHttpFunctionFilter(),
+                        true
+                    )
+
+                    // OpenApi
+                    .UserInterface()
+                    //.InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.theme-material.css")
+                    //.InjectResource(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
+                    //.InjectLogo(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
+                    //.InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.console-log.js")
+
+
+                    // Redoc
+                    .RedocUserInterface()
+                    //.RedocInjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.Redoc.theme-material.css")
+                    //.RedocInjectResource(Assembly.GetExecutingAssembly(), "Resources.Redoc.app-logo-small.svg")
+                    //.RedocInjectLogo(Assembly.GetExecutingAssembly(), "Resources.Redoc.app-logo-small.svg")
+                    //.RedocInjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.Redoc.console-log.js")
+                    .RedocAddDocumentFilter(() => new CustomRedocDocumentFilter())
+
                     .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))
-                    //.InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.theme-material.css")
-                    //.InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.custom.css")
-                    .InjectResource(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
-                    .InjectLogo(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
-                    .InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.console-log.js")
                     .AddSecurityScheme("Bearer", // Reference.Id of this security scheme
                         new OpenApiSecurityScheme
                         {

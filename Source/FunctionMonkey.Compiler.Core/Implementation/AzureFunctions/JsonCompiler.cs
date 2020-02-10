@@ -71,6 +71,20 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
                 WriteFunctionTemplate(outputBinaryFolder, "OpenApiProvider", json);
             }
 
+            if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface && openApiOutputModel.RedocUserInterfaceRoute != "")
+            {
+                string redocTemplateSource = _templateProvider.GetTemplate("redocui", "json");
+                Func<object, string> redocTemplate = Handlebars.Compile(redocTemplateSource);
+                string redocJson = redocTemplate(new
+                {
+                    AssemblyFilename = $"{outputNamespaceName}.dll",
+                    Namespace = outputNamespaceName,
+                    RedocUserInterfaceRoute = openApiOutputModel.RedocUserInterfaceRoute
+                });
+
+                WriteFunctionTemplate(outputBinaryFolder, "RedocProvider", redocJson);
+            }
+
             {
                 string templateSource = _templateProvider.GetTemplate("extensions", "json");
                 Func<object, string> template = Handlebars.Compile(templateSource);
