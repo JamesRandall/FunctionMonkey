@@ -42,7 +42,6 @@
   <Target Name="_FunctionMonkeyAzureFunctionsPublishCompiler" AfterTargets="_GenerateFunctionsAndCopyContentFiles" Condition="'$(AzureFunctionsVersion)' != ''">
     <Message Text="Running Function Monkey in Publish location $(PublishDir) for Azure Functions" />
     <Exec Command="$(FunctionCompilerExe) &quot;$(PublishDir)$(FunctionPublishParams)&quot; $(FunctionPublishPostfix)" />
-    <ConvertErrors InputAssemblyPath="$(FunctionPublishParams)" />
   </Target>
   <Target Name="_FunctionMonkeyAspNetPublishCompiler" AfterTargets="AfterPublish" Condition="'$(AzureFunctionsVersion)' == ''">
     <Message Text="Running Function Monkey in Publish location $(PublishDir) for ASP.Net Core" />
