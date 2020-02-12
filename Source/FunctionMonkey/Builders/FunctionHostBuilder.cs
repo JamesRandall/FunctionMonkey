@@ -28,6 +28,7 @@ namespace FunctionMonkey.Builders
         public ConnectionStringSettingNames ConnectionStringSettingNames { get; } = new ConnectionStringSettingNames();
         public CompilerOptions Options { get; set; } = new CompilerOptions();
         public Type MediatorType { get; set; } = typeof(DefaultMediatorDecorator);
+        public Type DefaultOutputBindingConverter { get; set; }
         
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -114,6 +115,12 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder CompilerOptions(Action<ICompilerOptionsBuilder> options)
         {
             options(new CompilerOptionsBuilder(Options));
+            return this;
+        }
+
+        public IFunctionHostBuilder DefaultOutputConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            DefaultOutputBindingConverter = typeof(TConverter);
             return this;
         }
 

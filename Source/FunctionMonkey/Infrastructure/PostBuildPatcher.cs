@@ -46,7 +46,7 @@ namespace FunctionMonkey.Infrastructure
                 }
             }
         }
-
+        
         public Type CalculateCommandResultType(AbstractFunctionDefinition definition)
         {
             if (definition.ExplicitCommandResultType != null)

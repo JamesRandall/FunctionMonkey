@@ -97,6 +97,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder CompilerOptions(Action<ICompilerOptionsBuilder> options);
 
         /// <summary>
+        /// Registers a default output converter to use for all triggers with an output parameter
+        /// </summary>
+        /// <typeparam name="TConverter"></typeparam>
+        /// <returns></returns>
+        IFunctionHostBuilder DefaultOutputConverter<TConverter>() where TConverter : IOutputBindingConverter;
+
+        /// <summary>
         /// Access to the registered function definitions
         /// </summary>
         IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }

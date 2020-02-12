@@ -134,6 +134,7 @@ namespace FunctionMonkey
 
             RegisterCosmosDependencies(FunctionDefinitions);
 
+            
             CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
             RegisterLoggerIfRequired();
@@ -183,6 +184,7 @@ namespace FunctionMonkey
         }
 
         private void CreatePluginFunctions(
+            Func<object, object> defaultOutputBindingConverter,
             IReadOnlyCollection<AbstractClaimsMappingDefinition> claimsMappings,
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
@@ -191,6 +193,12 @@ namespace FunctionMonkey
                 PluginFunctions pluginFunctions = new PluginFunctions();
                 
                 pluginFunctions.Handler = functionDefinition.FunctionHandler;
+
+                if (functionDefinition.OutputBinding != null)
+                {
+                    Type outputBindingConverter = functionDefinition.OutputBinding.OutputBindingConverter ??
+                                                  defaultOutputBindingConverter;
+                }
                 
                 if (functionDefinition.DeserializeFunction != null)
                 {
