@@ -35,10 +35,19 @@ module OutputBindings =
             )
         )
         
+    let serviceBusTopic topicName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+        outputBindingTarget.setOutputBinding(
+            ServiceBusTopicOutputBinding(
+                FunctionMonkey.Extensions.Utils.EvaluateType(outputBindingTarget.resultType),
+                String.Empty,
+                TopicName = topicName
+            )
+        )
+        
     let withServiceBusSessionIdProperty (sessionIdProperty: Expression<Func<'commandType, 'propertyType>>) (outputBindingTarget:IOutputBindingTarget<'functionType>) =
         let outputBinding = outputBindingTarget.getOutputBinding()
         Option.bind (fun (binding:obj) ->
-            let serviceBusBinding = binding :?> ServiceBusQueueOutputBinding
+            let serviceBusBinding = binding :?> AbstractServiceBusOutputBinding
             serviceBusBinding.SessionIdPropertyName <- (InternalHelpers.getPropertyInfo sessionIdProperty).Name
             Some binding
         ) outputBinding |> ignore
@@ -46,10 +55,39 @@ module OutputBindings =
         
     let storageTable tableName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
         outputBindingTarget.setOutputBinding(
-            new StorageTableOutputBinding(
+            StorageTableOutputBinding(
                  FunctionMonkey.Extensions.Utils.EvaluateType(outputBindingTarget.resultType),
                  String.Empty,
                  TableName = tableName
+            )
+        )
+        
+    let storageQueue queueName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+        outputBindingTarget.setOutputBinding(
+            StorageQueueOutputBinding(
+                 FunctionMonkey.Extensions.Utils.EvaluateType(outputBindingTarget.resultType),
+                 String.Empty,
+                 QueueName = queueName
+            )
+        )
+        
+    let signalRMessage hubName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+        outputBindingTarget.setOutputBinding(
+            SignalROutputBinding(
+                 outputBindingTarget.getFunction(),
+                 String.Empty,
+                 HubName = hubName,
+                 SignalROutputTypeName = SignalROutputBinding.SignalROutputMessageType
+            )
+        )
+        
+    let signalRGroupAction hubName (outputBindingTarget:IOutputBindingTarget<'functionType>) =
+        outputBindingTarget.setOutputBinding(
+            SignalROutputBinding(
+                 outputBindingTarget.getFunction(),
+                 String.Empty,
+                 HubName = hubName,
+                 SignalROutputTypeName = SignalROutputBinding.SignalROutputGroupActionType
             )
         )
     
@@ -63,3 +101,5 @@ module OutputBindings =
         ) outputBinding |> ignore
         outputBindingTarget.getFunction()
         
+    
+    

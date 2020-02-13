@@ -70,9 +70,16 @@ let private patchRespond (command : HttpPatchCommand) : SimpleResponse =
     
 let private postWithBytesRespond (command : HttpPostWithBytesCommand) =
     command
+    
+let private getWithNoParameters () : SimpleResponse =
+    {
+        value = 42
+        message = "Some text"
+    }
 
 let httpVerbFunctions = functions {
     httpRoute "verbs" [
+        azureFunction.http (Handler(getWithNoParameters), Get)
         azureFunction.http (Handler(getRespond), Get, subRoute = "/{value}")
         azureFunction.http (Handler(postRespond), Post)
         azureFunction.http (Handler(postWithBytesRespond), Post, subRoute = "/bytes")

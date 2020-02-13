@@ -13,8 +13,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
     {
         public IList<OpenApiFileReference> OpenApiFileReferences { get; } = new List<OpenApiFileReference>();
 
-        public bool IsConfiguredForUserInterface => OpenApiFileReferences.Count > 0;
-
         public string UserInterfaceRoute { get; set; }
 
         public string RedocUserInterfaceRoute { get; set; }

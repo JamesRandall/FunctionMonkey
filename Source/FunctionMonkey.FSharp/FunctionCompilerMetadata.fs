@@ -407,6 +407,7 @@ module internal FunctionCompilerMetadata =
                                |> Seq.map (fun f -> f |> createTimerFunctionDefinition configuration) |> Seq.cast<AbstractFunctionDefinition>)
                 |> Seq.append(configuration.functions.cosmosDbFunctions
                               |> Seq.map (fun f -> f |> createCosmosDbFunctionDefinition configuration) |> Seq.cast<AbstractFunctionDefinition>)
+                //|> Seq.mapi(fun index functionDefinition -> functionDefinition.Name <- sprintf "%s%d" functionDefinition.Name index ; functionDefinition)
                 |> Seq.toList
             backlinkReferenceType = configuration.backlinkPropertyInfo.DeclaringType
             backlinkPropertyInfo = configuration.backlinkPropertyInfo

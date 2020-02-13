@@ -58,7 +58,15 @@ namespace FunctionMonkey.Abstractions.Extensions
                 }
                 else
                 {
-                    retType.Append(includeNamespace ? currentType.ToString() : currentType.Name);
+                    // Not sure if this is correct, its to deal with F# array types as in the ToDo example
+                    if (currentType.IsArray && currentType.ToString().Contains('+'))
+                    {
+                        retType.Append(includeNamespace ? currentType.ToString().Replace("+", ".") : currentType.Name);
+                    }
+                    else
+                    {
+                        retType.Append(includeNamespace ? currentType.ToString() : currentType.Name);
+                    }
                 }
             }
             

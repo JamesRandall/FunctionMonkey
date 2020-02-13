@@ -57,7 +57,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
                 }
             }
 
-            if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface)
+            if (openApiOutputModel != null && !string.IsNullOrWhiteSpace(openApiOutputModel.UserInterfaceRoute))
             {
                 string templateSource = _templateProvider.GetTemplate("swaggerui", "json");
                 Func<object, string> template = Handlebars.Compile(templateSource);
@@ -71,7 +71,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
                 WriteFunctionTemplate(outputBinaryFolder, "OpenApiProvider", json);
             }
 
-            if (openApiOutputModel != null && openApiOutputModel.IsConfiguredForUserInterface && openApiOutputModel.RedocUserInterfaceRoute != "")
+            if (openApiOutputModel != null && !string.IsNullOrWhiteSpace(openApiOutputModel.RedocUserInterfaceRoute))
             {
                 string redocTemplateSource = _templateProvider.GetTemplate("redocui", "json");
                 Func<object, string> redocTemplate = Handlebars.Compile(redocTemplateSource);

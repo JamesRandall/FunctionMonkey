@@ -17,7 +17,7 @@
     <browser url="http://localhost:7071" />
     <method v="2">
       <option name="BuildFunctionsProject" enabled="true" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Compile MediatR Sample" run_configuration_type="DotNetProject" />
+      <option name="RunConfigurationTask" enabled="true" />
     </method>
   </configuration>
 </component>

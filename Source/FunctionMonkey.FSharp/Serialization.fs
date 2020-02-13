@@ -92,7 +92,7 @@ let private serializer =
     NamingStrategyJsonSerializer(
         Newtonsoft.Json.Serialization.CamelCaseNamingStrategy(),
         converters
-    ) 
+    )
 
 let modelSerializer (model:obj) (encodeSecurityProperties:bool) : string =
     let output = serializer.Serialize(model, encodeSecurityProperties)

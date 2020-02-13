@@ -11,11 +11,11 @@ namespace FunctionMonkey.Model
 {
     public class HttpFunctionDefinition : AbstractFunctionDefinition
     {
-        public HttpFunctionDefinition(Type commandType) : base("", commandType)
+        public HttpFunctionDefinition(Type commandType) : base("Http", commandType)
         {
         }
         
-        public HttpFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("", commandType, explicitCommandResultType)
+        public HttpFunctionDefinition(Type commandType, Type explicitCommandResultType) : base("Http", commandType, explicitCommandResultType)
         {
         }
 

@@ -37,6 +37,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
         public OpenApiOutputModel Compile(OpenApiConfiguration configuration, IReadOnlyCollection<AbstractFunctionDefinition> abstractFunctionDefinitions, string outputBinaryFolder)
         {
+            if (configuration == null)
+            {
+                return null;
+            }
+            
             string apiPrefix = GetApiPrefix(outputBinaryFolder);
 
             if (!configuration.IsValid)

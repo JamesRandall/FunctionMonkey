@@ -111,7 +111,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         private SyntaxTree CreateOpenApiTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
         {
-            if (OpenApiOutputModel != null && OpenApiOutputModel.IsConfiguredForUserInterface)
+            if (OpenApiOutputModel != null && !string.IsNullOrWhiteSpace(OpenApiOutputModel.UserInterfaceRoute))
             {
                 string templateSource = TemplateProvider.GetTemplate("swaggerui","csharp");
                 return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
@@ -126,7 +126,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         private SyntaxTree CreateRedocTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
         {
-            if (OpenApiOutputModel != null && OpenApiOutputModel.IsConfiguredForUserInterface)
+            if (OpenApiOutputModel != null && !string.IsNullOrWhiteSpace(OpenApiOutputModel.RedocUserInterfaceRoute))
             {
                 string templateSource = TemplateProvider.GetTemplate("redocui", "csharp");
                 return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "RedocUi", new
