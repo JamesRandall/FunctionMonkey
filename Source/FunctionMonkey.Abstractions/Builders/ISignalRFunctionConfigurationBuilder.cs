@@ -9,7 +9,7 @@ namespace FunctionMonkey.Abstractions.Builders
     /// </summary>
     public interface ISignalRFunctionConfigurationBuilder<TCommand> : 
         ISignalRFunctionBuilder,
-        IFunctionOptions<TCommand, ISignalRFunctionConfigurationBuilder<TCommand>,
+        IFunctionOptions<ISignalRFunctionConfigurationBuilder<TCommand>,
         IHttpFunctionOptionsBuilder<TCommand>>
     {
         /// <summary>

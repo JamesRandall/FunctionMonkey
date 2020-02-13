@@ -90,7 +90,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, IHttpFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IHttpFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+
+        
     }
 }

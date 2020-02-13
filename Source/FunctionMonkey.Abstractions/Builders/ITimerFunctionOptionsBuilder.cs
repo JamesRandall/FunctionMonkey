@@ -2,6 +2,6 @@
 {
     public interface ITimerFunctionOptionsBuilder<TCommand> : IFunctionBuilder
     {
-        IOutputBindingBuilder<TCommand, IFunctionBuilder> OutputTo { get; }
+        IOutputBindingBuilder<IFunctionBuilder> OutputTo { get; }
     }
 }

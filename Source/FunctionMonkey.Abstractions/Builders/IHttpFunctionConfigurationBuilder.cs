@@ -8,7 +8,6 @@ namespace FunctionMonkey.Abstractions.Builders
     /// </summary>
     public interface IHttpFunctionConfigurationBuilder<TCommand> : IHttpFunctionBuilder,
         IFunctionOptions<
-            TCommand,
             IHttpFunctionConfigurationBuilder<TCommand>,
             IHttpFunctionOptionsBuilder<TCommand>>
     {

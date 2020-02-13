@@ -202,7 +202,9 @@
       <EmbeddedResource Include="Templates\AzureFunctions\storageblobstream.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\storagequeue.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\storagequeue.json.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\storagequeue.outputcollector.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\storagequeue.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\storagetable.outputcollector.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\storagetable.outputparameter.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\swaggerui.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\swaggerui.json.handlebars" />

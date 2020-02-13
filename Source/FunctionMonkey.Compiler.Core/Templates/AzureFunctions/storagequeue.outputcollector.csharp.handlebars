@@ -1,0 +1,20 @@
+{{#if CommandResultIsCollection}}
+foreach (var commandResultItem in result)
+{
+{{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(commandResultItem);
+    string resultJson = pluginFunctions.Serialize(convertedItem, false);
+{{else}}
+    string resultJson = pluginFunctions.Serialize(commandResultItem, false);
+{{/if}}
+    await collector.AddAsync(new Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage(resultJson));
+}
+{{else}}
+    {{#if OutputBinding.HasOutputBindingConverter}}
+        var convertedItem = pluginFunctions.OutputBindingConverter(result);
+        string resultJson = pluginFunctions.Serialize(convertedItem, false);
+    {{else}}
+        string resultJson = pluginFunctions.Serialize(result, false);
+    {{/if}}
+    await collector.AddAsync(new Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage(resultJson));
+{{/if}}

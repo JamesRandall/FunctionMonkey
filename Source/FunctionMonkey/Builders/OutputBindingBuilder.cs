@@ -13,7 +13,7 @@ using FunctionMonkey.Model.OutputBindings;
 
 namespace FunctionMonkey.Builders
 {
-    internal class OutputBindingBuilder<TCommand, TParentBuilder> : IOutputBindingBuilder<TCommand, TParentBuilder>
+    internal class OutputBindingBuilder<TParentBuilder> : IOutputBindingBuilder<TParentBuilder>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly TParentBuilder _parentBuilder;

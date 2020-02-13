@@ -42,7 +42,7 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, IStorageFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IStorageFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<IStorageFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IStorageFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
     }
 }

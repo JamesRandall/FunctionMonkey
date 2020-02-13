@@ -48,7 +48,7 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, IServiceBusFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IServiceBusFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<IServiceBusFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IServiceBusFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }

@@ -48,6 +48,7 @@ namespace {{Namespace}}
         {
             log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             {{#if IsDocumentBatchCommand}}
                 {{CommandTypeName}} command = new {{CommandTypeName}}();

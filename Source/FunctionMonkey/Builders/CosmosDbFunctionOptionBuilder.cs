@@ -66,7 +66,7 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOutputBindingBuilder<TCommandOuter, ICosmosDbFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, ICosmosDbFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<ICosmosDbFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<ICosmosDbFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }

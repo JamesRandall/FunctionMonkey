@@ -29,6 +29,7 @@ namespace {{Namespace}}
         {
             log.LogInformation("Storage blob trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             string json;
             using(StreamReader reader = new StreamReader(stream))

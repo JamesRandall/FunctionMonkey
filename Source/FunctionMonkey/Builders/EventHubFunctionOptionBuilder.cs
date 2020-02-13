@@ -33,7 +33,7 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOutputBindingBuilder<TCommandOuter, IEventHubFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IEventHubFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<IEventHubFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IEventHubFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
     }
 }

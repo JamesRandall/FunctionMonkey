@@ -3,7 +3,7 @@ foreach (var commandResultItem in result)
 {
 {{#if OutputBinding.HasOutputBindingConverter}}
     var convertedItem = pluginFunctions.OutputBindingConverter(commandResultItem);
-    await collector.AddAsync(convertedItem);
+    await collector.AddAsync((Microsoft.WindowsAzure.Storage.Table.ITableEntity)convertedItem);
 {{else}}
     await collector.AddAsync(commandResultItem);
 {{/if}}
@@ -12,7 +12,7 @@ foreach (var commandResultItem in result)
 {{else}}
     {{#if OutputBinding.HasOutputBindingConverter}}
         var convertedItem = pluginFunctions.OutputBindingConverter(result);
-        await collector.AddAsync(convertedItem);
+        await collector.AddAsync((Microsoft.WindowsAzure.Storage.Table.ITableEntity)convertedItem);
     {{else}}
         await collector.AddAsync(result);
     {{/if}}

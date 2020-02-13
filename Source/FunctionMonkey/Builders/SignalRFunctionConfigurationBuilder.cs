@@ -48,8 +48,8 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, ISignalRFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, ISignalRFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<ISignalRFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<ISignalRFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
 
         public ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType = null,
             params HttpMethod[] method)
