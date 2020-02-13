@@ -60,6 +60,8 @@ namespace FunctionMonkey.Abstractions.Http
 
         public bool IsOpenApiOutputEnabled => OpenApiDocumentInfos.Count != 0;
 
+        public bool IsRedocOutputEnabled => OpenApiDocumentInfos.Count != 0;
+
         public bool IsValid
         {
             get
@@ -76,18 +78,32 @@ namespace FunctionMonkey.Abstractions.Http
         }
 
         public string UserInterfaceRoute { get; set; }
-        
+
+        public string RedocUserInterfaceRoute { get; set; }
+
         public IList<Func<XPathDocument>> XmlDocFactories { get; } = new List<Func<XPathDocument>>();
 
         public IList<(Assembly resourceAssembly, string resourceName, string media)> InjectedStylesheets { get; } = new List<(Assembly resourceAssembly, string resourceName, string media)>();
 
+        public IList<(Assembly resourceAssembly, string resourceName, string media)> RedocInjectedStylesheets { get; } = new List<(Assembly resourceAssembly, string resourceName, string media)>();
+
         public IList<(Assembly resourceAssembly, string resourceName)> InjectedResources { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
 
+        public IList<(Assembly resourceAssembly, string resourceName)> RedocInjectedResources { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+
+        public (Assembly resourceAssembly, string resourceName) InjectedLogo { get; set; }
+
+        public (Assembly resourceAssembly, string resourceName) RedocInjectedLogo { get; set; }
+
         public IList<(Assembly resourceAssembly, string resourceName)> InjectedJavaScripts { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+
+        public IList<(Assembly resourceAssembly, string resourceName)> RedocInjectedJavaScripts { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
 
         public IDictionary<string, OpenApiSecurityScheme> SecuritySchemes = new Dictionary<string, OpenApiSecurityScheme>();
 
         public IList<Func<IOpenApiDocumentFilter>> DocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
+
+        public IList<Func<IOpenApiDocumentFilter>> RedocDocumentFilterFactories { get; } = new List<Func<IOpenApiDocumentFilter>>();
 
         public IList<Func<IOpenApiOperationFilter>> OperationFilterFactories { get; } = new List<Func<IOpenApiOperationFilter>>();
 

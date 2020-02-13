@@ -11,11 +11,17 @@
     <None Remove="Resources\OpenApi\app-logo-small.svg" />
     <None Remove="Resources\OpenApi\console-log.js" />
     <None Remove="Resources\OpenApi\theme-material.css" />
+    <None Remove="Resources\Redoc\app-logo-small.svg" />
+    <None Remove="Resources\Redoc\console-log.js" />
+    <None Remove="Resources\Redoc\theme-material.css" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\OpenApi\app-logo-small.svg" />
     <EmbeddedResource Include="Resources\OpenApi\console-log.js" />
     <EmbeddedResource Include="Resources\OpenApi\theme-material.css" />
+    <EmbeddedResource Include="Resources\Redoc\app-logo-small.svg" />
+    <EmbeddedResource Include="Resources\Redoc\console-log.js" />
+    <EmbeddedResource Include="Resources\Redoc\theme-material.css" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />

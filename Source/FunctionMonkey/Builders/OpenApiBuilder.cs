@@ -48,13 +48,23 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder UserInterface(string route = "/openapi")
+        public IOpenApiBuilder UserInterface(string route = "openapi")
         {
             if(route.StartsWith("/"))
             {
                 route = route.Substring(1);
             }
             _openApiConfiguration.UserInterfaceRoute = route;
+            return this;
+        }
+
+        public IOpenApiBuilder RedocUserInterface(string route = "redoc")
+        {
+            if (route.StartsWith("/"))
+            {
+                route = route.Substring(1);
+            }
+            _openApiConfiguration.RedocUserInterfaceRoute = route;
             return this;
         }
 
@@ -70,15 +80,45 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder RedocInjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen")
+        {
+            _openApiConfiguration.RedocInjectedStylesheets.Add((resourceAssembly, resourceName, media));
+            return this;
+        }
+
         public IOpenApiBuilder InjectJavaScript(Assembly resourceAssembly, string resourceName)
         {
             _openApiConfiguration.InjectedJavaScripts.Add((resourceAssembly, resourceName));
             return this;
         }
 
+        public IOpenApiBuilder RedocInjectJavaScript(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.RedocInjectedJavaScripts.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
         public IOpenApiBuilder InjectResource(Assembly resourceAssembly, string resourceName)
         {
             _openApiConfiguration.InjectedResources.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder RedocInjectResource(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.RedocInjectedResources.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder InjectLogo(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.InjectedLogo = (resourceAssembly, resourceName);
+            return this;
+        }
+
+        public IOpenApiBuilder RedocInjectLogo(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.RedocInjectedLogo = (resourceAssembly, resourceName);
             return this;
         }
 
@@ -97,6 +137,12 @@ namespace FunctionMonkey.Builders
         public IOpenApiBuilder AddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory)
         {
             _openApiConfiguration.DocumentFilterFactories.Add(documentFilterFactory);
+            return this;
+        }
+
+        public IOpenApiBuilder RedocAddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory)
+        {
+            _openApiConfiguration.RedocDocumentFilterFactories.Add(documentFilterFactory);
             return this;
         }
 

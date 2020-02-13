@@ -1,0 +1,70 @@
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+
+namespace {{Namespace}}
+{
+    public static class RedocProvider
+    {
+        [FunctionName("RedocProvider")]
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "{{RedocUserInterfaceRoute}}/{name1?}/{name2?}/{name3?}/{name4?}/{name5?}")]HttpRequest req, ILogger logger, string name1, string name2, string name3, string name4, string name5)
+        {
+            if (string.IsNullOrWhiteSpace(name1))
+            {
+                name1 = "start.html";
+            }
+
+            var resourceName = $"{{Namespace}}.OpenApi";
+            if(!string.IsNullOrWhiteSpace(name1))
+            {
+                resourceName += "." + name1;
+            }
+            if(!string.IsNullOrWhiteSpace(name2))
+            {
+                resourceName += "." + name2;
+            }
+            if(!string.IsNullOrWhiteSpace(name3))
+            {
+                resourceName += "." + name3;
+            }
+            if(!string.IsNullOrWhiteSpace(name4))
+            {
+                resourceName += "." + name4;
+            }
+            if(!string.IsNullOrWhiteSpace(name5))
+            {
+                resourceName += "." + name5;
+            }
+            using (Stream stream = typeof(RedocProvider).Assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream != null)
+                {
+                    ContentResult result = new ContentResult();
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        result.Content = reader.ReadToEnd();
+                    }
+
+                    var provider = new FileExtensionContentTypeProvider();
+                    if (!provider.TryGetContentType(Path.GetExtension(resourceName).ToLower(), out var contentType))
+                    {
+                        contentType = "application/octet-stream";
+                    }
+
+                    result.ContentType = contentType;
+
+                    return result;
+                }
+                else {
+                    logger.LogWarning($"Unable to find resource for {resourceName}");
+                }
+            }
+            return new NotFoundResult();
+        }
+    }
+}

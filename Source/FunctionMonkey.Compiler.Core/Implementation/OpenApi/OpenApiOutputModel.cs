@@ -16,5 +16,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
         public bool IsConfiguredForUserInterface => OpenApiFileReferences.Count > 0;
 
         public string UserInterfaceRoute { get; set; }
+
+        public string RedocUserInterfaceRoute { get; set; }
     }
 }

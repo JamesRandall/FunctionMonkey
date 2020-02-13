@@ -198,5 +198,18 @@ namespace FunctionMonkey.Compiler.Core.Extensions
             var length = fullName.IndexOf("[[", StringComparison.Ordinal);
             return length != -1 ? fullName.Substring(0, length) : fullName;
         }
+
+        public static string ReplaceLastOccurrence(this string value, string find, string replace)
+        {
+            int place = value.LastIndexOf(find);
+
+            if (place == -1)
+            {
+                return value;
+            }
+
+            string result = value.Remove(place, find.Length).Insert(place, replace);
+            return result;
+        }
     }
 }

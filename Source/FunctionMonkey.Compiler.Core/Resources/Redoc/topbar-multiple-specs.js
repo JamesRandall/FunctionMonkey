@@ -25,25 +25,26 @@ async function getSpecInfoAsync() {
 }
 
 async function getImage() {
-    return await fetch('./openapi/Resources.OpenApi.logo.svg')
+    return await fetch('./openapi/Resources.Redoc.logo.svg')
         .then(response => response.blob())
 }
 
 function onApiVersionChanged() {
-    const ui = SwaggerUIBundle({
-        url: document.getElementById('select').value,
-        dom_id: '#swagger-ui',
-        deepLinking: true,
-        presets: [
-            SwaggerUIBundle.presets.apis,
-            SwaggerUIStandalonePreset
-        ],
-        plugins: [
-            SwaggerUIBundle.plugins.DownloadUrl
-        ],
-        layout: "StandaloneLayout"
-    })
-    window.ui = ui
+    console.log("neue auswahl laden");
+    //const ui = SwaggerUIBundle({
+    //    url: document.getElementById('select').value,
+    //    dom_id: '#swagger-ui',
+    //    deepLinking: true,
+    //    presets: [
+    //        SwaggerUIBundle.presets.apis,
+    //        SwaggerUIStandalonePreset
+    //    ],
+    //    plugins: [
+    //        SwaggerUIBundle.plugins.DownloadUrl
+    //    ],
+    //    layout: "StandaloneLayout"
+    //})
+    //window.ui = ui
 }
 
 async function renderTopbar(specInfo) {
@@ -77,7 +78,8 @@ async function renderTopbar(specInfo) {
                 </form>
             </div>
         </div>`;
-    document.body.insertBefore(customTopbar, document.getElementById('swagger-ui'));
+    var body = document.body;
+    document.body.insertBefore(customTopbar, body.firstChild);
 
     var preSelectedSpecValue = specInfo.find(spec => spec.Selected);
     if (!preSelectedSpecValue) {
