@@ -460,6 +460,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             // Other necessary files
             const string prefix = "Resources.Redoc.";
             var necessaryFiles = new List<string>();
+            necessaryFiles.Add("Resources.Redoc.favicon-16x16.ico");
+            necessaryFiles.Add("Resources.Redoc.favicon-32x32.ico");
             necessaryFiles.Add("Resources.Redoc.index.html");
             necessaryFiles.Add("Resources.Redoc.redoc-logo.png");
             foreach (var resourceName in necessaryFiles)
@@ -481,12 +483,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     contentString = contentString.Replace("/redoc/openapi.yaml", $"/{route}/{documentInfo.DocumentRoute}");
                     contentString = contentString.Replace("</head>", links.ToString());
                     contentString = contentString.Replace("</body>", scripts.ToString());
-
-                        //< link rel = "icon" type = "image/png" href = "/openapi/favicon-32x32.png" sizes = "32x32" />
-       
-                        //< link rel = "icon" type = "image/png" href = "/openapi/favicon-16x16.png" sizes = "16x16" />
-
-                                                                                                           content = Encoding.UTF8.GetBytes(contentString);
+                    content = Encoding.UTF8.GetBytes(contentString);
                 }
 
                 openApiFileReferences.Add(new OpenApiFileReference
