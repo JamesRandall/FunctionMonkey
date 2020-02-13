@@ -332,13 +332,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 .Where(x => x.StartsWith(prefix)).Select(name => (prefix, name))
                 .ToList();
             prefix = "FunctionMonkey.Compiler.Core.";
-            necessaryFiles.Add((prefix, "Resources.OpenApi.swagger-logo.svg"));
+            necessaryFiles.Add((prefix, "FunctionMonkey.Compiler.Core.Resources.OpenApi.swagger-logo.svg"));
             foreach (var necessaryFile in necessaryFiles)
             {
-                var filename = necessaryFile.prefix + necessaryFile.name;
-                var content = LoadResourceFromAssembly(sourceAssembly, filename);
+                var content = LoadResourceFromAssembly(sourceAssembly, necessaryFile.name);
 
-                if (filename.EndsWith(".index.html"))
+                if (necessaryFile.name.EndsWith(".index.html"))
                 {
                     var contentString = Encoding.UTF8.GetString(content);
                     contentString = contentString.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
@@ -352,7 +351,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = filename.Substring(necessaryFile.prefix.Length)
+                    Filename = necessaryFile.name.Substring(necessaryFile.prefix.Length)
                 });
             }
         }
