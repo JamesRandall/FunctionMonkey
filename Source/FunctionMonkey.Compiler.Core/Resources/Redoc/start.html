@@ -17,33 +17,9 @@
     <!--%(HeadContent)-->
 </head>
 <body>
-    <div class="topbar">
-        <div class="wrapper">
-            <div class="topbar-wrapper">
-                <a class="link"><span>redoc</span></a>
-                <form class="download-url-wrapper">
-                    <label class="select-label" for="select">
-                        <span>Select a spec</span><select id="select" onchange="apiVersionChanged()">
-                            <option value="/swagger/services-v2/swagger.json">
-                                SEPAexpress API Extern V2.0.0-pre-114
-                            </option>
-                        </select>
-                    </label>
-                </form>
-            </div>
-        </div>
-    </div>
     <redoc></redoc>
-
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
     <script type="text/javascript">Redoc.init("/redoc/internal/openapi.redoc.yaml", { noAutoAuth: true });</script>
-    <script type="text/javascript">
-        function apiVersionChanged() {
-            var apiVersion = document.getElementById("select").value;
-            Redoc.init(apiVersion, { noAutoAuth: true });
-        }
-    </script>
-
 </body>
 
 </html>
