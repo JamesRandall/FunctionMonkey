@@ -10,13 +10,11 @@
   <ItemGroup>
     <None Remove="Resources\OpenApi\app-logo-small.svg" />
     <None Remove="Resources\OpenApi\console-log.js" />
-    <None Remove="Resources\OpenApi\custom.css" />
     <None Remove="Resources\OpenApi\theme-material.css" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\OpenApi\app-logo-small.svg" />
     <EmbeddedResource Include="Resources\OpenApi\console-log.js" />
-    <EmbeddedResource Include="Resources\OpenApi\custom.css" />
     <EmbeddedResource Include="Resources\OpenApi\theme-material.css" />
   </ItemGroup>
   <ItemGroup>
