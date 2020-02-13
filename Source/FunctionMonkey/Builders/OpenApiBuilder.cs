@@ -58,13 +58,13 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder RedocUserInterface(string route = "redoc")
+        public IOpenApiBuilder ReDocUserInterface(string route = "redoc")
         {
             if (route.StartsWith("/"))
             {
                 route = route.Substring(1);
             }
-            _openApiConfiguration.RedocUserInterfaceRoute = route;
+            _openApiConfiguration.ReDocUserInterfaceRoute = route;
             return this;
         }
 
@@ -80,9 +80,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder RedocInjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen")
+        public IOpenApiBuilder ReDocInjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen")
         {
-            _openApiConfiguration.RedocInjectedStylesheets.Add((resourceAssembly, resourceName, media));
+            _openApiConfiguration.ReDocInjectedStylesheets.Add((resourceAssembly, resourceName, media));
             return this;
         }
 
@@ -92,9 +92,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder RedocInjectJavaScript(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder ReDocInjectJavaScript(Assembly resourceAssembly, string resourceName)
         {
-            _openApiConfiguration.RedocInjectedJavaScripts.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.ReDocInjectedJavaScripts.Add((resourceAssembly, resourceName));
             return this;
         }
 
@@ -104,9 +104,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder RedocInjectResource(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder ReDocInjectResource(Assembly resourceAssembly, string resourceName)
         {
-            _openApiConfiguration.RedocInjectedResources.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.ReDocInjectedResources.Add((resourceAssembly, resourceName));
             return this;
         }
 
@@ -116,9 +116,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder RedocInjectLogo(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder ReDocInjectLogo(Assembly resourceAssembly, string resourceName)
         {
-            _openApiConfiguration.RedocInjectedLogo = (resourceAssembly, resourceName);
+            _openApiConfiguration.ReDocInjectedLogo = (resourceAssembly, resourceName);
             return this;
         }
 
@@ -140,9 +140,9 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder RedocAddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory)
+        public IOpenApiBuilder ReDocAddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory)
         {
-            _openApiConfiguration.RedocDocumentFilterFactories.Add(documentFilterFactory);
+            _openApiConfiguration.ReDocDocumentFilterFactories.Add(documentFilterFactory);
             return this;
         }
 

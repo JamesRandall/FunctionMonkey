@@ -91,10 +91,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 syntaxTrees.Add(openApiTree);
             }
 
-            SyntaxTree redocTree = CreateRedocTree(newAssemblyNamespace, directoryInfo);
-            if (redocTree != null)
+            SyntaxTree reDocTree = CreateReDocTree(newAssemblyNamespace, directoryInfo);
+            if (reDocTree != null)
             {
-                syntaxTrees.Add(redocTree);
+                syntaxTrees.Add(reDocTree);
             }
 
             bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
@@ -124,15 +124,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             return null;
         }
 
-        private SyntaxTree CreateRedocTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
+        private SyntaxTree CreateReDocTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
         {
-            if (OpenApiOutputModel != null && !string.IsNullOrWhiteSpace(OpenApiOutputModel.RedocUserInterfaceRoute))
+            if (OpenApiOutputModel != null && !string.IsNullOrWhiteSpace(OpenApiOutputModel.ReDocUserInterfaceRoute))
             {
                 string templateSource = TemplateProvider.GetTemplate("redocui", "csharp");
-                return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "RedocUi", new
+                return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "ReDocUi", new
                 {
                     Namespace = newAssemblyNamespace,
-                    RedocUserInterfaceRoute = OpenApiOutputModel.RedocUserInterfaceRoute
+                    ReDocUserInterfaceRoute = OpenApiOutputModel.ReDocUserInterfaceRoute
                 }, directoryInfo);
             }
 

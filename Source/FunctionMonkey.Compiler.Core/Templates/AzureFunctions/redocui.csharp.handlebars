@@ -9,10 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace {{Namespace}}
 {
-    public static class RedocProvider
+    public static class ReDocProvider
     {
-        [FunctionName("RedocProvider")]
-        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "{{RedocUserInterfaceRoute}}/{name1?}/{name2?}/{name3?}/{name4?}/{name5?}")]HttpRequest req, ILogger logger, string name1, string name2, string name3, string name4, string name5)
+        [FunctionName("ReDocProvider")]
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "{{ReDocUserInterfaceRoute}}/{name1?}/{name2?}/{name3?}/{name4?}/{name5?}")]HttpRequest req, ILogger logger, string name1, string name2, string name3, string name4, string name5)
         {
             if (string.IsNullOrWhiteSpace(name1))
             {

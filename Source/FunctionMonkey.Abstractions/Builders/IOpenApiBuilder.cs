@@ -42,12 +42,12 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <summary>
         /// If invoked will host a user interface for the Open API spec
         /// </summary>
-        IOpenApiBuilder UserInterface(string route = "/openapi");
+        IOpenApiBuilder UserInterface(string route = "openapi");
 
         /// <summary>
-        /// If invoked will host a user interface for Redoc
+        /// If invoked will host a user interface for ReDoc
         /// </summary>
-        IOpenApiBuilder RedocUserInterface(string route = "/redoc");
+        IOpenApiBuilder ReDocUserInterface(string route = "redoc");
 
         /// <summary>
         /// Inject human-friendly descriptions for Operations, Parameters and Schemas based on XML Comment files
@@ -71,13 +71,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder InjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen");
 
         /// <summary>
-        /// Inject the given stylesheet into the index.html of Redoc
+        /// Inject the given stylesheet into the index.html of ReDoc
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
         /// <param name="resourceName">Name of the stylesheet resource</param>
         /// <param name="media">The media attribute specifies what media/device the target resource is optimized for</param>
         /// <returns></returns>
-        IOpenApiBuilder RedocInjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen");
+        IOpenApiBuilder ReDocInjectStylesheet(Assembly resourceAssembly, string resourceName, string media = "screen");
 
         /// <summary>
         /// Inject the given JavaScript into the index.html
@@ -88,12 +88,12 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder InjectJavaScript(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
-        /// Inject the given JavaScript into the index.html of Redoc
+        /// Inject the given JavaScript into the index.html of ReDoc
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
         /// <param name="resourceName">Name of the JavaScript resource</param>
         /// <returns></returns>
-        IOpenApiBuilder RedocInjectJavaScript(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder ReDocInjectJavaScript(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
         /// Inject the given resource into the index.html
@@ -104,12 +104,12 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder InjectResource(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
-        /// Inject the given resource into the index.html of Redoc
+        /// Inject the given resource into the index.html of ReDoc
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
         /// <param name="resourceName">Name of the resource</param>
         /// <returns></returns>
-        IOpenApiBuilder RedocInjectResource(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder ReDocInjectResource(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
         /// Inject the given logo into the topbar of the index.html
@@ -121,13 +121,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder InjectLogo(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
-        /// Inject the given logo into the topbar of the index.html of Redoc
+        /// Inject the given logo into the topbar of the index.html of ReDoc
         /// Only one Logo is supported
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
         /// <param name="resourceName">Name of the logo</param>
         /// <returns></returns>
-        IOpenApiBuilder RedocInjectLogo(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder ReDocInjectLogo(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
         /// Add a security scheme.
@@ -147,7 +147,7 @@ namespace FunctionMonkey.Abstractions.Builders
         /// Add a custom document filter to the filter chain.
         /// </summary>
         /// <param name="documentFilterFactory">The filter to add</param>
-        IOpenApiBuilder RedocAddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory);
+        IOpenApiBuilder ReDocAddDocumentFilter(Func<IOpenApiDocumentFilter> documentFilterFactory);
 
         /// <summary>
         /// Add a custom operation filter to the filter chain.

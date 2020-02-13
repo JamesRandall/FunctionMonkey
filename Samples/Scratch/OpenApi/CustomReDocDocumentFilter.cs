@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Writers;
 
 namespace OpenApi
 {
-    public class CustomRedocDocumentFilter : IOpenApiDocumentFilter
+    public class CustomReDocDocumentFilter : IOpenApiDocumentFilter
     {
         public void Apply(OpenApiDocument document, IOpenApiDocumentFilterContext documentFilterContext)
         {

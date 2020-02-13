@@ -60,7 +60,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }
 
             IDictionary<string, OpenApiDocumentsSpec> openApiDocumentsSpec = new Dictionary<string, OpenApiDocumentsSpec>();
-            IDictionary<string, OpenApiDocumentsSpec> redocDocumentsSpec = new Dictionary<string, OpenApiDocumentsSpec>();
+            IDictionary<string, OpenApiDocumentsSpec> reDocDocumentsSpec = new Dictionary<string, OpenApiDocumentsSpec>();
             OpenApiOutputModel outputModel = new OpenApiOutputModel();
             foreach (var keyValuePair in configuration.OpenApiDocumentInfos)
             {
@@ -121,30 +121,30 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     Path = $"/{configuration.UserInterfaceRoute??"openapi"}/{keyValuePair.Value.DocumentRoute}"
                 });
 
-                // Create redoc YAML
-                if (!string.IsNullOrWhiteSpace(configuration.RedocUserInterfaceRoute))
+                // Create reDoc YAML
+                if (!string.IsNullOrWhiteSpace(configuration.ReDocUserInterfaceRoute))
                 {
-                    FilterDocument(compilerConfiguration.RedocDocumentFilters, openApiDocument);
+                    FilterDocument(compilerConfiguration.ReDocDocumentFilters, openApiDocument);
 
                     // TODO: FIXME:
                     // Hack: Empty OpenApiSecurityRequirement lists are not serialized by the standard Microsoft
                     // implementation. Therefore we add a null object to the list and fix it here by hand.
-                    var redocYaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
-                    redocYaml = Regex.Replace(redocYaml, $"security:\n.*?- \n", "security: []\n");
+                    var reDocYaml = openApiDocument.Serialize(OpenApiSpecVersion.OpenApi3_0, OpenApiFormat.Yaml);
+                    reDocYaml = Regex.Replace(reDocYaml, $"security:\n.*?- \n", "security: []\n");
 
                     outputModel.OpenApiFileReferences.Add(
                         new OpenApiFileReference
                         {
                             Filename = $"ReDoc.{keyValuePair.Value.DocumentRoute.Replace('/', '.')}",
-                            Content = Encoding.UTF8.GetBytes(redocYaml)
+                            Content = Encoding.UTF8.GetBytes(reDocYaml)
                         }
                     );
 
-                    redocDocumentsSpec.Add(openApiDocument.Info.Title, new OpenApiDocumentsSpec
+                    reDocDocumentsSpec.Add(openApiDocument.Info.Title, new OpenApiDocumentsSpec
                     {
                         Title = keyValuePair.Value.OpenApiInfo.Title,
                         Selected = keyValuePair.Value.Selected,
-                        Path = $"/{configuration.RedocUserInterfaceRoute ?? "redoc"}/{keyValuePair.Value.DocumentRoute}"
+                        Path = $"/{configuration.ReDocUserInterfaceRoute ?? "redoc"}/{keyValuePair.Value.DocumentRoute}"
                     });
                 }
             }
@@ -162,21 +162,21 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 CopySwaggerUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
             }
 
-            if (!string.IsNullOrWhiteSpace(configuration.RedocUserInterfaceRoute))
+            if (!string.IsNullOrWhiteSpace(configuration.ReDocUserInterfaceRoute))
             {
                 outputModel.OpenApiFileReferences.Add(
                     new OpenApiFileReference
                     {
                         Filename = "ReDoc.redoc-documents-spec.json",
-                        Content = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(redocDocumentsSpec.Values.ToArray()))
+                        Content = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(reDocDocumentsSpec.Values.ToArray()))
                     }
                 ) ;
 
-                CopyRedocUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
+                CopyReDocUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
             }
 
             outputModel.UserInterfaceRoute = configuration.UserInterfaceRoute;
-            outputModel.RedocUserInterfaceRoute = configuration.RedocUserInterfaceRoute;
+            outputModel.ReDocUserInterfaceRoute = configuration.ReDocUserInterfaceRoute;
             return outputModel;
         }
 
@@ -370,13 +370,13 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }
         }
 
-        private void CopyRedocUserInterfaceFilesToWebFolder(OpenApiConfiguration configuration, IList<OpenApiFileReference> openApiFileReferences)
+        private void CopyReDocUserInterfaceFilesToWebFolder(OpenApiConfiguration configuration, IList<OpenApiFileReference> openApiFileReferences)
         {
-            var route = $"{configuration.RedocUserInterfaceRoute ?? "redoc"}";
+            var route = $"{configuration.ReDocUserInterfaceRoute ?? "redoc"}";
 
             // StyleSheets
             StringBuilder links = new StringBuilder("");
-            foreach (var injectedStylesheet in configuration.RedocInjectedStylesheets)
+            foreach (var injectedStylesheet in configuration.ReDocInjectedStylesheets)
             {
                 var resourceAssemblyName = injectedStylesheet.resourceAssembly.GetName().Name;
                 var styleSheetName = $"{resourceAssemblyName}.{injectedStylesheet.resourceName}";
@@ -394,7 +394,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             links.Append($"{Environment.NewLine}</head>");
 
             // Resources
-            foreach (var injectedResource in configuration.RedocInjectedResources)
+            foreach (var injectedResource in configuration.ReDocInjectedResources)
             {
                 var resourceAssemblyName = injectedResource.resourceAssembly.GetName().Name;
                 var resourceName = $"{resourceAssemblyName}.{injectedResource.resourceName}";
@@ -409,7 +409,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }
 
             // Logo
-            if (configuration.RedocInjectedLogo != default(ValueTuple<Assembly, string>))
+            if (configuration.ReDocInjectedLogo != default(ValueTuple<Assembly, string>))
             {
                 var resourceAssemblyName = configuration.InjectedLogo.resourceAssembly.GetName().Name;
                 var resourceName = $"{resourceAssemblyName}.{configuration.InjectedLogo.resourceName}";
@@ -420,13 +420,13 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = $"Redoc.logo{extension}"
+                    Filename = $"ReDoc.logo{extension}"
                 });
             }
 
             // Scripts
             StringBuilder scripts = new StringBuilder();
-            foreach (var injectedJavaScript in configuration.RedocInjectedJavaScripts)
+            foreach (var injectedJavaScript in configuration.ReDocInjectedJavaScripts)
             {
                 var resourceAssemblyName = injectedJavaScript.resourceAssembly.GetName().Name;
                 var javaScriptName = $"{resourceAssemblyName}.{injectedJavaScript.resourceName}";
@@ -444,7 +444,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
             // Additional necessary scripts
             var necessaryScripts = new List<string>();
-            necessaryScripts.Add("Resources.Redoc.topbar-multiple-specs.js");
+            necessaryScripts.Add("Resources.ReDoc.topbar-multiple-specs.js");
             foreach (var resourceName in necessaryScripts)
             {
                 var resourceAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
@@ -452,29 +452,29 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 var content = LoadResourceFromAssembly(Assembly.GetExecutingAssembly(), javaScriptName);
                 var filename = javaScriptName.Substring(resourceAssemblyName.Length + 1);
 
-                scripts.Append($"    <script src=\"/{route}/{filename.Replace("Resources.Redoc.", "")}\" > </script>{ Environment.NewLine}");
+                scripts.Append($"    <script src=\"/{route}/{filename.Replace("Resources.ReDoc.", "")}\" > </script>{ Environment.NewLine}");
 
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = filename.Replace("Resources.Redoc.", "ReDoc.")
+                    Filename = filename.Replace("Resources.ReDoc.", "ReDoc.")
                 });
             }
             scripts.Append("</body>");
 
             // Other necessary files
-            const string prefix = "Resources.Redoc.";
+            const string prefix = "Resources.ReDoc.";
             var necessaryFiles = new List<string>();
-            necessaryFiles.Add("Resources.Redoc.favicon-16x16.ico");
-            necessaryFiles.Add("Resources.Redoc.favicon-32x32.ico");
-            necessaryFiles.Add("Resources.Redoc.index.html");
-            necessaryFiles.Add("Resources.Redoc.redoc-logo.png");
+            necessaryFiles.Add("Resources.ReDoc.favicon-16x16.ico");
+            necessaryFiles.Add("Resources.ReDoc.favicon-32x32.ico");
+            necessaryFiles.Add("Resources.ReDoc.index.html");
+            necessaryFiles.Add("Resources.ReDoc.redoc-logo.png");
             foreach (var resourceName in necessaryFiles)
             {
                 var resourceAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-                var redocFileName = $"{resourceAssemblyName}.{resourceName}";
-                var content = LoadResourceFromAssembly(Assembly.GetExecutingAssembly(), redocFileName);
-                var filename = redocFileName.Substring(resourceAssemblyName.Length + 1);
+                var reDocFileName = $"{resourceAssemblyName}.{resourceName}";
+                var content = LoadResourceFromAssembly(Assembly.GetExecutingAssembly(), reDocFileName);
+                var filename = reDocFileName.Substring(resourceAssemblyName.Length + 1);
 
                 if (filename.EndsWith("index.html"))
                 {

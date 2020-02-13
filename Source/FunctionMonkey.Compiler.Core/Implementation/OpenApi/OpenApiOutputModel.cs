@@ -15,6 +15,6 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
         public string UserInterfaceRoute { get; set; }
 
-        public string RedocUserInterfaceRoute { get; set; }
+        public string ReDocUserInterfaceRoute { get; set; }
     }
 }

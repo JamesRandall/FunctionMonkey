@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 namespace {{{Namespace}}}
 {
     [ApiController]
-    public class RedocUiController : ControllerBase
+    public class ReDocUiController : ControllerBase
     {
-        private static readonly Dictionary<string, string> RedocContentTypes = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> ReDocContentTypes = new Dictionary<string, string>
         {
             { ".html", "text/html" },
             {".png", "image/png" },
@@ -21,7 +21,7 @@ namespace {{{Namespace}}}
 
         private readonly ILogger _logger;
 
-        public RedocUiController(ILogger logger=null)
+        public ReDocUiController(ILogger logger=null)
         {
             _logger = logger;
         }
@@ -35,7 +35,7 @@ namespace {{{Namespace}}}
                 name = "start.html";
             }
             
-            using (Stream stream = typeof(RedocUiController).Assembly.GetManifestResourceStream($"{{Namespace}}.Redoc.{name}"))
+            using (Stream stream = typeof(ReDocUiController).Assembly.GetManifestResourceStream($"{{Namespace}}.ReDoc.{name}"))
             {
                 if (stream != null)
                 {
@@ -45,7 +45,7 @@ namespace {{{Namespace}}}
                         result.Content = await reader.ReadToEndAsync();
                     }
 
-                    if (!RedocContentTypes.TryGetValue(Path.GetExtension(name).ToLower(), out var contentType))
+                    if (!ReDocContentTypes.TryGetValue(Path.GetExtension(name).ToLower(), out var contentType))
                     {
                         contentType = "text/plain";
                     }

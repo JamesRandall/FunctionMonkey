@@ -48,13 +48,13 @@ namespace OpenApi
                     //.InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.console-log.js")
 
 
-                    // Redoc
-                    .RedocUserInterface()
-                    //.RedocInjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.Redoc.theme-material.css")
-                    //.RedocInjectResource(Assembly.GetExecutingAssembly(), "Resources.Redoc.app-logo-small.svg")
-                    //.RedocInjectLogo(Assembly.GetExecutingAssembly(), "Resources.Redoc.app-logo-small.svg")
-                    //.RedocInjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.Redoc.console-log.js")
-                    .RedocAddDocumentFilter(() => new CustomRedocDocumentFilter())
+                    // ReDoc
+                    .ReDocUserInterface()
+                    //.ReDocInjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.ReDoc.theme-material.css")
+                    //.ReDocInjectResource(Assembly.GetExecutingAssembly(), "Resources.ReDoc.app-logo-small.svg")
+                    //.ReDocInjectLogo(Assembly.GetExecutingAssembly(), "Resources.ReDoc.app-logo-small.svg")
+                    //.ReDocInjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.ReDoc.console-log.js")
+                    .ReDocAddDocumentFilter(() => new CustomReDocDocumentFilter())
 
                     .AddValidatorsFromAssembly(typeof(FunctionAppConfiguration).Assembly)
                     .AddXmlComments(Path.Combine(Path.GetDirectoryName(typeof(FunctionAppConfiguration).Assembly.Location), "OpenApi.xml"))

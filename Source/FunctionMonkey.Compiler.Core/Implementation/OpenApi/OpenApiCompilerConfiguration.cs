@@ -11,7 +11,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
     {
         public IList<IOpenApiDocumentFilter> DocumentFilters { get; } = new List<IOpenApiDocumentFilter>();
 
-        public IList<IOpenApiDocumentFilter> RedocDocumentFilters { get; } = new List<IOpenApiDocumentFilter>();
+        public IList<IOpenApiDocumentFilter> ReDocDocumentFilters { get; } = new List<IOpenApiDocumentFilter>();
 
         public IList<IOpenApiOperationFilter> OperationFilters { get; } = new List<IOpenApiOperationFilter>();
 
@@ -28,9 +28,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 DocumentFilters.Add(documentFilterFactory());
             }
 
-            foreach (var redocDocumentFilterFactory in configuration.RedocDocumentFilterFactories)
+            foreach (var reDocDocumentFilterFactory in configuration.ReDocDocumentFilterFactories)
             {
-                RedocDocumentFilters.Add(redocDocumentFilterFactory());
+                ReDocDocumentFilters.Add(reDocDocumentFilterFactory());
             }
 
             foreach (var operationFilterFactory in configuration.OperationFilterFactories)
