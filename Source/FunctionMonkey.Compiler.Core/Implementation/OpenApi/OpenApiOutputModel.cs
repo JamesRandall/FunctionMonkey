@@ -6,7 +6,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
     {
         public string Filename { get; set; }
 
-        public string Content { get; set; }
+        public byte[] Content { get; set; }
     }
 
     internal class OpenApiOutputModel

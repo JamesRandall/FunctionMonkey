@@ -16,6 +16,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using Microsoft.FSharp.Core;
+using Microsoft.Net.Http.Headers;
 
 namespace FunctionMonkey.Compiler.Core.Implementation
 {
@@ -48,7 +49,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 {
                     resources.Add(new ResourceDescription(
                         $"{assemblyNamespace}.OpenApi.{openApiFileReference.Filename}",
-                        () => new MemoryStream(Encoding.UTF8.GetBytes(openApiFileReference.Content)), true));
+                        () => new MemoryStream(openApiFileReference.Content), true));
                 }
             }
 
@@ -253,8 +254,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
             locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading").Location);
             locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading.Tasks").Location);
+            locations.Add(typeof(MediaTypeHeaderValue).Assembly.Location);
 
-                foreach (string externalAssemblyLocation in externalAssemblyLocations)
+            foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {
                 locations.Add(externalAssemblyLocation);
             }

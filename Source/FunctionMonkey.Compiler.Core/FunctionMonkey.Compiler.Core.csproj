@@ -27,6 +27,7 @@
       <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="3.4.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
       <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.6.0" />
+      <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
       <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
       <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     </ItemGroup>
@@ -168,7 +169,9 @@
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+      <EmbeddedResource Include="Resources\OpenApi\swagger-logo.svg" />
       <EmbeddedResource Include="Resources\OpenApi\topbar-multiple-specs.js" />
+      <EmbeddedResource Include="Resources\Redoc\redoc-logo.png" />
       <EmbeddedResource Include="Resources\Redoc\start.html" />
       <EmbeddedResource Include="Resources\Redoc\topbar-multiple-specs.js" />
       <EmbeddedResource Include="Templates\AspNetCore\forcereference.csharp.handlebars" />
@@ -216,6 +219,8 @@
       <EmbeddedResource Include="Templates\AzureFunctions\swaggerui.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\timer.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\timer.json.handlebars" />
+      <None Remove="Resources\OpenApi\swagger-logo.svg" />
+      <None Remove="Resources\Redoc\redoc-logo.png" />
       <None Remove="Resources\Redoc\start.html" />
       <None Remove="Resources\Redoc\topbar-multiple-specs.js" />
       <None Remove="Templates\AspNetCore\redoc.csharp.handlebars" />

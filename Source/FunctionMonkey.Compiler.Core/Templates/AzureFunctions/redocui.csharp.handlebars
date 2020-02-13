@@ -40,29 +40,18 @@ namespace {{Namespace}}
             {
                 resourceName += "." + name5;
             }
-            using (Stream stream = typeof(RedocProvider).Assembly.GetManifestResourceStream(resourceName))
+            Stream stream = typeof(OpenApiProvider).Assembly.GetManifestResourceStream(resourceName);
+            if (stream != null)
             {
-                if (stream != null)
+                var provider = new FileExtensionContentTypeProvider();
+                if (!provider.TryGetContentType(Path.GetExtension(resourceName).ToLower(), out var contentType))
                 {
-                    ContentResult result = new ContentResult();
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        result.Content = reader.ReadToEnd();
-                    }
-
-                    var provider = new FileExtensionContentTypeProvider();
-                    if (!provider.TryGetContentType(Path.GetExtension(resourceName).ToLower(), out var contentType))
-                    {
-                        contentType = "application/octet-stream";
-                    }
-
-                    result.ContentType = contentType;
-
-                    return result;
+                    contentType = "application/octet-stream";
                 }
-                else {
-                    logger.LogWarning($"Unable to find resource for {resourceName}");
-                }
+                return new FileStreamResult(stream, contentType);
+            }
+            else {
+                logger.LogWarning($"Unable to find resource for {resourceName}");
             }
             return new NotFoundResult();
         }

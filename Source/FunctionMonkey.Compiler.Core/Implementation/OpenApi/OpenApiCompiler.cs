@@ -105,7 +105,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     new OpenApiFileReference
                     {
                         Filename = keyValuePair.Value.DocumentRoute.Replace('/', '.'),
-                        Content = yaml
+                        Content = Encoding.UTF8.GetBytes(yaml)
                     }
                 );
 
@@ -131,7 +131,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                         new OpenApiFileReference
                         {
                             Filename = keyValuePair.Value.DocumentRoute.Replace('/', '.').ReplaceLastOccurrence(".yaml", ".redoc.yaml"),
-                            Content = redocYaml
+                            Content = Encoding.UTF8.GetBytes(redocYaml)
                         }
                     );
 
@@ -150,9 +150,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     new OpenApiFileReference
                     {
                         Filename = "openapi-documents-spec.json",
-                        Content = JsonConvert.SerializeObject(openApiDocumentsSpec.Values.ToArray())
+                        Content = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(openApiDocumentsSpec.Values.ToArray()))
                     }
-                );
+                ); ;
 
                 CopySwaggerUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
             }
@@ -163,9 +163,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     new OpenApiFileReference
                     {
                         Filename = "redoc-documents-spec.json",
-                        Content = JsonConvert.SerializeObject(redocDocumentsSpec.Values.ToArray())
+                        Content = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(redocDocumentsSpec.Values.ToArray()))
                     }
-                );
+                ) ;
 
                 CopyRedocUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
             }
@@ -325,29 +325,34 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             scripts.Append("  </body>");
 
             // Other necessary files
-            const string prefix = "FunctionMonkey.Compiler.Core.node_modules.swagger_ui_dist.";
+            var prefix = "FunctionMonkey.Compiler.Core.node_modules.swagger_ui_dist.";
             Assembly sourceAssembly = GetType().Assembly;
-            string[] files = sourceAssembly
+            var necessaryFiles = sourceAssembly
                 .GetManifestResourceNames()
-                .Where(x => x.StartsWith(prefix))
-                .ToArray();
-            foreach (string swaggerFile in files)
+                .Where(x => x.StartsWith(prefix)).Select(name => (prefix, name))
+                .ToList();
+            prefix = "FunctionMonkey.Compiler.Core.";
+            necessaryFiles.Add((prefix, "Resources.OpenApi.swagger-logo.svg"));
+            foreach (var necessaryFile in necessaryFiles)
             {
-                string content = LoadResourceFromAssembly(sourceAssembly, swaggerFile);
+                var filename = necessaryFile.prefix + necessaryFile.name;
+                var content = LoadResourceFromAssembly(sourceAssembly, filename);
 
-                if (swaggerFile.EndsWith(".index.html"))
+                if (filename.EndsWith(".index.html"))
                 {
-                    content = content.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
-                    content = content.Replace("https://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
-                    content = content.Replace("=\"./swagger", $"=\"./{configuration.UserInterfaceRoute}/swagger");
-                    content = content.Replace("</head>", links.ToString());
-                    content = content.Replace("</body>", scripts.ToString());
+                    var contentString = Encoding.UTF8.GetString(content);
+                    contentString = contentString.Replace("http://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
+                    contentString = contentString.Replace("https://petstore.swagger.io/v2/swagger.json", $"./{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
+                    contentString = contentString.Replace("=\"./swagger", $"=\"./{configuration.UserInterfaceRoute}/swagger");
+                    contentString = contentString.Replace("</head>", links.ToString());
+                    contentString = contentString.Replace("</body>", scripts.ToString());
+                    content = Encoding.UTF8.GetBytes(contentString);
                 }
 
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = swaggerFile.Substring(prefix.Length)
+                    Filename = filename.Substring(necessaryFile.prefix.Length)
                 });
             }
         }
@@ -446,6 +451,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             const string prefix = "Resources.Redoc.";
             var necessaryFiles = new List<string>();
             necessaryFiles.Add("Resources.Redoc.start.html");
+            necessaryFiles.Add("Resources.Redoc.redoc-logo.png");
             foreach (var resourceName in necessaryFiles)
             {
                 var resourceAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
@@ -455,9 +461,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
                 if (filename.EndsWith("start.html"))
                 {
-                    content = content.Replace("/swagger/services-v2/swagger.json", $"../{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
-                    content = content.Replace("</head>", links.ToString());
-                    content = content.Replace("</body>", scripts.ToString());
+                    var contentString = Encoding.UTF8.GetString(content);
+                    contentString = contentString.Replace("/swagger/services-v2/swagger.json", $"../{configuration.UserInterfaceRoute}/{configuration.OpenApiDocumentInfos.FirstOrDefault().Value.DocumentRoute}");
+                    contentString = contentString.Replace("</head>", links.ToString());
+                    contentString = contentString.Replace("</body>", scripts.ToString());
+                    content = Encoding.UTF8.GetBytes(contentString);
                 }
 
                 openApiFileReferences.Add(new OpenApiFileReference
@@ -468,7 +476,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }
         }
 
-        private string LoadResourceFromAssembly(Assembly assembly, string resourceName)
+        private byte[] LoadResourceFromAssembly(Assembly assembly, string resourceName)
         {
             byte[] input = new byte[0];
 
@@ -481,7 +489,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 }
             }
 
-            return Encoding.UTF8.GetString(input);
+            return input;
         }
 
         private void CreateSchemas(IList<HttpFunctionDefinition> functionDefinitions, IOpenApiHttpFunctionFilter functionFilter, OpenApiDocument openApiDocument, SchemaReferenceRegistry registry)
