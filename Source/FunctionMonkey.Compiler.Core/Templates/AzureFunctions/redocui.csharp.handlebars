@@ -16,10 +16,10 @@ namespace {{Namespace}}
         {
             if (string.IsNullOrWhiteSpace(name1))
             {
-                name1 = "start.html";
+                name1 = "index.html";
             }
 
-            var resourceName = $"{{Namespace}}.OpenApi";
+            var resourceName = $"{{Namespace}}.ReDoc";
             if(!string.IsNullOrWhiteSpace(name1))
             {
                 resourceName += "." + name1;

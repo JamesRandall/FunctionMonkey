@@ -19,7 +19,7 @@ function addStyles() {
 }
 
 async function getSpecInfoAsync() {
-  return await fetch("./openapi/openapi-documents-spec.json")
+  return await fetch("/openapi/openapi-documents-spec.json")
     .then(async response => {
       return await response
         .json()
@@ -29,7 +29,7 @@ async function getSpecInfoAsync() {
 }
 
 async function getLogoUri() {
-  const path = "./openapi/Resources.OpenApi.logo.";
+  const path = "/openapi/logo.";
   const extensions = ["svg", "png", "jpg"];
   for (let index = 0; index < extensions.length; index++) {
     const logoUri = await fetch( path + extensions[index]).then(response =>
@@ -64,7 +64,7 @@ async function renderTopbar(specInfo) {
     console.log("customimage");
     logoUri = customImageUri;
   } else {
-      logoUri = "./openapi/swagger-logo.svg"
+      logoUri = "/openapi/swagger-logo.svg"
     console.log("defaultimage");
   }
 
@@ -122,14 +122,10 @@ function getStyles() {
         box-sizing: border-box;
         color: rgb(59, 65, 81);
         font-family: Open Sans, sans-serif;
-        margin-bottom: 0px;
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 0px;
         padding-bottom: 0px;
-        padding-left: 20px;
-        padding-right: 20px;
         padding-top: 0px;
+        max-width: 1420px;
+        margin: 0 auto;
     }
     
     .topbar-wrapper {

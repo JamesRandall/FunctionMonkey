@@ -19,7 +19,7 @@ function addStyles() {
 }
 
 async function getSpecInfoAsync() {
-  return await fetch("./openapi/redoc-documents-spec.json")
+  return await fetch("/redoc/redoc-documents-spec.json")
     .then(async response => {
       return await response
         .json()
@@ -29,7 +29,7 @@ async function getSpecInfoAsync() {
 }
 
 async function getLogoUri() {
-  const path = "./openapi/Resources.Redoc.logo.";
+  const path = "/redoc/logo.";
   const extensions = ["svg", "png", "jpg"];
   for (let index = 0; index < extensions.length; index++) {
     const logoUri = await fetch(path + extensions[index]).then(response =>
@@ -58,7 +58,7 @@ async function renderTopbar(specInfo) {
     logoUri = customLogoUri;
   } else {
     logoUri =
-      "./redoc/redoc-logo.png";
+      "/redoc/redoc-logo.png";
     console.log("defaultimage");
   }
 

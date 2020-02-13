@@ -48,7 +48,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 foreach (OpenApiFileReference openApiFileReference in OpenApiOutputModel.OpenApiFileReferences)
                 {
                     resources.Add(new ResourceDescription(
-                        $"{assemblyNamespace}.OpenApi.{openApiFileReference.Filename}",
+                        $"{assemblyNamespace}.{openApiFileReference.Filename}",
                         () => new MemoryStream(openApiFileReference.Content), true));
                 }
             }

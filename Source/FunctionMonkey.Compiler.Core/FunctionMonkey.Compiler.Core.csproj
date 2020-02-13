@@ -172,7 +172,7 @@
       <EmbeddedResource Include="Resources\OpenApi\swagger-logo.svg" />
       <EmbeddedResource Include="Resources\OpenApi\topbar-multiple-specs.js" />
       <EmbeddedResource Include="Resources\Redoc\redoc-logo.png" />
-      <EmbeddedResource Include="Resources\Redoc\start.html" />
+      <EmbeddedResource Include="Resources\Redoc\index.html" />
       <EmbeddedResource Include="Resources\Redoc\topbar-multiple-specs.js" />
       <EmbeddedResource Include="Templates\AspNetCore\forcereference.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AspNetCore\redoc.csharp.handlebars" />
@@ -220,8 +220,8 @@
       <EmbeddedResource Include="Templates\AzureFunctions\timer.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\timer.json.handlebars" />
       <None Remove="Resources\OpenApi\swagger-logo.svg" />
+      <None Remove="Resources\Redoc\index.html" />
       <None Remove="Resources\Redoc\redoc-logo.png" />
-      <None Remove="Resources\Redoc\start.html" />
       <None Remove="Resources\Redoc\topbar-multiple-specs.js" />
       <None Remove="Templates\AspNetCore\redoc.csharp.handlebars" />
       <None Remove="Templates\AzureFunctions\redocui.csharp.handlebars" />
