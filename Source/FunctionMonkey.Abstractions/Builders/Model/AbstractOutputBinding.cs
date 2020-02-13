@@ -18,7 +18,12 @@ namespace FunctionMonkey.Abstractions.Builders.Model
             _commandResultTypeItemName = commandResultTypeItemName;
         }
         
-        public Type OutputBindingConverter { get; set; }
+        public Type OutputBindingConverterType { get; set; }
+        
+        public BridgedFunction OutputBindingConverterFunction { get; set; }
+
+        public bool HasOutputBindingConverter =>
+            OutputBindingConverterFunction != null || OutputBindingConverterType != null;
 
         public string CommandResultItemTypeName => _associatedFunctionDefinition?.CommandResultItemTypeName ?? _commandResultTypeItemName;
     }

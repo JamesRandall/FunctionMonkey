@@ -156,6 +156,7 @@ namespace FunctionMonkey.Tests.Integration.Common
                         {"DefaultHeaderStringValue", "x-default-string"}
                     }
                 })
+                .DefaultOutputConverter<OptionalValueCommandConverter>()
                 .Functions(functions =>
                 {
                     CreateCommonFunctions(functions);

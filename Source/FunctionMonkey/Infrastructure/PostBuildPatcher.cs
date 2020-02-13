@@ -46,7 +46,7 @@ namespace FunctionMonkey.Infrastructure
                 }
             }
         }
-        
+
         public Type CalculateCommandResultType(AbstractFunctionDefinition definition)
         {
             if (definition.ExplicitCommandResultType != null)
@@ -74,7 +74,12 @@ namespace FunctionMonkey.Infrastructure
                 definition.CommandResultType = CalculateCommandResultType(definition);
                 definition.CommandDeserializerType = definition.CommandDeserializerType ??
                                                      ((SerializationBuilder)(builder.SerializationBuilder)).DefaultCommandDeserializerType;
-
+                if (definition.OutputBinding != null)
+                {
+                    definition.OutputBinding.OutputBindingConverterType =
+                        definition.OutputBinding.OutputBindingConverterType ?? builder.DefaultOutputBindingConverter;
+                }
+                
                 if (CommandRequiresNoHandler(definition.CommandType))
                 {
                     definition.NoCommandHandler = true; // don't skip the if statement, this may also be set through options

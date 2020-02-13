@@ -134,16 +134,29 @@ namespace FunctionMonkey
 
             RegisterCosmosDependencies(FunctionDefinitions);
 
+            RegisterOutputBindingDependencies(FunctionDefinitions);
+
             
             CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
             RegisterLoggerIfRequired();
+        }
 
-            //beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
-            //ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
-            //afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
+        private void RegisterOutputBindingDependencies(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            HashSet<Type> types = new HashSet<Type>();
+            foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
+            {
+                if (abstractFunctionDefinition.OutputBinding?.OutputBindingConverterType != null)
+                {
+                    types.Add(abstractFunctionDefinition.OutputBinding.OutputBindingConverterType);
+                }
+            }
 
-            //builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            foreach (Type type in types)
+            {
+                ServiceCollection.AddTransient(type, type);
+            }
         }
 
         private void RegisterLoggerIfRequired()
@@ -184,7 +197,6 @@ namespace FunctionMonkey
         }
 
         private void CreatePluginFunctions(
-            Func<object, object> defaultOutputBindingConverter,
             IReadOnlyCollection<AbstractClaimsMappingDefinition> claimsMappings,
             IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
         {
@@ -196,8 +208,22 @@ namespace FunctionMonkey
 
                 if (functionDefinition.OutputBinding != null)
                 {
-                    Type outputBindingConverter = functionDefinition.OutputBinding.OutputBindingConverter ??
-                                                  defaultOutputBindingConverter;
+                    if (functionDefinition.OutputBinding.OutputBindingConverterType != null)
+                    {
+                        pluginFunctions.OutputBindingConverter = (input) =>
+                        {
+                            IOutputBindingConverter converter =
+                                (IOutputBindingConverter) ServiceProvider.GetService(functionDefinition.OutputBinding
+                                    .OutputBindingConverterType);
+                            return converter.Convert(input);
+                        };
+                    }
+                    else if (functionDefinition.OutputBinding.OutputBindingConverterFunction != null)
+                    {
+                        pluginFunctions.OutputBindingConverter = input =>
+                            ((Func<object, object>) functionDefinition.OutputBinding.OutputBindingConverterFunction
+                                .Handler)(input);
+                    }
                 }
                 
                 if (functionDefinition.DeserializeFunction != null)

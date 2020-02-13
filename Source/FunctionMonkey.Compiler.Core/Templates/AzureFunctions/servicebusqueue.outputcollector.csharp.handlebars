@@ -1,13 +1,23 @@
 {{#if CommandResultIsCollection}}
 foreach (var commandResultItem in result)
 {
+    {{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(commandResultItem);
+    string resultJson = pluginFunctions.Serialize(convertedItem, false);
+    {{else}}
     string resultJson = pluginFunctions.Serialize(commandResultItem, false);
+    {{/if}}
     byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
     Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
     await collector.AddAsync(serviceBusMessage);
 }
 {{else}}
-string resultJson = pluginFunctions.Serialize(result, false);
+{{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(result);
+    string resultJson = pluginFunctions.Serialize(convertedItem, false);
+{{else}}
+    string resultJson = pluginFunctions.Serialize(result, false);
+{{/if}}
 byte[] bytes = System.Text.Encoding.UTF8.GetBytes(resultJson);
 Microsoft.Azure.ServiceBus.Message serviceBusMessage = new Microsoft.Azure.ServiceBus.Message(bytes);
 {{#if OutputBinding.HasSessionId}}
