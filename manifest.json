@@ -885,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.IOutputBindingConverter.html",
-          "hash": "Uurvhn77ottz+Fjtx9D10g=="
+          "hash": "ixJQe1731im3lXrWuul/Rg=="
         }
       },
       "is_incremental": false,
@@ -1641,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.PluginFunctions.html",
-          "hash": "kHtugSHjgCU1szvGGvR66A=="
+          "hash": "sNwNq6/X/zzZqPwbPQJPhQ=="
         }
       },
       "is_incremental": false,
@@ -1773,7 +1773,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.SignalR.Converter.html",
-          "hash": "0fMkktFvngYC+nUM6YAk/Q=="
+          "hash": "yNpQGecY/HWIeC9lwjMJrA=="
         }
       },
       "is_incremental": false,

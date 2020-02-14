@@ -4012,12 +4012,12 @@ references:
   commentId: T:FunctionMonkey.Abstractions.IOutputBindingConverter
   fullName: FunctionMonkey.Abstractions.IOutputBindingConverter
   nameWithType: IOutputBindingConverter
-- uid: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object)
-  name: Convert(Object)
-  href: api/FunctionMonkey.Abstractions.IOutputBindingConverter.html#FunctionMonkey_Abstractions_IOutputBindingConverter_Convert_System_Object_
-  commentId: M:FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object)
-  fullName: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object)
-  nameWithType: IOutputBindingConverter.Convert(Object)
+- uid: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object,System.Object)
+  name: Convert(Object, Object)
+  href: api/FunctionMonkey.Abstractions.IOutputBindingConverter.html#FunctionMonkey_Abstractions_IOutputBindingConverter_Convert_System_Object_System_Object_
+  commentId: M:FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object,System.Object)
+  fullName: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object, System.Object)
+  nameWithType: IOutputBindingConverter.Convert(Object, Object)
 - uid: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert*
   name: Convert
   href: api/FunctionMonkey.Abstractions.IOutputBindingConverter.html#FunctionMonkey_Abstractions_IOutputBindingConverter_Convert_
@@ -6867,6 +6867,24 @@ references:
   commentId: M:FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(FunctionMonkey.Abstractions.SignalR.SignalRMessage)
   fullName: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(FunctionMonkey.Abstractions.SignalR.SignalRMessage)
   nameWithType: Converter.ToAzureFunctionsObject(SignalRMessage)
+- uid: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(GroupAction)
+  name: ToAzureFunctionsObject(GroupAction)
+  href: api/FunctionMonkey.SignalR.Converter.html#FunctionMonkey_SignalR_Converter_ToAzureFunctionsObject_GroupAction_
+  commentId: M:FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(GroupAction)
+  fullName: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(GroupAction)
+  nameWithType: Converter.ToAzureFunctionsObject(GroupAction)
+- uid: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction)
+  name: ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction)
+  href: api/FunctionMonkey.SignalR.Converter.html#FunctionMonkey_SignalR_Converter_ToAzureFunctionsObject_Microsoft_Azure_WebJobs_Extensions_SignalRService_SignalRGroupAction_
+  commentId: M:FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction)
+  fullName: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction)
+  nameWithType: Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRGroupAction)
+- uid: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage)
+  name: ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage)
+  href: api/FunctionMonkey.SignalR.Converter.html#FunctionMonkey_SignalR_Converter_ToAzureFunctionsObject_Microsoft_Azure_WebJobs_Extensions_SignalRService_SignalRMessage_
+  commentId: M:FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage)
+  fullName: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage)
+  nameWithType: Converter.ToAzureFunctionsObject(Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage)
 - uid: FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject*
   name: ToAzureFunctionsObject
   href: api/FunctionMonkey.SignalR.Converter.html#FunctionMonkey_SignalR_Converter_ToAzureFunctionsObject_
