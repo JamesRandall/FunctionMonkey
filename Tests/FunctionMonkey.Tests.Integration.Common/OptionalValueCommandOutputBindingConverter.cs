@@ -3,7 +3,7 @@ using FunctionMonkey.Tests.Integration.Common.Commands.TestInfrastructure;
 
 namespace FunctionMonkey.Tests.Integration.Common
 {
-    public class OptionalValueCommandConverter : IOutputBindingConverter
+    public class OptionalValueCommandOutputBindingConverter : IOutputBindingConverter
     {
         public object Convert(object input)
         {

@@ -12,5 +12,6 @@ namespace FunctionMonkey.Abstractions.Builders
     {
         TParentBuilder Options(Action<TFunctionOptionsBuilder> options);
         IOutputBindingBuilder<TParentBuilder> OutputTo { get; }
+        TParentBuilder OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter;
     }
 }
