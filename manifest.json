@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ICosmosDbFunctionOptionBuilder-1.html",
-          "hash": "epPG87awGIuQEOKV4X0Uow=="
+          "hash": "ffiHaRfnOc1esTDF9hSOjg=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IEventHubFunctionOptionBuilder-1.html",
-          "hash": "uropCwNltzEK2O5nToRxZw=="
+          "hash": "LzUt3wQDIg2w+Bo0U0aSXQ=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html",
-          "hash": "+PFMO7eOhEd7dUspta6Bzw=="
+          "hash": "YJrWwQ5aB+/+jurouL7weg=="
         }
       },
       "is_incremental": false,
@@ -161,11 +161,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.yml",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html",
-          "hash": "KFe11RbSSm0QCDtojcLMtA=="
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html",
+          "hash": "a74xRByInfm8c4wrcI7hRg=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IHttpFunctionConfigurationBuilder-1.html",
-          "hash": "uLkD/8kGJNZi3Y9roEAekQ=="
+          "hash": "0cxhxDHOxJe0KC0huhARfA=="
         }
       },
       "is_incremental": false,
@@ -353,11 +353,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.yml",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html",
-          "hash": "C/vuiPKlGfVp6GX2UluMMg=="
+          "relative_path": "api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html",
+          "hash": "V6lXcIfNI3Pqa0bh+tX/JA=="
         }
       },
       "is_incremental": false,
@@ -393,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IServiceBusFunctionOptionBuilder-1.html",
-          "hash": "07MFRULaXesUNvio2i3R3A=="
+          "hash": "VeiPb4NV02x287GGnUhNgA=="
         }
       },
       "is_incremental": false,
@@ -417,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ISignalRFunctionConfigurationBuilder-1.html",
-          "hash": "lKVQyAaba6dsNXwBt+uqXw=="
+          "hash": "a5jXsHkPNG3v2OM4c+o1iA=="
         }
       },
       "is_incremental": false,
@@ -441,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.IStorageFunctionOptionBuilder-1.html",
-          "hash": "IS2IbfjPzbZfqwopkcNCyw=="
+          "hash": "lNSrGxcY8pRPBG+Zi3mpag=="
         }
       },
       "is_incremental": false,
@@ -465,7 +465,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.ITimerFunctionOptionsBuilder-1.html",
-          "hash": "hYkowHkKT1VFePBwKx+F+A=="
+          "hash": "Uzj4oyxFlSZ79q6LCTDz2g=="
         }
       },
       "is_incremental": false,
@@ -489,7 +489,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html",
-          "hash": "4pnhI1YC4Mn5PDSq14DEgw=="
+          "hash": "SSkg/UwnA7N5gbCA1fxXIA=="
         }
       },
       "is_incremental": false,
@@ -549,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.Builders.html",
-          "hash": "MkcSin6NqvXoD01KOLhhkA=="
+          "hash": "K16PsXlcRMyrtQJOx+kViw=="
         }
       },
       "is_incremental": false,
@@ -881,6 +881,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FunctionMonkey.Abstractions.IOutputBindingConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FunctionMonkey.Abstractions.IOutputBindingConverter.html",
+          "hash": "Uurvhn77ottz+Fjtx9D10g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FunctionMonkey.Abstractions.ISerializer.yml",
       "output": {
         ".html": {
@@ -1005,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Abstractions.html",
-          "hash": "Xe/MfPDmvh7x8msmoJpUoQ=="
+          "hash": "JQl6PdexGCK4JJWD+A6Mdw=="
         }
       },
       "is_incremental": false,
@@ -1125,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.html",
-          "hash": "DZtG1ZibEIL9bpdtcHEFfg=="
+          "hash": "B/TwGorF8SoL6yrW8+cTvQ=="
         }
       },
       "is_incremental": false,
@@ -1173,7 +1185,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.Builders.StorageFunctionOptionBuilder-1.html",
-          "hash": "kfFAH90JCNDchZz2HsPDyw=="
+          "hash": "S2XhoSdbUWsG37dvb/ZwVQ=="
         }
       },
       "is_incremental": false,
@@ -1629,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FunctionMonkey.PluginFunctions.html",
-          "hash": "CdVo5Gl7DxxeiAYp7RdCjw=="
+          "hash": "kHtugSHjgCU1szvGGvR66A=="
         }
       },
       "is_incremental": false,
@@ -2061,7 +2073,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "P1bq70Pd7YsUw7mkMFSSIw=="
+          "hash": "xXbPf622z9xf8/E/4binww=="
         }
       },
       "is_incremental": false,
@@ -2597,11 +2609,10 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
-        "ResourceDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 0,
+          "total_file_count": 171,
           "skipped_file_count": 0
         },
         "ConceptualDocumentProcessor": {
@@ -2610,17 +2621,18 @@
           "total_file_count": 38,
           "skipped_file_count": 0
         },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 170,
           "skipped_file_count": 0
         }
       }

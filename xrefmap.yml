@@ -697,6 +697,22 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
   nameWithType: IFunctionHostBuilder.DefaultHttpResponseHandler<TResponseHandler>()
   nameWithType.vb: IFunctionHostBuilder.DefaultHttpResponseHandler(Of TResponseHandler)()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter*
+  name: DefaultOutputConverter
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultOutputConverter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter
+  nameWithType: IFunctionHostBuilder.DefaultOutputConverter
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter``1
+  name: DefaultOutputConverter<TConverter>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_DefaultOutputConverter__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter``1
+  name.vb: DefaultOutputConverter(Of TConverter)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter<TConverter>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.DefaultOutputConverter(Of TConverter)()
+  nameWithType: IFunctionHostBuilder.DefaultOutputConverter<TConverter>()
+  nameWithType.vb: IFunctionHostBuilder.DefaultOutputConverter(Of TConverter)()
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.FunctionDefinitions
   name: FunctionDefinitions
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionHostBuilder_FunctionDefinitions
@@ -799,50 +815,68 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IFunctionHostBuilder.Setup
   nameWithType: IFunctionHostBuilder.Setup
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3
-  name: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html
-  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionOptions`3
-  name.vb: IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder)
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder)
-  nameWithType: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>
-  nameWithType.vb: IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder)
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.Options(Action{`2})
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2
+  name: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2
+  name.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder)
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder)
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder)
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options(Action{`1})
   name: Options(Action<TFunctionOptionsBuilder>)
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_3_Options_Action__2__
-  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.Options(Action{`2})
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_Action__1__
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options(Action{`1})
   name.vb: Options(Action(Of TFunctionOptionsBuilder))
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.Options(Action<TFunctionOptionsBuilder>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).Options(Action(Of TFunctionOptionsBuilder))
-  nameWithType: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.Options(Action<TFunctionOptionsBuilder>)
-  nameWithType.vb: IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).Options(Action(Of TFunctionOptionsBuilder))
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.Options*
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options(Action<TFunctionOptionsBuilder>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options(Action(Of TFunctionOptionsBuilder))
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options(Action<TFunctionOptionsBuilder>)
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options(Action(Of TFunctionOptionsBuilder))
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options*
   name: Options
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_3_Options_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.Options
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_Options_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.Options
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.Options
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).Options
-  nameWithType: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.Options
-  nameWithType.vb: IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).Options
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.OutputTo
-  name: OutputTo
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_3_OutputTo
-  commentId: P:FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.OutputTo
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.OutputTo
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).OutputTo
-  nameWithType: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.OutputTo
-  nameWithType.vb: IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).OutputTo
-- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.OutputTo*
-  name: OutputTo
-  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-3.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_3_OutputTo_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptions`3.OutputTo
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.Options
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).Options
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputBindingConverter*
+  name: OutputBindingConverter
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputBindingConverter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputBindingConverter
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.OutputTo
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).OutputTo
-  nameWithType: IFunctionOptions<TCommand, TParentBuilder, TFunctionOptionsBuilder>.OutputTo
-  nameWithType.vb: IFunctionOptions(Of TCommand, TParentBuilder, TFunctionOptionsBuilder).OutputTo
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputBindingConverter
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputBindingConverter
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputBindingConverter
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputBindingConverter
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputBindingConverter``1
+  name: OutputBindingConverter<TConverter>()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputBindingConverter__1
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputBindingConverter``1
+  name.vb: OutputBindingConverter(Of TConverter)()
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputBindingConverter<TConverter>()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputBindingConverter(Of TConverter)()
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputBindingConverter<TConverter>()
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputBindingConverter(Of TConverter)()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputTo
+  name: OutputTo
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputTo
+  commentId: P:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputTo
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputTo
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputTo
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputTo
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputTo
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputTo*
+  name: OutputTo
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptions-2.html#FunctionMonkey_Abstractions_Builders_IFunctionOptions_2_OutputTo_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptions`2.OutputTo
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputTo
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputTo
+  nameWithType: IFunctionOptions<TParentBuilder, TFunctionOptionsBuilder>.OutputTo
+  nameWithType.vb: IFunctionOptions(Of TParentBuilder, TFunctionOptionsBuilder).OutputTo
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder
   name: IFunctionOptionsBuilder
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html
@@ -1540,251 +1574,251 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.IOpenApiSchemaFilterContext.Type
   nameWithType: IOpenApiSchemaFilterContext.Type
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2
-  name: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html
-  commentId: T:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2
-  name.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.CosmosDb(System.String,System.String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1
+  name: IOutputBindingBuilder<TFunctionTypeBuilder>
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html
+  commentId: T:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1
+  name.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.CosmosDb(System.String,System.String)
   name: CosmosDb(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_CosmosDb_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.CosmosDb(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.CosmosDb(System.String,System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_CosmosDb_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.CosmosDb(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.CosmosDb(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).CosmosDb(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.CosmosDb(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).CosmosDb(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.CosmosDb(System.String,System.String,System.String)
   name: CosmosDb(String, String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_CosmosDb_System_String_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.CosmosDb(System.String,System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb(System.String, System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb(System.String, System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb(String, String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb(String, String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.CosmosDb*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_CosmosDb_System_String_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.CosmosDb(System.String,System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.CosmosDb(System.String, System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).CosmosDb(System.String, System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.CosmosDb(String, String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).CosmosDb(String, String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.CosmosDb*
   name: CosmosDb
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_CosmosDb_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.CosmosDb
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_CosmosDb_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.CosmosDb
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.CosmosDb
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).CosmosDb
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.CosmosDb
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).CosmosDb
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.CosmosDb
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).CosmosDb
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.EventHub(System.String)
   name: EventHub(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_EventHub_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_EventHub_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.EventHub(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.EventHub(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).EventHub(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.EventHub(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).EventHub(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.EventHub(System.String,System.String)
   name: EventHub(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_EventHub_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_EventHub_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.EventHub(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.EventHub(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).EventHub(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.EventHub(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).EventHub(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.EventHub*
   name: EventHub
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_EventHub_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.EventHub
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_EventHub_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.EventHub
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.EventHub
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).EventHub
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.EventHub
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).EventHub
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.EventHub
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).EventHub
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue(System.String)
   name: ServiceBusQueue(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusQueue_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue(System.String,System.String)
   name: ServiceBusQueue(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusQueue_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue*
   name: ServiceBusQueue
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusQueue_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,Expression{Func{``0,System.Object}})
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue``1(System.String,Expression{Func{``0,System.Object}})
   name: ServiceBusQueue<TResult>(String, Expression<Func<TResult, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue__1_System_String_Expression_Func___0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,Expression{Func{``0,System.Object}})
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusQueue__1_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue``1(System.String,Expression{Func{``0,System.Object}})
   name.vb: ServiceBusQueue(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(System.String, Expression<Func<TResult, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(System.String, Expression(Of Func(Of TResult, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(String, Expression<Func<TResult, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue<TResult>(System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue<TResult>(String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue``1(System.String,System.String,Expression{Func{``0,System.Object}})
   name: ServiceBusQueue<TResult>(String, String, Expression<Func<TResult, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusQueue__1_System_String_System_String_Expression_Func___0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusQueue``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusQueue__1_System_String_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusQueue``1(System.String,System.String,Expression{Func{``0,System.Object}})
   name.vb: ServiceBusQueue(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(System.String, System.String, Expression<Func<TResult, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(System.String, System.String, Expression(Of Func(Of TResult, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusQueue<TResult>(String, String, Expression<Func<TResult, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue<TResult>(System.String, System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(System.String, System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusQueue<TResult>(String, String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusQueue(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic(System.String)
   name: ServiceBusTopic(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusTopic_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic(System.String,System.String)
   name: ServiceBusTopic(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusTopic_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic*
   name: ServiceBusTopic
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusTopic_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,Expression{Func{``0,System.Object}})
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic``1(System.String,Expression{Func{``0,System.Object}})
   name: ServiceBusTopic<TResult>(String, Expression<Func<TResult, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic__1_System_String_Expression_Func___0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,Expression{Func{``0,System.Object}})
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusTopic__1_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic``1(System.String,Expression{Func{``0,System.Object}})
   name.vb: ServiceBusTopic(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(System.String, Expression<Func<TResult, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(System.String, Expression(Of Func(Of TResult, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(String, Expression<Func<TResult, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic<TResult>(System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic<TResult>(String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic``1(System.String,System.String,Expression{Func{``0,System.Object}})
   name: ServiceBusTopic<TResult>(String, String, Expression<Func<TResult, Object>>)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_ServiceBusTopic__1_System_String_System_String_Expression_Func___0_System_Object___
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.ServiceBusTopic``1(System.String,System.String,Expression{Func{``0,System.Object}})
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_ServiceBusTopic__1_System_String_System_String_Expression_Func___0_System_Object___
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.ServiceBusTopic``1(System.String,System.String,Expression{Func{``0,System.Object}})
   name.vb: ServiceBusTopic(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(System.String, System.String, Expression<Func<TResult, System.Object>>)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(System.String, System.String, Expression(Of Func(Of TResult, System.Object)))
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.ServiceBusTopic<TResult>(String, String, Expression<Func<TResult, Object>>)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic<TResult>(System.String, System.String, Expression<Func<TResult, System.Object>>)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(System.String, System.String, Expression(Of Func(Of TResult, System.Object)))
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.ServiceBusTopic<TResult>(String, String, Expression<Func<TResult, Object>>)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).ServiceBusTopic(Of TResult)(String, String, Expression(Of Func(Of TResult, Object)))
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRGroupAction(System.String)
   name: SignalRGroupAction(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRGroupAction_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRGroupAction(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRGroupAction(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRGroupAction(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRGroupAction(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_SignalRGroupAction_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRGroupAction(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRGroupAction(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRGroupAction(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRGroupAction(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRGroupAction(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRGroupAction(System.String,System.String)
   name: SignalRGroupAction(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRGroupAction_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRGroupAction(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRGroupAction(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRGroupAction(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRGroupAction(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_SignalRGroupAction_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRGroupAction(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRGroupAction(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRGroupAction(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRGroupAction(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRGroupAction(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRGroupAction*
   name: SignalRGroupAction
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRGroupAction_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRGroupAction
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_SignalRGroupAction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRGroupAction
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRGroupAction
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRGroupAction
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRGroupAction
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRGroupAction
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRMessage(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRGroupAction
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRGroupAction
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRGroupAction
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRGroupAction
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRMessage(System.String)
   name: SignalRMessage(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRMessage_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRMessage(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRMessage(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRMessage(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRMessage(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRMessage(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRMessage(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_SignalRMessage_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRMessage(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRMessage(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRMessage(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRMessage(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRMessage(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRMessage(System.String,System.String)
   name: SignalRMessage(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRMessage_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRMessage(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRMessage(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRMessage(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRMessage(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRMessage(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRMessage*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_SignalRMessage_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRMessage(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRMessage(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRMessage(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRMessage(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRMessage(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRMessage*
   name: SignalRMessage
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_SignalRMessage_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.SignalRMessage
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_SignalRMessage_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.SignalRMessage
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRMessage
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRMessage
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.SignalRMessage
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).SignalRMessage
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageQueue(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRMessage
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRMessage
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.SignalRMessage
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).SignalRMessage
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageQueue(System.String)
   name: StorageQueue(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_StorageQueue_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageQueue(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageQueue(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageQueue(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageQueue(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageQueue(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageQueue(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_StorageQueue_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageQueue(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.StorageQueue(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageQueue(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.StorageQueue(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageQueue(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageQueue(System.String,System.String)
   name: StorageQueue(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_StorageQueue_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageQueue(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageQueue(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageQueue(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageQueue(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageQueue(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageQueue*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_StorageQueue_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageQueue(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.StorageQueue(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageQueue(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.StorageQueue(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageQueue(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageQueue*
   name: StorageQueue
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_StorageQueue_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageQueue
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_StorageQueue_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageQueue
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageQueue
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageQueue
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageQueue
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageQueue
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageTable(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.StorageQueue
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageQueue
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.StorageQueue
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageQueue
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageTable(System.String)
   name: StorageTable(String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_StorageTable_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageTable(System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageTable(System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageTable(System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageTable(String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageTable(String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageTable(System.String,System.String)
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_StorageTable_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageTable(System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.StorageTable(System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageTable(System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.StorageTable(String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageTable(String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageTable(System.String,System.String)
   name: StorageTable(String, String)
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_StorageTable_System_String_System_String_
-  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageTable(System.String,System.String)
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageTable(System.String, System.String)
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageTable(System.String, System.String)
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageTable(String, String)
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageTable(String, String)
-- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageTable*
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_StorageTable_System_String_System_String_
+  commentId: M:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageTable(System.String,System.String)
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.StorageTable(System.String, System.String)
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageTable(System.String, System.String)
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.StorageTable(String, String)
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageTable(String, String)
+- uid: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageTable*
   name: StorageTable
-  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-2.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_2_StorageTable_
-  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`2.StorageTable
+  href: api/FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder-1.html#FunctionMonkey_Abstractions_Builders_IOutputBindingBuilder_1_StorageTable_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder`1.StorageTable
   isSpec: "True"
-  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageTable
-  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageTable
-  nameWithType: IOutputBindingBuilder<TCommand, TFunctionTypeBuilder>.StorageTable
-  nameWithType.vb: IOutputBindingBuilder(Of TCommand, TFunctionTypeBuilder).StorageTable
+  fullName: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder<TFunctionTypeBuilder>.StorageTable
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageTable
+  nameWithType: IOutputBindingBuilder<TFunctionTypeBuilder>.StorageTable
+  nameWithType.vb: IOutputBindingBuilder(Of TFunctionTypeBuilder).StorageTable
 - uid: FunctionMonkey.Abstractions.Builders.ISerializationBuilder
   name: ISerializationBuilder
   href: api/FunctionMonkey.Abstractions.Builders.ISerializationBuilder.html
@@ -2543,6 +2577,45 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.CommandResultItemTypeName
   nameWithType: AbstractOutputBinding.CommandResultItemTypeName
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.HasOutputBindingConverter
+  name: HasOutputBindingConverter
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_HasOutputBindingConverter
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.HasOutputBindingConverter
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.HasOutputBindingConverter
+  nameWithType: AbstractOutputBinding.HasOutputBindingConverter
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.HasOutputBindingConverter*
+  name: HasOutputBindingConverter
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_HasOutputBindingConverter_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.HasOutputBindingConverter
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.HasOutputBindingConverter
+  nameWithType: AbstractOutputBinding.HasOutputBindingConverter
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterFunction
+  name: OutputBindingConverterFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_OutputBindingConverterFunction
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterFunction
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterFunction
+  nameWithType: AbstractOutputBinding.OutputBindingConverterFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterFunction*
+  name: OutputBindingConverterFunction
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_OutputBindingConverterFunction_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterFunction
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterFunction
+  nameWithType: AbstractOutputBinding.OutputBindingConverterFunction
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterType
+  name: OutputBindingConverterType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_OutputBindingConverterType
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterType
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterType
+  nameWithType: AbstractOutputBinding.OutputBindingConverterType
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterType*
+  name: OutputBindingConverterType
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.html#FunctionMonkey_Abstractions_Builders_Model_AbstractOutputBinding_OutputBindingConverterType_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterType
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractOutputBinding.OutputBindingConverterType
+  nameWithType: AbstractOutputBinding.OutputBindingConverterType
 - uid: FunctionMonkey.Abstractions.Builders.Model.BridgedFunction
   name: BridgedFunction
   href: api/FunctionMonkey.Abstractions.Builders.Model.BridgedFunction.html
@@ -3933,6 +4006,25 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.IMediatorTypeSafetyEnforcer.Requirements
   nameWithType: IMediatorTypeSafetyEnforcer.Requirements
+- uid: FunctionMonkey.Abstractions.IOutputBindingConverter
+  name: IOutputBindingConverter
+  href: api/FunctionMonkey.Abstractions.IOutputBindingConverter.html
+  commentId: T:FunctionMonkey.Abstractions.IOutputBindingConverter
+  fullName: FunctionMonkey.Abstractions.IOutputBindingConverter
+  nameWithType: IOutputBindingConverter
+- uid: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object)
+  name: Convert(Object)
+  href: api/FunctionMonkey.Abstractions.IOutputBindingConverter.html#FunctionMonkey_Abstractions_IOutputBindingConverter_Convert_System_Object_
+  commentId: M:FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object)
+  fullName: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert(System.Object)
+  nameWithType: IOutputBindingConverter.Convert(Object)
+- uid: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert*
+  name: Convert
+  href: api/FunctionMonkey.Abstractions.IOutputBindingConverter.html#FunctionMonkey_Abstractions_IOutputBindingConverter_Convert_
+  commentId: Overload:FunctionMonkey.Abstractions.IOutputBindingConverter.Convert
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.IOutputBindingConverter.Convert
+  nameWithType: IOutputBindingConverter.Convert
 - uid: FunctionMonkey.Abstractions.ISerializer
   name: ISerializer
   href: api/FunctionMonkey.Abstractions.ISerializer.html
@@ -4537,6 +4629,24 @@ references:
   fullName.vb: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder(Of TCommandOuter).Options
   nameWithType: CosmosDbFunctionOptionBuilder<TCommandOuter>.Options
   nameWithType.vb: CosmosDbFunctionOptionBuilder(Of TCommandOuter).Options
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder`1.OutputBindingConverter*
+  name: OutputBindingConverter
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_1_OutputBindingConverter_
+  commentId: Overload:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder`1.OutputBindingConverter
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter
+  fullName.vb: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter
+  nameWithType: CosmosDbFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter
+  nameWithType.vb: CosmosDbFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter
+- uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder`1.OutputBindingConverter``1
+  name: OutputBindingConverter<TConverter>()
+  href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_1_OutputBindingConverter__1
+  commentId: M:FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder`1.OutputBindingConverter``1
+  name.vb: OutputBindingConverter(Of TConverter)()
+  fullName: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter<TConverter>()
+  fullName.vb: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter(Of TConverter)()
+  nameWithType: CosmosDbFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter<TConverter>()
+  nameWithType.vb: CosmosDbFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter(Of TConverter)()
 - uid: FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder`1.OutputTo
   name: OutputTo
   href: api/FunctionMonkey.Builders.CosmosDbFunctionOptionBuilder-1.html#FunctionMonkey_Builders_CosmosDbFunctionOptionBuilder_1_OutputTo
@@ -5040,6 +5150,24 @@ references:
   fullName.vb: FunctionMonkey.Builders.StorageFunctionOptionBuilder(Of TCommandOuter).Options
   nameWithType: StorageFunctionOptionBuilder<TCommandOuter>.Options
   nameWithType.vb: StorageFunctionOptionBuilder(Of TCommandOuter).Options
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder`1.OutputBindingConverter*
+  name: OutputBindingConverter
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder-1.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_1_OutputBindingConverter_
+  commentId: Overload:FunctionMonkey.Builders.StorageFunctionOptionBuilder`1.OutputBindingConverter
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter
+  fullName.vb: FunctionMonkey.Builders.StorageFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter
+  nameWithType: StorageFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter
+  nameWithType.vb: StorageFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter
+- uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder`1.OutputBindingConverter``1
+  name: OutputBindingConverter<TConverter>()
+  href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder-1.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_1_OutputBindingConverter__1
+  commentId: M:FunctionMonkey.Builders.StorageFunctionOptionBuilder`1.OutputBindingConverter``1
+  name.vb: OutputBindingConverter(Of TConverter)()
+  fullName: FunctionMonkey.Builders.StorageFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter<TConverter>()
+  fullName.vb: FunctionMonkey.Builders.StorageFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter(Of TConverter)()
+  nameWithType: StorageFunctionOptionBuilder<TCommandOuter>.OutputBindingConverter<TConverter>()
+  nameWithType.vb: StorageFunctionOptionBuilder(Of TCommandOuter).OutputBindingConverter(Of TConverter)()
 - uid: FunctionMonkey.Builders.StorageFunctionOptionBuilder`1.OutputTo
   name: OutputTo
   href: api/FunctionMonkey.Builders.StorageFunctionOptionBuilder-1.html#FunctionMonkey_Builders_StorageFunctionOptionBuilder_1_OutputTo
@@ -6226,6 +6354,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.PluginFunctions.IsValid
   nameWithType: PluginFunctions.IsValid
+- uid: FunctionMonkey.PluginFunctions.OutputBindingConverter
+  name: OutputBindingConverter
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_OutputBindingConverter
+  commentId: P:FunctionMonkey.PluginFunctions.OutputBindingConverter
+  fullName: FunctionMonkey.PluginFunctions.OutputBindingConverter
+  nameWithType: PluginFunctions.OutputBindingConverter
+- uid: FunctionMonkey.PluginFunctions.OutputBindingConverter*
+  name: OutputBindingConverter
+  href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_OutputBindingConverter_
+  commentId: Overload:FunctionMonkey.PluginFunctions.OutputBindingConverter
+  isSpec: "True"
+  fullName: FunctionMonkey.PluginFunctions.OutputBindingConverter
+  nameWithType: PluginFunctions.OutputBindingConverter
 - uid: FunctionMonkey.PluginFunctions.Serialize
   name: Serialize
   href: api/FunctionMonkey.PluginFunctions.html#FunctionMonkey_PluginFunctions_Serialize

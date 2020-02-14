@@ -120,6 +120,12 @@ concerns are kept separate.</p>
 This is only called by the compiler so there is no big need to have it be massively performant - refelction is
 fine!</p>
 </section>
+      <h4><a class="xref" href="FunctionMonkey.Abstractions.IOutputBindingConverter.html">IOutputBindingConverter</a></h4>
+      <section><p>If an output converter is registered it will be called before the result of executing a command
+is passed into an output collector allowing the result to be shaped into a different result.</p>
+<p>This can be useful to keep protocol concerns out of the business domain or to help migrate an
+existing business domain into Azure Functions</p>
+</section>
       <h4><a class="xref" href="FunctionMonkey.Abstractions.ISerializer.html">ISerializer</a></h4>
       <section><p>Implementations of this interface are able to deserialize commands from JSON strings while
 ensuring that any properties marked with the SecurityPropertyAttribute are not included in
