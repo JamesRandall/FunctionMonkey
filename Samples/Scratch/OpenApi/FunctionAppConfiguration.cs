@@ -43,16 +43,16 @@ namespace OpenApi
                     // OpenApi
                     .UserInterface()
                     //.InjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.OpenApi.theme-material.css")
-                    //.InjectResource(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
-                    //.InjectLogo(Assembly.GetExecutingAssembly(), "Resources.OpenApi.app-logo-small.svg")
+                    //.InjectResource(Assembly.GetExecutingAssembly(), "Resources.OpenApi.testlogo.svg")
+                    .InjectLogo(Assembly.GetExecutingAssembly(), "Resources.OpenApi.testlogo.svg")
                     //.InjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.OpenApi.console-log.js")
 
 
                     // Redoc
                     .RedocUserInterface()
                     //.RedocInjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.Redoc.theme-material.css")
-                    //.RedocInjectResource(Assembly.GetExecutingAssembly(), "Resources.Redoc.app-logo-small.svg")
-                    //.RedocInjectLogo(Assembly.GetExecutingAssembly(), "Resources.Redoc.app-logo-small.svg")
+                    //.RedocInjectResource(Assembly.GetExecutingAssembly(), "Resources.Redoc.testlogo.svg")
+                    .RedocInjectLogo(Assembly.GetExecutingAssembly(), "Resources.Redoc.testlogo.svg")
                     //.RedocInjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.Redoc.console-log.js")
                     .RedocAddDocumentFilter(() => new CustomRedocDocumentFilter())
 

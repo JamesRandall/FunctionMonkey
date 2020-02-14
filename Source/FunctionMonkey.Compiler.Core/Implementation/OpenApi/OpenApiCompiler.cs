@@ -420,7 +420,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = $"Redoc.logo{extension}"
+                    Filename = $"ReDoc.logo{extension}"
                 });
             }
 
