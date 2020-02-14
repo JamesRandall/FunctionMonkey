@@ -12,6 +12,8 @@
     <None Remove="Resources\OpenApi\testlogo.svg" />
     <None Remove="Resources\OpenApi\theme-material.css" />
     <None Remove="Resources\ReDoc\console-log.js" />
+    <None Remove="Resources\ReDoc\diagrams\sequence1.svg" />
+    <None Remove="Resources\ReDoc\diagrams\sequence2.svg" />
     <None Remove="Resources\ReDoc\testlogo.svg" />
     <None Remove="Resources\ReDoc\theme-material.css" />
   </ItemGroup>
@@ -19,6 +21,8 @@
     <EmbeddedResource Include="Resources\OpenApi\testlogo.svg" />
     <EmbeddedResource Include="Resources\OpenApi\console-log.js" />
     <EmbeddedResource Include="Resources\OpenApi\theme-material.css" />
+    <EmbeddedResource Include="Resources\ReDoc\diagrams\sequence1.svg" />
+    <EmbeddedResource Include="Resources\ReDoc\diagrams\sequence2.svg" />
     <EmbeddedResource Include="Resources\ReDoc\testlogo.svg" />
     <EmbeddedResource Include="Resources\ReDoc\console-log.js" />
     <EmbeddedResource Include="Resources\ReDoc\theme-material.css" />

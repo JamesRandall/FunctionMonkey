@@ -4,6 +4,7 @@ using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Model;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Xml.XPath;
 
@@ -104,9 +105,31 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder InjectResources(Assembly resourceAssembly, string resourcesDirectoryName)
+        {
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith( $"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+
+            foreach (var file in files)
+            {
+                _openApiConfiguration.InjectedResources.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+            }
+            return this;
+        }
+
         public IOpenApiBuilder ReDocInjectResource(Assembly resourceAssembly, string resourceName)
         {
             _openApiConfiguration.ReDocInjectedResources.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder ReDocInjectResources(Assembly resourceAssembly, string resourcesDirectoryName)
+        {
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith( $"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+
+            foreach (var file in files)
+            {
+                _openApiConfiguration.ReDocInjectedResources.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+            }
             return this;
         }
 

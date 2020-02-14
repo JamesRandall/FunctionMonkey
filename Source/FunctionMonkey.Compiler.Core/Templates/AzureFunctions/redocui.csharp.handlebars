@@ -19,26 +19,26 @@ namespace {{Namespace}}
                 name1 = "index.html";
             }
 
-            var resourceName = $"{{Namespace}}.ReDoc";
+            var resourceName = $"{{Namespace}}.redoc";
             if(!string.IsNullOrWhiteSpace(name1))
             {
-                resourceName += "." + name1;
+                resourceName += "." + name1.ToLower();
             }
             if(!string.IsNullOrWhiteSpace(name2))
             {
-                resourceName += "." + name2;
+                resourceName += "." + name2.ToLower();
             }
             if(!string.IsNullOrWhiteSpace(name3))
             {
-                resourceName += "." + name3;
+                resourceName += "." + name3.ToLower();
             }
             if(!string.IsNullOrWhiteSpace(name4))
             {
-                resourceName += "." + name4;
+                resourceName += "." + name4.ToLower();
             }
             if(!string.IsNullOrWhiteSpace(name5))
             {
-                resourceName += "." + name5;
+                resourceName += "." + name5.ToLower();
             }
             Stream stream = typeof(OpenApiProvider).Assembly.GetManifestResourceStream(resourceName);
             if (stream != null)

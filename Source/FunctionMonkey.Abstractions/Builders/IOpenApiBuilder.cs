@@ -104,12 +104,28 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder InjectResource(Assembly resourceAssembly, string resourceName);
 
         /// <summary>
+        /// Inject the given resources into the index.html
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
+        /// <param name="resourcesDirectoryName">Name of the resources directory</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectResources(Assembly resourceAssembly, string resourcesDirectoryName);
+
+        /// <summary>
         /// Inject the given resource into the index.html of ReDoc
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
         /// <param name="resourceName">Name of the resource</param>
         /// <returns></returns>
         IOpenApiBuilder ReDocInjectResource(Assembly resourceAssembly, string resourceName);
+
+        /// <summary>
+        /// Inject the given resources into the index.html of ReDoc
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the stylesheet from</param>
+        /// <param name="resourcesDirectoryName">Name of the resources directory</param>
+        /// <returns></returns>
+        IOpenApiBuilder ReDocInjectResources(Assembly resourceAssembly, string resourcesDirectoryName);
 
         /// <summary>
         /// Inject the given logo into the topbar of the index.html
