@@ -2,7 +2,7 @@
 foreach (var commandResultItem in result)
 {
 {{#if OutputBinding.HasOutputBindingConverter}}
-    var convertedItem = pluginFunctions.OutputBindingConverter(commandResultItem);
+    var convertedItem = pluginFunctions.OutputBindingConverter(command, commandResultItem);
     await collector.AddAsync(convertedItem);
 {{else}}
     await collector.AddAsync(commandResultItem);
@@ -11,7 +11,7 @@ foreach (var commandResultItem in result)
 }
 {{else}}
     {{#if OutputBinding.HasOutputBindingConverter}}
-        var convertedItem = pluginFunctions.OutputBindingConverter(result);
+        var convertedItem = pluginFunctions.OutputBindingConverter(command, result);
         await collector.AddAsync(convertedItem);
     {{else}}
         await collector.AddAsync(result);

@@ -210,19 +210,19 @@ namespace FunctionMonkey
                 {
                     if (functionDefinition.OutputBinding.OutputBindingConverterType != null)
                     {
-                        pluginFunctions.OutputBindingConverter = (input) =>
+                        pluginFunctions.OutputBindingConverter = (originatingCommand, input) =>
                         {
                             IOutputBindingConverter converter =
                                 (IOutputBindingConverter) ServiceProvider.GetService(functionDefinition.OutputBinding
                                     .OutputBindingConverterType);
-                            return converter.Convert(input);
+                            return converter.Convert(originatingCommand, input);
                         };
                     }
                     else if (functionDefinition.OutputBinding.OutputBindingConverterFunction != null)
                     {
-                        pluginFunctions.OutputBindingConverter = input =>
-                            ((Func<object, object>) functionDefinition.OutputBinding.OutputBindingConverterFunction
-                                .Handler)(input);
+                        pluginFunctions.OutputBindingConverter = (originatingCommand, input) =>
+                            ((Func<object, object, object>) functionDefinition.OutputBinding.OutputBindingConverterFunction
+                                .Handler)(originatingCommand, input);
                     }
                 }
                 

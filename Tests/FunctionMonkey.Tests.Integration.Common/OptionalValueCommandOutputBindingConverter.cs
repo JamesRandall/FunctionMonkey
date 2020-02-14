@@ -5,7 +5,7 @@ namespace FunctionMonkey.Tests.Integration.Common
 {
     public class OptionalValueCommandOutputBindingConverter : IOutputBindingConverter
     {
-        public object Convert(object input)
+        public object Convert(object originatingCommand, object input)
         {
             if (input is IOptionalValueCommand valueCommand)
             {

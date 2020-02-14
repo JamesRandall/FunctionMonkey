@@ -2,7 +2,7 @@
 foreach (var commandResultItem in result)
 {
     {{#if OutputBinding.HasOutputBindingConverter}}
-    var convertedItem = pluginFunctions.OutputBindingConverter(commandResultItem);
+    var convertedItem = pluginFunctions.OutputBindingConverter(command, commandResultItem);
     string resultJson = pluginFunctions.Serialize(convertedItem, false);
     {{else}}
     string resultJson = pluginFunctions.Serialize(commandResultItem, false);
@@ -13,7 +13,7 @@ foreach (var commandResultItem in result)
 }
 {{else}}
 {{#if OutputBinding.HasOutputBindingConverter}}
-    var convertedItem = pluginFunctions.OutputBindingConverter(result);
+    var convertedItem = pluginFunctions.OutputBindingConverter(command, result);
     string resultJson = pluginFunctions.Serialize(convertedItem, false);
 {{else}}
     string resultJson = pluginFunctions.Serialize(result, false);

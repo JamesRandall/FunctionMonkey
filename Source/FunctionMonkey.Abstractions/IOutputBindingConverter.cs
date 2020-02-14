@@ -9,6 +9,6 @@ namespace FunctionMonkey.Abstractions
     /// </summary>
     public interface IOutputBindingConverter
     {
-        object Convert(object input);
+        object Convert(object originatingCommand, object input);
     }
 }
