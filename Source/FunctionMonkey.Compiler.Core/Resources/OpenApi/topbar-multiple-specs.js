@@ -1,77 +1,77 @@
 ﻿init();
 
 async function init() {
-  var specInfo = await getSpecInfoAsync();
-  console.log(specInfo);
-  // Replace default topbar if more than one spec is present
-  if (specInfo && specInfo.length > 1) {
-    addStyles();
-    renderTopbar(specInfo);
-    onApiVersionChanged();
-  }
+    var specInfo = await getSpecInfoAsync();
+    console.log(specInfo);
+    // Replace default topbar if more than one spec is present
+    if (specInfo && specInfo.length > 1) {
+        addStyles();
+        renderTopbar(specInfo);
+        onApiVersionChanged();
+    }
 }
 
 function addStyles() {
-  var style = document.createElement("style");
-  style.type = "text/css";
-  style.innerHTML = getStyles();
-  document.getElementsByTagName("head")[0].appendChild(style);
+    var style = document.createElement("style");
+    style.type = "text/css";
+    style.innerHTML = getStyles();
+    document.getElementsByTagName("head")[0].appendChild(style);
 }
 
 async function getSpecInfoAsync() {
-  return await fetch("/openapi/openapi-documents-spec.json")
-    .then(async response => {
-      return await response
-        .json()
-        .catch(err => console.log("response error: ", err));
-    })
-    .catch(error => console.log("fetch error: ", error));
+    return await fetch("/openapi/openapi-documents-spec.json")
+        .then(async response => {
+            return await response
+                .json()
+                .catch(err => console.log("response error: ", err));
+        })
+        .catch(error => console.log("fetch error: ", error));
 }
 
 async function getLogoUri() {
-  const path = "/openapi/logo.";
-  const extensions = ["svg", "png", "jpg"];
-  for (let index = 0; index < extensions.length; index++) {
-    const logoUri = await fetch( path + extensions[index]).then(response =>
-      response.status === 404 ? undefined :  path + extensions[index]
-    );
-    if (logoUri) return logoUri;
-  }
-  return undefined;
+    const path = "/openapi/logo.";
+    const extensions = ["svg", "png", "jpg"];
+    for (let index = 0; index < extensions.length; index++) {
+        const logoUri = await fetch(path + extensions[index]).then(response =>
+            response.status === 404 ? undefined : path + extensions[index]
+        );
+        if (logoUri) return logoUri;
+    }
+    return undefined;
 }
 
 function onApiVersionChanged() {
-  const ui = SwaggerUIBundle({
-    url: document.getElementById("select").value,
-    dom_id: "#swagger-ui",
-    deepLinking: true,
-    presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-    plugins: [SwaggerUIBundle.plugins.DownloadUrl],
-    layout: "StandaloneLayout"
-  });
-  window.ui = ui;
+    const ui = SwaggerUIBundle({
+        url: document.getElementById("select").value,
+        dom_id: "#swagger-ui",
+        deepLinking: true,
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        plugins: [SwaggerUIBundle.plugins.DownloadUrl],
+        layout: "StandaloneLayout"
+    });
+    window.ui = ui;
 }
 
 async function renderTopbar(specInfo) {
-  var logoUri;
-  var optionsTags = specInfo.map(
-    spec => `<option value="${spec.Path}">${spec.Title}</option>`
-  );
-  var customImageUri = await getLogoUri();
+    var logoUri;
+    var optionsTags = specInfo.map(
+        spec => `<option value="${spec.Path}">${spec.Title}</option>`
+    );
+    var customLogoUri = await getLogoUri();
 
-  console.log(customImageUri);
-  if (customImageUri) {
-    console.log("customimage");
-    logoUri = customImageUri;
-  } else {
-      logoUri = "/openapi/swagger-logo.svg"
-    console.log("defaultimage");
-  }
+    console.log(customLogoUri);
+    if (customLogoUri) {
+        console.log("customimage");
+        logoUri = customLogoUri;
+    } else {
+        logoUri = "/openapi/swagger-logo.svg";
+        console.log("defaultimage");
+    }
 
-  var customTopbar = document.createElement("div");
-  customTopbar.classList.add("custom-topbar");
-  customTopbar.style.display = "block";
-  customTopbar.innerHTML = `<div class="wrapper">
+    var customTopbar = document.createElement("div");
+    customTopbar.classList.add("custom-topbar");
+    customTopbar.style.display = "block";
+    customTopbar.innerHTML = `<div class="wrapper">
             <div class="topbar-wrapper">
                 <a class="link"><img src="${logoUri}" height="40" /></a>
                 <form class="download-url-wrapper">
@@ -84,20 +84,17 @@ async function renderTopbar(specInfo) {
                 </form>
             </div>
         </div>`;
-  document.body.insertBefore(
-    customTopbar,
-    document.getElementById("swagger-ui")
-  );
+    document.body.insertBefore(customTopbar, document.getElementById("swagger-ui"));
 
-  var preSelectedSpecValue = specInfo.find(spec => spec.Selected);
-  if (!preSelectedSpecValue) {
-    preSelectedSpecValue = specInfo[0];
-  }
-  document.getElementById("select").value = preSelectedSpecValue.Path;
+    var preSelectedSpecValue = specInfo.find(spec => spec.Selected);
+    if (!preSelectedSpecValue) {
+        preSelectedSpecValue = specInfo[0];
+    }
+    document.getElementById("select").value = preSelectedSpecValue.Path;
 }
 
 function getStyles() {
-  return `/* Custom Modifications */
+    return `/* Custom Modifications */
 
     .menu-content {
         background-color: rgba(255, 255, 255, 0) !important;
