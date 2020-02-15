@@ -54,6 +54,7 @@ namespace OpenApi
                     //.ReDocInjectStylesheet(Assembly.GetExecutingAssembly(), "Resources.ReDoc.theme-material.css")
                     //.ReDocInjectResource(Assembly.GetExecutingAssembly(), "Resources.ReDoc.testlogo.svg")
                     .ReDocInjectResources(Assembly.GetExecutingAssembly(), "Resources.ReDoc.diagrams")
+                    .ReDocInjectExtensions(Assembly.GetExecutingAssembly(), "Resources.ReDoc.extensions")
                     .ReDocInjectLogo(Assembly.GetExecutingAssembly(), "Resources.ReDoc.testlogo.svg")
                     //.ReDocInjectJavaScript(Assembly.GetExecutingAssembly(), "Resources.ReDoc.console-log.js")
                     .ReDocAddDocumentFilter(() => new CustomReDocDocumentFilter())

@@ -107,7 +107,7 @@ namespace FunctionMonkey.Builders
 
         public IOpenApiBuilder InjectResources(Assembly resourceAssembly, string resourcesDirectoryName)
         {
-            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith( $"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
 
             foreach (var file in files)
             {
@@ -124,11 +124,45 @@ namespace FunctionMonkey.Builders
 
         public IOpenApiBuilder ReDocInjectResources(Assembly resourceAssembly, string resourcesDirectoryName)
         {
-            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith( $"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
 
             foreach (var file in files)
             {
                 _openApiConfiguration.ReDocInjectedResources.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+            }
+            return this;
+        }
+
+        public IOpenApiBuilder InjectExtension(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder InjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName)
+        {
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+
+            foreach (var file in files)
+            {
+                _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+            }
+            return this;
+        }
+
+        public IOpenApiBuilder ReDocInjectExtension(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder ReDocInjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName)
+        {
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+
+            foreach (var file in files)
+            {
+                _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
             }
             return this;
         }

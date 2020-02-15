@@ -28,9 +28,19 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 DocumentFilters.Add(documentFilterFactory());
             }
 
+            foreach (var injectedExtensions in configuration.InjectedExtensions)
+            {
+                DocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(injectedExtensions.resourceAssembly, injectedExtensions.resourceName));
+            }
+
             foreach (var reDocDocumentFilterFactory in configuration.ReDocDocumentFilterFactories)
             {
                 ReDocDocumentFilters.Add(reDocDocumentFilterFactory());
+            }
+
+            foreach (var reDocInjectedExtensions in configuration.ReDocInjectedExtensions)
+            {
+                ReDocDocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(reDocInjectedExtensions.resourceAssembly, reDocInjectedExtensions.resourceName));
             }
 
             foreach (var operationFilterFactory in configuration.OperationFilterFactories)

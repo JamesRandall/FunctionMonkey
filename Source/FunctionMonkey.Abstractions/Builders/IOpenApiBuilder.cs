@@ -128,6 +128,38 @@ namespace FunctionMonkey.Abstractions.Builders
         IOpenApiBuilder ReDocInjectResources(Assembly resourceAssembly, string resourcesDirectoryName);
 
         /// <summary>
+        /// Inject the given extension into the OpenApi YAML file
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the extension from</param>
+        /// <param name="resourceName">Name of the extension</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectExtension(Assembly resourceAssembly, string resourceName);
+
+        /// <summary>
+        /// Inject the given extensions into the OpenApi YAML file
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the extension from</param>
+        /// <param name="resourcesDirectoryName">Name of the extensions directory</param>
+        /// <returns></returns>
+        IOpenApiBuilder InjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName);
+
+        /// <summary>
+        /// Inject the given extension into the ReDoc YAML file
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the extension from</param>
+        /// <param name="resourceName">Name of the extension</param>
+        /// <returns></returns>
+        IOpenApiBuilder ReDocInjectExtension(Assembly resourceAssembly, string resourceName);
+
+        /// <summary>
+        /// Inject the given extensions into the ReDoc YAML file
+        /// </summary>
+        /// <param name="resourceAssembly">Assembly to load the extension from</param>
+        /// <param name="resourcesDirectoryName">Name of the extensions directory</param>
+        /// <returns></returns>
+        IOpenApiBuilder ReDocInjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName);
+
+        /// <summary>
         /// Inject the given logo into the topbar of the index.html
         /// Only one Logo is supported
         /// </summary>
