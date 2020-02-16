@@ -520,6 +520,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             IOpenApiHttpFunctionFilterContext functionFilterContext = new OpenApiHttpFunctionFilterContext();
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
+                if (functionDefinition.OpenApiIgnore)
+                {
+                    continue;
+                }
+
                 var filterdVerbs = new HashSet<HttpMethod>(functionDefinition.Verbs);
                 functionFilter.Apply(functionDefinition.RouteConfiguration.Route, filterdVerbs, functionFilterContext);
                 if (filterdVerbs.Count == 0)
