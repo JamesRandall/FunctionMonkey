@@ -37,6 +37,7 @@ namespace {{Namespace}}
         )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
@@ -68,20 +69,17 @@ namespace {{Namespace}}
             {
                 return new UnauthorizedResult();
             }
-            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{TokenValidatorTypeName}}));
-            principal = await tokenValidator.ValidateAsync(authorizationHeader);
+            
+            principal = await pluginFunctions.ValidateToken(authorizationHeader);
             if (principal == null)
             {
                 return new UnauthorizedResult();
             }
-            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);
+            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);    
             {{/if}}
 
             {{#if AuthorizesClaims}}
-            var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
-            var claimsPrincipalAuthorizationResult = await claimsPrincipalAuthorization.IsAuthorized(principal, req.Method, requestUrl);
+            var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(principal, req.Method, requestUrl);
             if (!claimsPrincipalAuthorizationResult)
             {
                 return new UnauthorizedResult();
