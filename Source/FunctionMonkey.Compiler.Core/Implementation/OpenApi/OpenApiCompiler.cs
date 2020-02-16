@@ -41,7 +41,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             {
                 return null;
             }
-            
+
             string apiPrefix = GetApiPrefix(outputBinaryFolder);
 
             if (!configuration.IsValid)
@@ -118,7 +118,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 {
                     Title = keyValuePair.Value.OpenApiInfo.Title,
                     Selected = keyValuePair.Value.Selected,
-                    Path = $"/{configuration.UserInterfaceRoute??"openapi"}/{keyValuePair.Value.DocumentRoute}"
+                    Path = $"/{configuration.UserInterfaceRoute ?? "openapi"}/{keyValuePair.Value.DocumentRoute}"
                 });
 
                 // Create reDoc YAML
@@ -170,7 +170,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                         Filename = "ReDoc.redoc-documents-spec.json",
                         Content = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(reDocDocumentsSpec.Values.ToArray()))
                     }
-                ) ;
+                );
 
                 CopyReDocUserInterfaceFilesToWebFolder(configuration, outputModel.OpenApiFileReferences);
             }
@@ -727,7 +727,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                     }
                 }
 
-                openApiDocument.Paths.Add(route.Key, pathItem);
+                if (pathItem.Operations.Count != 0)
+                {
+                    openApiDocument.Paths.Add(route.Key, pathItem);
+                }
             }
         }
 
@@ -737,6 +740,10 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             HashSet<HttpRouteConfiguration> routeConfigurations = new HashSet<HttpRouteConfiguration>();
             foreach (HttpFunctionDefinition functionDefinition in functionDefinitions)
             {
+                if (functionDefinition.OpenApiIgnore)
+                {
+                    continue;
+                }
                 if (!string.IsNullOrWhiteSpace(functionDefinition.RouteConfiguration?.OpenApiName))
                 {
                     var filterdVerbs = new HashSet<HttpMethod>(functionDefinition.Verbs);
