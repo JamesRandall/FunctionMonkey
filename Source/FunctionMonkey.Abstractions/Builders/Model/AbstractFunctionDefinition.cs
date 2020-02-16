@@ -157,5 +157,6 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         public string CommandTransformerTypeName => CommandTransformerType.EvaluateType();
 
         public bool HasCommandTransformer => CommandTransformerType != null;
+        public bool HasCommandHandlerOverride { get; set; }
     }
 }

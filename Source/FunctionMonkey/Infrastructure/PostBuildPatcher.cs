@@ -86,6 +86,10 @@ namespace FunctionMonkey.Infrastructure
                 {
                     definition.NoCommandHandler = true; // don't skip the if statement, this may also be set through options
                 }
+                if (definition.HasCommandHandlerOverride)
+                {
+                    definition.NoCommandHandler = false;
+                }
 
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)
                 {

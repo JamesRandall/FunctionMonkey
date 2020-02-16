@@ -68,6 +68,13 @@ namespace FunctionMonkey.Abstractions.Builders
         IHttpFunctionOptionsBuilder<TCommand> NoCommandHandler();
         
         /// <summary>
+        /// Use this to tell Function Monkey to attempt to dispatch a command - this can be useful if you've
+        /// globally disabled command handlers with the root option
+        /// </summary>
+        /// <returns></returns>
+        IHttpFunctionOptionsBuilder<TCommand> HasCommandHandler();
+        
+        /// <summary>
         /// Allows a command transformer to be specified for a given function
         /// </summary>
         IHttpFunctionOptionsBuilder<TCommand> CommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer;

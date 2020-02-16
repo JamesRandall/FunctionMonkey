@@ -76,6 +76,14 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
+        public IHttpFunctionOptionsBuilder<TCommand> HasCommandHandler()
+        {
+            _functionDefinition.NoCommandHandler = false;
+            _functionDefinition.HasCommandHandlerOverride = true;
+
+            return this;
+        }
+        
         public IHttpFunctionOptionsBuilder<TCommand> CommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer
         {
             _functionDefinition.CommandTransformerType = typeof(TCommandTransformer);
