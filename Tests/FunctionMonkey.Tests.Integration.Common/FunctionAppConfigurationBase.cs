@@ -39,6 +39,10 @@ namespace FunctionMonkey.Tests.Integration.Common
                     .HttpFunction<HttpDeleteCommand>("/{value}", HttpMethod.Delete)
                     .HttpFunction<HttpPatchCommand>(new HttpMethod("PATCH"))
                 )
+                .HttpRoute("transformer", route => route
+                    .HttpFunction<HttpGetCommandWithTransformer>("/{value}", HttpMethod.Get)
+                    .Options(options => options.CommandTransformer<CommandTransformer>())
+                )
                 .HttpRoute("securityProperty", route => route
                     .HttpFunction<HttpPostCommandWithSecurityProperty>(HttpMethod.Post)
                     .HttpFunction<HttpGetCommandWithSecurityProperty>(HttpMethod.Get)

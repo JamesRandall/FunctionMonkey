@@ -243,6 +243,11 @@ namespace {{Namespace}}
                 {{/if}}
             {{/each}}
 
+            {{#if HasCommandTransformer}}
+                    FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                    command = transformer.Transform(command);
+            {{/if}}
+
             {{#if ValidatesToken}}
             var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));

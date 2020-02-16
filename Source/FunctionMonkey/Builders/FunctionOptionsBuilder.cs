@@ -33,5 +33,11 @@ namespace FunctionMonkey.Builders
             _functionDefinition.NoCommandHandler = true;
             return this;
         }
+
+        public IFunctionOptionsBuilder CommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer
+        {
+            _functionDefinition.CommandTransformerType = typeof(TCommandTransformer);
+            return this;
+        }
     }
 }

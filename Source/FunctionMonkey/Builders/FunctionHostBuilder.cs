@@ -29,6 +29,9 @@ namespace FunctionMonkey.Builders
         public CompilerOptions Options { get; set; } = new CompilerOptions();
         public Type MediatorType { get; set; } = typeof(DefaultMediatorDecorator);
         public Type DefaultOutputBindingConverter { get; set; }
+        public bool HasNoCommandHandlers { get; set; }
+        
+        public Type DefaultGlobalCommandTypeTransformer { get; set; }
         
         public FunctionHostBuilder(IServiceCollection serviceCollection,
             ICommandRegistry commandRegistry, bool isRuntime)
@@ -121,6 +124,18 @@ namespace FunctionMonkey.Builders
         public IFunctionHostBuilder DefaultOutputConverter<TConverter>() where TConverter : IOutputBindingConverter
         {
             DefaultOutputBindingConverter = typeof(TConverter);
+            return this;
+        }
+
+        public IFunctionHostBuilder NoCommandHandlers()
+        {
+            HasNoCommandHandlers = true;
+            return this;
+        }
+
+        public IFunctionHostBuilder DefaultCommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer
+        {
+            DefaultGlobalCommandTypeTransformer = typeof(TCommandTransformer);
             return this;
         }
 

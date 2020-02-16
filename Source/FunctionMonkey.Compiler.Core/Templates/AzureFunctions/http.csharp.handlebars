@@ -408,6 +408,11 @@ namespace {{Namespace}}
             command = ({{{CommandTypeName}}})(await pluginFunctions.BindClaims(principal, command));
             {{/unless}}    
             {{/if}}
+        
+            {{#if HasCommandTransformer}}
+            FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+            command = transformer.Transform(command);
+            {{/if}}
 
             {{#if IsUsingValidator}}
             {{#unless CommandTypeIsUnit}}
@@ -454,7 +459,9 @@ namespace {{Namespace}}
                     log.LogWarning("2");
                     return handledResponse ?? {{#if ResultIsFSharpUnit}}new OkResult(){{else}}CreateResponse(200, result, pluginFunctions){{/if}};
                 {{else}}
-                    return new NoContentResult();
+                    var responseTask = pluginFunctions.CreateResponseForResult(command, result);
+                    var handledResponse = responseTask != null ? (await responseTask) : null;
+                    return handledResponse ?? new NoContentResult();
                 {{/if}}
                 
             {{else}}            

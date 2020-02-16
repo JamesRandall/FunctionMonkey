@@ -33,6 +33,11 @@ namespace {{Namespace}}
             {{CommandTypeName}} command = CreateNewCommand();
             {{/if}}
 
+            {{#if HasCommandTransformer}}
+                FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                command = transformer.Transform(command);
+            {{/if}}
+
             {{#if IsUsingValidator}}
                 {{#unless CommandTypeIsUnit}}
                     var validationResult = pluginFunctions.Validate(command);

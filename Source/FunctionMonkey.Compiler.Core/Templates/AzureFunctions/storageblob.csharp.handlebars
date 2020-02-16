@@ -57,6 +57,11 @@ namespace {{Namespace}}
                 executionContext.FunctionName,
                 executionContext.InvocationId);
 
+            {{#if HasCommandTransformer}}
+                FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                command = transformer.Transform(command);
+            {{/if}}
+
             {{#if IsUsingValidator}}
             var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
                 FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));

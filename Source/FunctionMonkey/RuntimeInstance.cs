@@ -225,7 +225,7 @@ namespace FunctionMonkey
                                 .Handler)(originatingCommand, input);
                     }
                 }
-                
+
                 if (functionDefinition.DeserializeFunction != null)
                 {
                     pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
@@ -475,10 +475,14 @@ namespace FunctionMonkey
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
             {
                 types.Add(abstractFunctionDefinition.CommandDeserializerType);
+                if (abstractFunctionDefinition.CommandTransformerType != null)
+                {
+                    types.Add(abstractFunctionDefinition.CommandTransformerType);
+                }
             }
-            foreach (Type claimsPrincipalAuthorizationType in types)
+            foreach (Type type in types)
             {
-                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+                ServiceCollection.AddTransient(type);
             }
 
             if (target == CompileTargetEnum.AzureFunctions)

@@ -66,5 +66,10 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <returns></returns>
         IHttpFunctionOptionsBuilder<TCommand> NoCommandHandler();
+        
+        /// <summary>
+        /// Allows a command transformer to be specified for a given function
+        /// </summary>
+        IHttpFunctionOptionsBuilder<TCommand> CommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer;
     }
 }
