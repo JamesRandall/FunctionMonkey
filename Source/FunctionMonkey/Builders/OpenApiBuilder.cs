@@ -167,6 +167,40 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IOpenApiBuilder InjectTag(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.InjectedTags.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder InjectTags(Assembly resourceAssembly, string resourcesDirectoryName)
+        {
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+
+            foreach (var file in files)
+            {
+                _openApiConfiguration.InjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+            }
+            return this;
+        }
+
+        public IOpenApiBuilder ReDocInjectTag(Assembly resourceAssembly, string resourceName)
+        {
+            _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, resourceName));
+            return this;
+        }
+
+        public IOpenApiBuilder ReDocInjectTags(Assembly resourceAssembly, string resourcesDirectoryName)
+        {
+            var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
+
+            foreach (var file in files)
+            {
+                _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+            }
+            return this;
+        }
+
         public IOpenApiBuilder InjectLogo(Assembly resourceAssembly, string resourceName)
         {
             _openApiConfiguration.InjectedLogo = (resourceAssembly, resourceName);

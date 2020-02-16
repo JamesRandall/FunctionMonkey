@@ -95,6 +95,10 @@ namespace FunctionMonkey.Abstractions.Http
 
         public IList<(Assembly resourceAssembly, string resourceName)> ReDocInjectedExtensions { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
 
+        public IList<(Assembly resourceAssembly, string resourceName)> InjectedTags { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+
+        public IList<(Assembly resourceAssembly, string resourceName)> ReDocInjectedTags { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+
         public (Assembly resourceAssembly, string resourceName) InjectedLogo { get; set; }
 
         public (Assembly resourceAssembly, string resourceName) ReDocInjectedLogo { get; set; }

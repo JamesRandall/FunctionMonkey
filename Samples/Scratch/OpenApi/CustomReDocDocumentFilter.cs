@@ -27,7 +27,7 @@ namespace OpenApi
     {
         public void Write(IOpenApiWriter writer, OpenApiSpecVersion specVersion)
         {
-            writer.WriteRaw("[    {      \"name\": \"Quick Start\",      \"tags\": [\"Introduction\"]    },    {      \"name\": \"API\",      \"tags\": [\"Customers\"]    }  ]");
+            writer.WriteRaw("[    {      \"name\": \"Quick Start\",      \"tags\": [\"Introduction\",\"FooBar\"]    },    {      \"name\": \"API\",      \"tags\": [\"Customers\"]    }  ]");
 
         }
     }
