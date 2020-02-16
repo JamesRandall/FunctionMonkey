@@ -928,6 +928,19 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.CommandTransformer(Of TCommandTransformer)()
   nameWithType: IFunctionOptionsBuilder.CommandTransformer<TCommandTransformer>()
   nameWithType.vb: IFunctionOptionsBuilder.CommandTransformer(Of TCommandTransformer)()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.HasCommandHandler
+  name: HasCommandHandler()
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_HasCommandHandler
+  commentId: M:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.HasCommandHandler
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.HasCommandHandler()
+  nameWithType: IFunctionOptionsBuilder.HasCommandHandler()
+- uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.HasCommandHandler*
+  name: HasCommandHandler
+  href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_HasCommandHandler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.HasCommandHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.HasCommandHandler
+  nameWithType: IFunctionOptionsBuilder.HasCommandHandler
 - uid: FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.JsonNamingStrategies*
   name: JsonNamingStrategies
   href: api/FunctionMonkey.Abstractions.Builders.IFunctionOptionsBuilder.html#FunctionMonkey_Abstractions_Builders_IFunctionOptionsBuilder_JsonNamingStrategies_
@@ -1163,6 +1176,23 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).CommandTransformer(Of TCommandTransformer)()
   nameWithType: IHttpFunctionOptionsBuilder<TCommand>.CommandTransformer<TCommandTransformer>()
   nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).CommandTransformer(Of TCommandTransformer)()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.HasCommandHandler
+  name: HasCommandHandler()
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_HasCommandHandler
+  commentId: M:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.HasCommandHandler
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.HasCommandHandler()
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler()
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.HasCommandHandler()
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler()
+- uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.HasCommandHandler*
+  name: HasCommandHandler
+  href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_HasCommandHandler_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.HasCommandHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder<TCommand>.HasCommandHandler
+  fullName.vb: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler
+  nameWithType: IHttpFunctionOptionsBuilder<TCommand>.HasCommandHandler
+  nameWithType.vb: IHttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler
 - uid: FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder`1.JsonNamingStrategies*
   name: JsonNamingStrategies
   href: api/FunctionMonkey.Abstractions.Builders.IHttpFunctionOptionsBuilder-1.html#FunctionMonkey_Abstractions_Builders_IHttpFunctionOptionsBuilder_1_JsonNamingStrategies_
@@ -2446,6 +2476,19 @@ references:
   isSpec: "True"
   fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.FunctionHandlerIsAsync
   nameWithType: AbstractFunctionDefinition.FunctionHandlerIsAsync
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandHandlerOverride
+  name: HasCommandHandlerOverride
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_HasCommandHandlerOverride
+  commentId: P:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandHandlerOverride
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandHandlerOverride
+  nameWithType: AbstractFunctionDefinition.HasCommandHandlerOverride
+- uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandHandlerOverride*
+  name: HasCommandHandlerOverride
+  href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_HasCommandHandlerOverride_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandHandlerOverride
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandHandlerOverride
+  nameWithType: AbstractFunctionDefinition.HasCommandHandlerOverride
 - uid: FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.HasCommandTransformer
   name: HasCommandTransformer
   href: api/FunctionMonkey.Abstractions.Builders.Model.AbstractFunctionDefinition.html#FunctionMonkey_Abstractions_Builders_Model_AbstractFunctionDefinition_HasCommandTransformer
@@ -5106,6 +5149,23 @@ references:
   fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).CommandTransformer(Of TCommandTransformer)()
   nameWithType: HttpFunctionOptionsBuilder<TCommand>.CommandTransformer<TCommandTransformer>()
   nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).CommandTransformer(Of TCommandTransformer)()
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.HasCommandHandler
+  name: HasCommandHandler()
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_HasCommandHandler
+  commentId: M:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.HasCommandHandler
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.HasCommandHandler()
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler()
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.HasCommandHandler()
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler()
+- uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.HasCommandHandler*
+  name: HasCommandHandler
+  href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_HasCommandHandler_
+  commentId: Overload:FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.HasCommandHandler
+  isSpec: "True"
+  fullName: FunctionMonkey.Builders.HttpFunctionOptionsBuilder<TCommand>.HasCommandHandler
+  fullName.vb: FunctionMonkey.Builders.HttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler
+  nameWithType: HttpFunctionOptionsBuilder<TCommand>.HasCommandHandler
+  nameWithType.vb: HttpFunctionOptionsBuilder(Of TCommand).HasCommandHandler
 - uid: FunctionMonkey.Builders.HttpFunctionOptionsBuilder`1.JsonNamingStrategies*
   name: JsonNamingStrategies
   href: api/FunctionMonkey.Builders.HttpFunctionOptionsBuilder-1.html#FunctionMonkey_Builders_HttpFunctionOptionsBuilder_1_JsonNamingStrategies_
