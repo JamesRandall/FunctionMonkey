@@ -388,7 +388,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = $"/ReDoc.{filename}"
+                    Filename = $"ReDoc.{filename}"
                 });
             }
             links.Append($"{Environment.NewLine}</head>");
@@ -404,7 +404,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = $"/ReDoc.{filename}"
+                    Filename = $"ReDoc.{filename}"
                 });
             }
 
@@ -438,7 +438,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 openApiFileReferences.Add(new OpenApiFileReference
                 {
                     Content = content,
-                    Filename = $"/ReDoc.{filename}"
+                    Filename = $"ReDoc.{filename}"
                 });
             }
 
