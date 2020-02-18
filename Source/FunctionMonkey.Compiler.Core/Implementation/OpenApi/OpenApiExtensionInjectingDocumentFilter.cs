@@ -77,8 +77,42 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
         public void Write(IOpenApiWriter writer, OpenApiSpecVersion specVersion)
         {
-            var serializer = new SerializerBuilder().Build();
-            writer.WriteRaw(serializer.Serialize(_extension.value));
+            Write(writer, _extension.value);
+        }
+
+        private void Write(IOpenApiWriter writer, object value)
+        {
+            if(value is string s)
+            {
+                writer.WriteValue(s);
+            }
+            else if (value is IList<object> l)
+            {
+                writer.WriteStartArray();
+                foreach (var o in l)
+                {
+                    Write(writer, o);
+                }
+                writer.WriteEndArray();
+            }
+            else if (value is IDictionary<object, object> d)
+            {
+                writer.WriteStartObject();
+                foreach (var o in d)
+                {
+                    Write(writer, o);
+                }
+                writer.WriteEndObject();
+            }
+            else if (value is KeyValuePair<object, object> kvp)
+            {
+                writer.WritePropertyName((string)kvp.Key);
+                Write(writer, kvp.Value);
+            }
+            else
+            {
+                throw new NotSupportedException($"Value: {value}");
+            }
         }
 
         private string LoadResourceFromAssembly(Assembly assembly, string resourceName)
