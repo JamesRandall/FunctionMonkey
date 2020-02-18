@@ -2,12 +2,13 @@
 {
     public class OpenApiExtensionSpec
     {
-        public string openApiPath;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "YAML")]
+        public string path;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "YAML")]
-        public string propertyName { get; set; }
+        public string name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "YAML")]
-        public string propertyValue { get; set; }
+        public object value { get; set; }
     }
 }

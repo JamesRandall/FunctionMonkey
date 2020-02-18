@@ -29,9 +29,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
         public void Apply(OpenApiDocument document, IOpenApiDocumentFilterContext documentFilterContext)
         {
             object instance = document;
-            if (!string.IsNullOrWhiteSpace(_extension.openApiPath))
+            if (!string.IsNullOrWhiteSpace(_extension.path))
             {
-                foreach (var openApiPathSegment in _extension.openApiPath.Split('.'))
+                foreach (var openApiPathSegment in _extension.path.Split('.'))
                 {
                     var selector = "";
                     var propertyName = openApiPathSegment;
@@ -72,13 +72,13 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }
             
             var extensions = instance.GetType().GetProperty("Extensions").GetValue(instance) as IDictionary<string, IOpenApiExtension>;
-            extensions.Add(_extension.propertyName, this);
+            extensions.Add(_extension.name, this);
         }
 
         public void Write(IOpenApiWriter writer, OpenApiSpecVersion specVersion)
         {
             var serializer = new SerializerBuilder().Build();
-            writer.WriteRaw(serializer.Serialize(_extension.propertyValue));
+            writer.WriteRaw(serializer.Serialize(_extension.value));
         }
 
         private string LoadResourceFromAssembly(Assembly assembly, string resourceName)
