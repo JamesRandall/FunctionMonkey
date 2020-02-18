@@ -1,5 +1,6 @@
 ﻿using FunctionMonkey.Abstractions.Builders;
 using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -17,7 +18,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             var manifestResourceName = $"{resourceAssembly.GetName().Name}.{resourceName}";
             var content = LoadResourceFromAssembly(resourceAssembly, manifestResourceName);
             var deserializer = new DeserializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
-            _tag = deserializer.Deserialize<OpenApiTag>(content);
+            try
+            {
+                _tag = deserializer.Deserialize<OpenApiTag>(content);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidDataException($"{resourceName}: {e.Message}");
+            }
         }
 
         public void Apply(OpenApiDocument document, IOpenApiDocumentFilterContext documentFilterContext)

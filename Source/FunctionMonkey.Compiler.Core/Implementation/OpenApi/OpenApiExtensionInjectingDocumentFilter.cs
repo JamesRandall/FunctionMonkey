@@ -23,7 +23,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             var manifestResourceName = $"{resourceAssembly.GetName().Name}.{resourceName}";
             var content = LoadResourceFromAssembly(resourceAssembly, manifestResourceName);
             var deserializer = new DeserializerBuilder().Build();
-            _extension = deserializer.Deserialize<OpenApiExtensionSpec>(content);
+            try
+            {
+                _extension = deserializer.Deserialize<OpenApiExtensionSpec>(content);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidDataException($"{resourceName}: {e.Message}");
+            }
         }
 
         public void Apply(OpenApiDocument document, IOpenApiDocumentFilterContext documentFilterContext)
