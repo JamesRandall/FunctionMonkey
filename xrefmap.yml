@@ -2012,6 +2012,22 @@ references:
   fullName.vb: FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.Negotiate(Of TCommand)(System.String, System.Nullable(Of FunctionMonkey.Abstractions.Builders.AuthorizationTypeEnum), HttpMethod())
   nameWithType: ISignalRFunctionBuilder.Negotiate<TCommand>(String, Nullable<AuthorizationTypeEnum>, HttpMethod[])
   nameWithType.vb: ISignalRFunctionBuilder.Negotiate(Of TCommand)(String, Nullable(Of AuthorizationTypeEnum), HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim(System.String,System.String,System.String,HttpMethod[])
+  name: NegotiateWithClaim(String, String, String, HttpMethod[])
+  href: api/FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ISignalRFunctionBuilder_NegotiateWithClaim_System_String_System_String_System_String_HttpMethod___
+  commentId: M:FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim(System.String,System.String,System.String,HttpMethod[])
+  name.vb: NegotiateWithClaim(String, String, String, HttpMethod())
+  fullName: FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim(System.String, System.String, System.String, HttpMethod[])
+  fullName.vb: FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim(System.String, System.String, System.String, HttpMethod())
+  nameWithType: ISignalRFunctionBuilder.NegotiateWithClaim(String, String, String, HttpMethod[])
+  nameWithType.vb: ISignalRFunctionBuilder.NegotiateWithClaim(String, String, String, HttpMethod())
+- uid: FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim*
+  name: NegotiateWithClaim
+  href: api/FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.html#FunctionMonkey_Abstractions_Builders_ISignalRFunctionBuilder_NegotiateWithClaim_
+  commentId: Overload:FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim
+  isSpec: "True"
+  fullName: FunctionMonkey.Abstractions.Builders.ISignalRFunctionBuilder.NegotiateWithClaim
+  nameWithType: ISignalRFunctionBuilder.NegotiateWithClaim
 - uid: FunctionMonkey.Abstractions.Builders.ISignalRFunctionConfigurationBuilder`1
   name: ISignalRFunctionConfigurationBuilder<TCommand>
   href: api/FunctionMonkey.Abstractions.Builders.ISignalRFunctionConfigurationBuilder-1.html
