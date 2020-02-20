@@ -57,7 +57,7 @@ namespace FunctionMonkey.Compiler
                 }
                 catch (Exception e)
                 {
-                    compilerLog.Error($"Unexpected error: {e.Message}");
+                    compilerLog.Error($"Unexpected error: {e.Message}\n{e.StackTrace}");
                 }
             }
             compilerLog.Message("Compilation complete");

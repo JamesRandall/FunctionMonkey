@@ -27,6 +27,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             {typeof(CosmosDbFunctionDefinition), typeof(CosmosDBTriggerAttribute).Assembly },
             {typeof(SignalRCommandNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly },
             {typeof(SignalRBindingExpressionNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly },
+            {typeof(SignalRClaimNegotiateFunctionDefinition), typeof(SignalRAttribute).Assembly },
             {typeof(EventHubFunctionDefinition), typeof(EventHubAttribute).Assembly}
         };
 

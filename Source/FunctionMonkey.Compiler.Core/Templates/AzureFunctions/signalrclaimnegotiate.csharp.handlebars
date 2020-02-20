@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Extensions.SignalRService;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using FunctionMonkey.Abstractions.Builders.Model;
+using System.Security.Claims;
+using FunctionMonkey.SignalR;
+
+namespace {{Namespace}}
+{
+    public class {{Name}}
+    {
+        public {{Name}}(IServiceProvider serviceProvider)
+        {
+            FunctionMonkey.Runtime.FunctionServiceProvider.Value = serviceProvider;
+        }
+
+        [FunctionName("{{Name}}")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(
+                {{{azureAuthenticationType}}},
+                {{{httpVerbs}}},
+                Route = "{{Route}}")
+            ]
+            HttpRequest req,
+            ILogger log,
+            ExecutionContext executionContext
+        )
+        {
+            log.LogInformation("HTTP trigger function {{Name}} processed a request.");
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
+
+            FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+
+            string requestUrl = GetRequestUrl(req);
+            var contextSetter = (FunctionMonkey.Abstractions.IContextSetter)
+                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.IContextSetter));
+            contextSetter.SetExecutionContext(executionContext.FunctionDirectory,
+                executionContext.FunctionAppDirectory,
+                executionContext.FunctionName,
+                executionContext.InvocationId);
+            var headerDictionary = new Dictionary<string, IReadOnlyCollection<string>>();
+            foreach (var headerKeyValuesPair in req.Headers)
+            {
+                string[] values = headerKeyValuesPair.Value.ToArray();
+                headerDictionary.Add(headerKeyValuesPair.Key, values);
+            }
+            contextSetter.SetHttpContext(null, requestUrl, headerDictionary);
+
+            System.Security.Claims.ClaimsPrincipal principal = null;
+            
+            // Claim based negotiatiors always validate tokens
+            
+            if (req.Headers["{{TokenHeader}}"].Count == 0)
+            {
+                return new UnauthorizedResult();
+            }
+            string authorizationHeader = req.Headers["{{TokenHeader}}"][0];
+            if (string.IsNullOrWhiteSpace(authorizationHeader))
+            {
+                return new UnauthorizedResult();
+            }
+            
+            principal = await pluginFunctions.ValidateToken(authorizationHeader);
+            if (principal == null)
+            {
+                return new UnauthorizedResult();
+            }
+            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);    
+            
+
+            {{#if AuthorizesClaims}}
+            var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(principal, req.Method, requestUrl);
+            if (!claimsPrincipalAuthorizationResult)
+            {
+                return new UnauthorizedResult();
+            }
+            {{/if}}
+
+            string userId = principal.FindFirst(claim => claim.Type == "{{{ClaimType}}}").Value;
+            return CreateSignalRResponse(userId);
+        }
+        
+        public static IActionResult CreateSignalRResponse(string userId)
+        {
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", userId));
+
+            AzureSignalRAuthClient client = new AzureSignalRAuthClient(System.Environment.GetEnvironmentVariable("{{ConnectionStringSettingName}}"));
+            SignalRConnectionInfo info = client.GetClientConnectionInfo("{{{HubName}}}", claims);
+            return new OkObjectResult(info);
+        }
+
+        private static string GetRequestUrl(HttpRequest request)
+        {
+          string str1 = request.Host.Value;
+          string str2 = request.PathBase.Value;
+          string str3 = request.Path.Value;
+          string str4 = request.QueryString.Value;
+          return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
+        }
+    }
+}

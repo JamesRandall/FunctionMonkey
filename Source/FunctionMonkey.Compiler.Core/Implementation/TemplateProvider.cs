@@ -23,6 +23,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             {typeof(CosmosDbFunctionDefinition), "cosmosdb" },
             {typeof(SignalRCommandNegotiateFunctionDefinition), "signalrcommandnegotiate" },
             {typeof(SignalRBindingExpressionNegotiateFunctionDefinition), "signalrbindingexpressionnegotiate" },
+            {typeof(SignalRClaimNegotiateFunctionDefinition), "signalrclaimnegotiate" },
             {typeof(EventHubFunctionDefinition),"eventhub" },
             // output bindings
             {typeof(ServiceBusQueueOutputBinding), "servicebusqueue" },

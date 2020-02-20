@@ -63,5 +63,26 @@ namespace FunctionMonkey.Builders
             _definitions.Add(definition);
             return new SignalRFunctionConfigurationBuilder<SignalRBindingExpressionNegotiateCommand>(_connectionStringSettingNames, this, definition);
         }
+        
+        public ISignalRFunctionBuilder NegotiateWithClaim(string route, string hubName, string claimType, params HttpMethod[] method)
+        {
+            SignalRClaimNegotiateFunctionDefinition definition =
+                new SignalRClaimNegotiateFunctionDefinition()
+                {
+                    ConnectionStringSettingName = _connectionStringSettingName,
+                    SubRoute = route,
+                    RouteConfiguration = new HttpRouteConfiguration
+                    {
+                        Route = route
+                    },
+                    Route = route,
+                    Verbs = new HashSet<HttpMethod>(method),
+                    Authorization = AuthorizationTypeEnum.TokenValidation,
+                    HubName = hubName,
+                    ClaimType = claimType
+                };
+            _definitions.Add(definition);
+            return new SignalRFunctionConfigurationBuilder<SignalRBindingExpressionNegotiateCommand>(_connectionStringSettingNames, this, definition);
+        }
     }
 }

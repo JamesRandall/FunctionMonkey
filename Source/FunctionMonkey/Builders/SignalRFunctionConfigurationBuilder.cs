@@ -78,5 +78,10 @@ namespace FunctionMonkey.Builders
         {
             return _httpFunctionBuilder.Negotiate(route, hubName, userIdMapping, authorizationType, method);
         }
+
+        public ISignalRFunctionBuilder NegotiateWithClaim(string route, string hubName, string claimType, params HttpMethod[] method)
+        {
+            return _httpFunctionBuilder.NegotiateWithClaim(route, hubName, claimType, method);
+        }
     }
 }

@@ -206,7 +206,8 @@ namespace FunctionMonkey.Compiler.Core
                 // SignalRBindingExpressionNegotiateCommand is a type used only to make a non dispatching HTTP function
                 // definition work, it doesn't get used with any mediator and is defined within Function Monkey. It is
                 // exempt from mediator type checking
-                if (functionDefinition.CommandType != typeof(SignalRBindingExpressionNegotiateCommand))
+                if (functionDefinition.CommandType != typeof(SignalRBindingExpressionNegotiateCommand) &&
+                    functionDefinition.CommandType != typeof(SignalRClaimTypeNegotiateCommand))
                 {
                     if (!typeSafetyEnforcer.IsValidType(functionDefinition.CommandType))
                     {

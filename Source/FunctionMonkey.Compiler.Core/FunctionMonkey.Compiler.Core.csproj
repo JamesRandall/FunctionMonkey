@@ -193,6 +193,8 @@
       <EmbeddedResource Include="Templates\AzureFunctions\signalr.outputparameter.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\signalrbindingexpressionnegotiate.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\signalrbindingexpressionnegotiate.json.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\signalrclaimnegotiate.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\signalrclaimnegotiate.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\signalrcommandnegotiate.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\signalrcommandnegotiate.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\startup.csharp.handlebars" />

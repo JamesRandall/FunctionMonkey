@@ -23,5 +23,16 @@ namespace FunctionMonkey.Abstractions.Builders
         /// <param name="hubName">The hub name</param>
         /// <returns></returns>
         ISignalRFunctionBuilder Negotiate(string route, string hubName, string userIdExpression = null, AuthorizationTypeEnum? authorizationType = null, params HttpMethod[] method);
+        
+        /// <summary>
+        /// Creates a SignalR negotiator at the specified route attached to the given hub name that will source the user ID from the specified claim.
+        /// Claim based negotiators always use token based authorization.
+        /// </summary>
+        /// <param name="route">The route for the negotiator</param>
+        /// <param name="hubName">The name of the hub</param>
+        /// <param name="claimType">The type of claim to use for a user ID</param>
+        /// <param name="method">The HTTP methods to bind to</param>
+        /// <returns></returns>
+        ISignalRFunctionBuilder NegotiateWithClaim(string route, string hubName, string claimType, params HttpMethod[] method);
     }
 }
