@@ -7,16 +7,16 @@ First begin by creating an empty Azure Functions v2 project and then install the
 
 Now create a folder in the solution called commands and create a class called SendEmailCommand:
 
-    public class CleanupCommand : ICommand
+    public class SendEmailCommand : ICommand
     {
         
     }
 
 Next create a folder in the solution called Handlers and create a class called SendEmailCommandHandler:
 
-    internal class CleanupCommandHandler : ICommandHandler<CleanupCommand>
+    internal class SendEmailCommandHandler : ICommandHandler<SendEmailCommand>
     {
-        public Task ExecuteAsync(CleanupCommand command)
+        public Task ExecuteAsync(SendEmailCommand command)
         {
             // We won't really do anything here in this example
             return Task.CompletedTask;
@@ -34,7 +34,7 @@ And now we'll create our function app configuration in the root of the project t
         {
             builder
                 .Setup((serviceCollection, commandRegistry) =>
-                    commandRegistry.Register<CleanupCommandHandler>()
+                    commandRegistry.Register<SendEmailCommandHandler>()
                 )
                 .Functions(functions => functions
                     .Timer<CleanUpCommand>("0 */5 * * * *")
@@ -42,26 +42,26 @@ And now we'll create our function app configuration in the root of the project t
         }
     }
 
-And thats it! If you run this project you should find that the _CleanUpCommandHandler_ runs every 5 minutes.
+And thats it! If you run this project you should find that the _SendEmailCommandHandler_ runs every 5 minutes.
 
 ## Creating Commands With Payloads
 
-In the above example the CleanupCommand was created using its default constructor - if you want to create commands with populated properties then you can use a timer command factory.
+In the above example the SendEmailCommand was created using its default constructor - if you want to create commands with populated properties then you can use a timer command factory.
 
 First lets expand our command class to include a property:
 
-    public class CleanupCommand : ICommand
+    public class SendEmailCommand : ICommand
     {
         public bool IsItUrgent { get; set; }
     }
 
 And now we need to create a factory class, to do this we must implement the _ITimerCommandFactory<TCommand>_ interface:
 
-    internal class CleanupCommandTimerCommandFactory : ITimerCommandFactory<CleanupCommand>
+    internal class SendEmailCommandTimerCommandFactory : ITimerCommandFactory<SendEmailCommand>
     {
-        public CleanupCommand Create(string cronExpression)
+        public SendEmailCommand Create(string cronExpression)
         {
-            return new CleanupCommand { IsItUrgent = true };
+            return new SendEmailCommand { IsItUrgent = true };
         }
     }
 
@@ -76,10 +76,10 @@ And finally update our function app configuration to instruct the function to us
         {
             builder
                 .Setup((serviceCollection, commandRegistry) =>
-                    commandRegistry.Register<CleanupCommandHandler>()
+                    commandRegistry.Register<SendEmailCommandHandler>()
                 )
                 .Functions(functions => functions
-                    .Timer<CleanUpCommand, CleanupCommandTimerCommandFactory>("0 */5 * * * *")
+                    .Timer<CleanUpCommand, SendEmailCommandTimerCommandFactory>("0 */5 * * * *")
                 )
             );
         }
