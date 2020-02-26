@@ -16,6 +16,8 @@
     <None Remove="Resources\ReDoc\diagrams\sequence2.svg" />
     <None Remove="Resources\ReDoc\tags\FooBar.yaml" />
     <None Remove="Resources\ReDoc\extensions\a.yaml" />
+    <None Remove="Resources\ReDoc\tags\ImportMarkup.md" />
+    <None Remove="Resources\ReDoc\tags\ImportMarkup.yaml" />
     <None Remove="Resources\ReDoc\testlogo.svg" />
     <None Remove="Resources\ReDoc\theme-material.css" />
   </ItemGroup>
@@ -25,6 +27,8 @@
     <EmbeddedResource Include="Resources\OpenApi\theme-material.css" />
     <EmbeddedResource Include="Resources\ReDoc\diagrams\sequence1.svg" />
     <EmbeddedResource Include="Resources\ReDoc\diagrams\sequence2.svg" />
+    <EmbeddedResource Include="Resources\ReDoc\tags\ImportMarkup.md" />
+    <EmbeddedResource Include="Resources\ReDoc\tags\ImportMarkup.yaml" />
     <EmbeddedResource Include="Resources\ReDoc\tags\FooBar.yaml" />
     <EmbeddedResource Include="Resources\ReDoc\extensions\Tags.Customers.yaml" />
     <EmbeddedResource Include="Resources\ReDoc\testlogo.svg" />

@@ -28,6 +28,14 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             {
                 throw new InvalidDataException($"{resourceName}: {e.Message}");
             }
+
+            if(_tag.Description.StartsWith("import:"))
+            {
+                manifestResourceName = $"{resourceAssembly.GetName().Name}.{_tag.Description.Substring(7).Trim()}";
+                content = LoadResourceFromAssembly(resourceAssembly, manifestResourceName);
+                _tag.Description = content;
+            }
+
             _documentRoute = documentRoute;
         }
 

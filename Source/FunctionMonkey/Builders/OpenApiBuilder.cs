@@ -145,6 +145,10 @@ namespace FunctionMonkey.Builders
 
             foreach (var file in files)
             {
+                if(!file.EndsWith("yaml"))
+                {
+                    continue;
+                }
                 _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
@@ -162,6 +166,10 @@ namespace FunctionMonkey.Builders
 
             foreach (var file in files)
             {
+                if (!file.EndsWith("yaml"))
+                {
+                    continue;
+                }
                 _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
@@ -179,6 +187,10 @@ namespace FunctionMonkey.Builders
 
             foreach (var file in files)
             {
+                if (!file.EndsWith("yaml"))
+                {
+                    continue;
+                }
                 _openApiConfiguration.InjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
@@ -196,6 +208,10 @@ namespace FunctionMonkey.Builders
 
             foreach (var file in files)
             {
+                if (!file.EndsWith("yaml"))
+                {
+                    continue;
+                }
                 _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
