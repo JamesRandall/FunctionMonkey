@@ -13,7 +13,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
     {
         private readonly OpenApiTag _tag;
 
-        public OpenApiTagInjectingDocumentFilter(Assembly resourceAssembly, string resourceName)
+        private readonly string _documentRoute;
+
+        public OpenApiTagInjectingDocumentFilter(Assembly resourceAssembly, string resourceName, string documentRoute)
         {
             var manifestResourceName = $"{resourceAssembly.GetName().Name}.{resourceName}";
             var content = LoadResourceFromAssembly(resourceAssembly, manifestResourceName);
@@ -26,10 +28,16 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             {
                 throw new InvalidDataException($"{resourceName}: {e.Message}");
             }
+            _documentRoute = documentRoute;
         }
 
         public void Apply(OpenApiDocument document, IOpenApiDocumentFilterContext documentFilterContext)
         {
+            if(!string.IsNullOrWhiteSpace(_documentRoute) && !documentFilterContext.DocumentRoute.StartsWith(_documentRoute))
+            {
+                return;
+            }
+
             document.Tags.Add(_tag);
         }
 

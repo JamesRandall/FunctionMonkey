@@ -35,22 +35,22 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
             foreach (var injectedExtensions in configuration.InjectedExtensions)
             {
-                DocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(injectedExtensions.resourceAssembly, injectedExtensions.resourceName));
+                DocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(injectedExtensions.resourceAssembly, injectedExtensions.resourceName, injectedExtensions.documentRoute));
             }
 
             foreach (var reDocInjectedExtensions in configuration.ReDocInjectedExtensions)
             {
-                ReDocDocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(reDocInjectedExtensions.resourceAssembly, reDocInjectedExtensions.resourceName));
+                ReDocDocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(reDocInjectedExtensions.resourceAssembly, reDocInjectedExtensions.resourceName, reDocInjectedExtensions.documentRoute));
             }
 
             foreach (var injectedTags in configuration.InjectedTags)
             {
-                DocumentFilters.Add(new OpenApiTagInjectingDocumentFilter(injectedTags.resourceAssembly, injectedTags.resourceName));
+                DocumentFilters.Add(new OpenApiTagInjectingDocumentFilter(injectedTags.resourceAssembly, injectedTags.resourceName, injectedTags.documentRoute));
             }
 
             foreach (var reDocInjectedTags in configuration.ReDocInjectedTags)
             {
-                ReDocDocumentFilters.Add(new OpenApiTagInjectingDocumentFilter(reDocInjectedTags.resourceAssembly, reDocInjectedTags.resourceName));
+                ReDocDocumentFilters.Add(new OpenApiTagInjectingDocumentFilter(reDocInjectedTags.resourceAssembly, reDocInjectedTags.resourceName, reDocInjectedTags.documentRoute));
             }
 
             foreach (var operationFilterFactory in configuration.OperationFilterFactories)

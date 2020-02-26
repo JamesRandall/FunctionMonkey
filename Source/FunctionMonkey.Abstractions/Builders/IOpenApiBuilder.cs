@@ -132,64 +132,72 @@ namespace FunctionMonkey.Abstractions.Builders
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the extension from</param>
         /// <param name="resourceName">Name of the extension</param>
+        /// <param name="documentRoute">Add this extension only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder InjectExtension(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder InjectExtension(Assembly resourceAssembly, string resourceName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given extensions into the OpenApi YAML file
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the extension from</param>
         /// <param name="resourcesDirectoryName">Name of the extensions directory</param>
+        /// <param name="documentRoute">Add this extension only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder InjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName);
+        IOpenApiBuilder InjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given extension into the ReDoc YAML file
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the extension from</param>
         /// <param name="resourceName">Name of the extension</param>
+        /// <param name="documentRoute">Add this extension only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder ReDocInjectExtension(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder ReDocInjectExtension(Assembly resourceAssembly, string resourceName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given extensions into the ReDoc YAML file
         /// </summary>
         /// <param name="resourceAssembly">Assembly to load the extension from</param>
         /// <param name="resourcesDirectoryName">Name of the extensions directory</param>
+        /// <param name="documentRoute">Add this extension only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder ReDocInjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName);
+        IOpenApiBuilder ReDocInjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given tag into the OpenApi YAML file
         /// </summary>
-        /// <param name="resourceAssembly">Assembly to load the extension from</param>
-        /// <param name="resourceName">Name of the extension</param>
+        /// <param name="resourceAssembly">Assembly to load the tag from</param>
+        /// <param name="resourceName">Name of the tag</param>
+        /// <param name="documentRoute">Add this tag only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder InjectTag(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder InjectTag(Assembly resourceAssembly, string resourceName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given tags into the OpenApi YAML file
         /// </summary>
-        /// <param name="resourceAssembly">Assembly to load the extension from</param>
-        /// <param name="resourcesDirectoryName">Name of the extensions directory</param>
+        /// <param name="resourceAssembly">Assembly to load the tags from</param>
+        /// <param name="resourcesDirectoryName">Name of the tags directory</param>
+        /// <param name="documentRoute">Add this tags only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder InjectTags(Assembly resourceAssembly, string resourcesDirectoryName);
+        IOpenApiBuilder InjectTags(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given tag into the ReDoc YAML file
         /// </summary>
-        /// <param name="resourceAssembly">Assembly to load the extension from</param>
-        /// <param name="resourceName">Name of the extension</param>
+        /// <param name="resourceAssembly">Assembly to load the tag from</param>
+        /// <param name="resourceName">Name of the tag</param>
+        /// <param name="documentRoute">Add this tag only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder ReDocInjectTag(Assembly resourceAssembly, string resourceName);
+        IOpenApiBuilder ReDocInjectTag(Assembly resourceAssembly, string resourceName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given tag into the ReDoc YAML file
         /// </summary>
-        /// <param name="resourceAssembly">Assembly to load the extension from</param>
-        /// <param name="resourcesDirectoryName">Name of the extensions directory</param>
+        /// <param name="resourceAssembly">Assembly to load the tags from</param>
+        /// <param name="resourcesDirectoryName">Name of the tags directory</param>
+        /// <param name="documentRoute">Add this tags only to YAML files whose documentRoute is starting with this documentRoute</param>
         /// <returns></returns>
-        IOpenApiBuilder ReDocInjectTags(Assembly resourceAssembly, string resourcesDirectoryName);
+        IOpenApiBuilder ReDocInjectTags(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "");
 
         /// <summary>
         /// Inject the given logo into the topbar of the index.html

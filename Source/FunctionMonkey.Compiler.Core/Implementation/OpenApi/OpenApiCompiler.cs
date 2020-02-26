@@ -93,7 +93,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
 
                 CreateSecuritySchemes(openApiDocument, configuration);
 
-                FilterDocument(compilerConfiguration.DocumentFilters, openApiDocument);
+                FilterDocument(compilerConfiguration.DocumentFilters, openApiDocument, keyValuePair.Value.DocumentRoute);
 
                 if (openApiDocument.Paths.Count == 0)
                 {
@@ -124,7 +124,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                 // Create reDoc YAML
                 if (!string.IsNullOrWhiteSpace(configuration.ReDocUserInterfaceRoute))
                 {
-                    FilterDocument(compilerConfiguration.ReDocDocumentFilters, openApiDocument);
+                    FilterDocument(compilerConfiguration.ReDocDocumentFilters, openApiDocument, keyValuePair.Value.DocumentRoute);
 
                     // TODO: FIXME:
                     // Hack: Empty OpenApiSecurityRequirement lists are not serialized by the standard Microsoft
@@ -772,9 +772,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             }).ToList();
         }
 
-        private void FilterDocument(IList<IOpenApiDocumentFilter> documentFilters, OpenApiDocument document)
+        private void FilterDocument(IList<IOpenApiDocumentFilter> documentFilters, OpenApiDocument document, string documentRoute)
         {
-            var documentFilterContext = new OpenApiDocumentFilterContext();
+            var documentFilterContext = new OpenApiDocumentFilterContext
+            {
+                DocumentRoute = documentRoute
+            };
             foreach (var documentFilter in documentFilters)
             {
                 documentFilter.Apply(document, documentFilterContext);

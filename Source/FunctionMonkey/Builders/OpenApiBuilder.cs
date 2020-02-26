@@ -133,70 +133,70 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOpenApiBuilder InjectExtension(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder InjectExtension(Assembly resourceAssembly, string resourceName, string documentRoute = "")
         {
-            _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, resourceName, documentRoute));
             return this;
         }
 
-        public IOpenApiBuilder InjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName)
+        public IOpenApiBuilder InjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "")
         {
             var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
 
             foreach (var file in files)
             {
-                _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+                _openApiConfiguration.InjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
         }
 
-        public IOpenApiBuilder ReDocInjectExtension(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder ReDocInjectExtension(Assembly resourceAssembly, string resourceName, string documentRoute = "")
         {
-            _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, resourceName, documentRoute));
             return this;
         }
 
-        public IOpenApiBuilder ReDocInjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName)
+        public IOpenApiBuilder ReDocInjectExtensions(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "")
         {
             var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
 
             foreach (var file in files)
             {
-                _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+                _openApiConfiguration.ReDocInjectedExtensions.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
         }
 
-        public IOpenApiBuilder InjectTag(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder InjectTag(Assembly resourceAssembly, string resourceName, string documentRoute = "")
         {
-            _openApiConfiguration.InjectedTags.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.InjectedTags.Add((resourceAssembly, resourceName, documentRoute));
             return this;
         }
 
-        public IOpenApiBuilder InjectTags(Assembly resourceAssembly, string resourcesDirectoryName)
+        public IOpenApiBuilder InjectTags(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "")
         {
             var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
 
             foreach (var file in files)
             {
-                _openApiConfiguration.InjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+                _openApiConfiguration.InjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
         }
 
-        public IOpenApiBuilder ReDocInjectTag(Assembly resourceAssembly, string resourceName)
+        public IOpenApiBuilder ReDocInjectTag(Assembly resourceAssembly, string resourceName, string documentRoute = "")
         {
-            _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, resourceName));
+            _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, resourceName, documentRoute));
             return this;
         }
 
-        public IOpenApiBuilder ReDocInjectTags(Assembly resourceAssembly, string resourcesDirectoryName)
+        public IOpenApiBuilder ReDocInjectTags(Assembly resourceAssembly, string resourcesDirectoryName, string documentRoute = "")
         {
             var files = resourceAssembly.GetManifestResourceNames().Where(x => x.StartsWith($"{resourceAssembly.GetName().Name}.{resourcesDirectoryName}")).ToList();
 
             foreach (var file in files)
             {
-                _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1)));
+                _openApiConfiguration.ReDocInjectedTags.Add((resourceAssembly, file.Substring(resourceAssembly.GetName().Name.Length + 1), documentRoute));
             }
             return this;
         }

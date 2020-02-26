@@ -2,5 +2,6 @@
 {
     public interface IOpenApiDocumentFilterContext
     {
+        string DocumentRoute { get; set; }
     }
 }

@@ -91,13 +91,13 @@ namespace FunctionMonkey.Abstractions.Http
 
         public IList<(Assembly resourceAssembly, string resourceName)> ReDocInjectedResources { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
 
-        public IList<(Assembly resourceAssembly, string resourceName)> InjectedExtensions { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+        public IList<(Assembly resourceAssembly, string resourceName, string documentRoute)> InjectedExtensions { get; } = new List<(Assembly resourceAssembly, string resourceName, string documentRoute)>();
 
-        public IList<(Assembly resourceAssembly, string resourceName)> ReDocInjectedExtensions { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+        public IList<(Assembly resourceAssembly, string resourceName, string documentRoute)> ReDocInjectedExtensions { get; } = new List<(Assembly resourceAssembly, string resourceName, string documentRoute)>();
 
-        public IList<(Assembly resourceAssembly, string resourceName)> InjectedTags { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+        public IList<(Assembly resourceAssembly, string resourceName, string documentRoute)> InjectedTags { get; } = new List<(Assembly resourceAssembly, string resourceName, string documentRoute)>();
 
-        public IList<(Assembly resourceAssembly, string resourceName)> ReDocInjectedTags { get; } = new List<(Assembly resourceAssembly, string resourceName)>();
+        public IList<(Assembly resourceAssembly, string resourceName, string documentRoute)> ReDocInjectedTags { get; } = new List<(Assembly resourceAssembly, string resourceName, string documentRoute)>();
 
         public (Assembly resourceAssembly, string resourceName) InjectedLogo { get; set; }
 
