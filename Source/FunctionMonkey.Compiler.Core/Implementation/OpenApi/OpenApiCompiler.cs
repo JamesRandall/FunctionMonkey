@@ -341,22 +341,52 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
                             });
                         }
 
-                        foreach (HttpParameter property in functionByRoute.RouteParameters)
+                        if (functionByRoute.RouteParameters.Any())
                         {
-                            var parameter = new OpenApiParameter
+                            var schema = registry.GetOrCreateSchema(commandType);
+                            foreach (HttpParameter property in functionByRoute.RouteParameters)
                             {
-                                Name = property.RouteName.ToCamelCase(),
-                                In = ParameterLocation.Path,
-                                Required = !property.IsOptional,
-                                Schema = property.Type.MapToOpenApiSchema(),
-                                Description = ""
-                            };
+                                var propertyInfo = commandType.GetProperty(property.Name);
 
-                            FilterParameter(compilerConfiguration.ParameterFilters, parameter);
+                                // Property Name
+                                var propertyName = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.PropertyName);
+                                if (string.IsNullOrWhiteSpace(propertyName))
+                                {
+                                    propertyName = propertyInfo.GetAttributeValue((DataMemberAttribute attribute) => attribute.Name);
+                                }
+                                if (string.IsNullOrWhiteSpace(propertyName))
+                                {
+                                    propertyName = propertyInfo.Name.ToCamelCase();
+                                }
 
-                            operation.Parameters.Add(parameter);
-                            // TODO: We need to consider what to do with the payload model here - if its a route parameter
-                            // we need to ignore it in the payload model                            
+                                // Property Required
+                                var propertyRequired = !property.IsOptional;
+                                if (!propertyRequired)
+                                {
+                                    propertyRequired = propertyInfo.GetAttributeValue((JsonPropertyAttribute attribute) => attribute.Required) == Required.Always;
+                                }
+                                if (!propertyRequired)
+                                {
+                                    propertyRequired = propertyInfo.GetAttributeValue((RequiredAttribute attribute) => attribute) != null;
+                                }
+
+                                var propertySchema = schema.Properties[propertyName];
+
+                                var parameter = new OpenApiParameter
+                                {
+                                    Name = property.RouteName.ToCamelCase(),
+                                    In = ParameterLocation.Path,
+                                    Required = propertyRequired,
+                                    Schema = propertySchema,
+                                    Description = propertySchema.Description
+                                };
+
+                                FilterParameter(compilerConfiguration.ParameterFilters, parameter);
+
+                                operation.Parameters.Add(parameter);
+                                // TODO: We need to consider what to do with the payload model here - if its a route parameter
+                                // we need to ignore it in the payload model                            
+                            }
                         }
 
                         if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
