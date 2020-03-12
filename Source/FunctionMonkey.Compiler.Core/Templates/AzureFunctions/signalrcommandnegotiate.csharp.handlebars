@@ -12,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using FunctionMonkey.Abstractions.Builders.Model;
-using FunctionMonkey.SignalR;
 using System.Security.Claims;
 
 namespace {{Namespace}}
@@ -494,15 +493,14 @@ namespace {{Namespace}}
 
         public static IActionResult CreateSignalRResponse(FunctionMonkey.Commanding.Abstractions.SignalRNegotiateResponse commandResponse)
         {
-            List<Claim> claims = new List<Claim>();
-            if (!string.IsNullOrWhiteSpace(commandResponse.UserId))
-            {
-                claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", commandResponse.UserId));
-            }
-
-            AzureSignalRAuthClient client = new AzureSignalRAuthClient(System.Environment.GetEnvironmentVariable("{{ConnectionStringSettingName}}"));
-            SignalRConnectionInfo info = client.GetClientConnectionInfo(commandResponse.HubName, claims);
-            return new OkObjectResult(info);
+            var connectionInfo = new SignalRConnectionInfo();
+            var serviceManager = StaticServiceHubContextStore.Get("{{ConnectionStringSettingName}}").ServiceManager;
+            connectionInfo.AccessToken = serviceManager
+                .GenerateClientAccessToken(
+                    commandResponse.HubName,
+                    commandResponse.UserId);
+            connectionInfo.Url = serviceManager.GetClientEndpoint(commandResponse.HubName);
+            return new OkObjectResult(connectionInfo);
         }
 
         public static IActionResult CreateResponse(int code, object content, FunctionMonkey.PluginFunctions pluginFunctions)
