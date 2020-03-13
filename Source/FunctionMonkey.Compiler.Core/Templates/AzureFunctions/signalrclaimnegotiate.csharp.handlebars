@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using FunctionMonkey.Abstractions.Builders.Model;
 using System.Security.Claims;
+using FunctionMonkey.SignalR;
 
 namespace {{Namespace}}
 {
@@ -32,8 +33,7 @@ namespace {{Namespace}}
             ]
             HttpRequest req,
             ILogger log,
-            ExecutionContext executionContext,
-            [SignalRConnectionInfo(HubName="{{HubName}}", ConnectionStringSetting="{{ConnectionStringSettingName}}"{{#if HasUserIdExpression}}, UserId="{{UserIdExpression}}"{{/if}})]SignalRConnectionInfo connectionInfo
+            ExecutionContext executionContext
         )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
@@ -57,9 +57,9 @@ namespace {{Namespace}}
             contextSetter.SetHttpContext(null, requestUrl, headerDictionary);
 
             System.Security.Claims.ClaimsPrincipal principal = null;
-            // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
-            // there are any issues
-            {{#if ValidatesToken}}
+            
+            // Claim based negotiatiors always validate tokens
+            
             if (req.Headers["{{TokenHeader}}"].Count == 0)
             {
                 return new UnauthorizedResult();
@@ -76,7 +76,7 @@ namespace {{Namespace}}
                 return new UnauthorizedResult();
             }
             contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);    
-            {{/if}}
+            
 
             {{#if AuthorizesClaims}}
             var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(principal, req.Method, requestUrl);
@@ -86,7 +86,18 @@ namespace {{Namespace}}
             }
             {{/if}}
 
-            return new OkObjectResult(connectionInfo);
+            string userId = principal.FindFirst(claim => claim.Type == "{{{ClaimType}}}").Value;
+            return CreateSignalRResponse(userId);
+        }
+        
+        public static IActionResult CreateSignalRResponse(string userId)
+        {
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", userId));
+
+            AzureSignalRAuthClient client = new AzureSignalRAuthClient(System.Environment.GetEnvironmentVariable("{{ConnectionStringSettingName}}"));
+            SignalRConnectionInfo info = client.GetClientConnectionInfo("{{{HubName}}}", claims);
+            return new OkObjectResult(info);
         }
 
         private static string GetRequestUrl(HttpRequest request)

@@ -18,6 +18,8 @@ namespace FunctionMonkey.SignalR
                 UserId = from.UserId
             };
         }
+        
+        public static SignalRMessage ToAzureFunctionsObject(SignalRMessage signalRMessage) { return signalRMessage; }
 
         public static SignalRGroupAction ToAzureFunctionsObject(
             FunctionMonkey.Abstractions.SignalR.SignalRGroupAction from
@@ -30,12 +32,19 @@ namespace FunctionMonkey.SignalR
                 UserId = from.UserId
             };
         }
+        
+        public static SignalRGroupAction ToAzureFunctionsObject(SignalRGroupAction groupAction) { return groupAction; }
 
         public static GroupAction ToAzureFunctionsObject(
             FunctionMonkey.Abstractions.SignalR.GroupActionEnum from
         )
         {
             return from == GroupActionEnum.Add ? GroupAction.Add : GroupAction.Remove;
+        }
+
+        public static GroupAction ToAzureFunctionsObject(GroupAction ga)
+        {
+            return ga;
         }
     }
 }

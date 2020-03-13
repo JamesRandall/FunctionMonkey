@@ -4,7 +4,7 @@ namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IEventHubFunctionOptionBuilder<TCommand> : 
         IEventHubFunctionBuilder,
-        IFunctionOptions<TCommand, IEventHubFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder>
+        IFunctionOptions<IEventHubFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder>
     {
         
     }

@@ -1,0 +1,19 @@
+{{#if CommandResultIsCollection}}
+foreach (var commandResultItem in result)
+{
+{{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(commandResultItem);
+    await collector.AddAsync((Microsoft.WindowsAzure.Storage.Table.ITableEntity)convertedItem);
+{{else}}
+    await collector.AddAsync(commandResultItem);
+{{/if}}
+    
+}
+{{else}}
+    {{#if OutputBinding.HasOutputBindingConverter}}
+        var convertedItem = pluginFunctions.OutputBindingConverter(result);
+        await collector.AddAsync((Microsoft.WindowsAzure.Storage.Table.ITableEntity)convertedItem);
+    {{else}}
+        await collector.AddAsync(result);
+    {{/if}}
+{{/if}}

@@ -134,15 +134,29 @@ namespace FunctionMonkey
 
             RegisterCosmosDependencies(FunctionDefinitions);
 
+            RegisterOutputBindingDependencies(FunctionDefinitions);
+
+            
             CreatePluginFunctions(functionCompilerMetadata?.ClaimsMappings, FunctionDefinitions);
 
             RegisterLoggerIfRequired();
+        }
 
-            //beforeServiceProviderBuild?.Invoke(ServiceCollection, commandRegistry);
-            //ServiceProvider = containerProvider.CreateServiceProvider(ServiceCollection);
-            //afterServiceProviderBuild?.Invoke(ServiceProvider, commandRegistry);
+        private void RegisterOutputBindingDependencies(IReadOnlyCollection<AbstractFunctionDefinition> functionDefinitions)
+        {
+            HashSet<Type> types = new HashSet<Type>();
+            foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
+            {
+                if (abstractFunctionDefinition.OutputBinding?.OutputBindingConverterType != null)
+                {
+                    types.Add(abstractFunctionDefinition.OutputBinding.OutputBindingConverterType);
+                }
+            }
 
-            //builder?.ServiceProviderCreatedAction?.Invoke(ServiceProvider);
+            foreach (Type type in types)
+            {
+                ServiceCollection.AddTransient(type, type);
+            }
         }
 
         private void RegisterLoggerIfRequired()
@@ -191,7 +205,27 @@ namespace FunctionMonkey
                 PluginFunctions pluginFunctions = new PluginFunctions();
                 
                 pluginFunctions.Handler = functionDefinition.FunctionHandler;
-                
+
+                if (functionDefinition.OutputBinding != null)
+                {
+                    if (functionDefinition.OutputBinding.OutputBindingConverterType != null)
+                    {
+                        pluginFunctions.OutputBindingConverter = (originatingCommand, input) =>
+                        {
+                            IOutputBindingConverter converter =
+                                (IOutputBindingConverter) ServiceProvider.GetService(functionDefinition.OutputBinding
+                                    .OutputBindingConverterType);
+                            return converter.Convert(originatingCommand, input);
+                        };
+                    }
+                    else if (functionDefinition.OutputBinding.OutputBindingConverterFunction != null)
+                    {
+                        pluginFunctions.OutputBindingConverter = (originatingCommand, input) =>
+                            ((Func<object, object, object>) functionDefinition.OutputBinding.OutputBindingConverterFunction
+                                .Handler)(originatingCommand, input);
+                    }
+                }
+
                 if (functionDefinition.DeserializeFunction != null)
                 {
                     pluginFunctions.Deserialize = (body, enforceSecurityProperties) =>
@@ -441,10 +475,14 @@ namespace FunctionMonkey
             foreach (AbstractFunctionDefinition abstractFunctionDefinition in functionDefinitions)
             {
                 types.Add(abstractFunctionDefinition.CommandDeserializerType);
+                if (abstractFunctionDefinition.CommandTransformerType != null)
+                {
+                    types.Add(abstractFunctionDefinition.CommandTransformerType);
+                }
             }
-            foreach (Type claimsPrincipalAuthorizationType in types)
+            foreach (Type type in types)
             {
-                ServiceCollection.AddTransient(claimsPrincipalAuthorizationType);
+                ServiceCollection.AddTransient(type);
             }
 
             if (target == CompileTargetEnum.AzureFunctions)

@@ -14,7 +14,7 @@ namespace FunctionMonkey.Builders
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly ICosmosDbFunctionBuilder _underlyingBuilder;
         private readonly CosmosDbFunctionDefinition _functionDefinition;
-
+        
         public CosmosDbFunctionOptionBuilder(
             ConnectionStringSettingNames connectionStringSettingNames,
             ICosmosDbFunctionBuilder underlyingBuilder,
@@ -66,7 +66,22 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOutputBindingBuilder<TCommandOuter, ICosmosDbFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, ICosmosDbFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<ICosmosDbFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<ICosmosDbFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition, _pendingOutputConverterType);
+
+        private Type _pendingOutputConverterType = null;
+        public ICosmosDbFunctionOptionBuilder<TCommandOuter> OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_functionDefinition.OutputBinding != null)
+            {
+                _functionDefinition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
     }
 }

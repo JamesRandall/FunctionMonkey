@@ -32,6 +32,25 @@ namespace FunctionMonkey.Tests.Integration.ServiceBus
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
             await marker.Assert();
         }
+        
+        [Fact]
+        public async Task WriteToServiceBusQueueWhenResponseIsSingularAndOutputConverterRuns()
+        {
+            MarkerMessage marker = new MarkerMessage
+            {
+                MarkerId = Guid.NewGuid()
+            };
+            HttpResponseMessage response = await Settings.Host
+                .AppendPathSegment("outputBindings")
+                .AppendPathSegment("toServiceBusQueueWithConverter")
+                .SetQueryParam("markerId", marker.MarkerId)
+                .SetQueryParam("value", 42)
+                .GetAsync();
+
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            marker.Value++; // the converter adds 1 to the value
+            await marker.Assert();
+        }
 
         [Fact]
         public async Task WriteToServiceBusQueueWhenResponseIsCollection()

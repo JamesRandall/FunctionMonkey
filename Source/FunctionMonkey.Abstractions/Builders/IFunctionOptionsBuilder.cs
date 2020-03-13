@@ -27,5 +27,17 @@ namespace FunctionMonkey.Abstractions.Builders
         /// want to, for example, receive a payload on an HTTP API, validate it, then drop it onto a queue
         /// </summary>
         IFunctionOptionsBuilder NoCommandHandler();
+        
+        /// <summary>
+        /// Use this to tell Function Monkey to attempt to dispatch a command - this can be useful if you've
+        /// globally disabled command handlers with the root option
+        /// </summary>
+        /// <returns></returns>
+        IFunctionOptionsBuilder HasCommandHandler();
+        
+        /// <summary>
+        /// Allows a command transformer to be specified for a given function
+        /// </summary>
+        IFunctionOptionsBuilder CommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer;
     }
 }

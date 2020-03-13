@@ -152,18 +152,17 @@ namespace FunctionMonkey.Compiler.Core
                     {
                         if (signalROutputBinding.SignalROutputTypeName == SignalROutputBinding.SignalROutputMessageType)
                         {
-                            if (!typeof(SignalRMessage).IsAssignableFrom(functionDefinition.CommandResultItemType))
+                            if (signalROutputBinding.OutputBindingConverterType == null && !typeof(SignalRMessage).IsAssignableFrom(functionDefinition.CommandResultItemType))
                             {
-                                _compilerLog.Error("Commands that use SignalRMessage output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRMessage class or a derivative");
+                                _compilerLog.Error("Commands that use SignalRMessage output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRMessage class, a derivative, or use an output converter");
                                 foundErrors = true;
                             }
                         }
-                        else if (signalROutputBinding.SignalROutputTypeName ==
-                                 SignalROutputBinding.SignalROutputGroupActionType)
+                        else if (signalROutputBinding.SignalROutputTypeName == SignalROutputBinding.SignalROutputGroupActionType)
                         {
-                            if (!typeof(SignalRGroupAction).IsAssignableFrom(functionDefinition.CommandResultItemType))
+                            if (signalROutputBinding.OutputBindingConverterType == null && !typeof(SignalRGroupAction).IsAssignableFrom(functionDefinition.CommandResultItemType))
                             {
-                                _compilerLog.Error("Commands that use SignalRGroupAction output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRGroupAction class or a derivative");
+                                _compilerLog.Error("Commands that use SignalRGroupAction output bindings must return a FunctionMonkey.Abstractions.SignalR.SignalRGroupAction class, a derivative, or use an output converter");
                                 foundErrors = true;
                             }
                         }
@@ -207,7 +206,8 @@ namespace FunctionMonkey.Compiler.Core
                 // SignalRBindingExpressionNegotiateCommand is a type used only to make a non dispatching HTTP function
                 // definition work, it doesn't get used with any mediator and is defined within Function Monkey. It is
                 // exempt from mediator type checking
-                if (functionDefinition.CommandType != typeof(SignalRBindingExpressionNegotiateCommand))
+                if (functionDefinition.CommandType != typeof(SignalRBindingExpressionNegotiateCommand) &&
+                    functionDefinition.CommandType != typeof(SignalRClaimTypeNegotiateCommand))
                 {
                     if (!typeSafetyEnforcer.IsValidType(functionDefinition.CommandType))
                     {

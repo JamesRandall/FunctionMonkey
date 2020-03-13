@@ -43,6 +43,11 @@ namespace {{Namespace}}
                 executionContext.FunctionName,
                 executionContext.InvocationId);
 
+            {{#if HasCommandTransformer}}
+                FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                command = transformer.Transform(command);
+            {{/if}}
+
             {{#if OutputBinding}}
                 {{#if NoCommandHandler}}
                     {{{CommandType}}} result = command;

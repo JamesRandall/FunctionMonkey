@@ -30,6 +30,10 @@ namespace FunctionMonkey
         public Func<object, bool> IsValid { get; set; }
         
         public Func<object, object> Validate { get; set; }
+        
+        public Func<object, object, object> OutputBindingConverter { get; set; }
+        
+        public Func<object, object> CommandTransformer { get; set; }
 
         // This is a func cast to an object that, when set, will be used to execute the command instead of the
         // built in dispatcher

@@ -42,6 +42,7 @@ namespace {{Namespace}}
         )
         {
             log.LogInformation("HTTP trigger function {{Name}} processed a request.");
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
 
@@ -73,39 +74,27 @@ namespace {{Namespace}}
             {
                 return new UnauthorizedResult();
             }
-            var tokenValidator = (FunctionMonkey.Abstractions.ITokenValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{TokenValidatorTypeName}}));
-            principal = await tokenValidator.ValidateAsync(authorizationHeader);
+            
+            principal = await pluginFunctions.ValidateToken(authorizationHeader);
             if (principal == null)
             {
                 return new UnauthorizedResult();
             }
-            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);
+            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);    
             {{/if}}
 
             {{#if AuthorizesClaims}}
-            var claimsPrincipalAuthorization = ({{ClaimsPrincipalAuthorizationTypeName}})
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{ClaimsPrincipalAuthorizationTypeName}}));
-            var claimsPrincipalAuthorizationResult = await claimsPrincipalAuthorization.IsAuthorized(principal, req.Method, requestUrl);
+            var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(principal, req.Method, requestUrl);
             if (!claimsPrincipalAuthorizationResult)
             {
                 return new UnauthorizedResult();
             }
             {{/if}}
 
-            {{#if SerializerNamingStrategyTypeName}}
-                var serializerNamingStrategy = new {{SerializerNamingStrategyTypeName}}();
-                var deserializerNamingStrategy = new {{DeserializerNamingStrategyTypeName}}();
-                FunctionMonkey.Abstractions.ISerializer serializer = new FunctionMonkey.Serialization.NamingStrategyJsonSerializer(deserializerNamingStrategy, serializerNamingStrategy);
-            {{else}}
-                var serializer = (FunctionMonkey.Abstractions.ISerializer)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{CommandDeseriaizerTypeName}}));
-            {{/if}}
-
-            {{CommandTypeName}} command;
+            {{{CommandTypeName}}} command;
             string contentType = req.ContentType?.ToLower() ?? "application/json";
             {{#if IsStreamCommand}}
-                command = new {{CommandTypeName}}() {
+                command = new {{{CommandTypeName}}}() {
                     Stream = req.Body
                 };
             {{else}}
@@ -119,16 +108,34 @@ namespace {{Namespace}}
                 
                 if (!System.String.IsNullOrWhiteSpace(requestBody))
                 {
-                    command = serializer.Deserialize<{{CommandTypeName}}>(requestBody);
+                    try
+                    {
+                        command = ({{{CommandTypeName}}})pluginFunctions.Deserialize(requestBody, true); // true is to enforce security properties
+                    }
+                    catch(FunctionMonkey.DeserializationException dex)
+                    {
+                        if (dex.LineNumber != -1)
+                        {
+                            System.Text.StringBuilder sbError = new System.Text.StringBuilder("Invalid type in message body at line ");
+                            sbError.Append(dex.LineNumber);
+                            sbError.Append(" for path ");
+                            sbError.Append(dex.Path);
+                            return CreateBadParameterResponse(sbError.ToString());
+                        }
+                        else
+                        {
+                            return CreateBadParameterResponse(dex.Message);
+                        }
+                    }
                 }
                 else
                 {
-                    command = new {{CommandTypeName}}();
+                    command = CreateNewCommand();
                 }
             }
             else
             {
-                command = new {{CommandTypeName}}();
+                command = CreateNewCommand();
             }
             {{/if}}
 
@@ -136,169 +143,327 @@ namespace {{Namespace}}
                 command.{{Name}} = req.Form;
             {{/each}}
 
+            {{#if UsesImmutableTypes}}
+                Dictionary<string, object> imtPropertyValues = new Dictionary<string, object>();
+            {{/if}}
+
             Microsoft.Extensions.Primitives.StringValues queryParameterValues;
-            string method = req.Method.ToUpper();
-            if (method == "GET" || method=="DELETE")
-            {
-                {{#each QueryParameters}}
-                    {{#unless IsFormCollection}}
-                        if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+            {{#each QueryParameters}}
+                {{#unless IsFormCollection}}
+                    if (req.Query.TryGetValue("{{Name}}", out queryParameterValues))
+                    {
+
+                        {{#if IsCollection}}
+                            {{#if IsFSharpList}}
+                                var collection = {{{CollectionInstanceTypeName}}}.Empty;
+                            {{else if IsCollectionArray}}
+                                var collection = new {{{DiscreteTypeName}}}[queryParameterValues.Count];
+                                int queryParameterArrayIndex = 0;
+                            {{else}}
+                                var collection = new {{{CollectionInstanceTypeName}}}();
+                            {{/if}}
+                        {{/if}}
+                        foreach(string queryParameterValue in queryParameterValues)
                         {
+                            {{#if IsFSharpOptionType}}
+                                {{{DiscreteTypeName}}} parsedValue = {{{DiscreteTypeName}}}.None;
+                            {{else}}
+                                {{{DiscreteTypeName}}} parsedValue = default({{{DiscreteTypeName}}});
+                            {{/if}}
+                
                             {{#if IsString}}
-                            command.{{Name}} = queryParameterValues[0];
+                            parsedValue = queryParameterValue;
                             {{else if IsEnum}}
                             {
-                                {{{TypeName}}} result;
-                                if (System.Enum.TryParse<{{TypeName}}>(queryParameterValues[0], out result))
+                                if (!System.Enum.TryParse<{{DiscreteTypeName}}>(queryParameterValue, out parsedValue))
                                 {
-                                    command.{{Name}} = result;
+                                    return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
                                 }
                             }
+                            {{else if IsFSharpOptionType}}
+                                {{#if FSharpOptionInnerTypeIsString}}
+                                    parsedValue = new Microsoft.FSharp.Core.FSharpOption<string>(queryParameterValue);
+                                {{else}}
+                                    if (!String.IsNullOrEmpty(queryParameterValue))
+                                    {
+                                        if ({{{FSharpOptionInnerTypeName}}}.TryParse(queryParameterValue, out var qcandidate{{@index}}))
+                                        {
+                                           parsedValue = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(qcandidate{{@index}});
+                                        }
+                                        else
+                                        {
+                                            return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                        }
+                                    }
+                                {{/if}}
                             {{else if IsNullable}}
                             {
                                 {{#if IsNullableTypeHasTryParseMethod}}
-                                {
-                                    {{{TypeName}}} nullableValue;
-                                    if(TryParseNullable(queryParameterValues[0], {{NullableType}}.TryParse, out nullableValue))
+                                    if (queryParameterValue != null)
                                     {
-                                        command.{{Name}} = nullableValue;
+                                        if(!TryParseNullable(queryParameterValue, {{NullableType}}.TryParse, out parsedValue))
+                                        {
+                                            return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                        }
                                     }
-                                }
                                 {{/if}}
                             }
                             {{else}}
-                            {{TypeName}}.TryParse(queryParameterValues[0], out var candidate);
-                            command.{{Name}} = candidate;
+                                if (!{{{DiscreteTypeName}}}.TryParse(queryParameterValue, out parsedValue))
+                                {
+                                    return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                }
+                            {{/if}}
+                
+                            {{#if IsCollection}}
+                                {{#if IsFSharpList}}
+                                    collection = new {{{CollectionInstanceTypeName}}}(parsedValue, collection); 
+                                {{else if IsCollectionArray}}
+                                    collection[queryParameterArrayIndex] = parsedValue;
+                                    queryParameterArrayIndex++;
+                                {{else}}
+                                    collection.Add(parsedValue);
+                                {{/if}}
+                            {{else}}
+                                {{#if ../UsesImmutableTypes}}
+                                    imtPropertyValues["{{Name}}"] = parsedValue;
+                                {{else}}
+                                    command.{{Name}} = parsedValue;
+                                {{/if}}                             
+                                break;
                             {{/if}}
                         }
-                    {{/unless}}
-                {{/each}}
-            }
-
-            {{#if HeaderBindingConfiguration}}
-                string headerName;
-                {{#each QueryParameters}}
-                    {{#unless IsFormCollection}}
-                        headerName = "{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}";
-                        if (!string.IsNullOrWhiteSpace(headerName))
-                        {
-                        if (req.Headers.TryGetValue(headerName, out var stringValues))
-                        {
-                        string headerValue = stringValues.FirstOrDefault();
-                        {{#if IsString}}
-                            command.{{Name}} = headerValue;
-                        {{else}}
-                            {{{TypeName}}}.TryParse(headerValue, out var candidate);
-                            command.{{Name}} = candidate;
+                
+                        {{#if IsCollection}}
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = collection;
+                            {{else}}
+                                command.{{Name}} = collection;
+                            {{/if}}
                         {{/if}}
-                        }
-                        }
-                    {{/unless}}
-                {{/each}}
+                    }
+                {{/unless}}
+            {{/each}}
+            
+            {{#if HeaderBindingConfiguration}}
+                {{#unless IsFormCollection}}
+                    string headerName;
+                    {{#each QueryParameters}}
+                        {{#if HasHeaderMapping}}
+                            if (req.Headers.TryGetValue("{{{mappedHeaderNameForProperty ../HeaderBindingConfiguration}}}", out var stringValues{{@index}}))
+                            {
+                                string headerValue = stringValues{{@index}}.FirstOrDefault();
+                                {{#if IsString}}
+                                    {{#if ../UsesImmutableTypes}}
+                                        imtPropertyValues["{{Name}}"] = headerValue;
+                                    {{else}}
+                                        command.{{Name}} = headerValue;
+                                    {{/if}}
+                                {{else if IsEnum}}
+                                    {
+                                        {{{TypeName}}} result;
+                                        if (System.Enum.TryParse<{{TypeName}}>(headerValue, out result))
+                                        {
+                                            {{#if ../UsesImmutableTypes}}
+                                                imtPropertyValues["{{Name}}"] = result;
+                                            {{else}}
+                                                command.{{Name}} = result;
+                                            {{/if}}
+                                        }
+                                    }
+                                {{else if IsFSharpOptionType}}
+                                    {{#if FSharpOptionInnerTypeIsString}}
+                                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>(headerValue);
+                                    {{else}}
+                                        if (!String.IsNullOrEmpty(headerValue))
+                                        {
+                                            if ({{{FSharpOptionInnerTypeName}}}.TryParse(headerValue, out var hcandidate{{@index}}))
+                                            {
+                                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(hcandidate{{@index}});
+                                            }
+                                            else
+                                            {
+                                                return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
+                                            }
+                                        }
+                                    {{/if}}
+                                {{else if IsNullable}}
+                                    {{#if IsNullableTypeHasTryParseMethod}}
+                                        {
+                                            {{{TypeName}}} nullableValue;
+                                            if(TryParseNullable(headerValue, {{{NullableType}}}.TryParse, out nullableValue))
+                                            {
+                                                {{#if ../UsesImmutableTypes}}
+                                                    imtPropertyValues["{{Name}}"] = nullableValue;
+                                                {{else}}
+                                                    command.{{Name}} = nullableValue;
+                                                {{/if}}
+                                            }
+                                        }
+                                    {{/if}}
+                                {{else}}
+                                    {{{TypeName}}}.TryParse(headerValue, out var hcandidate{{@index}});
+                                    {{#if ../UsesImmutableTypes}}
+                                        imtPropertyValues["{{Name}}"] = hcandidate{{@index}};
+                                    {{else}}
+                                        command.{{Name}} = hcandidate{{@index}};
+                                    {{/if}}
+                                {{/if}}
+                            }
+                        {{/if}}
+                    {{/each}}
+                {{/unless}}
             {{/if}}
 
             {{#each RouteParameters}}
                 {{#if IsString}}
+                    {{#if ../UsesImmutableTypes}}
+                        imtPropertyValues["{{Name}}"] = {{RouteName}};
+                    {{else}}
                         command.{{Name}} = {{RouteName}};
-                {{else if IsEnum}}
-                        {
-                            {{{RouteTypeName}}} result;
-                            if (System.Enum.TryParse<{{RouteTypeName}}>({{RouteName}}, out result))
-                            {
-                                command.{{Name}} = result;
-                            }
-                            else
-                            {
-                                return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
-                            }
-                        }
-                {{else if IsNullable}}
-                        {
-                    {{#if IsNullableTypeHasTryParseMethod}}
-                            {
-                                {{{RouteTypeName}}} nullableValue;
-                                if ({{RouteName}} != null)
-                                {
-                                    if(TryParseNullable({{RouteName}}, {{NullableType}}.TryParse, out nullableValue))
-                                    {
-                                        command.{{Name}} = nullableValue;
-                                    }
-                                    else
-                                    {
-                                        return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
-                                    }
-                                }
-                            }
                     {{/if}}
-                        }
-                {{else}}
-                        if ({{TypeName}}.TryParse({{RouteName}}, out var candidate))
+                {{else if IsEnum}}
+                    {
+                        {{{RouteTypeName}}} result;
+                        if (System.Enum.TryParse<{{{RouteTypeName}}}>({{RouteName}}, out result))
                         {
-                            command.{{Name}} = candidate;
+                            {{#if ../UsesImmutableTypes}}
+                                imtPropertyValues["{{Name}}"] = result;
+                            {{else}}
+                                command.{{Name}} = result;
+                            {{/if}}
                         }
                         else
                         {
-                            return CreateResponse(400, "Invalid type for parameter {{RouteName}}", serializer);
+                            return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
                         }
+                    }
+                {{else if IsFSharpOptionType}}
+                    {{#if FSharpOptionInnerTypeIsString}}
+                        imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<string>({{RouteName}});
+                    {{else}}
+                        if (!String.IsNullOrEmpty({{RouteName}}))
+                        {
+                            if ({{{FSharpOptionInnerTypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
+                            {
+                                imtPropertyValues["{{Name}}"] = new Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>(rcandidate{{@index}});
+                            }
+                            else
+                            {
+                                return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                            }
+                        }
+                    {{/if}}
+                {{else if IsNullable}}
+                    {
+                    {{#if IsNullableTypeHasTryParseMethod}}
+                        {
+                            {{{RouteTypeName}}} nullableValue;
+                            if ({{RouteName}} != null)
+                            {
+                                if(TryParseNullable({{RouteName}}, {{{NullableType}}}.TryParse, out nullableValue))
+                                {
+                                    {{#if ../UsesImmutableTypes}}
+                                        imtPropertyValues["{{Name}}"] = nullableValue;
+                                    {{else}}
+                                        command.{{Name}} = nullableValue;
+                                    {{/if}}
+                                }
+                                else
+                                {
+                                    return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                                }
+                            }
+                        }
+                    {{/if}}
+                    }
+                {{else if IsDiscriminatedUnion}}
+                    {
+                        return CreateBadParameterResponse("Unions not yet supported for route parameters");
+                        //{{{DiscriminatedUnionUnderlyingTypeName}}} discriminatedUnionValue = pluginFunctions.ParseFromString<{{{RouteTypeName}}}>({{RouteName}}));
+                    }
+                {{else}}
+                    if ({{{TypeName}}}.TryParse({{RouteName}}, out var rcandidate{{@index}}))
+                    {
+                        {{#if ../UsesImmutableTypes}}
+                            imtPropertyValues["{{Name}}"] = rcandidate{{@index}};
+                        {{else}}
+                            command.{{Name}} = rcandidate{{@index}};
+                        {{/if}}
+                    }
+                    else
+                    {
+                        return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                    }
                 {{/if}}
             {{/each}}
 
-            {{#if ValidatesToken}}
-            var claimsBinder = (FunctionMonkey.Abstractions.ICommandClaimsBinder)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.ICommandClaimsBinder));
-            var claimsBinderTask = claimsBinder.BindAsync(principal, command);
-            if (claimsBinderTask == null)
-            {
-                claimsBinder.Bind(principal, command);
-            }
-            else
-            {
-                await claimsBinderTask;
-            }
+            {{#if UsesImmutableTypes}}
+                command = MergeCommandWithParameters(imtPropertyValues, command);
             {{/if}}
 
-            {{#if HasHttpResponseHandler}}
-            var responseHandler = ({{HttpResponseHandlerType}})FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{HttpResponseHandlerType}}));
+            {{#if ValidatesToken}}
+            {{#unless CommandTypeIsUnit}}    
+            command = ({{{CommandTypeName}}})(await pluginFunctions.BindClaims(principal, command));
+            {{/unless}}    
+            {{/if}}
+
+            {{#if HasCommandTransformer}}
+                    FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                    command = transformer.Transform(command);
             {{/if}}
 
             {{#if IsUsingValidator}}
-            var validator = (FunctionMonkey.Abstractions.Validation.IValidator)
-                FunctionMonkey.Runtime.ServiceProvider.GetService(typeof(FunctionMonkey.Abstractions.Validation.IValidator));
-            var validationResult = validator.Validate(command);
-            if (!validationResult.IsValid)
+            {{#unless CommandTypeIsUnit}}
+            var validationResult = pluginFunctions.Validate(command);
+            if (!pluginFunctions.IsValid(validationResult))
             {
                 {{#if HasHttpResponseHandler}}
-                    var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                    var validatorResponseTask = pluginFunctions.CreateValidationFailureResponse(command, validationResult);
                     var handledValidationResponse = validatorResponseTask != null ? (await validatorResponseTask) : null;
-                    return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                    return handledValidationResponse ?? CreateResponse(400, validationResult, pluginFunctions);
                 {{else}}
-                    return CreateResponse(400, validationResult, serializer);
+                    return CreateResponse(400, validationResult, pluginFunctions);
                 {{/if}}
             }
+            {{/unless}}
             {{/if}}
 
             try
             {
-                System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
-                {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, cancellationToken);
+                {{#if IsFunctionalFunction}}
+                    Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>> handler = (Func<{{{CommandTypeName}}}, Task<{{{CommandResultTypeName}}}>>)pluginFunctions.Handler;
+                    {{#if FunctionHandlerIsAsync}}
+                        var result = await handler(command);
+                    {{else}}
+                        var result = handler(command);
+                    {{/if}}
+                {{else}}
+                    System.Threading.CancellationTokenSource tokenSource = System.Threading.CancellationTokenSource.CreateLinkedTokenSource(req.HttpContext.RequestAborted, cancellationToken);
+                    {{#if CommandHasResult}}
+                        {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, tokenSource.Token);
+                    {{else}}
+                        await FunctionMonkey.Runtime.Mediator.SendAsync(command, tokenSource.Token);
+                    {{/if}}
+                {{/if}} 
 
                 {{#if HasHttpResponseHandler}}
                     {{#if IsValidationResult}}
                         FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result;
                         if (!validationResult.IsValid)
                         {
-                            var validatorResponseTask = responseHandler.CreateValidationFailureResponse(command, validationResult);
+                            var validatorResponseTask = pluginFunctions.CreateValidationFailureResponse(command, validationResult);
                             var handledValidationResponse = validatorResponseTask != null ? (await responseTask) : null;
-                            return handledValidationResponse ?? CreateResponse(400, validationResult, serializer);
+                            return handledValidationResponse ?? CreateResponse(400, validationResult, pluginFunctions);
                         }
                         else
                         {
-                            var responseTask = responseHandler.CreateResponse(command, result);
+                            var responseTask = pluginFunctions.CreateResponseForResult(command, result);
                             var handledResponse = responseTask != null ? (await responseTask) : null;
                             return handledResponse ?? CreateSignalRResponse(result);
                         }
                     {{else}}
-                        var responseTask = responseHandler.CreateResponse(command, result);
+                        var responseTask = pluginFunctions.CreateResponseForResult(command, result);
                         var handledResponse = responseTask != null ? (await responseTask) : null;
                         return handledResponse ?? CreateSignalRResponse(result);
                     {{/if}}
@@ -307,7 +472,7 @@ namespace {{Namespace}}
                         FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult validationResult = (FunctionMonkey.Commanding.Abstractions.Validation.ValidationResult)result.Result;
                         if (!validationResult.IsValid)
                         {
-                            return CreateResponse(400, validationResult, serializer);
+                            return CreateResponse(400, validationResult, pluginFunctions);
                         }
                     {{/if}}
                     return CreateSignalRResponse(result);
@@ -316,12 +481,12 @@ namespace {{Namespace}}
             catch(System.Exception ex)
             {
                 {{#if HasHttpResponseHandler}}
-                    var responseTask = responseHandler.CreateResponseFromException(command, ex);
+                    var responseTask = pluginFunctions.CreateResponseFromException(command, ex);
                     var handledResponse = responseTask != null ? (await responseTask) : null;
-                    return handledResponse ?? CreateResponse(500, "Unexpected error", serializer);
+                    return handledResponse ?? CreateResponse(500, "Unexpected error", pluginFunctions);
                 {{else}}
                     log.LogError(ex, $"Error occurred executing command {command.GetType().Name}");
-                    return CreateResponse(500, "Unexpected error", serializer);
+                    return CreateResponse(500, "Unexpected error", pluginFunctions);
                 {{/if}}
             }
             {{/if}}
@@ -340,12 +505,21 @@ namespace {{Namespace}}
             return new OkObjectResult(info);
         }
 
-        public static IActionResult CreateResponse(int code, object content, FunctionMonkey.Abstractions.ISerializer serializer)
+        public static IActionResult CreateResponse(int code, object content, FunctionMonkey.PluginFunctions pluginFunctions)
         {
             ContentResult result = new ContentResult();
-            result.Content = serializer.Serialize(content, true);
+            result.Content = pluginFunctions.Serialize(content, true);
             result.ContentType = "application/json";
             result.StatusCode = code;
+            return result;
+        }
+
+        public static IActionResult CreateBadParameterResponse(string message)
+        {
+            ContentResult result = new ContentResult();
+            result.Content = message;
+            result.ContentType = "text/plain";
+            result.StatusCode = 400;
             return result;
         }
 
@@ -357,7 +531,7 @@ namespace {{Namespace}}
           string str4 = request.QueryString.Value;
           return new System.Text.StringBuilder(request.Scheme.Length + "://".Length + str1.Length + str2.Length + str3.Length + str4.Length).Append(request.Scheme).Append("://").Append(str1).Append(str2).Append(str3).Append(str4).ToString();
         }
-
+    
         public delegate System.Boolean TryDelegate<T>(System.String input, out T result);
 
         private static System.Boolean TryParseNullable<T>(
@@ -371,5 +545,42 @@ namespace {{Namespace}}
 
           return success;
         }
+                        
+        private static {{{CommandTypeName}}} CreateNewCommand()
+        {
+            {{#if UsesImmutableTypes}}
+                {{#if CommandTypeIsUnit}}
+                    return null;
+                {{else}}    
+                return new {{{CommandTypeName}}}(
+                    {{#each ImmutableTypeConstructorParameters}}
+                        {{#if IsFSharpOptionType}}
+                            Microsoft.FSharp.Core.FSharpOption<{{{FSharpOptionInnerTypeName}}}>.None
+                        {{else}}
+                            default({{{TypeName}}})
+                        {{/if}}
+                        {{#unless @last}},{{/unless}}
+                    {{/each}}
+                );
+                {{/if}}    
+            {{else}}
+                return new {{{CommandTypeName}}}();
+            {{/if}}
+        }
+
+        {{#if UsesImmutableTypes}}
+        private static {{{CommandTypeName}}} MergeCommandWithParameters(Dictionary<string, object> values, {{{CommandTypeName}}} originalCommand)
+        {
+            {{#if CommandTypeIsUnit}}
+                return null;
+            {{else}}
+            return new {{{CommandTypeName}}}(
+            {{#each ImmutableTypeConstructorParameters}}
+                values.TryGetValue("{{Name}}", out object uncastValue{{@index}}) ? ({{{TypeName}}})uncastValue{{@index}} : originalCommand.{{Name}}{{#unless @last}},{{/unless}}
+            {{/each}}
+            );
+            {{/if}}
+        }
+        {{/if}}
     }
 }

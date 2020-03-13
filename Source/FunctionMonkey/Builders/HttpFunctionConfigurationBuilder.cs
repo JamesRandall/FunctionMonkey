@@ -96,7 +96,22 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, IHttpFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IHttpFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IHttpFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition, _pendingOutputConverterType);
+
+        private Type _pendingOutputConverterType = null;
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_definition.OutputBinding != null)
+            {
+                _definition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
     }
 }

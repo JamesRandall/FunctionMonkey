@@ -48,7 +48,24 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, IServiceBusFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IServiceBusFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
+        
+        
+        public IOutputBindingBuilder<IServiceBusFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IServiceBusFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition, _pendingOutputConverterType);
+        
+        private Type _pendingOutputConverterType = null;
+        public IServiceBusFunctionOptionBuilder<TCommandOuter> OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_functionDefinition.OutputBinding != null)
+            {
+                _functionDefinition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
     }
 }

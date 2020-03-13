@@ -17,6 +17,10 @@ namespace FunctionMonkey.Tests.Integration.Common
                     // Service Bus
                     .HttpFunction<HttpTriggerServiceBusQueueOutputCommand>("/toServiceBusQueue")
                     .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueue)
+                    
+                    .HttpFunction<HttpTriggerServiceBusQueueOutputWithConverterCommand>("/toServiceBusQueueWithConverter")
+                    .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueue)
+                    .OutputBindingConverter<OptionalValueCommandOutputBindingConverter>()
 
                     .HttpFunction<HttpTriggerServiceBusQueueCollectionOutputCommand>("/collectionToServiceBusQueue")
                     .OutputTo.ServiceBusQueue(Constants.ServiceBus.MarkerQueue)

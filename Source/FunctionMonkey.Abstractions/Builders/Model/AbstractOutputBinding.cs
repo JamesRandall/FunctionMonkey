@@ -1,3 +1,5 @@
+using System;
+
 namespace FunctionMonkey.Abstractions.Builders.Model
 {
     public abstract class AbstractOutputBinding
@@ -15,6 +17,13 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         {
             _commandResultTypeItemName = commandResultTypeItemName;
         }
+        
+        public Type OutputBindingConverterType { get; set; }
+        
+        public BridgedFunction OutputBindingConverterFunction { get; set; }
+
+        public bool HasOutputBindingConverter =>
+            OutputBindingConverterFunction != null || OutputBindingConverterType != null;
 
         public string CommandResultItemTypeName => _associatedFunctionDefinition?.CommandResultItemTypeName ?? _commandResultTypeItemName;
     }

@@ -48,10 +48,15 @@ namespace {{Namespace}}
         {
             log.LogInformation("Cosmos change feed trigger function {{Name}} processed a request.");
             FunctionMonkey.Runtime.FunctionProvidedLogger.Value = log;
+            FunctionMonkey.PluginFunctions pluginFunctions = FunctionMonkey.Runtime.PluginFunctions["{{Name}}"];
 
             {{#if IsDocumentBatchCommand}}
                 {{CommandTypeName}} command = new {{CommandTypeName}}();
                 command.Documents = input;
+                {{#if HasCommandTransformer}}
+                    FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                    command = transformer.Transform(command);
+                {{/if}}
                 {{#if CommandHasResult}}
                     {{{CommandResultTypeName}}} result = await FunctionMonkey.Runtime.Mediator.RequestAsync<{{{CommandResultTypeName}}}>(command, tokenSource.Token);
                 {{else}}
@@ -81,6 +86,11 @@ namespace {{Namespace}}
                                     command.{{Name}} = document.GetPropertyValue<{{TypeName}}>("{{CosmosPropertyName}}");
                                 {{/each}}
                             {{/if}}
+                        {{/if}}
+
+                        {{#if HasCommandTransformer}}
+                            FunctionMonkey.Abstractions.ICommandTransformer transformer = (FunctionMonkey.Abstractions.ICommandTransformer)FunctionMonkey.Runtime.ServiceProvider.GetService(typeof({{{CommandTransformerTypeName}}}));
+                            command = transformer.Transform(command);
                         {{/if}}
 
                         {{#if OutputBinding}}

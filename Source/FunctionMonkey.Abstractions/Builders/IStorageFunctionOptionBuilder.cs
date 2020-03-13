@@ -4,7 +4,7 @@ namespace FunctionMonkey.Abstractions.Builders
 {
     public interface IStorageFunctionOptionBuilder<TCommand> :
         IStorageFunctionBuilder,
-        IFunctionOptions<TCommand, IStorageFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder>
+        IFunctionOptions<IStorageFunctionOptionBuilder<TCommand>, IFunctionOptionsBuilder>
     {
         
     }

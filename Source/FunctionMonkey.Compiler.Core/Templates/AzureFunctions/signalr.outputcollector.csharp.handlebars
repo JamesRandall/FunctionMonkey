@@ -1,8 +1,41 @@
 {{#if CommandResultIsCollection}}
 foreach (var commandResultItem in result)
 {
+{{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(command, commandResultItem);
+    if (convertedItem is Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage externalMessage)
+    {
+        await collector.AddAsync(externalMessage);
+    }
+    else if (convertedItem is FunctionMonkey.Abstractions.SignalR.SignalRMessage internalMessage)
+    {
+        await collector.AddAsync(FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(internalMessage));
+    }
+    else
+    {
+        throw new Exception("Response must be of type SignalRMessage");
+    }
+{{else}}
     await collector.AddAsync(FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(commandResultItem));
+{{/if}}
+    
 }
 {{else}}
-await collector.AddAsync(FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(result));
+{{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(command, result);
+    if (convertedItem is Microsoft.Azure.WebJobs.Extensions.SignalRService.SignalRMessage externalMessage)
+    {
+        await collector.AddAsync(externalMessage);
+    }
+    else if (convertedItem is FunctionMonkey.Abstractions.SignalR.SignalRMessage internalMessage)
+    {
+        await collector.AddAsync(FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(internalMessage));
+    }
+    else
+    {
+        throw new Exception("Response must be of type SignalRMessage");
+    }
+{{else}}
+    await collector.AddAsync(FunctionMonkey.SignalR.Converter.ToAzureFunctionsObject(result));
+{{/if}}
 {{/if}}

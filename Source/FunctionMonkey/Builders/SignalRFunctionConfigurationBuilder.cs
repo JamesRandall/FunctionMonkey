@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 using FunctionMonkey.Commanding.Abstractions;
@@ -48,8 +49,23 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, ISignalRFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, ISignalRFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<ISignalRFunctionConfigurationBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<ISignalRFunctionConfigurationBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition, _pendingOutputConverterType);
+        
+        private Type _pendingOutputConverterType = null;
+        public ISignalRFunctionConfigurationBuilder<TCommandOuter> OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_definition.OutputBinding != null)
+            {
+                _definition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
 
         public ISignalRFunctionConfigurationBuilder<TCommand> Negotiate<TCommand>(string route, AuthorizationTypeEnum? authorizationType = null,
             params HttpMethod[] method)
@@ -61,6 +77,11 @@ namespace FunctionMonkey.Builders
             AuthorizationTypeEnum? authorizationType = null, params HttpMethod[] method)
         {
             return _httpFunctionBuilder.Negotiate(route, hubName, userIdMapping, authorizationType, method);
+        }
+
+        public ISignalRFunctionBuilder NegotiateWithClaim(string route, string hubName, string claimType, params HttpMethod[] method)
+        {
+            return _httpFunctionBuilder.NegotiateWithClaim(route, hubName, claimType, method);
         }
     }
 }

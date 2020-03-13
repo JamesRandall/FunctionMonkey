@@ -42,7 +42,22 @@ namespace FunctionMonkey.Builders
             return this;
         }
         
-        public IOutputBindingBuilder<TCommandOuter, IStorageFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IStorageFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition);
+        public IOutputBindingBuilder<IStorageFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IStorageFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _definition, _pendingOutputConverterType);
+        
+        private Type _pendingOutputConverterType = null;
+        public IStorageFunctionOptionBuilder<TCommandOuter> OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_definition.OutputBinding != null)
+            {
+                _definition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
     }
 }

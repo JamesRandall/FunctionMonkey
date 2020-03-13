@@ -74,10 +74,21 @@ namespace FunctionMonkey.Infrastructure
                 definition.CommandResultType = CalculateCommandResultType(definition);
                 definition.CommandDeserializerType = definition.CommandDeserializerType ??
                                                      ((SerializationBuilder)(builder.SerializationBuilder)).DefaultCommandDeserializerType;
-
-                if (CommandRequiresNoHandler(definition.CommandType))
+                definition.CommandTransformerType =
+                    definition.CommandTransformerType ?? builder.DefaultGlobalCommandTypeTransformer;
+                if (definition.OutputBinding != null)
+                {
+                    definition.OutputBinding.OutputBindingConverterType =
+                        definition.OutputBinding.OutputBindingConverterType ?? builder.DefaultOutputBindingConverter;
+                }
+                
+                if (CommandRequiresNoHandler(definition.CommandType) || builder.HasNoCommandHandlers)
                 {
                     definition.NoCommandHandler = true; // don't skip the if statement, this may also be set through options
+                }
+                if (definition.HasCommandHandlerOverride)
+                {
+                    definition.NoCommandHandler = false;
                 }
 
                 if (definition is HttpFunctionDefinition httpFunctionDefinition)

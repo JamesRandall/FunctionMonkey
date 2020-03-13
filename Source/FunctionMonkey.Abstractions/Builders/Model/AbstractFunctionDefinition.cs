@@ -151,5 +151,12 @@ namespace FunctionMonkey.Abstractions.Builders.Model
         
         // we have to use a string name comparison here as we don't want to bring in the  FSharp assembly
         public bool ResultIsFSharpUnit => CommandResultType?.FullName == "Microsoft.FSharp.Core.Unit";
+        
+        public Type CommandTransformerType { get; set; }
+
+        public string CommandTransformerTypeName => CommandTransformerType.EvaluateType();
+
+        public bool HasCommandTransformer => CommandTransformerType != null;
+        public bool HasCommandHandlerOverride { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using AzureFromTheTrenches.Commanding.Abstractions;
+using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Builders;
 using FunctionMonkey.Abstractions.Builders.Model;
 
@@ -33,7 +34,22 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
-        public IOutputBindingBuilder<TCommandOuter, IEventHubFunctionOptionBuilder<TCommandOuter>> OutputTo =>
-            new OutputBindingBuilder<TCommandOuter, IEventHubFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition);
+        public IOutputBindingBuilder<IEventHubFunctionOptionBuilder<TCommandOuter>> OutputTo =>
+            new OutputBindingBuilder<IEventHubFunctionOptionBuilder<TCommandOuter>>(_connectionStringSettingNames, this, _functionDefinition, _pendingOutputConverterType);
+        
+        private Type _pendingOutputConverterType = null;
+        public IEventHubFunctionOptionBuilder<TCommandOuter> OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_functionDefinition.OutputBinding != null)
+            {
+                _functionDefinition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
     }
 }

@@ -101,6 +101,21 @@ namespace FunctionMonkey.Builders
             return _functionBuilder.SignalR(signalRFunctionBuilder);
         }
 
-        public IOutputBindingBuilder<TCommandOuter, IFunctionBuilder> OutputTo => new OutputBindingBuilder<TCommandOuter, IFunctionBuilder>(_connectionStringSettingNames, _functionBuilder, _functionDefinition);
+        public IOutputBindingBuilder<IFunctionBuilder> OutputTo => new OutputBindingBuilder<IFunctionBuilder>(_connectionStringSettingNames, _functionBuilder, _functionDefinition, _pendingOutputConverterType);
+        
+        private Type _pendingOutputConverterType = null;
+        public IFunctionBuilder OutputBindingConverter<TConverter>() where TConverter : IOutputBindingConverter
+        {
+            if (_functionDefinition.OutputBinding != null)
+            {
+                _functionDefinition.OutputBinding.OutputBindingConverterType = typeof(TConverter);
+            }
+            else
+            {
+                _pendingOutputConverterType = typeof(TConverter);
+            }
+
+            return this;
+        }
     }
 }

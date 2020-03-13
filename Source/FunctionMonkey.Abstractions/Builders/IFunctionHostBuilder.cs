@@ -97,6 +97,24 @@ namespace FunctionMonkey.Abstractions.Builders
         IFunctionHostBuilder CompilerOptions(Action<ICompilerOptionsBuilder> options);
 
         /// <summary>
+        /// Registers a default output converter to use for all triggers with an output parameter
+        /// </summary>
+        /// <typeparam name="TConverter"></typeparam>
+        /// <returns></returns>
+        IFunctionHostBuilder DefaultOutputConverter<TConverter>() where TConverter : IOutputBindingConverter;
+        
+        /// <summary>
+        /// Marks all functions as having no command handlers - this can be useful if building a set of functions
+        /// that purely route inputs to output bindings
+        /// </summary>
+        /// <returns></returns>
+        IFunctionHostBuilder NoCommandHandlers();
+        
+        /// <summary>
+        /// Allows a transformer to be registered that will apply to all commands unless respecified on a function
+        IFunctionHostBuilder DefaultCommandTransformer<TCommandTransformer>() where TCommandTransformer : ICommandTransformer;
+
+        /// <summary>
         /// Access to the registered function definitions
         /// </summary>
         IReadOnlyCollection<AbstractFunctionDefinition> FunctionDefinitions { get; }

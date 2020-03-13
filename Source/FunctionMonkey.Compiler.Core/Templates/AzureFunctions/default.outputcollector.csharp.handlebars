@@ -1,8 +1,19 @@
 {{#if CommandResultIsCollection}}
 foreach (var commandResultItem in result)
 {
+{{#if OutputBinding.HasOutputBindingConverter}}
+    var convertedItem = pluginFunctions.OutputBindingConverter(command, commandResultItem);
+    await collector.AddAsync(convertedItem);
+{{else}}
     await collector.AddAsync(commandResultItem);
+{{/if}}
+    
 }
 {{else}}
-await collector.AddAsync(result);
+    {{#if OutputBinding.HasOutputBindingConverter}}
+        var convertedItem = pluginFunctions.OutputBindingConverter(command, result);
+        await collector.AddAsync(convertedItem);
+    {{else}}
+        await collector.AddAsync(result);
+    {{/if}}
 {{/if}}

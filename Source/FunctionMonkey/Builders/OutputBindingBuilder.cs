@@ -13,17 +13,24 @@ using FunctionMonkey.Model.OutputBindings;
 
 namespace FunctionMonkey.Builders
 {
-    internal class OutputBindingBuilder<TCommand, TParentBuilder> : IOutputBindingBuilder<TCommand, TParentBuilder>
+    internal class OutputBindingBuilder<TParentBuilder> : IOutputBindingBuilder<TParentBuilder>
     {
         private readonly ConnectionStringSettingNames _connectionStringSettingNames;
         private readonly TParentBuilder _parentBuilder;
         private readonly AbstractFunctionDefinition _functionDefinition;
+        private readonly Type _pendingOutputConverterType;
 
-        public OutputBindingBuilder(ConnectionStringSettingNames connectionStringSettingNames, TParentBuilder parentBuilder, AbstractFunctionDefinition functionDefinition)
+        public OutputBindingBuilder(
+            ConnectionStringSettingNames connectionStringSettingNames,
+            TParentBuilder parentBuilder,
+            AbstractFunctionDefinition functionDefinition,
+            Type pendingOutputConverterType
+            )
         {
             _connectionStringSettingNames = connectionStringSettingNames;
             _parentBuilder = parentBuilder;
             _functionDefinition = functionDefinition;
+            _pendingOutputConverterType = pendingOutputConverterType;
         }
         
         public TParentBuilder ServiceBusQueue(string connectionString, string queueName)
@@ -32,9 +39,10 @@ namespace FunctionMonkey.Builders
             
             _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition, connectionString)
             {
-                QueueName = queueName
+                QueueName = queueName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
-
+            
             return _parentBuilder;
         }
 
@@ -54,7 +62,8 @@ namespace FunctionMonkey.Builders
             _functionDefinition.OutputBinding = new ServiceBusQueueOutputBinding(_functionDefinition, connectionString)
             {
                 QueueName = queueName,
-                SessionIdPropertyName = sessionIdPropertyName
+                SessionIdPropertyName = sessionIdPropertyName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
 
             return _parentBuilder;
@@ -70,7 +79,8 @@ namespace FunctionMonkey.Builders
             VerifyOutputBinding();
             _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition, connectionString)
             {
-                TopicName = topicName
+                TopicName = topicName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
 
             return _parentBuilder;
@@ -92,7 +102,8 @@ namespace FunctionMonkey.Builders
             _functionDefinition.OutputBinding = new ServiceBusTopicOutputBinding(_functionDefinition, connectionString)
             {
                 TopicName = topicName,
-                SessionIdPropertyName = sessionIdPropertyName
+                SessionIdPropertyName = sessionIdPropertyName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
 
             return _parentBuilder;
@@ -114,7 +125,8 @@ namespace FunctionMonkey.Builders
             _functionDefinition.OutputBinding = new SignalROutputBinding(_functionDefinition, connectionStringSettingName)
             {
                 HubName = hubName,
-                SignalROutputTypeName = SignalROutputBinding.SignalROutputMessageType // can't use typeof() here as we don't want to bring the SignalR package into here
+                SignalROutputTypeName = SignalROutputBinding.SignalROutputMessageType, // can't use typeof() here as we don't want to bring the SignalR package into here
+                OutputBindingConverterType = _pendingOutputConverterType
             };
             return _parentBuilder;
         }
@@ -127,7 +139,8 @@ namespace FunctionMonkey.Builders
                 connectionStringSettingName)
             {
                 HubName = hubName,
-                SignalROutputTypeName = SignalROutputBinding.SignalROutputGroupActionType // can't use typeof() here as we don't want to bring the SignalR package into here
+                SignalROutputTypeName = SignalROutputBinding.SignalROutputGroupActionType, // can't use typeof() here as we don't want to bring the SignalR package into here
+                OutputBindingConverterType = _pendingOutputConverterType
             };
             return _parentBuilder;
         }
@@ -142,6 +155,7 @@ namespace FunctionMonkey.Builders
             if (_functionDefinition.OutputBinding is null)
             {
                 _functionDefinition.OutputBinding = new StorageBlobOutputBinding(_functionDefinition);
+                _functionDefinition.OutputBinding.OutputBindingConverterType = _pendingOutputConverterType;
             }
 
             if (_functionDefinition.OutputBinding is StorageBlobOutputBinding blobBinding)
@@ -170,7 +184,8 @@ namespace FunctionMonkey.Builders
             VerifyOutputBinding();
             _functionDefinition.OutputBinding = new StorageQueueOutputBinding(_functionDefinition, connectionStringSettingName)
             {
-                QueueName = queueName
+                QueueName = queueName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
             return _parentBuilder;
         }
@@ -185,7 +200,8 @@ namespace FunctionMonkey.Builders
             VerifyOutputBinding();
             _functionDefinition.OutputBinding = new StorageTableOutputBinding(_functionDefinition, connectionStringSettingName)
             {
-                TableName = tableName
+                TableName = tableName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
             return _parentBuilder;
         }
@@ -207,7 +223,8 @@ namespace FunctionMonkey.Builders
             {
                 CollectionName = collectionName,
                 DatabaseName = databaseName,
-                IsCollection = isCollection
+                IsCollection = isCollection,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
 
             return _parentBuilder;
@@ -223,7 +240,8 @@ namespace FunctionMonkey.Builders
             VerifyOutputBinding();
             _functionDefinition.OutputBinding = new EventHubOutputBinding(_functionDefinition, connectionStringSettingName)
             {
-                EventHub = hubName
+                EventHub = hubName,
+                OutputBindingConverterType = _pendingOutputConverterType
             };
 
             return _parentBuilder;
