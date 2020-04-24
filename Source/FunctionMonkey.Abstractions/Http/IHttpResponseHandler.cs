@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Commanding.Abstractions.Validation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey.Abstractions.Http
@@ -46,6 +47,15 @@ namespace FunctionMonkey.Abstractions.Http
         /// <param name="command">The command</param>
         /// <param name="validationResult">The validation result</param>
         /// <returns>An action result or null for the default Function Monkey behaviour</returns>
-        Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult);        
+        Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult);
+
+        /// <summary>
+        /// Invoked when a incoming HTTP request cannot be parsed into the declared input of a command.
+        /// Return an IActionResult for custom behaviour otherwise return null for the default framework behaviour.
+        /// </summary>
+        /// <typeparam name="TCommand">The type of the command</typeparam>
+        /// <param name="message">The bad parameter error message</param>
+        /// <param name="request">The received HTTP request</param>
+        Task<IActionResult> CreateBadParameterResponse(string message, HttpRequest request);
     }
 }
