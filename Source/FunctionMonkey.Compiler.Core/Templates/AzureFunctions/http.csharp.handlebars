@@ -121,11 +121,11 @@ namespace {{Namespace}}
                             sbError.Append(dex.LineNumber);
                             sbError.Append(" for path ");
                             sbError.Append(dex.Path);
-                            return CreateBadParameterResponse(sbError.ToString());
+                            return await CreateBadParameterResponse(sbError.ToString(), req, pluginFunctions);
                         }
                         else
                         {
-                            return CreateBadParameterResponse(dex.Message);
+                            return await CreateBadParameterResponse(dex.Message, req, pluginFunctions);
                         }
                     }
                 }
@@ -178,7 +178,7 @@ namespace {{Namespace}}
                             {
                                 if (!System.Enum.TryParse<{{DiscreteTypeName}}>(queryParameterValue, out parsedValue))
                                 {
-                                    return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                    return await CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}", req, pluginFunctions);
                                 }
                             }
                             {{else if IsFSharpOptionType}}
@@ -193,7 +193,7 @@ namespace {{Namespace}}
                                         }
                                         else
                                         {
-                                            return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                            return await CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}", req, pluginFunctions);
                                         }
                                     }
                                 {{/if}}
@@ -204,7 +204,7 @@ namespace {{Namespace}}
                                     {
                                         if(!TryParseNullable(queryParameterValue, {{NullableType}}.TryParse, out parsedValue))
                                         {
-                                            return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                            return await CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}", req, pluginFunctions);
                                         }
                                     }
                                 {{/if}}
@@ -212,7 +212,7 @@ namespace {{Namespace}}
                             {{else}}
                                 if (!{{{DiscreteTypeName}}}.TryParse(queryParameterValue, out parsedValue))
                                 {
-                                    return CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}");
+                                    return await CreateBadParameterResponse("Invalid type for query parameter {{{Name}}}", req, pluginFunctions);
                                 }
                             {{/if}}
                 
@@ -284,7 +284,7 @@ namespace {{Namespace}}
                                             }
                                             else
                                             {
-                                                return CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}");
+                                                return await CreateBadParameterResponse("Invalid type for header parameter {{{Name}}}", req, pluginFunctions);
                                             }
                                         }
                                     {{/if}}
@@ -336,7 +336,7 @@ namespace {{Namespace}}
                         }
                         else
                         {
-                            return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                            return await CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}", req, pluginFunctions);
                         }
                     }
                 {{else if IsFSharpOptionType}}
@@ -351,7 +351,7 @@ namespace {{Namespace}}
                             }
                             else
                             {
-                                return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                                return await CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}", req, pluginFunctions);
                             }
                         }
                     {{/if}}
@@ -372,7 +372,7 @@ namespace {{Namespace}}
                                 }
                                 else
                                 {
-                                    return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                                    return await CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}", req, pluginFunctions);
                                 }
                             }
                         }
@@ -380,7 +380,7 @@ namespace {{Namespace}}
                     }
                 {{else if IsDiscriminatedUnion}}
                     {
-                        return CreateBadParameterResponse("Unions not yet supported for route parameters");
+                        return await CreateBadParameterResponse("Unions not yet supported for route parameters", req, pluginFunctions);
                         //{{{DiscriminatedUnionUnderlyingTypeName}}} discriminatedUnionValue = pluginFunctions.ParseFromString<{{{RouteTypeName}}}>({{RouteName}}));
                     }
                 {{else}}
@@ -394,7 +394,7 @@ namespace {{Namespace}}
                     }
                     else
                     {
-                        return CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}");
+                        return await CreateBadParameterResponse("Invalid type for route parameter {{{RouteName}}}", req, pluginFunctions);
                     }
                 {{/if}}
             {{/each}}
@@ -547,13 +547,24 @@ namespace {{Namespace}}
             return result;
         }
 
-        public static IActionResult CreateBadParameterResponse(string message)
+        public static async Task<IActionResult> CreateBadParameterResponse(string message, HttpRequest request, FunctionMonkey.PluginFunctions pluginFunctions)
         {
-            ContentResult result = new ContentResult();
-            result.Content = message;
-            result.ContentType = "text/plain";
-            result.StatusCode = 400;
-            return result;
+            {{#if HasHttpResponseHandler}}
+                var badParameterResponseTask = pluginFunctions.CreateBadParameterResponse(message, request);
+                var handledbadParameterResponse = badParameterResponseTask != null ? (await badParameterResponseTask) : null;
+                return handledbadParameterResponse ?? 
+                    new ContentResult() {
+                        Content = message,
+                        ContentType = "text/plain",
+                        StatusCode = 400
+                    };
+            {{else}}
+                return new ContentResult() {
+                    Content = message,
+                    ContentType = "text/plain",
+                    StatusCode = 400
+                };
+            {{/if}}
         }
 
         private static string GetRequestUrl(HttpRequest request)

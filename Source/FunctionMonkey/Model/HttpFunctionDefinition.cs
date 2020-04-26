@@ -82,7 +82,8 @@ namespace FunctionMonkey.Model
             CreateResponseFromExceptionFunction != null ||
             CreateResponseFunction != null ||
             CreateResponseForResultFunction != null ||
-            CreateValidationFailureResponseFunction != null;
+            CreateValidationFailureResponseFunction != null ||
+            CreateBadParameterResponseFunction != null;
 
         public Type HttpResponseHandlerType { get; set; }
 
@@ -102,5 +103,7 @@ namespace FunctionMonkey.Model
         public BridgedFunction CreateResponseForResultFunction { get; set; }
         
         public BridgedFunction CreateValidationFailureResponseFunction { get; set; }
+
+        public BridgedFunction CreateBadParameterResponseFunction { get; set; }
     }
 }

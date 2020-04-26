@@ -19,6 +19,7 @@ using FunctionMonkey.Compiler.Core;
 using FunctionMonkey.Infrastructure;
 using FunctionMonkey.Model;
 using FunctionMonkey.Serialization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -355,6 +356,17 @@ namespace FunctionMonkey
                             pluginFunctions.CreateValidationFailureResponse = (cmd, vr) => null;
                         }
 
+                        if (httpFunctionDefinition.CreateBadParameterResponseFunction != null)
+                        {
+                            pluginFunctions.CreateBadParameterResponse =
+                                (Func<string, HttpRequest, Task<IActionResult>>)
+                                httpFunctionDefinition.CreateBadParameterResponseFunction.Handler;
+                        }
+                        else
+                        {
+                            pluginFunctions.CreateBadParameterResponse = (cmd, msg) => null;
+                        }
+
                         if (httpFunctionDefinition.CreateResponseForResultFunction != null)
                         {
                             pluginFunctions.CreateResponseForResult =
@@ -391,11 +403,19 @@ namespace FunctionMonkey
                         pluginFunctions.CreateValidationFailureResponse = (command, validationResult) =>
                         {
                             var responseHandler =
-                                (IHttpResponseHandler) ServiceProvider.GetService(
+                                (IHttpResponseHandler)ServiceProvider.GetService(
                                     httpFunctionDefinition.HttpResponseHandlerType);
                             return responseHandler.CreateValidationFailureResponse(command, (ValidationResult)validationResult);
                         };
-                        
+
+                        pluginFunctions.CreateBadParameterResponse = (message, request) =>
+                        {
+                            var responseHandler =
+                                (IHttpResponseHandler)ServiceProvider.GetService(
+                                    httpFunctionDefinition.HttpResponseHandlerType);
+                            return responseHandler.CreateBadParameterResponse(message, request);
+                        };
+
                         pluginFunctions.CreateResponseForResult = (command, result) =>
                         {
                             var responseHandler =
@@ -421,14 +441,12 @@ namespace FunctionMonkey
                     else
                     {
                         pluginFunctions.CreateValidationFailureResponse = (cmd, vr) => null;
+                        pluginFunctions.CreateBadParameterResponse = (cmd, msg) => null;
                         pluginFunctions.CreateResponseForResult = (cmd, result) => null;
                         pluginFunctions.CreateResponse = cmd => null;
                         pluginFunctions.CreateResponseFromException = (cmd, ex) => null;
                     }
 
-                    
-                    
-                    
                 };
                     
                 PluginFunctions.Add(functionDefinition.Name, pluginFunctions);
@@ -441,7 +459,8 @@ namespace FunctionMonkey
             return httpFunctionDefinition.CreateValidationFailureResponseFunction != null ||
                    httpFunctionDefinition.CreateResponseForResultFunction != null ||
                    httpFunctionDefinition.CreateResponseFunction != null ||
-                   httpFunctionDefinition.CreateResponseFromExceptionFunction != null;
+                   httpFunctionDefinition.CreateResponseFromExceptionFunction != null ||
+                   httpFunctionDefinition.CreateBadParameterResponseFunction != null;
         }
 
         private void RegisterCosmosDependencies(

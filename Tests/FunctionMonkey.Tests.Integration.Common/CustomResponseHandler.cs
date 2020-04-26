@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Commanding.Abstractions.Validation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey.Tests.Integration.Functions
@@ -29,6 +30,17 @@ namespace FunctionMonkey.Tests.Integration.Functions
         public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult)
         {
             return Task.FromResult((IActionResult)new OkObjectResult("CreateValidationFailureResponse<TCommand>"));
+        }
+
+        public Task<IActionResult> CreateBadParameterResponse(string message, HttpRequest request)
+        {
+            return Task.FromResult((IActionResult)
+                new ContentResult()
+                {
+                    Content = message,
+                    ContentType = "text/plain",
+                    StatusCode = 400
+                });
         }
     }
 }

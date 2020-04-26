@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AzureFromTheTrenches.Commanding.Abstractions;
 using FunctionMonkey.Abstractions.Http;
 using FunctionMonkey.Commanding.Abstractions.Validation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey.Testing.Implementation
@@ -28,6 +29,11 @@ namespace FunctionMonkey.Testing.Implementation
         }
 
         public Task<IActionResult> CreateValidationFailureResponse<TCommand>(TCommand command, ValidationResult validationResult)
+        {
+            return null;
+        }
+
+        public Task<IActionResult> CreateBadParameterResponse(string message, HttpRequest request)
         {
             return null;
         }

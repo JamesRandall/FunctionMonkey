@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using FunctionMonkey.Commanding.Abstractions.Validation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunctionMonkey
@@ -26,6 +27,8 @@ namespace FunctionMonkey
         public Func<object, Task<IActionResult>> CreateResponse { get; set; }
         
         public Func<object, object, Task<IActionResult>> CreateValidationFailureResponse { get; set; }
+
+        public Func<string, HttpRequest, Task<IActionResult>> CreateBadParameterResponse { get; set; }
         
         public Func<object, bool> IsValid { get; set; }
         
