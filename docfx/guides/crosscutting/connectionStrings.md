@@ -1,6 +1,6 @@
 # Connection Strings
 
-Many trigger types require a conncetion string setting names to be supplied. For example using the Service Bus you may declare a queue function like this:
+Many trigger types require connection string setting names to be supplied. For example using the Service Bus you may declare a queue function like this:
 
     .Functions(functions => functions
         .ServiceBus("serviceBusConnectionString", serviceBus => serviceBus
