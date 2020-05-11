@@ -10,7 +10,7 @@ If you are using an Open ID Connect supporting identity provider such as Auth0, 
 
 First install the NuGet package into your Azure Functions project:
 
-    Install-Package FunctionMonkey.TokenValidation
+    Install-Package FunctionMonkey.TokenValidator
 
 _At the time of writing you may need to add -pre onto the above as Function Monkey is listed as a preview package due to its reliance on a preview Service Bus package_
 
