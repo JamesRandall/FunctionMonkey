@@ -20,3 +20,20 @@ Note that one of the advantages of the mediator pattern that underpins Function 
 
 For further details see the [API Guide](https://functionmonkey.azurefromthetrenches.com/api/FunctionMonkey.Abstractions.Contexts.html).
 
+
+   
+      private readonly IContextProvider _contextProvider;
+      public CallbackHttpRequestDtoHandler(IContextProvider contextProvider)  
+      {
+          _contextProvider = context;
+      }
+      protected override async Task<IActionResult> ExecuteAsync(CallbackHttpRequestDto request,   IActionResult previousResult)
+      {
+          if (_contextProvider.HttpContext != null)
+          {
+              var headers = _context.HttpContext.Headers;
+              var requestUrl = _context.HttpContext.RequestUrl;
+              var claimsPrincipal = _context.HttpContext.ClaimsPrincipal;
+           }
+      }
+     
