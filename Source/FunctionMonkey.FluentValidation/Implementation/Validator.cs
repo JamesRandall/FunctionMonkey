@@ -29,7 +29,8 @@ namespace FunctionMonkey.FluentValidation.Implementation
                 return new ValidationResult();
             }
 
-            var validationResult = validator.Validate(command);
+            var context = new ValidationContext<object>(command);
+            var validationResult = validator.Validate(context);
 
             return new ValidationResult
             {

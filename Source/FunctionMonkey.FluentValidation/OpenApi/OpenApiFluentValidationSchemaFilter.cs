@@ -78,18 +78,31 @@ namespace FunctionMonkey.FluentValidation.OpenApi
         {
             var childAdapters = (validator as IEnumerable<IValidationRule>)
                 .NotNull()
-                .OfType<IncludeRule>()
+                .OfType<PropertyRule>()
                 .Where(includeRule => includeRule.Condition == null && includeRule.AsyncCondition == null)
                 .SelectMany(includeRule => includeRule.Validators)
-                .OfType<ChildValidatorAdaptor>();
+                .OfType<IChildValidatorAdaptor>();
 
             foreach (var adapter in childAdapters)
             {
-                var propertyValidatorContext = new PropertyValidatorContext(new ValidationContext(null), null, string.Empty);
-                var includeValidator = adapter.GetValidator(propertyValidatorContext);
+                var propertyValidatorContext = new PropertyValidatorContext(new ValidationContext<object>(null), null, string.Empty);
+                var includeValidator = GetValidatorFromChildValidatorAdapter(adapter, propertyValidatorContext);
                 ApplyRulesToSchema(schema, schemaFilterContext, includeValidator);
                 AddRulesFromIncludedValidators(schema, schemaFilterContext, includeValidator);
             }
+        }
+
+        private IValidator GetValidatorFromChildValidatorAdapter(IChildValidatorAdaptor childValidatorAdapter, PropertyValidatorContext propertyValidatorContext)
+        {
+            var childValidatorAdapterType = childValidatorAdapter.GetType();
+            var getValidatorMethod = childValidatorAdapterType.GetMethod(nameof(ChildValidatorAdaptor<object, object>.GetValidator));
+            if (getValidatorMethod != null)
+            {
+                var validator = (IValidator)getValidatorMethod.Invoke(childValidatorAdapter, new[] { propertyValidatorContext });
+                return validator;
+            }
+
+            return null;
         }
     }
 }
