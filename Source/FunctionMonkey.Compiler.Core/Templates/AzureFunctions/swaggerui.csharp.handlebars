@@ -1,7 +1,7 @@
-
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
@@ -11,45 +11,47 @@ namespace {{Namespace}}
 {
     public static class OpenApiProvider
     {
-        private static readonly Dictionary<string, string> SwaggerContentTypes = new Dictionary<string, string>
-        {
-            { ".html", "text/html" },
-            {".png", "image/png" },
-            {".map", "application/json" },
-            {".css", "text/css"},
-            {".js","application/javascript" }
-        };
-
         [FunctionName("OpenApiProvider")]
-        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "openapi/{name?}")]HttpRequest req, ILogger logger, string name)
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "{{OpenApiUserInterfaceRoute}}/{name1?}/{name2?}/{name3?}/{name4?}/{name5?}")]HttpRequest req, ILogger logger, string name1, string name2, string name3, string name4, string name5)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name1))
             {
-                name = "index.html";
+                name1 = "index.html";
             }
-            
-            using (Stream stream = typeof(OpenApiProvider).Assembly.GetManifestResourceStream($"{{Namespace}}.OpenApi.{name}"))
+
+            var resourceName = $"{{Namespace}}.openapi";
+            if(!string.IsNullOrWhiteSpace(name1))
             {
-                if (stream != null)
+                resourceName += "." + name1.ToLower();
+            }
+            if(!string.IsNullOrWhiteSpace(name2))
+            {
+                resourceName += "." + name2.ToLower();
+            }
+            if(!string.IsNullOrWhiteSpace(name3))
+            {
+                resourceName += "." + name3.ToLower();
+            }
+            if(!string.IsNullOrWhiteSpace(name4))
+            {
+                resourceName += "." + name4.ToLower();
+            }
+            if(!string.IsNullOrWhiteSpace(name5))
+            {
+                resourceName += "." + name5.ToLower();
+            }
+            Stream stream = typeof(OpenApiProvider).Assembly.GetManifestResourceStream(resourceName);
+            if (stream != null)
+            {
+                var provider = new FileExtensionContentTypeProvider();
+                if (!provider.TryGetContentType(Path.GetExtension(resourceName).ToLower(), out var contentType))
                 {
-                    ContentResult result = new ContentResult();
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        result.Content = reader.ReadToEnd();
-                    }
-
-                    if (!SwaggerContentTypes.TryGetValue(Path.GetExtension(name).ToLower(), out var contentType))
-                    {
-                        contentType = "text/plain";
-                    }
-
-                    result.ContentType = contentType;
-
-                    return result;
+                    contentType = "application/octet-stream";
                 }
-                else {
-                    logger.LogWarning($"Unable to find resource for {name}");
-                }
+                return new FileStreamResult(stream, contentType);
+            }
+            else {
+                logger.LogWarning($"Unable to find resource for {resourceName}");
             }
             return new NotFoundResult();
         }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -15,6 +15,7 @@
       <PackageReference Include="Handlebars.Net" Version="1.10.1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+      <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.5" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.CosmosDB" Version="3.0.5" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="4.1.0" />
@@ -22,11 +23,14 @@
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.0.0" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.0.2" />
       <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.10" />
+      <PackageReference Include="Microsoft.Azure.WebJobs.Host.Storage" Version="3.0.14" />
       <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="3.4.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
       <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.6.0" />
+      <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
       <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
       <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+      <PackageReference Include="YamlDotNet" Version="8.1.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -166,7 +170,15 @@
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XmlSerializer.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.dll" />
       <EmbeddedResource Include="references\netstandard2.0\System.Xml.XPath.XDocument.dll" />
+      <EmbeddedResource Include="Resources\OpenApi\swagger-logo.svg" />
+      <EmbeddedResource Include="Resources\OpenApi\topbar-multiple-specs.js" />
+      <EmbeddedResource Include="Resources\ReDoc\favicon-16x16.ico" />
+      <EmbeddedResource Include="Resources\ReDoc\favicon-32x32.ico" />
+      <EmbeddedResource Include="Resources\ReDoc\redoc-logo.png" />
+      <EmbeddedResource Include="Resources\ReDoc\index.html" />
+      <EmbeddedResource Include="Resources\ReDoc\topbar-multiple-specs.js" />
       <EmbeddedResource Include="Templates\AspNetCore\forcereference.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AspNetCore\redoc.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AspNetCore\swaggerui.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\cosmosdb.json.handlebars" />
@@ -208,10 +220,21 @@
       <EmbeddedResource Include="Templates\AzureFunctions\storagequeue.outputparameter.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\storagetable.outputcollector.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\storagetable.outputparameter.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\redocui.csharp.handlebars" />
+      <EmbeddedResource Include="Templates\AzureFunctions\redocui.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\swaggerui.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\swaggerui.json.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\timer.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AzureFunctions\timer.json.handlebars" />
+      <None Remove="Resources\OpenApi\swagger-logo.svg" />
+      <None Remove="Resources\ReDoc\favicon-16x16.ico" />
+      <None Remove="Resources\ReDoc\favicon-32x32.ico" />
+      <None Remove="Resources\ReDoc\index.html" />
+      <None Remove="Resources\ReDoc\redoc-logo.png" />
+      <None Remove="Resources\ReDoc\topbar-multiple-specs.js" />
+      <None Remove="Templates\AspNetCore\redoc.csharp.handlebars" />
+      <None Remove="Templates\AzureFunctions\redocui.csharp.handlebars" />
+      <None Remove="Templates\AzureFunctions\redocui.json.handlebars" />
       <None Remove="Templates\extensions.json.handlebars" />
       <None Remove="Templates\AspNetCore\startup.csharp.handlebars" />
       <EmbeddedResource Include="Templates\AspNetCore\startup.csharp.handlebars" />

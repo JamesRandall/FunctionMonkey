@@ -83,6 +83,12 @@ namespace FunctionMonkey.Builders
             return this;
         }
 
+        public IHttpFunctionConfigurationBuilder<TCommandOuter> OpenApiIgnore(bool ignore = true)
+        {
+            _definition.OpenApiIgnore = ignore;
+            return this;
+        }
+
         public IHttpFunctionConfigurationBuilder<TCommandOuter> Options(Action<IHttpFunctionOptionsBuilder<TCommandOuter>> options)
         {
             HttpFunctionOptionsBuilder<TCommandOuter> builder = new HttpFunctionOptionsBuilder<TCommandOuter>(_definition);

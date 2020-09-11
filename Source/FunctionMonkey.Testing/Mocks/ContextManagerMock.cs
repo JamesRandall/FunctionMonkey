@@ -5,6 +5,7 @@ using System.Threading;
 using FunctionMonkey.Abstractions;
 using FunctionMonkey.Abstractions.Contexts;
 using ExecutionContext = FunctionMonkey.Abstractions.Contexts.ExecutionContext;
+using HttpContext = FunctionMonkey.Abstractions.Contexts.HttpContext;
 
 namespace FunctionMonkey.Testing.Mocks
 {
@@ -88,13 +89,14 @@ namespace FunctionMonkey.Testing.Mocks
             };
         }
 
-        public void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers)
+        public void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers, Dictionary<string, string> cookies)
         {
             HttpContextLocal.Value = new HttpContext
             {
                 ClaimsPrincipal = claimsPrincipal,
                 RequestUrl = requestUrl,
-                Headers = headers
+                Headers = headers,
+                Cookies = cookies
             };
         }
 

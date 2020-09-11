@@ -25,7 +25,7 @@ namespace FunctionMonkey.Compiler.Core.Implementation.AzureFunctions
             IFunctionAppConfiguration configuration,
             IReadOnlyCollection<string> externalAssemblies,
             string outputBinaryFolder)
-        {
+         {
             HandlebarsHelpers.AzureFunctions.HandlebarsHelperRegistration.RegisterHelpers();
             
             bool isFSharpProject = functionCompilerMetadata.FunctionDefinitions.Any(x => x.IsFunctionalFunction);

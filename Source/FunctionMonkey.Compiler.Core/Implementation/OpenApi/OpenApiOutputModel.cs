@@ -6,15 +6,15 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
     {
         public string Filename { get; set; }
 
-        public string Content { get; set; }
+        public byte[] Content { get; set; }
     }
 
     internal class OpenApiOutputModel
     {
-        public OpenApiFileReference OpenApiSpecification { get; set; }
+        public IList<OpenApiFileReference> OpenApiFileReferences { get; } = new List<OpenApiFileReference>();
 
-        public IReadOnlyCollection<OpenApiFileReference> SwaggerUserInterface { get; set; }
+        public string UserInterfaceRoute { get; set; }
 
-        public bool IsConfiguredForUserInterface => SwaggerUserInterface != null && SwaggerUserInterface.Count > 0;
+        public string ReDocUserInterfaceRoute { get; set; }
     }
 }

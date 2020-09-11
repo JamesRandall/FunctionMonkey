@@ -59,7 +59,12 @@ namespace {{Namespace}}
                 string[] values = headerKeyValuesPair.Value.ToArray();
                 headerDictionary.Add(headerKeyValuesPair.Key, values);
             }
-            contextSetter.SetHttpContext(null, requestUrl, headerDictionary);
+
+            var cookieDictionary = new Dictionary<string, string>();            
+            foreach (var keyValuePair in req.Cookies)
+                cookieDictionary.Add(keyValuePair.Key, keyValuePair.Value);
+
+            contextSetter.SetHttpContext(null, requestUrl, headerDictionary, cookieDictionary);
 
             System.Security.Claims.ClaimsPrincipal principal = null;
             // If we validate tokens then we need to read the header, validate it and retrieve a claims principal. Returning unauthorized if
@@ -80,7 +85,7 @@ namespace {{Namespace}}
             {
                 return new UnauthorizedResult();
             }
-            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary);    
+            contextSetter.SetHttpContext(principal, requestUrl, headerDictionary, cookieDictionary);    
             {{/if}}
 
             {{#if AuthorizesClaims}}

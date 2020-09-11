@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace FunctionMonkey.Abstractions
 {
@@ -60,8 +61,10 @@ namespace FunctionMonkey.Abstractions
         /// <summary>
         /// Sets the HTTP context
         /// </summary>
+        /// <param name="claimsPrincipal"></param>
         /// <param name="requestUrl">The request URL</param>
         /// <param name="headers">The headers associated with the context</param>
-        void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers);
+        /// <param name="cookies">The cookie collection associated with the context</param>
+        void SetHttpContext(ClaimsPrincipal claimsPrincipal, string requestUrl, Dictionary<string, IReadOnlyCollection<string>> headers, Dictionary<string, string> cookies);
     }
 }

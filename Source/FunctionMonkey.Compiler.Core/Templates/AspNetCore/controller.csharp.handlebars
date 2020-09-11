@@ -75,7 +75,12 @@ namespace {{{Namespace}}}
                 string[] values = headerKeyValuesPair.Value.ToArray();
                 headerDictionary.Add(headerKeyValuesPair.Key, values);
             }
-            _contextSetter.SetHttpContext(User, requestUrl, headerDictionary);
+
+            var cookieDictionary = new Dictionary<string, string>();            
+            foreach (var keyValuePair in req.Cookies)
+                cookieDictionary.Add(keyValuePair.Key, keyValuePair.Value);
+
+            _contextSetter.SetHttpContext(User, requestUrl, headerDictionary, cookieDictionary);
             
             {{#if AuthorizesClaims}}
                 var claimsPrincipalAuthorizationResult = await pluginFunctions.IsAuthorized(User, req.Method, requestUrl);

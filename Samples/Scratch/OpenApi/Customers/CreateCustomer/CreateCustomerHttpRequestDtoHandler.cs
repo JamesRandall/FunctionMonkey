@@ -1,4 +1,4 @@
-﻿using AzureFromTheTrenches.Commanding.Abstractions;
+using AzureFromTheTrenches.Commanding.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

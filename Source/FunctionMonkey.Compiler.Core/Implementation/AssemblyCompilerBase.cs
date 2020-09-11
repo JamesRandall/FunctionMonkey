@@ -16,6 +16,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using Microsoft.FSharp.Core;
+using Microsoft.Net.Http.Headers;
 
 namespace FunctionMonkey.Compiler.Core.Implementation
 {
@@ -44,19 +45,11 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             if (OpenApiOutputModel != null)
             {
                 resources = new List<ResourceDescription>();
-                Debug.Assert(OpenApiOutputModel.OpenApiSpecification != null);
-                resources.Add(new ResourceDescription(
-                    $"{assemblyNamespace}.OpenApi.{OpenApiOutputModel.OpenApiSpecification.Filename}",
-                    () => new MemoryStream(Encoding.UTF8.GetBytes(OpenApiOutputModel.OpenApiSpecification.Content)), true));
-                if (OpenApiOutputModel.SwaggerUserInterface != null)
+                foreach (OpenApiFileReference openApiFileReference in OpenApiOutputModel.OpenApiFileReferences)
                 {
-                    foreach (OpenApiFileReference fileReference in OpenApiOutputModel.SwaggerUserInterface)
-                    {
-                        OpenApiFileReference closureCapturedFileReference = fileReference;
-                        resources.Add(new ResourceDescription(
-                            $"{assemblyNamespace}.OpenApi.{closureCapturedFileReference.Filename}",
-                            () => new MemoryStream(Encoding.UTF8.GetBytes(closureCapturedFileReference.Content)), true));
-                    }
+                    resources.Add(new ResourceDescription(
+                        $"{assemblyNamespace}.{openApiFileReference.Filename.ToLower()}",
+                        () => new MemoryStream(openApiFileReference.Content), true));
                 }
             }
 
@@ -98,6 +91,12 @@ namespace FunctionMonkey.Compiler.Core.Implementation
                 syntaxTrees.Add(openApiTree);
             }
 
+            SyntaxTree reDocTree = CreateReDocTree(newAssemblyNamespace, directoryInfo);
+            if (reDocTree != null)
+            {
+                syntaxTrees.Add(reDocTree);
+            }
+
             bool isFSharpProject = functionDefinitions.Any(x => x.IsFunctionalFunction);
 
             return CompileAssembly(
@@ -112,18 +111,34 @@ namespace FunctionMonkey.Compiler.Core.Implementation
 
         private SyntaxTree CreateOpenApiTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
         {
-            if (OpenApiOutputModel != null && OpenApiOutputModel.IsConfiguredForUserInterface)
+            if (OpenApiOutputModel != null && !string.IsNullOrWhiteSpace(OpenApiOutputModel.UserInterfaceRoute))
             {
                 string templateSource = TemplateProvider.GetTemplate("swaggerui","csharp");
                 return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "SwaggerUi", new
                 {
-                    Namespace = newAssemblyNamespace
+                    Namespace = newAssemblyNamespace,
+                    OpenApiUserInterfaceRoute = OpenApiOutputModel.UserInterfaceRoute
                 }, directoryInfo);
             }
 
             return null;
         }
-        
+
+        private SyntaxTree CreateReDocTree(string newAssemblyNamespace, DirectoryInfo directoryInfo)
+        {
+            if (OpenApiOutputModel != null && !string.IsNullOrWhiteSpace(OpenApiOutputModel.ReDocUserInterfaceRoute))
+            {
+                string templateSource = TemplateProvider.GetTemplate("redocui", "csharp");
+                return CreateSyntaxTreeFromHandlebarsTemplate(templateSource, "ReDocUi", new
+                {
+                    Namespace = newAssemblyNamespace,
+                    ReDocUserInterfaceRoute = OpenApiOutputModel.ReDocUserInterfaceRoute
+                }, directoryInfo);
+            }
+
+            return null;
+        }
+
         protected static SyntaxTree CreateSyntaxTreeFromHandlebarsTemplate(string templateSource, string name,
             object functionDefinition, DirectoryInfo directoryInfo)
         {
@@ -239,8 +254,9 @@ namespace FunctionMonkey.Compiler.Core.Implementation
             locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Collections").Location);
             locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading").Location);
             locations.Add(currentAssemblies.Single(x => x.GetName().Name == "System.Threading.Tasks").Location);
+            locations.Add(typeof(MediaTypeHeaderValue).Assembly.Location);
 
-                foreach (string externalAssemblyLocation in externalAssemblyLocations)
+            foreach (string externalAssemblyLocation in externalAssemblyLocations)
             {
                 locations.Add(externalAssemblyLocation);
             }

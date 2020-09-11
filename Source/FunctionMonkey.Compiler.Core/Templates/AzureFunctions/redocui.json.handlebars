@@ -1,0 +1,18 @@
+{
+  "generatedBy": "Microsoft.NET.Sdk.Functions.Generator-1.0.19",
+  "configurationSource": "attributes",
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "methods": [
+        "GET"
+      ],
+      "authLevel": "anonymous",
+      "name": "req",
+      "route": "{{ReDocUserInterfaceRoute}}/{name1?}/{name2?}/{name3?}/{name4?}/{name5?}"
+    }
+  ],
+  "disabled": false,
+  "scriptFile": "../bin/{{AssemblyFilename}}",
+  "entryPoint": "{{Namespace}}.ReDocProvider.Run"
+}

@@ -11,6 +11,8 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
     {
         public IList<IOpenApiDocumentFilter> DocumentFilters { get; } = new List<IOpenApiDocumentFilter>();
 
+        public IList<IOpenApiDocumentFilter> ReDocDocumentFilters { get; } = new List<IOpenApiDocumentFilter>();
+
         public IList<IOpenApiOperationFilter> OperationFilters { get; } = new List<IOpenApiOperationFilter>();
 
         public IList<IOpenApiParameterFilter> ParameterFilters { get; } = new List<IOpenApiParameterFilter>();
@@ -24,6 +26,31 @@ namespace FunctionMonkey.Compiler.Core.Implementation.OpenApi
             foreach (var documentFilterFactory in configuration.DocumentFilterFactories)
             {
                 DocumentFilters.Add(documentFilterFactory());
+            }
+
+            foreach (var reDocDocumentFilterFactory in configuration.ReDocDocumentFilterFactories)
+            {
+                ReDocDocumentFilters.Add(reDocDocumentFilterFactory());
+            }
+
+            foreach (var injectedExtensions in configuration.InjectedExtensions)
+            {
+                DocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(injectedExtensions.resourceAssembly, injectedExtensions.resourceName, injectedExtensions.documentRoute));
+            }
+
+            foreach (var reDocInjectedExtensions in configuration.ReDocInjectedExtensions)
+            {
+                ReDocDocumentFilters.Add(new OpenApiExtensionInjectingDocumentFilter(reDocInjectedExtensions.resourceAssembly, reDocInjectedExtensions.resourceName, reDocInjectedExtensions.documentRoute));
+            }
+
+            foreach (var injectedTags in configuration.InjectedTags)
+            {
+                DocumentFilters.Add(new OpenApiTagInjectingDocumentFilter(injectedTags.resourceAssembly, injectedTags.resourceName, injectedTags.documentRoute));
+            }
+
+            foreach (var reDocInjectedTags in configuration.ReDocInjectedTags)
+            {
+                ReDocDocumentFilters.Add(new OpenApiTagInjectingDocumentFilter(reDocInjectedTags.resourceAssembly, reDocInjectedTags.resourceName, reDocInjectedTags.documentRoute));
             }
 
             foreach (var operationFilterFactory in configuration.OperationFilterFactories)

@@ -56,6 +56,8 @@ namespace FunctionMonkey.Model
 
         public Dictionary<int, OpenApiResponseConfiguration> OpenApiResponseConfigurations { get; set; } = new Dictionary<int, OpenApiResponseConfiguration>();
 
+        public bool OpenApiIgnore { get; set; }
+
         public string SubRoute { get; set; }
 
         public string TokenHeader { get; set; }
