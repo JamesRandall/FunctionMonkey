@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "swagger-ui-dist": "^3.14.2"
+    "swagger-ui-dist": "^4.1.3"
   }
 }
